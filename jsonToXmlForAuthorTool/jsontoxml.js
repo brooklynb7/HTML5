@@ -120,7 +120,7 @@ var getSubQuestions = function(sub){
 	return subQuestionStr;		  
 };
 
-var obj = {
+/*var obj = {
     "questionnaire":     [
         {
             "sectionName": {
@@ -295,7 +295,7 @@ var obj = {
                             "conditional": {
                                 "condition": false,
                                 "title": {
-                                    "en": "Please fill in the questions on the tab &lt;span style=\"font-weight:bold\"&gt;Technical Upgrade&lt;/span&gt;. Do you need support to do the migration"
+                                    "en": "Please fill in the questions on the tab &lt;span style=\\&quot;font-weight:bold\\&quot;&gt;Technical Upgrade&lt;/span&gt;. Do you need support to do the migration"
                                 },
                                 "type": "short-text",
                                 "questionId": "RDBMS-a309-2"
@@ -381,7 +381,7 @@ var obj = {
                             "conditional": {
                                 "condition": false,
                                 "title": {
-                                    "en": "Please fill in the questions on the tab &lt;span style=\"font-weight:bold\"&gt;Functional Upgrade&lt;/span&gt;. Do you need help to migrate the data flow from 3.X to 7.X?"
+                                    "en": "Please fill in the questions on the tab &lt;span style=\\&quot;font-weight:bold\\&quot;&gt;Functional Upgrade&lt;/span&gt;. Do you need help to migrate the data flow from 3.X to 7.X?"
                                 },
                                 "type": "short-text",
                                 "questionId": "RDBMS-a312-2"
@@ -431,7 +431,7 @@ var obj = {
                             "conditional": {
                                 "condition": false,
                                 "title": {
-                                    "en": "Please fill in the questions on the tab &lt;span style=\"font-weight:bold\"&gt;Unicode Conversion&lt;/span&gt;. Do you need support to convert it?"
+                                    "en": "Please fill in the questions on the tab &lt;span style=\\&quot;font-weight:bold\\&quot;&gt;Unicode Conversion&lt;/span&gt;. Do you need support to convert it?"
                                 },
                                 "type": "short-text",
                                 "questionId": "RDBMS-a318-2"
@@ -446,7 +446,7 @@ var obj = {
                             "conditional": {
                                 "condition": false,
                                 "title": {
-                                    "en": "Please fill in the questions on the tab &lt;span style=\"font-weight:bold\"&gt;Authorization Migration&lt;/span&gt;. Do you need support to do the migration?"
+                                    "en": "Please fill in the questions on the tab &lt;span style=\\&quot;font-weight:bold\\&quot;&gt;Authorization Migration&lt;/span&gt;. Do you need support to do the migration?"
                                 },
                                 "type": "short-text",
                                 "questionId": "RDBMS-a319-2"
@@ -499,7 +499,7 @@ var obj = {
                         },
                         {
                             "title":{
-                                "en":"Which SAP-dependent systems are in use in the landscape? Please specify these in the \"Comments\" section (System / Release)."
+                                "en":"Which SAP-dependent systems are in use in the landscape? Please specify these in the \\&quot;Comments\\&quot; section (System / Release)."
                             },
                             "type":"long-text",
                             "questionId": "RDBMS-a324"
@@ -719,7 +719,7 @@ var obj = {
                             "title": {
                                 "en": "When do you expect the delivery of the HANA appliances by your hardware partner?"
                             },
-                            "type":"date",
+                            "type":"short-text",
                             "questionId":"RDBMS-a604"
                         },
                         {
@@ -824,7 +824,7 @@ var obj = {
                             "conditional": {
                                 "condition": true,
                                 "title": {
-                                    "en": "Please fill in the questions on the tab &lt;span style=\"font-weight:bold\"&gt;Data Volume Optimization&lt;/span&gt;. Do you need to support to the Optimization"
+                                    "en": "Please fill in the questions on the tab &lt;span style=\\&quot;font-weight:bold\\&quot;&gt;Data Volume Optimization&lt;/span&gt;. Do you need to support to the Optimization"
                                 },
                                 "type": "short-text",
                                 "questionId": "RDBMS-a707-2"
@@ -2149,6 +2149,1270 @@ var obj = {
                             },
                             "type":"boolean",
                             "questionId":"RDBMS-h111"
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "answers" : {
+    }
+};*/
+
+var obj = {
+    "questionnaire":     [
+        {
+            "sectionName": {
+                "en": "Scoping General" 
+            },
+            "sections": [
+                {
+                    "sectionName": {
+                        "en": "1. Company Data"
+                    },
+                    "questions": [
+                        {
+                            "title": {
+                                "en": "Company name"
+                            },
+                            "type": "short-text",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-b101"
+                        },
+                        {
+                            "title": {
+                                "en": "Customer number"
+                            },
+                            "type": "short-text",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-b102"
+                        },
+                        {
+                            "title": {
+                                "en": "Installation number"
+                            },
+                            "type": "short-text",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-b103"
+                        },
+                        {
+                            "title": {
+                                "en": "SAP Client Partner/SAM"
+                            },
+                            "type": "short-text",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-b104"
+                        },
+                        {
+                            "title": {
+                                "en": "Primary contact person"
+                            },
+                            "type": "short-text",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-b105"
+                        },
+                        {
+                            "title": {
+                                "en": "Primary customer contact details(address, email, telephone, ...)"
+                            },
+                            "type": "short-text",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-b106"
+                        }
+                    ]
+                },
+                {
+                    "sectionName": {
+                        "en": "2. Customer contacts(if applicate)"
+                    },
+                    "questions": [
+                        {
+                            "title": {
+                                "en": "Project Manager  (email, telephone)"
+                            },
+                            "type": "long-text",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-b201"
+                        },
+                        {
+                            "title": {
+                                "en": "Business Lead(Decision Maker)  (email, telephone)"
+                            },
+                            "type": "long-text",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-b202"
+                        },
+                        {
+                            "title": {
+                                "en": "Business Subject Matter Experts  (email, telephone)"
+                            },
+                            "type": "long-text",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-b203"
+                        },
+                        {
+                            "title": {
+                                "en": "Business Super User and Master Trainer (Power user) (email, telephone)"
+                            },
+                            "type": "long-text",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-b204"
+                        },
+                        {
+                            "title": {
+                                "en": "IT Functional Lead, Master data (email, telephone)"
+                            },
+                            "type": "long-text",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-b205"
+                        },
+                        {
+                            "title": {
+                                "en": "IT Development and Reporting (email, telephone)"
+                            },
+                            "type": "long-text",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-b206"
+                        },
+                        {
+                            "title": {
+                                "en": "Basis Staff/Security/Hosting partner (email, telephone)"
+                            },
+                            "type": "long-text",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-b207"
+                        },
+                        {
+                            "title": {
+                                "en": "Organization change management (email, telephone)"
+                            },
+                            "type": "long-text",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-b208"
+                        }                        
+                    ]
+                },
+                {
+                    "sectionName": {
+                        "en": "3. General Landscape"
+                    },
+                    "questions": [
+                        {
+                            "title": {
+                                "en": "What is the SAP Landscape layout? Please enrich the information with available documentation"
+                            },
+                            "type": "long-text",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-b301"
+                        },    
+                        {
+                            "title": {
+                                "en": "List the SAP product release involved (e.g ECC6.0, SRM, SCM)"
+                            },
+                            "type": "long-text",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-b302"
+                        },
+                        {
+                            "title": {
+                                "en": "List the type of systems used in the transport landscape of SAP system (e.g. DEV, QA,…, PROD)"
+                            },
+                            "type": "long-text",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-b303"
+                        },               
+                        {
+                            "title": {
+                                "en": "Please specify the database and version used (If the landscape is using heterogeneous database, please specify for each system)"
+                            },
+                            "type": "long-text",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-b304"
+                        },
+                        {
+                            "title": {
+                                "en": "DB Size (in GB) per system of the landscape, both used and allocated"
+                            },
+                            "type": "long-text",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-b305"
+                        },
+                        {
+                            "title": {
+                                "en": "Please specify the operating system and version used (If the landscape is using heterogeneous OS, please specify for each system)"
+                            },
+                            "type": "long-text",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-b306"
+                        },
+                        {
+                            "title": {
+                                "en": "Please provide db size w/o PSAPTEMP, PSAPROLL/PSAPUNDO"
+                            },
+                            "type": "long-text",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-b307"
+                        },
+                        {
+                            "title": {
+                                "en": "Production SID"
+                            },
+                            "type": "short-text",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-b308"
+                        },
+                        {
+                            "title": {
+                                "en": "Please indicate the current SAP kernel and patch versions of the source systems:"
+                            },
+                            "type": "short-text",
+                            "subQuestions": [
+                                {
+                                    "questionId": "RDS-DB-MIGRATION-TO-ASE-b309-1",
+                                    "text": {
+                                        "en": "SAP_ABA" 
+                                    }
+                                },
+                                {
+                                    "questionId": "RDS-DB-MIGRATION-TO-ASE-b309-2",
+                                    "text": {
+                                        "en": "SAP_BASIS" 
+                                    }
+                                },
+                                {
+                                    "questionId": "RDS-DB-MIGRATION-TO-ASE-b309-3",
+                                    "text": {
+                                        "en": "ST-PI" 
+                                    }
+                                },
+                                {
+                                    "questionId": "RDS-DB-MIGRATION-TO-ASE-b309-4",
+                                    "text": {
+                                        "en": "SAP_BW" 
+                                    }
+                                },
+                                {
+                                    "questionId": "RDS-DB-MIGRATION-TO-ASE-b309-5",
+                                    "text": {
+                                        "en": "FINBASIS" 
+                                    }
+                                },
+                                {
+                                    "questionId": "RDS-DB-MIGRATION-TO-ASE-b309-6",
+                                    "text": {
+                                        "en": "BW_CONT" 
+                                    }
+                                },
+                                {
+                                    "questionId": "RDS-DB-MIGRATION-TO-ASE-b309-7",
+                                    "text": {
+                                        "en": "SEM_BW" 
+                                    }
+                                },
+                                {
+                                    "questionId": "RDS-DB-MIGRATION-TO-ASE-b309-8",
+                                    "text": {
+                                        "en": "SAP kernel" 
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "title": {
+                                "en": "Do you use the your SAP system in a multiple time zone environment?"
+                            },
+                            "type": "boolean",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-b310"
+                        },
+                        {
+                            "title": {
+                                "en": "Are other SAP systems installed on the same server?"
+                            },
+                            "type": "boolean",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-b311-1",
+                            "conditional": {
+                                "condition": true,
+                                "title": {
+                                    "en": "Please indicate the available downtime window for these systems (e.g. ECC, Enterprise Portal, APO, CRM, BW, SRM, XI, MDM)"
+                                },
+                                "type": "long-text",
+                                "questionId": "RDS-DB-MIGRATION-TO-ASE-b311-2"
+                            }
+                        },
+                        {
+                            "title": {
+                                "en": "Which SAP-dependent systems are in use in the landscape? Please specify these in the 'Comments' section (System / Release)"
+                            },
+                            "type": "long-text",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-b312"
+                        },
+                        {
+                            "title": {
+                                "en": "Are the SAP systems operated by hosting partners?"
+                            },
+                            "type": "boolean",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-b313-1",
+                            "conditional": {
+                                "condition": true,
+                                "title": {
+                                    "en": "Please specify the hosting partner"
+                                },
+                                "type": "short-text",
+                                "questionId": "RDS-DB-MIGRATION-TO-ASE-b313-2"
+                            }
+                        },
+                        {
+                            "title": {
+                                "en": "Will your SAP system be available on a  24x7 basis?"
+                            },
+                            "type": "boolean",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-b314"
+                        },
+                        {
+                            "title": {
+                                "en": "Have you configured high availability?"
+                            },
+                            "type": "boolean",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-b315-1",
+                            "conditional": {
+                                "condition": true,
+                                "title": {
+                                    "en": "Please specify Hardware / DB cluster"
+                                },
+                                "type": "long-text",
+                                "questionId": "RDS-DB-MIGRATION-TO-ASE-b315-2"
+                            }
+                        },
+                        {
+                            "title": {
+                                "en": "Describe your storage system - SAN / NAS"
+                            },
+                            "type": "long-text",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-b316"
+                        },
+                        {
+                            "title": {
+                                "en": "Which filesystems are used for the database?"
+                            },
+                            "type": "long-text",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-b317"
+                        },
+                        {
+                            "title": {
+                                "en": "List sapgui version / patch level"
+                            },
+                            "type": "long-text",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-b318"
+                        },
+                        {
+                            "title": {
+                                "en": "List of third party tools used in sap environment"
+                            },
+                            "type": "long-text",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-b319"
+                        },
+                        {
+                            "title": {
+                                "en": "Do you use any data compression features in your database?"
+                            },
+                            "type": "boolean",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-b320-1",
+                            "conditional": {
+                                "condition": true,
+                                "title": {
+                                    "en": "Please provide details"
+                                },
+                                "type": "long-text",
+                                "questionId": "RDS-DB-MIGRATION-TO-ASE-b320-2"
+                            }
+                        },
+                        {
+                            "title": {
+                                "en": "Please specify the backup procedure (online, offline, other tools)"
+                            },
+                            "type": "long-text",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-b321"
+                        }
+                    ]
+                },
+                {
+                    "sectionName": {
+                        "en": "4. Interfaces (Optional)"
+                    },
+                    "questions": [
+                        {
+                            "title": {
+                                "en": "How many interfaces are in use?"
+                            },
+                            "type": "short-text",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-b401"
+                        },
+                        {
+                            "title": {
+                                "en": "Can you supply a complete list of the interfaces?"
+                            },
+                            "type": "long-text",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-b402"
+                        },
+                        {
+                            "title": {
+                                "en": "How many interfaces do not use RFC(SM59)?"
+                            },
+                            "type": "short-text",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-b403"
+                        },
+                        {
+                            "title": {
+                                "en": "What are the types of interfaces, inbound/outbound (RFC, ALE, IDOC, other)?"
+                            },
+                            "type": "long-text",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-b404"
+                        },
+                        {
+                            "title": {
+                                "en": "Have those interfaces been developed by you or are they third-party products / vendor?"
+                            },
+                            "type": "long-text",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-b405"
+                        },
+                        {
+                            "title": {
+                                "en": "Which programming languages have been used for self-developed interfaces (e.g. C++, JAVA)?"
+                            },
+                            "type": "short-text",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-b406"
+                        },
+                        {
+                            "title": {
+                                "en": "What are the code pages for the other systems that are interfacing with SAP ?"
+                            },
+                            "type": "long-text",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-b407"
+                        },
+                        {
+                            "title": {
+                                "en": "Do you have any other business applications running with SAP applications that would influence the outage window?"
+                            },
+                            "type": "long-text",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-b408"
+                        }
+                    ]
+                },
+                {
+                    "sectionName": {
+                        "en": "5. Support information"
+                    },
+                    "questions": [
+                        {
+                            "title": {
+                                "en": "Is the EarlyWatch Alert (EWA) implemented and available? See SAP note 1591839."
+                            },
+                            "type": "long-text",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-b501"
+                        },
+                        {
+                            "title": {
+                                "en": "Do you use the SAP Solution Manager?"
+                            },
+                            "type": "boolean",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-b502-1",
+                            "conditional": {
+                                "condition": true,
+                                "title": {
+                                    "en": "Please name the current release and enhancement package status"
+                                },
+                                "type": "long-text",
+                                "questionId": "RDS-DB-MIGRATION-TO-ASE-b502-2"
+                            }
+                        },
+                        {
+                            "title": {
+                                "en": "Remote connection details (eg SAP OSS, VPN): Is the access to the server at any time (24x7) ensured? Is your system ready to SAP remote connection according to the SAP Notes 35010 and 605795?"
+                            },
+                            "type": "long-text",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-b503"
+                        },
+                        {
+                            "title": {
+                                "en": "Please provide connectivity details per server (Hostname/IP Address, SAP Client, User-ID, Password, OS User-ID, OS Password)"
+                            },
+                            "type": "long-text",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-b504"
+                        },
+                        {
+                            "title": {
+                                "en": "Please provide the following Information about your Source system (Application and Database) hardware (please specify these in the 'Comments' section):"
+                            },
+                            "type": "long-text",
+                            "subQuestions": [
+                                {
+                                    "questionId": "RDS-DB-MIGRATION-TO-ASE-b505-1",
+                                    "text": {
+                                        "en": "Server" 
+                                    }
+                                },
+                                {
+                                    "questionId": "RDS-DB-MIGRATION-TO-ASE-b505-2",
+                                    "text": {
+                                        "en": "Model/Make" 
+                                    }
+                                },
+                                {
+                                    "questionId": "RDS-DB-MIGRATION-TO-ASE-b505-3",
+                                    "text": {
+                                        "en": "Operating system and version" 
+                                    }
+                                },
+                                {
+                                    "questionId": "RDS-DB-MIGRATION-TO-ASE-b505-4",
+                                    "text": {
+                                        "en": "CPU Type" 
+                                    }
+                                },
+                                {
+                                    "questionId": "RDS-DB-MIGRATION-TO-ASE-b505-5",
+                                    "text": {
+                                        "en": "No. Of CPU" 
+                                    }
+                                },
+                                {
+                                    "questionId": "RDS-DB-MIGRATION-TO-ASE-b505-6",
+                                    "text": {
+                                        "en": "RAM" 
+                                    }
+                                },
+                                {
+                                    "questionId": "RDS-DB-MIGRATION-TO-ASE-b505-7",
+                                    "text": {
+                                        "en": "Hard disk/Details" 
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "title": {
+                                "en": "Please provide the following Information about your Target system (Application and Database) hardware (please specify these in the 'Comments' section):"
+                            },
+                            "type": "long-text",
+                            "subQuestions": [
+                                {
+                                    "questionId": "RDS-DB-MIGRATION-TO-ASE-b506-1",
+                                    "text": {
+                                        "en": "Server" 
+                                    }
+                                },
+                                {
+                                    "questionId": "RDS-DB-MIGRATION-TO-ASE-b506-2",
+                                    "text": {
+                                        "en": "Model/Make" 
+                                    }
+                                },
+                                {
+                                    "questionId": "RDS-DB-MIGRATION-TO-ASE-b506-3",
+                                    "text": {
+                                        "en": "Operating system and version" 
+                                    }
+                                },
+                                {
+                                    "questionId": "RDS-DB-MIGRATION-TO-ASE-b506-4",
+                                    "text": {
+                                        "en": "CPU Type" 
+                                    }
+                                },
+                                {
+                                    "questionId": "RDS-DB-MIGRATION-TO-ASE-b506-5",
+                                    "text": {
+                                        "en": "No. Of CPU" 
+                                    }
+                                },
+                                {
+                                    "questionId": "RDS-DB-MIGRATION-TO-ASE-b506-6",
+                                    "text": {
+                                        "en": "RAM" 
+                                    }
+                                },
+                                {
+                                    "questionId": "RDS-DB-MIGRATION-TO-ASE-b506-7",
+                                    "text": {
+                                        "en": "Hard disk/Details" 
+                                    }
+                                }
+                            ]
+                        }                        
+                    ]
+                },
+                {
+                    "sectionName": {
+                        "en": "6. Additional information"
+                    },
+                    "questions": [
+                        {
+                            "title": {
+                                "en": "Proposed Migration Project Start Date?"
+                            },
+                            "type": "short-text",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-b601"
+                        },
+                        {
+                            "title": {
+                                "en": "Planned Productive Cutover Weekend?"
+                            },
+                            "type": "short-text",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-b602"
+                        },
+                        {
+                            "title": {
+                                "en": "Do you need help in testing? Specify in which testing phase"
+                            },
+                            "type": "long-text",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-b603"
+                        },
+                        {
+                            "title": {
+                                "en": "Do you need full-time onsite support after go-live? (note: the RDS doesn't include post go-live support). Please indicate how long"
+                            },
+                            "type": "long-text",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-b604"
+                        },
+                        {
+                            "title": {
+                                "en": "Do you need help in the installation and configuration of SAP front-end tools? (note: This is not part of the RDS)"
+                            },
+                            "type": "boolean",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-b605"
+                        },
+                        {
+                            "title": {
+                                "en": "Do you need help in implementing a high availability solution of SAP NetWeaver systems? (note: this is not part of the RDS)."
+                            },
+                            "type": "boolean",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-b606"
+                        },
+                        {
+                            "title": {
+                                "en": "Do you need to optimize your DB volume?"
+                            },
+                            "type": "boolean",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-b607"
+                        },
+                        {
+                            "title": {
+                                "en": "Do you use third-party products for testing? Please specify"
+                            },
+                            "type": "long-text",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-b608"
+                        },
+                        {
+                            "title": {
+                                "en": "Do you have testing scripts?"
+                            },
+                            "type": "boolean",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-b609"
+                        },
+                        {
+                            "title": {
+                                "en": "Are testing procedures documented?"
+                            },
+                            "type": "boolean",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-b610"
+                        },
+                        {
+                            "title": {
+                                "en": "Are interfaces tested?"
+                            },
+                            "type": "boolean",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-b611"
+                        },
+                        {
+                            "title": {
+                                "en": "Do you use third-party products for a printing solution?"
+                            },
+                            "type": "boolean",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-b612"
+                        },
+                        {
+                            "title": {
+                                "en": "What fax solution do you use?"
+                            },
+                            "type": "long-text",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-b613"
+                        },
+                        {
+                            "title": {
+                                "en": "Do you print barcodes?"
+                            },
+                            "type": "boolean",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-b614"
+                        },
+                        {
+                            "title": {
+                                "en": "Do you currently print forms or reports in double-byte languages?"
+                            },
+                            "type": "boolean",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-b615"
+                        },
+                        {
+                            "title": {
+                                "en": "Please include any additional information you think is important for SAP to understand your project as we examine the information"
+                            },
+                            "type": "long-text",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-b616"
+                        }                        
+                    ]
+                }
+            ]
+        },
+        {
+            "sectionName": {
+                "en": "DB Migration" 
+            },
+            "sections": [
+                {
+                    "sectionName": {
+                        "en": "Questions"
+                    },
+                    "questions": [
+                        {
+                            "title": {
+                                "en": "Is the hardware for SAP Sybase ASE properly sized?"
+                            },
+                            "type": "boolean",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-c101"
+                        },
+                        {
+                            "title": {
+                                "en": "Do you need help in sizing the SAP Sybase ASE server?"
+                            },
+                            "type": "boolean",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-c102"
+                        }, 
+                        {
+                            "title": {
+                                "en": "When do you expect the delivery of new servers by your hardware partner?"
+                            },
+                            "type": "short-text",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-c103"
+                        },
+                        {
+                            "title": {
+                                "en": "Do you use third-party tools (Reporting, ETL, Scheduling, Monitoring)? Specify these in the 'Comments' section"
+                            },
+                            "type": "long-text",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-c104"
+                        }, 
+                        {
+                            "title": {
+                                "en": "Do you plan to migrate other systems than your productive system?"
+                            },
+                            "type": "boolean",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-c105"
+                        }, 
+                        {
+                            "title": {
+                                "en": "Do you plan to rename the system ID (SID) of your productive system during migration?"
+                            },
+                            "type": "boolean",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-c106"
+                        },
+                        {
+                            "title": {
+                                "en": "Did you order the SAP OS/DB MIGRATION CHECK Service? The service can be found under the following link: https://service.sap.com/osdbmigration"
+                            },
+                            "type": "boolean",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-c107"
+                        },
+                        {
+                            "title": {
+                                "en": "Are you changing operating systems (e.g. AIX, HPUX, Solaris, Windows, AS400, zOS)?"
+                            },
+                            "type": "short-text",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-c108"
+                        },
+                        {
+                            "title": {
+                                "en": "Are you planning an upgrade in tandem with your migration?"
+                            },
+                            "type": "boolean",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-c109"
+                        },
+                        {
+                            "title": {
+                                "en": "Is a unicode conversion planned with the database migration?"
+                            },
+                            "type": "boolean",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-c110"
+                        },
+                        {
+                            "title": {
+                                "en": "How much downtime can the business tolerate?"
+                            },
+                            "type": "short-text",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-c111"
+                        },
+                        {
+                            "title": {
+                                "en": "Do you need support in installing additional dialog instances after migration? (note: this is not part of the service and must be priced separately)"
+                            },
+                            "type": "boolean",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-c112"
+                        },
+                        {
+                            "title": {
+                                "en": "Do you need to tune the performance of the migrated system? (note: this is not part of the service and must be priced separately)"
+                            },
+                            "type": "boolean",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-c113"
+                        },
+                        {
+                            "title": {
+                                "en": "How many SAPS does the corresponding Productive System have?"
+                            },
+                            "type": "short-text",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-c114"
+                        },
+                        {
+                            "title": {
+                                "en": "What't the average CPU and Memory usage of the Database Server?"
+                            },
+                            "type": "long-text",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-c115"
+                        },
+                        {
+                            "title": {
+                                "en": "How many concurrent users are working with the productive system?"
+                            },
+                            "type": "short-text",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-c116"
+                        },
+                        {
+                            "title": {
+                                "en": "List 10 largest tables from production system. Also, provide a file with a list of top 500 tables"
+                            },
+                            "type": "long-text",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-c117"
+                        },
+                        {
+                            "title": {
+                                "en": "List the name of Archived Tables &amp; Objects, frequency (weekly/monthly) and volume of data archived per month"
+                            },
+                            "type": "long-text",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-c118"
+                        }                      
+                    ]
+                }
+            ]
+        },
+        {
+            "sectionName": {
+                "en": "Unicode Conversion" 
+            },
+            "sections": [
+                {
+                    "sectionName": {
+                        "en": "Questions"
+                    },
+                    "questions": [
+                        {
+                            "title": {
+                                "en": "What is the acceptable business downtime?"
+                            },
+                            "type": "long-text",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-d101"
+                        },
+                        {
+                            "title": {
+                                "en": "Please list all RFC-MDMP interfaces with name/type/code page handling/language requirements"
+                            },
+                            "type": "long-text",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-d102"
+                        },
+                        {
+                            "title": {
+                                "en": "Please list all ALE-MDMP interfaces with name/type/code page handling/language requirements"
+                            },
+                            "type": "long-text",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-d103"
+                        },
+                        {
+                            "title": {
+                                "en": "Please list all RFC-SCP interfaces with name/type/code page handling/language requirements"
+                            },
+                            "type": "long-text",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-d104"
+                        },
+                        {
+                            "title": {
+                                "en": "Please list all ALE-SCP interfaces with name/type/code page handling/language requirements"
+                            },
+                            "type": "long-text",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-d105"
+                        },  
+                        {
+                            "title": {
+                                "en": "Please list all FILE interfaces with name/type/code page handling/language requirements"
+                            },
+                            "type": "long-text",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-d106"
+                        },
+                        {
+                            "title": {
+                                "en": "Please list number of custom objects"
+                            },
+                            "type": "short-text",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-d107"
+                        },
+                        {
+                            "title": {
+                                "en": "Has customer/modified code been made Unicode compliant?"
+                            },
+                            "type": "boolean",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-d108"
+                        },
+                        {
+                            "title": {
+                                "en": "How many programs developed by you are in use?"
+                            },
+                            "type": "short-text",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-d109"
+                        },   
+                        {
+                            "title": {
+                                "en": "Have the above been completely developed by you or are they based on copies of SAP coding?"
+                            },
+                            "type": "short-text",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-d110"
+                        },
+                        {
+                            "title": {
+                                "en": "Have you run UCCHECK to determine the extent of non-unicode compliant programs?"
+                            },
+                            "type": "boolean",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-d111-1",
+                            "conditional": {
+                                "condition": true,
+                                "title": {
+                                    "en": "Please list the number of UCCHECK errors"
+                                },
+                                "type": "short-text",
+                                "questionId": "RDS-DB-MIGRATION-TO-ASE-d111-2"
+                            }
+                        },   
+                        {
+                            "title": {
+                                "en": "Which code page are you using? List contents of Table TCPDB"
+                            },
+                            "type": "long-text",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-d112"
+                        }, 
+                        {
+                            "title": {
+                                "en": "Which languages are installed?"
+                            },
+                            "type": "short-text",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-d113"
+                        }, 
+                        {
+                            "title": {
+                                "en": "Are you running periodic supplementations on all languages?"
+                            },
+                            "type": "short-text",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-d114"
+                        },
+                        {
+                            "title": {
+                                "en": "Please specify if you use HR / ESS / MSS functionality"
+                            },
+                            "type": "long-text",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-d115"
+                        },
+                        {
+                            "title": {
+                                "en": "Please specify if you use SAP office functionality"
+                            },
+                            "type": "long-text",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-d116"
+                        },
+                        {
+                            "title": {
+                                "en": "Please specify if you use SAP translation environment (transaction SE63)"
+                            },
+                            "type": "long-text",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-d117"
+                        }                            
+                    ]
+                }
+            ]
+        },
+        {
+            "sectionName": {
+                "en": "Technical EHP" 
+            },
+            "sections": [
+                {
+                    "sectionName": {
+                        "en": "Questions"
+                    },
+                    "questions": [
+                        {
+                            "title": {
+                                "en": "Type of EHP Implementation - Technical or Functional?"
+                            },
+                            "type": "short-text",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-e101"
+                        },
+                        {
+                            "title": {
+                                "en": "Please indicate if your system has any previous version of EHP (EHP1/EHP2/..) installed?"
+                            },
+                            "type": "short-text",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-e102"
+                        }, 
+                        {
+                            "title": {
+                                "en": "Specify the target EHP level for SAP ERP or Neweaver system"
+                            },
+                            "type": "short-text",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-e103"
+                        },
+                        {
+                            "title": {
+                                "en": "List the SAP Solutions that you are planning for an EHP update or Install"
+                            },
+                            "type": "long-text",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-e104"
+                        },
+                        {
+                            "title": {
+                                "en": "For EHP update, list all installed usage types and SPS levels"
+                            },
+                            "type": "long-text",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-e105"
+                        },
+                        {
+                            "title": {
+                                "en": "Is a Cluster installation used? Any hardware change during upgrade? (If yes, please specify new hardware details)"
+                            },
+                            "type": "long-text",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-e106"
+                        }, 
+                        {
+                            "title": {
+                                "en": "Proposed Timeframe for EHP update?"
+                            },
+                            "type": "short-text",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-e107"
+                        },
+                        {
+                            "title": {
+                                "en": "Please indicate if your system has been upgraded in the past"
+                            },
+                            "type": "boolean",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-e108-1",
+                            "conditional": {
+                                "condition": true,
+                                "title": {
+                                    "en": "Please state the Source &amp; Target releases"
+                                },
+                                "type": "long-text",
+                                "questionId": "RDS-DB-MIGRATION-TO-ASE-e108-2"
+                            }
+                        },  
+                        {
+                            "title": {
+                                "en": "Do you use any Country Version / Industry Solutions?"
+                            },
+                            "type": "long-text",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-e109"
+                        },
+                        {
+                            "title": {
+                                "en": "Do you have third party/additional add-ons in the system?"
+                            },
+                            "type": "boolean",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-e110-1",
+                            "conditional": {
+                                "condition": true,
+                                "title": {
+                                    "en": "Please provide the name and version"
+                                },
+                                "type": "long-text",
+                                "questionId": "RDS-DB-MIGRATION-TO-ASE-e110-2"
+                            }
+                        },  
+                        {
+                            "title": {
+                                "en": "Do you want to retain the above mentioned add-on after EHP installation?"
+                            },
+                            "type": "boolean",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-e111"
+                        },
+                        {
+                            "title": {
+                                "en": "Please indicate if you use any automated testing tools?"
+                            },
+                            "type": "boolean",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-e112-1",
+                            "conditional": {
+                                "condition": true,
+                                "title": {
+                                    "en": "Please specify the name of the tool"
+                                },
+                                "type": "long-text",
+                                "questionId": "RDS-DB-MIGRATION-TO-ASE-e112-2"
+                            }
+                        },     
+                        {
+                            "title": {
+                                "en": "What are types of Front-end Usage? (SAPgui Version info, Webgui Version info, Portal Version info)"
+                            },
+                            "type": "long-text",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-e113"
+                        },  
+                        {
+                            "title": {
+                                "en": "Do you use Treasury?(in case you use Transaction Management, please fill in additional questionnaire for Treasury Migration) The additional questionnaire will be shared on confirmation"
+                            },
+                            "type": "long-text",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-e114"
+                        },
+                        {
+                            "title": {
+                                "en": "Do you use Fund Management?(in case you use Fund Management, please fill in additional questionnaire for Treasury Migration) The additional questionnaire will be shared on confirmation"
+                            },
+                            "type": "long-text",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-e115"
+                        },
+                        {
+                            "title": {
+                                "en": "Do you use HR Scenarios (ESS/MSS)?"
+                            },
+                            "type": "boolean",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-e116"
+                        },
+                        {
+                            "title": {
+                                "en": "If ESS/MSS is implemented on a Portal , Please specify the version of Enterprise Portal"
+                            },
+                            "type": "short-text",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-e117"
+                        }, 
+                        {
+                            "title": {
+                                "en": "EHP installer allows selective installation or complete installation. Please provide the business functions to choose in case of 'Selective Installation' at the time of realization"
+                            },
+                            "type": "long-text",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-e118"
+                        }, 
+                        {
+                            "title": {
+                                "en": "Please specify the solution Manager Patch and version Details"
+                            },
+                            "type": "long-text",
+                            "subQuestions": [
+                                {
+                                    "questionId": "RDS-DB-MIGRATION-TO-ASE-e119-1",
+                                    "text": {
+                                        "en": "SAP_BASIS" 
+                                    }
+                                },
+                                {
+                                    "questionId": "RDS-DB-MIGRATION-TO-ASE-e119-2",
+                                    "text": {
+                                        "en": "ST-ICO" 
+                                    }
+                                },
+                                {
+                                    "questionId": "RDS-DB-MIGRATION-TO-ASE-e119-3",
+                                    "text": {
+                                        "en": "ST" 
+                                    }
+                                }
+                            ]
+                        },   
+                        {
+                            "title": {
+                                "en": "Please indicate if you use any third party performance monitoring tools"
+                            },
+                            "type": "long-text",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-e120"
+                        },  
+                        {
+                            "title": {
+                                "en": "Have you configured any workflow involving external mail subsystems?"
+                            },
+                            "type": "boolean",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-e121"
+                        },
+                        {
+                            "title": {
+                                "en": "Do you have java stack installed in landscape?"
+                            },
+                            "type": "boolean",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-e122-1",
+                            "conditional": {
+                                "condition": true,
+                                "title": {
+                                    "en": "Is it dual stack or standalone?"
+                                },
+                                "type": "short-text",
+                                "questionId": "RDS-DB-MIGRATION-TO-ASE-e122-2"
+                            }
+
+                        },
+                        {
+                            "title": {
+                                "en": "Is your Global/central EP connected to the SAP system in scope for EHP update/Install?"
+                            },
+                            "type": "boolean",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-e123"
+                        },   
+                        {
+                            "title": {
+                                "en": "Please Indicate Defect Management Tool deployed (SolMan, HP Quality Center,..). If none, would you like to setup Solution Manger for Test and Defect Management?"
+                            },
+                            "type": "long-text",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-e125"
+                        }, 
+                        {
+                            "title": {
+                                "en": "Would you like SAP to do Functional test execution (Integration Testing) for the EHP Update? Do you have defined test cases available?"
+                            },
+                            "type": "long-text",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-e126"
+                        },
+                        {
+                            "title": {
+                                "en": "Would you like SAP to do Test Management (Strategizing, Planning, Monitoring and Reporting) for functional testing of EHP Update?"
+                            },
+                            "type": "long-text",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-e127"
+                        },
+                        {
+                            "title": {
+                                "en": "Maximum permissible downtime for EHP update/Install (in hrs)"
+                            },
+                            "type": "short-text",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-e128"
+                        },
+                        {
+                            "title": {
+                                "en": "Please indicate if there are any other systems sharing the SAP operating system/ DBMS"
+                            },
+                            "type": "long-text",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-e129"
+                        },   
+                        {
+                            "title": {
+                                "en": "Please indicate if your have any other on-going project/s that will impact the EHP updtae/Install"
+                            },
+                            "type": "long-text",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-e130"
+                        },
+                        {
+                            "title": {
+                                "en": "Are there any special developments using Customer Name space other than Z* &amp; Y*?"
+                            },
+                            "type": "long-text",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-e131"
+                        },
+                        {
+                            "title": {
+                                "en": "How Many Productive Clients in your System? Please give details"
+                            },
+                            "type": "long-text",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-e132"
+                        },
+                        {
+                            "title": {
+                                "en": "Do you use 'Application Link Enabling Shared Master Data Management'?"
+                            },
+                            "type": "boolean",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-e133"
+                        }, 
+                        {
+                            "title": {
+                                "en": "Is this NWDI driven landscape?"
+                            },
+                            "type": "boolean",
+                            "questionId": "RDS-DB-MIGRATION-TO-ASE-e134"
                         }
                     ]
                 }
