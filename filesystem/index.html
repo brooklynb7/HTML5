@@ -2,9 +2,26 @@
 <html>
 <head>
 	<title>File Systeml</title>
+	<style type="text/css">
+	#dropZone{
+		width: :500px;
+		height: 500px;
+		background-color: gray;
+	}
+	</style>
 	<!-- <link rel="Stylesheet" type="text/css" href="/res/css/default.css"/> -->
 </head>
 <body>
-	
+	<div id="dropZone"></div>
+	<script type="text/javascript">
+		var dropzone = document.getElementById('dropZone');
+		dropzone.ondrop = function(e) {
+		  var length = e.dataTransfer.files.length;
+		  for (var i = 0; i < length; i++) {
+		    var file = e.dataTransfer.files[i];
+		    e.preventDefault();
+		  }
+		};
+	</script>
 </body>
 </html>
