@@ -1,9 +1,8 @@
 html{background-color:#dbefff}
 body,h1,h2,h3,h4,h5,h6,hr,p,blockquote,dl,dt,dd,ul,ol,li,pre,form,fieldset,legend,button,input,textarea,th,td
 {margin:0;padding:0;}
-body,button,input,select,textarea
-{
-	font-family:"Î¢ÈíÑÅºÚ";
+body,button,input,select,textarea{
+	font-family:"Microsoft Yahei";
 	font-size:12px;
 }
 header{
@@ -30,8 +29,7 @@ header nav span{float:right;margin-left:5px}
 
 header nav span img{width:24px;height24px}
 
-.w900
-{
+.w900{
 	margin:54px auto 10px;
 	padding:15px;
 	width:890px;
@@ -39,8 +37,7 @@ header nav span img{width:24px;height24px}
 	border-radius:5px
 }
 
-.grid
-{
+.grid{
 	height:25px;
 	width:70px;
 	border:1px solid #000000;
@@ -51,13 +48,11 @@ header nav span img{width:24px;height24px}
 	background-color:#fafafa;
 }
 
-.grid:hover
-{
+.grid:hover{
 	background-color:#FAFAFA ;
 }
 
-.passed
-{
+.passed{
 	background-color:#E8E8E8 ;
 }
 
