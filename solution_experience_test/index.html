@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Test Experience Bar</title>
+</head>
+
+<body>
+	<!-- iFrame Mode -->
+	<div>
+		<iframe width="100%" frameborder="0" scrolling="no" name="experience_bar" src="http://localhost:8001/HTML5/solution_experience/profileBar.html" style="width: 300px; height: 32px; visibility: visible;"></iframe>
+	</div>
+	<div id="experienceSolutionBar_iframe">
+		<iframe width="100%" frameborder="0" scrolling="no" name="experience_solution_bar" src="http://localhost:8001/HTML5/solution_experience/experienceSolutionBar.html" style="width: 250px; height: 80px; visibility: visible; position: absolute; top: 50px; left: 58px; display: none;" id="experienceSolutionBar"></iframe>
+	</div>
+
+	<br><br>
+	<div id="solution_1" class="solutions" solutionid="1">		
+		Solution 1		
+		<iframe width="100%" frameborder="0" scrolling="no" name="experience_solution_frame_1" src="http://localhost:8001/HTML5/solution_experience/addSolution.html?id=1" style="width: 256px; height: 40px; visibility: visible;"></iframe></div>	
+	<div id="capability_1" class="capability" capabilityid="1">		
+		Capability 1
+		<iframe width="100%" frameborder="0" scrolling="no" name="experience_capability_frame_1" src="http://localhost:8001/HTML5/solution_experience/addCapability.html?id=1&solutionFrame=experience_solution_frame_1" style="width: 24px; height: 24px; visibility: visible;"></iframe></div>	
+
+	<br><br>
+	<div id="solution_2" class="solutions" solutionid="2">		
+		Solution 2
+		<iframe width="100%" frameborder="0" scrolling="no" name="experience_solution_frame_2" src="http://localhost:8001/HTML5/solution_experience/addSolution.html?id=2" style="width: 256px; height: 40px; visibility: visible;"></iframe></div>
+	<div id="capability_2" class="capability" capabilityid="2">		
+		Capability 2
+		<iframe width="100%" frameborder="0" scrolling="no" name="experience_capability_frame_2" src="http://localhost:8001/HTML5/solution_experience/addCapability.html?id=2&solutionFrame=experience_solution_frame_2" style="width: 24px; height: 24px; visibility: visible;"></iframe></div>	
+
+	<br><br>
+	<div id="solution_3" class="solutions" solutionid="3">		
+		Solution 3
+		<iframe width="100%" frameborder="0" scrolling="no" name="experience_solution_frame_3" src="http://localhost:8001/HTML5/solution_experience/addSolution.html?id=3" style="width: 256px; height: 40px; visibility: visible;"></iframe></div>	
+	<div id="capability_3" class="capability" capabilityid="3">		
+		Capability 3
+		<iframe width="100%" frameborder="0" scrolling="no" name="experience_capability_frame_3" src="http://localhost:8001/HTML5/solution_experience/addCapability.html?id=3&solutionFrame=experience_solution_frame_3" style="width: 24px; height: 24px; visibility: visible;"></iframe></div>	
+
+	<script type="text/javascript">
+		var getUrlParam = function(name){
+			var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+			var r = window.location.search.substr(1).match(reg);
+			if (r!=null) return unescape(r[2]); return null; 
+		};
+
+		var loadJsFile = function(src ,callback){
+			var oHead = document.getElementsByTagName('HEAD').item(0);
+		    var oScript= document.createElement("script"); 
+		    oScript.type = "text/javascript"; 
+		    oScript.src= src;
+		    oScript.onload = oScript.onreadystatechange = function(){
+				if( !this.readyState || this.readyState=='loaded' || this.readyState=='complete'){
+					callback && callback();
+				}
+			};
+
+		    oHead.appendChild(oScript);
+		};		
+
+		if(getUrlParam("for") == "experience"){
+			loadJsFile("http://localhost:8001/HTML5/solution_experience/js/crossDomain.js");
+			loadJsFile("http://localhost:8001/HTML5/solution_experience/js/plugin.js", function(){
+				/*if(getUrlParam("withHeader") == "yes"){				
+					solution_experience_plugin.createExperienceBar("experienceBar_iframe");
+					solution_experience_plugin.createExperienceSolutionBar("experienceSolutionBar_iframe");
+				}
+				solution_experience_plugin.createAddSolutionBtns("solutions", "solutionId");
+				solution_experience_plugin.createAddCapabilityBtns("capability", "capabilityId");*/
+			});
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Add to my solutions</title>
+	<style type="text/css">
+		body{
+			margin: 0px;
+			padding: 0px;	
+			font: 18px Arial, Helvetica, sans-serif;
+		}
+		.addBtn{
+			background-color: #5BB75B;
+			color:#ffffff;
+			width:24px;
+			height: 24px;
+			text-align: center;
+			cursor: pointer;
+		}
+		.addBtn:hover{
+			background-color: #51A351;
+		}
+		.addBtn:active{
+			background-color: #408140;
+		}
+
+		.addBtn.remove{
+			background-color: red;
+		}
+
+		.addBtn.login{
+			background-color: gray;
+		}
+		.blockElement{
+			left: 0px !important;
+		}
+	</style>
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript" src="js/jquery.blockUI.js"></script>	
+	<script type="text/javascript" src="js/utils.js"></script>
+</head>
+<body>
+	<div class="addBtn">
+		+
+	</div>
+	<script type="text/javascript">
+		var capabilityId = solution_experience.getUrlParam("id");
+		var solutionFrame = solution_experience.getUrlParam("solutionFrame");
+		var bi = new solution_experience.busyIndicator($("body"));
+		$(document).ready(function(){
+			$.ajax({
+				url:"checklogin",
+				cache: false,
+				type:"POST",
+				data:{"solutionId":capabilityId},
+				beforeSend: function(){
+					bi.show();
+				},
+				complete: function(){					
+					setTimeout(function(){
+						bi.hide();
+						if(capabilityId == 2){							
+							$(".addBtn").text("-").addClass("remove");
+						}
+						if(capabilityId == 3){							
+							$(".addBtn").text("!").addClass("login");
+							return;
+						}
+						bindBtn();
+					},2000);			
+				}
+			});
+		});
+
+		function bindBtn(){
+			$(".addBtn").on("click" ,function(){
+				$.ajax({
+					url:"test",
+					cache: false,
+					type:"POST",
+					data:{"capabilityId":capabilityId},
+					beforeSend: function(){
+						bi.show();
+					},
+					complete: function(){
+						setTimeout(function(){
+							bi.hide();
+							if($(".addBtn").hasClass("remove")){
+								$(".addBtn").text("+").removeClass("remove");
+								parent.frames[solutionFrame].clearCapability();
+							}
+							else{
+								$(".addBtn").text("-").addClass("remove");
+								parent.frames[solutionFrame].addCapability();
+							}
+						},2000);					
+					}
+				});
+			});
+		}
+	</script>
+</body>
+</html>

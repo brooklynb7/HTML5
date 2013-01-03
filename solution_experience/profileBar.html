@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Experience Bar</title>
+	<link rel="stylesheet" type="text/css" href="css/experienceBar.css">
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript" src="js/crossDomain.js"></script>
+</head>
+<body>
+	<div class="experienceBar">		
+		<div>Brooklyn</div>
+		<div>My Solutions</div>
+		<div id="solutionCount">0</div>
+		<div class="create">create</div>
+	</div>
+	<script type="text/javascript">
+		$(".experienceBar .create").on("click", function(){
+			solution_experience_crossDomain.sendMessage(parent, {
+				"callback":"showCreateIframe",
+				"id":"experienceSolutionBar"
+			});
+		});
+	</script>
+</body>
+</html>
