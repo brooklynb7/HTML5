@@ -1,0 +1,4 @@
+/* to check if CSS is loaded before onAfterRendering*/
+.sapUiCssCheck{
+  border: 10px solid red;	
+}

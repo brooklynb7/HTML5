@@ -1,0 +1,178 @@
+<?xml version="1.0" ?>
+<library name="sap.service.visualization">
+  <module name="sap.service.visualization.ChartOption" size="9300" compressedSize="3135">
+    <description>Provides control sap.service.visualization.ChartOption.</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.service.visualization.library"/>
+      <module name="sap.ui.core.Element"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.service.visualization.Themings" size="12012" compressedSize="5018">
+    <description>Provides control sap.service.visualization.Themings.</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.service.visualization.library"/>
+      <module name="sap.ui.core.Element"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.service.visualization.chart.Bar" size="37503" compressedSize="8278">
+    <description>Provides control sap.service.visualization.chart.Bar.</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.service.visualization.library"/>
+      <module name="sap.ui.core.Control"/>
+      <module name="sap.service.visualization.chart.ChartSourceCode.libs.json2"/>
+      <module name="sap.service.visualization.chart.ChartSourceCode.libs.saprivbase"/>
+      <module name="sap.service.visualization.chart.ChartSourceCode.libs.sapcommonglobalization"/>
+      <module name="sap.service.visualization.chart.ChartSourceCode.libs.saprivmodules"/>
+      <module name="sap.ui.core.theming.Parameters"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.service.visualization.chart.BarRenderer" size="1222" compressedSize="528">
+    <description>! CVOM HTML5 charts  (c) Copyright 2009-2012 SAP AG. All rights reserved</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.service.visualization.chart.ChartSourceCode.libs.jquery" size="187342" compressedSize="80357">
+    <requires>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.service.visualization.chart.ChartSourceCode.libs.json2" size="18028" compressedSize="3026">
+    <requires>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.service.visualization.chart.ChartSourceCode.libs.sapcommonglobalization" size="440926" compressedSize="198495">
+    <requires>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.service.visualization.chart.ChartSourceCode.libs.saprivbase" size="18390" compressedSize="7736">
+    <requires>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.service.visualization.chart.ChartSourceCode.libs.saprivmodules" size="1158067" compressedSize="492688">
+    <requires>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.service.visualization.chart.ChartSourceCode.libs.saprivthemes" size="4321" compressedSize="2734">
+    <requires>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.service.visualization.chart.Column" size="38335" compressedSize="8679">
+    <description>Provides control sap.service.visualization.chart.Column.</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.service.visualization.library"/>
+      <module name="sap.ui.core.Control"/>
+      <module name="sap.service.visualization.chart.ChartSourceCode.libs.json2"/>
+      <module name="sap.service.visualization.chart.ChartSourceCode.libs.saprivbase"/>
+      <module name="sap.service.visualization.chart.ChartSourceCode.libs.sapcommonglobalization"/>
+      <module name="sap.service.visualization.chart.ChartSourceCode.libs.saprivmodules"/>
+      <module name="sap.ui.core.theming.Parameters"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.service.visualization.chart.ColumnRenderer" size="1237" compressedSize="540">
+    <description>! CVOM HTML5 charts  (c) Copyright 2009-2012 SAP AG. All rights reserved</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.service.visualization.chart.Combination" size="40364" compressedSize="9057">
+    <description>Provides control sap.service.visualization.chart.Combination.</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.service.visualization.library"/>
+      <module name="sap.ui.core.Control"/>
+      <module name="sap.service.visualization.chart.ChartSourceCode.libs.json2"/>
+      <module name="sap.service.visualization.chart.ChartSourceCode.libs.saprivbase"/>
+      <module name="sap.service.visualization.chart.ChartSourceCode.libs.sapcommonglobalization"/>
+      <module name="sap.service.visualization.chart.ChartSourceCode.libs.saprivmodules"/>
+      <module name="sap.ui.core.theming.Parameters"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.service.visualization.chart.CombinationRenderer" size="1259" compressedSize="560">
+    <description>! CVOM HTML5 charts  (c) Copyright 2009-2012 SAP AG. All rights reserved</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.service.visualization.chart.Line" size="38043" compressedSize="8314">
+    <description>Provides control sap.service.visualization.chart.Line.</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.service.visualization.library"/>
+      <module name="sap.ui.core.Control"/>
+      <module name="sap.service.visualization.chart.ChartSourceCode.libs.json2"/>
+      <module name="sap.service.visualization.chart.ChartSourceCode.libs.saprivbase"/>
+      <module name="sap.service.visualization.chart.ChartSourceCode.libs.sapcommonglobalization"/>
+      <module name="sap.service.visualization.chart.ChartSourceCode.libs.saprivmodules"/>
+      <module name="sap.ui.core.theming.Parameters"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.service.visualization.chart.LineRenderer" size="1223" compressedSize="532">
+    <description>! CVOM HTML5 charts  (c) Copyright 2009-2012 SAP AG. All rights reserved</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.service.visualization.chart.Pie" size="45768" compressedSize="11712">
+    <description>Provides control sap.service.visualization.chart.Pie.</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.service.visualization.library"/>
+      <module name="sap.ui.core.Control"/>
+      <module name="sap.service.visualization.chart.ChartSourceCode.libs.json2"/>
+      <module name="sap.service.visualization.chart.ChartSourceCode.libs.saprivbase"/>
+      <module name="sap.service.visualization.chart.ChartSourceCode.libs.sapcommonglobalization"/>
+      <module name="sap.service.visualization.chart.ChartSourceCode.libs.saprivmodules"/>
+      <module name="sap.ui.core.theming.Parameters"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.service.visualization.chart.PieRenderer" size="1218" compressedSize="528">
+    <description>! CVOM HTML5 charts  (c) Copyright 2009-2012 SAP AG. All rights reserved</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.service.visualization.dataset.SimpleDMDataset" size="15767" compressedSize="2953">
+    <description>Provides control sap.service.visualization.dataset.SimpleDMDataset.</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.service.visualization.library"/>
+      <module name="sap.ui.core.Element"/>
+      <module name="sap.service.visualization.chart.ChartSourceCode.libs.json2"/>
+      <module name="sap.service.visualization.chart.ChartSourceCode.libs.saprivbase"/>
+      <module name="sap.service.visualization.chart.ChartSourceCode.libs.sapcommonglobalization"/>
+      <module name="sap.service.visualization.chart.ChartSourceCode.libs.saprivmodules"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.service.visualization.library" size="1457" compressedSize="714">
+    <description>Initialization Code and shared classes of library sap.service.visualization (1.10.0)</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.core.Core"/>
+      <module name="sap.ui.core.library"/>
+    </requires>
+    <includes>
+    </includes>
+  </module></library>

@@ -1,0 +1,687 @@
+{
+  "modules" : [
+    {
+      "name" : "sap.m.ActionListItem",
+      "description" : "Provides control sap.m.ActionListItem.",
+      "size" : 3810,
+      "compressedSize" : 576,
+      "required" : ["jquery.sap.global", "sap.m.library", "sap.m.ListItemBase", "sap.ui.core.EnabledPropagator"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.m.ActionListItemRenderer",
+      "description" : "! SAP UI development toolkit for HTML5 (SAPUI5)  (c) Copyright 2009-2013 SAP AG. All rights reserved",
+      "size" : 1128,
+      "compressedSize" : 590,
+      "required" : ["jquery.sap.global", "sap.ui.core.Renderer", "sap.m.ListItemBaseRenderer"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.m.ActionSheet",
+      "description" : "Provides control sap.m.ActionSheet.",
+      "size" : 30484,
+      "compressedSize" : 5354,
+      "required" : ["jquery.sap.global", "sap.m.library", "sap.ui.core.Control"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.m.ActionSheetRenderer",
+      "description" : "! SAP UI development toolkit for HTML5 (SAPUI5)  (c) Copyright 2009-2013 SAP AG. All rights reserved",
+      "size" : 1237,
+      "compressedSize" : 592,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.m.App",
+      "description" : "Provides control sap.m.App.",
+      "size" : 8526,
+      "compressedSize" : 1487,
+      "required" : ["jquery.sap.global", "sap.m.library", "sap.m.NavContainer"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.m.AppRenderer",
+      "description" : "! SAP UI development toolkit for HTML5 (SAPUI5)  (c) Copyright 2009-2013 SAP AG. All rights reserved",
+      "size" : 417,
+      "compressedSize" : 346,
+      "required" : ["jquery.sap.global", "sap.ui.core.Renderer", "sap.m.NavContainerRenderer"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.m.Bar",
+      "description" : "Provides control sap.m.Bar.",
+      "size" : 16227,
+      "compressedSize" : 2594,
+      "required" : ["jquery.sap.global", "sap.m.library", "sap.ui.core.Control"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.m.BarRenderer",
+      "description" : "! SAP UI development toolkit for HTML5 (SAPUI5)  (c) Copyright 2009-2013 SAP AG. All rights reserved",
+      "size" : 2637,
+      "compressedSize" : 1483,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.m.BusyDialog",
+      "description" : "Provides control sap.m.BusyDialog.",
+      "size" : 20706,
+      "compressedSize" : 5876,
+      "required" : ["jquery.sap.global", "sap.m.library", "sap.ui.core.Control", "sap.ui.core.Popup"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.m.BusyDialogRenderer",
+      "description" : "! SAP UI development toolkit for HTML5 (SAPUI5)  (c) Copyright 2009-2013 SAP AG. All rights reserved",
+      "size" : 2372,
+      "compressedSize" : 1444,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.m.BusyIndicator",
+      "description" : "Provides control sap.m.BusyIndicator.",
+      "size" : 13552,
+      "compressedSize" : 2145,
+      "required" : ["jquery.sap.global", "sap.m.library", "sap.ui.core.Control"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.m.BusyIndicatorRenderer",
+      "description" : "! SAP UI development toolkit for HTML5 (SAPUI5)  (c) Copyright 2009-2013 SAP AG. All rights reserved",
+      "size" : 2618,
+      "compressedSize" : 1450,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.m.Button",
+      "description" : "Provides control sap.m.Button.",
+      "size" : 16617,
+      "compressedSize" : 3581,
+      "required" : ["jquery.sap.global", "sap.m.library", "sap.ui.core.Control", "sap.ui.core.EnabledPropagator"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.m.ButtonRenderer",
+      "description" : "! SAP UI development toolkit for HTML5 (SAPUI5)  (c) Copyright 2009-2013 SAP AG. All rights reserved",
+      "size" : 5784,
+      "compressedSize" : 2729,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.m.Carousel",
+      "description" : "Provides control sap.m.Carousel.",
+      "size" : 49493,
+      "compressedSize" : 12893,
+      "required" : ["jquery.sap.global", "sap.m.library", "sap.ui.core.Control", "sap.ui.thirdparty.swipe-view"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.m.CarouselRenderer",
+      "description" : "! SAP UI development toolkit for HTML5 (SAPUI5)  (c) Copyright 2009-2013 SAP AG. All rights reserved",
+      "size" : 3105,
+      "compressedSize" : 1376,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.m.CheckBox",
+      "description" : "Provides control sap.m.CheckBox.",
+      "size" : 14087,
+      "compressedSize" : 2632,
+      "required" : ["jquery.sap.global", "sap.m.library", "sap.ui.core.Control"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.m.CheckBoxRenderer",
+      "description" : "! SAP UI development toolkit for HTML5 (SAPUI5)  (c) Copyright 2009-2013 SAP AG. All rights reserved",
+      "size" : 1944,
+      "compressedSize" : 962,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.m.CustomListItem",
+      "description" : "Provides control sap.m.CustomListItem.",
+      "size" : 6328,
+      "compressedSize" : 456,
+      "required" : ["jquery.sap.global", "sap.m.library", "sap.m.ListItemBase"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.m.CustomListItemRenderer",
+      "description" : "! SAP UI development toolkit for HTML5 (SAPUI5)  (c) Copyright 2009-2013 SAP AG. All rights reserved",
+      "size" : 1116,
+      "compressedSize" : 572,
+      "required" : ["jquery.sap.global", "sap.ui.core.Renderer", "sap.m.ListItemBaseRenderer"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.m.DateTimeCustom",
+      "size" : 7974,
+      "compressedSize" : 3791,
+      "required" : [],
+      "includes" : []
+    },
+    {
+      "name" : "sap.m.DateTimeInput",
+      "description" : "Provides control sap.m.DateTimeInput.",
+      "size" : 24949,
+      "compressedSize" : 6781,
+      "required" : ["jquery.sap.global", "sap.m.library", "sap.ui.core.Control", "sap.ui.model.type.Date", "sap.m.Input"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.m.DateTimeInputRenderer",
+      "size" : 486,
+      "compressedSize" : 331,
+      "required" : ["jquery.sap.global", "sap.ui.core.Renderer", "sap.m.InputRenderer"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.m.Dialog",
+      "description" : "Provides control sap.m.Dialog.",
+      "size" : 40671,
+      "compressedSize" : 12365,
+      "required" : ["jquery.sap.global", "sap.m.library", "sap.ui.core.Control", "sap.ui.core.Popup", "sap.m.Bar", "sap.ui.core.delegate.ScrollEnablement", "sap.m.InstanceManager"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.m.DialogRenderer",
+      "description" : "! SAP UI development toolkit for HTML5 (SAPUI5)  (c) Copyright 2009-2013 SAP AG. All rights reserved",
+      "size" : 3018,
+      "compressedSize" : 1805,
+      "required" : ["jquery.sap.global", "sap.m.BarRenderer"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.m.DisplayListItem",
+      "description" : "Provides control sap.m.DisplayListItem.",
+      "size" : 4455,
+      "compressedSize" : 441,
+      "required" : ["jquery.sap.global", "sap.m.library", "sap.m.ListItemBase"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.m.DisplayListItemRenderer",
+      "description" : "! SAP UI development toolkit for HTML5 (SAPUI5)  (c) Copyright 2009-2013 SAP AG. All rights reserved",
+      "size" : 1385,
+      "compressedSize" : 772,
+      "required" : ["jquery.sap.global", "sap.ui.core.Renderer", "sap.m.ListItemBaseRenderer"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.m.FlexBox",
+      "description" : "Provides control sap.m.FlexBox.",
+      "size" : 15217,
+      "compressedSize" : 2651,
+      "required" : ["jquery.sap.global", "sap.m.library", "sap.ui.core.Control", "sap.ui.core.EnabledPropagator", "sap.m.FlexBoxStylingHelper"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.m.FlexBoxCssPropertyMap",
+      "size" : 1757,
+      "compressedSize" : 1248,
+      "required" : [],
+      "includes" : []
+    },
+    {
+      "name" : "sap.m.FlexBoxRenderer",
+      "size" : 4000,
+      "compressedSize" : 2151,
+      "required" : ["jquery.sap.global", "sap.m.FlexBoxStylingHelper"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.m.FlexBoxStylingHelper",
+      "size" : 7881,
+      "compressedSize" : 2847,
+      "required" : ["jquery.sap.global", "sap.m.FlexBoxCssPropertyMap"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.m.FlexItemData",
+      "description" : "Provides control sap.m.FlexItemData.",
+      "size" : 7394,
+      "compressedSize" : 1251,
+      "required" : ["jquery.sap.global", "sap.m.library", "sap.ui.core.LayoutData", "sap.ui.core.EnabledPropagator", "sap.m.FlexBoxStylingHelper"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.m.GrowingList",
+      "description" : "Provides control sap.m.GrowingList.",
+      "size" : 14909,
+      "compressedSize" : 5929,
+      "required" : ["jquery.sap.global", "sap.m.library", "sap.m.List"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.m.GrowingListRenderer",
+      "description" : "! SAP UI development toolkit for HTML5 (SAPUI5)  (c) Copyright 2009-2013 SAP AG. All rights reserved",
+      "size" : 1300,
+      "compressedSize" : 694,
+      "required" : ["jquery.sap.global", "sap.ui.core.Renderer", "sap.m.ListRenderer"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.m.HBox",
+      "description" : "Provides control sap.m.HBox.",
+      "size" : 2889,
+      "compressedSize" : 286,
+      "required" : ["jquery.sap.global", "sap.m.library", "sap.m.FlexBox"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.m.HBoxRenderer",
+      "description" : "! SAP UI development toolkit for HTML5 (SAPUI5)  (c) Copyright 2009-2013 SAP AG. All rights reserved",
+      "size" : 747,
+      "compressedSize" : 315,
+      "required" : ["jquery.sap.global", "sap.m.FlexBoxRenderer"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.m.Image",
+      "description" : "Provides control sap.m.Image.",
+      "size" : 22978,
+      "compressedSize" : 4791,
+      "required" : ["jquery.sap.global", "sap.m.library", "sap.ui.core.Control"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.m.ImageRenderer",
+      "description" : "Provides default renderer for control sap.m.Image",
+      "size" : 2421,
+      "compressedSize" : 977,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.m.Input",
+      "description" : "Provides control sap.m.Input.",
+      "size" : 19167,
+      "compressedSize" : 2934,
+      "required" : ["jquery.sap.global", "sap.m.library", "sap.ui.core.Control", "sap.ui.core.EnabledPropagator"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.m.InputListItem",
+      "description" : "Provides control sap.m.InputListItem.",
+      "size" : 7037,
+      "compressedSize" : 522,
+      "required" : ["jquery.sap.global", "sap.m.library", "sap.m.ListItemBase"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.m.InputListItemRenderer",
+      "description" : "! SAP UI development toolkit for HTML5 (SAPUI5)  (c) Copyright 2009-2013 SAP AG. All rights reserved",
+      "size" : 1413,
+      "compressedSize" : 775,
+      "required" : ["jquery.sap.global", "sap.ui.core.Renderer", "sap.m.ListItemBaseRenderer"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.m.InputRenderer",
+      "description" : "! SAP UI development toolkit for HTML5 (SAPUI5)  (c) Copyright 2009-2013 SAP AG. All rights reserved",
+      "size" : 2062,
+      "compressedSize" : 1477,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.m.InstanceManager",
+      "description" : "Provides class sap.m.InstanceManager",
+      "size" : 10711,
+      "compressedSize" : 2465,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.m.Label",
+      "description" : "Provides control sap.m.Label.",
+      "size" : 8712,
+      "compressedSize" : 887,
+      "required" : ["jquery.sap.global", "sap.m.library", "sap.ui.core.Control"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.m.LabelRenderer",
+      "description" : "! SAP UI development toolkit for HTML5 (SAPUI5)  (c) Copyright 2009-2013 SAP AG. All rights reserved",
+      "size" : 2291,
+      "compressedSize" : 1006,
+      "required" : ["jquery.sap.global", "sap.ui.core.Renderer"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.m.List",
+      "description" : "Provides control sap.m.List.",
+      "size" : 39123,
+      "compressedSize" : 9772,
+      "required" : ["jquery.sap.global", "sap.m.library", "sap.ui.core.Control"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.m.ListItemBase",
+      "description" : "Provides control sap.m.ListItemBase.",
+      "size" : 24414,
+      "compressedSize" : 9047,
+      "required" : ["jquery.sap.global", "sap.m.library", "sap.ui.core.Control"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.m.ListItemBaseRenderer",
+      "description" : "! SAP UI development toolkit for HTML5 (SAPUI5)  (c) Copyright 2009-2013 SAP AG. All rights reserved",
+      "size" : 6579,
+      "compressedSize" : 4321,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.m.ListRenderer",
+      "description" : "! SAP UI development toolkit for HTML5 (SAPUI5)  (c) Copyright 2009-2013 SAP AG. All rights reserved",
+      "size" : 3385,
+      "compressedSize" : 1986,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.m.MessageBox",
+      "description" : "Provides class sap.m.MessageBox",
+      "size" : 10331,
+      "compressedSize" : 2063,
+      "required" : ["jquery.sap.global", "sap.m.Button", "sap.m.Dialog", "sap.m.Text"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.m.MessageToast",
+      "description" : "! SAP UI development toolkit for HTML5 (SAPUI5)  (c) Copyright 2009-2013 SAP AG. All rights reserved",
+      "size" : 12440,
+      "compressedSize" : 4493,
+      "required" : ["jquery.sap.global", "sap.ui.core.Popup", "sap.m.InstanceManager"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.m.NavContainer",
+      "description" : "Provides control sap.m.NavContainer.",
+      "size" : 70673,
+      "compressedSize" : 15897,
+      "required" : ["jquery.sap.global", "sap.m.library", "sap.ui.core.Control"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.m.NavContainerRenderer",
+      "description" : "! SAP UI development toolkit for HTML5 (SAPUI5)  (c) Copyright 2009-2013 SAP AG. All rights reserved",
+      "size" : 1151,
+      "compressedSize" : 517,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.m.Page",
+      "description" : "Provides control sap.m.Page.",
+      "size" : 30087,
+      "compressedSize" : 7897,
+      "required" : ["jquery.sap.global", "sap.m.library", "sap.ui.core.Control"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.m.PageRenderer",
+      "description" : "! SAP UI development toolkit for HTML5 (SAPUI5)  (c) Copyright 2009-2013 SAP AG. All rights reserved",
+      "size" : 2098,
+      "compressedSize" : 989,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.m.PerformanceRecorder",
+      "description" : "So don't rely on the current naming",
+      "size" : 8763,
+      "compressedSize" : 4668,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.m.Popover",
+      "description" : "Provides control sap.m.Popover.",
+      "size" : 57150,
+      "compressedSize" : 15587,
+      "required" : ["jquery.sap.global", "sap.m.library", "sap.ui.core.Control", "sap.ui.core.Popup", "sap.m.Bar", "sap.ui.core.delegate.ScrollEnablement", "sap.m.InstanceManager"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.m.PopoverRenderer",
+      "description" : "! SAP UI development toolkit for HTML5 (SAPUI5)  (c) Copyright 2009-2013 SAP AG. All rights reserved",
+      "size" : 3011,
+      "compressedSize" : 1695,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.m.PullToRefresh",
+      "description" : "Provides control sap.m.PullToRefresh.",
+      "size" : 11808,
+      "compressedSize" : 3335,
+      "required" : ["jquery.sap.global", "sap.m.library", "sap.ui.core.Control"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.m.PullToRefreshRenderer",
+      "description" : "! SAP UI development toolkit for HTML5 (SAPUI5)  (c) Copyright 2009-2013 SAP AG. All rights reserved",
+      "size" : 1824,
+      "compressedSize" : 883,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.m.RadioButton",
+      "description" : "Provides control sap.m.RadioButton.",
+      "size" : 16841,
+      "compressedSize" : 3395,
+      "required" : ["jquery.sap.global", "sap.m.library", "sap.ui.core.Control"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.m.RadioButtonRenderer",
+      "description" : "! SAP UI development toolkit for HTML5 (SAPUI5)  (c) Copyright 2009-2013 SAP AG. All rights reserved",
+      "size" : 2787,
+      "compressedSize" : 1289,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.m.ScrollContainer",
+      "description" : "Provides control sap.m.ScrollContainer.",
+      "size" : 13920,
+      "compressedSize" : 1937,
+      "required" : ["jquery.sap.global", "sap.m.library", "sap.ui.core.Control"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.m.ScrollContainerRenderer",
+      "description" : "! SAP UI development toolkit for HTML5 (SAPUI5)  (c) Copyright 2009-2013 SAP AG. All rights reserved",
+      "size" : 1561,
+      "compressedSize" : 813,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.m.SearchField",
+      "description" : "Provides control sap.m.SearchField.",
+      "size" : 16526,
+      "compressedSize" : 2375,
+      "required" : ["jquery.sap.global", "sap.m.library", "sap.ui.core.Control", "sap.ui.core.EnabledPropagator"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.m.SearchFieldRenderer",
+      "description" : "! SAP UI development toolkit for HTML5 (SAPUI5)  (c) Copyright 2009-2013 SAP AG. All rights reserved",
+      "size" : 2569,
+      "compressedSize" : 1388,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.m.SegmentedButton",
+      "description" : "Provides control sap.m.SegmentedButton.",
+      "size" : 17652,
+      "compressedSize" : 3974,
+      "required" : ["jquery.sap.global", "sap.m.library", "sap.ui.core.Control"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.m.SegmentedButtonRenderer",
+      "description" : "! SAP UI development toolkit for HTML5 (SAPUI5)  (c) Copyright 2009-2013 SAP AG. All rights reserved",
+      "size" : 2189,
+      "compressedSize" : 1192,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.m.Select",
+      "description" : "Provides control sap.m.Select.",
+      "size" : 20199,
+      "compressedSize" : 4354,
+      "required" : ["jquery.sap.global", "sap.m.library", "sap.ui.core.Control"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.m.SelectCustom",
+      "description" : "SAP UI development toolkit for HTML5 (SAPUI5)  (c) Copyright 2009-2013 SAP AG. All rights reserved",
+      "size" : 4644,
+      "compressedSize" : 1371,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.m.SelectRenderer",
+      "description" : "! SAP UI development toolkit for HTML5 (SAPUI5)  (c) Copyright 2009-2013 SAP AG. All rights reserved",
+      "size" : 2464,
+      "compressedSize" : 1380,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.m.Slider",
+      "description" : "Provides control sap.m.Slider.",
+      "size" : 26197,
+      "compressedSize" : 5271,
+      "required" : ["jquery.sap.global", "sap.m.library", "sap.ui.core.Control", "sap.ui.core.EnabledPropagator"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.m.SliderRenderer",
+      "description" : "! SAP UI development toolkit for HTML5 (SAPUI5)  (c) Copyright 2009-2013 SAP AG. All rights reserved",
+      "size" : 2147,
+      "compressedSize" : 1185,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.m.SplitApp",
+      "description" : "Provides control sap.m.SplitApp.",
+      "size" : 93814,
+      "compressedSize" : 18228,
+      "required" : ["jquery.sap.global", "sap.m.library", "sap.ui.core.Control"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.m.SplitAppRenderer",
+      "description" : "! SAP UI development toolkit for HTML5 (SAPUI5)  (c) Copyright 2009-2013 SAP AG. All rights reserved",
+      "size" : 1827,
+      "compressedSize" : 1102,
+      "required" : ["jquery.sap.global", "sap.ui.core.Renderer"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.m.StandardListItem",
+      "description" : "Provides control sap.m.StandardListItem.",
+      "size" : 10594,
+      "compressedSize" : 1635,
+      "required" : ["jquery.sap.global", "sap.m.library", "sap.m.ListItemBase", "sap.ui.core.EnabledPropagator"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.m.StandardListItemRenderer",
+      "description" : "! SAP UI development toolkit for HTML5 (SAPUI5)  (c) Copyright 2009-2013 SAP AG. All rights reserved",
+      "size" : 2729,
+      "compressedSize" : 1724,
+      "required" : ["jquery.sap.global", "sap.ui.core.Renderer", "sap.m.ListItemBaseRenderer"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.m.Switch",
+      "description" : "Provides control sap.m.Switch.",
+      "size" : 24496,
+      "compressedSize" : 7443,
+      "required" : ["jquery.sap.global", "sap.m.library", "sap.ui.core.Control"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.m.SwitchRenderer",
+      "description" : "! SAP UI development toolkit for HTML5 (SAPUI5)  (c) Copyright 2009-2013 SAP AG. All rights reserved",
+      "size" : 2234,
+      "compressedSize" : 1289,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.m.Text",
+      "description" : "Provides control sap.m.Text.",
+      "size" : 8459,
+      "compressedSize" : 1042,
+      "required" : ["jquery.sap.global", "sap.m.library", "sap.ui.core.Control"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.m.TextArea",
+      "description" : "Provides control sap.m.TextArea.",
+      "size" : 22097,
+      "compressedSize" : 3538,
+      "required" : ["jquery.sap.global", "sap.m.library", "sap.ui.core.Control"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.m.TextAreaRenderer",
+      "description" : "! SAP UI development toolkit for HTML5 (SAPUI5)  (c) Copyright 2009-2013 SAP AG. All rights reserved",
+      "size" : 2340,
+      "compressedSize" : 1244,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.m.TextRenderer",
+      "description" : "Provides default renderer for control sap.m.Text",
+      "size" : 1878,
+      "compressedSize" : 872,
+      "required" : ["jquery.sap.global", "sap.ui.core.Renderer"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.m.VBox",
+      "description" : "Provides control sap.m.VBox.",
+      "size" : 2887,
+      "compressedSize" : 286,
+      "required" : ["jquery.sap.global", "sap.m.library", "sap.m.FlexBox"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.m.VBoxRenderer",
+      "description" : "! SAP UI development toolkit for HTML5 (SAPUI5)  (c) Copyright 2009-2013 SAP AG. All rights reserved",
+      "size" : 747,
+      "compressedSize" : 315,
+      "required" : ["jquery.sap.global", "sap.m.FlexBoxRenderer"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.m.library",
+      "description" : "Initialization Code and shared classes of library sap.m (1.10.0)",
+      "size" : 34468,
+      "compressedSize" : 6041,
+      "required" : ["jquery.sap.global", "sap.ui.core.Core", "sap.ui.core.library", "jquery.sap.mobile"],
+      "includes" : ["sap.m.ButtonType", "sap.m.DateTimeInputType", "sap.m.DialogType", "sap.m.FlexAlignItems", "sap.m.FlexAlignSelf", "sap.m.FlexDirection", "sap.m.FlexJustifyContent", "sap.m.FlexRendertype", "sap.m.InputType", "sap.m.LabelDesign", "sap.m.ListMode", "sap.m.ListType", "sap.m.PageBackgroundDesign", "sap.m.PlacementType", "sap.m.SplitAppMode"]
+    }
+  ]
+}

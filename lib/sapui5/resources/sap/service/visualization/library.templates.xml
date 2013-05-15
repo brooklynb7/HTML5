@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Library name="sap.service.visualization">
+<Template name="sap.service.visualization.ChartOption" alias="ChartOption,Option">
+	<jsTemplate><![CDATA[new sap.service.visualization.ChartOption({
+	id: "${id}", // sap.ui.core.ID
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	layoutData: undefined // sap.ui.core.LayoutData
+})
+]]></jsTemplate>
+</Template>
+<Template name="sap.service.visualization.Themings" alias="Themings">
+	<jsTemplate><![CDATA[new sap.service.visualization.Themings({
+	id: "${id}", // sap.ui.core.ID
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	layoutData: undefined // sap.ui.core.LayoutData
+})
+]]></jsTemplate>
+</Template>
+<Template name="sap.service.visualization.chart.Bar" alias="Bar">
+	<jsTemplate><![CDATA[new sap.service.visualization.chart.Bar({
+	id: "${id}", // sap.ui.core.ID
+	width: undefined, // sap.ui.core.CSSSize
+	height: undefined, // sap.ui.core.CSSSize
+	deselectEnabled: true, // boolean
+	selectionMode: "single", // string
+	legendFirst: false, // boolean
+	legendDirection: "right", // string
+	legendVerticalOffset: 0, // int
+	legendHorizontalOffset: 0, // int
+	defaultSelectedItems: undefined, // object[]
+	measures: undefined, // object[]
+	barMarker: undefined, // object
+	showLegend: true, // boolean
+	legendFormatString: [], // string[]
+	title: undefined, // string
+	titleHorizontalAlign: "center", // string
+	subTitle: undefined, // string
+	subTitleHorizontalAlign: "center", // string
+	showTitle: true, // boolean
+	titleFormatString: '', // string
+	subTitleFormatString: '', // string
+	xAxis: undefined, // object[]
+	yAxis: undefined, // object[]
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	layoutData: undefined, // sap.ui.core.LayoutData
+	dataset: [], // sap.service.visualization.dataset.SimpleDMDataset
+	selectData: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+</Template>
+<Template name="sap.service.visualization.chart.Column" alias="Column">
+	<jsTemplate><![CDATA[new sap.service.visualization.chart.Column({
+	id: "${id}", // sap.ui.core.ID
+	width: undefined, // sap.ui.core.CSSSize
+	height: undefined, // sap.ui.core.CSSSize
+	deselectEnabled: true, // boolean
+	selectionMode: "single", // string
+	legendFirst: false, // boolean
+	legendDirection: "right", // string
+	legendVerticalOffset: 0, // int
+	legendHorizontalOffset: 0, // int
+	defaultSelectedItems: undefined, // object[]
+	measures: undefined, // object[]
+	barMarker: undefined, // object
+	showLegend: true, // boolean
+	legendFormatString: [], // string[]
+	title: undefined, // string
+	titleHorizontalAlign: "center", // string
+	subTitle: undefined, // string
+	subTitleHorizontalAlign: "center", // string
+	showTitle: true, // boolean
+	titleFormatString: '', // string
+	subTitleFormatString: '', // string
+	xAxis: undefined, // object[]
+	yAxis: undefined, // object[]
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	layoutData: undefined, // sap.ui.core.LayoutData
+	dataset: [], // sap.service.visualization.dataset.SimpleDMDataset
+	selectData: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+</Template>
+<Template name="sap.service.visualization.chart.Combination" alias="Combination">
+	<jsTemplate><![CDATA[new sap.service.visualization.chart.Combination({
+	id: "${id}", // sap.ui.core.ID
+	width: undefined, // sap.ui.core.CSSSize
+	height: undefined, // sap.ui.core.CSSSize
+	deselectEnabled: true, // boolean
+	selectionMode: "single", // string
+	defaultSelectedItems: undefined, // object[]
+	legendFirst: false, // boolean
+	legendDirection: "right", // string
+	legendVerticalOffset: 0, // int
+	legendHorizontalOffset: 0, // int
+	measures: undefined, // object[]
+	lineMarkerAndThickness: { lineMarkerSize: 10,lineThickness: 1}, // object
+	barMarker: undefined, // object
+	showLegend: true, // boolean
+	legendFormatString: [], // string[]
+	title: undefined, // string
+	titleHorizontalAlign: "center", // string
+	subTitle: undefined, // string
+	subTitleHorizontalAlign: "center", // string
+	showTitle: true, // boolean
+	titleFormatString: '', // string
+	subTitleFormatString: '', // string
+	xAxis: undefined, // object[]
+	yAxis: undefined, // object[]
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	layoutData: undefined, // sap.ui.core.LayoutData
+	dataset: [], // sap.service.visualization.dataset.SimpleDMDataset
+	selectData: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+</Template>
+<Template name="sap.service.visualization.chart.Line" alias="Line">
+	<jsTemplate><![CDATA[new sap.service.visualization.chart.Line({
+	id: "${id}", // sap.ui.core.ID
+	width: undefined, // sap.ui.core.CSSSize
+	height: undefined, // sap.ui.core.CSSSize
+	deselectEnabled: true, // boolean
+	selectionMode: "single", // string
+	defaultSelectedItems: undefined, // object[]
+	legendFirst: false, // boolean
+	legendDirection: "right", // string
+	legendVerticalOffset: 0, // int
+	legendHorizontalOffset: 0, // int
+	measures: undefined, // object[]
+	lineMarkerAndThickness: { lineMarkerSize: 10,lineThickness: 1}, // object
+	showLegend: true, // boolean
+	legendFormatString: [], // string[]
+	title: undefined, // string
+	titleHorizontalAlign: "center", // string
+	subTitle: undefined, // string
+	subTitleHorizontalAlign: "center", // string
+	showTitle: true, // boolean
+	titleFormatString: '', // string
+	subTitleFormatString: '', // string
+	xAxis: undefined, // object[]
+	yAxis: undefined, // object[]
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	layoutData: undefined, // sap.ui.core.LayoutData
+	dataset: [], // sap.service.visualization.dataset.SimpleDMDataset
+	selectData: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+</Template>
+<Template name="sap.service.visualization.chart.Pie" alias="Pie">
+	<jsTemplate><![CDATA[new sap.service.visualization.chart.Pie({
+	id: "${id}", // sap.ui.core.ID
+	width: undefined, // sap.ui.core.CSSSize
+	height: undefined, // sap.ui.core.CSSSize
+	allDeSelectable: true, // boolean
+	allSelectable: true, // boolean
+	selectionMode: "single", // string
+	legendFirst: false, // boolean
+	legendDirection: "right", // string
+	legendVerticalOffset: 0, // int
+	legendHorizontalOffset: 0, // int
+	defaultSelectedSliceIndexes: undefined, // int[]
+	sectorColors: [], // string[]
+	showLegend: true, // boolean
+	legendFormatString: [], // string[]
+	title: undefined, // string
+	titleHorizontalAlign: "center", // string
+	subTitle: undefined, // string
+	subTitleHorizontalAlign: "center", // string
+	showTitle: true, // boolean
+	titleFormatString: '', // string
+	subTitleFormatString: '', // string
+	tooltipTextFormatString: undefined, // string[]
+	tooltipMainValueFormatString: undefined, // string[]
+	tooltipSubValueFormatString: undefined, // string[]
+	pieType: "pie", // string
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	layoutData: undefined, // sap.ui.core.LayoutData
+	dataset: [], // sap.service.visualization.dataset.SimpleDMDataset
+	selectData: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+</Template>
+<Template name="sap.service.visualization.dataset.SimpleDMDataset" alias="SimpleDMDataset,DMDataset">
+	<jsTemplate><![CDATA[new sap.service.visualization.dataset.SimpleDMDataset({
+	id: "${id}", // sap.ui.core.ID
+	dimensionName: undefined, // string
+	dimensionItems: undefined, // string[]
+	measureNames: undefined, // string[]
+	data: undefined, // object[]
+	tabularData: undefined, // object[]
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	layoutData: undefined // sap.ui.core.LayoutData
+})
+]]></jsTemplate>
+</Template>
+</Library>

@@ -1,0 +1,99 @@
+{
+  "modules" : [
+    {
+      "name" : "sap.makit.Axis",
+      "description" : "Provides control sap.makit.Axis.",
+      "size" : 6839,
+      "compressedSize" : 682,
+      "required" : ["jquery.sap.global", "sap.makit.library", "sap.ui.core.Element"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.makit.Category",
+      "description" : "Provides control sap.makit.Category.",
+      "size" : 5386,
+      "compressedSize" : 533,
+      "required" : ["jquery.sap.global", "sap.makit.library", "sap.ui.core.Element"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.makit.CategoryAxis",
+      "description" : "Provides control sap.makit.CategoryAxis.",
+      "size" : 4839,
+      "compressedSize" : 624,
+      "required" : ["jquery.sap.global", "sap.makit.library", "sap.makit.Axis"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.makit.Chart",
+      "description" : "Provides control sap.makit.Chart.",
+      "size" : 47963,
+      "required" : ["jquery.sap.global", "sap.makit.library", "sap.ui.core.Control", "sap.makit.js.SybaseMA"],
+      "includes" : ["sap.makit.js.SybaseMA"]
+    },
+    {
+      "name" : "sap.makit.ChartRenderer",
+      "description" : "! SAP UI development toolkit for HTML5 (SAPUI5)  (c) Copyright 2009-2013 SAP AG. All rights reserved",
+      "size" : 1055,
+      "compressedSize" : 496,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.makit.Column",
+      "description" : "Provides control sap.makit.Column.",
+      "size" : 5018,
+      "compressedSize" : 530,
+      "required" : ["jquery.sap.global", "sap.makit.library", "sap.ui.core.Element"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.makit.Row",
+      "description" : "Provides control sap.makit.Row.",
+      "size" : 6642,
+      "compressedSize" : 1158,
+      "required" : ["jquery.sap.global", "sap.makit.library", "sap.ui.core.Element"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.makit.Series",
+      "description" : "Provides control sap.makit.Series.",
+      "size" : 5309,
+      "compressedSize" : 535,
+      "required" : ["jquery.sap.global", "sap.makit.library", "sap.ui.core.Element"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.makit.Value",
+      "description" : "Provides control sap.makit.Value.",
+      "size" : 5769,
+      "compressedSize" : 531,
+      "required" : ["jquery.sap.global", "sap.makit.library", "sap.ui.core.Element"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.makit.ValueAxis",
+      "description" : "Provides control sap.makit.ValueAxis.",
+      "size" : 4691,
+      "compressedSize" : 561,
+      "required" : ["jquery.sap.global", "sap.makit.library", "sap.makit.Axis"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.makit.ValueBubble",
+      "description" : "Provides control sap.makit.ValueBubble.",
+      "size" : 11198,
+      "compressedSize" : 1533,
+      "required" : ["jquery.sap.global", "sap.makit.library", "sap.ui.core.Element"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.makit.library",
+      "description" : "Initialization Code and shared classes of library sap.makit (1.10.0)",
+      "size" : 7594,
+      "compressedSize" : 1444,
+      "required" : ["jquery.sap.global", "sap.ui.core.Core", "sap.ui.core.library"],
+      "includes" : ["sap.makit.ChartType", "sap.makit.LegendPosition", "sap.makit.SortOrder", "sap.makit.ValueBubblePosition", "sap.makit.ValueBubbleStyle"]
+    }
+  ]
+}

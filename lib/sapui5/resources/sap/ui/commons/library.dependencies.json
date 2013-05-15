@@ -1,0 +1,1202 @@
+{
+  "modules" : [
+    {
+      "name" : "sap.ui.commons.Accordion",
+      "description" : "Provides control sap.ui.commons.Accordion.",
+      "size" : 53691,
+      "compressedSize" : 15403,
+      "required" : ["jquery.sap.global", "sap.ui.commons.library", "sap.ui.core.Control", "sap.ui.core.delegate.ItemNavigation"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.AccordionRenderer",
+      "description" : "Provides default renderer for control sap.ui.commons.Accordion",
+      "size" : 6454,
+      "compressedSize" : 4160,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.AccordionSection",
+      "description" : "Provides control sap.ui.commons.AccordionSection.",
+      "size" : 20026,
+      "compressedSize" : 4465,
+      "required" : ["jquery.sap.global", "sap.ui.commons.library", "sap.ui.core.Element"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.ApplicationHeader",
+      "description" : "Provides control sap.ui.commons.ApplicationHeader.",
+      "size" : 12472,
+      "compressedSize" : 2628,
+      "required" : ["jquery.sap.global", "sap.ui.commons.library", "sap.ui.core.Control"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.ApplicationHeaderRenderer",
+      "description" : "Provides default renderer for control sap.ui.commons.ApplicationHeader",
+      "size" : 4472,
+      "compressedSize" : 2177,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.Area",
+      "description" : "Provides control sap.ui.commons.Area.",
+      "size" : 6506,
+      "compressedSize" : 707,
+      "required" : ["jquery.sap.global", "sap.ui.commons.library", "sap.ui.core.Element"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.AutoComplete",
+      "description" : "Provides control sap.ui.commons.AutoComplete.",
+      "size" : 11267,
+      "compressedSize" : 4671,
+      "required" : ["jquery.sap.global", "sap.ui.commons.library", "sap.ui.commons.ComboBox", "jquery.sap.strings"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.AutoCompleteRenderer",
+      "description" : "Provides default renderer for control sap.ui.commons.AutoComplete",
+      "size" : 1609,
+      "compressedSize" : 1086,
+      "required" : ["jquery.sap.global", "sap.ui.core.Renderer", "sap.ui.commons.ComboBoxRenderer"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.Button",
+      "description" : "Provides control sap.ui.commons.Button.",
+      "size" : 21826,
+      "compressedSize" : 3092,
+      "required" : ["jquery.sap.global", "sap.ui.commons.library", "sap.ui.core.Control", "sap.ui.core.EnabledPropagator"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.ButtonRenderer",
+      "description" : "Provides default renderer for control sap.ui.commons.Button",
+      "size" : 6820,
+      "compressedSize" : 4010,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.Callout",
+      "description" : "Provides control sap.ui.commons.Callout.",
+      "size" : 5816,
+      "compressedSize" : 445,
+      "required" : ["jquery.sap.global", "sap.ui.commons.library", "sap.ui.commons.CalloutBase"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.CalloutBase",
+      "description" : "Provides control sap.ui.commons.CalloutBase.",
+      "size" : 29667,
+      "compressedSize" : 7536,
+      "required" : ["jquery.sap.global", "sap.ui.commons.library", "sap.ui.core.TooltipBase"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.CalloutBaseRenderer",
+      "description" : "! SAP UI development toolkit for HTML5 (SAPUI5)  (c) Copyright 2009-2013 SAP AG. All rights reserved",
+      "size" : 2525,
+      "compressedSize" : 1325,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.CalloutRenderer",
+      "description" : "! SAP UI development toolkit for HTML5 (SAPUI5)  (c) Copyright 2009-2013 SAP AG. All rights reserved",
+      "size" : 2528,
+      "compressedSize" : 774,
+      "required" : ["jquery.sap.global", "sap.ui.commons.CalloutBaseRenderer", "sap.ui.core.Renderer"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.Carousel",
+      "description" : "Provides control sap.ui.commons.Carousel.",
+      "size" : 22930,
+      "compressedSize" : 6663,
+      "required" : ["jquery.sap.global", "sap.ui.commons.library", "sap.ui.core.Control", "sap.ui.core.ResizeHandler"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.CarouselRenderer",
+      "description" : "Provides default renderer for control sap.ui.commons.Carousel",
+      "size" : 3298,
+      "compressedSize" : 1841,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.CheckBox",
+      "description" : "Provides control sap.ui.commons.CheckBox.",
+      "size" : 18663,
+      "compressedSize" : 2069,
+      "required" : ["jquery.sap.global", "sap.ui.commons.library", "sap.ui.core.Control"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.CheckBoxRenderer",
+      "description" : "Provides default renderer for control sap.ui.commons.CheckBox",
+      "size" : 4261,
+      "compressedSize" : 2109,
+      "required" : ["jquery.sap.global", "sap.ui.core.ValueStateSupport"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.ColorPicker",
+      "description" : "Provides control sap.ui.commons.ColorPicker.",
+      "size" : 48500,
+      "compressedSize" : 22901,
+      "required" : ["jquery.sap.global", "sap.ui.commons.library", "sap.ui.core.Control"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.ColorPickerRenderer",
+      "description" : "Provides default renderer for control sap.ui.commons.ColorPicker",
+      "size" : 1006,
+      "compressedSize" : 368,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.ComboBox",
+      "description" : "Provides control sap.ui.commons.ComboBox.",
+      "size" : 55299,
+      "compressedSize" : 21330,
+      "required" : ["jquery.sap.global", "sap.ui.commons.library", "sap.ui.commons.TextField", "jquery.sap.strings", "sap.ui.core.Popup"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.ComboBoxRenderer",
+      "description" : "Provides default renderer for control sap.ui.commons.ComboBox",
+      "size" : 5051,
+      "compressedSize" : 2268,
+      "required" : ["jquery.sap.global", "sap.ui.core.Renderer", "sap.ui.commons.TextFieldRenderer"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.DatePicker",
+      "description" : "Provides control sap.ui.commons.DatePicker.",
+      "size" : 51888,
+      "compressedSize" : 19244,
+      "required" : ["jquery.sap.global", "sap.ui.commons.library", "sap.ui.commons.TextField", "sap.ui.thirdparty.jqueryui.jquery-ui-core", "sap.ui.thirdparty.jqueryui.jquery-ui-datepicker", "sap.ui.model.type.Date"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.DatePickerRenderer",
+      "description" : "Provides default renderer for control sap.ui.commons.DatePicker",
+      "size" : 6254,
+      "compressedSize" : 1680,
+      "required" : ["jquery.sap.global", "sap.ui.commons.TextFieldRenderer", "sap.ui.commons.DatePicker"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.Dialog",
+      "description" : "Provides control sap.ui.commons.Dialog.",
+      "size" : 49687,
+      "compressedSize" : 10940,
+      "required" : ["jquery.sap.global", "sap.ui.commons.library", "sap.ui.core.Control", "sap.ui.core.Popup"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.DialogRenderer",
+      "description" : "Provides default renderer for control sap.ui.commons.Dialog",
+      "size" : 4306,
+      "compressedSize" : 2756,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.DropdownBox",
+      "description" : "Provides control sap.ui.commons.DropdownBox.",
+      "size" : 57381,
+      "compressedSize" : 22014,
+      "required" : ["jquery.sap.global", "sap.ui.commons.library", "sap.ui.commons.ComboBox", "sap.ui.core.History", "sap.ui.core.SeparatorItem"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.DropdownBoxRenderer",
+      "description" : "Provides default renderer for control sap.ui.commons.DropdownBox",
+      "size" : 2958,
+      "compressedSize" : 1255,
+      "required" : ["jquery.sap.global", "sap.ui.commons.ComboBoxRenderer"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.FileUploader",
+      "description" : "Provides control sap.ui.commons.FileUploader.",
+      "size" : 26805,
+      "compressedSize" : 7482,
+      "required" : ["jquery.sap.global", "sap.ui.commons.library", "sap.ui.core.Control"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.FileUploaderRenderer",
+      "description" : "Provides default renderer for control sap.ui.commons.FileUploader",
+      "size" : 2348,
+      "compressedSize" : 1325,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.FormattedTextView",
+      "description" : "Provides control sap.ui.commons.FormattedTextView.",
+      "size" : 13936,
+      "compressedSize" : 2548,
+      "required" : ["jquery.sap.global", "sap.ui.commons.library", "sap.ui.core.Control", "jquery.sap.encoder"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.FormattedTextViewRenderer",
+      "description" : "! SAP UI development toolkit for HTML5 (SAPUI5)  (c) Copyright 2009-2013 SAP AG. All rights reserved",
+      "size" : 2433,
+      "compressedSize" : 1033,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.HorizontalDivider",
+      "description" : "Provides control sap.ui.commons.HorizontalDivider.",
+      "size" : 6301,
+      "compressedSize" : 775,
+      "required" : ["jquery.sap.global", "sap.ui.commons.library", "sap.ui.core.Control"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.HorizontalDividerRenderer",
+      "description" : "Provides default renderer for control sap.ui.commons.HorizontalDivider",
+      "size" : 1590,
+      "compressedSize" : 876,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.Image",
+      "description" : "Provides control sap.ui.commons.Image.",
+      "size" : 11744,
+      "compressedSize" : 1118,
+      "required" : ["jquery.sap.global", "sap.ui.commons.library", "sap.ui.core.Control"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.ImageMap",
+      "description" : "Provides control sap.ui.commons.ImageMap.",
+      "size" : 11768,
+      "compressedSize" : 2071,
+      "required" : ["jquery.sap.global", "sap.ui.commons.library", "sap.ui.core.Control", "sap.ui.core.delegate.ItemNavigation"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.ImageMapRenderer",
+      "description" : "! SAP UI development toolkit for HTML5 (SAPUI5)  (c) Copyright 2009-2013 SAP AG. All rights reserved",
+      "size" : 2229,
+      "compressedSize" : 1016,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.ImageRenderer",
+      "description" : "Provides default renderer for control sap.ui.commons.Image",
+      "size" : 2923,
+      "compressedSize" : 1178,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.InPlaceEdit",
+      "description" : "Provides control sap.ui.commons.InPlaceEdit.",
+      "size" : 35076,
+      "compressedSize" : 13777,
+      "required" : ["jquery.sap.global", "sap.ui.commons.library", "sap.ui.core.Control", "sap.ui.commons.TextView", "sap.ui.commons.TextField", "sap.ui.core.theming.Parameters", "sap.ui.core.ValueStateSupport"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.InPlaceEditRenderer",
+      "description" : "! SAP UI development toolkit for HTML5 (SAPUI5)  (c) Copyright 2009-2013 SAP AG. All rights reserved",
+      "size" : 4178,
+      "compressedSize" : 2350,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.Label",
+      "description" : "Provides control sap.ui.commons.Label.",
+      "size" : 12279,
+      "compressedSize" : 2035,
+      "required" : ["jquery.sap.global", "sap.ui.commons.library", "sap.ui.core.Control"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.LabelRenderer",
+      "description" : "Provides default renderer for control sap.ui.commons.Label",
+      "size" : 3581,
+      "compressedSize" : 1751,
+      "required" : ["jquery.sap.global", "sap.ui.core.Renderer"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.Link",
+      "description" : "Provides control sap.ui.commons.Link.",
+      "size" : 13940,
+      "compressedSize" : 1434,
+      "required" : ["jquery.sap.global", "sap.ui.commons.library", "sap.ui.core.Control", "sap.ui.core.EnabledPropagator"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.LinkRenderer",
+      "description" : "Provides default renderer for control sap.ui.commons.Link",
+      "size" : 1902,
+      "compressedSize" : 1001,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.ListBox",
+      "description" : "Provides control sap.ui.commons.ListBox.",
+      "size" : 64619,
+      "compressedSize" : 19073,
+      "required" : ["jquery.sap.global", "sap.ui.commons.library", "sap.ui.core.Control", "sap.ui.core.delegate.ItemNavigation", "jquery.sap.strings"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.ListBoxRenderer",
+      "description" : "Provides default renderer for control sap.ui.commons.ListBox",
+      "size" : 9698,
+      "compressedSize" : 4720,
+      "required" : ["jquery.sap.global", "sap.ui.core.Renderer", "jquery.sap.strings"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.Menu",
+      "description" : "Provides control sap.ui.commons.Menu.",
+      "size" : 28045,
+      "compressedSize" : 10463,
+      "required" : ["jquery.sap.global", "sap.ui.commons.library", "sap.ui.core.Control", "sap.ui.commons.MenuItemBase", "sap.ui.core.Popup"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.MenuBar",
+      "description" : "Provides control sap.ui.commons.MenuBar.",
+      "size" : 22237,
+      "compressedSize" : 7482,
+      "required" : ["jquery.sap.global", "sap.ui.commons.library", "sap.ui.core.Control", "sap.ui.commons.Menu", "sap.ui.commons.MenuItem"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.MenuBarRenderer",
+      "description" : "Provides default renderer for control sap.ui.commons.MenuBar",
+      "size" : 3305,
+      "compressedSize" : 2140,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.MenuButton",
+      "description" : "Provides control sap.ui.commons.MenuButton.",
+      "size" : 14875,
+      "compressedSize" : 2692,
+      "required" : ["jquery.sap.global", "sap.ui.commons.library", "sap.ui.commons.Button", "sap.ui.commons.Menu"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.MenuButtonRenderer",
+      "description" : "Provides default renderer for control sap.ui.commons.MenuButton",
+      "size" : 1801,
+      "compressedSize" : 664,
+      "required" : ["jquery.sap.global", "sap.ui.commons.ButtonRenderer", "sap.ui.core.Renderer"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.MenuItem",
+      "description" : "Provides control sap.ui.commons.MenuItem.",
+      "size" : 6318,
+      "compressedSize" : 1898,
+      "required" : ["jquery.sap.global", "sap.ui.commons.library", "sap.ui.commons.MenuItemBase"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.MenuItemBase",
+      "description" : "Provides control sap.ui.commons.MenuItemBase.",
+      "size" : 10057,
+      "compressedSize" : 1353,
+      "required" : ["jquery.sap.global", "sap.ui.commons.library", "sap.ui.core.Element"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.MenuRenderer",
+      "description" : "Provides default renderer for control sap.ui.commons.Menu",
+      "size" : 2973,
+      "compressedSize" : 1714,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.MenuTextFieldItem",
+      "description" : "Provides control sap.ui.commons.MenuTextFieldItem.",
+      "size" : 12633,
+      "compressedSize" : 4914,
+      "required" : ["jquery.sap.global", "sap.ui.commons.library", "sap.ui.commons.MenuItemBase", "sap.ui.commons.MenuItem", "sap.ui.commons.Label", "sap.ui.commons.TextField"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.Message",
+      "description" : "Provides control sap.ui.commons.Message.",
+      "size" : 14862,
+      "compressedSize" : 3718,
+      "required" : ["jquery.sap.global", "sap.ui.commons.library", "sap.ui.core.Control", "sap.ui.commons.Dialog"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.MessageBar",
+      "description" : "Provides control sap.ui.commons.MessageBar.",
+      "size" : 30701,
+      "compressedSize" : 10581,
+      "required" : ["jquery.sap.global", "sap.ui.commons.library", "sap.ui.core.Control", "sap.ui.core.Popup"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.MessageBarRenderer",
+      "description" : "Provides default renderer for control sap.ui.commons.MessageBar",
+      "size" : 2883,
+      "compressedSize" : 1307,
+      "required" : ["jquery.sap.global", "sap.ui.core.Popup"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.MessageBox",
+      "description" : "Provides class sap.ui.commons.MessageBox",
+      "size" : 10630,
+      "compressedSize" : 2585,
+      "required" : ["jquery.sap.global", "sap.ui.commons.Button", "sap.ui.commons.Dialog", "sap.ui.commons.Image", "sap.ui.commons.layout.MatrixLayout", "sap.ui.commons.TextView"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.MessageList",
+      "description" : "Provides control sap.ui.commons.MessageList.",
+      "size" : 10083,
+      "compressedSize" : 2264,
+      "required" : ["jquery.sap.global", "sap.ui.commons.library", "sap.ui.core.Control", "sap.ui.core.Popup"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.MessageListRenderer",
+      "description" : "Provides default renderer for control sap.ui.commons.MessageList",
+      "size" : 1313,
+      "compressedSize" : 495,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.MessageRenderer",
+      "description" : "Provides default renderer for control sap.ui.commons.Message",
+      "size" : 2101,
+      "compressedSize" : 818,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.MessageToast",
+      "description" : "Provides control sap.ui.commons.MessageToast.",
+      "size" : 13351,
+      "compressedSize" : 2641,
+      "required" : ["jquery.sap.global", "sap.ui.commons.library", "sap.ui.core.Control", "sap.ui.thirdparty.jqueryui.jquery-ui-core"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.MessageToastRenderer",
+      "description" : "Provides default renderer for control sap.ui.commons.MessageToast",
+      "size" : 2022,
+      "compressedSize" : 756,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.Paginator",
+      "description" : "Provides control sap.ui.commons.Paginator.",
+      "size" : 19092,
+      "compressedSize" : 4911,
+      "required" : ["jquery.sap.global", "sap.ui.commons.library", "sap.ui.core.Control"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.PaginatorRenderer",
+      "description" : "Provides default renderer for control sap.ui.commons.Paginator",
+      "size" : 7288,
+      "compressedSize" : 4004,
+      "required" : ["jquery.sap.global", "jquery.sap.encoder"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.Panel",
+      "description" : "Provides control sap.ui.commons.Panel.",
+      "size" : 40237,
+      "compressedSize" : 10441,
+      "required" : ["jquery.sap.global", "sap.ui.commons.library", "sap.ui.core.Control"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.PanelRenderer",
+      "description" : "Provides default renderer for control sap.ui.commons.Panel",
+      "size" : 6667,
+      "compressedSize" : 3272,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.PasswordField",
+      "description" : "Provides control sap.ui.commons.PasswordField.",
+      "size" : 3039,
+      "compressedSize" : 362,
+      "required" : ["jquery.sap.global", "sap.ui.commons.library", "sap.ui.commons.TextField"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.PasswordFieldRenderer",
+      "description" : "! SAP UI development toolkit for HTML5 (SAPUI5)  (c) Copyright 2009-2013 SAP AG. All rights reserved",
+      "size" : 2325,
+      "compressedSize" : 1247,
+      "required" : ["jquery.sap.global", "sap.ui.commons.TextFieldRenderer"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.ProgressIndicator",
+      "description" : "Provides control sap.ui.commons.ProgressIndicator.",
+      "size" : 14907,
+      "compressedSize" : 4568,
+      "required" : ["jquery.sap.global", "sap.ui.commons.library", "sap.ui.core.Control"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.ProgressIndicatorRenderer",
+      "description" : "Provides default renderer for control sap.ui.commons.ProgressIndicator",
+      "size" : 4770,
+      "compressedSize" : 2635,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.RadioButton",
+      "description" : "Provides control sap.ui.commons.RadioButton.",
+      "size" : 21712,
+      "compressedSize" : 3384,
+      "required" : ["jquery.sap.global", "sap.ui.commons.library", "sap.ui.core.Control"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.RadioButtonGroup",
+      "description" : "Provides control sap.ui.commons.RadioButtonGroup.",
+      "size" : 27891,
+      "compressedSize" : 7655,
+      "required" : ["jquery.sap.global", "sap.ui.commons.library", "sap.ui.core.Control", "sap.ui.core.delegate.ItemNavigation"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.RadioButtonGroupRenderer",
+      "description" : "Provides default renderer for control sap.ui.commons.RadioButtonGroup",
+      "size" : 2742,
+      "compressedSize" : 1303,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.RadioButtonRenderer",
+      "description" : "Provides default renderer for control sap.ui.commons.RadioButton",
+      "size" : 5391,
+      "compressedSize" : 2704,
+      "required" : ["jquery.sap.global", "sap.ui.core.ValueStateSupport"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.RangeSlider",
+      "description" : "Provides control sap.ui.commons.RangeSlider.",
+      "size" : 17640,
+      "compressedSize" : 7570,
+      "required" : ["jquery.sap.global", "sap.ui.commons.library", "sap.ui.commons.Slider"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.RangeSliderRenderer",
+      "description" : "Provides default renderer for control sap.ui.commons.RangeSlider",
+      "size" : 3163,
+      "compressedSize" : 1642,
+      "required" : ["jquery.sap.global", "sap.ui.core.Renderer", "sap.ui.commons.SliderRenderer"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.RatingIndicator",
+      "description" : "Provides control sap.ui.commons.RatingIndicator.",
+      "size" : 25267,
+      "compressedSize" : 5673,
+      "required" : ["jquery.sap.global", "sap.ui.commons.library", "sap.ui.core.Control", "sap.ui.core.theming.Parameters"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.RatingIndicatorRenderer",
+      "description" : "Provides default renderer for control sap.ui.commons.RatingIndicator",
+      "size" : 6043,
+      "compressedSize" : 3183,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.RichTooltip",
+      "description" : "Provides control sap.ui.commons.RichTooltip.",
+      "size" : 4624,
+      "compressedSize" : 491,
+      "required" : ["jquery.sap.global", "sap.ui.commons.library", "sap.ui.core.TooltipBase"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.RichTooltipRenderer",
+      "description" : "Provides default renderer for control sap.ui.commons.RichTooltip",
+      "size" : 2399,
+      "compressedSize" : 1368,
+      "required" : ["jquery.sap.global", "sap.ui.core.ValueStateSupport"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.RoadMap",
+      "description" : "Provides control sap.ui.commons.RoadMap.",
+      "size" : 27656,
+      "compressedSize" : 7049,
+      "required" : ["jquery.sap.global", "sap.ui.commons.library", "sap.ui.core.Control"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.RoadMapRenderer",
+      "description" : "Provides default renderer for control sap.ui.commons.RoadMap",
+      "size" : 30033,
+      "compressedSize" : 13181,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.RoadMapStep",
+      "description" : "Provides control sap.ui.commons.RoadMapStep.",
+      "size" : 15795,
+      "compressedSize" : 3531,
+      "required" : ["jquery.sap.global", "sap.ui.commons.library", "sap.ui.core.Element"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.RowRepeater",
+      "description" : "Provides control sap.ui.commons.RowRepeater.",
+      "size" : 68874,
+      "compressedSize" : 19207,
+      "required" : ["jquery.sap.global", "sap.ui.commons.library", "sap.ui.core.Control"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.RowRepeaterFilter",
+      "description" : "Provides control sap.ui.commons.RowRepeaterFilter.",
+      "size" : 5507,
+      "compressedSize" : 550,
+      "required" : ["jquery.sap.global", "sap.ui.commons.library", "sap.ui.core.Element"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.RowRepeaterRenderer",
+      "description" : "Provides default renderer for control sap.ui.commons.RowRepeater",
+      "size" : 10359,
+      "compressedSize" : 4064,
+      "required" : ["jquery.sap.global", "sap.ui.commons.Paginator", "sap.ui.commons.Toolbar", "sap.ui.commons.Button"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.RowRepeaterSorter",
+      "description" : "Provides control sap.ui.commons.RowRepeaterSorter.",
+      "size" : 5489,
+      "compressedSize" : 549,
+      "required" : ["jquery.sap.global", "sap.ui.commons.library", "sap.ui.core.Element"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.SearchField",
+      "description" : "Provides control sap.ui.commons.SearchField.",
+      "size" : 45067,
+      "compressedSize" : 14238,
+      "required" : ["jquery.sap.global", "sap.ui.commons.library", "sap.ui.core.Control", "sap.ui.commons.ComboBox", "sap.ui.commons.ComboBoxRenderer", "sap.ui.commons.TextField", "sap.ui.commons.TextFieldRenderer", "sap.ui.commons.ListBox", "sap.ui.core.Renderer", "sap.ui.core.History"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.SearchFieldRenderer",
+      "description" : "Provides default renderer for control sap.ui.commons.SearchField",
+      "size" : 1664,
+      "compressedSize" : 867,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.SearchProvider",
+      "description" : "Provides control sap.ui.commons.SearchProvider.",
+      "size" : 3525,
+      "compressedSize" : 537,
+      "required" : ["jquery.sap.global", "sap.ui.commons.library", "sap.ui.core.search.OpenSearchProvider"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.SegmentedButton",
+      "description" : "Provides control sap.ui.commons.SegmentedButton.",
+      "size" : 15648,
+      "compressedSize" : 3952,
+      "required" : ["jquery.sap.global", "sap.ui.commons.library", "sap.ui.core.Control", "sap.ui.core.delegate.ItemNavigation"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.SegmentedButtonRenderer",
+      "description" : "! SAP UI development toolkit for HTML5 (SAPUI5)  (c) Copyright 2009-2013 SAP AG. All rights reserved",
+      "size" : 1512,
+      "compressedSize" : 683,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.Slider",
+      "description" : "Provides control sap.ui.commons.Slider.",
+      "size" : 58898,
+      "compressedSize" : 20578,
+      "required" : ["jquery.sap.global", "sap.ui.commons.library", "sap.ui.core.Control", "sap.ui.core.ResizeHandler", "sap.ui.core.EnabledPropagator"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.SliderRenderer",
+      "description" : "Provides default renderer for control sap.ui.commons.Slider",
+      "size" : 5362,
+      "compressedSize" : 2809,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.Splitter",
+      "description" : "Provides control sap.ui.commons.Splitter.",
+      "size" : 41172,
+      "compressedSize" : 14422,
+      "required" : ["jquery.sap.global", "sap.ui.commons.library", "sap.ui.core.Control", "sap.ui.core.delegate.ItemNavigation", "jquery.sap.events", "jquery.sap.keycodes", "sap.ui.core.ResizeHandler"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.SplitterRenderer",
+      "description" : "Provides default renderer for control sap.ui.commons.Splitter",
+      "size" : 4157,
+      "compressedSize" : 2168,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.Tab",
+      "description" : "Provides control sap.ui.commons.Tab.",
+      "size" : 10985,
+      "compressedSize" : 2292,
+      "required" : ["jquery.sap.global", "sap.ui.commons.library", "sap.ui.commons.Panel"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.TabStrip",
+      "description" : "Provides control sap.ui.commons.TabStrip.",
+      "size" : 27473,
+      "compressedSize" : 7618,
+      "required" : ["jquery.sap.global", "sap.ui.commons.library", "sap.ui.core.Control", "sap.ui.core.delegate.ItemNavigation"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.TabStripRenderer",
+      "description" : "Provides default renderer for control sap.ui.commons.TabStrip",
+      "size" : 5276,
+      "compressedSize" : 3006,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.TextArea",
+      "description" : "Provides control sap.ui.commons.TextArea.",
+      "size" : 16562,
+      "compressedSize" : 4621,
+      "required" : ["jquery.sap.global", "sap.ui.commons.library", "sap.ui.commons.TextField"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.TextAreaRenderer",
+      "description" : "Provides default renderer for control sap.ui.commons.TextArea",
+      "size" : 3229,
+      "compressedSize" : 1707,
+      "required" : ["jquery.sap.global", "sap.ui.core.Renderer", "sap.ui.commons.TextFieldRenderer"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.TextField",
+      "description" : "Provides control sap.ui.commons.TextField.",
+      "size" : 36969,
+      "compressedSize" : 7700,
+      "required" : ["jquery.sap.global", "sap.ui.commons.library", "sap.ui.core.Control"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.TextFieldRenderer",
+      "description" : "Provides default renderer for control sap.ui.commons.TextField",
+      "size" : 10495,
+      "compressedSize" : 6542,
+      "required" : ["jquery.sap.global", "sap.ui.core.Renderer", "sap.ui.core.ValueStateSupport"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.TextView",
+      "description" : "Provides control sap.ui.commons.TextView.",
+      "size" : 15838,
+      "compressedSize" : 1875,
+      "required" : ["jquery.sap.global", "sap.ui.commons.library", "sap.ui.core.Control"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.TextViewRenderer",
+      "description" : "Provides default renderer for control sap.ui.commons.TextView",
+      "size" : 4172,
+      "compressedSize" : 2219,
+      "required" : ["jquery.sap.global", "sap.ui.core.Renderer"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.Title",
+      "description" : "Provides control sap.ui.commons.Title.",
+      "size" : 6234,
+      "compressedSize" : 652,
+      "required" : ["jquery.sap.global", "sap.ui.commons.library", "sap.ui.core.Element"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.ToggleButton",
+      "description" : "Provides control sap.ui.commons.ToggleButton.",
+      "size" : 4680,
+      "compressedSize" : 1066,
+      "required" : ["jquery.sap.global", "sap.ui.commons.library", "sap.ui.commons.Button"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.ToggleButtonRenderer",
+      "description" : "Provides default renderer for control sap.ui.commons.Togglebutton",
+      "size" : 2514,
+      "compressedSize" : 1342,
+      "required" : ["jquery.sap.global", "sap.ui.commons.ButtonRenderer", "sap.ui.core.Renderer"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.Toolbar",
+      "description" : "Provides control sap.ui.commons.Toolbar.",
+      "size" : 37430,
+      "compressedSize" : 12645,
+      "required" : ["jquery.sap.global", "sap.ui.commons.library", "sap.ui.core.Control", "sap.ui.core.delegate.ItemNavigation", "sap.ui.core.Popup"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.ToolbarRenderer",
+      "description" : "Provides default renderer for control sap.ui.commons.Toolbar",
+      "size" : 7356,
+      "compressedSize" : 3281,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.ToolbarSeparator",
+      "description" : "Provides control sap.ui.commons.ToolbarSeparator.",
+      "size" : 5090,
+      "compressedSize" : 666,
+      "required" : ["jquery.sap.global", "sap.ui.commons.library", "sap.ui.core.Element"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.Tree",
+      "description" : "Provides control sap.ui.commons.Tree.",
+      "size" : 28581,
+      "compressedSize" : 7196,
+      "required" : ["jquery.sap.global", "sap.ui.commons.library", "sap.ui.core.Control"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.TreeNode",
+      "description" : "Provides control sap.ui.commons.TreeNode.",
+      "size" : 27490,
+      "compressedSize" : 6193,
+      "required" : ["jquery.sap.global", "sap.ui.commons.library", "sap.ui.core.Element"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.TreeRenderer",
+      "description" : "Provides default renderer for control sap.ui.commons.TreeRenderer",
+      "size" : 5720,
+      "compressedSize" : 3421,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.TriStateCheckBox",
+      "description" : "Provides control sap.ui.commons.TriStateCheckBox.",
+      "size" : 15709,
+      "compressedSize" : 2096,
+      "required" : ["jquery.sap.global", "sap.ui.commons.library", "sap.ui.core.Control"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.TriStateCheckBoxRenderer",
+      "description" : "Provides default renderer for control sap.ui.commons.TriStateCheckBox",
+      "size" : 3914,
+      "compressedSize" : 1942,
+      "required" : ["jquery.sap.global", "sap.ui.core.ValueStateSupport"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.ValueHelpField",
+      "description" : "Provides control sap.ui.commons.ValueHelpField.",
+      "size" : 11455,
+      "compressedSize" : 2861,
+      "required" : ["jquery.sap.global", "sap.ui.commons.library", "sap.ui.commons.TextField", "sap.ui.core.theming.Parameters"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.ValueHelpFieldRenderer",
+      "description" : "Provides default renderer for control sap.ui.commons.ValueHelpField",
+      "size" : 6001,
+      "compressedSize" : 1778,
+      "required" : ["jquery.sap.global", "sap.ui.commons.TextFieldRenderer"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.form.Form",
+      "description" : "Provides control sap.ui.commons.form.Form.",
+      "size" : 9660,
+      "compressedSize" : 1137,
+      "required" : ["jquery.sap.global", "sap.ui.commons.library", "sap.ui.core.Control"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.form.FormContainer",
+      "description" : "Provides control sap.ui.commons.form.FormContainer.",
+      "size" : 12332,
+      "compressedSize" : 2870,
+      "required" : ["jquery.sap.global", "sap.ui.commons.library", "sap.ui.core.Element", "sap.ui.core.EnabledPropagator", "sap.ui.core.theming.Parameters"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.form.FormElement",
+      "description" : "Provides control sap.ui.commons.form.FormElement.",
+      "size" : 13358,
+      "compressedSize" : 3979,
+      "required" : ["jquery.sap.global", "sap.ui.commons.library", "sap.ui.core.Element", "sap.ui.core.EnabledPropagator"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.form.FormLayout",
+      "description" : "Provides control sap.ui.commons.form.FormLayout.",
+      "size" : 26464,
+      "compressedSize" : 12104,
+      "required" : ["jquery.sap.global", "sap.ui.commons.library", "sap.ui.core.Control", "sap.ui.commons.form.Form"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.form.FormLayoutRenderer",
+      "description" : "! SAP UI development toolkit for HTML5 (SAPUI5)  (c) Copyright 2009-2013 SAP AG. All rights reserved",
+      "size" : 5243,
+      "compressedSize" : 2745,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.form.FormRenderer",
+      "description" : "! SAP UI development toolkit for HTML5 (SAPUI5)  (c) Copyright 2009-2013 SAP AG. All rights reserved",
+      "size" : 1563,
+      "compressedSize" : 744,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.form.GridContainerData",
+      "description" : "Provides control sap.ui.commons.form.GridContainerData.",
+      "size" : 4380,
+      "compressedSize" : 449,
+      "required" : ["jquery.sap.global", "sap.ui.commons.library", "sap.ui.core.LayoutData"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.form.GridElementData",
+      "description" : "Provides control sap.ui.commons.form.GridElementData.",
+      "size" : 5297,
+      "compressedSize" : 535,
+      "required" : ["jquery.sap.global", "sap.ui.commons.library", "sap.ui.core.LayoutData"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.form.GridLayout",
+      "description" : "Provides control sap.ui.commons.form.GridLayout.",
+      "size" : 8163,
+      "compressedSize" : 2593,
+      "required" : ["jquery.sap.global", "sap.ui.commons.library", "sap.ui.commons.form.FormLayout", "sap.ui.commons.form.GridContainerData", "sap.ui.commons.form.GridElementData"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.form.GridLayoutRenderer",
+      "size" : 15401,
+      "compressedSize" : 6691,
+      "required" : ["jquery.sap.global", "sap.ui.core.Renderer", "sap.ui.commons.form.FormLayoutRenderer"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.form.ResponsiveLayout",
+      "description" : "Provides control sap.ui.commons.form.ResponsiveLayout.",
+      "size" : 24074,
+      "compressedSize" : 7657,
+      "required" : ["jquery.sap.global", "sap.ui.commons.library", "sap.ui.commons.form.FormLayout", "sap.ui.commons.Panel", "sap.ui.commons.layout.ResponsiveFlowLayout", "sap.ui.commons.layout.ResponsiveFlowLayoutData"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.form.ResponsiveLayoutRenderer",
+      "size" : 1239,
+      "compressedSize" : 807,
+      "required" : ["jquery.sap.global", "sap.ui.core.Renderer", "sap.ui.commons.form.FormLayoutRenderer"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.layout.AbsoluteLayout",
+      "description" : "Provides control sap.ui.commons.layout.AbsoluteLayout.",
+      "size" : 24715,
+      "compressedSize" : 6737,
+      "required" : ["jquery.sap.global", "sap.ui.commons.library", "sap.ui.core.Control", "sap.ui.commons.layout.PositionContainer"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.layout.AbsoluteLayoutRenderer",
+      "description" : "Provides default renderer for control sap.ui.commons.layout.AbsoluteLayout",
+      "size" : 5158,
+      "compressedSize" : 2758,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.layout.BorderLayout",
+      "description" : "Provides control sap.ui.commons.layout.BorderLayout.",
+      "size" : 19703,
+      "compressedSize" : 3529,
+      "required" : ["jquery.sap.global", "sap.ui.commons.library", "sap.ui.core.Control"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.layout.BorderLayoutArea",
+      "description" : "Provides control sap.ui.commons.layout.BorderLayoutArea.",
+      "size" : 12200,
+      "compressedSize" : 1593,
+      "required" : ["jquery.sap.global", "sap.ui.commons.library", "sap.ui.core.Element", "sap.ui.core.CustomStyleClassSupport"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.layout.BorderLayoutRenderer",
+      "description" : "Provides default renderer for control sap.ui.commons.layout.BorderLayout",
+      "size" : 5173,
+      "compressedSize" : 2726,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.layout.HorizontalLayout",
+      "description" : "Provides control sap.ui.commons.layout.HorizontalLayout.",
+      "size" : 7579,
+      "compressedSize" : 634,
+      "required" : ["jquery.sap.global", "sap.ui.commons.library", "sap.ui.core.Control"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.layout.HorizontalLayoutRenderer",
+      "description" : "! SAP UI development toolkit for HTML5 (SAPUI5)  (c) Copyright 2009-2013 SAP AG. All rights reserved",
+      "size" : 1423,
+      "compressedSize" : 673,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.layout.MatrixLayout",
+      "description" : "Provides control sap.ui.commons.layout.MatrixLayout.",
+      "size" : 15543,
+      "compressedSize" : 2011,
+      "required" : ["jquery.sap.global", "sap.ui.commons.library", "sap.ui.core.Control", "sap.ui.core.EnabledPropagator", "sap.ui.commons.layout.MatrixLayoutCell", "sap.ui.commons.layout.MatrixLayoutRow"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.layout.MatrixLayoutCell",
+      "description" : "Provides control sap.ui.commons.layout.MatrixLayoutCell.",
+      "size" : 15488,
+      "compressedSize" : 1269,
+      "required" : ["jquery.sap.global", "sap.ui.commons.library", "sap.ui.core.Element", "sap.ui.core.CustomStyleClassSupport"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.layout.MatrixLayoutRenderer",
+      "description" : "Provides default renderer for control sap.ui.commons.layout.MatrixLayout",
+      "size" : 17558,
+      "compressedSize" : 7564,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.layout.MatrixLayoutRow",
+      "description" : "Provides control sap.ui.commons.layout.MatrixLayoutRow.",
+      "size" : 9476,
+      "compressedSize" : 836,
+      "required" : ["jquery.sap.global", "sap.ui.commons.library", "sap.ui.core.Element", "sap.ui.core.CustomStyleClassSupport"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.layout.PositionContainer",
+      "description" : "Provides control sap.ui.commons.layout.PositionContainer.",
+      "size" : 18704,
+      "compressedSize" : 5590,
+      "required" : ["jquery.sap.global", "sap.ui.commons.library", "sap.ui.core.Element"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.layout.ResponsiveFlowLayout",
+      "description" : "Provides control sap.ui.commons.layout.ResponsiveFlowLayout.",
+      "size" : 14587,
+      "compressedSize" : 4000,
+      "required" : ["jquery.sap.global", "sap.ui.commons.library", "sap.ui.core.Control", "sap.ui.commons.layout.ResponsiveFlowLayoutData"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.layout.ResponsiveFlowLayoutData",
+      "description" : "Provides control sap.ui.commons.layout.ResponsiveFlowLayoutData.",
+      "size" : 6594,
+      "compressedSize" : 1050,
+      "required" : ["jquery.sap.global", "sap.ui.commons.library", "sap.ui.core.LayoutData"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.layout.ResponsiveFlowLayoutRenderer",
+      "description" : "! SAP UI development toolkit for HTML5 (SAPUI5)  (c) Copyright 2009-2013 SAP AG. All rights reserved",
+      "size" : 1909,
+      "compressedSize" : 945,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.layout.VerticalLayout",
+      "description" : "Provides control sap.ui.commons.layout.VerticalLayout.",
+      "size" : 8525,
+      "compressedSize" : 843,
+      "required" : ["jquery.sap.global", "sap.ui.commons.library", "sap.ui.core.Control", "sap.ui.core.EnabledPropagator"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.layout.VerticalLayoutRenderer",
+      "description" : "Provides default renderer for control sap.ui.commons.layout.VerticalLayout",
+      "size" : 1672,
+      "compressedSize" : 693,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.commons.library",
+      "description" : "Initialization Code and shared classes of library sap.ui.commons (1.10.0)",
+      "size" : 37479,
+      "compressedSize" : 8268,
+      "required" : ["jquery.sap.global", "sap.ui.core.Core", "sap.ui.core.library", "sap.ui.base.DataType"],
+      "includes" : ["sap.ui.commons.ButtonStyle", "sap.ui.commons.HorizontalDividerHeight", "sap.ui.commons.HorizontalDividerType", "sap.ui.commons.LabelDesign", "sap.ui.commons.MenuBarDesign", "sap.ui.commons.MessageType", "sap.ui.commons.Orientation", "sap.ui.commons.PaginatorEvent", "sap.ui.commons.RatingIndicatorVisualMode", "sap.ui.commons.RowRepeaterDesign", "sap.ui.commons.TextViewColor", "sap.ui.commons.TextViewDesign", "sap.ui.commons.TitleLevel", "sap.ui.commons.ToolbarDesign", "sap.ui.commons.ToolbarSeparatorDesign", "sap.ui.commons.TriStateCheckBoxState", "sap.ui.commons.enums.AreaDesign", "sap.ui.commons.enums.BorderDesign", "sap.ui.commons.enums.Orientation", "sap.ui.commons.form.GridElementCells", "sap.ui.commons.layout.BackgroundDesign", "sap.ui.commons.layout.BorderLayoutAreaTypes", "sap.ui.commons.layout.HAlign", "sap.ui.commons.layout.Padding", "sap.ui.commons.layout.Separation", "sap.ui.commons.layout.VAlign"]
+    }
+  ]
+}

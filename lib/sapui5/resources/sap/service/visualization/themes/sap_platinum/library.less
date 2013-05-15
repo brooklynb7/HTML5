@@ -1,0 +1,592 @@
+
+/*!
+ * SAP UI development toolkit for HTML5 (SAPUI5)
+ *
+ * (c) Copyright 2009-2012 SAP AG. All rights reserved
+ */
+/* Global CSS for 'base' theme */
+// central colors
+// Brand Colors
+@sapUiBrand: #F0AB00;     // SAP Gold #f0ab00
+@sapUiHighlight: #111177;
+@sapUiSelected: @sapUiHighlight;
+@sapUiActive: @sapUiHighlight;
+
+// Accent Colors
+@sapUiPurple: purple;
+@sapUiOrange: orange;
+@sapUiGreen: green;
+@sapUiBlue: blue;
+@sapUiRed: red;
+@sapUiYellow: yellow;
+
+// Base Colors
+@sapUiBase: black;
+@sapUiBaseBG: white;
+@sapUiBaseBorder: @sapUiBase;
+@sapUiBaseText: @sapUiBase;
+@sapUiBaseLine: @sapUiBase;
+
+// Background Colors
+// Grayscale Backgrounds
+@sapUiWhite: #FFFFFF;
+@sapUiExtraLightBG: @sapUiBaseBG;
+@sapUiLightBG: lightgray;
+@sapUiMediumBG: gray;
+@sapUiDarkBG: darkgray;
+@sapUiDeepBG: black;
+@sapUiBlackBG: #000000;
+
+// Tinted Backgrounds
+@sapUiHoverBG: grey;
+@sapUiMediumAltBG: grey;
+@sapUiDarkAltBG: darkgrey;
+
+// Button Background Colors
+@sapUiButtonStandardBG: @sapUiBaseBG;
+@sapUiButtonEmphasizedBG: yellow;
+@sapUiButtonNegativeBG: red;
+@sapUiButtonPositiveBG: green;
+
+// Semantic Background Colors
+@sapUiErrorBG: #FF9A90;
+@sapUiWarningBG: #FAF2B0;
+@sapUiReadOnlyBG: grey;
+
+// Text Colors
+@sapUiExtraLightText: lightgray;
+@sapUiLightText: lightgray;
+@sapUiMediumText: grey;
+@sapUiDarkText: darkgrey;
+@sapUiDeepText: black;
+@sapUiText: @sapUiBaseText; // black
+@sapUiTextInverted: @sapUiWhite;
+
+// Link
+@sapUiLink: #0000FF;
+@sapUiLinkInverted: @sapUiLink;
+@sapUiLinkVisited: #800080;               // the color for a vistited link 
+@sapUiLinkActive: #FF0000;                // the color for a link while being clicked 
+@sapUiLinkHover: #FF0000;                 // the color for a link while being hovered 
+
+// Semantic Text Colors
+@sapUiNegativeText: red;
+@sapUiPositiveText: #B5E7A8;
+
+// Grayscale Borders
+@sapUiExtraLightBorder: lightgrey;
+@sapUiLightBorder: grey;
+@sapUiMediumBorder: @sapUiBaseBorder;
+@sapUiDarkBorder: @sapUiBaseBorder;
+
+// Semantic Border Colors
+@sapUiErrorBorder: red;
+@sapUiWarningBorder: yellow;
+
+// Line Colors
+@sapUiLightLine: lightgrey;
+@sapUiMediumLine: grey;
+@sapUiEmphasizedLine: @sapUiHighlight;
+@sapUiDarkLine: darkgrey;
+
+// Table Colors
+@sapUiTableRowBG: @sapUiWhite;
+@sapUiTableRowAlternatingBG: @sapUiWhite;
+@sapUiTableRowSelectionBG: @sapUiHighlight;
+@sapUiTableRowSelectionReadOnlyBG: @sapUiHighlight;
+@sapUiTableRowHoverBG: @sapUiHoverBG;
+
+// MOBILE-specific, but still very global-like:
+@sapUiListBG: #f7f7f7;
+
+
+/* ---------------------------------------------------------------------------------------- */
+/* TMP during LESS convertion ---- to be deleted */
+@sapUiTextColor: green; /* may be required by SubstitutionRulesManager.css in inbox lib */
+@sapUiTextTitleColor: green;
+@sapUiTextSelectionColor: green;
+
+/* ---------------------------------------------------------------------------------------- */
+
+@sapUiTextDisabled: lighten(@sapUiText, 60%); // the color for disabled text
+@sapUiTextTitle: @sapUiText;  // the text color for titles of all kinds
+@sapUiTextSelection: @sapUiTextInverted; // the color for selected text
+@sapUiTextfieldBackground: @sapUiWhite; // better to have an own parameter insted of using sapUiWhite
+
+@sapUiLineHeight: 21px;
+
+@sapUiFontFamily: Arial,Helvetica,sans-serif;  // the default font
+@sapUiFontMonospaceFamily: Lucida Console;     // the default monospacefont
+@sapUiFontSize: medium;                        // the default font size
+@sapUiFontLargeSize: large;                    // TODO: might also be title font size
+@sapUiFontSmallSize: small;
+@sapUiFontHeader1Size: xx-large;
+@sapUiFontHeader2Size: x-large;
+@sapUiFontHeader3Size: @sapUiFontLargeSize;
+@sapUiFontHeader4Size: @sapUiFontSize;
+@sapUiFontHeader5Size: @sapUiFontSize;
+@sapUiFontHeader6Size: @sapUiFontSize;
+
+// SOME important control-specific parameters...
+
+@sapUiButtonBorderColor: @sapUiMediumBorder; // needed beacuse different in GR and UX
+@sapUiButtonBackgroundColor: @sapUiButtonStandardBG; // to be renamed????
+@sapUiButtonDisabledBorderColor: @sapUiMediumBorder; // needed because different in GR, HCB and UX
+@sapUiButtonDisabledBackgroundColor: @sapUiExtraLightBG; // needed, different in every theme
+@sapUiButtonHoverBorderColor: @sapUiMediumBorder; // needed beacuse different in GR and UX
+@sapUiButtonHoverBackgroundColor: @sapUiMediumBG; // needed beacuse different in GR, Platinum and UX
+@sapUiButtonActiveBorderColor: @sapUiMediumBorder; // needed beacuse different in GR and UX
+@sapUiButtonActiveBackgroundColor: @sapUiDarkBG; // needed beacuse different in GR, Platinum and UX
+@sapUiButtonEmphasizedBorderColor: @sapUiButtonBorderColor;
+@sapUiButtonEmphasizedBackgroundColor: @sapUiButtonEmphasizedBG;
+@sapUiButtonEmphasizedDisabledBorderColor: @sapUiButtonEmphasizedBorderColor;
+@sapUiButtonEmphasizedDisabledBackgroundColor: @sapUiButtonEmphasizedBackgroundColor;
+@sapUiButtonEmphasizedHoverBorderColor: @sapUiButtonHoverBorderColor;
+@sapUiButtonEmphasizedHoverBackgroundColor: @sapUiButtonHoverBackgroundColor;
+@sapUiButtonEmphasizedActiveBorderColor: @sapUiButtonActiveBorderColor;
+@sapUiButtonEmphasizedActiveBackgroundColor: @sapUiButtonActiveBackgroundColor;
+@sapUiButtonAcceptBorderColor: @sapUiButtonBorderColor; 
+@sapUiButtonAcceptBackgroundColor: @sapUiButtonPositiveBG;
+@sapUiButtonAcceptDisabledBorderColor: @sapUiButtonAcceptBorderColor;
+@sapUiButtonAcceptDisabledBackgroundColor: @sapUiButtonAcceptBackgroundColor;
+@sapUiButtonAcceptHoverBorderColor: @sapUiButtonHoverBorderColor;
+@sapUiButtonAcceptHoverBackgroundColor: @sapUiButtonHoverBackgroundColor;
+@sapUiButtonAcceptActiveBorderColor: @sapUiButtonActiveBorderColor;
+@sapUiButtonAcceptActiveBackgroundColor: @sapUiButtonActiveBackgroundColor;
+@sapUiButtonRejectBorderColor: @sapUiButtonBorderColor;
+@sapUiButtonRejectBackgroundColor: @sapUiButtonNegativeBG;
+@sapUiButtonRejectDisabledBorderColor: @sapUiButtonRejectBorderColor;
+@sapUiButtonRejectDisabledBackgroundColor: @sapUiButtonRejectBackgroundColor;
+@sapUiButtonRejectHoverBorderColor: @sapUiButtonHoverBorderColor;
+@sapUiButtonRejectHoverBackgroundColor: @sapUiButtonHoverBackgroundColor;
+@sapUiButtonRejectActiveBorderColor: @sapUiButtonActiveBorderColor;
+@sapUiButtonRejectActiveBackgroundColor: @sapUiButtonActiveBackgroundColor;
+@sapUiButtonLiteBackgroundColor: transparent;
+@sapUiToggleButtonPressedDisabledBackgroundColor: #D8D8E8;
+@sapUiToggleButtonPressedBackgroundColor: @sapUiHighlight;
+
+// semantic colors
+@sapUiPositiveBG: @sapUiPositiveText; // no positive background defined by UX, but using text color as background may be confusing
+
+// default shadow for popups 
+@sapUiShadowTint: #000;
+@sapUiShadow: 5px 5px 10px fade(@sapUiShadowTint,50%);
+/* Global CSS for 'sap_platinum' theme */
+// central colors
+// Brand Colors
+@sapUiHighlight: #7AC3E9;
+
+// Base Colors
+@sapUiBase: black;
+@sapUiBaseBG: white;
+@sapUiBaseBorder: #96A8C3;
+@sapUiBaseText: #000000;
+@sapUiBaseLine: #96A8C3;
+
+// Background Colors
+// Grayscale Backgrounds
+@sapUiExtraLightBG: #FFFFFF;
+@sapUiLightBG: #F5F7F9;
+@sapUiMediumBG: #E5EAF3;
+@sapUiDarkBG: #BCC8DA;
+@sapUiDeepBG: #000000;
+
+// Button Background Colors
+@sapUiButtonStandardBG: transparent;
+@sapUiButtonEmphasizedBG: @sapUiButtonStandardBG;
+@sapUiButtonNegativeBG: @sapUiButtonStandardBG;
+@sapUiButtonPositiveBG: @sapUiButtonStandardBG;
+
+// Semantic Background Colors
+@sapUiErrorBG: #FFDDD9;
+@sapUiWarningBG: #FFF2CA;
+@sapUiReadOnlyBG: #E5EAF3;
+
+// Link
+@sapUiLink: #006699;
+
+// Semantic Text Colors
+@sapUiNegativeText: #CC0000;
+
+// Semantic Border Colors
+@sapUiErrorBorder: #CC0000;
+@sapUiWarningBorder: #878664;
+
+// Table Colors
+@sapUiTableRowBG: @sapUiLightBG;
+@sapUiTableRowAlternatingBG: @sapUiWhite;
+@sapUiTableRowHoverBG: #CBE2F1;
+
+/* ---------------------------------------------------------------------------------------- */
+
+  
+@sapUiTextDisabled: #7B8694;
+@sapUiTextTitle: #4F5C72;
+@sapUiTextSelection: @sapUiText;
+  
+@sapUiLineHeight: 21px;
+
+@sapUiFontFamily:Tahoma,Arial,Helvetica,sans-serif;
+@sapUiFontSize: 11px; // supposed to be 8.5pt, but that changes pixes size depending on screen resolution 
+@sapUiFontLargeSize: 12px;// supposed to be 10pt, but that changes pixes size depending on screen resolution 
+@sapUiFontSmallSize: 10px;// supposed to be 7.5pt, but that changes pixes size depending on screen resolution 
+@sapUiFontHeader1Size: @sapUiFontLargeSize;//in Platinum only 3 sizes of text are defined, so the headings looks similar
+@sapUiFontHeader2Size: @sapUiFontSize;
+@sapUiFontHeader3Size: @sapUiFontSize;
+@sapUiFontHeader4Size: @sapUiFontSmallSize;
+@sapUiFontHeader5Size: @sapUiFontSmallSize;
+@sapUiFontHeader6Size: @sapUiFontSmallSize;
+
+// SOME important control-specific parameters... 
+@sapUiLinkVisited: @sapUiLink;
+@sapUiLinkActive: @sapUiLink;
+@sapUiLinkHover: @sapUiLink; // #009DEC; 
+
+@sapUiButtonDisabledBackgroundColor: transparent;
+@sapUiButtonHoverBackgroundColor: transparent;
+@sapUiButtonActiveBackgroundColor: transparent;
+  
+
+/* ============================================= */
+/* CSS for controlsap.service.visualization/Bar.control */
+/* ============================================= */
+
+
+@bgColor : @sapUiExtraLightBG;
+@fontFamily : @sapUiFontFamily;
+@chartPadding: ~"0,0,0,0";
+	
+@legendFontSize : @sapUiFontSize;	
+@legendColor : @sapUiText;
+@legendTitleFontSize : @sapUiFontLargeSize;
+@legendTitleFontColor : @sapUiTextTitle;
+    
+@mainTitleFontSize : @sapUiFontLargeSize;
+@mainTitleColor : @sapUiTextTitle;
+	
+@subTitleFontSize : @sapUiFontSize;
+@subTitleColor : @sapUiTextTitle;
+@subTitleHorizontalAlign : left;
+	
+@toolTipMainValueFontSize : @sapUiFontSize;
+@toolTipMainValueColor : @sapUiText;
+	
+@toolTipSubValueFontSize : @sapUiFontSize;
+@toolTipSubValueColor : @sapUiText;
+	
+@toolTipTextFontSize : @sapUiFontSize;
+@toolTipTextColor : @sapUiText;
+	
+@axisLineColor : @sapUiTextTitle;
+@axisLabelColor : @sapUiTextTitle;
+@axisTitleColor : @sapUiTextTitle;
+@axisGridLineColor : @sapUiTextTitle;
+
+.sapservicevisualization-Bar{
+  color: @sapUiText;
+  border: 1px solid blue;
+}
+@bgColor : @sapUiExtraLightBG;
+@fontFamily : @sapUiFontFamily;
+@chartPadding: ~"0,0,0,0";
+		
+@legendFontSize : @sapUiFontSize;	
+@legendColor : @sapUiText;
+@legendTitleFontSize : @sapUiFontLargeSize;
+@legendTitleFontColor : @sapUiTextTitle;
+    
+@mainTitleFontSize : @sapUiFontLargeSize;
+@mainTitleColor : @sapUiTextTitle;
+	
+@subTitleFontSize : @sapUiFontSize;
+@subTitleColor : @sapUiTextTitle;
+@subTitleHorizontalAlign : left;
+	
+@toolTipMainValueFontSize : @sapUiFontSize;
+@toolTipMainValueColor : @sapUiText;
+	
+@toolTipSubValueFontSize : @sapUiFontSize;
+@toolTipSubValueColor : @sapUiText;
+	
+@toolTipTextFontSize : @sapUiFontSize;
+@toolTipTextColor : @sapUiText;
+	
+@axisLineColor : @sapUiTextTitle;
+@axisLabelColor : @sapUiTextTitle;
+@axisTitleColor : @sapUiTextTitle;
+@axisGridLineColor : @sapUiTextTitle;
+
+/* ============================================= */
+/* CSS for control sap.service.visualization/Column.control */
+/* ============================================= */
+
+
+@bgColor : @sapUiExtraLightBG;
+@fontFamily : @sapUiFontFamily;
+@chartPadding: ~"0,0,0,0";
+	
+@legendFontSize : @sapUiFontSize;	
+@legendColor : @sapUiText;
+@legendTitleFontSize : @sapUiFontLargeSize;
+@legendTitleFontColor : @sapUiTextTitle;
+    
+@mainTitleFontSize : @sapUiFontLargeSize;
+@mainTitleColor : @sapUiTextTitle;
+	
+@subTitleFontSize : @sapUiFontSize;
+@subTitleColor : @sapUiTextTitle;
+@subTitleHorizontalAlign : left;
+	
+@toolTipMainValueFontSize : @sapUiFontSize;
+@toolTipMainValueColor : @sapUiText;
+	
+@toolTipSubValueFontSize : @sapUiFontSize;
+@toolTipSubValueColor : @sapUiText;
+	
+@toolTipTextFontSize : @sapUiFontSize;
+@toolTipTextColor : @sapUiText;
+	
+@axisLineColor : @sapUiTextTitle;
+@axisLabelColor : @sapUiTextTitle;
+@axisTitleColor : @sapUiTextTitle;
+@axisGridLineColor : @sapUiTextTitle;
+
+
+.sapServiceVisualizationColumn{
+  color: @sapUiText;
+  border: 1px solid blue;
+}
+
+/* ============================================= */
+/* CSS for control sap.service.visualization/Column.control */
+/* ============================================= */
+
+@bgColor : @sapUiExtraLightBG;
+@fontFamily : @sapUiFontFamily;
+@chartPadding: ~"0,0,0,0";
+	
+@legendFontSize : @sapUiFontSize;	
+@legendColor : @sapUiText;
+@legendTitleFontSize : @sapUiFontLargeSize;
+@legendTitleFontColor : @sapUiTextTitle;
+    
+@mainTitleFontSize : @sapUiFontLargeSize;
+@mainTitleColor : @sapUiTextTitle;
+	
+@subTitleFontSize : @sapUiFontSize;
+@subTitleColor : @sapUiTextTitle;
+@subTitleHorizontalAlign : left;
+	
+@toolTipMainValueFontSize : @sapUiFontSize;
+@toolTipMainValueColor : @sapUiText;
+	
+@toolTipSubValueFontSize : @sapUiFontSize;
+@toolTipSubValueColor : @sapUiText;
+	
+@toolTipTextFontSize : @sapUiFontSize;
+@toolTipTextColor : @sapUiText;
+	
+@axisLineColor : @sapUiTextTitle;
+@axisLabelColor : @sapUiTextTitle;
+@axisTitleColor : @sapUiTextTitle;
+@axisGridLineColor : @sapUiTextTitle;
+
+.sapServiceVisualizationColumn{
+  color: @sapUiText;
+  border: 1px solid blue;
+}
+
+/* ============================================= */
+/* CSS for control sap.service.visualization/Combination.control */
+/* ============================================= */
+
+@bgColor : @sapUiExtraLightBG;
+@fontFamily :  @sapUiFontFamily;
+@chartPadding: ~"0,0,0,0";
+		
+@legendFontSize : @sapUiFontSize;	
+@legendColor : @sapUiText;
+@legendTitleFontSize : @sapUiFontLargeSize;
+@legendTitleFontColor : @sapUiTextTitle;
+    	
+@mainTitleFontSize : @sapUiFontLargeSize;
+@mainTitleColor : @sapUiTextTitle;
+	
+@subTitleFontSize : @sapUiFontSize;
+@subTitleColor : @sapUiTextTitle;
+	
+@toolTipMainValueFontSize : @sapUiFontSize;
+@toolTipMainValueColor : @sapUiText;
+	
+@toolTipSubValueFontSize : @sapUiFontSize;
+@toolTipSubValueColor : @sapUiText;
+	
+@toolTipTextFontSize : @sapUiFontSize;
+@toolTipTextColor : @sapUiText;
+	
+@axisLineColor : @sapUiTextTitle;
+@axisLabelColor : @sapUiTextTitle;
+@axisTitleColor : @sapUiTextTitle;
+@axisGridLineColor : @sapUiTextTitle;
+
+
+
+.sapservicevisualization-Combination{
+  color: @sapUiText;
+  border: 1px solid blue;
+}
+@bgColor : @sapUiExtraLightBG;
+@fontFamily :  @sapUiFontFamily;
+@chartPadding: ~"[0,0,0,0]";
+		
+@legendFontSize : @sapUiFontSize;	
+@legendColor : @sapUiText;
+@legendTitleFontSize : @sapUiFontLargeSize;
+@legendTitleFontColor : @sapUiTextTitle;
+    	
+      
+@mainTitleFontSize : @sapUiFontLargeSize;
+@mainTitleColor : @sapUiTextTitle;
+	
+@subTitleFontSize : @sapUiFontSize;
+@subTitleColor : @sapUiTextTitle;
+@subTitleHorizontalAlign : left;
+	
+@toolTipMainValueFontSize : @sapUiFontSize;
+@toolTipMainValueColor : @sapUiText;
+	
+@toolTipSubValueFontSize : @sapUiFontSize;
+@toolTipSubValueColor : @sapUiText;
+	
+@toolTipTextFontSize : @sapUiFontSize;
+@toolTipTextColor : @sapUiText;
+	
+@axisLineColor : @sapUiTextTitle;
+@axisLabelColor : @sapUiTextTitle;
+@axisTitleColor : @sapUiTextTitle;
+@axisGridLineColor : @sapUiTextTitle;
+
+/* ============================================= */
+/* CSS for control sap.service.visualization/Line.control */
+/* ============================================= */
+
+
+@bgColor : @sapUiExtraLightBG;
+@fontFamily : @sapUiFontFamily;
+@chartPadding: ~"0,0,0,0";
+		
+@legendFontSize : @sapUiFontSize;	
+@legendColor : @sapUiText;
+@legendTitleFontSize : @sapUiFontLargeSize;
+@legendTitleFontColor : @sapUiTextTitle;
+    	
+@mainTitleFontSize : @sapUiFontLargeSize;
+@mainTitleColor : @sapUiTextTitle;
+
+@subTitleFontSize : @sapUiFontSize;
+@subTitleColor : @sapUiTextTitle;
+	
+@toolTipMainValueFontSize : @sapUiFontSize;
+@toolTipMainValueColor : @sapUiText;
+	
+@toolTipSubValueFontSize : @sapUiFontSize;
+@toolTipSubValueColor : @sapUiText;
+	
+@toolTipTextFontSize : @sapUiFontSize;
+@toolTipTextColor : @sapUiText;
+	
+@axisLineColor : @sapUiTextTitle;
+@axisLabelColor : @sapUiTextTitle;
+@axisTitleColor : @sapUiTextTitle;
+@axisGridLineColor : @sapUiTextTitle;
+
+
+.sapservicevisualization-Line{
+  color: @sapUiText;
+  border: 1px solid blue;
+}
+@bgColor : @sapUiExtraLightBG;
+@fontFamily : @sapUiFontFamily;
+@chartPadding: ~"0,0,0,0";
+		
+@legendFontSize : @sapUiFontSize;	
+@legendColor : @sapUiText;
+@legendTitleFontSize : @sapUiFontLargeSize;
+@legendTitleFontColor : @sapUiTextTitle;
+    	
+@mainTitleFontSize : @sapUiFontLargeSize;
+@mainTitleColor : @sapUiTextTitle;
+	
+@subTitleFontSize : @sapUiFontSize;
+@subTitleColor : @sapUiTextTitle;
+	
+@toolTipMainValueFontSize : @sapUiFontSize;
+@toolTipMainValueColor : @sapUiText;
+	
+@toolTipSubValueFontSize : @sapUiFontSize;
+@toolTipSubValueColor : @sapUiText;
+	
+@toolTipTextFontSize : @sapUiFontSize;
+@toolTipTextColor : @sapUiText;
+	
+@axisLineColor : @sapUiTextTitle;
+@axisLabelColor : @sapUiTextTitle;
+@axisTitleColor : @sapUiTextTitle;
+@axisGridLineColor : @sapUiTextTitle;
+
+/* ============================================= */
+/* CSS for control sap.service.visualization.riv.chart/Pie.control */
+/* ============================================= */
+
+
+@bgColor : @sapUiExtraLightBG;
+@fontFamily : @sapUiFontFamily;
+@chartPadding: ~"0,0,0,0";
+
+@legendFontSize : @sapUiFontSize;	
+@legendColor : @sapUiText;
+@legendTitleFontSize: @sapUiFontSize;
+@legendTitleFontColor: @sapUiText;
+    	
+@mainTitleFontSize : @sapUiFontLargeSize;
+@mainTitleColor : @sapUiTextTitle;
+	
+@subTitleFontSize : @sapUiFontSize;
+@subTitleColor : @sapUiTextTitle;
+	
+@toolTipMainValueFontSize : @sapUiFontSize;
+@toolTipMainValueColor : @sapUiText;
+	
+@toolTipSubValueFontSize : @sapUiFontSize;
+@toolTipSubValueColor : @sapUiText;
+	
+@toolTipTextFontSize : @sapUiFontSize;
+@toolTipTextColor : @sapUiText;
+
+.sapservicevisualizationrivchart-Pie{
+  color: @sapUiText;
+  border: 1px solid blue;
+}
+@bgColor : @sapUiExtraLightBG;
+@fontFamily : @sapUiFontFamily;
+@chartPadding: ~"0,0,0,0";
+	
+@legendFontSize : @sapUiFontSize;	
+@legendColor : @sapUiText;
+@legendTitleFontSize: @sapUiFontSize;
+@legendTitleFontColor: @sapUiText;
+    	
+@mainTitleFontSize : @sapUiFontLargeSize;
+@mainTitleColor : @sapUiTextTitle;
+	
+@subTitleFontSize : @sapUiFontSize;
+@subTitleColor : @sapUiTextTitle;
+	
+@toolTipMainValueFontSize : @sapUiFontSize;
+@toolTipMainValueColor : @sapUiText;
+	
+@toolTipSubValueFontSize : @sapUiFontSize;
+@toolTipSubValueColor : @sapUiText;
+	
+@toolTipTextFontSize : @sapUiFontSize;
+@toolTipTextColor : @sapUiText;

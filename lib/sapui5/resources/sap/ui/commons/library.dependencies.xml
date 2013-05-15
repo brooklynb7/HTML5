@@ -1,0 +1,1364 @@
+<?xml version="1.0" ?>
+<library name="sap.ui.commons">
+  <module name="sap.ui.commons.Accordion" size="53691" compressedSize="15403">
+    <description>Provides control sap.ui.commons.Accordion.</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.commons.library"/>
+      <module name="sap.ui.core.Control"/>
+      <module name="sap.ui.core.delegate.ItemNavigation"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.AccordionRenderer" size="6454" compressedSize="4160">
+    <description>Provides default renderer for control sap.ui.commons.Accordion</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.AccordionSection" size="20026" compressedSize="4465">
+    <description>Provides control sap.ui.commons.AccordionSection.</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.commons.library"/>
+      <module name="sap.ui.core.Element"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.ApplicationHeader" size="12472" compressedSize="2628">
+    <description>Provides control sap.ui.commons.ApplicationHeader.</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.commons.library"/>
+      <module name="sap.ui.core.Control"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.ApplicationHeaderRenderer" size="4472" compressedSize="2177">
+    <description>Provides default renderer for control sap.ui.commons.ApplicationHeader</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.Area" size="6506" compressedSize="707">
+    <description>Provides control sap.ui.commons.Area.</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.commons.library"/>
+      <module name="sap.ui.core.Element"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.AutoComplete" size="11267" compressedSize="4671">
+    <description>Provides control sap.ui.commons.AutoComplete.</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.commons.library"/>
+      <module name="sap.ui.commons.ComboBox"/>
+      <module name="jquery.sap.strings"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.AutoCompleteRenderer" size="1609" compressedSize="1086">
+    <description>Provides default renderer for control sap.ui.commons.AutoComplete</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.core.Renderer"/>
+      <module name="sap.ui.commons.ComboBoxRenderer"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.Button" size="21826" compressedSize="3092">
+    <description>Provides control sap.ui.commons.Button.</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.commons.library"/>
+      <module name="sap.ui.core.Control"/>
+      <module name="sap.ui.core.EnabledPropagator"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.ButtonRenderer" size="6820" compressedSize="4010">
+    <description>Provides default renderer for control sap.ui.commons.Button</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.Callout" size="5816" compressedSize="445">
+    <description>Provides control sap.ui.commons.Callout.</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.commons.library"/>
+      <module name="sap.ui.commons.CalloutBase"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.CalloutBase" size="29667" compressedSize="7536">
+    <description>Provides control sap.ui.commons.CalloutBase.</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.commons.library"/>
+      <module name="sap.ui.core.TooltipBase"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.CalloutBaseRenderer" size="2525" compressedSize="1325">
+    <description>! SAP UI development toolkit for HTML5 (SAPUI5)  (c) Copyright 2009-2013 SAP AG. All rights reserved</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.CalloutRenderer" size="2528" compressedSize="774">
+    <description>! SAP UI development toolkit for HTML5 (SAPUI5)  (c) Copyright 2009-2013 SAP AG. All rights reserved</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.commons.CalloutBaseRenderer"/>
+      <module name="sap.ui.core.Renderer"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.Carousel" size="22930" compressedSize="6663">
+    <description>Provides control sap.ui.commons.Carousel.</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.commons.library"/>
+      <module name="sap.ui.core.Control"/>
+      <module name="sap.ui.core.ResizeHandler"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.CarouselRenderer" size="3298" compressedSize="1841">
+    <description>Provides default renderer for control sap.ui.commons.Carousel</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.CheckBox" size="18663" compressedSize="2069">
+    <description>Provides control sap.ui.commons.CheckBox.</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.commons.library"/>
+      <module name="sap.ui.core.Control"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.CheckBoxRenderer" size="4261" compressedSize="2109">
+    <description>Provides default renderer for control sap.ui.commons.CheckBox</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.core.ValueStateSupport"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.ColorPicker" size="48500" compressedSize="22901">
+    <description>Provides control sap.ui.commons.ColorPicker.</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.commons.library"/>
+      <module name="sap.ui.core.Control"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.ColorPickerRenderer" size="1006" compressedSize="368">
+    <description>Provides default renderer for control sap.ui.commons.ColorPicker</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.ComboBox" size="55299" compressedSize="21330">
+    <description>Provides control sap.ui.commons.ComboBox.</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.commons.library"/>
+      <module name="sap.ui.commons.TextField"/>
+      <module name="jquery.sap.strings"/>
+      <module name="sap.ui.core.Popup"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.ComboBoxRenderer" size="5051" compressedSize="2268">
+    <description>Provides default renderer for control sap.ui.commons.ComboBox</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.core.Renderer"/>
+      <module name="sap.ui.commons.TextFieldRenderer"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.DatePicker" size="51888" compressedSize="19244">
+    <description>Provides control sap.ui.commons.DatePicker.</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.commons.library"/>
+      <module name="sap.ui.commons.TextField"/>
+      <module name="sap.ui.thirdparty.jqueryui.jquery-ui-core"/>
+      <module name="sap.ui.thirdparty.jqueryui.jquery-ui-datepicker"/>
+      <module name="sap.ui.model.type.Date"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.DatePickerRenderer" size="6254" compressedSize="1680">
+    <description>Provides default renderer for control sap.ui.commons.DatePicker</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.commons.TextFieldRenderer"/>
+      <module name="sap.ui.commons.DatePicker"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.Dialog" size="49687" compressedSize="10940">
+    <description>Provides control sap.ui.commons.Dialog.</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.commons.library"/>
+      <module name="sap.ui.core.Control"/>
+      <module name="sap.ui.core.Popup"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.DialogRenderer" size="4306" compressedSize="2756">
+    <description>Provides default renderer for control sap.ui.commons.Dialog</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.DropdownBox" size="57381" compressedSize="22014">
+    <description>Provides control sap.ui.commons.DropdownBox.</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.commons.library"/>
+      <module name="sap.ui.commons.ComboBox"/>
+      <module name="sap.ui.core.History"/>
+      <module name="sap.ui.core.SeparatorItem"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.DropdownBoxRenderer" size="2958" compressedSize="1255">
+    <description>Provides default renderer for control sap.ui.commons.DropdownBox</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.commons.ComboBoxRenderer"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.FileUploader" size="26805" compressedSize="7482">
+    <description>Provides control sap.ui.commons.FileUploader.</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.commons.library"/>
+      <module name="sap.ui.core.Control"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.FileUploaderRenderer" size="2348" compressedSize="1325">
+    <description>Provides default renderer for control sap.ui.commons.FileUploader</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.FormattedTextView" size="13936" compressedSize="2548">
+    <description>Provides control sap.ui.commons.FormattedTextView.</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.commons.library"/>
+      <module name="sap.ui.core.Control"/>
+      <module name="jquery.sap.encoder"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.FormattedTextViewRenderer" size="2433" compressedSize="1033">
+    <description>! SAP UI development toolkit for HTML5 (SAPUI5)  (c) Copyright 2009-2013 SAP AG. All rights reserved</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.HorizontalDivider" size="6301" compressedSize="775">
+    <description>Provides control sap.ui.commons.HorizontalDivider.</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.commons.library"/>
+      <module name="sap.ui.core.Control"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.HorizontalDividerRenderer" size="1590" compressedSize="876">
+    <description>Provides default renderer for control sap.ui.commons.HorizontalDivider</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.Image" size="11744" compressedSize="1118">
+    <description>Provides control sap.ui.commons.Image.</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.commons.library"/>
+      <module name="sap.ui.core.Control"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.ImageMap" size="11768" compressedSize="2071">
+    <description>Provides control sap.ui.commons.ImageMap.</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.commons.library"/>
+      <module name="sap.ui.core.Control"/>
+      <module name="sap.ui.core.delegate.ItemNavigation"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.ImageMapRenderer" size="2229" compressedSize="1016">
+    <description>! SAP UI development toolkit for HTML5 (SAPUI5)  (c) Copyright 2009-2013 SAP AG. All rights reserved</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.ImageRenderer" size="2923" compressedSize="1178">
+    <description>Provides default renderer for control sap.ui.commons.Image</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.InPlaceEdit" size="35076" compressedSize="13777">
+    <description>Provides control sap.ui.commons.InPlaceEdit.</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.commons.library"/>
+      <module name="sap.ui.core.Control"/>
+      <module name="sap.ui.commons.TextView"/>
+      <module name="sap.ui.commons.TextField"/>
+      <module name="sap.ui.core.theming.Parameters"/>
+      <module name="sap.ui.core.ValueStateSupport"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.InPlaceEditRenderer" size="4178" compressedSize="2350">
+    <description>! SAP UI development toolkit for HTML5 (SAPUI5)  (c) Copyright 2009-2013 SAP AG. All rights reserved</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.Label" size="12279" compressedSize="2035">
+    <description>Provides control sap.ui.commons.Label.</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.commons.library"/>
+      <module name="sap.ui.core.Control"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.LabelRenderer" size="3581" compressedSize="1751">
+    <description>Provides default renderer for control sap.ui.commons.Label</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.core.Renderer"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.Link" size="13940" compressedSize="1434">
+    <description>Provides control sap.ui.commons.Link.</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.commons.library"/>
+      <module name="sap.ui.core.Control"/>
+      <module name="sap.ui.core.EnabledPropagator"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.LinkRenderer" size="1902" compressedSize="1001">
+    <description>Provides default renderer for control sap.ui.commons.Link</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.ListBox" size="64619" compressedSize="19073">
+    <description>Provides control sap.ui.commons.ListBox.</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.commons.library"/>
+      <module name="sap.ui.core.Control"/>
+      <module name="sap.ui.core.delegate.ItemNavigation"/>
+      <module name="jquery.sap.strings"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.ListBoxRenderer" size="9698" compressedSize="4720">
+    <description>Provides default renderer for control sap.ui.commons.ListBox</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.core.Renderer"/>
+      <module name="jquery.sap.strings"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.Menu" size="28045" compressedSize="10463">
+    <description>Provides control sap.ui.commons.Menu.</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.commons.library"/>
+      <module name="sap.ui.core.Control"/>
+      <module name="sap.ui.commons.MenuItemBase"/>
+      <module name="sap.ui.core.Popup"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.MenuBar" size="22237" compressedSize="7482">
+    <description>Provides control sap.ui.commons.MenuBar.</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.commons.library"/>
+      <module name="sap.ui.core.Control"/>
+      <module name="sap.ui.commons.Menu"/>
+      <module name="sap.ui.commons.MenuItem"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.MenuBarRenderer" size="3305" compressedSize="2140">
+    <description>Provides default renderer for control sap.ui.commons.MenuBar</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.MenuButton" size="14875" compressedSize="2692">
+    <description>Provides control sap.ui.commons.MenuButton.</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.commons.library"/>
+      <module name="sap.ui.commons.Button"/>
+      <module name="sap.ui.commons.Menu"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.MenuButtonRenderer" size="1801" compressedSize="664">
+    <description>Provides default renderer for control sap.ui.commons.MenuButton</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.commons.ButtonRenderer"/>
+      <module name="sap.ui.core.Renderer"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.MenuItem" size="6318" compressedSize="1898">
+    <description>Provides control sap.ui.commons.MenuItem.</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.commons.library"/>
+      <module name="sap.ui.commons.MenuItemBase"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.MenuItemBase" size="10057" compressedSize="1353">
+    <description>Provides control sap.ui.commons.MenuItemBase.</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.commons.library"/>
+      <module name="sap.ui.core.Element"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.MenuRenderer" size="2973" compressedSize="1714">
+    <description>Provides default renderer for control sap.ui.commons.Menu</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.MenuTextFieldItem" size="12633" compressedSize="4914">
+    <description>Provides control sap.ui.commons.MenuTextFieldItem.</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.commons.library"/>
+      <module name="sap.ui.commons.MenuItemBase"/>
+      <module name="sap.ui.commons.MenuItem"/>
+      <module name="sap.ui.commons.Label"/>
+      <module name="sap.ui.commons.TextField"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.Message" size="14862" compressedSize="3718">
+    <description>Provides control sap.ui.commons.Message.</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.commons.library"/>
+      <module name="sap.ui.core.Control"/>
+      <module name="sap.ui.commons.Dialog"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.MessageBar" size="30701" compressedSize="10581">
+    <description>Provides control sap.ui.commons.MessageBar.</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.commons.library"/>
+      <module name="sap.ui.core.Control"/>
+      <module name="sap.ui.core.Popup"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.MessageBarRenderer" size="2883" compressedSize="1307">
+    <description>Provides default renderer for control sap.ui.commons.MessageBar</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.core.Popup"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.MessageBox" size="10630" compressedSize="2585">
+    <description>Provides class sap.ui.commons.MessageBox</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.commons.Button"/>
+      <module name="sap.ui.commons.Dialog"/>
+      <module name="sap.ui.commons.Image"/>
+      <module name="sap.ui.commons.layout.MatrixLayout"/>
+      <module name="sap.ui.commons.TextView"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.MessageList" size="10083" compressedSize="2264">
+    <description>Provides control sap.ui.commons.MessageList.</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.commons.library"/>
+      <module name="sap.ui.core.Control"/>
+      <module name="sap.ui.core.Popup"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.MessageListRenderer" size="1313" compressedSize="495">
+    <description>Provides default renderer for control sap.ui.commons.MessageList</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.MessageRenderer" size="2101" compressedSize="818">
+    <description>Provides default renderer for control sap.ui.commons.Message</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.MessageToast" size="13351" compressedSize="2641">
+    <description>Provides control sap.ui.commons.MessageToast.</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.commons.library"/>
+      <module name="sap.ui.core.Control"/>
+      <module name="sap.ui.thirdparty.jqueryui.jquery-ui-core"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.MessageToastRenderer" size="2022" compressedSize="756">
+    <description>Provides default renderer for control sap.ui.commons.MessageToast</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.Paginator" size="19092" compressedSize="4911">
+    <description>Provides control sap.ui.commons.Paginator.</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.commons.library"/>
+      <module name="sap.ui.core.Control"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.PaginatorRenderer" size="7288" compressedSize="4004">
+    <description>Provides default renderer for control sap.ui.commons.Paginator</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="jquery.sap.encoder"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.Panel" size="40237" compressedSize="10441">
+    <description>Provides control sap.ui.commons.Panel.</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.commons.library"/>
+      <module name="sap.ui.core.Control"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.PanelRenderer" size="6667" compressedSize="3272">
+    <description>Provides default renderer for control sap.ui.commons.Panel</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.PasswordField" size="3039" compressedSize="362">
+    <description>Provides control sap.ui.commons.PasswordField.</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.commons.library"/>
+      <module name="sap.ui.commons.TextField"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.PasswordFieldRenderer" size="2325" compressedSize="1247">
+    <description>! SAP UI development toolkit for HTML5 (SAPUI5)  (c) Copyright 2009-2013 SAP AG. All rights reserved</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.commons.TextFieldRenderer"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.ProgressIndicator" size="14907" compressedSize="4568">
+    <description>Provides control sap.ui.commons.ProgressIndicator.</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.commons.library"/>
+      <module name="sap.ui.core.Control"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.ProgressIndicatorRenderer" size="4770" compressedSize="2635">
+    <description>Provides default renderer for control sap.ui.commons.ProgressIndicator</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.RadioButton" size="21712" compressedSize="3384">
+    <description>Provides control sap.ui.commons.RadioButton.</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.commons.library"/>
+      <module name="sap.ui.core.Control"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.RadioButtonGroup" size="27891" compressedSize="7655">
+    <description>Provides control sap.ui.commons.RadioButtonGroup.</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.commons.library"/>
+      <module name="sap.ui.core.Control"/>
+      <module name="sap.ui.core.delegate.ItemNavigation"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.RadioButtonGroupRenderer" size="2742" compressedSize="1303">
+    <description>Provides default renderer for control sap.ui.commons.RadioButtonGroup</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.RadioButtonRenderer" size="5391" compressedSize="2704">
+    <description>Provides default renderer for control sap.ui.commons.RadioButton</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.core.ValueStateSupport"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.RangeSlider" size="17640" compressedSize="7570">
+    <description>Provides control sap.ui.commons.RangeSlider.</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.commons.library"/>
+      <module name="sap.ui.commons.Slider"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.RangeSliderRenderer" size="3163" compressedSize="1642">
+    <description>Provides default renderer for control sap.ui.commons.RangeSlider</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.core.Renderer"/>
+      <module name="sap.ui.commons.SliderRenderer"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.RatingIndicator" size="25267" compressedSize="5673">
+    <description>Provides control sap.ui.commons.RatingIndicator.</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.commons.library"/>
+      <module name="sap.ui.core.Control"/>
+      <module name="sap.ui.core.theming.Parameters"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.RatingIndicatorRenderer" size="6043" compressedSize="3183">
+    <description>Provides default renderer for control sap.ui.commons.RatingIndicator</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.RichTooltip" size="4624" compressedSize="491">
+    <description>Provides control sap.ui.commons.RichTooltip.</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.commons.library"/>
+      <module name="sap.ui.core.TooltipBase"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.RichTooltipRenderer" size="2399" compressedSize="1368">
+    <description>Provides default renderer for control sap.ui.commons.RichTooltip</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.core.ValueStateSupport"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.RoadMap" size="27656" compressedSize="7049">
+    <description>Provides control sap.ui.commons.RoadMap.</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.commons.library"/>
+      <module name="sap.ui.core.Control"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.RoadMapRenderer" size="30033" compressedSize="13181">
+    <description>Provides default renderer for control sap.ui.commons.RoadMap</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.RoadMapStep" size="15795" compressedSize="3531">
+    <description>Provides control sap.ui.commons.RoadMapStep.</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.commons.library"/>
+      <module name="sap.ui.core.Element"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.RowRepeater" size="68874" compressedSize="19207">
+    <description>Provides control sap.ui.commons.RowRepeater.</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.commons.library"/>
+      <module name="sap.ui.core.Control"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.RowRepeaterFilter" size="5507" compressedSize="550">
+    <description>Provides control sap.ui.commons.RowRepeaterFilter.</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.commons.library"/>
+      <module name="sap.ui.core.Element"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.RowRepeaterRenderer" size="10359" compressedSize="4064">
+    <description>Provides default renderer for control sap.ui.commons.RowRepeater</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.commons.Paginator"/>
+      <module name="sap.ui.commons.Toolbar"/>
+      <module name="sap.ui.commons.Button"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.RowRepeaterSorter" size="5489" compressedSize="549">
+    <description>Provides control sap.ui.commons.RowRepeaterSorter.</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.commons.library"/>
+      <module name="sap.ui.core.Element"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.SearchField" size="45067" compressedSize="14238">
+    <description>Provides control sap.ui.commons.SearchField.</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.commons.library"/>
+      <module name="sap.ui.core.Control"/>
+      <module name="sap.ui.commons.ComboBox"/>
+      <module name="sap.ui.commons.ComboBoxRenderer"/>
+      <module name="sap.ui.commons.TextField"/>
+      <module name="sap.ui.commons.TextFieldRenderer"/>
+      <module name="sap.ui.commons.ListBox"/>
+      <module name="sap.ui.core.Renderer"/>
+      <module name="sap.ui.core.History"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.SearchFieldRenderer" size="1664" compressedSize="867">
+    <description>Provides default renderer for control sap.ui.commons.SearchField</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.SearchProvider" size="3525" compressedSize="537">
+    <description>Provides control sap.ui.commons.SearchProvider.</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.commons.library"/>
+      <module name="sap.ui.core.search.OpenSearchProvider"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.SegmentedButton" size="15648" compressedSize="3952">
+    <description>Provides control sap.ui.commons.SegmentedButton.</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.commons.library"/>
+      <module name="sap.ui.core.Control"/>
+      <module name="sap.ui.core.delegate.ItemNavigation"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.SegmentedButtonRenderer" size="1512" compressedSize="683">
+    <description>! SAP UI development toolkit for HTML5 (SAPUI5)  (c) Copyright 2009-2013 SAP AG. All rights reserved</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.Slider" size="58898" compressedSize="20578">
+    <description>Provides control sap.ui.commons.Slider.</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.commons.library"/>
+      <module name="sap.ui.core.Control"/>
+      <module name="sap.ui.core.ResizeHandler"/>
+      <module name="sap.ui.core.EnabledPropagator"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.SliderRenderer" size="5362" compressedSize="2809">
+    <description>Provides default renderer for control sap.ui.commons.Slider</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.Splitter" size="41172" compressedSize="14422">
+    <description>Provides control sap.ui.commons.Splitter.</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.commons.library"/>
+      <module name="sap.ui.core.Control"/>
+      <module name="sap.ui.core.delegate.ItemNavigation"/>
+      <module name="jquery.sap.events"/>
+      <module name="jquery.sap.keycodes"/>
+      <module name="sap.ui.core.ResizeHandler"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.SplitterRenderer" size="4157" compressedSize="2168">
+    <description>Provides default renderer for control sap.ui.commons.Splitter</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.Tab" size="10985" compressedSize="2292">
+    <description>Provides control sap.ui.commons.Tab.</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.commons.library"/>
+      <module name="sap.ui.commons.Panel"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.TabStrip" size="27473" compressedSize="7618">
+    <description>Provides control sap.ui.commons.TabStrip.</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.commons.library"/>
+      <module name="sap.ui.core.Control"/>
+      <module name="sap.ui.core.delegate.ItemNavigation"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.TabStripRenderer" size="5276" compressedSize="3006">
+    <description>Provides default renderer for control sap.ui.commons.TabStrip</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.TextArea" size="16562" compressedSize="4621">
+    <description>Provides control sap.ui.commons.TextArea.</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.commons.library"/>
+      <module name="sap.ui.commons.TextField"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.TextAreaRenderer" size="3229" compressedSize="1707">
+    <description>Provides default renderer for control sap.ui.commons.TextArea</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.core.Renderer"/>
+      <module name="sap.ui.commons.TextFieldRenderer"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.TextField" size="36969" compressedSize="7700">
+    <description>Provides control sap.ui.commons.TextField.</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.commons.library"/>
+      <module name="sap.ui.core.Control"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.TextFieldRenderer" size="10495" compressedSize="6542">
+    <description>Provides default renderer for control sap.ui.commons.TextField</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.core.Renderer"/>
+      <module name="sap.ui.core.ValueStateSupport"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.TextView" size="15838" compressedSize="1875">
+    <description>Provides control sap.ui.commons.TextView.</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.commons.library"/>
+      <module name="sap.ui.core.Control"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.TextViewRenderer" size="4172" compressedSize="2219">
+    <description>Provides default renderer for control sap.ui.commons.TextView</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.core.Renderer"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.Title" size="6234" compressedSize="652">
+    <description>Provides control sap.ui.commons.Title.</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.commons.library"/>
+      <module name="sap.ui.core.Element"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.ToggleButton" size="4680" compressedSize="1066">
+    <description>Provides control sap.ui.commons.ToggleButton.</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.commons.library"/>
+      <module name="sap.ui.commons.Button"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.ToggleButtonRenderer" size="2514" compressedSize="1342">
+    <description>Provides default renderer for control sap.ui.commons.Togglebutton</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.commons.ButtonRenderer"/>
+      <module name="sap.ui.core.Renderer"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.Toolbar" size="37430" compressedSize="12645">
+    <description>Provides control sap.ui.commons.Toolbar.</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.commons.library"/>
+      <module name="sap.ui.core.Control"/>
+      <module name="sap.ui.core.delegate.ItemNavigation"/>
+      <module name="sap.ui.core.Popup"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.ToolbarRenderer" size="7356" compressedSize="3281">
+    <description>Provides default renderer for control sap.ui.commons.Toolbar</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.ToolbarSeparator" size="5090" compressedSize="666">
+    <description>Provides control sap.ui.commons.ToolbarSeparator.</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.commons.library"/>
+      <module name="sap.ui.core.Element"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.Tree" size="28581" compressedSize="7196">
+    <description>Provides control sap.ui.commons.Tree.</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.commons.library"/>
+      <module name="sap.ui.core.Control"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.TreeNode" size="27490" compressedSize="6193">
+    <description>Provides control sap.ui.commons.TreeNode.</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.commons.library"/>
+      <module name="sap.ui.core.Element"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.TreeRenderer" size="5720" compressedSize="3421">
+    <description>Provides default renderer for control sap.ui.commons.TreeRenderer</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.TriStateCheckBox" size="15709" compressedSize="2096">
+    <description>Provides control sap.ui.commons.TriStateCheckBox.</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.commons.library"/>
+      <module name="sap.ui.core.Control"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.TriStateCheckBoxRenderer" size="3914" compressedSize="1942">
+    <description>Provides default renderer for control sap.ui.commons.TriStateCheckBox</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.core.ValueStateSupport"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.ValueHelpField" size="11455" compressedSize="2861">
+    <description>Provides control sap.ui.commons.ValueHelpField.</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.commons.library"/>
+      <module name="sap.ui.commons.TextField"/>
+      <module name="sap.ui.core.theming.Parameters"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.ValueHelpFieldRenderer" size="6001" compressedSize="1778">
+    <description>Provides default renderer for control sap.ui.commons.ValueHelpField</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.commons.TextFieldRenderer"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.form.Form" size="9660" compressedSize="1137">
+    <description>Provides control sap.ui.commons.form.Form.</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.commons.library"/>
+      <module name="sap.ui.core.Control"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.form.FormContainer" size="12332" compressedSize="2870">
+    <description>Provides control sap.ui.commons.form.FormContainer.</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.commons.library"/>
+      <module name="sap.ui.core.Element"/>
+      <module name="sap.ui.core.EnabledPropagator"/>
+      <module name="sap.ui.core.theming.Parameters"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.form.FormElement" size="13358" compressedSize="3979">
+    <description>Provides control sap.ui.commons.form.FormElement.</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.commons.library"/>
+      <module name="sap.ui.core.Element"/>
+      <module name="sap.ui.core.EnabledPropagator"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.form.FormLayout" size="26464" compressedSize="12104">
+    <description>Provides control sap.ui.commons.form.FormLayout.</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.commons.library"/>
+      <module name="sap.ui.core.Control"/>
+      <module name="sap.ui.commons.form.Form"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.form.FormLayoutRenderer" size="5243" compressedSize="2745">
+    <description>! SAP UI development toolkit for HTML5 (SAPUI5)  (c) Copyright 2009-2013 SAP AG. All rights reserved</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.form.FormRenderer" size="1563" compressedSize="744">
+    <description>! SAP UI development toolkit for HTML5 (SAPUI5)  (c) Copyright 2009-2013 SAP AG. All rights reserved</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.form.GridContainerData" size="4380" compressedSize="449">
+    <description>Provides control sap.ui.commons.form.GridContainerData.</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.commons.library"/>
+      <module name="sap.ui.core.LayoutData"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.form.GridElementData" size="5297" compressedSize="535">
+    <description>Provides control sap.ui.commons.form.GridElementData.</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.commons.library"/>
+      <module name="sap.ui.core.LayoutData"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.form.GridLayout" size="8163" compressedSize="2593">
+    <description>Provides control sap.ui.commons.form.GridLayout.</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.commons.library"/>
+      <module name="sap.ui.commons.form.FormLayout"/>
+      <module name="sap.ui.commons.form.GridContainerData"/>
+      <module name="sap.ui.commons.form.GridElementData"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.form.GridLayoutRenderer" size="15401" compressedSize="6691">
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.core.Renderer"/>
+      <module name="sap.ui.commons.form.FormLayoutRenderer"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.form.ResponsiveLayout" size="24074" compressedSize="7657">
+    <description>Provides control sap.ui.commons.form.ResponsiveLayout.</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.commons.library"/>
+      <module name="sap.ui.commons.form.FormLayout"/>
+      <module name="sap.ui.commons.Panel"/>
+      <module name="sap.ui.commons.layout.ResponsiveFlowLayout"/>
+      <module name="sap.ui.commons.layout.ResponsiveFlowLayoutData"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.form.ResponsiveLayoutRenderer" size="1239" compressedSize="807">
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.core.Renderer"/>
+      <module name="sap.ui.commons.form.FormLayoutRenderer"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.layout.AbsoluteLayout" size="24715" compressedSize="6737">
+    <description>Provides control sap.ui.commons.layout.AbsoluteLayout.</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.commons.library"/>
+      <module name="sap.ui.core.Control"/>
+      <module name="sap.ui.commons.layout.PositionContainer"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.layout.AbsoluteLayoutRenderer" size="5158" compressedSize="2758">
+    <description>Provides default renderer for control sap.ui.commons.layout.AbsoluteLayout</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.layout.BorderLayout" size="19703" compressedSize="3529">
+    <description>Provides control sap.ui.commons.layout.BorderLayout.</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.commons.library"/>
+      <module name="sap.ui.core.Control"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.layout.BorderLayoutArea" size="12200" compressedSize="1593">
+    <description>Provides control sap.ui.commons.layout.BorderLayoutArea.</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.commons.library"/>
+      <module name="sap.ui.core.Element"/>
+      <module name="sap.ui.core.CustomStyleClassSupport"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.layout.BorderLayoutRenderer" size="5173" compressedSize="2726">
+    <description>Provides default renderer for control sap.ui.commons.layout.BorderLayout</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.layout.HorizontalLayout" size="7579" compressedSize="634">
+    <description>Provides control sap.ui.commons.layout.HorizontalLayout.</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.commons.library"/>
+      <module name="sap.ui.core.Control"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.layout.HorizontalLayoutRenderer" size="1423" compressedSize="673">
+    <description>! SAP UI development toolkit for HTML5 (SAPUI5)  (c) Copyright 2009-2013 SAP AG. All rights reserved</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.layout.MatrixLayout" size="15543" compressedSize="2011">
+    <description>Provides control sap.ui.commons.layout.MatrixLayout.</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.commons.library"/>
+      <module name="sap.ui.core.Control"/>
+      <module name="sap.ui.core.EnabledPropagator"/>
+      <module name="sap.ui.commons.layout.MatrixLayoutCell"/>
+      <module name="sap.ui.commons.layout.MatrixLayoutRow"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.layout.MatrixLayoutCell" size="15488" compressedSize="1269">
+    <description>Provides control sap.ui.commons.layout.MatrixLayoutCell.</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.commons.library"/>
+      <module name="sap.ui.core.Element"/>
+      <module name="sap.ui.core.CustomStyleClassSupport"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.layout.MatrixLayoutRenderer" size="17558" compressedSize="7564">
+    <description>Provides default renderer for control sap.ui.commons.layout.MatrixLayout</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.layout.MatrixLayoutRow" size="9476" compressedSize="836">
+    <description>Provides control sap.ui.commons.layout.MatrixLayoutRow.</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.commons.library"/>
+      <module name="sap.ui.core.Element"/>
+      <module name="sap.ui.core.CustomStyleClassSupport"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.layout.PositionContainer" size="18704" compressedSize="5590">
+    <description>Provides control sap.ui.commons.layout.PositionContainer.</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.commons.library"/>
+      <module name="sap.ui.core.Element"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.layout.ResponsiveFlowLayout" size="14587" compressedSize="4000">
+    <description>Provides control sap.ui.commons.layout.ResponsiveFlowLayout.</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.commons.library"/>
+      <module name="sap.ui.core.Control"/>
+      <module name="sap.ui.commons.layout.ResponsiveFlowLayoutData"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.layout.ResponsiveFlowLayoutData" size="6594" compressedSize="1050">
+    <description>Provides control sap.ui.commons.layout.ResponsiveFlowLayoutData.</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.commons.library"/>
+      <module name="sap.ui.core.LayoutData"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.layout.ResponsiveFlowLayoutRenderer" size="1909" compressedSize="945">
+    <description>! SAP UI development toolkit for HTML5 (SAPUI5)  (c) Copyright 2009-2013 SAP AG. All rights reserved</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.layout.VerticalLayout" size="8525" compressedSize="843">
+    <description>Provides control sap.ui.commons.layout.VerticalLayout.</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.commons.library"/>
+      <module name="sap.ui.core.Control"/>
+      <module name="sap.ui.core.EnabledPropagator"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.layout.VerticalLayoutRenderer" size="1672" compressedSize="693">
+    <description>Provides default renderer for control sap.ui.commons.layout.VerticalLayout</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.commons.library" size="37479" compressedSize="8268">
+    <description>Initialization Code and shared classes of library sap.ui.commons (1.10.0)</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.core.Core"/>
+      <module name="sap.ui.core.library"/>
+      <module name="sap.ui.base.DataType"/>
+    </requires>
+    <includes>
+      <module name="sap.ui.commons.ButtonStyle"/>
+      <module name="sap.ui.commons.HorizontalDividerHeight"/>
+      <module name="sap.ui.commons.HorizontalDividerType"/>
+      <module name="sap.ui.commons.LabelDesign"/>
+      <module name="sap.ui.commons.MenuBarDesign"/>
+      <module name="sap.ui.commons.MessageType"/>
+      <module name="sap.ui.commons.Orientation"/>
+      <module name="sap.ui.commons.PaginatorEvent"/>
+      <module name="sap.ui.commons.RatingIndicatorVisualMode"/>
+      <module name="sap.ui.commons.RowRepeaterDesign"/>
+      <module name="sap.ui.commons.TextViewColor"/>
+      <module name="sap.ui.commons.TextViewDesign"/>
+      <module name="sap.ui.commons.TitleLevel"/>
+      <module name="sap.ui.commons.ToolbarDesign"/>
+      <module name="sap.ui.commons.ToolbarSeparatorDesign"/>
+      <module name="sap.ui.commons.TriStateCheckBoxState"/>
+      <module name="sap.ui.commons.enums.AreaDesign"/>
+      <module name="sap.ui.commons.enums.BorderDesign"/>
+      <module name="sap.ui.commons.enums.Orientation"/>
+      <module name="sap.ui.commons.form.GridElementCells"/>
+      <module name="sap.ui.commons.layout.BackgroundDesign"/>
+      <module name="sap.ui.commons.layout.BorderLayoutAreaTypes"/>
+      <module name="sap.ui.commons.layout.HAlign"/>
+      <module name="sap.ui.commons.layout.Padding"/>
+      <module name="sap.ui.commons.layout.Separation"/>
+      <module name="sap.ui.commons.layout.VAlign"/>
+    </includes>
+  </module></library>

@@ -1,0 +1,115 @@
+<?xml version="1.0" ?>
+<library name="sap.uiext.inbox">
+  <module name="sap.uiext.inbox.Inbox" size="255657" compressedSize="118101">
+    <description>Provides control sap.uiext.inbox.Inbox.</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.uiext.inbox.library"/>
+      <module name="sap.ui.core.Control"/>
+      <module name="sap.uiext.inbox.InboxConstants"/>
+      <module name="sap.uiext.inbox.TaskInitialFilters"/>
+      <module name="sap.uiext.inbox.InboxUtils"/>
+      <module name="sap.uiext.inbox.SubstitutionRulesManager"/>
+      <module name="sap.ui.core.format.DateFormat"/>
+      <module name="sap.ui.ux3.FacetFilter"/>
+      <module name="sap.ui.ux3.FacetFilterList"/>
+      <module name="sap.ui.commons.layout.MatrixLayout"/>
+      <module name="sap.ui.commons.Image"/>
+      <module name="sap.ui.commons.ToggleButton"/>
+      <module name="sap.ui.commons.DropdownBox"/>
+      <module name="sap.ui.core.ListItem"/>
+      <module name="sap.ui.commons.SearchField"/>
+      <module name="sap.ui.commons.Toolbar"/>
+      <module name="sap.ui.commons.TextView"/>
+      <module name="sap.ui.commons.Label"/>
+      <module name="sap.ui.commons.Button"/>
+      <module name="sap.ui.commons.ToolbarSeparator"/>
+      <module name="sap.ui.commons.Link"/>
+      <module name="sap.ui.table.Table"/>
+      <module name="sap.ui.commons.TextField"/>
+      <module name="sap.ui.ux3.OverlayContainer"/>
+      <module name="sap.ui.core.HTML"/>
+      <module name="sap.ui.commons.layout.BorderLayout"/>
+      <module name="sap.ui.commons.layout.VerticalLayout"/>
+      <module name="sap.ui.commons.RadioButtonGroup"/>
+      <module name="sap.ui.commons.Dialog"/>
+      <module name="sap.ui.model.Sorter"/>
+      <module name="sap.ui.model.Filter"/>
+      <module name="sap.ui.core.Locale"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.uiext.inbox.InboxConstants" size="7651" compressedSize="6860">
+    <description>! SAP UI development toolkit for HTML5 (SAPUI5)  (c) Copyright 2009-2013 SAP AG. All rights reserved</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.uiext.inbox.InboxRenderer" size="940" compressedSize="395">
+    <description>! SAP UI development toolkit for HTML5 (SAPUI5)  (c) Copyright 2009-2013 SAP AG. All rights reserved</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.uiext.inbox.InboxUtils" size="5879" compressedSize="3616">
+    <description>Utility functions for Inbox</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.uiext.inbox.SubstitutionRulesManager" size="66828" compressedSize="30479">
+    <description>Provides control sap.uiext.inbox.SubstitutionRulesManager.</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.uiext.inbox.library"/>
+      <module name="sap.ui.core.Control"/>
+      <module name="sap.uiext.inbox.InboxUtils"/>
+      <module name="sap.uiext.inbox.SubstitutionRulesManagerConstants"/>
+      <module name="sap.uiext.inbox.SubstitutionRulesManagerUtils"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.uiext.inbox.SubstitutionRulesManagerConstants" size="561" compressedSize="539">
+    <description>! SAP UI development toolkit for HTML5 (SAPUI5)  (c) Copyright 2009-2013 SAP AG. All rights reserved</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.uiext.inbox.SubstitutionRulesManagerRenderer" size="1107" compressedSize="485">
+    <description>! SAP UI development toolkit for HTML5 (SAPUI5)  (c) Copyright 2009-2013 SAP AG. All rights reserved</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.uiext.inbox.SubstitutionRulesManagerUtils" size="6617" compressedSize="3690">
+    <description>Utility functions for Substitution Rules Manager</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.uiext.inbox.TaskInitialFilters" size="8316" compressedSize="4608">
+    <description>Provides a filter for list bindings</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.uiext.inbox.InboxUtils"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.uiext.inbox.library" size="1265" compressedSize="574">
+    <description>Initialization Code and shared classes of library sap.uiext.inbox (1.10.0)</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.core.Core"/>
+      <module name="sap.ui.core.library"/>
+      <module name="sap.ui.commons.library"/>
+      <module name="sap.ui.ux3.library"/>
+    </requires>
+    <includes>
+    </includes>
+  </module></library>

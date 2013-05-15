@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Library name="sap.uiext.inbox">
+<Template name="sap.uiext.inbox.Inbox" alias="Inbox">
+	<jsTemplate><![CDATA[new sap.uiext.inbox.Inbox({
+	id: "${id}", // sap.ui.core.ID
+	taskExecutionURLThemeValue: undefined, // string
+	handleBindings: true, // boolean
+	openCompletedTasks: false, // boolean
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	layoutData: undefined, // sap.ui.core.LayoutData
+	oDataRequestCompleted: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	refresh: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	taskAction: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+</Template>
+<Template name="sap.uiext.inbox.SubstitutionRulesManager" alias="SubstitutionRulesManager,Manager">
+	<jsTemplate><![CDATA[new sap.uiext.inbox.SubstitutionRulesManager({
+	id: "${id}", // sap.ui.core.ID
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	layoutData: undefined // sap.ui.core.LayoutData
+})
+]]></jsTemplate>
+</Template>
+</Library>

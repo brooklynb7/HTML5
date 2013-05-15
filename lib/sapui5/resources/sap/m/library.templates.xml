@@ -1,0 +1,872 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Library name="sap.m">
+<Template name="sap.m.ActionListItem" alias="ActionListItem,Item">
+	<jsTemplate><![CDATA[new sap.m.ActionListItem({
+	id: "${id}", // sap.ui.core.ID
+	type: sap.m.ListType.Inactive, // sap.m.ListType
+	visible: true, // boolean
+	unread: false, // boolean
+	selected: false, // boolean
+	counter: undefined, // int
+	text: undefined, // string
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	layoutData: undefined, // sap.ui.core.LayoutData
+	tap: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	detailTap: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+</Template>
+<Template name="sap.m.ActionSheet" alias="ActionSheet,Sheet">
+	<jsTemplate><![CDATA[new sap.m.ActionSheet({
+	id: "${id}", // sap.ui.core.ID
+	placement: sap.m.PlacementType.Bottom, // sap.m.PlacementType
+	showCancelButton: true, // boolean
+	cancelButtonText: undefined, // string
+	title: undefined, // string
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	layoutData: undefined, // sap.ui.core.LayoutData
+	buttons: [], // sap.m.Button
+	cancelButtonTap: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	beforeOpen: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	afterOpen: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	beforeClose: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	afterClose: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+</Template>
+<Template name="sap.m.App" alias="App">
+	<jsTemplate><![CDATA[new sap.m.App({
+	id: "${id}", // sap.ui.core.ID
+	height: '100%', // sap.ui.core.CSSSize
+	width: '100%', // sap.ui.core.CSSSize
+	visible: true, // boolean
+	defaultTransitionName: "slide", // string, since 1.7.1
+	homeIcon: undefined, // any
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	layoutData: undefined, // sap.ui.core.LayoutData
+	pages: [], // sap.ui.core.Control
+	initialPage: undefined, // sap.ui.core.Control
+	navigate: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this], // since 1.7.1
+	afterNavigate: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this], // since 1.7.1
+	orientationChange: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+</Template>
+<Template name="sap.m.Bar" alias="Bar">
+	<jsTemplate><![CDATA[new sap.m.Bar({
+	id: "${id}", // sap.ui.core.ID
+	enableFlexBox: false, // boolean
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	layoutData: undefined, // sap.ui.core.LayoutData
+	contentLeft: [], // sap.ui.core.Control
+	contentMiddle: [], // sap.ui.core.Control
+	contentRight: [] // sap.ui.core.Control
+})
+]]></jsTemplate>
+</Template>
+<Template name="sap.m.BusyDialog" alias="BusyDialog,Dialog">
+	<jsTemplate><![CDATA[new sap.m.BusyDialog({
+	id: "${id}", // sap.ui.core.ID
+	text: undefined, // string
+	title: undefined, // string
+	customIcon: undefined, // sap.ui.core.URI
+	customIconRotationSpeed: 1000, // int
+	customIconDensityAware: true, // boolean
+	customIconWidth: undefined, // sap.ui.core.CSSSize
+	customIconHeight: undefined, // sap.ui.core.CSSSize
+	cancelButtonText: undefined, // string
+	showCancelButton: false, // boolean
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	layoutData: undefined, // sap.ui.core.LayoutData
+	close: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+</Template>
+<Template name="sap.m.BusyIndicator" alias="BusyIndicator,Indicator">
+	<jsTemplate><![CDATA[new sap.m.BusyIndicator({
+	id: "${id}", // sap.ui.core.ID
+	text: undefined, // string
+	textDirection: sap.ui.core.TextDirection.Inherit, // sap.ui.core.TextDirection
+	visible: true, // boolean
+	customIcon: undefined, // sap.ui.core.URI
+	customIconRotationSpeed: 1000, // int
+	customIconDensityAware: true, // boolean
+	customIconWidth: undefined, // sap.ui.core.CSSSize
+	customIconHeight: undefined, // sap.ui.core.CSSSize
+	size: undefined, // sap.ui.core.CSSSize
+	design: "auto", // string
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	layoutData: undefined // sap.ui.core.LayoutData
+})
+]]></jsTemplate>
+</Template>
+<Template name="sap.m.Button" alias="Button">
+	<jsTemplate><![CDATA[new sap.m.Button({
+	id: "${id}", // sap.ui.core.ID
+	text: undefined, // string
+	type: sap.m.ButtonType.Default, // sap.m.ButtonType
+	width: undefined, // sap.ui.core.CSSSize
+	enabled: true, // boolean
+	visible: true, // boolean
+	icon: undefined, // sap.ui.core.URI
+	iconFirst: true, // boolean
+	activeIcon: undefined, // sap.ui.core.URI
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	layoutData: undefined, // sap.ui.core.LayoutData
+	tap: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+</Template>
+<Template name="sap.m.Carousel" alias="Carousel">
+	<jsTemplate><![CDATA[new sap.m.Carousel({
+	id: "${id}", // sap.ui.core.ID
+	height: "100%", // sap.ui.core.CSSSize
+	loop: false, // boolean
+	visible: true, // boolean
+	width: "100%", // sap.ui.core.CSSSize
+	showPageIndicator: true, // boolean
+	pageIndicatorPlacement: sap.m.PlacementType.Bottom, // sap.m.PlacementType
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	layoutData: undefined, // sap.ui.core.LayoutData
+	pages: [], // sap.ui.core.Control
+	activePage: undefined, // sap.ui.core.Control
+	loadPage: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	unloadPage: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	pageChanged: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+</Template>
+<Template name="sap.m.CheckBox" alias="CheckBox,Box">
+	<jsTemplate><![CDATA[new sap.m.CheckBox({
+	id: "${id}", // sap.ui.core.ID
+	selected: false, // boolean
+	visible: true, // boolean
+	enabled: true, // boolean
+	name: undefined, // string
+	text: undefined, // string
+	textDirection: sap.ui.core.TextDirection.Inherit, // sap.ui.core.TextDirection
+	width: '', // sap.ui.core.CSSSize
+	activeHandling: true, // boolean
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	layoutData: undefined, // sap.ui.core.LayoutData
+	select: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+</Template>
+<Template name="sap.m.CustomListItem" alias="CustomListItem,Item">
+	<jsTemplate><![CDATA[new sap.m.CustomListItem({
+	id: "${id}", // sap.ui.core.ID
+	type: sap.m.ListType.Inactive, // sap.m.ListType
+	visible: true, // boolean
+	unread: false, // boolean
+	selected: false, // boolean
+	counter: undefined, // int
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	layoutData: undefined, // sap.ui.core.LayoutData
+	content: [], // sap.ui.core.Control
+	tap: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	detailTap: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+</Template>
+<Template name="sap.m.DateTimeInput" alias="DateTimeInput,Input">
+	<jsTemplate><![CDATA[new sap.m.DateTimeInput({
+	id: "${id}", // sap.ui.core.ID
+	value: undefined, // string
+	type: sap.m.DateTimeInputType.Date, // sap.m.DateTimeInputType
+	width: undefined, // sap.ui.core.CSSSize
+	enabled: true, // boolean
+	visible: true, // boolean
+	valueState: sap.ui.core.ValueState.None, // sap.ui.core.ValueState
+	placeholder: undefined, // string
+	displayFormat: undefined, // string
+	valueFormat: undefined, // string
+	dateValue: undefined, // object
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	layoutData: undefined, // sap.ui.core.LayoutData
+	change: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+</Template>
+<Template name="sap.m.Dialog" alias="Dialog">
+	<jsTemplate><![CDATA[new sap.m.Dialog({
+	id: "${id}", // sap.ui.core.ID
+	icon: undefined, // sap.ui.core.URI
+	title: undefined, // string
+	type: sap.m.DialogType.Standard, // sap.m.DialogType
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	layoutData: undefined, // sap.ui.core.LayoutData
+	content: [], // sap.ui.core.Control
+	leftButton: undefined, // sap.m.Button
+	rightButton: undefined, // sap.m.Button
+	beforeOpen: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	afterOpen: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	beforeClose: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	afterClose: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+</Template>
+<Template name="sap.m.DisplayListItem" alias="DisplayListItem,Item">
+	<jsTemplate><![CDATA[new sap.m.DisplayListItem({
+	id: "${id}", // sap.ui.core.ID
+	type: sap.m.ListType.Inactive, // sap.m.ListType
+	visible: true, // boolean
+	unread: false, // boolean
+	selected: false, // boolean
+	counter: undefined, // int
+	label: undefined, // string
+	value: undefined, // string
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	layoutData: undefined, // sap.ui.core.LayoutData
+	tap: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	detailTap: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+</Template>
+<Template name="sap.m.FlexBox" alias="FlexBox,Box">
+	<jsTemplate><![CDATA[new sap.m.FlexBox({
+	id: "${id}", // sap.ui.core.ID
+	visible: true, // boolean
+	height: "", // sap.ui.core.CSSSize, since 1.9.1
+	width: "", // sap.ui.core.CSSSize, since 1.9.1
+	displayInline: false, // boolean
+	direction: sap.m.FlexDirection.Row, // sap.m.FlexDirection
+	fitContainer: false, // boolean
+	renderType: sap.m.FlexRendertype.Div, // sap.m.FlexRendertype
+	justifyContent: sap.m.FlexJustifyContent.Start, // sap.m.FlexJustifyContent
+	alignItems: sap.m.FlexAlignItems.Stretch, // sap.m.FlexAlignItems
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	layoutData: undefined, // sap.ui.core.LayoutData
+	items: [] // sap.ui.core.Control
+})
+]]></jsTemplate>
+</Template>
+<Template name="sap.m.FlexItemData" alias="FlexItemData,Data">
+	<jsTemplate><![CDATA[new sap.m.FlexItemData({
+	id: "${id}", // sap.ui.core.ID
+	alignSelf: sap.m.FlexAlignSelf.Auto, // sap.m.FlexAlignSelf
+	order: 0, // int
+	growFactor: 0, // float
+	styleClass: "", // string
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	layoutData: undefined // sap.ui.core.LayoutData
+})
+]]></jsTemplate>
+</Template>
+<Template name="sap.m.GrowingList" alias="GrowingList,List">
+	<jsTemplate><![CDATA[new sap.m.GrowingList({
+	id: "${id}", // sap.ui.core.ID
+	inset: false, // boolean
+	visible: true, // boolean
+	headerText: undefined, // string
+	footerText: undefined, // string
+	mode: sap.m.ListMode.None, // sap.m.ListMode
+	width: '100%', // sap.ui.core.CSSSize
+	includeItemInSelection: false, // boolean
+	showUnread: false, // boolean
+	noDataText: undefined, // string
+	showNoData: true, // boolean
+	threshold: 20, // int
+	triggerText: undefined, // string
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	layoutData: undefined, // sap.ui.core.LayoutData
+	items: [], // sap.m.ListItemBase
+	swipeContent: undefined, // sap.ui.core.Control
+	select: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	"delete": [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	swipe: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+</Template>
+<Template name="sap.m.HBox" alias="HBox">
+	<jsTemplate><![CDATA[new sap.m.HBox({
+	id: "${id}", // sap.ui.core.ID
+	visible: true, // boolean
+	height: "", // sap.ui.core.CSSSize, since 1.9.1
+	width: "", // sap.ui.core.CSSSize, since 1.9.1
+	displayInline: false, // boolean
+	direction: sap.m.FlexDirection.Row, // sap.m.FlexDirection
+	fitContainer: false, // boolean
+	renderType: sap.m.FlexRendertype.Div, // sap.m.FlexRendertype
+	justifyContent: sap.m.FlexJustifyContent.Start, // sap.m.FlexJustifyContent
+	alignItems: sap.m.FlexAlignItems.Stretch, // sap.m.FlexAlignItems
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	layoutData: undefined, // sap.ui.core.LayoutData
+	items: [] // sap.ui.core.Control
+})
+]]></jsTemplate>
+</Template>
+<Template name="sap.m.Image" alias="Image">
+	<jsTemplate><![CDATA[new sap.m.Image({
+	id: "${id}", // sap.ui.core.ID
+	src: undefined, // sap.ui.core.URI
+	visible: true, // boolean
+	width: undefined, // sap.ui.core.CSSSize
+	height: undefined, // sap.ui.core.CSSSize
+	decorative: true, // boolean
+	alt: undefined, // string
+	useMap: undefined, // string
+	densityAware: true, // boolean
+	activeSrc: "", // sap.ui.core.URI
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	layoutData: undefined, // sap.ui.core.LayoutData
+	tap: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+</Template>
+<Template name="sap.m.Input" alias="Input">
+	<jsTemplate><![CDATA[new sap.m.Input({
+	id: "${id}", // sap.ui.core.ID
+	value: undefined, // string
+	type: sap.m.InputType.Text, // sap.m.InputType
+	width: undefined, // sap.ui.core.CSSSize
+	enabled: true, // boolean
+	visible: true, // boolean
+	maxLength: 0, // int
+	valueState: sap.ui.core.ValueState.None, // sap.ui.core.ValueState
+	name: undefined, // string
+	placeholder: undefined, // string
+	dateFormat: "YYYY-MM-dd", // string
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	layoutData: undefined, // sap.ui.core.LayoutData
+	change: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	liveChange: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+</Template>
+<Template name="sap.m.InputListItem" alias="InputListItem,Item">
+	<jsTemplate><![CDATA[new sap.m.InputListItem({
+	id: "${id}", // sap.ui.core.ID
+	type: sap.m.ListType.Inactive, // sap.m.ListType
+	visible: true, // boolean
+	unread: false, // boolean
+	selected: false, // boolean
+	counter: undefined, // int
+	label: undefined, // string
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	layoutData: undefined, // sap.ui.core.LayoutData
+	content: [], // sap.ui.core.Control
+	tap: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	detailTap: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+</Template>
+<Template name="sap.m.Label" alias="Label">
+	<jsTemplate><![CDATA[new sap.m.Label({
+	id: "${id}", // sap.ui.core.ID
+	design: sap.m.LabelDesign.Standard, // sap.m.LabelDesign
+	text: undefined, // string
+	visible: true, // boolean
+	textAlign: sap.ui.core.TextAlign.Begin, // sap.ui.core.TextAlign
+	textDirection: sap.ui.core.TextDirection.Inherit, // sap.ui.core.TextDirection
+	width: '', // sap.ui.core.CSSSize
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	layoutData: undefined, // sap.ui.core.LayoutData
+	labelFor: undefined // sap.ui.core.Control
+})
+]]></jsTemplate>
+</Template>
+<Template name="sap.m.List" alias="List">
+	<jsTemplate><![CDATA[new sap.m.List({
+	id: "${id}", // sap.ui.core.ID
+	inset: false, // boolean
+	visible: true, // boolean
+	headerText: undefined, // string
+	footerText: undefined, // string
+	mode: sap.m.ListMode.None, // sap.m.ListMode
+	width: '100%', // sap.ui.core.CSSSize
+	includeItemInSelection: false, // boolean
+	showUnread: false, // boolean
+	noDataText: undefined, // string
+	showNoData: true, // boolean
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	layoutData: undefined, // sap.ui.core.LayoutData
+	items: [], // sap.m.ListItemBase
+	swipeContent: undefined, // sap.ui.core.Control
+	select: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	"delete": [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	swipe: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+</Template>
+<Template name="sap.m.ListItemBase" alias="ListItemBase,Base">
+	<jsTemplate><![CDATA[new sap.m.ListItemBase({
+	id: "${id}", // sap.ui.core.ID
+	type: sap.m.ListType.Inactive, // sap.m.ListType
+	visible: true, // boolean
+	unread: false, // boolean
+	selected: false, // boolean
+	counter: undefined, // int
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	layoutData: undefined, // sap.ui.core.LayoutData
+	tap: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	detailTap: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+</Template>
+<Template name="sap.m.NavContainer" alias="NavContainer,Container">
+	<jsTemplate><![CDATA[new sap.m.NavContainer({
+	id: "${id}", // sap.ui.core.ID
+	height: '100%', // sap.ui.core.CSSSize
+	width: '100%', // sap.ui.core.CSSSize
+	visible: true, // boolean
+	defaultTransitionName: "slide", // string, since 1.7.1
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	layoutData: undefined, // sap.ui.core.LayoutData
+	pages: [], // sap.ui.core.Control
+	initialPage: undefined, // sap.ui.core.Control
+	navigate: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this], // since 1.7.1
+	afterNavigate: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this] // since 1.7.1
+})
+]]></jsTemplate>
+</Template>
+<Template name="sap.m.Page" alias="Page">
+	<jsTemplate><![CDATA[new sap.m.Page({
+	id: "${id}", // sap.ui.core.ID
+	title: undefined, // string
+	showNavButton: false, // boolean
+	showHeader: true, // boolean
+	navButtonText: undefined, // string
+	enableScrolling: true, // boolean
+	icon: undefined, // sap.ui.core.URI
+	backgroundDesign: sap.m.PageBackgroundDesign.Standard, // sap.m.PageBackgroundDesign
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	layoutData: undefined, // sap.ui.core.LayoutData
+	content: [], // sap.ui.core.Control
+	customHeader: undefined, // sap.m.Bar
+	footer: undefined, // sap.m.Bar
+	subHeader: undefined, // sap.m.Bar
+	headerContent: [], // sap.ui.core.Control
+	navButtonTap: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+</Template>
+<Template name="sap.m.Popover" alias="Popover">
+	<jsTemplate><![CDATA[new sap.m.Popover({
+	id: "${id}", // sap.ui.core.ID
+	placement: sap.m.PlacementType.Right, // sap.m.PlacementType
+	showHeader: true, // boolean
+	title: undefined, // string
+	modal: false, // boolean
+	offsetX: 0, // int
+	offsetY: 0, // int
+	contentWidth: undefined, // sap.ui.core.CSSSize, since 1.9.0
+	contentHeight: undefined, // sap.ui.core.CSSSize, since 1.9.0
+	enableScrolling: true, // boolean
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	layoutData: undefined, // sap.ui.core.LayoutData
+	content: [], // sap.ui.core.Control
+	customHeader: undefined, // sap.ui.core.Control
+	footer: undefined, // sap.ui.core.Control
+	leftButton: undefined, // sap.m.Button
+	rightButton: undefined, // sap.m.Button
+	afterOpen: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	afterClose: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	beforeOpen: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	beforeClose: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+</Template>
+<Template name="sap.m.PullToRefresh" alias="PullToRefresh,Refresh">
+	<jsTemplate><![CDATA[new sap.m.PullToRefresh({
+	id: "${id}", // sap.ui.core.ID
+	description: undefined, // string
+	showIcon: true, // boolean
+	customIcon: undefined, // sap.ui.core.URI
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	layoutData: undefined, // sap.ui.core.LayoutData
+	refresh: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+</Template>
+<Template name="sap.m.RadioButton" alias="RadioButton,Button">
+	<jsTemplate><![CDATA[new sap.m.RadioButton({
+	id: "${id}", // sap.ui.core.ID
+	visible: true, // boolean
+	enabled: true, // boolean
+	selected: false, // boolean
+	groupName: 'sapMRbDefaultGroup', // string
+	text: undefined, // string
+	textDirection: sap.ui.core.TextDirection.Inherit, // sap.ui.core.TextDirection
+	width: '', // sap.ui.core.CSSSize
+	activeHandling: true, // boolean
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	layoutData: undefined, // sap.ui.core.LayoutData
+	select: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+</Template>
+<Template name="sap.m.ScrollContainer" alias="ScrollContainer,Container">
+	<jsTemplate><![CDATA[new sap.m.ScrollContainer({
+	id: "${id}", // sap.ui.core.ID
+	visible: true, // boolean
+	width: "auto", // sap.ui.core.CSSSize
+	height: "auto", // sap.ui.core.CSSSize
+	horizontal: true, // boolean
+	vertical: false, // boolean
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	layoutData: undefined, // sap.ui.core.LayoutData
+	content: [] // sap.ui.core.Control
+})
+]]></jsTemplate>
+</Template>
+<Template name="sap.m.SearchField" alias="SearchField,Field">
+	<jsTemplate><![CDATA[new sap.m.SearchField({
+	id: "${id}", // sap.ui.core.ID
+	value: undefined, // string
+	width: undefined, // sap.ui.core.CSSSize
+	enabled: true, // boolean
+	visible: true, // boolean
+	maxLength: 0, // int
+	placeholder: undefined, // string
+	showMagnifier: true, // boolean
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	layoutData: undefined, // sap.ui.core.LayoutData
+	search: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	liveChange: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this] // since 1.9.1
+})
+]]></jsTemplate>
+</Template>
+<Template name="sap.m.SegmentedButton" alias="SegmentedButton,Button">
+	<jsTemplate><![CDATA[new sap.m.SegmentedButton({
+	id: "${id}", // sap.ui.core.ID
+	width: undefined, // sap.ui.core.CSSSize
+	visible: true, // boolean
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	layoutData: undefined, // sap.ui.core.LayoutData
+	buttons: [], // sap.m.Button
+	selectedButton: undefined, // sap.m.Button
+	select: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+</Template>
+<Template name="sap.m.Select" alias="Select">
+	<jsTemplate><![CDATA[new sap.m.Select({
+	id: "${id}", // sap.ui.core.ID
+	name: "", // string
+	visible: true, // boolean
+	enabled: true, // boolean
+	width: "auto", // sap.ui.core.CSSSize
+	maxWidth: "100%", // sap.ui.core.CSSSize
+	title: "", // string
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	layoutData: undefined, // sap.ui.core.LayoutData
+	items: [], // sap.ui.core.Item
+	selectedItem: undefined, // sap.ui.core.Item
+	change: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+</Template>
+<Template name="sap.m.Slider" alias="Slider">
+	<jsTemplate><![CDATA[new sap.m.Slider({
+	id: "${id}", // sap.ui.core.ID
+	width: "100%", // sap.ui.core.CSSSize
+	enabled: true, // boolean
+	visible: true, // boolean
+	name: "", // string
+	min: 0, // float
+	max: 100, // float
+	step: 1, // float
+	progress: true, // boolean
+	value: 0, // float
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	layoutData: undefined, // sap.ui.core.LayoutData
+	change: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	liveChange: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+</Template>
+<Template name="sap.m.SplitApp" alias="SplitApp,App">
+	<jsTemplate><![CDATA[new sap.m.SplitApp({
+	id: "${id}", // sap.ui.core.ID
+	homeIcon: undefined, // any
+	defaultTransitionNameDetail: "slide", // string
+	defaultTransitionNameMaster: "slide", // string
+	mode: sap.m.SplitAppMode.ShowHideMode, // sap.m.SplitAppMode
+	masterButtonText: undefined, // string
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	layoutData: undefined, // sap.ui.core.LayoutData
+	masterPages: [], // sap.ui.core.Control
+	detailPages: [], // sap.ui.core.Control
+	initialDetail: undefined, // sap.ui.core.Control
+	initialMaster: undefined, // sap.ui.core.Control
+	orientationChange: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	masterNavigate: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	afterMasterNavigate: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	masterButton: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	beforeMasterOpen: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	afterMasterOpen: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	beforeMasterClose: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	afterMasterClose: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	detailNavigate: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	afterDetailNavigate: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+</Template>
+<Template name="sap.m.StandardListItem" alias="StandardListItem,Item">
+	<jsTemplate><![CDATA[new sap.m.StandardListItem({
+	id: "${id}", // sap.ui.core.ID
+	type: sap.m.ListType.Inactive, // sap.m.ListType
+	visible: true, // boolean
+	unread: false, // boolean
+	selected: false, // boolean
+	counter: undefined, // int
+	title: undefined, // string
+	description: undefined, // string
+	icon: undefined, // sap.ui.core.URI
+	iconInset: true, // boolean
+	iconDensityAware: true, // boolean
+	activeIcon: undefined, // sap.ui.core.URI
+	info: undefined, // string
+	infoState: sap.ui.core.ValueState.None, // sap.ui.core.ValueState
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	layoutData: undefined, // sap.ui.core.LayoutData
+	tap: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	detailTap: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+</Template>
+<Template name="sap.m.Switch" alias="Switch">
+	<jsTemplate><![CDATA[new sap.m.Switch({
+	id: "${id}", // sap.ui.core.ID
+	visible: true, // boolean
+	state: false, // boolean
+	enabled: true, // boolean
+	name: "", // string
+	customTextOn: undefined, // string
+	customTextOff: undefined, // string
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	layoutData: undefined, // sap.ui.core.LayoutData
+	change: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+</Template>
+<Template name="sap.m.Text" alias="Text">
+	<jsTemplate><![CDATA[new sap.m.Text({
+	id: "${id}", // sap.ui.core.ID
+	text: '', // string
+	textDirection: sap.ui.core.TextDirection.Inherit, // sap.ui.core.TextDirection
+	visible: true, // boolean
+	wrapping: true, // boolean
+	textAlign: sap.ui.core.TextAlign.Begin, // sap.ui.core.TextAlign
+	width: undefined, // sap.ui.core.CSSSize
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	layoutData: undefined // sap.ui.core.LayoutData
+})
+]]></jsTemplate>
+</Template>
+<Template name="sap.m.TextArea" alias="TextArea,Area">
+	<jsTemplate><![CDATA[new sap.m.TextArea({
+	id: "${id}", // sap.ui.core.ID
+	rows: 2, // int
+	cols: 20, // int
+	width: undefined, // sap.ui.core.CSSSize
+	height: undefined, // sap.ui.core.CSSSize
+	value: "", // string
+	enabled: true, // boolean
+	visible: true, // boolean
+	maxLength: 0, // int
+	valueState: sap.ui.core.ValueState.None, // sap.ui.core.ValueState
+	placeholder: undefined, // string
+	wrapping: undefined, // sap.ui.core.Wrapping
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	layoutData: undefined, // sap.ui.core.LayoutData
+	change: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	liveChange: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+</Template>
+<Template name="sap.m.VBox" alias="VBox">
+	<jsTemplate><![CDATA[new sap.m.VBox({
+	id: "${id}", // sap.ui.core.ID
+	visible: true, // boolean
+	height: "", // sap.ui.core.CSSSize, since 1.9.1
+	width: "", // sap.ui.core.CSSSize, since 1.9.1
+	displayInline: false, // boolean
+	direction: sap.m.FlexDirection.Row, // sap.m.FlexDirection
+	fitContainer: false, // boolean
+	renderType: sap.m.FlexRendertype.Div, // sap.m.FlexRendertype
+	justifyContent: sap.m.FlexJustifyContent.Start, // sap.m.FlexJustifyContent
+	alignItems: sap.m.FlexAlignItems.Stretch, // sap.m.FlexAlignItems
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	layoutData: undefined, // sap.ui.core.LayoutData
+	items: [] // sap.ui.core.Control
+})
+]]></jsTemplate>
+</Template>
+</Library>

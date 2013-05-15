@@ -1,0 +1,84 @@
+{
+  "modules" : [
+    {
+      "name" : "sap.uiext.inbox.Inbox",
+      "description" : "Provides control sap.uiext.inbox.Inbox.",
+      "size" : 255657,
+      "compressedSize" : 118101,
+      "required" : ["jquery.sap.global", "sap.uiext.inbox.library", "sap.ui.core.Control", "sap.uiext.inbox.InboxConstants", "sap.uiext.inbox.TaskInitialFilters", "sap.uiext.inbox.InboxUtils", "sap.uiext.inbox.SubstitutionRulesManager", "sap.ui.core.format.DateFormat", "sap.ui.ux3.FacetFilter", "sap.ui.ux3.FacetFilterList", "sap.ui.commons.layout.MatrixLayout", "sap.ui.commons.Image", "sap.ui.commons.ToggleButton", "sap.ui.commons.DropdownBox", "sap.ui.core.ListItem", "sap.ui.commons.SearchField", "sap.ui.commons.Toolbar", "sap.ui.commons.TextView", "sap.ui.commons.Label", "sap.ui.commons.Button", "sap.ui.commons.ToolbarSeparator", "sap.ui.commons.Link", "sap.ui.table.Table", "sap.ui.commons.TextField", "sap.ui.ux3.OverlayContainer", "sap.ui.core.HTML", "sap.ui.commons.layout.BorderLayout", "sap.ui.commons.layout.VerticalLayout", "sap.ui.commons.RadioButtonGroup", "sap.ui.commons.Dialog", "sap.ui.model.Sorter", "sap.ui.model.Filter", "sap.ui.core.Locale"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.uiext.inbox.InboxConstants",
+      "description" : "! SAP UI development toolkit for HTML5 (SAPUI5)  (c) Copyright 2009-2013 SAP AG. All rights reserved",
+      "size" : 7651,
+      "compressedSize" : 6860,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.uiext.inbox.InboxRenderer",
+      "description" : "! SAP UI development toolkit for HTML5 (SAPUI5)  (c) Copyright 2009-2013 SAP AG. All rights reserved",
+      "size" : 940,
+      "compressedSize" : 395,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.uiext.inbox.InboxUtils",
+      "description" : "Utility functions for Inbox",
+      "size" : 5879,
+      "compressedSize" : 3616,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.uiext.inbox.SubstitutionRulesManager",
+      "description" : "Provides control sap.uiext.inbox.SubstitutionRulesManager.",
+      "size" : 66828,
+      "compressedSize" : 30479,
+      "required" : ["jquery.sap.global", "sap.uiext.inbox.library", "sap.ui.core.Control", "sap.uiext.inbox.InboxUtils", "sap.uiext.inbox.SubstitutionRulesManagerConstants", "sap.uiext.inbox.SubstitutionRulesManagerUtils"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.uiext.inbox.SubstitutionRulesManagerConstants",
+      "description" : "! SAP UI development toolkit for HTML5 (SAPUI5)  (c) Copyright 2009-2013 SAP AG. All rights reserved",
+      "size" : 561,
+      "compressedSize" : 539,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.uiext.inbox.SubstitutionRulesManagerRenderer",
+      "description" : "! SAP UI development toolkit for HTML5 (SAPUI5)  (c) Copyright 2009-2013 SAP AG. All rights reserved",
+      "size" : 1107,
+      "compressedSize" : 485,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.uiext.inbox.SubstitutionRulesManagerUtils",
+      "description" : "Utility functions for Substitution Rules Manager",
+      "size" : 6617,
+      "compressedSize" : 3690,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.uiext.inbox.TaskInitialFilters",
+      "description" : "Provides a filter for list bindings",
+      "size" : 8316,
+      "compressedSize" : 4608,
+      "required" : ["jquery.sap.global", "sap.uiext.inbox.InboxUtils"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.uiext.inbox.library",
+      "description" : "Initialization Code and shared classes of library sap.uiext.inbox (1.10.0)",
+      "size" : 1265,
+      "compressedSize" : 574,
+      "required" : ["jquery.sap.global", "sap.ui.core.Core", "sap.ui.core.library", "sap.ui.commons.library", "sap.ui.ux3.library"],
+      "includes" : []
+    }
+  ]
+}

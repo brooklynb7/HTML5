@@ -1,0 +1,145 @@
+{
+	"categories" : [
+		{
+			"name" : "Graphics Cards", 
+			"id" : "GC",
+			"count" : 3
+		}, {
+			"name" : "Accessoires", 
+			"id" : "AC",
+			"count" : 5
+		}, {
+			"name" : "Printer", 
+			"id" : "PR",
+			"count" : 2
+		}, {
+			"name" : "Flat Screens", 
+			"id" : "FS",
+			"count" : 3
+		}, {
+			"name" : "Laptops", 
+			"id" : "LT",
+			"count" : 1
+		}, {
+			"name" : "Keyboards", 
+			"id" : "KB",
+			"count" : 2
+		}
+	],
+	
+	"products" : [
+		{
+			"id" : "id_1",
+			"name" : "Gladiator MX", 
+			"category" : "GC",
+			"vendor" : "Smartcards",
+			"price" : 81.70, 
+			"img" : "img/product/HT-1071.jpg"
+		}, {
+			"id" : "id_2",
+			"name" : "Psimax", 
+			"category" : "GC",
+			"vendor" : "Smartcards", 
+			"price" : 399.99, 
+			"img" :"img/product/HT-1073.jpg"
+		}, {
+			"id" : "id_3",
+			"name" : "Hurricane GX", 
+			"category" : "GC",
+			"vendor" : "Ultrasonic United", 
+			"price" : 219,
+			"img" :"img/product/HT-1072.jpg"
+		}, {
+			"id" : "id_4",
+			"name" : "Webcam", 
+			"category" : "AC",
+			"vendor" : "Technocom", 
+			"price" : 59, 
+			"img" :"img/product/HT-1112.jpg"
+		}, {
+			"id" : "id_5",
+			"name" : "Monitor Locking Cable", 
+			"category" : "AC",
+			"vendor" : "Technocom", 
+			"price" : 13.49, 
+			"img" :"img/product/HT-1111.jpg"
+		}, {
+			"id" : "id_6",
+			"name" : "Laptop Case", 
+			"category" : "AC",
+			"vendor" : "Red Point Stores", 
+			"price" : 78.99, 
+			"img" :"img/product/HT-1114.jpg"
+		}, {
+			"id" : "id_7",
+			"name" : "Removable CD/DVD", 
+			"category" : "AC",
+			"vendor" : "Red Point Stores", 
+			"price" : 7.99, 
+			"img" :"img/product/HT-2027.jpg"
+		}, {
+			"id" : "id_8",
+			"name" : "USB Stick 16 GByte", 
+			"category" : "AC",
+			"vendor" : "Red Point Stores", 
+			"price" : 17.19, 
+			"img" :"img/product/HT-6120.jpg"
+		}, {
+			"id" : "id_9",
+			"name" : "Deskjet Super Highspeed", 
+			"category" : "PR",
+			"vendor" : "Alpha Printers", 
+			"price" : 117.19, 
+			"img" :"img/product/HT-1052.jpg"
+		}, {
+			"id" : "id_10",
+			"name" : "Laser Allround Pro", 
+			"category" : "PR",
+			"vendor" : "Printer for All", 
+			"price" : 39.99, 
+			"img" :"img/product/HT-1040.jpg"
+		}, {
+			"id" : "id_11",
+			"name" : "Flat S", 
+			"category" : "FS",
+			"vendor" : "Very Best Screens", 
+			"price" : 339, 
+			"img" :"img/product/HT-1030.jpg"
+		}, {
+			"id" : "id_12",
+			"name" : "Flat Medium", 
+			"category" : "FS",
+			"vendor" : "Very Best Screens", 
+			"price" : 639, 
+			"img" :"img/product/HT-1032.jpg"
+		}, {
+			"id" : "id_13",
+			"name" : "Flat X-large II", 
+			"category" : "FS",
+			"vendor" : "Very Best Screens", 
+			"price" : 1239, 
+			"img" :"img/product/HT-1138.jpg"
+		}, {
+			"id" : "id_14",
+			"name" : "High End Laptop 2b", 
+			"category" : "LT",
+			"vendor" : "Titanium", 
+			"price" : 939, 
+			"img" :"img/product/HT-1010.jpg"
+		}, {
+			"id" : "id_15",
+			"name" : "Very Natural Keyboard", 
+			"category" : "KB",
+			"vendor" : "Oxynum", 
+			"price" : 56.49, 
+			"img" :"img/product/HT-1063.jpg"
+		}, {
+			"id" : "id_16",
+			"name" : "Hardcore Hacker", 
+			"category" : "KB",
+			"vendor" : "Fasttech", 
+			"price" : 89, 
+			"img" :"img/product/HT-1064.jpg"
+		}
+	]
+}

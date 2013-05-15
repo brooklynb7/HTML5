@@ -1,0 +1,158 @@
+{
+  "modules" : [
+    {
+      "name" : "sap.service.visualization.ChartOption",
+      "description" : "Provides control sap.service.visualization.ChartOption.",
+      "size" : 9300,
+      "compressedSize" : 3135,
+      "required" : ["jquery.sap.global", "sap.service.visualization.library", "sap.ui.core.Element"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.service.visualization.Themings",
+      "description" : "Provides control sap.service.visualization.Themings.",
+      "size" : 12012,
+      "compressedSize" : 5018,
+      "required" : ["jquery.sap.global", "sap.service.visualization.library", "sap.ui.core.Element"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.service.visualization.chart.Bar",
+      "description" : "Provides control sap.service.visualization.chart.Bar.",
+      "size" : 37503,
+      "compressedSize" : 8278,
+      "required" : ["jquery.sap.global", "sap.service.visualization.library", "sap.ui.core.Control", "sap.service.visualization.chart.ChartSourceCode.libs.json2", "sap.service.visualization.chart.ChartSourceCode.libs.saprivbase", "sap.service.visualization.chart.ChartSourceCode.libs.sapcommonglobalization", "sap.service.visualization.chart.ChartSourceCode.libs.saprivmodules", "sap.ui.core.theming.Parameters"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.service.visualization.chart.BarRenderer",
+      "description" : "! CVOM HTML5 charts  (c) Copyright 2009-2012 SAP AG. All rights reserved",
+      "size" : 1222,
+      "compressedSize" : 528,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.service.visualization.chart.ChartSourceCode.libs.jquery",
+      "size" : 187342,
+      "compressedSize" : 80357,
+      "required" : [],
+      "includes" : []
+    },
+    {
+      "name" : "sap.service.visualization.chart.ChartSourceCode.libs.json2",
+      "size" : 18028,
+      "compressedSize" : 3026,
+      "required" : [],
+      "includes" : []
+    },
+    {
+      "name" : "sap.service.visualization.chart.ChartSourceCode.libs.sapcommonglobalization",
+      "size" : 440926,
+      "compressedSize" : 198495,
+      "required" : [],
+      "includes" : []
+    },
+    {
+      "name" : "sap.service.visualization.chart.ChartSourceCode.libs.saprivbase",
+      "size" : 18390,
+      "compressedSize" : 7736,
+      "required" : [],
+      "includes" : []
+    },
+    {
+      "name" : "sap.service.visualization.chart.ChartSourceCode.libs.saprivmodules",
+      "size" : 1158067,
+      "compressedSize" : 492688,
+      "required" : [],
+      "includes" : []
+    },
+    {
+      "name" : "sap.service.visualization.chart.ChartSourceCode.libs.saprivthemes",
+      "size" : 4321,
+      "compressedSize" : 2734,
+      "required" : [],
+      "includes" : []
+    },
+    {
+      "name" : "sap.service.visualization.chart.Column",
+      "description" : "Provides control sap.service.visualization.chart.Column.",
+      "size" : 38335,
+      "compressedSize" : 8679,
+      "required" : ["jquery.sap.global", "sap.service.visualization.library", "sap.ui.core.Control", "sap.service.visualization.chart.ChartSourceCode.libs.json2", "sap.service.visualization.chart.ChartSourceCode.libs.saprivbase", "sap.service.visualization.chart.ChartSourceCode.libs.sapcommonglobalization", "sap.service.visualization.chart.ChartSourceCode.libs.saprivmodules", "sap.ui.core.theming.Parameters"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.service.visualization.chart.ColumnRenderer",
+      "description" : "! CVOM HTML5 charts  (c) Copyright 2009-2012 SAP AG. All rights reserved",
+      "size" : 1237,
+      "compressedSize" : 540,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.service.visualization.chart.Combination",
+      "description" : "Provides control sap.service.visualization.chart.Combination.",
+      "size" : 40364,
+      "compressedSize" : 9057,
+      "required" : ["jquery.sap.global", "sap.service.visualization.library", "sap.ui.core.Control", "sap.service.visualization.chart.ChartSourceCode.libs.json2", "sap.service.visualization.chart.ChartSourceCode.libs.saprivbase", "sap.service.visualization.chart.ChartSourceCode.libs.sapcommonglobalization", "sap.service.visualization.chart.ChartSourceCode.libs.saprivmodules", "sap.ui.core.theming.Parameters"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.service.visualization.chart.CombinationRenderer",
+      "description" : "! CVOM HTML5 charts  (c) Copyright 2009-2012 SAP AG. All rights reserved",
+      "size" : 1259,
+      "compressedSize" : 560,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.service.visualization.chart.Line",
+      "description" : "Provides control sap.service.visualization.chart.Line.",
+      "size" : 38043,
+      "compressedSize" : 8314,
+      "required" : ["jquery.sap.global", "sap.service.visualization.library", "sap.ui.core.Control", "sap.service.visualization.chart.ChartSourceCode.libs.json2", "sap.service.visualization.chart.ChartSourceCode.libs.saprivbase", "sap.service.visualization.chart.ChartSourceCode.libs.sapcommonglobalization", "sap.service.visualization.chart.ChartSourceCode.libs.saprivmodules", "sap.ui.core.theming.Parameters"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.service.visualization.chart.LineRenderer",
+      "description" : "! CVOM HTML5 charts  (c) Copyright 2009-2012 SAP AG. All rights reserved",
+      "size" : 1223,
+      "compressedSize" : 532,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.service.visualization.chart.Pie",
+      "description" : "Provides control sap.service.visualization.chart.Pie.",
+      "size" : 45768,
+      "compressedSize" : 11712,
+      "required" : ["jquery.sap.global", "sap.service.visualization.library", "sap.ui.core.Control", "sap.service.visualization.chart.ChartSourceCode.libs.json2", "sap.service.visualization.chart.ChartSourceCode.libs.saprivbase", "sap.service.visualization.chart.ChartSourceCode.libs.sapcommonglobalization", "sap.service.visualization.chart.ChartSourceCode.libs.saprivmodules", "sap.ui.core.theming.Parameters"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.service.visualization.chart.PieRenderer",
+      "description" : "! CVOM HTML5 charts  (c) Copyright 2009-2012 SAP AG. All rights reserved",
+      "size" : 1218,
+      "compressedSize" : 528,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.service.visualization.dataset.SimpleDMDataset",
+      "description" : "Provides control sap.service.visualization.dataset.SimpleDMDataset.",
+      "size" : 15767,
+      "compressedSize" : 2953,
+      "required" : ["jquery.sap.global", "sap.service.visualization.library", "sap.ui.core.Element", "sap.service.visualization.chart.ChartSourceCode.libs.json2", "sap.service.visualization.chart.ChartSourceCode.libs.saprivbase", "sap.service.visualization.chart.ChartSourceCode.libs.sapcommonglobalization", "sap.service.visualization.chart.ChartSourceCode.libs.saprivmodules"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.service.visualization.library",
+      "description" : "Initialization Code and shared classes of library sap.service.visualization (1.10.0)",
+      "size" : 1457,
+      "compressedSize" : 714,
+      "required" : ["jquery.sap.global", "sap.ui.core.Core", "sap.ui.core.library"],
+      "includes" : []
+    }
+  ]
+}

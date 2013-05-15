@@ -1,0 +1,122 @@
+<?xml version="1.0" ?>
+<library name="sap.ui.table">
+  <module name="sap.ui.table.Column" size="32577" compressedSize="9231">
+    <description>Provides control sap.ui.table.Column.</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.table.library"/>
+      <module name="sap.ui.core.Element"/>
+      <module name="sap.ui.core.RenderManager"/>
+      <module name="sap.ui.model.Type"/>
+      <module name="sap.ui.model.Filter"/>
+      <module name="sap.ui.model.Sorter"/>
+      <module name="sap.ui.commons.Image"/>
+      <module name="sap.ui.commons.Label"/>
+      <module name="sap.ui.commons.TextField"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.table.ColumnMenu" size="12040" compressedSize="4987">
+    <description>Provides control sap.ui.table.ColumnMenu.</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.table.library"/>
+      <module name="sap.ui.commons.Menu"/>
+      <module name="sap.ui.core.RenderManager"/>
+      <module name="sap.ui.commons.MenuItem"/>
+      <module name="sap.ui.commons.TextField"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.table.ColumnMenuRenderer" size="494" compressedSize="353">
+    <description>Provides default renderer for control sap.ui.commons.ComboBox</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.core.Renderer"/>
+      <module name="sap.ui.commons.MenuRenderer"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.table.DataTable" size="10871" compressedSize="1964">
+    <description>Provides control sap.ui.table.DataTable.</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.table.library"/>
+      <module name="sap.ui.table.TreeTable"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.table.DataTableRenderer" size="474" compressedSize="357">
+    <description>Provides default renderer for control sap.ui.table.DataTable</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.core.Renderer"/>
+      <module name="sap.ui.table.TreeTableRenderer"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.table.Row" size="5884" compressedSize="616">
+    <description>Provides control sap.ui.table.Row.</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.table.library"/>
+      <module name="sap.ui.core.Element"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.table.Table" size="155023" compressedSize="52938">
+    <description>Provides control sap.ui.table.Table.</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.table.library"/>
+      <module name="sap.ui.core.Control"/>
+      <module name="sap.ui.model.SelectionModel"/>
+      <module name="sap.ui.core.delegate.ItemNavigation"/>
+      <module name="sap.ui.core.theming.Parameters"/>
+      <module name="sap.ui.core.ScrollBar"/>
+      <module name="sap.ui.commons.TextView"/>
+      <module name="sap.ui.table.Row"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.table.TableRenderer" size="21048" compressedSize="13769">
+    <description>Provides default renderer for control sap.ui.table.Table</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.table.TreeTable" size="16328" compressedSize="5793">
+    <description>Provides control sap.ui.table.TreeTable.</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.table.library"/>
+      <module name="sap.ui.table.Table"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.table.TreeTableRenderer" size="760" compressedSize="576">
+    <description>Provides default renderer for control sap.ui.table.TreeTable</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.core.Renderer"/>
+      <module name="sap.ui.table.TableRenderer"/>
+    </requires>
+    <includes>
+    </includes>
+  </module>  <module name="sap.ui.table.library" size="7197" compressedSize="1559">
+    <description>Initialization Code and shared classes of library sap.ui.table (1.10.0)</description>
+    <requires>
+      <module name="jquery.sap.global"/>
+      <module name="sap.ui.core.Core"/>
+      <module name="sap.ui.core.library"/>
+      <module name="sap.ui.commons.library"/>
+    </requires>
+    <includes>
+      <module name="sap.ui.table.NavigationMode"/>
+      <module name="sap.ui.table.SelectionBehavior"/>
+      <module name="sap.ui.table.SelectionMode"/>
+      <module name="sap.ui.table.SortOrder"/>
+      <module name="sap.ui.table.VisibleRowCountMode"/>
+    </includes>
+  </module></library>

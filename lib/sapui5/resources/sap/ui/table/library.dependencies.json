@@ -1,0 +1,92 @@
+{
+  "modules" : [
+    {
+      "name" : "sap.ui.table.Column",
+      "description" : "Provides control sap.ui.table.Column.",
+      "size" : 32577,
+      "compressedSize" : 9231,
+      "required" : ["jquery.sap.global", "sap.ui.table.library", "sap.ui.core.Element", "sap.ui.core.RenderManager", "sap.ui.model.Type", "sap.ui.model.Filter", "sap.ui.model.Sorter", "sap.ui.commons.Image", "sap.ui.commons.Label", "sap.ui.commons.TextField"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.table.ColumnMenu",
+      "description" : "Provides control sap.ui.table.ColumnMenu.",
+      "size" : 12040,
+      "compressedSize" : 4987,
+      "required" : ["jquery.sap.global", "sap.ui.table.library", "sap.ui.commons.Menu", "sap.ui.core.RenderManager", "sap.ui.commons.MenuItem", "sap.ui.commons.TextField"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.table.ColumnMenuRenderer",
+      "description" : "Provides default renderer for control sap.ui.commons.ComboBox",
+      "size" : 494,
+      "compressedSize" : 353,
+      "required" : ["jquery.sap.global", "sap.ui.core.Renderer", "sap.ui.commons.MenuRenderer"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.table.DataTable",
+      "description" : "Provides control sap.ui.table.DataTable.",
+      "size" : 10871,
+      "compressedSize" : 1964,
+      "required" : ["jquery.sap.global", "sap.ui.table.library", "sap.ui.table.TreeTable"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.table.DataTableRenderer",
+      "description" : "Provides default renderer for control sap.ui.table.DataTable",
+      "size" : 474,
+      "compressedSize" : 357,
+      "required" : ["jquery.sap.global", "sap.ui.core.Renderer", "sap.ui.table.TreeTableRenderer"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.table.Row",
+      "description" : "Provides control sap.ui.table.Row.",
+      "size" : 5884,
+      "compressedSize" : 616,
+      "required" : ["jquery.sap.global", "sap.ui.table.library", "sap.ui.core.Element"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.table.Table",
+      "description" : "Provides control sap.ui.table.Table.",
+      "size" : 155023,
+      "compressedSize" : 52938,
+      "required" : ["jquery.sap.global", "sap.ui.table.library", "sap.ui.core.Control", "sap.ui.model.SelectionModel", "sap.ui.core.delegate.ItemNavigation", "sap.ui.core.theming.Parameters", "sap.ui.core.ScrollBar", "sap.ui.commons.TextView", "sap.ui.table.Row"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.table.TableRenderer",
+      "description" : "Provides default renderer for control sap.ui.table.Table",
+      "size" : 21048,
+      "compressedSize" : 13769,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.table.TreeTable",
+      "description" : "Provides control sap.ui.table.TreeTable.",
+      "size" : 16328,
+      "compressedSize" : 5793,
+      "required" : ["jquery.sap.global", "sap.ui.table.library", "sap.ui.table.Table"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.table.TreeTableRenderer",
+      "description" : "Provides default renderer for control sap.ui.table.TreeTable",
+      "size" : 760,
+      "compressedSize" : 576,
+      "required" : ["jquery.sap.global", "sap.ui.core.Renderer", "sap.ui.table.TableRenderer"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.table.library",
+      "description" : "Initialization Code and shared classes of library sap.ui.table (1.10.0)",
+      "size" : 7197,
+      "compressedSize" : 1559,
+      "required" : ["jquery.sap.global", "sap.ui.core.Core", "sap.ui.core.library", "sap.ui.commons.library"],
+      "includes" : ["sap.ui.table.NavigationMode", "sap.ui.table.SelectionBehavior", "sap.ui.table.SelectionMode", "sap.ui.table.SortOrder", "sap.ui.table.VisibleRowCountMode"]
+    }
+  ]
+}

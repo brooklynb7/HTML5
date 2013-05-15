@@ -1,0 +1,462 @@
+
+/*!
+ * SAP UI development toolkit for HTML5 (SAPUI5)
+ *
+ * (c) Copyright 2009-2012 SAP AG. All rights reserved
+ */
+/* Global CSS for 'base' theme */
+// central colors
+// Brand Colors
+@sapUiBrand: #F0AB00;     // SAP Gold #f0ab00
+@sapUiHighlight: #111177;
+@sapUiSelected: @sapUiHighlight;
+@sapUiActive: @sapUiHighlight;
+
+// Accent Colors
+@sapUiPurple: purple;
+@sapUiOrange: orange;
+@sapUiGreen: green;
+@sapUiBlue: blue;
+@sapUiRed: red;
+@sapUiYellow: yellow;
+
+// Base Colors
+@sapUiBase: black;
+@sapUiBaseBG: white;
+@sapUiBaseBorder: @sapUiBase;
+@sapUiBaseText: @sapUiBase;
+@sapUiBaseLine: @sapUiBase;
+
+// Background Colors
+// Grayscale Backgrounds
+@sapUiWhite: #FFFFFF;
+@sapUiExtraLightBG: @sapUiBaseBG;
+@sapUiLightBG: lightgray;
+@sapUiMediumBG: gray;
+@sapUiDarkBG: darkgray;
+@sapUiDeepBG: black;
+@sapUiBlackBG: #000000;
+
+// Tinted Backgrounds
+@sapUiHoverBG: grey;
+@sapUiMediumAltBG: grey;
+@sapUiDarkAltBG: darkgrey;
+
+// Button Background Colors
+@sapUiButtonStandardBG: @sapUiBaseBG;
+@sapUiButtonEmphasizedBG: yellow;
+@sapUiButtonNegativeBG: red;
+@sapUiButtonPositiveBG: green;
+
+// Semantic Background Colors
+@sapUiErrorBG: #FF9A90;
+@sapUiWarningBG: #FAF2B0;
+@sapUiReadOnlyBG: grey;
+
+// Text Colors
+@sapUiExtraLightText: lightgray;
+@sapUiLightText: lightgray;
+@sapUiMediumText: grey;
+@sapUiDarkText: darkgrey;
+@sapUiDeepText: black;
+@sapUiText: @sapUiBaseText; // black
+@sapUiTextInverted: @sapUiWhite;
+
+// Link
+@sapUiLink: #0000FF;
+@sapUiLinkInverted: @sapUiLink;
+@sapUiLinkVisited: #800080;               // the color for a vistited link 
+@sapUiLinkActive: #FF0000;                // the color for a link while being clicked 
+@sapUiLinkHover: #FF0000;                 // the color for a link while being hovered 
+
+// Semantic Text Colors
+@sapUiNegativeText: red;
+@sapUiPositiveText: #B5E7A8;
+
+// Grayscale Borders
+@sapUiExtraLightBorder: lightgrey;
+@sapUiLightBorder: grey;
+@sapUiMediumBorder: @sapUiBaseBorder;
+@sapUiDarkBorder: @sapUiBaseBorder;
+
+// Semantic Border Colors
+@sapUiErrorBorder: red;
+@sapUiWarningBorder: yellow;
+
+// Line Colors
+@sapUiLightLine: lightgrey;
+@sapUiMediumLine: grey;
+@sapUiEmphasizedLine: @sapUiHighlight;
+@sapUiDarkLine: darkgrey;
+
+// Table Colors
+@sapUiTableRowBG: @sapUiWhite;
+@sapUiTableRowAlternatingBG: @sapUiWhite;
+@sapUiTableRowSelectionBG: @sapUiHighlight;
+@sapUiTableRowSelectionReadOnlyBG: @sapUiHighlight;
+@sapUiTableRowHoverBG: @sapUiHoverBG;
+
+// MOBILE-specific, but still very global-like:
+@sapUiListBG: #f7f7f7;
+
+
+/* ---------------------------------------------------------------------------------------- */
+/* TMP during LESS convertion ---- to be deleted */
+@sapUiTextColor: green; /* may be required by SubstitutionRulesManager.css in inbox lib */
+@sapUiTextTitleColor: green;
+@sapUiTextSelectionColor: green;
+
+/* ---------------------------------------------------------------------------------------- */
+
+@sapUiTextDisabled: lighten(@sapUiText, 60%); // the color for disabled text
+@sapUiTextTitle: @sapUiText;  // the text color for titles of all kinds
+@sapUiTextSelection: @sapUiTextInverted; // the color for selected text
+@sapUiTextfieldBackground: @sapUiWhite; // better to have an own parameter insted of using sapUiWhite
+
+@sapUiLineHeight: 21px;
+
+@sapUiFontFamily: Arial,Helvetica,sans-serif;  // the default font
+@sapUiFontMonospaceFamily: Lucida Console;     // the default monospacefont
+@sapUiFontSize: medium;                        // the default font size
+@sapUiFontLargeSize: large;                    // TODO: might also be title font size
+@sapUiFontSmallSize: small;
+@sapUiFontHeader1Size: xx-large;
+@sapUiFontHeader2Size: x-large;
+@sapUiFontHeader3Size: @sapUiFontLargeSize;
+@sapUiFontHeader4Size: @sapUiFontSize;
+@sapUiFontHeader5Size: @sapUiFontSize;
+@sapUiFontHeader6Size: @sapUiFontSize;
+
+// SOME important control-specific parameters...
+
+@sapUiButtonBorderColor: @sapUiMediumBorder; // needed beacuse different in GR and UX
+@sapUiButtonBackgroundColor: @sapUiButtonStandardBG; // to be renamed????
+@sapUiButtonDisabledBorderColor: @sapUiMediumBorder; // needed because different in GR, HCB and UX
+@sapUiButtonDisabledBackgroundColor: @sapUiExtraLightBG; // needed, different in every theme
+@sapUiButtonHoverBorderColor: @sapUiMediumBorder; // needed beacuse different in GR and UX
+@sapUiButtonHoverBackgroundColor: @sapUiMediumBG; // needed beacuse different in GR, Platinum and UX
+@sapUiButtonActiveBorderColor: @sapUiMediumBorder; // needed beacuse different in GR and UX
+@sapUiButtonActiveBackgroundColor: @sapUiDarkBG; // needed beacuse different in GR, Platinum and UX
+@sapUiButtonEmphasizedBorderColor: @sapUiButtonBorderColor;
+@sapUiButtonEmphasizedBackgroundColor: @sapUiButtonEmphasizedBG;
+@sapUiButtonEmphasizedDisabledBorderColor: @sapUiButtonEmphasizedBorderColor;
+@sapUiButtonEmphasizedDisabledBackgroundColor: @sapUiButtonEmphasizedBackgroundColor;
+@sapUiButtonEmphasizedHoverBorderColor: @sapUiButtonHoverBorderColor;
+@sapUiButtonEmphasizedHoverBackgroundColor: @sapUiButtonHoverBackgroundColor;
+@sapUiButtonEmphasizedActiveBorderColor: @sapUiButtonActiveBorderColor;
+@sapUiButtonEmphasizedActiveBackgroundColor: @sapUiButtonActiveBackgroundColor;
+@sapUiButtonAcceptBorderColor: @sapUiButtonBorderColor; 
+@sapUiButtonAcceptBackgroundColor: @sapUiButtonPositiveBG;
+@sapUiButtonAcceptDisabledBorderColor: @sapUiButtonAcceptBorderColor;
+@sapUiButtonAcceptDisabledBackgroundColor: @sapUiButtonAcceptBackgroundColor;
+@sapUiButtonAcceptHoverBorderColor: @sapUiButtonHoverBorderColor;
+@sapUiButtonAcceptHoverBackgroundColor: @sapUiButtonHoverBackgroundColor;
+@sapUiButtonAcceptActiveBorderColor: @sapUiButtonActiveBorderColor;
+@sapUiButtonAcceptActiveBackgroundColor: @sapUiButtonActiveBackgroundColor;
+@sapUiButtonRejectBorderColor: @sapUiButtonBorderColor;
+@sapUiButtonRejectBackgroundColor: @sapUiButtonNegativeBG;
+@sapUiButtonRejectDisabledBorderColor: @sapUiButtonRejectBorderColor;
+@sapUiButtonRejectDisabledBackgroundColor: @sapUiButtonRejectBackgroundColor;
+@sapUiButtonRejectHoverBorderColor: @sapUiButtonHoverBorderColor;
+@sapUiButtonRejectHoverBackgroundColor: @sapUiButtonHoverBackgroundColor;
+@sapUiButtonRejectActiveBorderColor: @sapUiButtonActiveBorderColor;
+@sapUiButtonRejectActiveBackgroundColor: @sapUiButtonActiveBackgroundColor;
+@sapUiButtonLiteBackgroundColor: transparent;
+@sapUiToggleButtonPressedDisabledBackgroundColor: #D8D8E8;
+@sapUiToggleButtonPressedBackgroundColor: @sapUiHighlight;
+
+// semantic colors
+@sapUiPositiveBG: @sapUiPositiveText; // no positive background defined by UX, but using text color as background may be confusing
+
+// default shadow for popups 
+@sapUiShadowTint: #000;
+@sapUiShadow: 5px 5px 10px fade(@sapUiShadowTint,50%);
+.sapUiExtInboxToolbarRight{
+       float:right;
+}
+
+.sapUiExtInboxfontBold{
+       font-weight:bold; 
+}
+
+.sapUiExtInboxCustomTable > .sapUiTblCtrlCnt > .sapUiTblCtrl > tbody > tr > td > .sapUiTblCnt > .sapUiTf, .sapUiTblCtrl > tbody > tr > td > .sapUiTblCnt > .sapUiTfCombo {        
+        font-size:12px;  
+}
+    
+.sapUiExtInboxCustomTable > .sapUiTblCtrlCnt > .sapUiTblCtrl > thead > tr > th > .sapUiTblCnt > .sapUiLbl{
+  /*     font-family: BentonSans, sans-serif;*/
+        font-size:13px;
+        font-weight:bold;    
+}	
+    
+.sapUiExtInboxCustomTable {
+  /*      font-family: BentonSans, sans-serif;*/
+        font-size:12px;
+}
+
+
+.sapUiExtInboxToolBarContainerHeight{
+     /*  height: 27px;*/
+}
+
+.sapUiExtInboxRefreshButtonHeight{
+      
+}
+
+.sapUiExtInboxActionButtonsToolbarContainer > .sapUiTbCont > .sapUiTbInner{
+	margin-right: 0px;
+	}
+	
+/*
+.sapUiExtInboxExactBrw > .sapUiUx3ExactLstTop > .sapUiUx3ExactLstLst {
+        visibility:hidden;
+        width:0px;
+ }
+.sapUiExtInboxExactBrw > .sapUiUx3ExactLstTop > .sapUiUx3ExactLstHead{
+        visibility:hidden;
+        width:0px;
+}
+.sapUiExtInboxExactBrw > .sapUiUx3ExactLstTop > .sapUiUx3ExactLstRSz{
+		visibility:hidden;
+		width:0px;
+		left:0px;
+}
+.sapUiExtInboxExactBrw > .sapUiUx3ExactLstTop > .sapUiUx3ExactLstCntnt{
+	right: auto !important;
+    left: auto !important;
+    width:100%;
+}
+*/
+
+.sapUiExtInboxSearchField{
+   /* height: 27px;*/
+    width : 25ex;
+}
+
+.sapUiExtInboxSearchField > .sapUiSearchFieldTf{
+	/* height:27px;*/
+}
+
+
+.sapUiExtInboxComboBox {
+	width : 25ex;
+}
+
+.sapUiExtInboxEmptyLabel{
+ 		 height: 22px;
+ 		 width: 100%;
+ }
+ 
+
+ .sapUiExtInboxLnkDsbl {
+    text-decoration: none !important;
+}
+
+.sapUiExtInboxLnkNoUnderline {
+    text-decoration: none !important;
+}
+
+.sapUiExtInboxRedColor, .sapUiExtInboxRedColor:hover {
+    color: #ED6F58;
+    font-weight:bold;
+    text-decoration: none;
+}
+
+.sapUiExtInboxSettingsButton{
+	/*background-color: transparent;*/
+}
+
+.sapUiExtInboxSettingsButton:focus, .sapUiExtInboxSettingsButton:hover{
+	outline: 1px solid #00689E;
+	background-color: transparent;
+	color:FF0000;
+}
+
+.sapUiExtInboxBackgroundColour{
+    background-color: white;
+}
+.sapUiExtInboxBorderFillColor {
+	border-style:solid;
+	border-color:#FFFFFF #FFFFFF #F2F2F2 #FFFFFF;
+}
+
+
+.sapUiExtInboxRowRepeaterLayoutBorder {
+	border-style:solid;
+	border-color:lightgrey;
+	border-width: 1px 1px 0 1px;
+}
+
+.sapUiExtInboxRowRepeaterBorder {
+	border-bottom: 1px solid lightGrey;
+}
+
+.sapUIExtInboxTextGrayColor {
+	color: DarkGray;
+}
+
+.sapUIExtInboxCustomAttributesBorder{
+	border-top:1px solid lightGrey;
+	border-collapse: initial;
+	padding-top: 10px;
+}
+
+.sapUIExtInboxCATaskDetailsPadRight{
+	padding-right: 60px;
+}
+
+.sapUIExtInboxDotSeperatorStyle{
+	color: #555;
+	font-weight:bold; 
+}
+
+.sapUiExtInboxRowRepeaterTaskInitiatorPadLeft{
+	padding-left: 20px;
+}
+
+.sapUiExtInboxRowRepeaterTaskDetailsStyle{
+	padding-left: 15px;
+}
+
+.sapUiExtInboxRRFirstRowStyle{
+	padding-top: 10px;
+}
+
+.sapUIExtInboxRRTextColourStyle{
+	color: #555;
+}
+
+.sapUiExtInboxRRPaddingRight{
+	padding-right: 20px;
+}
+
+.sapUiExtInboxRowRepeaterSortBy{
+      background-color: transparent;
+     /*   border-style:none;
+	   border-color:transparent;
+	   border-width: 0px 0px 0 0px;
+	   */
+}
+
+.sapUiExtInboxCustomAttLabel{
+	color: #8E8E8E;
+    text-align: right !important;
+}
+
+.sapUiExtInboxCustomAttValue{
+	 width: 150px;
+}
+
+.sapUiExtInboxRefreshedOnStyle{
+	color: #A4A4A4;	
+	padding-top: 4px;
+}
+
+.sapUiExtInboxPaddingBottom{
+	padding-bottom: 1px;
+}
+
+.sapUiExtInboxSegmentedButtonTransparent{
+	background-color: transparent !important;
+}
+
+.sapUiExtInboxSegmentedButtonTransparent:hover {
+background-color: #666 !important;
+}
+
+.sapUiExtInboxSegmentedButtonTransparentSelected{
+	background-color: #007CC0 !important;
+}
+
+.sapUiExtInboxValueHelpTextStyle{
+	font-style:italic;
+   	font-weight:normal;
+   	color: #8E8E8E;
+}
+/* ============================================= */
+/* CSS for controlsap.uiext.inbox/SubstitutionRulesManager.control */
+/* ============================================= */
+.sapuiextinbox-SubstitutionRulesManager {
+	color: @sapUiTextColor;
+	border: 1px solid blue;
+}
+
+.newSubstitutionLink {
+	font-weight: bold;
+	font-size: 14px;
+}
+
+.verticalLayoutStyle { 
+	margin : 0 20px;
+}
+
+.greyFillColor {
+	background-color: #E0E0E0;
+	border-color: #E0E0E0;
+	border: 1px solid;
+}
+
+.borderFillColorGreen {
+	border-color: #D9F7B8;
+	border-style:solid;
+	border-width: 1px 1px 0 1px;
+}
+
+.shadowEffectGreen {
+	box-shadow: 0 0 10px 5px #D9F7B8;
+	border-collapse: separate;
+}
+
+.borderFillColorGray {
+	border-color: #D8D8D8;
+	border-style:solid;
+	border-width: 1px 1px 0 1px;
+}
+
+.shadowEffectGray {
+	box-shadow: 0 0 10px 5px #D8D8D8;
+	border-collapse: separate;
+}
+
+ .blueFontColor{
+	color: #4589DF;
+	font-weight: bold;
+}
+         
+.grayFontColor{
+    color: #838383;
+}
+
+.blackFontColor{
+    color: black;
+}
+
+
+.textFontColour{
+    color: white;
+}
+
+.deleteImageStyle{
+    height: 16px;
+    width: 16px;
+}
+.sapUiUx3OCContent {
+	overflow-y: auto;
+	max-height: 90%;
+}
+.customMargin{
+	padding-right: 3px;
+}
+.mySapUiMltPadRight {
+	padding: 3px 50px 8px 1px;
+}
+.mysapUiMlt {
+	color: #C7C7C7;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+}
+.sapUiExtInboxSubstitutionValueHelpTextStyle{
+	font-style:italic;
+   	font-weight:normal;
+   	color: #8E8E8E;
+}

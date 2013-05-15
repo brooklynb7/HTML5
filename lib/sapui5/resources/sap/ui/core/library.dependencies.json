@@ -1,0 +1,1599 @@
+{
+  "modules" : [
+    {
+      "name" : "jquery-1.7.1",
+      "size" : 248235,
+      "required" : [],
+      "includes" : [],
+      "excludeFromAllInOne" : true
+    },
+    {
+      "name" : "jquery-sap",
+      "size" : 217561,
+      "required" : [],
+      "includes" : ["jquery.sap.global", "jquery.sap.dom", "jquery.sap.events", "jquery.sap.keycodes", "jquery.sap.mobile", "jquery.sap.properties", "jquery.sap.sjax", "jquery.sap.resources", "jquery.sap.script", "jquery.sap.encoder", "jquery.sap.strings", "jquery.sap.xml"]
+    },
+    {
+      "name" : "jquery-ui-core",
+      "size" : 415,
+      "required" : [],
+      "includes" : [],
+      "excludeFromAllInOne" : true
+    },
+    {
+      "name" : "jquery-ui-datepicker",
+      "size" : 427,
+      "required" : [],
+      "includes" : [],
+      "excludeFromAllInOne" : true
+    },
+    {
+      "name" : "jquery-ui-position",
+      "size" : 423,
+      "required" : [],
+      "includes" : [],
+      "excludeFromAllInOne" : true
+    },
+    {
+      "name" : "jquery.sap.dom",
+      "description" : "Provides functionality related to DOM analysis and manipulation which is not provided by jQuery itself.",
+      "size" : 24539,
+      "compressedSize" : 7562,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "jquery.sap.encoder",
+      "description" : "Provides encoding functions for JavaScript.",
+      "size" : 12016,
+      "compressedSize" : 3663,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "jquery.sap.events",
+      "description" : "Provides functionality related to eventing.",
+      "size" : 37881,
+      "compressedSize" : 15449,
+      "required" : ["jquery.sap.global", "jquery.sap.keycodes"],
+      "includes" : []
+    },
+    {
+      "name" : "jquery.sap.global",
+      "size" : 67261,
+      "compressedSize" : 16796,
+      "required" : ["sap.ui.thirdparty.jquery.jquery-1.7.1", "sap.ui.thirdparty.jqueryui.jquery-ui-position"],
+      "includes" : []
+    },
+    {
+      "name" : "jquery.sap.history",
+      "description" : "! SAP UI development toolkit for HTML5 (SAPUI5)  (c) Copyright 2009-2013 SAP AG. All rights reserved",
+      "size" : 22148,
+      "compressedSize" : 4696,
+      "required" : ["jquery.sap.global", "jquery.sap.strings"],
+      "includes" : []
+    },
+    {
+      "name" : "jquery.sap.keycodes",
+      "description" : "Provides constants for key codes. Useful in the implementation of keypress/keydown event handlers.",
+      "size" : 5750,
+      "compressedSize" : 1168,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "jquery.sap.logger",
+      "description" : "Abandoned, empty module (since 1.1.2). Functionality has been integrated into module 'jquery.sap.global'.",
+      "size" : 281,
+      "compressedSize" : 163,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "jquery.sap.mobile",
+      "description" : "Provides common helper functions for the mobile version of UI5",
+      "size" : 20654,
+      "compressedSize" : 7325,
+      "required" : ["jquery.sap.global", "jquery.sap.dom", "jquery.sap.events"],
+      "includes" : []
+    },
+    {
+      "name" : "jquery.sap.properties",
+      "description" : "Provides access to Java-like properties files",
+      "size" : 7950,
+      "compressedSize" : 1822,
+      "required" : ["jquery.sap.global", "jquery.sap.sjax"],
+      "includes" : []
+    },
+    {
+      "name" : "jquery.sap.resources",
+      "description" : "Provides access to Java-like resource bundles in properties file format",
+      "size" : 12065,
+      "compressedSize" : 2729,
+      "required" : ["jquery.sap.global", "jquery.sap.properties"],
+      "includes" : []
+    },
+    {
+      "name" : "jquery.sap.script",
+      "description" : "Provides miscellaneous utility functions that might be useful for any script",
+      "size" : 11287,
+      "compressedSize" : 2568,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "jquery.sap.sjax",
+      "description" : "Provides convenience functions for synchronous communication, based on the jQuery.ajax() function.",
+      "size" : 7310,
+      "compressedSize" : 1262,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "jquery.sap.storage",
+      "description" : "Provides methods to store and retrieve data based on Web Storage API.",
+      "size" : 9475,
+      "compressedSize" : 1328,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "jquery.sap.strings",
+      "description" : "Provides useful string operations not available in pure JavaScript.",
+      "size" : 5622,
+      "compressedSize" : 1449,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "jquery.sap.ui",
+      "description" : "A bridge between the jQuery.sap plugin and the SAPUI5 Core",
+      "size" : 5442,
+      "compressedSize" : 1593,
+      "required" : ["jquery.sap.global", "sap.ui.Global"],
+      "includes" : []
+    },
+    {
+      "name" : "jquery.sap.xml",
+      "description" : "Provides xml parsing and error checking functionality.",
+      "size" : 4286,
+      "compressedSize" : 1716,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "js.testfwk",
+      "description" : "Provides helper functions for the testsuite",
+      "size" : 12722,
+      "compressedSize" : 7283,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "sap-ui-core",
+      "size" : 936240,
+      "required" : [],
+      "includes" : ["sap.ui.thirdparty.jquery.jquery-1.7.1", "sap.ui.thirdparty.jqueryui.jquery-ui-position", "jquery.sap.global", "sap.ui.core.Core", "jquery.sap.dom", "jquery.sap.events", "jquery.sap.keycodes", "jquery.sap.mobile", "jquery.sap.properties", "jquery.sap.sjax", "jquery.sap.resources", "jquery.sap.script", "sap.ui.Global", "sap.ui.base.EventProvider", "sap.ui.base.Object", "sap.ui.base.Interface", "sap.ui.base.Metadata", "sap.ui.base.Event", "sap.ui.base.ObjectPool", "sap.ui.base.DataType", "sap.ui.core.Configuration", "sap.ui.core.Control", "sap.ui.core.Element", "jquery.sap.strings", "sap.ui.base.ManagedObject", "sap.ui.base.ManagedObjectMetadata", "sap.ui.model.Model", "sap.ui.model.BindingMode", "sap.ui.model.Context", "sap.ui.model.Type", "sap.ui.model.CompositeBinding", "sap.ui.model.PropertyBinding", "sap.ui.model.Binding", "sap.ui.model.SimpleType", "sap.ui.model.ParseException", "sap.ui.base.Exception", "sap.ui.model.ValidateException", "sap.ui.model.FormatException", "sap.ui.core.ElementMetadata", "sap.ui.core.CustomStyleClassSupport", "sap.ui.core.FocusHandler", "sap.ui.core.ResizeHandler", "sap.ui.core.RenderManager", "jquery.sap.encoder", "sap.ui.core.UIArea", "jquery.sap.ui", "sap.ui.core.ThemeCheck", "sap.ui.core.Component", "sap.ui.core.ComponentMetadata"]
+    },
+    {
+      "name" : "sap-ui-core-lean",
+      "size" : 325130,
+      "required" : ["sap.ui.core.Core"],
+      "includes" : ["sap.ui.thirdparty.jquery.jquery-1.7.1", "sap.ui.thirdparty.jqueryui.jquery-ui-position", "jquery.sap.global"]
+    },
+    {
+      "name" : "sap-ui-core-nojQuery",
+      "size" : 678755,
+      "required" : [],
+      "includes" : ["jquery.sap.global", "sap.ui.core.Core", "jquery.sap.dom", "jquery.sap.events", "jquery.sap.keycodes", "jquery.sap.mobile", "jquery.sap.properties", "jquery.sap.sjax", "jquery.sap.resources", "jquery.sap.script", "sap.ui.Global", "sap.ui.base.EventProvider", "sap.ui.base.Object", "sap.ui.base.Interface", "sap.ui.base.Metadata", "sap.ui.base.Event", "sap.ui.base.ObjectPool", "sap.ui.base.DataType", "sap.ui.core.Configuration", "sap.ui.core.Control", "sap.ui.core.Element", "jquery.sap.strings", "sap.ui.base.ManagedObject", "sap.ui.base.ManagedObjectMetadata", "sap.ui.model.Model", "sap.ui.model.BindingMode", "sap.ui.model.Context", "sap.ui.model.Type", "sap.ui.model.CompositeBinding", "sap.ui.model.PropertyBinding", "sap.ui.model.Binding", "sap.ui.model.SimpleType", "sap.ui.model.ParseException", "sap.ui.base.Exception", "sap.ui.model.ValidateException", "sap.ui.model.FormatException", "sap.ui.core.ElementMetadata", "sap.ui.core.CustomStyleClassSupport", "sap.ui.core.FocusHandler", "sap.ui.core.ResizeHandler", "sap.ui.core.RenderManager", "jquery.sap.encoder", "sap.ui.core.UIArea", "jquery.sap.ui", "sap.ui.core.ThemeCheck", "sap.ui.core.Component", "sap.ui.core.ComponentMetadata"]
+    },
+    {
+      "name" : "sap-ui-debug",
+      "description" : "This file has been generated by the SAPUI5 CreateModule Ant-Task",
+      "size" : 52084,
+      "required" : ["jquery.sap.global", "sap.ui.base.EventProvider", "jquery.sap.dom", "jquery.sap.script", "jquery.sap.strings", "sap.ui.base.DataType", "sap.ui.core.Element", "sap.ui.core.Core"],
+      "includes" : ["sap.ui.debug.DebugEnv", "sap.ui.debug.ControlTree", "sap.ui.debug.Highlighter", "sap.ui.debug.LogViewer", "sap.ui.debug.PropertyList"]
+    },
+    {
+      "name" : "sap-ui-testenv",
+      "description" : "This file has been generated by the SAPUI5 CreateModule Ant-Task",
+      "size" : 16159,
+      "required" : ["jquery.sap.global", "sap.ui.core.Element", "jquery.sap.dom", "jquery.sap.script"],
+      "includes" : ["sap.ui.test.TestEnv", "sap.ui.test.ControlTree", "jquery.sap.strings", "sap.ui.debug.Highlighter"]
+    },
+    {
+      "name" : "sap.ui.Global",
+      "size" : 10132,
+      "compressedSize" : 1856,
+      "required" : ["jquery.sap.global", "jquery.sap.dom"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.base.DataType",
+      "description" : "Provides class sap.ui.base.DataType",
+      "size" : 8034,
+      "compressedSize" : 2782,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.base.Event",
+      "description" : "Provides class sap.ui.base.Event",
+      "size" : 3543,
+      "compressedSize" : 1144,
+      "required" : ["jquery.sap.global", "sap.ui.base.Object"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.base.EventProvider",
+      "description" : "Provides class sap.ui.base.EventProvider",
+      "size" : 9829,
+      "compressedSize" : 2346,
+      "required" : ["jquery.sap.global", "sap.ui.base.Object", "sap.ui.base.Event", "sap.ui.base.ObjectPool"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.base.Exception",
+      "description" : "Provides a filter for list bindings",
+      "size" : 932,
+      "compressedSize" : 234,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.base.Interface",
+      "description" : "Provides class sap.ui.base.Interface",
+      "size" : 1723,
+      "compressedSize" : 455,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.base.ManagedObject",
+      "description" : "Provides the base class for all objects with managed properties and aggregations.",
+      "size" : 88043,
+      "compressedSize" : 27527,
+      "required" : ["jquery.sap.global", "jquery.sap.script", "jquery.sap.strings", "sap.ui.base.EventProvider", "sap.ui.base.DataType", "sap.ui.base.ManagedObjectMetadata", "sap.ui.model.Model", "sap.ui.model.Type", "sap.ui.model.CompositeBinding"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.base.ManagedObjectMetadata",
+      "description" : "Provides class sap.ui.base.ManagedObjectMetadata",
+      "size" : 20799,
+      "compressedSize" : 9791,
+      "required" : ["jquery.sap.global", "sap.ui.base.Metadata", "sap.ui.base.DataType"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.base.Metadata",
+      "description" : "Provides class sap.ui.base.Metadata",
+      "size" : 9805,
+      "compressedSize" : 3475,
+      "required" : ["jquery.sap.global", "jquery.sap.script"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.base.Object",
+      "description" : "Provides class sap.ui.base.Object",
+      "size" : 7202,
+      "compressedSize" : 1043,
+      "required" : ["jquery.sap.global", "sap.ui.base.Interface", "sap.ui.base.Metadata"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.base.ObjectPool",
+      "description" : "Provides class sap.ui.base.ObjectPool",
+      "size" : 4498,
+      "compressedSize" : 669,
+      "required" : ["jquery.sap.global", "sap.ui.base.Object"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.core.AppCacheBuster",
+      "description" : "Provides the AppCacheBuster mechanism to load application files using a timestamp",
+      "size" : 8746,
+      "required" : ["jquery.sap.global", "sap.ui.core.Core", "sap.ui.thirdparty.URI"],
+      "includes" : [],
+      "excludeFromAllInOne" : true
+    },
+    {
+      "name" : "sap.ui.core.BusyIndicator",
+      "description" : "A static class to show a busy indicator",
+      "size" : 5804,
+      "compressedSize" : 2965,
+      "required" : ["jquery.sap.global", "sap.ui.core.Popup"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.core.Component",
+      "description" : "Provides base class sap.ui.core.Component for all components",
+      "size" : 5088,
+      "compressedSize" : 2084,
+      "required" : ["jquery.sap.global", "sap.ui.base.ManagedObject", "sap.ui.core.ComponentMetadata", "sap.ui.core.Core"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.core.ComponentContainer",
+      "description" : "Provides control sap.ui.core.ComponentContainer.",
+      "size" : 5574,
+      "compressedSize" : 996,
+      "required" : ["jquery.sap.global", "sap.ui.core.library", "sap.ui.core.Control"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.core.ComponentContainerRenderer",
+      "description" : "A renderer for the ComponentContainer control",
+      "size" : 1165,
+      "compressedSize" : 499,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.core.ComponentMetadata",
+      "description" : "Provides class sap.ui.core.ComponentMetadata",
+      "size" : 1441,
+      "compressedSize" : 727,
+      "required" : ["jquery.sap.global", "sap.ui.base.ManagedObjectMetadata"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.core.CompositeSupport",
+      "description" : "Provides class sap.ui.core.CompositeSupport",
+      "size" : 7878,
+      "compressedSize" : 2689,
+      "required" : ["jquery.sap.global", "sap.ui.core.Control", "sap.ui.model.control.ControlModel"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.core.Configuration",
+      "description" : "Provides class sap.ui.core.Configuration",
+      "size" : 25947,
+      "compressedSize" : 8018,
+      "required" : ["jquery.sap.global", "sap.ui.base.Object"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.core.Control",
+      "description" : "Provides base class sap.ui.core.Control for all controls",
+      "size" : 18905,
+      "compressedSize" : 3580,
+      "required" : ["jquery.sap.global", "sap.ui.core.Element", "sap.ui.core.CustomStyleClassSupport"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.core.Core",
+      "description" : "Provides the real core class sap.ui.core.Core of SAPUI5",
+      "size" : 69734,
+      "compressedSize" : 21344,
+      "required" : ["jquery.sap.global", "jquery.sap.dom", "jquery.sap.events", "jquery.sap.mobile", "jquery.sap.properties", "jquery.sap.resources", "jquery.sap.script", "sap.ui.Global", "sap.ui.base.EventProvider", "sap.ui.base.DataType", "sap.ui.core.Configuration", "sap.ui.core.Control", "sap.ui.core.FocusHandler", "sap.ui.core.ResizeHandler", "sap.ui.core.RenderManager", "sap.ui.core.UIArea", "sap.ui.core.ThemeCheck", "sap.ui.core.Component"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.core.CustomData",
+      "description" : "Provides control sap.ui.core.CustomData.",
+      "size" : 6347,
+      "compressedSize" : 514,
+      "required" : ["jquery.sap.global", "sap.ui.core.library", "sap.ui.core.Element"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.core.CustomStyleClassSupport",
+      "description" : "Provides helper sap.ui.core.CustomStyleClassSupport",
+      "size" : 4895,
+      "compressedSize" : 1844,
+      "required" : ["jquery.sap.global", "sap.ui.core.Element"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.core.DeclarativeSupport",
+      "description" : "Provides class sap.ui.core.DeclarativeSupport",
+      "size" : 15754,
+      "compressedSize" : 5507,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.core.Element",
+      "description" : "Provides the base class for all controls and UI elements.",
+      "size" : 40431,
+      "compressedSize" : 7537,
+      "required" : ["jquery.sap.global", "jquery.sap.strings", "sap.ui.base.ManagedObject", "sap.ui.core.ElementMetadata", "sap.ui.model.SimpleType", "sap.ui.core.Core"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.core.ElementMetadata",
+      "description" : "Provides class sap.ui.core.ElementMetadata",
+      "size" : 3215,
+      "compressedSize" : 1561,
+      "required" : ["jquery.sap.global", "sap.ui.base.ManagedObjectMetadata"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.core.EnabledPropagator",
+      "description" : "Provides helper sap.ui.core.EnabledPropagator",
+      "size" : 2446,
+      "compressedSize" : 975,
+      "required" : ["jquery.sap.global", "sap.ui.core.Control"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.core.EventBus",
+      "description" : "Provides class sap.ui.core.EventBus",
+      "size" : 7169,
+      "compressedSize" : 1547,
+      "required" : ["jquery.sap.global", "sap.ui.base.EventProvider"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.core.FocusHandler",
+      "description" : "Provides class sap.ui.core.FocusHandler",
+      "size" : 7258,
+      "compressedSize" : 3305,
+      "required" : ["jquery.sap.global", "sap.ui.base.Object", "sap.ui.Global", "jquery.sap.script"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.core.HTML",
+      "description" : "Provides control sap.ui.core.HTML.",
+      "size" : 14617,
+      "compressedSize" : 2736,
+      "required" : ["jquery.sap.global", "sap.ui.core.library", "sap.ui.core.Control"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.core.HTMLRenderer",
+      "description" : "A renderer for the HTML control",
+      "size" : 805,
+      "compressedSize" : 325,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.core.History",
+      "description" : "Provides the history handler sap.ui.core.History",
+      "size" : 3646,
+      "compressedSize" : 1466,
+      "required" : ["jquery.sap.global", "sap.ui.base.Object"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.core.Item",
+      "description" : "Provides control sap.ui.core.Item.",
+      "size" : 5885,
+      "compressedSize" : 609,
+      "required" : ["jquery.sap.global", "sap.ui.core.library", "sap.ui.core.Element"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.core.LayoutData",
+      "description" : "Provides control sap.ui.core.LayoutData.",
+      "size" : 3608,
+      "compressedSize" : 691,
+      "required" : ["jquery.sap.global", "sap.ui.core.library", "sap.ui.core.Element"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.core.ListItem",
+      "description" : "Provides control sap.ui.core.ListItem.",
+      "size" : 4588,
+      "compressedSize" : 461,
+      "required" : ["jquery.sap.global", "sap.ui.core.library", "sap.ui.core.Item"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.core.Locale",
+      "description" : "Provides the locale object sap.ui.core.Locale",
+      "size" : 6271,
+      "compressedSize" : 1885,
+      "required" : ["jquery.sap.global", "sap.ui.base.Object"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.core.LocaleData",
+      "description" : "Provides the locale object sap.ui.core.LocaleData",
+      "size" : 12642,
+      "compressedSize" : 4444,
+      "required" : ["jquery.sap.global", "sap.ui.base.Object", "sap.ui.core.Locale", "sap.ui.core.Configuration"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.core.Message",
+      "description" : "Provides control sap.ui.core.Message.",
+      "size" : 9387,
+      "compressedSize" : 1930,
+      "required" : ["jquery.sap.global", "sap.ui.core.library", "sap.ui.core.Element", "sap.ui.core.theming.Parameters"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.core.Popup",
+      "description" : "Provides helper class sap.ui.core.Popup",
+      "size" : 54224,
+      "compressedSize" : 19887,
+      "required" : ["jquery.sap.global", "jquery.sap.script", "sap.ui.core.UIArea", "sap.ui.base.Object", "sap.ui.base.EventProvider", "sap.ui.core.Control", "sap.ui.core.RenderManager"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.core.RenderManager",
+      "description" : "Provides the render manager sap.ui.core.RenderManager",
+      "size" : 39191,
+      "compressedSize" : 12101,
+      "required" : ["jquery.sap.global", "jquery.sap.encoder", "sap.ui.base.Object", "sap.ui.base.Interface"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.core.Renderer",
+      "description" : "Provides (optional) base class for all renderers",
+      "size" : 3032,
+      "compressedSize" : 1049,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.core.ResizeHandler",
+      "description" : "Provides class sap.ui.core.ResizeHandler",
+      "size" : 5605,
+      "compressedSize" : 2644,
+      "required" : ["jquery.sap.global", "sap.ui.base.Object", "sap.ui.Global", "jquery.sap.script"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.core.ScrollBar",
+      "description" : "Provides control sap.ui.core.ScrollBar.",
+      "size" : 29486,
+      "compressedSize" : 9963,
+      "required" : ["jquery.sap.global", "sap.ui.core.library", "sap.ui.core.Control"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.core.ScrollBarRenderer",
+      "description" : "A renderer for the ScrollBar control",
+      "size" : 4353,
+      "compressedSize" : 1919,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.core.SeparatorItem",
+      "description" : "Provides control sap.ui.core.SeparatorItem.",
+      "size" : 3224,
+      "compressedSize" : 334,
+      "required" : ["jquery.sap.global", "sap.ui.core.library", "sap.ui.core.Item"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.core.ThemeCheck",
+      "description" : "Provides class sap.ui.core.ThemeCheck",
+      "size" : 3282,
+      "compressedSize" : 2010,
+      "required" : ["jquery.sap.global", "sap.ui.base.Object", "jquery.sap.script"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.core.TooltipBase",
+      "description" : "Provides control sap.ui.core.TooltipBase.",
+      "size" : 21996,
+      "compressedSize" : 6341,
+      "required" : ["jquery.sap.global", "sap.ui.core.library", "sap.ui.core.Control", "sap.ui.core.Popup"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.core.UIArea",
+      "description" : "Provides class sap.ui.core.UIArea",
+      "size" : 22760,
+      "compressedSize" : 7185,
+      "required" : ["jquery.sap.global", "jquery.sap.ui", "sap.ui.base.ManagedObject", "sap.ui.core.Element"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.core.ValueStateSupport",
+      "description" : "Provides helper class ValueStateSupport",
+      "size" : 2602,
+      "compressedSize" : 920,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.core.VariantLayoutData",
+      "description" : "Provides control sap.ui.core.VariantLayoutData.",
+      "size" : 6263,
+      "compressedSize" : 470,
+      "required" : ["jquery.sap.global", "sap.ui.core.library", "sap.ui.core.LayoutData"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.core.delegate.ItemNavigation",
+      "description" : "Provides class sap.ui.core.delegate.ItemNavigation",
+      "size" : 32311,
+      "compressedSize" : 13543,
+      "required" : ["jquery.sap.global", "sap.ui.base.EventProvider"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.core.delegate.ScrollEnablement",
+      "description" : "Provides class sap.ui.core.delegate.ScrollEnablement",
+      "size" : 15229,
+      "compressedSize" : 6890,
+      "required" : ["jquery.sap.global", "sap.ui.base.Object"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.core.format.DateFormat",
+      "description" : "Provides class sap.ui.core.format.DateFormat",
+      "size" : 22282,
+      "compressedSize" : 10095,
+      "required" : ["jquery.sap.global", "sap.ui.core.LocaleData"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.core.format.NumberFormat",
+      "description" : "Provides class sap.ui.core.format.NumberFormat",
+      "size" : 8194,
+      "compressedSize" : 3387,
+      "required" : ["jquery.sap.global", "sap.ui.core.LocaleData"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.core.library",
+      "description" : "Initialization Code and shared classes of library sap.ui.core (1.10.0)",
+      "size" : 34722,
+      "compressedSize" : 6738,
+      "required" : ["jquery.sap.global", "sap.ui.core.Core", "sap.ui.base.DataType"],
+      "includes" : ["sap.ui.core.AccessibleRole", "sap.ui.core.BarColor", "sap.ui.core.CSSSize", "sap.ui.core.Collision", "sap.ui.core.Design", "sap.ui.core.Dock", "sap.ui.core.HorizontalAlign", "sap.ui.core.ID", "sap.ui.core.ImeMode", "sap.ui.core.MessageType", "sap.ui.core.OpenState", "sap.ui.core.ScrollBarAction", "sap.ui.core.Scrolling", "sap.ui.core.TextAlign", "sap.ui.core.TextDirection", "sap.ui.core.URI", "sap.ui.core.ValueState", "sap.ui.core.VerticalAlign", "sap.ui.core.Wrapping", "sap.ui.core.mvc.ViewType"]
+    },
+    {
+      "name" : "sap.ui.core.mvc.Controller",
+      "description" : "Provides base class for controllers (part of MVC concept)",
+      "size" : 6247,
+      "compressedSize" : 1656,
+      "required" : ["jquery.sap.global", "sap.ui.base.EventProvider"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.core.mvc.HTMLView",
+      "description" : "Provides control sap.ui.core.mvc.HTMLView.",
+      "size" : 10691,
+      "compressedSize" : 3652,
+      "required" : ["jquery.sap.global", "sap.ui.core.library", "sap.ui.core.mvc.View", "sap.ui.core.DeclarativeSupport", "sap.ui.core.RenderManager"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.core.mvc.HTMLViewRenderer",
+      "description" : "Provides default renderer for JSView",
+      "size" : 2985,
+      "compressedSize" : 1045,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.core.mvc.JSONView",
+      "description" : "Provides control sap.ui.core.mvc.JSONView.",
+      "size" : 8025,
+      "compressedSize" : 2713,
+      "required" : ["jquery.sap.global", "sap.ui.core.library", "sap.ui.core.mvc.View"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.core.mvc.JSONViewRenderer",
+      "description" : "Provides default renderer for JSONView",
+      "size" : 1423,
+      "compressedSize" : 660,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.core.mvc.JSView",
+      "description" : "Provides control sap.ui.core.mvc.JSView.",
+      "size" : 6720,
+      "compressedSize" : 1310,
+      "required" : ["jquery.sap.global", "sap.ui.core.library", "sap.ui.core.mvc.View"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.core.mvc.JSViewRenderer",
+      "description" : "Provides default renderer for JSView",
+      "size" : 1374,
+      "compressedSize" : 617,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.core.mvc.View",
+      "description" : "Provides control sap.ui.core.mvc.View.",
+      "size" : 23834,
+      "compressedSize" : 2739,
+      "required" : ["jquery.sap.global", "sap.ui.core.library", "sap.ui.core.Control"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.core.mvc.ViewRenderer",
+      "description" : "Provides default renderer for View",
+      "size" : 287,
+      "compressedSize" : 200,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.core.mvc.XMLView",
+      "description" : "Provides control sap.ui.core.mvc.XMLView.",
+      "size" : 20567,
+      "compressedSize" : 7374,
+      "required" : ["jquery.sap.global", "sap.ui.core.library", "sap.ui.core.mvc.View", "jquery.sap.xml", "sap.ui.base.DataType", "sap.ui.model.resource.ResourceModel"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.core.mvc.XMLViewRenderer",
+      "description" : "Provides default renderer for XMLView",
+      "size" : 2381,
+      "compressedSize" : 1146,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.core.plugin.DeclarativeSupport",
+      "description" : "Provides class sap.ui.core.plugin.DeclarativeSupport",
+      "size" : 1752,
+      "required" : ["jquery.sap.global", "sap.ui.core.DeclarativeSupport", "sap.ui.core.Core"],
+      "includes" : [],
+      "excludeFromAllInOne" : true
+    },
+    {
+      "name" : "sap.ui.core.plugin.LessSupport",
+      "description" : "Provides class sap.ui.core.plugin.LessSupport",
+      "size" : 11288,
+      "required" : ["jquery.sap.global", "sap.ui.core.Core"],
+      "includes" : [],
+      "excludeFromAllInOne" : true
+    },
+    {
+      "name" : "sap.ui.core.search.OpenSearchProvider",
+      "description" : "Provides control sap.ui.core.search.OpenSearchProvider.",
+      "size" : 6744,
+      "compressedSize" : 1124,
+      "required" : ["jquery.sap.global", "sap.ui.core.library", "sap.ui.core.search.SearchProvider", "jquery.sap.encoder"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.core.search.SearchProvider",
+      "description" : "Provides control sap.ui.core.search.SearchProvider.",
+      "size" : 5269,
+      "compressedSize" : 706,
+      "required" : ["jquery.sap.global", "sap.ui.core.library", "sap.ui.core.Element"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.core.support.Plugin",
+      "description" : "Provides class sap.ui.core.support.Plugin",
+      "size" : 3413,
+      "compressedSize" : 1524,
+      "required" : ["jquery.sap.global", "sap.ui.base.Object", "jquery.sap.script", "jquery.sap.dom"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.core.support.Support",
+      "description" : "Provides the basic UI5 support functionality",
+      "size" : 12391,
+      "compressedSize" : 6286,
+      "required" : ["jquery.sap.global", "sap.ui.base.EventProvider", "sap.ui.core.support.Plugin", "jquery.sap.dom", "jquery.sap.script", "jquery.sap.encoder"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.core.support.plugins.ControlTree",
+      "description" : "Provides class sap.ui.core.support.plugins.ControlTree (ControlTree support plugin)",
+      "size" : 15072,
+      "compressedSize" : 9538,
+      "required" : ["jquery.sap.global", "sap.ui.core.support.Plugin"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.core.support.plugins.MessageTest",
+      "description" : "Provides class sap.ui.core.support.plugins.MessageTest (Test  plugin for support tool communication)",
+      "size" : 3494,
+      "compressedSize" : 2279,
+      "required" : ["jquery.sap.global", "sap.ui.core.support.Plugin", "sap.ui.core.RenderManager"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.core.support.plugins.Performance",
+      "description" : "Provides class sap.ui.core.support.plugins.Performance",
+      "size" : 7678,
+      "compressedSize" : 4532,
+      "required" : ["jquery.sap.global", "sap.ui.core.support.Plugin", "sap.ui.core.RenderManager"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.core.support.plugins.Selector",
+      "description" : "Provides class sap.ui.core.support.plugins.Selector (Selector support plugin)",
+      "size" : 3849,
+      "compressedSize" : 2416,
+      "required" : ["jquery.sap.global", "sap.ui.core.support.Plugin", "sap.ui.core.Popup"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.core.support.plugins.TechInfo",
+      "description" : "Provides class sap.ui.core.support.plugins.TechInfo (TechInfo support plugin)",
+      "size" : 6161,
+      "compressedSize" : 4082,
+      "required" : ["jquery.sap.global", "sap.ui.core.support.Plugin", "jquery.sap.encoder", "jquery.sap.script"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.core.support.plugins.Trace",
+      "description" : "Provides class sap.ui.core.support.plugins.Trace (Trace support plugin)",
+      "size" : 6801,
+      "compressedSize" : 4656,
+      "required" : ["jquery.sap.global", "sap.ui.core.support.Plugin"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.core.theming.Parameters",
+      "description" : "@namespace @name sap.ui.core.theming @public",
+      "size" : 2455,
+      "compressedSize" : 933,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.debug.ControlTree",
+      "description" : "Provides a tree of controls for the testsuite",
+      "size" : 13569,
+      "compressedSize" : 8022,
+      "required" : ["jquery.sap.global", "sap.ui.base.EventProvider"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.debug.DebugEnv",
+      "description" : "A core plugin that bundles debug features and connects with an embedding testsuite",
+      "size" : 11086,
+      "required" : ["jquery.sap.global", "sap.ui.debug.ControlTree", "sap.ui.debug.Highlighter", "sap.ui.debug.LogViewer", "sap.ui.debug.PropertyList"],
+      "includes" : [],
+      "excludeFromAllInOne" : true
+    },
+    {
+      "name" : "sap.ui.debug.Highlighter",
+      "description" : "Provides a helper that can highlight a given control",
+      "size" : 3038,
+      "compressedSize" : 1343,
+      "required" : ["jquery.sap.global", "jquery.sap.dom", "jquery.sap.script"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.debug.LogViewer",
+      "description" : "Provides a log viewer for debug purposes",
+      "size" : 5371,
+      "compressedSize" : 3114,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.debug.PropertyList",
+      "description" : "Provides a (modifiable) list of properties for a given control",
+      "size" : 18352,
+      "compressedSize" : 11693,
+      "required" : ["jquery.sap.global", "jquery.sap.strings", "sap.ui.base.EventProvider", "sap.ui.base.DataType", "sap.ui.core.Element", "sap.ui.core.Core"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.debug.TechnicalInfo",
+      "description" : "Provides a popup with technical informations about the running SAPUI5 core",
+      "size" : 9873,
+      "compressedSize" : 7398,
+      "required" : ["jquery.sap.global", "jquery.sap.strings", "sap.ui.core.Core", "sap.ui.core.Popup"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.model.Binding",
+      "description" : "Provides an abstraction for model bindings",
+      "size" : 4319,
+      "compressedSize" : 1325,
+      "required" : ["jquery.sap.global", "sap.ui.base.EventProvider"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.model.BindingMode",
+      "description" : "Provides enumeration sap.ui.model.FilterOperator",
+      "size" : 763,
+      "compressedSize" : 259,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.model.CompositeBinding",
+      "description" : "Provides an abstract property binding.",
+      "size" : 6224,
+      "compressedSize" : 2338,
+      "required" : ["jquery.sap.global", "sap.ui.model.PropertyBinding", "sap.ui.model.SimpleType"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.model.Context",
+      "description" : "Provides an abstraction for model bindings",
+      "size" : 2755,
+      "compressedSize" : 841,
+      "required" : ["jquery.sap.global", "sap.ui.base.EventProvider"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.model.Filter",
+      "description" : "Provides a filter for list bindings",
+      "size" : 1594,
+      "compressedSize" : 351,
+      "required" : ["jquery.sap.global", "sap.ui.model.FilterOperator"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.model.FilterOperator",
+      "description" : "Provides enumeration sap.ui.model.FilterOperator",
+      "size" : 1052,
+      "compressedSize" : 317,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.model.FormatException",
+      "description" : "Provides a filter for list bindings",
+      "size" : 637,
+      "compressedSize" : 392,
+      "required" : ["jquery.sap.global", "sap.ui.base.Exception"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.model.ListBinding",
+      "description" : "Provides an abstraction for list bindings",
+      "size" : 5200,
+      "compressedSize" : 1233,
+      "required" : ["jquery.sap.global", "sap.ui.model.Binding", "sap.ui.model.Sorter", "sap.ui.model.Filter"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.model.Model",
+      "description" : "Provides the base implementation for all model implementations",
+      "size" : 21457,
+      "compressedSize" : 3952,
+      "required" : ["jquery.sap.global", "sap.ui.base.EventProvider", "sap.ui.model.BindingMode", "sap.ui.model.Context"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.model.ParseException",
+      "description" : "Provides a filter for list bindings",
+      "size" : 623,
+      "compressedSize" : 388,
+      "required" : ["jquery.sap.global", "sap.ui.base.Exception"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.model.PropertyBinding",
+      "description" : "Provides an abstract property binding.",
+      "size" : 4904,
+      "compressedSize" : 1351,
+      "required" : ["jquery.sap.global", "sap.ui.model.Binding", "sap.ui.model.SimpleType"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.model.SelectionModel",
+      "description" : "Provides class sap.ui.model.SelectionModel",
+      "size" : 13354,
+      "compressedSize" : 3649,
+      "required" : ["jquery.sap.global", "sap.ui.base.EventProvider"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.model.SimpleType",
+      "description" : "Provides the base implementation for all model implementations",
+      "size" : 3788,
+      "compressedSize" : 850,
+      "required" : ["jquery.sap.global", "sap.ui.model.Type", "sap.ui.model.ParseException", "sap.ui.model.ValidateException", "sap.ui.model.FormatException"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.model.Sorter",
+      "description" : "Provides the concept of a sorter for list bindings",
+      "size" : 1428,
+      "compressedSize" : 269,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.model.TreeBinding",
+      "description" : "Provides an abstraction for list bindings",
+      "size" : 3886,
+      "compressedSize" : 723,
+      "required" : ["jquery.sap.global", "sap.ui.model.Binding"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.model.Type",
+      "description" : "Provides the base implementation for all model implementations",
+      "size" : 1656,
+      "compressedSize" : 450,
+      "required" : ["jquery.sap.global", "sap.ui.base.Object"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.model.ValidateException",
+      "description" : "Provides a filter for list bindings",
+      "size" : 691,
+      "compressedSize" : 429,
+      "required" : ["jquery.sap.global", "sap.ui.base.Exception"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.model.control.ControlModel",
+      "description" : "Provides the JSON object based model implementation",
+      "size" : 2435,
+      "compressedSize" : 1442,
+      "required" : ["jquery.sap.global", "sap.ui.model.Model", "sap.ui.model.control.ControlPropertyBinding"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.model.control.ControlPropertyBinding",
+      "description" : "Provides the JSON model implementation of a property binding",
+      "size" : 1840,
+      "compressedSize" : 915,
+      "required" : ["jquery.sap.global", "sap.ui.model.PropertyBinding"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.model.json.JSONListBinding",
+      "description" : "Provides the JSON model implementation of a list binding",
+      "size" : 10271,
+      "compressedSize" : 4821,
+      "required" : ["jquery.sap.global", "sap.ui.model.ListBinding"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.model.json.JSONModel",
+      "description" : "Provides the JSON object based model implementation",
+      "size" : 11723,
+      "compressedSize" : 3799,
+      "required" : ["jquery.sap.global", "sap.ui.model.Model", "sap.ui.model.json.JSONPropertyBinding", "sap.ui.model.json.JSONListBinding", "sap.ui.model.json.JSONTreeBinding"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.model.json.JSONPropertyBinding",
+      "description" : "Provides the JSON model implementation of a property binding",
+      "size" : 3150,
+      "compressedSize" : 1197,
+      "required" : ["jquery.sap.global", "sap.ui.model.PropertyBinding"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.model.json.JSONTreeBinding",
+      "description" : "Provides the JSON model implementation of a list binding",
+      "size" : 10904,
+      "compressedSize" : 3913,
+      "required" : ["jquery.sap.global", "sap.ui.model.TreeBinding"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.model.odata.Filter",
+      "description" : "Provides a filter for list bindings",
+      "size" : 963,
+      "compressedSize" : 359,
+      "required" : ["jquery.sap.global", "sap.ui.model.FilterOperator"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.model.odata.ODataListBinding",
+      "description" : "Provides class sap.ui.model.odata.ODataListBinding",
+      "size" : 16511,
+      "compressedSize" : 7084,
+      "required" : ["jquery.sap.global", "sap.ui.model.odata.Filter", "sap.ui.model.ListBinding", "sap.ui.core.format.DateFormat"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.model.odata.ODataMetadata",
+      "description" : "Provides class sap.ui.model.odata.ODataMetadata",
+      "size" : 7554,
+      "compressedSize" : 2387,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.model.odata.ODataModel",
+      "description" : "Provides class sap.ui.model.odata.ODataModel",
+      "size" : 52514,
+      "compressedSize" : 16928,
+      "required" : ["jquery.sap.global", "sap.ui.thirdparty.datajs", "sap.ui.model.Model", "sap.ui.model.odata.ODataPropertyBinding", "sap.ui.model.odata.ODataListBinding", "sap.ui.model.odata.ODataMetadata"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.model.odata.ODataPropertyBinding",
+      "description" : "Provides class sap.ui.model.odata.ODataPropertyBinding",
+      "size" : 3142,
+      "compressedSize" : 1167,
+      "required" : ["jquery.sap.global", "sap.ui.model.PropertyBinding"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.model.odata.datajs",
+      "size" : 405,
+      "required" : [],
+      "includes" : [],
+      "excludeFromAllInOne" : true
+    },
+    {
+      "name" : "sap.ui.model.resource.ResourceModel",
+      "description" : "Provides the resource bundle based model implementation",
+      "size" : 3702,
+      "compressedSize" : 1480,
+      "required" : ["jquery.sap.global", "sap.ui.model.Model", "sap.ui.model.resource.ResourcePropertyBinding"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.model.resource.ResourcePropertyBinding",
+      "description" : "Provides the Resource model implementation of a property binding",
+      "size" : 1684,
+      "compressedSize" : 538,
+      "required" : ["jquery.sap.global", "sap.ui.model.PropertyBinding"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.model.type.Boolean",
+      "description" : "Provides the base implementation for all model implementations",
+      "size" : 3008,
+      "compressedSize" : 1168,
+      "required" : ["jquery.sap.global", "sap.ui.model.SimpleType", "sap.ui.core.format.NumberFormat"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.model.type.Date",
+      "description" : "Provides the base implementation for all model implementations",
+      "size" : 5983,
+      "compressedSize" : 2319,
+      "required" : ["jquery.sap.global", "sap.ui.model.SimpleType", "sap.ui.core.format.DateFormat"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.model.type.DateTime",
+      "description" : "Provides the base implementation for all model implementations",
+      "size" : 2545,
+      "compressedSize" : 672,
+      "required" : ["jquery.sap.global", "sap.ui.model.type.Date"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.model.type.Float",
+      "description" : "Provides the base implementation for all model implementations",
+      "size" : 3819,
+      "compressedSize" : 1539,
+      "required" : ["jquery.sap.global", "sap.ui.model.SimpleType", "sap.ui.core.format.NumberFormat"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.model.type.Integer",
+      "description" : "Provides the base implementation for all model implementations",
+      "size" : 3829,
+      "compressedSize" : 1548,
+      "required" : ["jquery.sap.global", "sap.ui.model.SimpleType", "sap.ui.core.format.NumberFormat"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.model.type.String",
+      "description" : "Provides the base implementation for all model implementations",
+      "size" : 5748,
+      "compressedSize" : 2196,
+      "required" : ["jquery.sap.global", "sap.ui.model.SimpleType", "sap.ui.core.format.NumberFormat"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.model.type.Time",
+      "description" : "Provides the base implementation for all model implementations",
+      "size" : 2485,
+      "compressedSize" : 648,
+      "required" : ["jquery.sap.global", "sap.ui.model.type.Date"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.model.xml.XMLListBinding",
+      "description" : "Provides the XML model implementation of a list binding",
+      "size" : 9110,
+      "compressedSize" : 4377,
+      "required" : ["jquery.sap.global", "sap.ui.model.ListBinding"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.model.xml.XMLModel",
+      "description" : "Provides the XML object based model implementation",
+      "size" : 13909,
+      "compressedSize" : 6118,
+      "required" : ["jquery.sap.global", "sap.ui.model.Model", "sap.ui.model.xml.XMLPropertyBinding", "sap.ui.model.xml.XMLListBinding", "sap.ui.model.xml.XMLTreeBinding", "jquery.sap.xml"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.model.xml.XMLPropertyBinding",
+      "description" : "Provides the XML model implementation of a property binding",
+      "size" : 2326,
+      "compressedSize" : 1149,
+      "required" : ["jquery.sap.global", "sap.ui.model.PropertyBinding"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.model.xml.XMLTreeBinding",
+      "description" : "Provides the XML model implementation of a list binding",
+      "size" : 8056,
+      "compressedSize" : 3571,
+      "required" : ["jquery.sap.global", "sap.ui.model.TreeBinding"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.qunit.QUnitUtils",
+      "description" : "The <code>sap.ui.test.qunit</code> namespace contains helper functionality for QUnit tests.  @version 1.10.0 @namespace @name sap.ui.test.qunit @public",
+      "size" : 21678,
+      "compressedSize" : 6061,
+      "required" : ["jquery.sap.global"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.qunit.qunit",
+      "size" : 397,
+      "required" : [],
+      "includes" : [],
+      "excludeFromAllInOne" : true
+    },
+    {
+      "name" : "sap.ui.test.ControlTree",
+      "description" : "Provides a control tree to be used in the Eclipse preview editor",
+      "size" : 4398,
+      "required" : ["jquery.sap.global", "jquery.sap.strings", "sap.ui.core.Element"],
+      "includes" : [],
+      "excludeFromAllInOne" : true
+    },
+    {
+      "name" : "sap.ui.test.TestEnv",
+      "description" : "Provides a bridge between the SAPUI5 runtime and the SAPUI5 Eclipse Tooling.",
+      "size" : 2658,
+      "required" : ["jquery.sap.global", "sap.ui.test.ControlTree", "sap.ui.debug.Highlighter"],
+      "includes" : [],
+      "excludeFromAllInOne" : true
+    },
+    {
+      "name" : "sap.ui.thirdparty.URI",
+      "size" : 48402,
+      "required" : [],
+      "includes" : [],
+      "excludeFromAllInOne" : true
+    },
+    {
+      "name" : "sap.ui.thirdparty.caja-html-sanitizer",
+      "size" : 123785,
+      "required" : ["jquery.sap.global"],
+      "includes" : ["com.google.caja.plugin.css-defs", "com.google.caja.plugin.csslexer", "com.google.caja.plugin.sanitizecss", "com.google.caja.plugin.cssparser", "sap.ui.core.caja.html5-defs", "com.google.caja.plugin.html-sanitizer"]
+    },
+    {
+      "name" : "sap.ui.thirdparty.d3",
+      "size" : 255941,
+      "required" : [],
+      "includes" : [],
+      "excludeFromAllInOne" : true
+    },
+    {
+      "name" : "sap.ui.thirdparty.datajs",
+      "size" : 311535,
+      "required" : [],
+      "includes" : [],
+      "excludeFromAllInOne" : true
+    },
+    {
+      "name" : "sap.ui.thirdparty.iscroll",
+      "size" : 33959,
+      "required" : [],
+      "includes" : [],
+      "excludeFromAllInOne" : true
+    },
+    {
+      "name" : "sap.ui.thirdparty.iscroll-lite",
+      "size" : 17285,
+      "required" : [],
+      "includes" : [],
+      "excludeFromAllInOne" : true
+    },
+    {
+      "name" : "sap.ui.thirdparty.jquery-mobile-custom",
+      "size" : 29138,
+      "compressedSize" : 9523,
+      "required" : ["sap.ui.thirdparty.jquery.jquery-1.7.1"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.thirdparty.jquery.jquery-1.7.1",
+      "size" : 248235,
+      "compressedSize" : 98686,
+      "required" : [],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.thirdparty.jquery.jquery-1.8.1",
+      "size" : 269295,
+      "required" : [],
+      "includes" : [],
+      "excludeFromAllInOne" : true
+    },
+    {
+      "name" : "sap.ui.thirdparty.jqueryui.jquery-effects-blind",
+      "size" : 1379,
+      "required" : ["sap.ui.thirdparty.jqueryui.jquery-effects-core"],
+      "includes" : [],
+      "excludeFromAllInOne" : true
+    },
+    {
+      "name" : "sap.ui.thirdparty.jqueryui.jquery-effects-bounce",
+      "size" : 3045,
+      "required" : ["sap.ui.thirdparty.jqueryui.jquery-effects-core"],
+      "includes" : [],
+      "excludeFromAllInOne" : true
+    },
+    {
+      "name" : "sap.ui.thirdparty.jqueryui.jquery-effects-clip",
+      "size" : 1683,
+      "required" : ["sap.ui.thirdparty.jqueryui.jquery-effects-core"],
+      "includes" : [],
+      "excludeFromAllInOne" : true
+    },
+    {
+      "name" : "sap.ui.thirdparty.jqueryui.jquery-effects-core",
+      "size" : 16713,
+      "required" : ["sap.ui.thirdparty.jquery.jquery-1.7.1"],
+      "includes" : [],
+      "excludeFromAllInOne" : true
+    },
+    {
+      "name" : "sap.ui.thirdparty.jqueryui.jquery-effects-drop",
+      "size" : 1649,
+      "required" : ["sap.ui.thirdparty.jqueryui.jquery-effects-core"],
+      "includes" : [],
+      "excludeFromAllInOne" : true
+    },
+    {
+      "name" : "sap.ui.thirdparty.jqueryui.jquery-effects-explode",
+      "size" : 2373,
+      "required" : ["sap.ui.thirdparty.jqueryui.jquery-effects-core"],
+      "includes" : [],
+      "excludeFromAllInOne" : true
+    },
+    {
+      "name" : "sap.ui.thirdparty.jqueryui.jquery-effects-fade",
+      "size" : 692,
+      "required" : ["sap.ui.thirdparty.jqueryui.jquery-effects-core"],
+      "includes" : [],
+      "excludeFromAllInOne" : true
+    },
+    {
+      "name" : "sap.ui.thirdparty.jqueryui.jquery-effects-fold",
+      "size" : 1907,
+      "required" : ["sap.ui.thirdparty.jqueryui.jquery-effects-core"],
+      "includes" : [],
+      "excludeFromAllInOne" : true
+    },
+    {
+      "name" : "sap.ui.thirdparty.jqueryui.jquery-effects-highlight",
+      "size" : 1197,
+      "required" : ["sap.ui.thirdparty.jqueryui.jquery-effects-core"],
+      "includes" : [],
+      "excludeFromAllInOne" : true
+    },
+    {
+      "name" : "sap.ui.thirdparty.jqueryui.jquery-effects-pulsate",
+      "size" : 1222,
+      "required" : ["sap.ui.thirdparty.jqueryui.jquery-effects-core"],
+      "includes" : [],
+      "excludeFromAllInOne" : true
+    },
+    {
+      "name" : "sap.ui.thirdparty.jqueryui.jquery-effects-scale",
+      "size" : 6952,
+      "required" : ["sap.ui.thirdparty.jqueryui.jquery-effects-core"],
+      "includes" : [],
+      "excludeFromAllInOne" : true
+    },
+    {
+      "name" : "sap.ui.thirdparty.jqueryui.jquery-effects-shake",
+      "size" : 1940,
+      "required" : ["sap.ui.thirdparty.jqueryui.jquery-effects-core"],
+      "includes" : [],
+      "excludeFromAllInOne" : true
+    },
+    {
+      "name" : "sap.ui.thirdparty.jqueryui.jquery-effects-slide",
+      "size" : 1647,
+      "required" : ["sap.ui.thirdparty.jqueryui.jquery-effects-core"],
+      "includes" : [],
+      "excludeFromAllInOne" : true
+    },
+    {
+      "name" : "sap.ui.thirdparty.jqueryui.jquery-effects-transfer",
+      "size" : 1132,
+      "required" : ["sap.ui.thirdparty.jqueryui.jquery-effects-core"],
+      "includes" : [],
+      "excludeFromAllInOne" : true
+    },
+    {
+      "name" : "sap.ui.thirdparty.jqueryui.jquery-ui-core",
+      "size" : 8861,
+      "compressedSize" : 4617,
+      "required" : ["sap.ui.thirdparty.jquery.jquery-1.7.1"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.thirdparty.jqueryui.jquery-ui-datepicker",
+      "size" : 77499,
+      "compressedSize" : 39181,
+      "required" : ["sap.ui.thirdparty.jqueryui.jquery-ui-core"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.thirdparty.jqueryui.jquery-ui-draggable",
+      "size" : 31120,
+      "required" : ["sap.ui.thirdparty.jqueryui.jquery-ui-mouse"],
+      "includes" : [],
+      "excludeFromAllInOne" : true
+    },
+    {
+      "name" : "sap.ui.thirdparty.jqueryui.jquery-ui-droppable",
+      "size" : 10172,
+      "required" : ["sap.ui.thirdparty.jqueryui.jquery-ui-mouse", "sap.ui.thirdparty.jqueryui.jquery-ui-draggable"],
+      "includes" : [],
+      "excludeFromAllInOne" : true
+    },
+    {
+      "name" : "sap.ui.thirdparty.jqueryui.jquery-ui-mouse",
+      "size" : 4479,
+      "required" : ["sap.ui.thirdparty.jqueryui.jquery-ui-core", "sap.ui.thirdparty.jqueryui.jquery-ui-widget"],
+      "includes" : [],
+      "excludeFromAllInOne" : true
+    },
+    {
+      "name" : "sap.ui.thirdparty.jqueryui.jquery-ui-position",
+      "size" : 9015,
+      "compressedSize" : 4365,
+      "required" : ["sap.ui.thirdparty.jquery.jquery-1.7.1"],
+      "includes" : []
+    },
+    {
+      "name" : "sap.ui.thirdparty.jqueryui.jquery-ui-resizable",
+      "size" : 26536,
+      "required" : ["sap.ui.thirdparty.jqueryui.jquery-ui-mouse"],
+      "includes" : [],
+      "excludeFromAllInOne" : true
+    },
+    {
+      "name" : "sap.ui.thirdparty.jqueryui.jquery-ui-selectable",
+      "size" : 6958,
+      "required" : ["sap.ui.thirdparty.jqueryui.jquery-ui-mouse"],
+      "includes" : [],
+      "excludeFromAllInOne" : true
+    },
+    {
+      "name" : "sap.ui.thirdparty.jqueryui.jquery-ui-sortable",
+      "size" : 40330,
+      "required" : ["sap.ui.thirdparty.jqueryui.jquery-ui-mouse"],
+      "includes" : [],
+      "excludeFromAllInOne" : true
+    },
+    {
+      "name" : "sap.ui.thirdparty.jqueryui.jquery-ui-widget",
+      "size" : 7003,
+      "required" : ["sap.ui.thirdparty.jquery.jquery-1.7.1"],
+      "includes" : [],
+      "excludeFromAllInOne" : true
+    },
+    {
+      "name" : "sap.ui.thirdparty.jszip",
+      "size" : 23691,
+      "required" : [],
+      "includes" : [],
+      "excludeFromAllInOne" : true
+    },
+    {
+      "name" : "sap.ui.thirdparty.less",
+      "size" : 117166,
+      "required" : [],
+      "includes" : [],
+      "excludeFromAllInOne" : true
+    },
+    {
+      "name" : "sap.ui.thirdparty.mobiscroll.js.mobiscroll-android",
+      "size" : 344,
+      "required" : ["sap.ui.thirdparty.jquery.jquery-1.7.1", "sap.ui.thirdparty.mobiscroll.js.mobiscroll-core"],
+      "includes" : [],
+      "excludeFromAllInOne" : true
+    },
+    {
+      "name" : "sap.ui.thirdparty.mobiscroll.js.mobiscroll-android-ics",
+      "size" : 503,
+      "required" : ["sap.ui.thirdparty.jquery.jquery-1.7.1", "sap.ui.thirdparty.mobiscroll.js.mobiscroll-core"],
+      "includes" : [],
+      "excludeFromAllInOne" : true
+    },
+    {
+      "name" : "sap.ui.thirdparty.mobiscroll.js.mobiscroll-core",
+      "size" : 33188,
+      "required" : ["sap.ui.thirdparty.jquery.jquery-1.7.1"],
+      "includes" : [],
+      "excludeFromAllInOne" : true
+    },
+    {
+      "name" : "sap.ui.thirdparty.mobiscroll.js.mobiscroll-datetime",
+      "size" : 28047,
+      "required" : ["sap.ui.thirdparty.jquery.jquery-1.7.1", "sap.ui.thirdparty.mobiscroll.js.mobiscroll-core"],
+      "includes" : [],
+      "excludeFromAllInOne" : true
+    },
+    {
+      "name" : "sap.ui.thirdparty.mobiscroll.js.mobiscroll-ios",
+      "size" : 415,
+      "required" : ["sap.ui.thirdparty.jquery.jquery-1.7.1", "sap.ui.thirdparty.mobiscroll.js.mobiscroll-core"],
+      "includes" : [],
+      "excludeFromAllInOne" : true
+    },
+    {
+      "name" : "sap.ui.thirdparty.mobiscroll.js.mobiscroll-list",
+      "size" : 14515,
+      "required" : ["sap.ui.thirdparty.jquery.jquery-1.7.1", "sap.ui.thirdparty.mobiscroll.js.mobiscroll-core"],
+      "includes" : [],
+      "excludeFromAllInOne" : true
+    },
+    {
+      "name" : "sap.ui.thirdparty.mobiscroll.js.mobiscroll-select",
+      "size" : 8777,
+      "required" : ["sap.ui.thirdparty.jquery.jquery-1.7.1", "sap.ui.thirdparty.mobiscroll.js.mobiscroll-core"],
+      "includes" : [],
+      "excludeFromAllInOne" : true
+    },
+    {
+      "name" : "sap.ui.thirdparty.mobiscroll.js.mobiscroll-wp",
+      "size" : 1045,
+      "required" : ["sap.ui.thirdparty.jquery.jquery-1.7.1", "sap.ui.thirdparty.mobiscroll.js.mobiscroll-core"],
+      "includes" : [],
+      "excludeFromAllInOne" : true
+    },
+    {
+      "name" : "sap.ui.thirdparty.qunit",
+      "size" : 51802,
+      "required" : [],
+      "includes" : [],
+      "excludeFromAllInOne" : true
+    },
+    {
+      "name" : "sap.ui.thirdparty.sinon",
+      "size" : 129429,
+      "required" : [],
+      "includes" : [],
+      "excludeFromAllInOne" : true
+    },
+    {
+      "name" : "sap.ui.thirdparty.sinon-ie",
+      "size" : 3456,
+      "required" : ["sap.ui.thirdparty.sinon"],
+      "includes" : [],
+      "excludeFromAllInOne" : true
+    },
+    {
+      "name" : "sap.ui.thirdparty.sinon-qunit",
+      "size" : 2442,
+      "required" : ["sap.ui.thirdparty.qunit", "sap.ui.thirdparty.sinon", "sap.ui.thirdparty.sinon-ie"],
+      "includes" : [],
+      "excludeFromAllInOne" : true
+    },
+    {
+      "name" : "sap.ui.thirdparty.sinon-server",
+      "size" : 48548,
+      "required" : ["sap.ui.thirdparty.sinon"],
+      "includes" : [],
+      "excludeFromAllInOne" : true
+    },
+    {
+      "name" : "sap.ui.thirdparty.swipe-view",
+      "size" : 18431,
+      "required" : [],
+      "includes" : [],
+      "excludeFromAllInOne" : true
+    },
+    {
+      "name" : "sap.ui.thirdparty.zyngascroll",
+      "size" : 45133,
+      "required" : [],
+      "includes" : [],
+      "excludeFromAllInOne" : true
+    }
+  ]
+}

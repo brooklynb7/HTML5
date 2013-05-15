@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Library name="sap.makit">
+<Template name="sap.makit.Axis" alias="Axis">
+	<jsTemplate><![CDATA[new sap.makit.Axis({
+	id: "${id}", // sap.ui.core.ID
+	showLabel: true, // boolean
+	showPrimaryLine: true, // boolean
+	showGrid: false, // boolean
+	thickness: 0.5, // float
+	color: "gray", // string
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	layoutData: undefined // sap.ui.core.LayoutData
+})
+]]></jsTemplate>
+</Template>
+<Template name="sap.makit.Category" alias="Category">
+	<jsTemplate><![CDATA[new sap.makit.Category({
+	id: "${id}", // sap.ui.core.ID
+	column: undefined, // string
+	displayName: undefined, // string
+	format: undefined, // string
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	layoutData: undefined // sap.ui.core.LayoutData
+})
+]]></jsTemplate>
+</Template>
+<Template name="sap.makit.CategoryAxis" alias="CategoryAxis,Axis">
+	<jsTemplate><![CDATA[new sap.makit.CategoryAxis({
+	id: "${id}", // sap.ui.core.ID
+	showLabel: true, // boolean
+	showPrimaryLine: true, // boolean
+	showGrid: false, // boolean
+	thickness: 0.5, // float
+	color: "gray", // string
+	sortOrder: sap.makit.SortOrder.None, // sap.makit.SortOrder
+	displayLastLabel: false, // boolean
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	layoutData: undefined // sap.ui.core.LayoutData
+})
+]]></jsTemplate>
+</Template>
+<Template name="sap.makit.Chart" alias="Chart">
+	<jsTemplate><![CDATA[new sap.makit.Chart({
+	id: "${id}", // sap.ui.core.ID
+	width: "100%", // sap.ui.core.CSSSize
+	height: "100%", // sap.ui.core.CSSSize
+	type: sap.makit.ChartType.Column, // sap.makit.ChartType
+	categoryAxis: undefined, // object
+	valueAxis: undefined, // object
+	valueBubble: undefined, // object
+	showRangeSelector: true, // boolean
+	showTableView: false, // boolean
+	legendPosition: sap.makit.LegendPosition.Left, // sap.makit.LegendPosition
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	layoutData: undefined, // sap.ui.core.LayoutData
+	rows: [], // sap.makit.Row
+	columns: [], // sap.makit.Column
+	series: undefined, // sap.makit.Series
+	values: [], // sap.makit.Value
+	category: undefined, // sap.makit.Category
+	doubletap: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	tap: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+</Template>
+<Template name="sap.makit.Column" alias="Column">
+	<jsTemplate><![CDATA[new sap.makit.Column({
+	id: "${id}", // sap.ui.core.ID
+	name: undefined, // string
+	value: undefined, // any
+	type: "string", // string
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	layoutData: undefined // sap.ui.core.LayoutData
+})
+]]></jsTemplate>
+</Template>
+<Template name="sap.makit.Row" alias="Row">
+	<jsTemplate><![CDATA[new sap.makit.Row({
+	id: "${id}", // sap.ui.core.ID
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	layoutData: undefined, // sap.ui.core.LayoutData
+	cells: [] // sap.makit.Column
+})
+]]></jsTemplate>
+</Template>
+<Template name="sap.makit.Series" alias="Series">
+	<jsTemplate><![CDATA[new sap.makit.Series({
+	id: "${id}", // sap.ui.core.ID
+	column: undefined, // string
+	displayName: undefined, // string
+	format: undefined, // string
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	layoutData: undefined // sap.ui.core.LayoutData
+})
+]]></jsTemplate>
+</Template>
+<Template name="sap.makit.Value" alias="Value">
+	<jsTemplate><![CDATA[new sap.makit.Value({
+	id: "${id}", // sap.ui.core.ID
+	expression: undefined, // string
+	displayName: undefined, // string
+	format: undefined, // string
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	layoutData: undefined // sap.ui.core.LayoutData
+})
+]]></jsTemplate>
+</Template>
+<Template name="sap.makit.ValueAxis" alias="ValueAxis,Axis">
+	<jsTemplate><![CDATA[new sap.makit.ValueAxis({
+	id: "${id}", // sap.ui.core.ID
+	showLabel: true, // boolean
+	showPrimaryLine: true, // boolean
+	showGrid: false, // boolean
+	thickness: 0.5, // float
+	color: "gray", // string
+	min: undefined, // string
+	max: undefined, // string
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	layoutData: undefined // sap.ui.core.LayoutData
+})
+]]></jsTemplate>
+</Template>
+<Template name="sap.makit.ValueBubble" alias="ValueBubble,Bubble">
+	<jsTemplate><![CDATA[new sap.makit.ValueBubble({
+	id: "${id}", // sap.ui.core.ID
+	showCategoryText: true, // boolean
+	showCategoryDisplayName: true, // boolean
+	showValueDisplayName: true, // boolean
+	showValueOnPieChart: false, // boolean
+	showLegendLabel: true, // boolean
+	showNullValue: true, // boolean
+	position: sap.makit.ValueBubblePosition.Top, // sap.makit.ValueBubblePosition
+	style: sap.makit.ValueBubbleStyle.Top, // sap.makit.ValueBubbleStyle
+	visible: true, // boolean
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	layoutData: undefined // sap.ui.core.LayoutData
+})
+]]></jsTemplate>
+</Template>
+</Library>

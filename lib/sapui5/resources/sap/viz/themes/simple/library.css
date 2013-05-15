@@ -1,0 +1,6 @@
+/*!
+ * SAP UI development toolkit for HTML5 (SAPUI5)
+ *
+ * (c) Copyright 2009-2012 SAP AG. All rights reserved
+ */
+ .sapVizChart{position:relative;}.sapVizChart.sapVizNoData{border:1px solid #d3d3d3;box-sizing:border-box;-moz-box-sizing:border-box;}.sapVizChart.sapVizNoData>.sapVizNoDataDefault{position:absolute;display:block;bottom:50%;left:0;right:0;text-align:center;white-space:nowrap;}
