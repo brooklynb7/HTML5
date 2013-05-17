@@ -8,17 +8,17 @@ test("a number is dividable by another number", function(){
 test("The input 'number' is not a number", function(){
 	throws(function(){
 		isExactlyDividable("number", 4);
-	}, "raise error message that the input 'number' is not a number");
+	}, "raise error message: the input 'number' is not a number");
 
 	throws(function(){
 		isExactlyDividable("0", 4);
-	}, "raise error message that the input '0' is not a number");	
+	}, "raise error message: the input '0' is not a number");	
 });
 
 test("The input 'number' is not an integer", function(){
 	throws(function(){
 		isExactlyDividable(1.5, 4);
-	}, "raise error message");	
+	}, "raise error message: the input 'number' is not an integer");	
 });
 
 test("The input 'number' is not a positive integer", function(){
