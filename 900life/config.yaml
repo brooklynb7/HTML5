@@ -1,0 +1,4 @@
+name: 900life
+version: 1
+handle:
+- rewrite: if(!is_dir() && !is_file()) goto "/index.php/$1"
