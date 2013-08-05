@@ -1,0 +1,79 @@
+<div class="page-header">
+	<h1>Eclipse installation</h1>
+</div>
+<ol>
+	<li>
+		Download the Eclipse IDE Distribution (Dev.zip) from 
+		<a href="http://10.58.79.20/webteam/dev.zip" target="_blank">http://10.58.79.20/webteam/dev.zip</a>
+	</li>
+
+	<li>
+		Unzip the file to C:\ - after this step you should see C:\Dev (Win7: ignore the security warnings)
+	</li>
+
+	<li>
+		<div>Copy C:\Dev\settings.xml to C:\Users\&lt;your user here&gt;\.m2\settings.xml</div>
+		<div>
+			<span class="text-error">Attention:</span>if the directory C:\Users\&lt;your user here&gt;\.m2 does not exist you might <span class="text-error">not</span> be able to create it from your Windows Explorer. </div>
+			<div>In such cases you can simply execute the following steps in the Command Line:</div>
+			<pre>cd c:\Dev\Maven\bin
+set JAVA_HOME=C:\Dev\java\jdk6
+mvn -version
+mvn</pre>
+		</div>
+		<div>These 4 commands will make maven create C:\Users\&lt;your user here&gt;\.m2 for you.</div>
+		<div>Afterwards you can copy the settings.xml file to C:\Users\&lt;your user here&gt;\.m2\settings.xml</div>
+	</li>
+
+	<li>
+		Double click on C:\Dev\eclipse\eclipse.exe (you should create a short cut to this file on your desktop)
+Important: Wait until Eclipse has finished all its tasks during startup before going to the next step (check the "Prograss" view)
+	</li>
+
+	<li>
+		<div>Go to Window > Preferences > Maven > User Settings and make it as 
+			C:\Users\&lt;your user&gt;\.m2\settings.xml</div>
+		<div><img src="img/eclipse/1.jpg" class="img-rounded"></div>
+	</li>
+
+	<li>
+		<h5>Adding the rdc-tools repository and import the sapui5 project:</h5>
+		<ul>
+			<li>
+				Right-click on blank in the Project Explorer and choose <strong>Import</strong> -> <span class="text-info">Git</strong> -> <strong>Projects from Git</strong> -> <strong>URI</strong>
+				<div><img src="img/eclipse/2.jpg" class="img-rounded"></div>
+				<div><img src="img/eclipse/3.jpg" class="img-rounded"></div><br/>
+			</li>
+			<li>
+				Paste the rdc tools repository <strong>ssh://youruserid@git.wdf.sap.corp:29418/rdc/rdc-tools.git</strong> in the URI and fill in the user id and password below.
+				<div><img src="img/eclipse/4.jpg" class="img-rounded"></div><br/>
+			</li>
+			<li>
+				Go to next, keep the selected master option.
+				<div><img src="img/eclipse/5.jpg" class="img-rounded"></div><br/>
+			</li>
+			<li>
+				Then next, chose the workspace to put the source code.
+				<div><img src="img/eclipse/6.jpg" class="img-rounded"></div><br/>
+			</li>
+			<li>
+				After loading the repository, select <strong>Import existing projects</strong> -> <strong>Next</strong>
+				<div><img src="img/eclipse/7.jpg" class="img-rounded"></div><br/>
+			</li>
+			<li>
+				Then only select rdc-sapui5 project and finish. And you will find the project in the Project Explorer.
+				<div><img src="img/eclipse/8.jpg" class="img-rounded" />
+					<img src="img/eclipse/9.jpg" class="img-rounded" /></div><br/>
+			</li>			
+		</ul>
+	</li>
+
+	<li>
+		Follow the same step as above to add the solution_experience repository and import the project, just notice that the repository URI is <strong>ssh://youruserid@git.wdf.sap.corp:29418/RDC/solution_experience.git</strong>, and select all branchs and import the solution_experience project. At last you will see it in the Project Explorer.
+		<div><img src="img/eclipse/10.jpg" class="img-rounded" /></div>
+	</li>
+
+</ol>
+
+
+

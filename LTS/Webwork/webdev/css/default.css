@@ -1,0 +1,9 @@
+.tabbable{
+	margin: 20px;
+}
+.nav-tabs a{
+	outline: none;
+}
+.tab-content{
+	min-height: 24px;
+}
