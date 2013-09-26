@@ -5,9 +5,9 @@
 var express = require('express'),
 	routes = require('./routes'),
 	user = require('./routes/user'),
+	message = require('./routes/message'),
 	http = require('http'),
-	path = require('path'),
-	MessageProvider = require('./messageProvider').MessageProvider;
+	path = require('path');
 
 var app = express();
 var relativePath = "/webdev/node";
@@ -32,25 +32,11 @@ app.configure('development', function() {
 	app.use(express.errorHandler());
 });
 
-var messageProvider = new MessageProvider('localhost', 27017);
-
 app.get(relativePath, routes.index);
 app.get(relativePath + '/users', user.list);
 
-app.post(relativePath + '/message/new', function(req, res) {
-	messageProvider.save({
-		content: req.param('content'),
-		ip: req.connection.remoteAddress
-	}, function(error, message) {
-		res.send(JSON.stringify(message));
-	});
-});
-
-app.get(relativePath + '/messages', function(req, res) {
-	messageProvider.findAll(function(error, messages) {
-		res.send(JSON.stringify(messages));
-	});
-});
+app.get(relativePath + '/messages', message.list);
+app.post(relativePath + '/message/new', message.insert);
 
 http.createServer(app).listen(app.get('port'), function() {
 	console.log('Express server listening on port ' + app.get('port'));

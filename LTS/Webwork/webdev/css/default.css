@@ -1,3 +1,6 @@
+body,li{
+	line-height: 30px;
+}
 .tabbable{
 	margin: 20px;
 }
