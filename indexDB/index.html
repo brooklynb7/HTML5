@@ -1,0 +1,48 @@
+<script type="text/javascript">
+
+var idbSupported = false;
+var db;
+ 
+document.addEventListener("DOMContentLoaded", function(){
+ 
+    if("indexedDB" in window) {
+        idbSupported = true;
+    }
+ 
+    if(idbSupported) {
+        var openRequest = indexedDB.open("test3",1);
+ 
+        openRequest.onupgradeneeded = function(e) {            
+            console.log("running onupgradeneeded");
+            var thisDB = e.target.result;
+            if(!thisDB.objectStoreNames.contains("firstOS")) {
+                console.log("creating object store \"firstOS\"");
+                thisDB.createObjectStore("firstOS", { autoIncrement: true });
+            }
+        }
+ 
+        openRequest.onsuccess = function(e) {
+            console.log("Success!");
+            db = e.target.result;
+            var transaction = db.transaction(["firstOS"],"readwrite");
+            var store = transaction.objectStore("firstOS");
+
+            var person = {
+                name:"name",
+                email:"email",
+                created:new Date()
+            }
+         
+            //Perform the add
+            var request = store.add(person);
+        }
+ 
+        openRequest.onerror = function(e) {
+            console.log("Error");
+            console.dir(e);
+        } 
+    }
+ 
+},false);
+
+</script>

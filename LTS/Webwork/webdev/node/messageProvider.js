@@ -25,7 +25,9 @@ MessageProvider.prototype.findAll = function(callback) {
 	this.getCollection(function(error, msg_collection) {
 		if (error) callback(error)
 		else {
-			msg_collection.find().sort({created_at: -1 }).toArray(function(error, results) {
+			msg_collection.find().sort({
+				created_at: -1
+			}).toArray(function(error, results) {
 				if (error) callback(error)
 				else callback(null, results)
 			});
