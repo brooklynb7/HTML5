@@ -1,10 +1,28 @@
 <!DOCTYPE html>
 <html>
 	<head>	
-		
+		<style>		
+			video { 
+				position:absolute;
+				visibility:hidden;
+			}
+			canvas { border:8px solid #fff;}
+			button {
+				border:none;
+				display:block;
+				padding:0.5em 1em;
+				margin:1% auto 0;
+				cursor:pointer;
+				color:#fff;
+				background-color:#9f361b;
+			}
+			button:active { background-color:#e44d26; }
+		</style>
 	</head>
 	<body>
-		<video id='v'></video>
+		<video id="v"></video>	
+		<canvas id="c"></canvas>
+		<button id="grey">Toggle Greyness</button>
 	</body>
 	<script type="text/javascript" src='getUserMedia.js'></script>
 </html>
