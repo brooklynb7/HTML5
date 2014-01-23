@@ -1,0 +1,216 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<title>RadioButton - sap.m - qUnit test</title>
+
+		<script id="sap-ui-bootstrap"
+			type="text/javascript"
+			src="../../../../resources/sap-ui-core.js"
+			data-sap-ui-theme="sap_mvi"
+			data-sap-ui-noConflict="true"
+			data-sap-ui-libs="sap.m" >
+		</script>
+
+		<link rel="stylesheet" href="../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
+		<script type="text/javascript" src="../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+		<script type="text/javascript" src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
+		<script type="text/javascript" src="../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
+		<script>
+
+		jQuery.sap.require("sap.ui.thirdparty.jquery-mobile-custom");
+		jQuery.sap.initMobile();
+		var sLabelText = 'foobar';
+
+		var oRadioButton1 = new sap.m.RadioButton({groupName:"Gruppe1"});
+		oRadioButton1.placeAt("target1");
+		var oRadioButton2 = new sap.m.RadioButton({enabled:false, groupName:"Gruppe1", select: function() {handleEvent()}});
+		oRadioButton2.placeAt("target2");
+		var oRadioButton3 = new sap.m.RadioButton({groupName:"Gruppe1", select: function() {handleEvent()}});
+		oRadioButton3.placeAt("target3");
+		var oRadioButton4 = new sap.m.RadioButton({groupName:"Gruppe2", select: function() {handleEvent()}});
+		oRadioButton4.placeAt("target4");
+		var oRadioButton5 = new sap.m.RadioButton({groupName:"Gruppe2"});
+		oRadioButton5.placeAt("target5");
+		var oRadioButton6 = new sap.m.RadioButton({groupName:"Gruppe2", selected:true});
+		oRadioButton6.placeAt("target6");
+		var oRadioButton7 = new sap.m.RadioButton({enabled:false, groupName:"Gruppe3", selected:true});
+		oRadioButton7.placeAt("target7");
+		var oRadioButton8 = new sap.m.RadioButton({enabled:false, groupName:"Gruppe3", text: sLabelText});
+		oRadioButton8.placeAt("target8");
+		var oRadioButton9 = new sap.m.RadioButton({enabled:false, groupName:"Gruppe3", text: sLabelText, width: '20px'});
+		oRadioButton9.placeAt("target9");
+		var oRadioButton10 = new sap.m.RadioButton({enabled:false, groupName:"Gruppe3", text: sLabelText});
+		oRadioButton10.placeAt("target10");
+		var oRadioButton11 = new sap.m.RadioButton({enabled:false, visible:false, groupName:"Gruppe3", text: sLabelText});
+		oRadioButton11.placeAt("target11");
+
+
+		function handleEvent() {
+			test("click", function(){
+				ok(true);
+			});
+		}
+		jQuery.sap.require("sap.ui.model.json.JSONModel");
+		// JSON sample data
+		var data = {
+			navigation : [ {
+				title : "Travel Expend",
+				description : "Access the travel expend workflow",
+				icon : "images/travel_expend.png",
+				iconInset : false,
+				type : "Navigation",
+				press : 'detailPage'
+			}, {
+				title : "Travel and expense report",
+				description : "Access travel and expense reports",
+				icon : "images/travel_expense_report.png",
+				iconInset : false,
+				type : "Navigation",
+				press : 'detailPage'
+			}, {
+				title : "Travel Request",
+				description : "Access the travel request workflow",
+				icon : "images/travel_request.png",
+				iconInset : false,
+				type : "Navigation",
+				press : 'detailPage'
+			} ]
+		};
+
+		var oItemTemplate = new sap.m.InputListItem({
+			label : "{title}",
+			content :  new sap.m.RadioButton({groupName:"Gruppe4"})
+		});
+
+		var oList2 = new sap.m.List({
+			inset : true,
+			headerText : "List with Radio Buttons",
+			footerText : "Example"
+		});
+
+		function bindListData(data, itemTemplate, list)
+		{
+			var oModel = new sap.ui.model.json.JSONModel();
+			// set the data for the model
+			oModel.setData(data);
+			// set the model to the list
+			list.setModel(oModel);
+
+			// bind Aggregation
+			list.bindAggregation("items", "/navigation", itemTemplate);
+		}
+
+		bindListData(data, oItemTemplate, oList2)
+		oList2.placeAt('target12')
+
+		test("Initial Check", function() {
+			s1 = sap.ui.getCore().byId("__button0");
+			s2 = sap.ui.getCore().byId("__button1");
+			s3 = sap.ui.getCore().byId("__button2");
+			s4 = sap.ui.getCore().byId("__button3");
+			s5 = sap.ui.getCore().byId("__button4");
+			s6 = sap.ui.getCore().byId("__button5");
+			s7 = sap.ui.getCore().byId("__button6");
+			s8 = sap.ui.getCore().byId("__button7");
+			s9 = sap.ui.getCore().byId("__button8");
+			s10 = sap.ui.getCore().byId("__button9");
+			ok((s1 !== undefined) && (s1 != null), "s1 should not be null");
+			ok((s2 !== undefined) && (s2 != null), "s2 should not be null");
+			ok((s3 !== undefined) && (s3 != null), "s3 should not be null");
+			ok((s4 !== undefined) && (s4 != null), "s4 should not be null");
+			ok((s5 !== undefined) && (s5 != null), "s5 should not be null");
+			ok((s6 !== undefined) && (s6 != null), "s6 should not be null");
+			ok((s7 !== undefined) && (s7 != null), "s7 should not be null");
+			ok((s8 !== undefined) && (s8 != null), "s8 should not be null");
+			ok((s9 !== undefined) && (s9 != null), "s9 should not be null");
+			ok((s10 !== undefined) && (s10 != null), "s10 should not be null");
+			ok(!jQuery.sap.domById("__button10"), "s11 should not be rendered");
+			equal(oRadioButton2.ontap(), undefined, 'no select should be fired (disabeld button)');
+			oRadioButton3.ontap();
+			oRadioButton4.ontap();
+		});
+
+		test("Button Group", function(){
+				equal(jQuery("#__button0 input").attr('name'), 'Gruppe1', "Group name should be Gruppe1");
+				equal(jQuery("#__button1 input").attr('name'), 'Gruppe1', "Group name should be Gruppe1");
+				equal(jQuery("#__button2 input").attr('name'), 'Gruppe1', "Group name should be Gruppe1");
+				equal(jQuery("#__button3 input").attr('name'), 'Gruppe2', "Group name should be Gruppe2");
+				equal(jQuery("#__button4 input").attr('name'), 'Gruppe2', "Group name should be Gruppe2");
+				equal(jQuery("#__button5 input").attr('name'), 'Gruppe2', "Group name should be Gruppe2");
+				equal(jQuery("#__button6 input").attr('name'), 'Gruppe3', "Group name should be Gruppe3");
+				equal(jQuery("#__button7 input").attr('name'), 'Gruppe3', "Group name should be Gruppe3");
+				equal(jQuery("#__button8 input").attr('name'), 'Gruppe3', "Group name should be Gruppe3");
+				equal(jQuery("#__button9 input").attr('name'), 'Gruppe3', "Group name should be Gruppe3");
+		});
+
+		test("Radio Button style", function(){
+			ok(jQuery.sap.byId("__button1").hasClass("sapMRbDis"), "Radio Button should have class 'sapMRbDis'");
+			ok(jQuery.sap.byId("__button9").hasClass("sapMRbDis"), "Radio Button should have class 'sapMRbDis'");
+			ok(jQuery.sap.byId("__button8").hasClass("sapMRbDis"), "Radio Button should have class 'sapMRbDis'");
+			ok(jQuery.sap.byId("__button7").hasClass("sapMRbDis"), "Radio Button should have class 'sapMRbDis'");
+			ok(jQuery.sap.byId("__button6").hasClass("sapMRbDis"), "Radio Button should have class 'sapMRbDis'");
+			equal(jQuery.sap.byId("__button5 input").attr("checked"), undefined, "Radio Button should not be 'checked'");
+			equal(jQuery.sap.byId("__button6 input").attr("checked"), 'checked', "Radio Button should have attr 'checked'");
+			
+		});
+
+		test("Visibility", function() {
+			s1.setSelected(true);
+			ok(jQuery.sap.byId("__button0").hasClass("sapMRbSel"), "Radio Button should have class 'selected'");
+			equal(jQuery.sap.byId("__button0 input").attr("checked"), 'checked', "Radio Button should have attr 'checked'");
+			equal(jQuery.sap.byId("__button6 input").attr("checked"), 'checked', "Radio Button should have attr 'checked'");
+		});
+
+		test("List", function() {
+			if(jQuery.os.ios) {
+				equal(jQuery.sap.byId("__button11-__list0-0 input").css("visibility"), 'hidden', "Radio Button should not be visible");
+				equal(jQuery.sap.byId("__button11-__list0-1 input").css("visibility"), 'hidden', "Radio Button should not be visible");
+				equal(jQuery.sap.byId("__button11-__list0-2 input").css("visibility"), 'hidden', "Radio Button should not be visible");
+				jQuery.sap.byId("__button11-__list0-1 input").attr('checked','checked');
+				equal(jQuery.sap.byId("__button11-__list0-1 input").css("visibility"), 'visible', "Radio Button should not be visible");
+				equal(jQuery.sap.byId("__button11-__list0-0 input").css("visibility"), 'hidden', "Radio Button should not be visible");
+				equal(jQuery.sap.byId("__button11-__list0-2 input").css("visibility"), 'hidden', "Radio Button should not be visible");
+			} else {
+				expect(0);
+			}
+		});
+
+		test("Label", function() {
+			ok(( sap.ui.getCore().byId("__button7-label") !== undefined) && (sap.ui.getCore().byId("__button7-label") != null), "label should not be null");
+			ok(( sap.ui.getCore().byId("__button8-label") !== undefined) && (sap.ui.getCore().byId("__button8-label") != null), "label should not be null");
+			ok(( sap.ui.getCore().byId("__button9-label") !== undefined) && (sap.ui.getCore().byId("__button9-label") != null), "label should not be null");
+			equal(jQuery("#__button8-label").innerWidth(), '20', "Label width should be 20px");
+		});
+
+		test("TextOk", function() {
+			strictEqual(sap.ui.getCore().byId("__button7-label").getText(), sLabelText, "Label text should be" + sLabelText);
+			strictEqual(sap.ui.getCore().byId("__button8-label").getText(), sLabelText, "Label text should be" + sLabelText);
+			strictEqual(sap.ui.getCore().byId("__button9-label").getText(), sLabelText, "Label text should be" + sLabelText);
+		});
+
+		</script>
+	</head>
+	<body>
+
+		<h1 id="qunit-header">qUnit Page for sap.m.RadioButton</h1>
+		<h2 id="qunit-banner"></h2>
+		<h2 id="qunit-userAgent"></h2>
+		<ol id="qunit-tests"></ol>
+		<div id="qunit-fixture">test markup, will be hidden</div>
+
+		<div id="target1"></div>
+		<div id="target2"></div>
+		<div id="target3"></div>
+		<div id="target4"></div>
+		<div id="target5"></div>
+		<div id="target6"></div>
+		<div id="target7"></div>
+		<div id="target8"></div>
+		<div id="target9"></div>
+		<div id="target10"></div>
+		<div id="target11"></div>
+		<div id="target12"></div>
+
+	</body>
+</html>

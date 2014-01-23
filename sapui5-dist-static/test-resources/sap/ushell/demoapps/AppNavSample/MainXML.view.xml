@@ -1,0 +1,11 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m" controllerName="AppNavSample.MainXML" xmlns:html="http://www.w3.org/1999/xhtml">
+	<SplitApp id="app">
+		<masterPages>
+			<!-- filled dynamically in controller -->
+		</masterPages>
+		<detailPages>
+			<!-- filled dynamically in controller -->
+		</detailPages>
+	</SplitApp>
+</core:View>

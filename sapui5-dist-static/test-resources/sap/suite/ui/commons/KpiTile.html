@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>KpiTile - sap.suite.ui.commons</title>
+
+    <!-- UI5 Bootstrap -->
+    <script src="../../../../../resources/sap-ui-core.js"
+            type="text/javascript"
+            id="sap-ui-bootstrap"
+            data-sap-ui-libs="sap.ui.commons,sap.suite.ui.commons,sap.m"
+            data-sap-ui-theme="sap_goldreflection"></script>
+
+<style>
+</style>
+
+<script type="text/javascript">
+
+    var oKpiTile = new sap.suite.ui.commons.KpiTile({
+		id: "tile1",
+        value: "1200",
+        valueUnit: "H",
+        description: "Production Hours, 0815",
+        valueStatus: sap.suite.ui.commons.ValueStatus.Good
+	});
+
+	oKpiTile.placeAt("contentArea1");
+
+    oKpiTile = new sap.suite.ui.commons.KpiTile({
+		id: "tile2",
+        value: "250",
+        valueUnit: "MPH",
+        description: "Speed Limit, 0955"
+	});
+
+	oKpiTile.placeAt("contentArea2");
+
+    oKpiTile = new sap.suite.ui.commons.KpiTile({
+		id: "tile3",
+        value: "75,3",
+        description: "Absolute Deviation, 0385",
+        valueStatus: sap.suite.ui.commons.ValueStatus.Critical
+	});
+
+	oKpiTile.placeAt("contentArea3");
+
+    oKpiTile = new sap.suite.ui.commons.KpiTile({
+		id: "tile4",
+        value: "91,95",
+        valueUnit: "USD",
+        description: "Original Amount, 0712",
+        valueStatus: sap.suite.ui.commons.ValueStatus.Bad
+	});
+
+	oKpiTile.placeAt("contentArea4");
+</script>
+</head>
+
+<body class="sapUiBody" role="application">
+<h1>KpiTile - sap.suite.ui.commons</h1>
+<div id="contentArea1" style="display: inline-block"></div>
+&nbsp;&nbsp;
+<div id="contentArea2" style="display: inline-block"></div>
+&nbsp;&nbsp;
+<div id="contentArea3" style="display: inline-block"></div>
+&nbsp;&nbsp;
+<div id="contentArea4" style="display: inline-block"></div>
+&nbsp;&nbsp;
+<div id="contentArea5" style="display: inline-block"></div>
+&nbsp;&nbsp;
+<div id="contentArea6" style="display: inline-block"></div>
+&nbsp;&nbsp;
+<div id="contentArea7" style="display: inline-block"></div>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+<title>Table - sap.ui.table</title>
+<link rel="shortcut icon" type="image/x-icon" href="../images/controls/sap.ui.table.Table.gif">
+
+<!-- ********************************************************************** -->
+<!-- SAPUI5 Bootstrap:                                                     -->
+<!-- Extend the "libs" property if you like to import additional libraries  -->
+<!-- ********************************************************************** -->
+<script id="sap-ui-bootstrap" 
+	type="text/javascript"
+	data-sap-ui-libs="sap.ui.commons,sap.ui.table"
+	data-sap-ui-theme="sap_goldreflection"
+	src="../../../../../resources/sap-ui-core.js"></script>
+
+<script type="text/javascript">	
+	
+	var aData = [
+   		{lastName: "Dente", name: "Al", checked: true, linkText: "www.sap.com", href: "http://www.sap.com", src: "../images/Person.png", gender: "male", rating: 4},
+   		{lastName: "Friese", name: "Andy", checked: true, linkText: "www.spiegel.de", href: "http://www.spiegel.de", src: "../images/JobPosition.png", gender: "male", rating: 2},
+   		{lastName: "Mann", name: "Anita", checked: false, linkText: "www.kicker.de", href: "http://www.kicker.de", src: "../images/Person.png", gender: "female", rating: 3},
+   		{lastName: "Schutt", name: "Doris", checked: true, linkText: "www.spiegel.de", href: "http://www.spiegel.de", src: "../images/Person.png", gender: "female", rating: 4},
+   		{lastName: "Open", name: "Doris", checked: true, linkText: "www.spiegel.de", href: "http://www.spiegel.de", src: "../images/Person.png", gender: "female", rating: 2},
+   		{lastName: "Dewit", name: "Kenya", checked: false, linkText: "www.spiegel.de", href: "http://www.spiegel.de", src: "../images/Person.png", gender: "female", rating: 3},
+   		{lastName: "Zar", name: "Lou", checked: true, linkText: "www.spiegel.de", href: "http://www.spiegel.de", src: "../images/Person.png", gender: "male", rating: 1},
+   		{lastName: "Burr", name: "Tim", checked: true, linkText: "www.spiegel.de", href: "http://www.spiegel.de", src: "../images/JobPosition.png", gender: "male", rating: 2},
+   		{lastName: "Hughes", name: "Tish", checked: true, linkText: "www.spiegel.de", href: "http://www.spiegel.de", src: "../images/Person.png", gender: "male", rating: 5},
+   		{lastName: "Lester", name: "Mo", checked: true, linkText: "www.spiegel.de", href: "http://www.spiegel.de", src: "../images/Person.png", gender: "male", rating: 3},
+   		{lastName: "Case", name: "Justin", checked: false, linkText: "www.sap.com", href: "http://www.sap.com", src: "../images/Person.png", gender: "male", rating: 3},
+   		{lastName: "Time", name: "Justin", checked: true, linkText: "www.spiegel.de", href: "http://www.spiegel.de", src: "../images/Person.png", gender: "male", rating: 4},
+   		{lastName: "Barr", name: "Gaye", checked: true, linkText: "www.spiegel.de", href: "http://www.spiegel.de", src: "../images/Person.png", gender: "male", rating: 2},
+   		{lastName: "Poole", name: "Gene", checked: true, linkText: "www.spiegel.de", href: "http://www.spiegel.de", src: "../images/JobPosition.png", gender: "male", rating: 1},
+   		{lastName: "Ander", name: "Corey", checked: false, linkText: "www.spiegel.de", href: "http://www.spiegel.de", src: "../images/Person.png", gender: "male", rating: 5},
+   		{lastName: "Early", name: "Brighton", checked: true, linkText: "www.spiegel.de", href: "http://www.spiegel.de", src: "../images/Person.png", gender: "male", rating: 3},
+   		{lastName: "Noring", name: "Constance", checked: true, linkText: "www.sap.com", href: "http://www.sap.com", src: "../images/Person.png", gender: "female", rating: 4},
+   		{lastName: "Haas", name: "Jack", checked: true, linkText: "www.spiegel.de", href: "http://www.spiegel.de", src: "../images/Person.png", gender: "male", rating: 2},
+   		{lastName: "Tress", name: "Matt", checked: true, linkText: "www.spiegel.de", href: "http://www.spiegel.de", src: "../images/JobPosition.png", gender: "male", rating: 4},
+   		{lastName: "Turner", name: "Paige", checked: true, linkText: "www.spiegel.de", href: "http://www.spiegel.de", src: "../images/Person.png", gender: "female", rating: 3}
+   	];
+
+	var oTable = new sap.ui.table.Table();
+	
+	var oControl = new sap.ui.commons.TextView({text: "{lastName}"});
+	oTable.addColumn(new sap.ui.table.Column({label: "Last Name", template: oControl, width: "30%"}));
+	oControl = new sap.ui.commons.TextField({value: "{name}"});
+	oTable.addColumn(new sap.ui.table.Column({label: "First Name", template: oControl, width: "30%"}));
+	oControl = new sap.ui.commons.CheckBox({checked: "{checked}"});
+ 	oTable.addColumn(new sap.ui.table.Column({label: "Checked", template: oControl, hAlign: "Center", width: "10%"}));
+	oControl = new sap.ui.commons.Link({text: "{linkText}", href: "{href}"});
+	oTable.addColumn(new sap.ui.table.Column({label: "Web Site", template: oControl, width: "20%"}));
+	oControl = new sap.ui.commons.Image({decorative: false, src: "{src}"});
+	oTable.addColumn(new sap.ui.table.Column({label: "Image", template: oControl, hAlign: "Center", width: "10%"}));
+	
+	var oModel = new sap.ui.model.json.JSONModel();
+	oModel.setData({modelData: aData});
+	oTable.setModel(oModel);
+	oTable.bindRows("/modelData");
+	
+	oTable.placeAt("content");
+
+</script>
+</head>
+<body class="sapUiBody" role="application">
+	<h1 id="header">Test Page for <code>sap.ui.table.Table</code></h1>
+	<div id="content"></div>
+	<p>
+</body>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		
+		<title>Theme-dependent CSS Classes</title>
+		
+		<script src="../../../../resources/sap-ui-core.js"
+			type="text/javascript" 
+			id="sap-ui-bootstrap"
+			data-sap-ui-xx-fakeOS="android"
+			data-sap-ui-libs="sap.m"
+			data-sap-ui-theme="sap_bluecrystal">
+		</script>
+
+		<script type="text/javascript">
+
+		// theme switch buttons
+		new sap.m.Text({
+			text: "Switch themes:"
+		}).placeAt("themeSwitch");
+		new sap.m.Button({
+			text: "Blue Crystal",
+			press: function(){sap.ui.getCore().applyTheme("sap_bluecrystal");}
+		}).placeAt("themeSwitch");
+		new sap.m.Button({
+			text: "Mobile Visual Identity",
+			press: function(){sap.ui.getCore().applyTheme("sap_mvi");}
+		}).placeAt("themeSwitch");
+		new sap.m.Button({
+			text: "Gold Reflection",
+			press: function(){sap.ui.getCore().applyTheme("sap_goldreflection");}
+		}).placeAt("themeSwitch");
+		new sap.m.Button({
+			text: "High Contrast Black",
+			press: function(){sap.ui.getCore().applyTheme("sap_hcb");}
+		}).placeAt("themeSwitch");
+		
+		
+		var htmlControl = new sap.ui.core.HTML({
+			content : "",
+		});
+		
+		
+		new sap.m.Text({
+			text: "Below there is an example page to compare colors:"
+		}).placeAt("exampleHeader");
+		
+		
+		
+		var app = new sap.m.App("myApp", {
+			initialPage:"page1", 
+			pages:[
+				new sap.m.Page("page1", {
+					title:"Theme CSS Classes",
+					content : [ htmlControl ]
+				})
+			]
+		}).placeAt("pageHolder");
+		
+		
+		// on startup duplicate the static table also into the HTML control
+		jQuery(function(){
+			var tableHtml = jQuery("#tableWrapper").html();
+			htmlControl.setContent(tableHtml);
+		});
+
+		</script>
+		
+		<style>
+		.crazy {
+			color:blue;
+			background-color:#CCCCFF;
+			border: 3px solid green;
+			font-family: serif;
+			padding: 20px;
+			margin: 16px;
+		}
+		table {
+			width: 80%;
+			border: 3px ridge #CCFFCC;
+			color: red;
+			background-color: red;
+		}
+		table td:first-child {
+			width: 66%;
+			border: 3px ridge #CCFFCC;
+			color: black;
+			background-color: white;
+		}
+		table td {
+			padding: 8px;
+			border: 0;
+		}
+		#pageWrapper {
+			text-align: center;
+		}
+		#pageHolder {
+			border: 3px solid black;
+			width: 80%;
+			height: 300px;
+			display: inline-block;
+			text-align: left;
+		}
+		</style>
+
+	</head>
+	<body class="sapUiBody">
+		
+		<h1>CSS Classes for Theme Parameters</h1>
+		
+		<div class="crazy">
+		
+		This is a crazy &lt;div&gt;, but the cells in the second column of the following static HTML table should have current theme colors.<br>
+
+		<div id="tableWrapper">
+			<table id="testTable">
+				<tbody>
+					<tr>
+						<td>The following cell should have the normal text color and the normal background color:</td>
+						<td class="sapThemeFont sapThemeText sapThemeBaseBG">Hello world.</td>
+					</tr>
+					<tr>
+						<td>The following cell should have the normal text color as background color and the normal background color as text color:</td>
+						<td class="sapThemeFont sapThemeText-asBackgroundColor sapThemeBaseBG-asColor">Hello world.</td>
+					</tr>
+					<tr>
+						<td>In themes supporting the UI5 mobile controls, the following cell should have the Header Bar background color as background color and the Header Bar header text color as text color:</td>
+						<td class="sapThemeFont sapThemeBarBG sapThemeBarHeading">Hello world.</td>
+					</tr>
+					<tr>
+						<td>The following cell should be completely red because invalid CSS classes have been set:</td>
+						<td class="sapThemePhantasy">Hello world.</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		</div>
+		
+		<div id="themeSwitch"></div>
+		
+		<div id="exampleHeader"></div>
+		
+		<div id="pageWrapper"><div id="pageHolder"></div></div>
+	</body>
+</html>

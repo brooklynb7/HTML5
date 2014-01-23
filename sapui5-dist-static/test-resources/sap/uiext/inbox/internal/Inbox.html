@@ -1,0 +1,116 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		
+		<title>Inbox (Test Need To Be Deleted) - sap.uiext.inbox</title>
+		<script src="../../../../../resources/sap-ui-core.js"
+			type="text/javascript" 
+			id="sap-ui-bootstrap"
+			data-sap-ui-libs="sap.uiext.inbox"
+			data-sap-ui-theme="sap_goldreflection">
+		</script>
+		
+				    
+		<script>
+		var hcbCSSPath = {msie: "/com.sap.ui.lightspeed/themes/sap_hcb/ls/ls_ie6.css ",
+				mozilla: "/com.sap.ui.lightspeed/themes/sap_hcb/ls/ls_nn7.css",
+				chrome: "/com.sap.ui.lightspeed/themes/sap_hcb/ls/ls_sf3.css",
+				safari: "/com.sap.ui.lightspeed/themes/sap_hcb/ls/ls_sf3.css"};
+
+
+		var corbuCSSPath = {msie: "/com.sap.ui.lightspeed/themes/sap_corbu/ls/ls_ie6.css ",
+				mozilla: "/com.sap.ui.lightspeed/themes/sap_corbu/ls/ls_nn7.css",
+				chrome: "/com.sap.ui.lightspeed/themes/sap_corbu/ls/ls_sf3.css",
+				safari: "/com.sap.ui.lightspeed/themes/sap_corbu/ls/ls_sf3.css"};
+			
+		var browser;
+			if($.browser.msie){browser = "msie";}
+			else if($.browser.mozilla){browser = "mozilla";}
+			else if($.browser.chrome){browser = "chrome";}
+			else if($.browser.safari){browser = "safari";}
+		
+			var hcbCSSPath = {msie: "/com.sap.ui.lightspeed/themes/sap_hcb/ls/ls_ie6.css ",
+					mozilla: "/com.sap.ui.lightspeed/themes/sap_hcb/ls/ls_nn7.css",
+					chrome: "/com.sap.ui.lightspeed/themes/sap_hcb/ls/ls_sf3.css",
+					safari: "/com.sap.ui.lightspeed/themes/sap_hcb/ls/ls_sf3.css"};
+
+
+				var corbuCSSPath = {msie: "/com.sap.ui.lightspeed/themes/sap_corbu/ls/ls_ie6.css ",
+					mozilla: "/com.sap.ui.lightspeed/themes/sap_corbu/ls/ls_nn7.css",
+					chrome: "/com.sap.ui.lightspeed/themes/sap_corbu/ls/ls_sf3.css",
+					safari: "/com.sap.ui.lightspeed/themes/sap_corbu/ls/ls_sf3.css"};
+				
+				var browser;
+				if($.browser.msie){browser = "msie";}
+				else if($.browser.mozilla){browser = "mozilla";}
+				else if($.browser.chrome){browser = "chrome";}
+				else if($.browser.safari){browser = "safari";}
+			
+				var hcbThemeapplied = ((sap.ui.getCore().getConfiguration().getTheme())==="sap_hcb")?true:false;		
+	  		
+			var locale = 'en';
+			var inx = new sap.uiext.inbox.Inbox();
+			//Enable Forward Action, using internal method
+			inx.isForwardActionEnabled = true;
+			//inx.bindODataModel("http://localhost:8080/uilib-sample/proxy/http/10.66.177.6:50000/sap.com~tc~tm~wl~odata~web/BPMTasks.svc/",null,null,[]);
+			inx.setHandleBindings(true);
+			//Opting not to show refresh timestamp.
+			var lastRefreshTimeStamp =  sap.ui.getCore().byId(inx.getId() + '--' + "refreshOnText");
+			if(lastRefreshTimeStamp){
+				lastRefreshTimeStamp.setVisible(false);
+			}
+			var cssURL = "";
+			if(hcbThemeapplied)
+			{
+				cssURL ="&sap-cssurl="+location.protocol+"//"+location.host+hcbCSSPath[browser];		
+			}else{
+				cssURL ="&sap-cssurl="+location.protocol+"//"+location.host+corbuCSSPath[browser];
+			}
+			inx.setTaskExecutionURLThemeValue(cssURL);
+			
+			
+			var taskFilter = new sap.uiext.inbox.TaskInitialFilters(["READY"],null,null,null);// (It is the Status, Priority filters as array)
+			var oModel = new sap.ui.model.odata.ODataModel("http://localhost:8080/uilib-sample/proxy/http/localhost:8080/mockodata/BPMTasks.svc/",true,"administrator","abcd1234");
+			inx.setModel(oModel);
+			inx.bindTaskTable("/TaskCollection",taskFilter);
+			//Example to use column visibility API
+			var colObject= {columns:[]};
+			colObject.columns.push({field:"INBOX_TABLE_VIEW_STATUS",visibility:true});
+			colObject.columns.push({field:"INBOX_TABLE_VIEW_TASK_TITLE",visibility:true});
+			colObject.columns.push({field:"INBOX_TABLE_VIEW_CREATION_DATE",visibility:true});
+			colObject.columns.push({field:"INBOX_TABLE_VIEW_DUE_DATE",visibility:true});
+			colObject.columns.push({field:"INBOX_TABLE_VIEW_PRIORITY",visibility:true});
+			inx._setColumnVisibility(colObject);
+			inx.placeAt('inboxArea');
+		/*	var inboxShell = new sap.ui.ux3.Shell("inboxShell");
+			inboxShell.setAppTitle("BPM INBOX");
+			inboxShell.setShowLogoutButton(false);
+			inboxShell.setContent(inx,true);
+			inboxShell.placeAt('inboxArea');
+			*/
+		//create the ApplicationHeader control
+			var oAppHeader = new sap.ui.commons.ApplicationHeader("appHeader"); 
+
+			//configure the branding area
+			oAppHeader.setLogoSrc("http://www.sap.com/global/images/SAPLogo.gif");
+			oAppHeader.setLogoText("BPM Inbox");
+
+			//configure the welcome area
+			oAppHeader.setDisplayWelcome(true);
+			oAppHeader.setUserName("Administrator");
+
+			//configure the log off area
+			oAppHeader.setDisplayLogoff(true);
+
+			oAppHeader.placeAt("inboxAppHeader");
+		</script>
+		
+	</head>
+	<body  class="sapUiBody" role="application">
+		<div id="inboxAppHeader"></div>
+		<br>
+		<div id="inboxArea"></div>
+	
+	</body>
+</html>

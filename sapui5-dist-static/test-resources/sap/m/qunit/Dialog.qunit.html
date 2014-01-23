@@ -1,0 +1,297 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<title>qUnit Page for sap.m.Dialog</title>
+
+		<script id="sap-ui-bootstrap" 
+			type="text/javascript"
+			src="../../../../resources/sap-ui-core.js"
+			data-sap-ui-theme="sap_mvi"
+			data-sap-ui-noConflict="true"
+			data-sap-ui-compatVersion="1.16"
+			data-sap-ui-libs="sap.m">
+		</script>
+
+		<link rel="stylesheet" href="../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
+		<script type="text/javascript" src="../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+		<script type="text/javascript" src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
+		<script type="text/javascript" src="../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
+		<script src="../../../../resources/sap/ui/thirdparty/sinon.js"></script>
+		<script src="../../../../resources/sap/ui/thirdparty/sinon-qunit.js"></script>
+		
+
+		<script language="javascript">
+			sinon.config.useFakeTimers = false;
+		
+			sap.ui.test.qunit.delayTestStart();
+			
+			var core = sap.ui.getCore();
+			
+			var oDialog = new sap.m.Dialog("dialog", {
+				title: "World Domination",
+				subHeader: new sap.m.Bar({
+					contentMiddle: [
+						new sap.m.SearchField({
+							placeholder: "Search ...",
+							width: "100%"
+						})
+					]
+				}),
+				content: [
+					new sap.ui.core.HTML({content:"<p>Do you want to start a new world domination campaign?</p>"}),
+				],
+				icon: "../images/SAPUI5Icon.png",
+				beginButton: 
+					new sap.m.Button("leftButton", {
+						text: "Reject",
+						type: sap.m.ButtonType.Reject,
+						press : function() {
+							oDialog.close();
+						}
+					}),
+				endButton:
+					new sap.m.Button("rightButton", {
+						text: "Accept",
+						type: sap.m.ButtonType.Accept,
+						press : function() {
+							oDialog.close();
+						}
+					}),
+				beforeOpen: function(){
+					ok(jQuery.sap.byId("dialog").css("visibility") !== "visible", "Dialog should be hidden before it's opened");
+				},
+				afterOpen: function(){
+					equal(jQuery.sap.byId("dialog").css("visibility"), "visible", "Dialog should be visible after it's opened");
+				},
+				beforeClose: function(){
+					equal(jQuery.sap.byId("dialog").css("visibility"), "visible", "Dialog should be visible after it's opened");
+				},
+				afterClose: function(){
+					equal(jQuery.sap.byId("dialog").css("visibility"), "hidden", "Dialog should be hidden before it's opened");
+					ok(!oDialog.isOpen(), "Dialog is already closed");
+					setTimeout(function(){
+						start();	
+					}, 1000);
+				}
+			});
+			
+			var oHtml = new sap.ui.core.HTML({
+				content : '<div id="contentHolder"></div><h1 id="qunit-header">qUnit Page for sap.m.Dialog</h1><h2 id="qunit-banner"></h2><h2 id="qunit-userAgent"></h2><ol id="qunit-tests"></ol>',
+				afterRendering: function(){
+					oButton.placeAt("contentHolder");
+				}
+			});
+			
+			var page = new sap.m.Page("myFirstPage", {
+				title : "Dialog Test",
+				showNavButton : true,
+				enableScrolling : true,
+				content : oHtml
+			});
+			
+			var oButton = new sap.m.Button({
+				text : "Open Dialog",
+				press : function() {
+					oDialog.open();
+				}
+			});
+			
+			var app = new sap.m.App("myApp", {
+				initPage: "myFirstPage"
+			});
+			
+			
+			
+			app.addPage(page).placeAt("content");
+			
+			
+			module("Initial Check");
+
+			test("Initialization", function() {
+				ok(!jQuery.sap.domById("dialog"), "Dialog is not rendered before it's ever opened.");
+			});	
+			
+			module("Open and Close");
+			
+			asyncTest("Open Dialog", function(){
+				oButton.firePress();
+				ok(oDialog.isOpen(), "Dialog is already open");
+				setTimeout(function(){
+					var $dialog = jQuery.sap.byId("dialog"),
+						oTitleDom = jQuery.sap.domById(oDialog.getId() + "-title"),
+						oSubHeaderDom = $dialog.children(".sapMDialogSubHeader")[0],
+						oIconDom = jQuery.sap.domById(oDialog.getId() + "-icon"),
+						oLeftButtonDom = jQuery.sap.domById("leftButton"),
+						oRightButtonDom = jQuery.sap.domById("rightButton");
+					ok(jQuery.sap.domById("dialog"), "dialog is rendered after it's opened.");
+					ok($dialog.closest("#sap-ui-static")[0], "dialog should be rendered inside the static uiArea.");
+					ok(oSubHeaderDom, "Sub header should be rendered inside the dialog");
+					
+					if(!jQuery.support.touch && !jQuery.sap.simulateMobileOnDesktop){
+						equal(oLeftButtonDom, document.activeElement, "left button should have the focus");
+					}
+					
+					if(jQuery.os.ios){
+						var oBarDom = jQuery.sap.domById(oDialog.getId() + "-header");
+						if(jQuery.support.touch || jQuery.sap.simulateMobileOnDesktop){
+							expect(11);	
+						}else{
+							expect(12);
+						}
+						
+						ok(oBarDom, "Bar control should be rendered inside the dialog");
+						ok(!oIconDom, "Icon shouldn't be rendered in iOS");
+						ok(jQuery.contains(oBarDom, oTitleDom), "Title should be rendered inside the Bar control");
+						ok(jQuery.contains(oBarDom, oLeftButtonDom), "LeftButton should be rendered inside the Bar control");
+						ok(jQuery.contains(oBarDom, oRightButtonDom), "RightButton should be rendered inside the Bar control");
+					}else{
+						if(jQuery.support.touch || jQuery.sap.simulateMobileOnDesktop){
+							expect(10);
+						}else{
+							expect(11);
+						}
+						
+						var oDialogActionsDom = jQuery(".sapMDialogActions")[0];
+						ok(oIconDom, "Icon should be rendered in non-iOS");
+						ok(oTitleDom, "Title should be rendered");
+						ok(jQuery.contains(oDialogActionsDom, oLeftButtonDom), "LeftButton should be rendered");
+						ok(jQuery.contains(oDialogActionsDom, oRightButtonDom), "RightButton should be rendered");
+					}
+					start();
+				}, 1000);
+			});
+			
+			asyncTest("Set vertical/horizontal scrolling to false", function() {
+				oDialog.setVerticalScrolling(false);
+				oDialog.setHorizontalScrolling(false);
+				
+				setTimeout(function(){
+					equal(jQuery.sap.domById(oDialog.getId()).className.indexOf("sapMDialogVerScrollDisabled") != -1, true, "verticalScrolling should be disabled");
+					equal(jQuery.sap.domById(oDialog.getId()).className.indexOf("sapMDialogHorScrollDisabled") != -1, true, "horizontalScrolling should be disabled");
+					equal(oDialog.getVerticalScrolling(), false, "verticalScrolling should be disabled");
+					equal(oDialog.getVerticalScrolling(), false, "horizontalScrolling should be disabled");
+					start();
+				}, 100);
+			});
+			
+			asyncTest("Set vertical/horizontal scrolling to false", function() {
+				oDialog.setVerticalScrolling(true);
+				oDialog.setHorizontalScrolling(true);
+				
+				setTimeout(function(){
+					equal(jQuery.sap.domById(oDialog.getId()).className.indexOf("sapMPopoverVerScrollDisabled") == -1, true, "verticalScrolling should be enabled");
+					equal(jQuery.sap.domById(oDialog.getId()).className.indexOf("sapMPopoverHorScrollDisabled") == -1, true, "horizontalScrolling should be enabled");
+					equal(oDialog.getVerticalScrolling(), true, "verticalScrolling should be enabled");
+					equal(oDialog.getVerticalScrolling(), true, "horizontalScrolling should be enabled");
+					start();
+				}, 100);
+			});
+			
+			asyncTest("Close Dialog", function(){
+				expect(3);
+				oDialog.getBeginButton().firePress();
+			});
+			
+			
+			
+			if(sap.m.Dialog._bOneDesign){
+				asyncTest("Open Dialog with stretch set to true", function(){
+					oDialog.setStretch(true);
+					oButton.firePress();
+					setTimeout(function(){
+						var $dialog = oDialog.$();
+						equal(jQuery(window).width(), $dialog.outerWidth(), "Stretched Dialog's width equals window's width");
+						equal(jQuery(window).height(), $dialog.outerHeight(), "Stretched Dialog's width equals window's width");
+						oDialog.getBeginButton().firePress();
+					}, 1000);
+				})	
+			}
+			
+			asyncTest("Open Message Dialog", function(){
+				oDialog.setType(sap.m.DialogType.Message);
+				oDialog.setStretch(false);
+				oButton.firePress();
+				ok(oDialog.isOpen(), "Dialog is already open");
+				setTimeout(function(){
+					var $dialog = jQuery.sap.byId("dialog");
+					ok($dialog.outerWidth() <= (jQuery(window).width() - 32), "Dialog adapts to the screen in Android");
+					start();
+				}, 1000);
+			});
+			
+			asyncTest("Close Message Dialog", function(){
+				expect(3);
+				oDialog.getBeginButton().firePress();
+			});
+			
+			asyncTest("ShouldAdjustTheScrollingPaneIfContentIsBiggerThanContainer", function() {
+				//Arrange
+				this.stub(jQuery.device, "is", {desktop: true});
+
+				this.stub(jQuery, "os", {
+					android: false,
+					ios: false
+				});
+				
+				var resultingContentWidth,
+					resultingScrollPaneWidth,
+					contentWidth = "500px",
+				//System under Test
+					sut = new sap.m.Dialog({
+						contentWidth: contentWidth,
+						content: new sap.ui.core.HTML({content:"<p style='width : 700px'></p>"})
+					});
+
+				//Act
+				sut.open();
+
+				//Assert
+				setTimeout(function(){
+					resultingScrollPaneWidth = sut._$scrollPane.width();
+					resultingContentWidth =  sut._$content.width();
+					ok(resultingScrollPaneWidth > resultingContentWidth,"scroll pane width: " + resultingScrollPaneWidth + " was bigger than the contentWidth - we are able to scroll");
+					strictEqual(contentWidth, sut._$content.css("width"), "content width was equal to the actual width of the content");	
+					sut.destroy();
+					start();
+				}, 1000);
+			});
+			
+			asyncTest("ShouldAdjustTheScrollingPaneIfContentIsSmallerThanContainer", function() {
+				//Arrange
+				this.stub(jQuery.device, "is", {desktop: true});
+
+				this.stub(jQuery, "os", {
+					android: false,
+					ios: false
+				});
+				
+				var resultingContentWidth,
+					resultingScrollPaneWidth,
+					//System under Test
+					sut = new sap.m.Dialog({
+						content: new sap.ui.core.HTML({content:'<p style="width : 90px"></p>'})
+					});
+
+				//Act
+				sut.open();
+
+				//Assert
+				setTimeout(function(){
+					resultingScrollPaneWidth = sut._$scrollPane.width();
+					resultingContentWidth =  sut._$content.width();
+					strictEqual(resultingScrollPaneWidth, resultingContentWidth,"scroll pane width " + resultingScrollPaneWidth + " was as bis as the content: " + resultingContentWidth );
+					ok(90 < resultingScrollPaneWidth, "The content fits in the scollpane");
+					sut.destroy();
+					start();
+				}, 1000);
+			});
+			
+			
+		</script>
+	</head>
+	<body id="body" class="sapUiBody">
+    	<div id="content"></div>
+    	<div id="qunit-fixture"></div>
+	</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <link href="style/sapvbistyle.css" type="text/css" rel="stylesheet" />
+
+        <script src="../../../../resources/sap-ui-core.js"
+            id="sap-ui-bootstrap"
+            data-sap-ui-libs="sap.ui.vbm"
+            data-sap-ui-theme="sap_goldreflection" >
+        </script>
+
+        <script>
+            sap.ui.localResources("vbitestapp");
+
+            // create the controls and position them.............................//
+            var oVBI1 = new sap.ui.vbm.VBI('vbiWrap2',
+            {
+                width : 600,
+                height: 620
+            });
+            oVBI1.placeAt("content_left");
+
+            var oVBI2 = new sap.ui.vbm.VBI('vbiWrap3',
+            {
+                width : 600,
+                height: 620
+            });
+            oVBI2.placeAt("content_right");
+
+            // load the projects into the controls...............................//
+            var dat = $.getJSON("media/vbroute/main.json", function( dat ) 
+            {
+                oVBI1.load( dat );
+            });
+            
+            var dat1 = $.getJSON("media/vbcircle/main.json", function( dat1 ) 
+            {
+                oVBI2.load( dat1 );
+            });
+        </script>
+    </head>
+    <body class="sapUiBody" >
+        <h1>Visual Business UI5: Sample should show different working instances.</h1>
+        <table>
+            <tr>
+                <td><div id="content_left"></div></td>
+                <td><div id="content_right"></div></td>
+            </tr>
+        </table>
+    </body>
+</html>

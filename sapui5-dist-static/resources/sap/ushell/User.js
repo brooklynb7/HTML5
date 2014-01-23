@@ -1,0 +1,2 @@
+// Copyright (c) 2013 SAP AG, All Rights Reserved
+(function(){"use strict";jQuery.sap.declare("sap.ushell.User");sap.ushell.User=function(d){this.getEmail=function(){return d.email};this.getFirstName=function(){return d.firstName};this.getFullName=function(){return d.fullName};this.getId=function(){return d.id};this.getLanguage=function(){return d.language};this.getLanguageBcp47=function(){return d.languageBcp47};this.getLastName=function(){return d.lastName};this.isJamActive=function(){return d.isJamActive===true}}}());

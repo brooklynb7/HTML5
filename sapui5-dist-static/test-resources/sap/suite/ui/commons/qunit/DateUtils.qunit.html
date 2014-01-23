@@ -1,0 +1,404 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8"/>
+	<title>DateUtils - sap.suite.ui.commons.util</title>
+
+    <!-- UI5 Bootstrap -->
+    <script id="sap-ui-bootstrap"
+            type="text/javascript"
+            src="../../../../../../resources/sap-ui-core.js"
+            data-sap-ui-theme="sap_goldreflection"
+            data-sap-ui-libs="sap.ui.commons,sap.suite.ui.commons"></script>
+
+    <!-- QUnit libraries -->
+    <link rel="stylesheet"
+          href="../../../../../../resources/sap/ui/thirdparty/qunit.css"
+          type="text/css" media="screen" />
+    <script src="../../../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+    <script type="text/javascript" src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
+    <script type="text/javascript" src="../../../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>    
+
+	<script>    
+		jQuery.sap.require("sap.suite.ui.commons.util.DateUtils");
+
+		module("Date Validity - sap.suite.ui.commons.util.DateUtils");
+		
+	    test("TestIsValidDateUndefined", function() {
+	        ok(!sap.suite.ui.commons.util.DateUtils.isValidDate());
+	    });		
+	    
+	    test("TestIsValidDateNull", function() {
+	        ok(!sap.suite.ui.commons.util.DateUtils.isValidDate(null));
+	    });		 
+	    
+	    test("TestIsValidDatePassNumber", function() {
+	        ok(!sap.suite.ui.commons.util.DateUtils.isValidDate(4));
+	    });	
+	    
+	    test("TestIsValidDatePassInvalidDateObject", function() {
+	        ok(!sap.suite.ui.commons.util.DateUtils.isValidDate(new Date("abc")));
+	    });		
+	    
+	    test("TestIsValidDate", function() {
+	        ok(sap.suite.ui.commons.util.DateUtils.isValidDate(new Date()));
+	    });		
+	    
+	    
+	    
+	    module("Date Equality - sap.suite.ui.commons.util.DateUtils");
+	    
+	    test("TestDateDaysEqual", function() {
+	        var d1 = new Date();
+	        var d2 = new Date(d1);
+	        
+	        ok(sap.suite.ui.commons.util.DateUtils.dateDaysEqual(d1, d2));
+	    });
+	    
+	    test("TestDateDaysEqualNullDate", function() {
+	        var d1 = new Date();
+	        var d2 = null;
+	        
+	        ok(!sap.suite.ui.commons.util.DateUtils.dateDaysEqual(d1, d2));
+	        ok(!sap.suite.ui.commons.util.DateUtils.dateDaysEqual(d2, d1));
+	    });	  
+	    
+	    test("TestDateDaysEqualUndefinedDate", function() {
+	        var d1 = new Date();	        
+	        var d2;
+	        ok(!sap.suite.ui.commons.util.DateUtils.dateDaysEqual(d1, d2));
+	        ok(!sap.suite.ui.commons.util.DateUtils.dateDaysEqual(d2, d1));
+	    });	  
+	    
+	    test("TestDateDaysEqualInvalidDate", function() {
+	        var d1 = new Date();	        
+	        var d2 = new Date("abc");
+	        ok(!sap.suite.ui.commons.util.DateUtils.dateDaysEqual(d1, d2));
+	        ok(!sap.suite.ui.commons.util.DateUtils.dateDaysEqual(d2, d1));
+	    });	    
+	    
+	    module("Reset Date - sap.suite.ui.commons.util.DateUtils");
+	    
+		test("TestResetToStartOfDay", function() {
+		    
+			var inputDate = new Date(2013, 0, 4, 6, 43, 12, 15);
+			var expectedDate = new Date(2013, 0, 4);
+						
+			sap.suite.ui.commons.util.DateUtils.resetDateToStartOfDay(inputDate);
+
+	        equal(inputDate.toString(), expectedDate.toString(), "Hours, minutes, seconds, and milliseconds should all be zero.");
+		});
+		
+		test("TestResetToEndOfDay", function() {
+		    
+			var inputDate = new Date(2013, 0, 4, 6, 43, 12, 15);
+			var expectedDate = new Date(2013, 0, 4, 23, 59, 59);
+						
+			sap.suite.ui.commons.util.DateUtils.resetDateToEndOfDay(inputDate);
+			
+	        equal(inputDate.toString(), expectedDate.toString(), "Time should be set to 23:59:59");
+		});		
+		
+		test("TestResetDateToStartOfMonth", function() {
+		    
+			var inputDate = new Date(2013, 0, 4, 6, 43, 12, 15);
+			var expectedDate = new Date(2013, 0, 1);
+						
+			sap.suite.ui.commons.util.DateUtils.resetDateToStartOfMonth(inputDate);
+			
+	        equal(inputDate.toString(), expectedDate.toString(), "Date should be the first of the month, start of the day.");
+		});			
+		
+		test("TestResetDateToEndOfMonth", function() {
+		    
+			var inputDate = new Date(2013, 0, 4, 6, 43, 12, 15);
+			var expectedDate = new Date(2013, 0, 31, 23, 59, 59);
+						
+			sap.suite.ui.commons.util.DateUtils.resetDateToEndOfMonth(inputDate);
+			
+	        equal(inputDate.toString(), expectedDate.toString(), "Date should be the last day of the month, end of the day.");
+		});			
+		
+		test("TestResetDateToStartOfYear", function() {
+		    
+			var inputDate = new Date(2013, 4, 4, 6, 43, 12, 15);
+			var expectedDate = new Date(2013, 0, 1);
+						
+			sap.suite.ui.commons.util.DateUtils.resetDateToStartOfYear(inputDate);
+			
+	        equal(inputDate.toString(), expectedDate.toString(), "Date should be the first of the year, start of the day.");
+		});		
+		
+		test("TestResetDateToEndOfYear", function() {
+		    
+			var inputDate = new Date(2013, 4, 4, 6, 43, 12, 15);
+			var expectedDate = new Date(2013, 11, 31, 23, 59, 59);
+						
+			sap.suite.ui.commons.util.DateUtils.resetDateToEndOfYear(inputDate);
+			
+	        equal(inputDate.toString(), expectedDate.toString(), "Date should be the last day of the year, end of the day.");
+		});		
+		
+		test("TestResetDateToStartOfWeek", function() {
+		    
+			var inputDate = new Date(2013, 2, 7, 6, 43, 12, 15);
+			var expectedDate = new Date(2013, 2, 4);
+						
+			sap.suite.ui.commons.util.DateUtils.resetDateToStartOfWeek(inputDate);
+			
+	        equal(inputDate.toString(), expectedDate.toString(), "Date should be Monday, start of the day.");
+		});			
+		
+		test("TestResetDateToStartOfWeekCustomFirstDayOfWeek", function() {
+		    
+			var inputDate = new Date(2013, 2, 7, 6, 43, 12, 15);
+			var expectedDate = new Date(2013, 2, 1);
+						
+			sap.suite.ui.commons.util.DateUtils.resetDateToStartOfWeek(inputDate, 5);
+			
+	        equal(inputDate.toString(), expectedDate.toString(), "Date should be Friday from the previous calendar week, start of the day.");
+		});		
+		
+		test("TestResetDateToEndOfWeek", function() {
+		    
+			var inputDate = new Date(2013, 2, 7, 6, 43, 12, 15);
+			var expectedDate = new Date(2013, 2, 10, 23, 59, 59);
+						
+			sap.suite.ui.commons.util.DateUtils.resetDateToEndOfWeek(inputDate);
+			
+	        equal(inputDate.toString(), expectedDate.toString(), "Date should be the following Sunday, end of the day.");
+		});		
+		
+		test("TestResetDateToEndOfWeekCustomFirstDayOfWeek", function() {
+		    	        
+	        var inputDate = new Date(2013, 0, 9); //Wed			
+	        var expectedDate = new Date(2013, 0, 15, 23, 59, 59); //Tues								
+						
+			sap.suite.ui.commons.util.DateUtils.resetDateToEndOfWeek(inputDate, {iFirstDayOfWeek: 3});
+			
+	        equal(inputDate.toString(), expectedDate.toString(), "Date should be the following Tuesday, end of the day.");
+		});			
+		
+		test("TestResetDateToEndOfWeekCustomDuration", function() {
+		    
+			var inputDate = new Date(2013, 2, 7, 6, 43, 12, 15);
+			var expectedDate = new Date(2013, 2, 8, 23, 59, 59);
+						
+			sap.suite.ui.commons.util.DateUtils.resetDateToEndOfWeek(inputDate, {iDuration: 5});
+			
+	        equal(inputDate.toString(), expectedDate.toString(), "Date should be the following Friday, end of the day.");
+		});			
+		
+		test("TestResetDateToEndOfWeekNullSettings", function() {
+		    
+			var inputDate = new Date(2013, 2, 7, 6, 43, 12, 15);
+			var expectedDate = new Date(2013, 2, 10, 23, 59, 59);
+						
+			sap.suite.ui.commons.util.DateUtils.resetDateToEndOfWeek(inputDate, null);
+			
+	        equal(inputDate.toString(), inputDate.toString(), "Date should not be modified.");
+		});		
+		
+		test("TestResetDateToEndOfWeekSettingsNotAnObject", function() {
+		    
+			var inputDate = new Date(2013, 2, 7, 6, 43, 12, 15);
+			var expectedDate = new Date(2013, 2, 10, 23, 59, 59);
+						
+			sap.suite.ui.commons.util.DateUtils.resetDateToEndOfWeek(inputDate, 5); //Duration must be specified as an object
+			
+	        equal(inputDate.toString(), inputDate.toString(), "Date should not be modified.");
+		});	
+		
+	    module("Month Equality - sap.suite.ui.commons.util.DateUtils");
+	    
+	    test("TestDateMonthsEqual", function() {
+	        var d1 = new Date(2013, 2, 22);
+	        var d2 = new Date(2013, 2, 2);
+	        
+	        ok(sap.suite.ui.commons.util.DateUtils.dateMonthsEqual(d1, d2));
+	    });
+	    
+	    test("TestDateMonthsEqualNullDate", function() {
+	        var d1 = new Date();
+	        var d2 = null;
+	        
+	        ok(!sap.suite.ui.commons.util.DateUtils.dateMonthsEqual(d1, d2));
+	        ok(!sap.suite.ui.commons.util.DateUtils.dateMonthsEqual(d2, d1));
+	    });	  
+	    
+	    test("TestDateMonthsEqualUndefinedDate", function() {
+	        var d1 = new Date();	        
+	        var d2;
+	        ok(!sap.suite.ui.commons.util.DateUtils.dateMonthsEqual(d1, d2));
+	        ok(!sap.suite.ui.commons.util.DateUtils.dateMonthsEqual(d2, d1));
+	    });	  
+	    
+	    test("TestDateMonthsEqualInvalidDate", function() {
+	        var d1 = new Date();	        
+	        var d2 = new Date("abc");
+	        ok(!sap.suite.ui.commons.util.DateUtils.dateMonthsEqual(d1, d2));
+	        ok(!sap.suite.ui.commons.util.DateUtils.dateMonthsEqual(d2, d1));
+	    });	    
+
+
+		module("Increment Date By Index - sap.suite.ui.commons.util.DateUtils");
+	    
+	    test("TestIncrementDateByIndexWithCorrectParams", function() {
+	        var dStartDate = new Date(2013, 2, 1); //March 1, 2013
+	        
+	        var dExpectedRetDate = new Date(2013, 2, 25);
+	        var dRetDate = sap.suite.ui.commons.util.DateUtils.incrementDateByIndex(dStartDate, 24);
+	        ok(sap.suite.ui.commons.util.DateUtils.dateDaysEqual(dRetDate, dExpectedRetDate));
+	        
+	        dExpectedRetDate = new Date(2013, 1, 26);
+	        dRetDate = sap.suite.ui.commons.util.DateUtils.incrementDateByIndex(dStartDate, -3);
+	        ok(sap.suite.ui.commons.util.DateUtils.dateDaysEqual(dRetDate, dExpectedRetDate));
+	        
+	        dExpectedRetDate = new Date(2013, 3, 3);
+	        dRetDate = sap.suite.ui.commons.util.DateUtils.incrementDateByIndex(dStartDate, 33);
+	        ok(sap.suite.ui.commons.util.DateUtils.dateDaysEqual(dRetDate, dExpectedRetDate));
+	        
+	        dExpectedRetDate = new Date(2014, 0, 5);
+	        dRetDate = sap.suite.ui.commons.util.DateUtils.incrementDateByIndex(dStartDate, 310);
+	        ok(sap.suite.ui.commons.util.DateUtils.dateDaysEqual(dRetDate, dExpectedRetDate));
+	        
+	        dExpectedRetDate = new Date(2014, 0, 7);
+	        dRetDate = sap.suite.ui.commons.util.DateUtils.incrementDateByIndex(dStartDate, 312.8);
+	        ok(sap.suite.ui.commons.util.DateUtils.dateDaysEqual(dRetDate, dExpectedRetDate));
+	    });
+	    
+	    test("TestIncrementDateByIndexWithIncorrectParams", function() {
+	        var dStartDate = null;
+	        var dRetDate = sap.suite.ui.commons.util.DateUtils.incrementDateByIndex(dStartDate, -3);
+	        ok(dRetDate==null);
+	        dStartDate = "abc";
+	        dRetDate = sap.suite.ui.commons.util.DateUtils.incrementDateByIndex(dStartDate, -3);
+	        ok(dRetDate==null);
+	        dStartDate = undefined;
+	        dRetDate = sap.suite.ui.commons.util.DateUtils.incrementDateByIndex(dStartDate, -3);
+	        ok(dRetDate==null);
+	        dStartDate = new Date();
+	        dRetDate = sap.suite.ui.commons.util.DateUtils.incrementDateByIndex(dStartDate, "abc");
+	        ok(dRetDate==null);
+	        dRetDate = sap.suite.ui.commons.util.DateUtils.incrementDateByIndex(dStartDate);
+	        ok(dRetDate==null);
+	        dRetDate = sap.suite.ui.commons.util.DateUtils.incrementDateByIndex(dStartDate, Number.NaN);
+	        ok(dRetDate==null);
+	        dRetDate = sap.suite.ui.commons.util.DateUtils.incrementDateByIndex(dStartDate, Number.NEGATIVE_INFINITY);
+	        ok(dRetDate==null);
+	        dRetDate = sap.suite.ui.commons.util.DateUtils.incrementDateByIndex(dStartDate, Number.POSITIVE_INFINITY);
+	        ok(dRetDate==null);
+	    });
+	    
+		module("Increment Month By Index - sap.suite.ui.commons.util.DateUtils");
+	    
+	    test("TestIncrementMonthByIndexWithCorrectParams", function() {
+	        var dStartDate = new Date(2013, 2, 1); //March 1, 2013
+	        
+	        var dExpectedRetDate = new Date(2013, 2, 1);
+	        var dRetDate = sap.suite.ui.commons.util.DateUtils.incrementMonthByIndex(dStartDate, 0);
+	        ok(sap.suite.ui.commons.util.DateUtils.dateMonthsEqual(dRetDate, dExpectedRetDate));
+	        
+	        dExpectedRetDate = new Date(2013, 1, 1);
+	        dRetDate = sap.suite.ui.commons.util.DateUtils.incrementMonthByIndex(dStartDate, -1);
+	        ok(sap.suite.ui.commons.util.DateUtils.dateMonthsEqual(dRetDate, dExpectedRetDate));
+	        
+	        dExpectedRetDate = new Date(2013, 5, 1);
+	        dRetDate = sap.suite.ui.commons.util.DateUtils.incrementMonthByIndex(dStartDate, 3);
+	        ok(sap.suite.ui.commons.util.DateUtils.dateMonthsEqual(dRetDate, dExpectedRetDate));
+	        
+	        dExpectedRetDate = new Date(2014, 1, 1);
+	        dRetDate = sap.suite.ui.commons.util.DateUtils.incrementMonthByIndex(dStartDate, 11);
+	        ok(sap.suite.ui.commons.util.DateUtils.dateMonthsEqual(dRetDate, dExpectedRetDate));
+	        
+	        dExpectedRetDate = new Date(2014, 2, 1);
+	        dRetDate = sap.suite.ui.commons.util.DateUtils.incrementMonthByIndex(dStartDate, 12.2);
+	        ok(sap.suite.ui.commons.util.DateUtils.dateMonthsEqual(dRetDate, dExpectedRetDate));
+	    });
+	    
+	    test("TestIncrementMonthByIndexWithIncorrectParams", function() {
+	        var dStartDate = null;
+	        var dRetDate = sap.suite.ui.commons.util.DateUtils.incrementMonthByIndex(dStartDate, -3);
+	        ok(dRetDate==null);
+	        dStartDate = "abc";
+	        dRetDate = sap.suite.ui.commons.util.DateUtils.incrementMonthByIndex(dStartDate, -3);
+	        ok(dRetDate==null);
+	        dStartDate = undefined;
+	        dRetDate = sap.suite.ui.commons.util.DateUtils.incrementMonthByIndex(dStartDate, -3);
+	        ok(dRetDate==null);
+	        dStartDate = new Date();
+	        dRetDate = sap.suite.ui.commons.util.DateUtils.incrementMonthByIndex(dStartDate, "abc");
+	        ok(dRetDate==null);
+	        dRetDate = sap.suite.ui.commons.util.DateUtils.incrementMonthByIndex(dStartDate);
+	        ok(dRetDate==null);
+	        dRetDate = sap.suite.ui.commons.util.DateUtils.incrementMonthByIndex(dStartDate, Number.NaN);
+	        ok(dRetDate==null);
+	        dRetDate = sap.suite.ui.commons.util.DateUtils.incrementMonthByIndex(dStartDate, Number.NEGATIVE_INFINITY);
+	        ok(dRetDate==null);
+	        dRetDate = sap.suite.ui.commons.util.DateUtils.incrementMonthByIndex(dStartDate, Number.POSITIVE_INFINITY);
+	        ok(dRetDate==null);
+	    });
+	    
+	    
+		module("Number of Months Apart - sap.suite.ui.commons.util.DateUtils");
+	    
+	    test("TestNumberOfMonthsApart", function() {
+	        
+	        var dStartDate = new Date(2013, 1, 10);
+	        var dEndDate = new Date(2013, 10, 21);
+	        
+	        var iCount = sap.suite.ui.commons.util.DateUtils.numberOfMonthsApart(dStartDate, dEndDate);
+	       	equal(iCount, 9, "Correct");
+	       	
+	       	dEndDate = new Date(2014, 1, 21);
+	       	iCount = sap.suite.ui.commons.util.DateUtils.numberOfMonthsApart(dStartDate, dEndDate);
+	       	equal(iCount, 12, "Correct");
+	       	
+	       	dEndDate = new Date(2013, 1, 21);
+	       	iCount = sap.suite.ui.commons.util.DateUtils.numberOfMonthsApart(dStartDate, dEndDate);
+	       	equal(iCount, 0, "Correct");
+	       	
+	       	dEndDate = new Date(2013, 0, 21);
+	       	iCount = sap.suite.ui.commons.util.DateUtils.numberOfMonthsApart(dStartDate, dEndDate);
+	       	equal(iCount, -1, "Correct");
+	       	
+	       	dEndDate = new Date(2011, 0, 21);
+	       	iCount = sap.suite.ui.commons.util.DateUtils.numberOfMonthsApart(dStartDate, dEndDate);
+	       	equal(iCount, -25, "Correct");
+	    });
+	    
+	    
+		module("Number of Days Apart - sap.suite.ui.commons.util.DateUtils");
+	    
+	    test("TestNumberOfDaysApart", function() {
+	        
+	        var dStartDate = new Date(2013, 1, 10);
+	        var dEndDate = new Date(2013, 1, 21);
+	        
+	        var iCount = sap.suite.ui.commons.util.DateUtils.numberOfDaysApart(dStartDate, dEndDate);
+	       	equal(iCount, 11, "Correct");
+	       	
+	       	dEndDate = new Date(2013, 2, 2);
+	       	iCount = sap.suite.ui.commons.util.DateUtils.numberOfDaysApart(dStartDate, dEndDate);
+	       	equal(iCount, 20, "Correct");
+	       	
+	       	dEndDate = new Date(2013, 1, 10);
+	       	iCount = sap.suite.ui.commons.util.DateUtils.numberOfDaysApart(dStartDate, dEndDate);
+	       	equal(iCount, 0, "Correct");
+	       	
+	       	dEndDate = new Date(2013, 1, 9);
+	       	iCount = sap.suite.ui.commons.util.DateUtils.numberOfDaysApart(dStartDate, dEndDate);
+	       	equal(iCount, -1, "Correct");
+	       	
+	       	dEndDate = new Date(2013, 0, 30);
+	       	iCount = sap.suite.ui.commons.util.DateUtils.numberOfDaysApart(dStartDate, dEndDate);
+	       	equal(iCount, -11, "Correct");
+	    });
+	    		
+	</script>
+</head>
+
+<body class="sapUiBody" role="application">
+	<div id="qunit"></div>
+</body>
+</html>

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata"
+           xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="ZSAMPLE_MODEL_SRV" xml:lang="en" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityType Name="ItemDetail" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Id"/>
+                </Key>
+                <Property Name="Currency" Type="Edm.String" Nullable="false" sap:label="Currency" sap:creatable="false" sap:updatable="false"
+                          sap:sortable="false" sap:filterable="false" sap:semantics="currency-code"/>
+                <Property Name="CreatedAt" Type="Edm.DateTime" Nullable="false" sap:label="CreatedAT" sap:creatable="false" sap:updatable="false"
+                          sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Id" Type="Edm.Int32" Nullable="false" sap:label="Id" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Title" Type="Edm.String" Nullable="false" sap:label="Title" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+                          sap:filterable="false"/>
+                <Property Name="Value" Type="Edm.Decimal" Nullable="false" Precision="1" Scale="0" sap:label="Value" sap:creatable="false" sap:updatable="false"
+                          sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="SubitemDetails" Relationship="ZSAMPLE_MODEL_SRV.ItemDetailSubItemDetail" FromRole="FromRole_ItemDetailSubItemDetail"
+                                    ToRole="ToRole_ItemDetailSubItemDetail"/>
+            </EntityType>
+            <EntityType Name="WorkItem" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Id"/>
+                </Key>
+                <Property Name="Id" Type="Edm.Int32" Nullable="false" sap:label="Id" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Title" Type="Edm.String" Nullable="false" sap:label="Title" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+                          sap:filterable="false"/>
+                <Property Name="Value" Type="Edm.Decimal" Nullable="false" Precision="8" Scale="3" sap:label="Value" sap:creatable="false" sap:updatable="false"
+                          sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Currency" Type="Edm.String" Nullable="false" MaxLength="5" sap:label="Currency" sap:creatable="false" sap:updatable="false"
+                          sap:sortable="false" sap:filterable="false" sap:semantics="currency-code"/>
+                <Property Name="Status" Type="Edm.String" Nullable="false" sap:label="Status" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+                          sap:filterable="false"/>
+                <Property Name="CreatedAt" Type="Edm.DateTime" Nullable="false" sap:label="CreatedAt" sap:creatable="false" sap:updatable="false"
+                          sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CreatedBy" Type="Edm.String" Nullable="false" sap:label="CreatedBy" sap:creatable="false" sap:updatable="false"
+                          sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="Attachments" Relationship="ZSAMPLE_MODEL_SRV.WorkItemAttachments" FromRole="FromRole_WorkItemAttachments"
+                                    ToRole="ToRole_WorkItemAttachments"/>
+                <NavigationProperty Name="ItemDetails" Relationship="ZSAMPLE_MODEL_SRV.WorkItemItemDetail" FromRole="FromRole_WorkItemItemDetail"
+                                    ToRole="ToRole_WorkItemItemDetail"/>
+            </EntityType>
+            <EntityType Name="Attachment" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Id"/>
+                </Key>
+                <Property Name="Description" Type="Edm.String" Nullable="false" sap:label="Description" sap:creatable="false" sap:updatable="false"
+                          sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Id" Type="Edm.Int32" Nullable="false" sap:label="Id" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CreatedBy" Type="Edm.String" Nullable="false" sap:label="CreatedBy" sap:creatable="false" sap:updatable="false"
+                          sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CreatedAt" Type="Edm.DateTime" Nullable="false" sap:label="CreatedAt" sap:creatable="false" sap:updatable="false"
+                          sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Title" Type="Edm.String" Nullable="false" sap:label="Title" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+                          sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="SubItemDetail" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Id"/>
+                </Key>
+                <Property Name="Id" Type="Edm.String" Nullable="false" sap:label="Id" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Title" Type="Edm.String" Nullable="false" sap:label="Title" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+                          sap:filterable="false"/>
+                <NavigationProperty Name="SubSubItemDetails" Relationship="ZSAMPLE_MODEL_SRV.SubItemDetailSubSuBItemDetail"
+                                    FromRole="FromRole_SubItemDetailSubSuBItemDetail" ToRole="ToRole_SubItemDetailSubSuBItemDetail"/>
+            </EntityType>
+            <EntityType Name="SubSubItemDetail" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Id"/>
+                </Key>
+                <Property Name="Title" Type="Edm.String" Nullable="false" sap:label="Title" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+                          sap:filterable="false"/>
+                <Property Name="Id" Type="Edm.String" Nullable="false" sap:label="Id" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <Association Name="ItemDetailSubItemDetail" sap:content-version="1">
+                <End Type="ZSAMPLE_MODEL_SRV.ItemDetail" Multiplicity="1" Role="FromRole_ItemDetailSubItemDetail"/>
+                <End Type="ZSAMPLE_MODEL_SRV.SubItemDetail" Multiplicity="*" Role="ToRole_ItemDetailSubItemDetail"/>
+            </Association>
+            <Association Name="SubItemDetailSubSuBItemDetail" sap:content-version="1">
+                <End Type="ZSAMPLE_MODEL_SRV.SubItemDetail" Multiplicity="1" Role="FromRole_SubItemDetailSubSuBItemDetail"/>
+                <End Type="ZSAMPLE_MODEL_SRV.SubSubItemDetail" Multiplicity="*" Role="ToRole_SubItemDetailSubSuBItemDetail"/>
+            </Association>
+            <Association Name="WorkItemAttachments" sap:content-version="1">
+                <End Type="ZSAMPLE_MODEL_SRV.WorkItem" Multiplicity="1" Role="FromRole_WorkItemAttachments"/>
+                <End Type="ZSAMPLE_MODEL_SRV.Attachment" Multiplicity="*" Role="ToRole_WorkItemAttachments"/>
+            </Association>
+            <Association Name="WorkItemItemDetail" sap:content-version="1">
+                <End Type="ZSAMPLE_MODEL_SRV.WorkItem" Multiplicity="1" Role="FromRole_WorkItemItemDetail"/>
+                <End Type="ZSAMPLE_MODEL_SRV.ItemDetail" Multiplicity="*" Role="ToRole_WorkItemItemDetail"/>
+            </Association>
+            <EntityContainer Name="ZSAMPLE_MODEL_SRV" m:IsDefaultEntityContainer="true">
+                <EntitySet Name="ItemDetails" EntityType="ZSAMPLE_MODEL_SRV.ItemDetail" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="WorkItems" EntityType="ZSAMPLE_MODEL_SRV.WorkItem" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="Attachments" EntityType="ZSAMPLE_MODEL_SRV.Attachment" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="SubItemDetailCollection" EntityType="ZSAMPLE_MODEL_SRV.SubItemDetail" sap:content-version="1"/>
+                <EntitySet Name="SubSubItemDetailCollection" EntityType="ZSAMPLE_MODEL_SRV.SubSubItemDetail" sap:content-version="1"/>
+                <AssociationSet Name="WorkItemAttachmentsSet" Association="ZSAMPLE_MODEL_SRV.WorkItemAttachments" sap:creatable="false" sap:updatable="false"
+                                sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="WorkItems" Role="FromRole_WorkItemAttachments"/>
+                    <End EntitySet="Attachments" Role="ToRole_WorkItemAttachments"/>
+                </AssociationSet>
+                <AssociationSet Name="SubItemDetailSubSuBItemDetail_AssocSet" Association="ZSAMPLE_MODEL_SRV.SubItemDetailSubSuBItemDetail"
+                                sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="SubItemDetailCollection" Role="FromRole_SubItemDetailSubSuBItemDetail"/>
+                    <End EntitySet="SubSubItemDetailCollection" Role="ToRole_SubItemDetailSubSuBItemDetail"/>
+                </AssociationSet>
+                <AssociationSet Name="ItemDetailSubItemDetail_AssocSet" Association="ZSAMPLE_MODEL_SRV.ItemDetailSubItemDetail" sap:creatable="false"
+                                sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ItemDetails" Role="FromRole_ItemDetailSubItemDetail"/>
+                    <End EntitySet="SubItemDetailCollection" Role="ToRole_ItemDetailSubItemDetail"/>
+                </AssociationSet>
+                <AssociationSet Name="WorkItemItemDetailSet" Association="ZSAMPLE_MODEL_SRV.WorkItemItemDetail" sap:creatable="false" sap:updatable="false"
+                                sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="WorkItems" Role="FromRole_WorkItemItemDetail"/>
+                    <End EntitySet="ItemDetails" Role="ToRole_WorkItemItemDetail"/>
+                </AssociationSet>
+            </EntityContainer>
+            <atom:link rel="self" href="http://ldciuxd.wdf.sap.corp:50029/sap/opu/odata/sap/ZSAMPLE_MODEL_SRV/$metadata"
+                       xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="latest-version" href="http://ldciuxd.wdf.sap.corp:50029/sap/opu/odata/sap/ZSAMPLE_MODEL_SRV/$metadata"
+                       xmlns:atom="http://www.w3.org/2005/Atom"/>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

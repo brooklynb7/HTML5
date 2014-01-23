@@ -1,0 +1,39 @@
+<core:View
+	controllerName="views.control.listItemStandard"
+	xmlns="sap.m"
+	xmlns:l="sap.ui.layout"
+	xmlns:core="sap.ui.core" >
+	<l:VerticalLayout width="100%">
+		<l:content>
+			<Text id="description" class="marginNoBottom" />
+
+			<List
+				id="ShortProductList"
+				headerText="Products">
+				<items>
+					<StandardListItem
+						title="{Name}" />
+					<StandardListItem
+						title="{Name}"
+						description="{ProductId}" />
+					<StandardListItem
+						title="{Name}"
+						description="{ProductId}"
+						icon="{ProductPicUrl}" />
+					<StandardListItem
+						title="{Name}"
+						description="{ProductId}"
+						icon="{ProductPicUrl}"
+						iconInset="false" />
+					<StandardListItem
+						title="{Name}"
+						description="{ProductId}"
+						icon="{ProductPicUrl}"
+						info="Overweight"
+						infoState="Error" />
+				</items>
+			</List>
+
+		</l:content>
+	</l:VerticalLayout>
+</core:View>

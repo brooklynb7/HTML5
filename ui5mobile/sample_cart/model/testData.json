@@ -1,0 +1,602 @@
+{
+	"customerSolutions": [{
+		"id": "cs1",
+		"type": "0",
+		"name": "CustomerSolution 2013",
+		"idea": "test idea",
+		"isCurrent": true,
+		"isDisabled": false,
+		"isOwner": true,
+		"owner": "Jonathan Potter",
+		"custOrgId": "12345",
+		"custOrgName": "customer Org name",
+		"opportunityNo": "10",
+		"ownerBidManagerName": "ownerBidManager One",
+		"ownerBidManagerEmail": "ownerbidmanager.one@sap.com",
+		"svcAccountManagerName": "svcAccountManager One",
+		"svcAccountManagerEmail": "svcaccountmanager.one@sap.com",
+		"isReadonly": false,
+		"dcLink": "http://www.google.com.hk",
+		"unit": "EUR",
+		"countries": [{
+			"countryBizId": "US",
+			"name": "USA"
+		}, {
+			"countryBizId": "CN",
+			"name": "China"
+		}],
+		"languages": [{
+			"languageBizId": "EN",
+			"name": "English"
+		}, {
+			"languageBizId": "ZH",
+			"name": "Chinese"
+		}],
+		"industries": [{
+			"industryBizId": "i_autom",
+			"name": "Automotive",
+			"isMain": true,
+			"consistency": ""
+		}],
+		"customerInfo": {
+			"id": "ci1",
+			"firstName": "Info 1",
+			"lastName": "Test",
+			"country": "USA",
+			"company": "SAP"
+		},
+		"members": [{
+			"isOwner": true,
+			"userId": "i000000",
+			"name": "Jonathan Potter",
+			"email": "potter.jonathan@test.com",
+			"role": "Employee"
+		}],
+		"requirements": [{
+			"id": "generalreq",
+			"isCurrent": false,
+			"type": "1",
+			"name": "Your general requirement",
+			"description": "This is description for your general requirement, and add more text for testing long description.",
+			"capabilities": []
+		}, {
+			"id": "requirement1",
+			"isCurrent": false,
+			"type": "0",
+			"owner": "i888888",
+			"ownerName": "Jonathan Potter",
+			"name": "Requirement 1",
+			"description": "Requirement description 1",
+			"capabilities": [{
+				"id": "cap1",
+				"solCapBizId": "170",
+				"solCapType": "0",
+				"name": "Collaborative Pipeline Management – CRM (Including Opportunities and Quotations)",
+				"description": "Capability 1 description",
+				"sequence": 1,
+				"industryBizId": "",
+				"e2eSolutionBizId": "101",
+				"e2eSolutionName": "Finance",
+				"responsibilityBizId": "100",
+				"responsibilityName": "HR",
+				"solutionAreaBizId": "160",
+				"solutionAreaName": "Collaborative Pipeline Management – CRM (Including Opportunities and Quotations)",
+				"consistency": "",
+				"scopeItems": [{
+					"id": "scopeItem1",
+					"scopeItemBizId": "110",
+					"type": "1",
+					"name": "Scope Item 1",
+					"description": "Scope Item 1 short description",
+					"sequence": 1,
+					"isMandatory": true,
+					"isHidden": false,
+					"isSelected": true,
+					"businessBenefit": "Bussiness Benifit",
+					"keyProcessFlowsCovered": "Key Process Flow Covered",
+					"pdfUrl2": "http://www.sap.com",
+					"docHome": "http://www.sap.com",
+					"demoUrl": "http://www.sap.com",
+					"isInVirtualAppliance": false,
+					"consistency": "",
+					"comments": [{
+						"id": "comments1",
+						"commentContent": "Coment aaaaa",
+						"createDate": 20130802082604,
+						"authorName": "xxxx"
+					}],
+					"tasks": []
+				}]
+			}]
+		}, {
+			"id": "requirement2",
+			"isCurrent": true,
+			"type": "0",
+			"owner": "i888888",
+			"ownerName": "Jonathan Potter",
+			"name": "Requirement 2",
+			"description": "Requirement description 2",
+			"capabilities": [{
+				"id": "cap2",
+				"solCapBizId": "170",
+				"solCapType": "0",
+				"name": "Capability 1",
+				"description": "Capability 1 description",
+				"sequence": 1,
+				"industryBizId": "",
+				"e2eSolutionBizId": "101",
+				"e2eSolutionName": "Finance",
+				"responsibilityBizId": "100",
+				"responsibilityName": "HR",
+				"solutionAreaBizId": "160",
+				"solutionAreaName": "solutionAreaName 160",
+				"consistency": "",
+				"scopeItems": [{
+					"id": "scopeItem2",
+					"scopeItemBizId": "111",
+					"type": "1",
+					"name": "Scope Item 2",
+					"description": "Scope Item 1 short description",
+					"sequence": 1,
+					"isMandatory": false,
+					"isHidden": false,
+					"isSelected": true,
+					"businessBenefit": "Bussiness Benifit",
+					"keyProcessFlowsCovered": "Key Process Flow Covered",
+					"pdfUrl2": "http://www.sap.com",
+					"docHome": "http://www.sap.com",
+					"demoUrl": "http://www.sap.com",
+					"isInVirtualAppliance": false,
+					"consistency": "",
+					"comments": [{
+						"id": "comments1",
+						"commentContent": "Coment aaaaa",
+						"createDate": 20130802082604,
+						"authorName": "xxxx"
+					}],
+					"tasks": []
+				}, {
+					"id": "scopeItem3",
+					"scopeItemBizId": "112",
+					"type": "1",
+					"name": "Scope Item 3",
+					"description": "Scope Item 1 short description",
+					"sequence": 2,
+					"isMandatory": false,
+					"isHidden": false,
+					"isSelected": false,
+					"businessBenefit": "Bussiness Benifit",
+					"keyProcessFlowsCovered": "Key Process Flow Covered",
+					"pdfUrl2": "http://www.sap.com",
+					"docHome": "http://www.sap.com",
+					"demoUrl": "http://www.sap.com",
+					"isInVirtualAppliance": false,
+					"consistency": "",
+					"comments": [{
+						"id": "comments1",
+						"commentContent": "Coment aaaaa",
+						"createDate": 20130802082604,
+						"authorName": "xxxx"
+					}],
+					"tasks": []
+				}]
+			}, {
+				"id": "cap3",
+				"solCapBizId": "171",
+				"solCapType": "0",
+				"name": "Capability 2",
+				"description": "Capability 2 description",
+				"sequence": 2,
+				"industryBizId": "",
+				"e2eSolutionBizId": "102",
+				"e2eSolutionName": "Finance 102",
+				"responsibilityBizId": "100",
+				"responsibilityName": "HR",
+				"solutionAreaBizId": "161",
+				"solutionAreaName": "solutionAreaName 161",
+				"consistency": "",
+				"scopeItems": [{
+					"id": "scopeItem4",
+					"scopeItemBizId": "113",
+					"type": "1",
+					"name": "Scope Item 4",
+					"description": "Scope Item 1 short description",
+					"sequence": 1,
+					"isMandatory": false,
+					"isHidden": false,
+					"isSelected": true,
+					"businessBenefit": "Bussiness Benifit",
+					"keyProcessFlowsCovered": "Key Process Flow Covered",
+					"pdfUrl2": "http://www.sap.com",
+					"docHome": "http://www.sap.com",
+					"demoUrl": "http://www.sap.com",
+					"isInVirtualAppliance": false,
+					"consistency": "",
+					"comments": [{
+						"id": "comments1",
+						"commentContent": "Coment aaaaa",
+						"createDate": 20130802082604,
+						"authorName": "xxxx"
+					}],
+					"tasks": []
+				}]
+			}, {
+				"id": "cap4",
+				"solCapBizId": "172",
+				"solCapType": "0",
+				"name": "Capability 3",
+				"description": "Capability 3 description",
+				"sequence": 3,
+				"industryBizId": "",
+				"e2eSolutionBizId": "101",
+				"e2eSolutionName": "Finance",
+				"responsibilityBizId": "100",
+				"responsibilityName": "HR",
+				"solutionAreaBizId": "160",
+				"solutionAreaName": "solutionAreaName 160",
+				"consistency": "",
+				"scopeItems": [{
+					"id": "scopeItem5",
+					"scopeItemBizId": "114",
+					"type": "3",
+					"name": "Scope Item 5",
+					"description": "Scope Item 1 short description",
+					"sequence": 1,
+					"isMandatory": false,
+					"isHidden": false,
+					"isSelected": true,
+					"businessBenefit": "Bussiness Benifit",
+					"keyProcessFlowsCovered": "Key Process Flow Covered",
+					"pdfUrl2": "http://www.sap.com",
+					"docHome": "http://www.sap.com",
+					"demoUrl": "http://www.sap.com",
+					"isInVirtualAppliance": false,
+					"consistency": "",
+					"comments": [{
+						"id": "comments1",
+						"commentContent": "Coment aaaaa",
+						"createDate": 20130802082604,
+						"authorName": "xxxx"
+					}],
+					"tasks": []
+				}]
+			}, {
+				"id": "cap5",
+				"solCapBizId": "173",
+				"solCapType": "0",
+				"name": "Capability 4",
+				"description": "Capability 4 description",
+				"sequence": 4,
+				"industryBizId": "",
+				"e2eSolutionBizId": "104",
+				"e2eSolutionName": "Finance",
+				"responsibilityBizId": "101",
+				"responsibilityName": "HR 101",
+				"solutionAreaBizId": "161",
+				"solutionAreaName": "solutionAreaName 161",
+				"consistency": "",
+				"scopeItems": [{
+					"id": "scopeItem6",
+					"scopeItemBizId": "115",
+					"type": "1",
+					"name": "Scope Item 6",
+					"description": "Scope Item 1 short description",
+					"sequence": 1,
+					"isMandatory": false,
+					"isHidden": false,
+					"isSelected": true,
+					"businessBenefit": "Bussiness Benifit",
+					"keyProcessFlowsCovered": "Key Process Flow Covered",
+					"pdfUrl2": "http://www.sap.com",
+					"docHome": "http://www.sap.com",
+					"demoUrl": "http://www.sap.com",
+					"isInVirtualAppliance": false,
+					"consistency": "",
+					"comments": [],
+					"tasks": []
+				}]
+			}]
+		}],
+		"preRds": [{
+			"id": "preRds1",
+			"preRdsBizId": "110",
+			"name": "Pre-AssembledRds 1",
+			"industryBizId": "",
+			"e2eSolutionBizId": "",
+			"responsibilityBizId": "",
+			"solutionAreaBizId": "",
+			"isInVirtualAppliance": "",
+			"isSelected": true,
+			"isRecommended": false,
+			"isFromSe": true,
+			"consistency": "",
+			"serviceBizId": "0000123456",
+			"rds": [{
+				"id": "preRds-rds1",
+				"rdsBizId": "1-110",
+				"industryBizId": "",
+				"name": "pre-assembledRds RDS 1",
+				"e2eSolutionBizId": "150",
+				"responsibilityBizId": "",
+				"solutionAreaBizId": "250",
+				"isSelected": true,
+				"isRecommended": false,
+				"isFromSe": true,
+				"isInVirtualAppliance": true,
+				"consistency": "",
+				"variant": "",
+				"country": "",
+				"language": "",
+				"serviceBizId": "0000000AAAAAAAAAA",
+				"variants": [{
+					"variant": "",
+					"country": "",
+					"language": ""
+				}, {
+					"variant": "a",
+					"country": "b",
+					"language": "c"
+				}, {
+					"variant": "1",
+					"country": "",
+					"language": "3"
+				}],
+				"coveredScopeItems": [
+					"110"
+				],
+				"scopeItemGroups": [{
+					"id": "scopeItemGroups1",
+					"scopeItemGrpBizId": "scopeItemGroupsBiz1",
+					"name": "Scope Item Groups 1",
+					"isSelected": false
+				}, {
+					"id": "scopeItemGroups2",
+					"scopeItemGrpBizId": "scopeItemGroupsBiz2",
+					"name": "Scope Item Groups 2",
+					"isSelected": true,
+					"scopeItems": [{
+						"scopeItemBizId": "scopeItemGroups2--scopeItem1",
+						"scopeItemVersion": "",
+						"name": "Scope Item Groups 2--scopeItem1"
+					}, {
+						"scopeItemBizId": "scopeItemGroups2--scopeItem2",
+						"scopeItemVersion": "",
+						"name": "Scope Item Groups 2--scopeItem2"
+					}]
+				}],
+				"sapEffort": 3.5,
+				"customerEffort": 6
+			}, {
+				"id": "preRds-rds2",
+				"rdsBizId": "1-112",
+				"industryBizId": "",
+				"name": "pre-assembledRds RDS 2",
+				"e2eSolutionBizId": "150",
+				"responsibilityBizId": "",
+				"solutionAreaBizId": "250",
+				"isSelected": true,
+				"isRecommended": false,
+				"isFromSe": true,
+				"isInVirtualAppliance": true,
+				"consistency": "",
+				"variant": "",
+				"country": "",
+				"language": "",
+				"serviceBizId": "00897564AAAQWERR",
+				"variants": [{
+					"variant": "",
+					"country": "",
+					"language": ""
+				}, {
+					"variant": "a",
+					"country": "b",
+					"language": "c"
+				}, {
+					"variant": "1",
+					"country": "",
+					"language": "3"
+				}],
+				"coveredScopeItems": [
+					"115"
+				],
+				"sapEffort": 3,
+				"customerEffort": 6
+			}, {
+				"id": "recommended_rds_1234567",
+				"rdsBizId": "1-113",
+				"industryBizId": "",
+				"name": "pre-assembledRds recommended RDS 3pre-assembledRds recommended RDS 3",
+				"e2eSolutionBizId": "150",
+				"responsibilityBizId": "",
+				"solutionAreaBizId": "250",
+				"isSelected": true,
+				"isRecommended": false,
+				"isFromSe": false,
+				"isInVirtualAppliance": true,
+				"consistency": "",
+				"variant": "",
+				"country": "",
+				"language": "",
+				"serviceBizId": "00087654319876",
+				"variants": [{
+					"variant": "",
+					"country": "",
+					"language": ""
+				}, {
+					"variant": "a",
+					"country": "b",
+					"language": "c"
+				}, {
+					"variant": "1",
+					"country": "",
+					"language": "3"
+				}],
+				"coveredScopeItems": [
+					"113"
+				],
+				"sapEffort": 4,
+				"customerEffort": 8
+			}],
+			"coveredScopeItems": [
+				"110",
+				"113",
+				"115"
+			],
+			"sapEffort": 10.5,
+			"customerEffort": 20,
+			"comments": [{
+				"id": "comments1",
+				"commentContent": "Coment aaaaa",
+				"createDate": 20130802082604,
+				"authorName": "xxxx"
+			}]
+		}],
+		"rds": [{
+			"id": "rds1",
+			"rdsBizId": "110",
+			"industryBizId": "",
+			"name": "SAP® ERP rapid-deployment solution for operational reporting with SAP HANA™",
+			"e2eSolutionBizId": "150",
+			"responsibilityBizId": "",
+			"solutionAreaBizId": "250",
+			"isSelected": true,
+			"isRecommended": false,
+			"isFromSe": true,
+			"isInVirtualAppliance": true,
+			"consistency": "",
+			"serviceBizId": "pp12345678",
+			"comments": [{
+				"id": "comments1",
+				"commentContent": "Coment aaaaa",
+				"createDate": 20130802082604,
+				"authorName": "xxxx"
+			}],
+			"variant": "",
+			"country": "",
+			"language": "",
+			"variants": [{
+				"variant": "",
+				"country": "",
+				"language": ""
+			}, {
+				"variant": "a",
+				"country": "b",
+				"language": "c"
+			}, {
+				"variant": "1",
+				"country": "",
+				"language": "3"
+			}],
+			"coveredScopeItems": [
+				"110",
+				"112",
+				"14"
+			],
+			"sapEffort": 2,
+			"customerEffort": 3.8,
+			"scopeItems": [{
+				"scopeItemBizId": "123456",
+				"scopeItemVersion": "",
+				"name": "Scope Items 123456"
+			}, {
+				"scopeItemBizId": "1234567",
+				"scopeItemVersion": "1.0",
+				"name": "Scope Items 1234567"
+			}],
+			"scopeItemGroups": [{
+				"id": "scopeItemGroups1",
+				"scopeItemGrpBizId": "scopeItemGroupsBiz1",
+				"name": "Scope Item Groups 1",
+				"isSelected": false,
+				"scopeItems": [{
+					"scopeItemBizId": "scopeItemGroups1--scopeItem1",
+					"scopeItemVersion": "",
+					"name": "Scope Item Groups 1--scopeItem1"
+				}, {
+					"scopeItemBizId": "scopeItemGroups1--scopeItem2",
+					"scopeItemVersion": "",
+					"name": "Scope Item Groups 1--scopeItem2"
+				}]
+			}, {
+				"id": "scopeItemGroups2",
+				"scopeItemGrpBizId": "scopeItemGroupsBiz2",
+				"name": "Scope Item Groups 2",
+				"isSelected": true,
+				"scopeItems": [{
+					"scopeItemBizId": "scopeItemGroups2--scopeItem1",
+					"scopeItemVersion": "",
+					"name": "Scope Item Groups 2--scopeItem1"
+				}, {
+					"scopeItemBizId": "scopeItemGroups2--scopeItem2",
+					"scopeItemVersion": "",
+					"name": "Scope Item Groups 2--scopeItem2"
+				}]
+			}]
+		}],
+		"engineerService": [{
+			"id": "engineeredService1",
+			"esBizId": "110",
+			"name": "EngineeredService 1",
+			"consistency": "",
+			"industryBizId": "",
+			"e2eSolutionBizId": "",
+			"responsibilityBizId": "",
+			"solutionAreaBizId": "",
+			"isSelected": true,
+			"isRecommended": false,
+			"isFromSe": false,
+			"sapEffort": 2,
+			"customerEffort": 4,
+			"serviceBizId": "00123AAAAAAAAAA",
+			"coveredScopeItems": [
+				"112",
+				"14"
+			],
+			"scopeItems": [{
+				"scopeItemBizId": "123456",
+				"scopeItemVersion": "",
+				"name": "Scope Items 123456"
+			}, {
+				"scopeItemBizId": "1234567",
+				"scopeItemVersion": "1.0",
+				"name": "Scope Items 1234567"
+			}],
+			"scopeItemGroups": [{
+				"id": "scopeItemGroups1",
+				"scopeItemGrpBizId": "scopeItemGroupsBiz1",
+				"name": "Scope Item Groups 1",
+				"isSelected": false,
+				"scopeItems": [{
+					"scopeItemBizId": "scopeItemGroups1--scopeItem1",
+					"scopeItemVersion": "",
+					"name": "Scope Item Groups 1--scopeItem1"
+				}, {
+					"scopeItemBizId": "scopeItemGroups1--scopeItem2",
+					"scopeItemVersion": "",
+					"name": "Scope Item Groups 1--scopeItem2"
+				}]
+			}, {
+				"id": "scopeItemGroups2",
+				"scopeItemGrpBizId": "scopeItemGroupsBiz2",
+				"name": "Scope Item Groups 2",
+				"isSelected": true,
+				"scopeItems": [{
+					"scopeItemBizId": "scopeItemGroups2--scopeItem1",
+					"scopeItemVersion": "",
+					"name": "Scope Item Groups 2--scopeItem1"
+				}, {
+					"scopeItemBizId": "scopeItemGroups2--scopeItem2",
+					"scopeItemVersion": "",
+					"name": "Scope Item Groups 2--scopeItem2"
+				}]
+			}]
+		}],
+		"licenseMaterial": [{
+			"licenseMaterialId": "1",
+			"name": "Licence 1"
+		}, {
+			"licenseMaterialId": "2",
+			"name": "Licence 2"
+		}]
+	}]
+}

@@ -1,0 +1,143 @@
+<?xml version="1.0" ?>
+<library  version="2.0" name="sap.makit">
+  <module name="sap/makit/Axis.js" size="6754" compressedSize="680">
+    <description>Provides control sap.makit.Axis.</description>
+    <requires>
+      <module name="sap/makit/library.js"/>
+      <module name="sap/ui/core/Element.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/makit/Category.js" size="5309" compressedSize="533">
+    <description>Provides control sap.makit.Category.</description>
+    <requires>
+      <module name="sap/makit/library.js"/>
+      <module name="sap/ui/core/Element.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/makit/CategoryAxis.js" size="5579" compressedSize="685">
+    <description>Provides control sap.makit.CategoryAxis.</description>
+    <requires>
+      <module name="sap/makit/library.js"/>
+      <module name="sap/makit/Axis.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/makit/Chart.js" size="65884" compressedSize="19490">
+    <description>Provides control sap.makit.Chart.</description>
+    <requires>
+      <module name="sap/makit/library.js"/>
+      <module name="sap/ui/core/Control.js"/>
+      <module name="sap/makit/MakitLib.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/makit/ChartRenderer.js" size="1055" compressedSize="496">
+    <description>! SAP UI development toolkit for HTML5 (SAPUI5)  (c) Copyright 2009-2013 SAP AG. All rights reserved</description>
+    <requires>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/makit/Column.js" size="5033" compressedSize="530">
+    <description>Provides control sap.makit.Column.</description>
+    <requires>
+      <module name="sap/makit/library.js"/>
+      <module name="sap/ui/core/Element.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/makit/CombinationChart.js" size="53501" compressedSize="17462">
+    <description>Provides control sap.makit.CombinationChart.</description>
+    <requires>
+      <module name="sap/makit/library.js"/>
+      <module name="sap/ui/core/Control.js"/>
+      <module name="sap/makit/MakitLib.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/makit/CombinationChartRenderer.js" size="1147" compressedSize="529">
+    <description>! SAP UI development toolkit for HTML5 (SAPUI5)  (c) Copyright 2009-2013 SAP AG. All rights reserved</description>
+    <requires>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/makit/Layer.js" size="26897" compressedSize="6709">
+    <description>Provides control sap.makit.Layer.</description>
+    <requires>
+      <module name="sap/makit/library.js"/>
+      <module name="sap/ui/core/Element.js"/>
+      <module name="sap/makit/MakitLib.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/makit/MakitLib.js" size="4677">
+    <description>Provides control sap.makit.MakitLib.</description>
+    <requires>
+      <module name="sap/makit/library.js"/>
+      <module name="sap/ui/core/Element.js"/>
+      <module name="sap/makit/localization/jQueryGlobalization.js"/>
+      <module name="sap/makit/localization/jQueryCoreLang.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+    <includes>
+      <module name="sap/makit/js/MakitLib.js"/>
+      <module name="sap/makit/js/SybaseMA.js"/>
+    </includes>
+  </module>
+  <module name="sap/makit/Row.js" size="6563" compressedSize="1158">
+    <description>Provides control sap.makit.Row.</description>
+    <requires>
+      <module name="sap/makit/library.js"/>
+      <module name="sap/ui/core/Element.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/makit/Series.js" size="5232" compressedSize="535">
+    <description>Provides control sap.makit.Series.</description>
+    <requires>
+      <module name="sap/makit/library.js"/>
+      <module name="sap/ui/core/Element.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/makit/Value.js" size="6802" compressedSize="587">
+    <description>Provides control sap.makit.Value.</description>
+    <requires>
+      <module name="sap/makit/library.js"/>
+      <module name="sap/ui/core/Element.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/makit/ValueAxis.js" size="4768" compressedSize="561">
+    <description>Provides control sap.makit.ValueAxis.</description>
+    <requires>
+      <module name="sap/makit/library.js"/>
+      <module name="sap/makit/Axis.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/makit/ValueBubble.js" size="11213" compressedSize="1533">
+    <description>Provides control sap.makit.ValueBubble.</description>
+    <requires>
+      <module name="sap/makit/library.js"/>
+      <module name="sap/ui/core/Element.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/makit/library.js" size="7646" compressedSize="1574">
+    <description>Initialization Code and shared classes of library sap.makit (1.16.4)</description>
+    <requires>
+      <module name="sap/ui/core/Core.js"/>
+      <module name="sap/ui/core/library.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+    <includes>
+      <module name="sap/makit/ChartType.js"/>
+      <module name="sap/makit/LegendPosition.js"/>
+      <module name="sap/makit/SortOrder.js"/>
+      <module name="sap/makit/ValueBubblePosition.js"/>
+      <module name="sap/makit/ValueBubbleStyle.js"/>
+    </includes>
+  </module>
+</library>

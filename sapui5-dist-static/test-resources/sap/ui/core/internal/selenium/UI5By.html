@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+	<title>Test Page for UI5By</title>
+
+   	<script src="../../../../../../resources/sap-ui-core.js"
+            id="sap-ui-bootstrap"
+            data-sap-ui-libs="sap.ui.commons"
+            data-sap-ui-theme="sap_goldreflection" >
+    </script>
+
+   	<script>
+
+   	(function() {
+
+   		var c1 = new sap.ui.core.Control("control4");
+
+   		c1.getSubControl = function() {
+   			return "sub-control";
+   		};
+
+		var c2 = new sap.ui.core.Control("control5");
+
+   		c2.getElementDomRef = function() {
+   			return jQuery("#control5-domref").get(0);
+   		};
+
+   	})();
+
+   	</script>
+
+</head>
+<body class="sapUiBody" role="application">
+
+	<div id="control3">
+		<div id="control3-foo">
+			<div class="bar">
+				<span id="foo-test"></span>
+			</div>
+		</div>
+	</div>
+
+	<div id="sub-control"></div>
+
+	<div id="control5-domref"></div>
+
+</body>
+</html>

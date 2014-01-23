@@ -1,0 +1,43 @@
+<core:View
+	controllerName="views.control.tablePerso"
+	xmlns="sap.m"
+	xmlns:l="sap.ui.layout"
+	xmlns:model="sap.ui.model"
+	xmlns:core="sap.ui.core" >
+	<l:VerticalLayout
+		width="100%" >
+		<l:content>
+			<Text id="description" class="marginAll" />
+			<Table id="idProductsTable"
+				items="{/ProductCollection}">
+				<headerToolbar>
+					<Toolbar>
+						<Label text="Products"></Label>
+						<ToolbarSpacer></ToolbarSpacer>
+						<!--  Add the Personalization button -->
+						<Button icon="sap-icon://person-placeholder" tap="onPersoButtonPressed" />
+					</Toolbar>
+				</headerToolbar>
+				<columns>
+					<Column width="12em"><Label text="Product" /></Column>
+					<Column minScreenWidth="Tablet" demandPopin="true"><Label text="Supplier" /></Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Right"><Label text="Dimensions" /></Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center"><Label text="Weight" /></Column>
+					<Column hAlign="Right"><Label text="Price" /></Column>
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>
+							<ObjectIdentifier title="{Name}" text="{Product}" />
+							<Text text="{SupplierName}" />
+							<Text text="{Width} x {Depth} x {Height} {DimUnit}" />
+							<ObjectNumber number="{WeightMeasure}" unit="{WeightUnit}"
+								state="{path: 'WeightMeasure', formatter: 'util.Formatter.weightState'}" />
+							<ObjectNumber number="{Price}" unit="{CurrencyCode}" />
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</l:content>
+	</l:VerticalLayout>
+</core:View>

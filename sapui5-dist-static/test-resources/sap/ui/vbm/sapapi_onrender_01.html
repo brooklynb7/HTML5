@@ -1,0 +1,101 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <link href="style/sapvbistyle.css" type="text/css" rel="stylesheet" />
+
+      <script src="../../../../resources/sap-ui-core.js"
+         id="Script1"
+         data-sap-ui-libs="sap.ui.vbm"
+         data-sap-ui-theme="sap_goldreflection" >
+      </script>
+
+      <script>
+	      var radius = 400000;        // radius in meters
+              
+            function renderCanvas( canvas )
+		      {
+               // canvas is the object layer canvas.............................//
+               var oldX = canvas.getPixelWidth();
+               var oldY = canvas.getPixelHeight();
+
+               var scene = canvas.m_Scene;
+               canvas.setPixelWidth( scene.m_nWidthCanvas );
+               canvas.setPixelHeight( scene.m_nHeightCanvas );
+
+               var context = canvas.getContext('2d');
+               context.clearRect( 0, 0, canvas.width, canvas.height );
+
+               var lonlat = [0,0];
+           
+               // get the geolocation service                 
+               for( var dX = -Math.PI; dX < Math.PI; dX += Math.PI/8 )
+               {
+                     for( var dY = -Math.PI/2; dY < Math.PI/2; dY += Math.PI/8 )
+                     {
+                        lonlat[0] = dX;
+                        lonlat[1] = dY;
+
+                        var data = VBI.MathLib.EquidistantLonLat( lonlat, radius, 40 );
+
+                        context.strokeStyle = '#80ace8'; 
+                        context.lineWidth   = 1;
+                        context.fillStyle = "rgba( 250, 64, 64, 0.5 )";                    
+                        context.beginPath();
+                        var xy = scene.GetPointFromGeo( data[0], false );
+                        context.moveTo(xy[0], xy[1]);
+                        for( var i = 1; i < data.length; ++i )
+                        {
+                           xy = scene.GetPointFromGeo( data[i], false );
+                           context.lineTo(xy[0], xy[1]);
+                        }
+                        context.closePath();
+                        context.stroke();
+                        context.fill();     
+
+                        var xy = scene.GetPointFromGeo( lonlat, false );
+                        // draw a circle midpoint................................//
+                        context.fillStyle = 'yellow';
+                        context.beginPath();
+                        context.arc(xy[0], xy[1], 2, 0, Math.PI * 2, true);
+                        context.closePath();
+                        context.fill();
+                     }
+               }
+
+               // resize again..................................................//
+               canvas.setPixelWidth( oldX );
+               canvas.setPixelHeight( oldY );
+            };
+			</script>
+
+         <script>
+            // creation of visual business...........................//
+            sap.ui.localResources("vbitestapp");
+
+
+            var oVBI1 = new sap.ui.vbm.VBI('vbiWrap',
+            {
+               width : 600,
+               height: 400
+            });
+            oVBI1.placeAt("placeholder_vbi_control");
+
+            // attach to the render function that does some..............//
+            // equidistant circle rendering..............................//
+            oVBI1.attachRender(function(evt){ renderCanvas( evt.mParameters.canvas ); });
+                     
+            // load the json configuration...............................//
+            var dat = $.getJSON("mini.json", function( dat ) 
+            {
+               oVBI1.load( dat );
+            });
+
+         </script>
+      </head>
+
+      <body class="sapUiBody">
+		   <h1>Visual Business UI5: attachRender() Handling</h1>
+         <div id="placeholder_vbi_control"></div>
+       </body>
+</html>

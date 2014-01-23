@@ -1,0 +1,43 @@
+<core:View
+	controllerName="views.navHome"
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core" >
+	<Page
+		id="page"
+		title="Samples"
+		icon="img/144_iPad_Retina_Web_Clip.png">
+		<subHeader>
+			<Bar
+				id="searchBar">
+				<contentMiddle>
+					<SearchField
+						id="searchField"
+						placeholder="Search"
+						liveChange="handleSearch"
+						width="100%" >
+					</SearchField>
+				</contentMiddle>
+			</Bar>
+		</subHeader>
+		<content>
+			<List
+				id="list"
+				items="{
+					path:'nav>/items',
+					sorter: {
+						path: 'nav>name',
+						descending: false
+					}
+				}" >
+				<items>
+					<StandardListItem
+						title="{nav>name}"
+						icon="{path: 'nav>type', formatter: 'util.Formatter.navIcon'}"
+						type="Active"
+						counter="{nav>count}"
+						press="itemPress" />
+				</items>
+			</List>
+		</content>
+	</Page>
+</core:View>

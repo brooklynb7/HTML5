@@ -1,0 +1,23 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns:layout="sap.ui.layout" xmlns="sap.m" xmlns:form="sap.ui.commons.form"
+	xmlns:ui="sap.ca.ui" xmlns:commons="sap.ui.commons" controllerName="views.control.GrowingTileContainer"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page title="Title">
+		<content>
+			<ui:GrowingTileContainer content="{odata>/WorkItems}"
+				growing="true" growingThreshold="10" growingScrollToLoad="true">
+
+				<ui:OverviewTile icon="sap-icon://inbox" contact="{odata>CreatedBy}"
+					title="{odata>Title}" address="63 Brandebourg road,Waldorf,Allemagne"
+					rating="Diamond" opportunities="Tons of money" revenue="Millions of dollars"
+					lastContact="20/12/2013" nextContact="24/12/2013" press="onTileTap"
+					contactPress="showContact">
+					<ui:layoutData>
+						<layout:GridData span="L6 M6 S12"></layout:GridData>
+					</ui:layoutData>
+				</ui:OverviewTile>
+				
+			</ui:GrowingTileContainer>
+		</content>
+	</Page>
+</core:View>

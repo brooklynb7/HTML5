@@ -1,0 +1,582 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<title>qUnit Page for sap.m.Popover</title>
+
+		<script id="sap-ui-bootstrap" 
+			type="text/javascript"
+			src="../../../../resources/sap-ui-core.js"
+			data-sap-ui-theme="sap_mvi"
+			data-sap-ui-noConflict="true"
+			data-sap-ui-libs="sap.m">
+		</script>
+    
+		<link rel="stylesheet" href="../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
+		<script type="text/javascript" src="../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+		<script type="text/javascript" src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
+		<script type="text/javascript" src="../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
+		<script type="text/javascript" src="../../../../resources/sap/ui/thirdparty/sinon.js"></script>
+
+		<style>
+			#popoverHolder{
+				width: 100%;
+				height: 500px;
+				position: relative;
+			}
+			
+/* 			bottom */
+			.positioned{
+				position: absolute;
+				top: 10px;
+				right: 0px;
+			}
+			
+			
+/* 			right */
+			.positioned1{
+				position: absolute;
+				top: 10px;
+				left: 10px;
+			}
+			
+/* 			left */
+			.positioned2{
+				position: absolute;
+				top: 80px;
+				right: 10px;
+			}
+			
+/* 			top */
+			.positioned3{
+				position: absolute;
+				bottom: 10px;
+				left: 100px;
+			}
+			
+		</style>
+		<script>
+			QUnit.config.autostart = false;
+			jQuery(document).ready(function() {
+				QUnit.start();
+			});
+			
+			var iBarHeight = 48, iArrowOffset = 18;
+			
+			var app = new sap.m.App("myApp", {
+				initPage: "myFirstPage"
+			});
+			
+			var oHtml = new sap.ui.core.HTML({
+				content : '<div id="popoverHolder"></div><h1 id="qunit-header">qUnit Page for sap.m.Popover</h1><h2 id="qunit-banner"></h2><h2 id="qunit-userAgent"></h2><ol id="qunit-tests"></ol>',
+				afterRendering: function(){
+					oButton.placeAt("popoverHolder");
+					oButton2.placeAt("popoverHolder");
+				}
+			});
+			
+			var page = new sap.m.Page("myFirstPage", {
+				title : "Test",
+				showNavButton : true,
+				enableScrolling : true,
+				content : oHtml
+			});
+			
+			app.addPage(page).placeAt("content");
+			
+			
+			var oButton = new sap.m.Button({
+				text : "Popover",
+				press : function() {
+					oPopover.openBy(this);
+				}
+			});
+			oButton.addStyleClass("positioned");
+
+			var oButton2 = new sap.m.Button({
+				text : "Popover2",
+				press : function() {
+					oPopover2.openBy(this);
+				}
+			});
+			oButton2.addStyleClass("positioned");
+
+			//create the list
+			var oList2 = new sap.m.List({
+				inset : true
+			});
+			
+			var data = {
+				navigation : [ {
+					title : "Travel Expend",
+					description : "Access the travel expend workflow",
+					icon : "../images/travel_expend.png",
+					iconInset : false,
+					type : "Navigation",
+					press : 'detailPage'
+				}, {
+					title : "Travel and expense report",
+					description : "Access travel and expense reports",
+					icon : "../images/travel_expense_report.png",
+					iconInset : false,
+					type : "Navigation",
+					press : 'detailPage'
+				}, {
+					title : "Travel Request",
+					description : "Access the travel request workflow",
+					icon : "../images/travel_request.png",
+					iconInset : false,
+					type : "Navigation",
+					press : 'detailPage'
+				}, {
+					title : "Work Accidents",
+					description : "Report your work accidents",
+					icon : "../images/wounds_doc.png",
+					iconInset : false,
+					type : "Navigation",
+					press : 'detailPage'
+				}, {
+					title : "Travel Settings",
+					description : "Change your travel worflow settings",
+					icon : "../images/settings.png",
+					iconInset : false,
+					type : "Navigation",
+					press : 'detailPage'
+				} ]
+			};
+			
+			var oItemTemplate1 = new sap.m.StandardListItem({
+				title : "{title}",
+				description : "{description}",
+				icon : "{icon}",
+				iconInset : "{iconInset}",
+				type : "{type}"
+			});
+			
+			function bindListData(data, itemTemplate, list)
+			{
+				var oModel = new sap.ui.model.json.JSONModel();
+				// set the data for the model
+				oModel.setData(data);
+				// set the model to the list
+				list.setModel(oModel);
+
+				// bind Aggregation
+				list.bindAggregation("items", "/navigation", itemTemplate);
+			}
+			
+			bindListData(data, oItemTemplate1, oList2)
+//end of the list creation
+
+//create the scrollContainer
+			var oScrollContainer = new sap.m.ScrollContainer({
+				horizontal: false,
+				vertical: true,
+				content: oList2
+			});
+			var sOldTitleValue = "Popover", sNewTitleValue = "Title Changed";
+			
+			var oPopover = new sap.m.Popover("popover", {
+				placement: sap.m.PlacementType.Bottom,
+				title: sOldTitleValue,
+				showHeader: true,
+				afterClose:function(){
+					equal(jQuery.sap.byId("popover").css("visibility"), "hidden", "popover should be hidden after it's closed");
+					ok(!oPopover.isOpen(), "Popover is already closed");
+					start();
+				},
+				content: [
+					oScrollContainer
+				]
+			});
+			
+			var oPopover2 = new sap.m.Popover("popover2", {
+				placement: sap.m.PlacementType.Bottom,
+				title: "non-focusable content",
+				showHeader: true,
+				content: [
+					new sap.ui.core.HTML({ content: "<div>test content</div>" })
+				]
+			});
+
+			var oCustomHeader = new sap.m.Bar("customHeader", { 
+				contentLeft: [new sap.m.Image('myAppIcon', {src: "../images/SAPUI5.png"}),
+				              new sap.m.Label("IconHeader", {text: "Icon Header"})],	
+				contentMiddle: [],
+				contentRight: []
+			});
+			
+			var oSubHeader = new sap.m.Bar({
+				contentMiddle: [
+								new sap.m.SearchField({
+									placeholder: "Search ...",
+									width: "100%"
+								})
+							]
+			});
+			
+			var oBeginButton = new sap.m.Button("beginButton", {
+				text: "Left",
+				type: sap.m.ButtonType.Reject
+			});
+			
+			
+			var oEndButton = new sap.m.Button("endButton", {
+				text: "Right",
+				type: sap.m.ButtonType.Accept
+			});
+
+			module("Initial Check");
+
+			test("Initialization", function() {
+				ok(!jQuery.sap.domById("popover"), "Popover is not rendered in the beginning.");
+			});	
+			
+			module("Open and Close");
+			
+			asyncTest("Open with placement: Bottom", function(){
+				oPopover.setPlacement(sap.m.PlacementType.Bottom);
+				oButton.firePress();
+				ok(oPopover.isOpen(), "Popover is already open");
+				setTimeout(function(){
+					var $popover = jQuery.sap.byId("popover");
+					if(!jQuery.support.touch && !jQuery.sap.simulateMobileOnDesktop){
+						equal($popover[0], document.activeElement, "Popover should have the focus");
+					}
+					ok(jQuery.sap.domById("popover"), "Popover is rendered after it's opened.");
+					ok($popover.closest("#sap-ui-static")[0], "Popover should be rendered inside the static uiArea.");
+					ok(Math.ceil($popover.offset().top - iArrowOffset) >= Math.floor(oButton.$().offset().top + oButton.$().outerHeight()), "Popover should be opened at the bottom of the button");
+					start();
+				}, 50);
+// 				ok(($popover.position().left + $popover.outerWidth()) <= (jQuery(window).width() - 10), "popover is not overlapping the right border");
+// 				ok(($popover.position().top + $popover.outerHeight()) <= (jQuery(window).height() - 20), "popover is not overlapping bottom border");
+			});
+			
+			asyncTest("Close", function(){
+				expect(2);
+				oPopover.close();
+			});
+			
+			asyncTest("Open with placement: Right", function(){
+				oButton.removeStyleClass("positioned").addStyleClass("positioned1");
+				oPopover.setPlacement(sap.m.PlacementType.Right);
+				oButton.firePress();
+				ok(oPopover.isOpen(), "Popover is already open");
+				setTimeout(function(){
+					var $popover = jQuery.sap.byId("popover");
+					ok(jQuery.sap.domById("popover"), "Popover is rendered after it's opened.");
+					ok($popover.closest("#sap-ui-static")[0], "Popover should be rendered inside the static uiArea.");
+					ok(Math.ceil($popover.offset().left - iArrowOffset) >= Math.floor(oButton.$().offset().left + oButton.$().outerWidth()), "Popover should be opened at the right side of the button");
+					start();
+				}, 50);
+				//the window size of the test machine is too small, this test can't be executed successfully
+// 				ok($popover.position().top >= iBarHeight + 2, "popover is not overlapping the Page Header");
+// 				ok(($popover.position().left + $popover.outerWidth()) <= (jQuery(window).width() - 10), "popover is not overlapping the right border");
+// 				ok(($popover.position().top + $popover.outerHeight()) <= (jQuery(window).height() - 20), "popover is not overlapping bottom border");
+			});
+			
+			asyncTest("Close", function(){
+				expect(2);
+				oPopover.close();
+			});
+		
+			asyncTest("Open with placement: Left", function(){
+				oButton.removeStyleClass("positioned1").addStyleClass("positioned2");
+				oPopover.setPlacement(sap.m.PlacementType.Left);
+				oButton.firePress();
+				ok(oPopover.isOpen(), "Popover is already open");
+				setTimeout(function(){
+					var $popover = jQuery.sap.byId("popover");
+					ok(jQuery.sap.domById("popover"), "Popover is rendered after it's opened.");
+					ok($popover.closest("#sap-ui-static")[0], "Popover should be rendered inside the static uiArea.");
+					ok(Math.floor($popover.offset().left + $popover.outerWidth() + iArrowOffset) <= Math.ceil(oButton.$().offset().left), "Popover should be opened at the left side of the button");
+					start();
+				}, 50);
+				//the window size of the test machine is too small, this test can't be executed successfully
+// 				ok($popover.position().top >= iBarHeight + 2, "popover is not overlapping the Page Header");
+// 				ok(($popover.position().top + $popover.outerHeight()) <= (jQuery(window).height() - 20), "popover is not overlapping bottom border");
+			});
+			
+			asyncTest("Close", function(){
+				expect(2);
+				oPopover.close();
+			});
+			
+			asyncTest("Open with placement: Top", function(){
+				oButton.removeStyleClass("positioned2").addStyleClass("positioned3");
+				oPopover.setPlacement(sap.m.PlacementType.Top);
+				oButton.firePress();
+				ok(oPopover.isOpen(), "Popover is already open");
+				setTimeout(function(){
+					var $popover = jQuery.sap.byId("popover");
+					ok(jQuery.sap.domById("popover"), "Popover is rendered after it's opened.");
+					ok($popover.closest("#sap-ui-static")[0], "Popover should be rendered inside the static uiArea.");
+					ok(Math.floor($popover.offset().top + $popover.outerHeight() + iArrowOffset) <= Math.ceil(oButton.$().offset().top), "Popover should be opened at the top of the button");
+					start();
+				}, 50);
+				
+				//the window size of the test machine is too small, this test can't be executed successfully
+// 				ok($popover.position().top >= iBarHeight + 2, "popover is not overlapping the Page Header");
+// 				ok(($popover.position().left + $popover.outerWidth()) <= (jQuery(window).width() - 10), "popover is not overlapping the right border");
+				//the window size of the test machine is too small, this test can't be executed successfully
+// 				ok($popover.position().left >= 10, "popover is not overlapping the left border");
+			});
+			
+			asyncTest("Close", function(){
+				expect(2);
+				oPopover.close();
+			});
+
+
+			module("Position calculation");
+
+			test("vertical calculation of Popover positioning should be correct", function() {
+				var testCase = function(offset, outerHeight, height, expectedPlace) {
+					var stubOffset = sinon.stub(jQuery.fn, "offset").returns({top:offset});
+					var stubOuterHeight = sinon.stub(jQuery.fn, "outerHeight").returns(outerHeight);
+					var stubWindowHeight = sinon.stub(jQuery.fn, "height").returns(height);
+
+					var oPopover3 = new sap.m.Popover({
+						placement: sap.m.PlacementType.Vertical
+					});
+
+					oPopover3._calcPlacement();
+
+					strictEqual(oPopover3._oCalcedPos, expectedPlace);
+
+					stubOffset.restore();
+					stubOuterHeight.restore();
+					stubWindowHeight.restore();
+				}
+
+				testCase(50, 50, 500, sap.m.PlacementType.Bottom);
+				testCase(450, 50, 500, sap.m.PlacementType.Top);
+
+			});
+			
+			test("horizontal calculation of Popover positioning should be correct", function() {
+				var testCase = function(offset, outerWidth, width, expectedPlace) {
+					var stubOffset = sinon.stub(jQuery.fn, "offset").returns({left:offset});
+					var stubOuterWidth = sinon.stub(jQuery.fn, "outerWidth").returns(outerWidth);
+					var stubWindowWidth = sinon.stub(jQuery.fn, "width").returns(width);
+
+					var oPopover3 = new sap.m.Popover({
+						placement: sap.m.PlacementType.Horizontal
+					});
+
+					oPopover3._calcPlacement();
+
+					strictEqual(oPopover3._oCalcedPos, expectedPlace);
+
+					stubOffset.restore();
+					stubOuterWidth.restore();
+					stubWindowWidth.restore();
+				}
+
+				testCase(50, 50, 500, sap.m.PlacementType.Right);
+				testCase(450, 50, 500, sap.m.PlacementType.Left);
+
+			});
+			
+		test("auto calculation of Popover positioning should be correct", function() {
+				var testCase = function(offsetLeft, offsetTop, outerWidth, outerHeight, width, height, expectedPlace) {
+					var stubOffset = sinon.stub(jQuery.fn, "offset").returns({left:offsetLeft, top:offsetTop});
+					var stubOuterWidth = sinon.stub(jQuery.fn, "outerWidth").returns(outerWidth);
+					var stubWindowWidth = sinon.stub(jQuery.fn, "width").returns(width);
+					var stubOuterHeight = sinon.stub(jQuery.fn, "outerHeight").returns(outerHeight);
+					var stubWindowHeight = sinon.stub(jQuery.fn, "height").returns(height);
+					var stubPopover = sinon.stub(sap.m.Popover.prototype, "$").returns(
+							{	outerWidth: sinon.stub().returns(200),
+								outerHeight: sinon.stub().returns(200)
+							});
+					var oPopover3 = new sap.m.Popover({
+						placement: sap.m.PlacementType.Auto
+					});
+
+					oPopover3._calcPlacement();
+
+					strictEqual(oPopover3._oCalcedPos, expectedPlace);
+
+					stubOffset.restore();
+					stubOuterWidth.restore();
+					stubWindowWidth.restore();
+					stubOuterHeight.restore();
+					stubWindowHeight.restore();
+					stubPopover.restore();
+				}
+
+				//tests for preferred positioning if the popover fits in both placementTypes (vertical and horizontal)
+				//landscape mode: vertical should be preferred
+				testCase(50, 0, 50, 50, 500, 300, sap.m.PlacementType.Right);
+				testCase(450, 0, 50, 50, 500, 300, sap.m.PlacementType.Left);
+				//portrait mode: horizontal should be preferred
+				testCase(0, 50, 50, 50, 300, 500, sap.m.PlacementType.Bottom);
+				testCase(0, 450, 50, 50, 300, 500, sap.m.PlacementType.Top);
+				
+				//tests for positioning if the popover is too big for all positions
+				//position with the best coverage of the popover should be chosen
+				testCase(50, 100, 50, 50, 200, 200, sap.m.PlacementType.Right);
+				testCase(150, 100, 50, 50, 200, 200, sap.m.PlacementType.Left);
+				testCase(100, 50, 50, 50, 200, 200, sap.m.PlacementType.Bottom);
+				testCase(100, 150, 50, 50, 200, 200, sap.m.PlacementType.Top);
+
+			});
+		
+			module("Property Setter");
+			
+			asyncTest("Set modal to true or false", function(){
+				oButton.firePress();
+				oPopover.setModal(true);
+				setTimeout(function(){
+					ok(jQuery.sap.domById("sap-ui-blocklayer-popup"), "Block layer is rendered");
+					equal(jQuery.sap.byId("sap-ui-blocklayer-popup").css("visibility"), "visible", "block layer is visible");
+					oPopover.setModal(false);
+					setTimeout(function(){
+						equal(jQuery.sap.byId("sap-ui-blocklayer-popup").css("visibility"), "hidden", "block layer is invisible");
+						start();
+					}, 50);
+				}, 50);
+			});
+			
+			asyncTest("Set title", function(){
+				ok(jQuery.sap.domById(oPopover.getId() + "-title"), "Title is rendered");
+				equal(jQuery.sap.byId(oPopover.getId() + "-title").text(), sOldTitleValue, "Title should be with the right value");
+				if(jQuery.os.ios){
+					ok(jQuery.sap.byId(oPopover.getId() + "-title").closest("#" + oPopover.getId() + "-intHeader-BarMiddle")[0], "Title should be rendered in the middle part of the bar");
+				}else{
+					ok(jQuery.sap.byId(oPopover.getId() + "-title").closest("#" + oPopover.getId() + "-intHeader-BarLeft")[0], "Title should be rendered in the middle part of the bar");	
+				}
+				oPopover.setTitle(sNewTitleValue);
+				setTimeout(function(){
+					equal(jQuery.sap.byId(oPopover.getId() + "-title").text(), sNewTitleValue, "Title should be changed to the new value");
+					start();
+				}, 10);
+			});
+			
+			asyncTest("Add left button", function(){
+				oPopover.setBeginButton(oBeginButton);
+				setTimeout(function(){
+					var oBeginButtonDom = jQuery.sap.domById("beginButton");
+					ok(oBeginButtonDom, "BeginButton should be rendered");
+					if(!jQuery.support.touch && !jQuery.sap.simulateMobileOnDesktop){
+						equal(oBeginButtonDom, document.activeElement, "beginButton should have the focus");
+					}
+					if(jQuery.os.ios){
+						ok(oBeginButton.$().closest("#" + oPopover.getId() + "-intHeader-BarLeft")[0], "Left button is set in the left side of the bar in iOS");
+					}else{
+						ok(oBeginButton.$().closest("#" + oPopover.getId() + "-intHeader-BarRight")[0], "Left button is set in the right side of the bar in other platform");
+					}
+					start();
+				}, 50);
+			});
+			
+			asyncTest("Add right button", function(){
+				oPopover.setEndButton(oEndButton);
+				setTimeout(function(){
+					ok(jQuery.sap.domById("endButton"), "EndButton should be rendered");
+					ok(oEndButton.$().closest("#" + oPopover.getId() + "-intHeader-BarRight")[0], "EndButton is set in the right side of the bar");
+					if(!jQuery.os.ios){
+						ok(oEndButton.$().position().left > (oBeginButton.$().position().left + oBeginButton.$().width()), "EndButton should be placed at the right side of the BeginButton");
+					}
+					start();
+				}, 50);
+			});
+			
+			asyncTest("Set showHeader", function(){
+				ok(jQuery.sap.domById(oPopover.getId() + "-intHeader"), "Internal header is rendered");
+ 				oPopover.setShowHeader(false);
+				setTimeout(function(){
+					ok(jQuery.sap.byId(oPopover.getId() + "-intHeader").css("display") === "none", "Internal header is removed");
+					oPopover.setShowHeader(true);
+					setTimeout(function(){
+						ok(jQuery.sap.byId(oPopover.getId() + "-intHeader").css("display") !== "none", "Internal header is rendered");
+						start();
+					},50);
+				}, 50);
+			});
+			
+			asyncTest("Remove beginButton", function(){
+				oPopover.setBeginButton(null);
+				setTimeout(function(){
+					if(!jQuery.support.touch && !jQuery.sap.simulateMobileOnDesktop){
+						equal(jQuery.sap.domById("endButton"), document.activeElement, "EndButton should have the focus");
+					}
+					if(jQuery.os.ios){
+						ok(!jQuery("#" + oPopover.getId() + "-intHeader-BarLeft").children("#beginButton")[0], "BeginButton is removed from the bar");
+					}else{
+						ok(!jQuery("#" + oPopover.getId() + "-intHeader-BarRight").children("#beginButton")[0], "BeginButton is removed from the bar");
+					}
+					start();
+				}, 50);
+			});
+			
+			asyncTest("Remove right button", function(){
+				oPopover.setEndButton(null);
+				setTimeout(function(){
+					ok(!jQuery("#" + oPopover.getId() + "-intHeader-BarRight").children("#endButton")[0], "EndButton is removed from the bar");
+					start();
+				}, 50);
+			});
+			
+			asyncTest("Set custom header", function(){
+				oPopover.setCustomHeader(oCustomHeader);
+				setTimeout(function(){
+					ok(jQuery.sap.domById("customHeader"), "Custom Header is rendered");
+					ok(!jQuery.sap.domById(oPopover.getId() + "-intHeader"), "Internal header is destroyed");
+					start();
+				}, 50);
+			});
+			
+			asyncTest("Set sub header", function(){
+				oPopover.setSubHeader(oSubHeader);
+				setTimeout(function(){
+					ok(oPopover.$().children(".sapMPopoverSubHeader")[0], "Sub header is rendered");
+					start();
+				}, 50);
+			});
+			
+			test("set contentWidth/Height", function(){
+				oPopover.setContentWidth("300px");
+				oPopover.setContentHeight("400px");
+				oPopover._clearCSSStyles();
+				var $content = jQuery.sap.byId(oPopover.getId() + "-cont");
+				equal($content.width(), 300, "contentWidth is set");
+				equal($content.height(), 400, "contentHeight is set");
+			});
+			
+			test("Set enable scrolling (mapped to vertical/horizontal scrolling)", function() {
+				var oPopover4 = new sap.m.Popover({
+					enableScrolling: true
+				});
+				
+				strictEqual(oPopover4.getVerticalScrolling(), true);
+				strictEqual(oPopover4.getHorizontalScrolling(), true);
+				oPopover4.setEnableScrolling(false);
+				strictEqual(oPopover4.getVerticalScrolling(), false);
+				strictEqual(oPopover4.getHorizontalScrolling(), false);
+			});
+			
+			test("Set vertical/horizontal scrolling", function() {
+				oPopover.setVerticalScrolling(false);
+				oPopover.setHorizontalScrolling(false);
+				
+				equal(jQuery.sap.domById(oPopover.getId()).className.indexOf("sapMPopoverVerScrollDisabled") != -1, true, "verticalScrolling should be disabled");
+				equal(jQuery.sap.domById(oPopover.getId()).className.indexOf("sapMPopoverHorScrollDisabled") != -1, true, "horizontalScrolling should be disabled");
+				equal(oPopover.getVerticalScrolling(), false, "verticalScrolling should be disabled");
+				equal(oPopover.getVerticalScrolling(), false, "horizontalScrolling should be disabled");
+				
+				oPopover.setVerticalScrolling(true);
+				oPopover.setHorizontalScrolling(true);
+				
+				equal(jQuery.sap.domById(oPopover.getId()).className.indexOf("sapMPopoverVerScrollDisabled") == -1, true, "verticalScrolling should be enabled");
+				equal(jQuery.sap.domById(oPopover.getId()).className.indexOf("sapMPopoverHorScrollDisabled") == -1, true, "horizontalScrolling should be enabled");
+				equal(oPopover.getVerticalScrolling(), true, "verticalScrolling should be enabled");
+				equal(oPopover.getVerticalScrolling(), true, "horizontalScrolling should be enabled");
+			});
+			
+		</script>
+	</head>
+	<body id="body" class="sapUiBody">
+    	<div id="content"></div>
+	</body>
+</html>

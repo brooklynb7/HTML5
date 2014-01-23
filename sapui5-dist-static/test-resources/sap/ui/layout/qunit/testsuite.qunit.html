@@ -1,0 +1,33 @@
+<html>
+<head>
+<title>QUnit TestSuite for sap.ui.layout</title>
+<script src="/jsunit-testrunner/app/jsUnitCore.js"></script>
+</head>
+<body>
+<script>
+
+/**
+ * Add test pages to this test suite function.
+ * Please order alphabetically
+ */
+function suite() {
+	var suite = new top.jsUnitTestSuite(),
+		contextPath = "/" + window.location.pathname.split("/")[1];
+		// Grid is not working for IE8 , so no automatical test for older IE versions 
+		if (!navigator.userAgent.match(/MSIE7|MSIE8/g)) {
+			suite.addTestPage(contextPath + "/test-resources/sap/ui/layout/qunit/Grid.qunit.html");
+			suite.addTestPage(contextPath + "/test-resources/sap/ui/layout/qunit/form/Form.qunit.html");
+			suite.addTestPage(contextPath + "/test-resources/sap/ui/layout/qunit/form/GridLayout.qunit.html");
+			suite.addTestPage(contextPath + "/test-resources/sap/ui/layout/qunit/form/ResponsiveGridLayout.qunit.html");
+			suite.addTestPage(contextPath + "/test-resources/sap/ui/layout/qunit/form/ResponsiveLayout.qunit.html");
+			suite.addTestPage(contextPath + "/test-resources/sap/ui/layout/qunit/form/SimpleForm.qunit.html");
+			suite.addTestPage(contextPath + "/test-resources/sap/ui/layout/qunit/ResponsiveFlowLayout.qunit.html");
+			suite.addTestPage(contextPath + "/test-resources/sap/ui/layout/qunit/VerticalLayout.qunit.html");
+		}
+	return suite;
+}
+redirectToTestrunnerIfRequired();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<SelectDialog
+        xmlns="sap.m"
+        id="DefectSelectDialog"
+        title="{i18n>DEFECT}"
+        noDataText=""
+        filterPath="Value"
+        filterOperator="Contains"
+        items="{path : '/IssueCodeCollection',
+                sorter : {
+						path : 'Group',
+						descending : false,
+						group : true
+					}
+				}"
+        confirm="closeDefectSelectDialog">
+    <StandardListItem
+            title="{Value}"/>
+</SelectDialog>

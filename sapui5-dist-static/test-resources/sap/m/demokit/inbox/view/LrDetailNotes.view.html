@@ -1,0 +1,13 @@
+<template data-controller-name="view.LrDetailNotes">
+	<div data-sap-ui-type="sap.m.List" id="lrAttachments" data-items="{lr>notes}"  data-show-separators="None">
+		<div data-sap-ui-aggregation="items" data-items="{lr>notes}">
+			<div data-sap-ui-type="sap.m.FeedListItem"
+				data-thumbnail-src="{lr>img}" 
+				data-text="{lr>text}"
+				data-sender="{lr>sender}"
+				data-info="{path:'lr>type', formatter:'util.Formatter.lrNoteType'}"
+				data-timestamp="{lr>date}" >
+			</div>
+		</div>
+	</div> 
+</template>

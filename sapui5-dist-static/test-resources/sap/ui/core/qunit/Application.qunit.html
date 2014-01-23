@@ -1,0 +1,124 @@
+<!DOCTYPE HTML>
+<html>
+
+<!-- 
+  Tested class: sap.ui.app.Application
+-->
+
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<title>qUnit Page for sap.ui.app.Application</title>
+
+		<script id="sap-ui-bootstrap" 
+			type="text/javascript"
+			src="../../../../../resources/sap-ui-core.js"
+			data-sap-ui-theme="sap_platinum"
+			data-sap-ui-noConflict="true" >
+		</script>
+
+		<link rel="stylesheet" href="../../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
+		<script type="text/javascript" src="../../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+		<script type="text/javascript" src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
+		<script type="text/javascript" src="../../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
+
+		<script language="javascript">
+
+			jQuery.sap.require("sap.ui.app.Application");
+
+			test("Abstract", 1, function() {
+				var oApp = new sap.ui.app.Application();
+				ok(oApp.getMetadata().isAbstract(), "sap.ui.app.Application is abstract");
+				oApp.destroy();
+			});
+
+			test("Config by Model", 1, function() {
+				var oJSONModel = new sap.ui.model.json.JSONModel();
+				oJSONModel.setData({
+					foo : "bar"
+				})
+				var oApp = new sap.ui.app.Application({
+					config : oJSONModel
+				});
+				equal(oApp.getConfig().getProperty("/foo"), "bar", "Model is set right");
+				oApp.destroy();
+			});
+
+			test("Config by URI", 1, function() {
+				var oApp = new sap.ui.app.Application({
+					config : "testdata/config.json"
+				});
+				equal(oApp.getConfig().getProperty("/foo"), "bar", "Model is set right");
+				oApp.destroy();
+			});
+
+			test("Config by URI - Error", 1, function() {
+				throws(function() {
+					var oApp = new sap.ui.app.Application({
+						config : "someNotExistingUri.json"
+					});	
+				}, /Could not load config file/, "Error is thrown when URI not exists");
+				sap.ui.getApplication = undefined;
+			});
+
+
+			test("Only one Application is allowed", 2, function() {
+				var oApp = new sap.ui.app.Application();
+				ok(sap.ui.getApplication(), "Application is registered");
+				throws(function() {
+					var oApp = new sap.ui.app.Application();	
+				}, /Only one instance of sap.ui.app.Application is allowed/, "Error is thrown when a second instance is created");
+				sap.ui.getApplication = undefined;
+			});
+
+
+			test("Root Property exists", 1, function() {
+				var oApp = new sap.ui.app.Application({
+					root : "main"
+				});
+				equal(oApp.getRoot(), "main", "Root property available");
+				oApp.destroy();
+			});
+
+			test("Main function", 1, function() {
+				var oApp = sap.ui.app.Application.extend("my.App", {
+					main : function() {
+						ok(true, "Main function called");
+					}
+				});
+				var oApp = new my.App();
+				oApp.destroy();
+			});
+
+			test("Root Component", 1, function() {
+				sap.ui.core.Control.extend("my.Control", {
+					renderer : function(oRm) {
+						oRm.write("<div>works</div>");
+					}
+				});
+				sap.ui.core.UIComponent.extend("my.Component", {
+					createContent : function() {
+						return new my.Control();
+					}
+				});
+				var oApp = sap.ui.app.Application.extend("my.App", {
+					createRootComponent : function() {
+						return new my.Component();
+					}
+				});
+				var oApp = new my.App({
+					root : "main"
+				});
+				ok(oApp.getRootComponent());
+				oApp.destroy();
+			});
+
+		</script>
+	</head>
+	<body>
+	<h1 id="qunit-header">qUnit Page for sap.ui.app.Application</h1>
+	<h2 id="qunit-banner"></h2>
+	<h2 id="qunit-userAgent"></h2>
+	<ol id="qunit-tests"></ol>
+	<div id="main"></div>
+	</body>
+</html>

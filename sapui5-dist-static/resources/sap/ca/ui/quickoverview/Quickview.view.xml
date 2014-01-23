@@ -1,0 +1,14 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"	xmlns="sap.m" 
+	controllerName="sap.ca.ui.quickoverview.Quickview" xmlns:html="http://www.w3.org/1999/xhtml">
+
+ 			<VBox id="HeaderBox">
+  			</VBox>
+
+			<!-- insert subview placeholder - subview name is not bindable - hence 
+				the subview is created in the controller -->
+			<VBox id="QVVBox">
+			</VBox>
+
+
+</core:View>   
+

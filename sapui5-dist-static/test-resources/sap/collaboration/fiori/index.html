@@ -1,0 +1,153 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>SAP UI5 for Collaboration</title>
+	<script src="../../../../resources/sap-ui-core.js"
+	    id="sap-ui-bootstrap"
+	    data-sap-ui-libs="sap.ui.commons, sap.ui.unified, sap.m"
+	    data-sap-ui-theme="sap_bluecrystal" >
+	</script>
+	
+	<script>
+		jQuery.sap.require("sap.ui.core.IconPool"); //required for the menu icons
+		jQuery.sap.require("sap.collaboration.library"); // Add constants (Types)
+		
+		var proxy = "/proxy/https";
+		var contextPath = "/" + window.location.pathname.split("/")[1];
+		//if contexPath does not begin with /uilib-sample, use /uilib-sample
+		if (contextPath.toLowerCase().indexOf("/uilib-sample") != 0)
+			contextPath = "/uilib-sample";
+		var hostUrl = window.location.protocol + "//" + window.location.host + contextPath + proxy;
+		// create model
+
+		var oDataServicePath =
+			//"/vmw3814.wdf.sap.corp:44320/sap/opu/odata/sap/sm_integration_srv_u31_000";
+			"/vmw3911.wdf.sap.corp:44335/sap/opu/odata/sap/SM_INTEGRATION_SRV";
+			//"/vmw3815.wdf.sap.corp:44309/sap/opu/odata/sap/SM_INTEGRATION_SRV"; 
+
+		var oDataServiceUrl = hostUrl + oDataServicePath;
+		//@bsp:odataServiceUrl
+
+		var demoAppUrl = "/uilib-sample/test-resources/sap/collaboration/fiori/DemoApp.html";
+		//@bsp:demoAppUrl
+	
+		// 1) Initialize Shell
+		var oShell = new sap.ui.unified.Shell({
+			icon: jQuery.sap.getModulePath("sap.ui.core", '/') + "mimes/logo/sap_73x36.gif"//,
+			//search: oSF
+		});
+		
+		// 2) Menu Items
+		// 2.1) Create Menu Items
+		var oItemHome = new sap.ui.unified.ShellHeadItem({
+			title: "Home",
+			tooltip: "Home",
+			icon: sap.ui.core.IconPool.getIconURI("home"),
+			selected: true
+		});
+		
+		var oItemFeed = new sap.ui.unified.ShellHeadItem({
+			title: "Feed",
+			tooltip: "Feed",
+			icon: sap.ui.core.IconPool.getIconURI("org-chart")
+		});
+		
+		// 2.2) Add menu items to shell
+		oShell.addHeadItem(oItemHome);
+		oShell.addHeadItem(oItemFeed);
+								
+		// 3) Content
+		// 3.1) Create Content
+		// Create Tiles
+		// Create Feed Tiles Container
+		var oTileContainer = new sap.m.TileContainer("TileContainer");
+
+		// Create Tile 1 - Feed Dialog
+		var businessObject = {
+			  id: "http://services.odata.org/Northwind/Northwind.svc/Products(1)", 
+			  name: "Aniseed Syrup",
+			  type: "http://services.odata.org/Northwind/Northwind.svc/$metadata#Products",
+			  annotation_url: "https://dl.dropboxusercontent.com/u/5005669/MarkupNorthWind-V4.xml",
+			  metadata_url: "http://services.odata.org/Northwind/Northwind.svc/$metadata#Products",
+			  odata_url: "http://services.odata.org/Northwind/Northwind.svc/Products(2)",
+			  ui_url: "http://services.odata.org/Northwind/Northwind.svc/Products(3)"
+  		};
+			
+		var oFeedDialogComponent = sap.ui.getCore().createComponent({
+			name: "sap.collaboration.components.fiori.feed.dialog",
+			id: "feedDialogComponent",
+			settings: {	
+	         		oDataServiceUrl: oDataServiceUrl,
+	         		feedType: sap.collaboration.FeedType.object,
+	        		object: businessObject
+			}
+		});
+	   			
+		var oTile1 = new sap.m.StandardTile("Tile1", {
+			icon: "sap-icon://feed",
+			number: 1,
+			numberUnit: "Feed Entry",
+			title: "Feed Dialog Component",
+			info: "1 day ago",
+			infoState: "Success",
+			press: function(){	   		
+				oFeedDialogComponent.open();		   			
+			}
+			
+		});
+		
+		// Create Tile2 - Share Dialog Component
+		var oObjectListItem1 = new sap.m.ObjectListItem("object_item1",{
+       		title : "Sales Order 1",
+       		number : "100000",
+       		numberUnit : "USD",
+       		firstStatus: new sap.m.ObjectStatus({text : "Open", state:"Warning"})
+		}); 
+		var oShareDialogComponent = sap.ui.getCore().createComponent({
+	 		name: "sap.collaboration.components.fiori.sharing.dialog",
+	 		id: "sharingDialogComponent",
+	 		settings: {	
+           		oDataServiceUrl: oDataServiceUrl,
+          			object:{
+                             display: oObjectListItem1,
+                             id:"http://sap.com/CRM/SaleOrders(111)",
+                             share: "this is sales order 1"
+                    		}
+	 		}
+	 	});
+		
+		var oTile2 = new sap.m.StandardTile("Tile2", {
+			icon: "sap-icon://share",
+			number: 1,
+			numberUnit: "Update",
+			title: "Share Dialog Component",
+			info: "1 day ago",
+			infoState: "Success",
+			press: function(){	   		
+				oShareDialogComponent.open();		   			
+			}
+			
+		});
+		
+		// Create Tile 3 - Launch Demo App
+		var oTile3 = new sap.m.StandardTile("Tile3", {
+			title: "Demo App",
+			press: function(){
+				sap.m.URLHelper.redirect(demoAppUrl, true);
+			}
+		});
+		
+		// 3.2) Add Content
+		oTileContainer.addTile(oTile1);
+		oTileContainer.addTile(oTile2);
+		oTileContainer.addTile(oTile3);
+		oShell.addContent(oTileContainer);
+		
+		oShell.placeAt("content");
+	</script>
+</head>
+<body class="sapUiBody" role="application">
+	<div id="content"></div>
+</body>
+</html>

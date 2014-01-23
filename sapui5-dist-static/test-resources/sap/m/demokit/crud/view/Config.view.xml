@@ -1,0 +1,62 @@
+<core:View
+	controllerName="view.Config"
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:h="http://www.w3.org/1999/xhtml">
+	<Page
+		title="CRUD Patterns"
+		icon="{img>/icon/ui5}">
+		<content>
+			<HBox
+				height="3em"
+				justifyContent="Center"
+				alignItems="Center" >
+				<core:Icon
+					src="sap-icon://add"
+					class="configIcon"
+					size="2em" />
+				<core:Icon
+					src="sap-icon://display"
+					class="configIcon"
+					size="2em" />
+				<core:Icon
+					src="sap-icon://edit"
+					class="configIcon"
+					size="2em" />
+				<core:Icon
+					src="sap-icon://delete"
+					class="configIcon"
+					size="2em" />
+			</HBox>
+			<h:div class="configText">
+				'In computer programming, <h:b>create</h:b>,
+				<h:b>read</h:b>, <h:b>update</h:b> and <h:b>delete</h:b>
+				 (CRUD) are the four basic functions of persistent storage.',
+				<h:a target="_blank" href="http://en.wikipedia.org/wiki/Create,_read,_update_and_delete">Wikipedia</h:a>
+			</h:div>
+			<h:div class="configText">
+				This is a design best practice how to realize CRUD patterns
+				with <h:i>sap.m.</h:i> for mobile phones.
+				As sample data fresh fruits are used. The wash function
+				illustrates the positioning of additional functions.
+			</h:div>
+			<VBox>
+				<Button
+					class="configButton"
+					text="CRUD with Single Object Processing"
+					enabled="{config>/open}"
+					press="buttonStdPress" />
+				<Button
+					class="configButton"
+					text="CRUD with Batch Processing"
+					enabled="{config>/open}"
+					press="buttonBatchPress" />
+				<Button
+					class="configButton"
+					text="CRUD with Quick Deleting"
+					enabled="{config>/open}"
+					press="buttonQuickDelPress" />
+			</VBox>
+		</content>
+	</Page>
+</core:View>

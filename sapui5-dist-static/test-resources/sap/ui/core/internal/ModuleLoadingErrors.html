@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Module Loading Errors</title>
+		<script id="sap-ui-bootstrap"
+				type="text/javascript"
+				src="../../../../../resources/sap-ui-core.js"
+				data-sap-ui-theme="sap_goldreflection"
+				data-sap-ui-libs="sap.ui.commons"
+				>
+		</script>
+		<script>
+			jQuery.sap.registerModulePath("sap.ui.core.test", "../../../../../test-resources/sap/ui/core/internal/loadtest/");
+
+			var oLayout = new sap.ui.commons.layout.MatrixLayout();
+			oLayout.setLayoutFixed(false);
+			oLayout.createRow(
+				new sap.ui.commons.Button({
+					text: "Successful Loading",
+					press : function() {
+						jQuery.sap.require("sap.ui.core.test.SampleModule");
+						alert(sap.ui.core.test.SampleModule.message);
+					}
+				}),
+				new sap.ui.commons.Button({
+					text: "Module Not Found",
+					press : function() {
+						try {
+							jQuery.sap.require("sap.ui.core.test.ModuleNotFound");
+						} catch (err) {
+							alert(err);
+						}
+					}
+				}),
+				new sap.ui.commons.Button({
+					text: "Syntax Error",
+					press : function() {
+						jQuery.sap.require("sap.ui.core.test.SyntaxError");
+					}
+				}),
+				new sap.ui.commons.Button({
+					text: "Module Execution Error",
+					press : function() {
+						jQuery.sap.require("sap.ui.core.test.ModuleExecutionError");
+					}
+				}),
+				new sap.ui.commons.Button({
+					text: "Check Global Execution",
+					press : function() {
+						jQuery.sap.require("sap.ui.core.test.CheckGlobalExecution");
+						if ( window.globalResult != "ok" ) {
+							alert("global execution failed: module created variable not visible");
+						}
+						if ( window.globalResultWithVar != "ok" ) {
+							alert("global execution failed: module created var variable not visible");
+						}
+					}
+				})
+			);
+			oLayout.placeAt("buttons");
+		</script>
+	</head>
+	<body class="sapUiBody" role="application">
+		<h1>Test Page for Module Loading Errors</h1>
+		<div id="buttons"></div>
+	</body>
+</html>

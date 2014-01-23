@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>Business Card - sap.suite.ui.commons</title>
+
+<!-- UI5 Bootstrap -->
+<script id="sap-ui-bootstrap" 
+		type="text/javascript"
+		src="../../../../../../resources/sap-ui-core.js"
+		data-sap-ui-theme="sap_goldreflection"
+		data-sap-ui-libs="sap.ui.commons,sap.suite.ui.commons,sap.ui.ux3"
+		data-sap-ui-language="en">
+</script>
+
+<!-- QUnit libraries -->
+<link rel="stylesheet"
+	href="../../../../../../resources/sap/ui/thirdparty/qunit.css"
+	type="text/css" media="screen" />
+	<script src="../../../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+	<script type="text/javascript" src="../../../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
+    <script type="text/javascript" src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
+<script>
+	var sBusinessCard = "BCard1";
+	var bCard1 = new sap.suite.ui.commons.BusinessCard({
+		id: sBusinessCard,
+        firstTitle: new sap.ui.commons.Link({id:"badge1-name-link",text:"White, Helen",tooltip:"White, Helen", href: "http://www.sap.com"}),
+        iconPath: "demokit/images/persons/female_IngallsB.jpg",
+        secondTitle: "Sales Contact at Customer Side",
+        imageTooltip: "White, Helen",
+        width: "281px"
+	});
+	
+	
+	bCard1.placeAt("uiArea1");
+
+    test("Card is rendered", function() {
+        notEqual(jQuery.sap.domById(sBusinessCard), null, "BusinessCard outer HTML Element is rendered.");
+    });
+    
+    test("First title is rendered", function() {
+		var sTitle = "White, Helen";
+		equal(bCard1.getFirstTitle().getText(), sTitle, "The title was successfully retrieved");
+    });
+
+    test("Second title is rendered", function() {
+		var sTitle = "Sales Contact at Customer Side";
+		equal(bCard1.getSecondTitle(), sTitle, "The second title was successfully retrieved");
+    });
+
+</script>
+</head>
+
+<body class="sapUiBody">
+	<div id="qunit"></div>
+    <div id="uiArea1"></div>
+</body>
+</html>
+       

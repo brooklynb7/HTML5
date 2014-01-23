@@ -1,0 +1,53 @@
+[
+    {
+        "__metadata":{
+            "uri":"/sap/opu/odata/sap/Z_I2D_QM_QUALITYISSUE_CONFIRM_SRV/Tasks('1%20')",
+            "type":"Z_I2D_QM_QUALITYISSUE_CONFIRM_SRV.Task"
+        },
+        "TaskID":"1",
+        "TaskText":"Basic Inspection report",
+        "TaskStatus":"Completed",
+        "Responsible":"Geoffrey Godsey",
+        "TaskDetails":{
+        	"CodeGroup":"Report",
+        	"TaskCode":"R",
+        	"PlannedStart":	"\/Date(1379289600000)\/",
+        	"PlannedFinish":"\/Date(1379405600000)\/",
+        	"CompletedOn":	"\/Date(1379390600000)\/"
+        }
+    },
+    {
+        "__metadata":{
+            "uri":"/sap/opu/odata/sap/Z_I2D_QM_QUALITYISSUE_CONFIRM_SRV/Tasks('2%20')",
+            "type":"Z_I2D_QM_QUALITYISSUE_CONFIRM_SRV.Task"
+        },
+        "TaskID":"2",
+        "TaskText":"Quality Issue Report",
+        "TaskStatus":"Open",
+        "Responsible":"Thomas Marsh",
+        "TaskDetails":{
+        	"CodeGroup":"Report",
+        	"TaskCode":"R",
+        	"PlannedStart":"\/Date(1379289600000)\/",
+        	"PlannedFinish":"\/Date(1380289600000)\/",
+        	"CompletedOn":""
+        }
+    },
+    {
+        "__metadata":{
+            "uri":"/sap/opu/odata/sap/Z_I2D_QM_QUALITYISSUE_CONFIRM_SRV/Tasks('3%20')",
+            "type":"Z_I2D_QM_QUALITYISSUE_CONFIRM_SRV.Task"
+        },
+       "TaskID":"3",
+        "TaskText":"Detailed Causal Report",
+        "TaskStatus":"In Progress",
+        "Responsible":"Etison Bill",
+        "TaskDetails":{
+        	"CodeGroup":"Report",
+        	"TaskCode":"R",
+        	"PlannedStart":"\/Date(1379289600000)\/",
+        	"PlannedFinish":"\/Date(1479289600000)\/",
+        	"CompletedOn":""
+        }
+    }
+]

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Group Master Unit Test</title>
+
+<!-- UI5 Bootstrap -->
+<script id="sap-ui-bootstrap" 
+		type="text/javascript"
+		src="../../../../../../../resources/sap-ui-core.js"
+		data-sap-ui-theme="sap_bluecrystal"
+		data-sap-ui-libs="sap.m"
+		data-sap-ui-language="en">
+</script>
+
+<!-- libraries to be tested ******** LATER SHOULD BE IN THE BOOTSTRAP ******** -->
+
+<!-- QUnit libraries -->
+	<link rel="stylesheet"
+		  href="../../../../../../../resources/sap/ui/thirdparty/qunit.css"
+		  type="text/css" media="screen" />
+	<script src="../../../../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+	<script type="text/javascript" src="../../../../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
+	<script type="text/javascript" src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
+	
+	
+    <!-- The feed widget script is loaded by the component  -->
+	<!-- <script type="text/javascript" src="https://integration3.cubetree.com/assets/feed_widget_v1.js"></script> -->
+    
+    <script>
+	  //************************************ BEGIN OF A FIX FOR IE8 FOR THE WINDOW>GETCOMPUTEDSTYLE USED IN THE MOBILE LIB *******************************************//
+		if (!window.getComputedStyle) {
+			window.getComputedStyle = function (dom) {  
+				var style;        
+				var returns = {};
+				style = dom.currentStyle;
+				for(var prop in style){                
+	    			returns[prop] = style[prop];            
+	    		}            
+	    		return returns;
+			}
+		}
+		//************************************ END OF A FIX FOR IE8 FOR THE TRIM METHOD USED IN THE MOBILE LIB *******************************************//
+	 	jQuery.sap.require("jquery.sap.resources");
+	 	jQuery.sap.require("sap.collaboration.library");
+
+		var sLocale = sap.ui.getCore().getConfiguration().getLanguage();
+		var modulePath = jQuery.sap.getModulePath("sap.collaboration.components");
+		var oLangBundle = jQuery.sap.resources({url : modulePath + "/i18n/messagebundle.properties", locale: sLocale});
+		
+		var oBusinessObject = {
+				id: "SO 54776",
+				data: [ "Sales order ID: 54776"]
+			};
+		
+		var sPrefixId = "View1";
+		var oMasterView = sap.ui.view({
+			id: sPrefixId + "groupMasterView", 
+			viewData : {
+				controlId: sPrefixId,
+				odataModel:  "http://odata.srv",
+				feedType: sap.collaboration.FeedType.group,
+				pageTitle: "My Groups",
+				jamToken: "1234",
+				object: oBusinessObject,
+				langBundle: oLangBundle
+			}, 
+			type: sap.ui.core.mvc.ViewType.JS, 
+			viewName: "sap.collaboration.components.fiori.feed.splitApp.GroupMaster"
+		});
+			
+		oMasterView.getController().initializeUtils = function() {
+			};
+			
+		oMasterView.getController().setViewModel = function() {
+			this.oViewData = {
+					groupsData:	[{Id:"1", Name: "gr1"},{Id:"2", Name: "gr2"},{Id:"3", Name: "gr3"}]
+				};
+			   	
+			   	this.oViewModel = new sap.ui.model.json.JSONModel(this.oViewData);
+				this.getView().setModel(this.oViewModel);
+		};
+		
+
+		oMasterView.placeAt("content");
+    </script>
+    
+    <script type="text/javascript">
+		//var sPrefixId = "View1";
+		
+		module("Master View Rendering");
+	
+		test("TestViewRenderedOK", function() {
+		    var sViewId = sPrefixId + "groupMasterView";
+		    notEqual(jQuery.sap.domById(sViewId), null, "Create Group Master View outer HTML Element is rendered.");
+		});
+		
+		test("TestPageRenderedOK", function() {
+		    var sViewId = sPrefixId + "groupPage";
+		    notEqual(jQuery.sap.domById(sViewId), null, "Create Group Page outer HTML Element is rendered.");
+		});
+		
+		test("TestListRenderedOK", function() {
+		    var sViewId = sPrefixId + "groupsList";
+		    notEqual(jQuery.sap.domById(sViewId), null, "Create Group List outer HTML Element is rendered.");
+		});
+		
+		module("Master View Configuration");
+		
+		test("TestViewConfigurationSetOK", function() {
+		    var sViewId = sPrefixId + "groupMasterView";
+		    var oGroupMasterView = sap.ui.getCore().byId(sViewId);
+		    var oGroupMasterController = oGroupMasterView.getController();
+		    var sPageId = sPrefixId + "groupPage";
+		    var oGroupPage = sap.ui.getCore().byId(sPageId);
+		    
+		    equal(oGroupMasterController.sJamToken, "1234", "JAM token is ok");
+		    equal(oGroupMasterController.sPrefixId, sPrefixId, "Prefix Id is ok");
+		    equal(oGroupMasterController.oOdataModel, "http://odata.srv", "JAM token is ok");
+		    deepEqual(oGroupMasterController.oBusinessObject, oBusinessObject, "Business Object Id is ok");
+		    equal(oGroupMasterController.sFeedType, sap.collaboration.FeedType.group, "Feed Type is ok");
+		    equal(oGroupMasterController.sPageTitle, "My Groups", "Page Title is ok");
+		    equal(oGroupMasterController.oLangBundle, oLangBundle, "Language Bundle is ok");
+		    
+		    equal(oGroupMasterView.sPrefixId, sPrefixId, "Prefix Id is ok");
+		    
+		    equal(oGroupPage.getShowHeader(), true, "Page Header is visible");
+		    equal(oGroupPage.getTitle(), oLangBundle.getText("GROUP_MASTER_PAGE_GROUP_TITLE"), "Page title is ok");
+		    equal(oGroupPage.getShowNavButton(), true, "Navigation button is ok");
+		});
+		
+		module("TestPageContentOK");
+		
+		test("TestListItemsIsOK", function() {
+		    var sPageId = sPrefixId + "groupPage";
+		    var oGroupPage = sap.ui.getCore().byId(sPageId);
+		    var oGroupList = oGroupPage.getContent()[0];
+		    var oGroupListItems = oGroupList.getItems();
+		    
+		    equal(oGroupListItems.length, 4, "items count is ok");
+		    equal(oGroupListItems[0].getTitle(), oLangBundle.getText("GROUP_MASTER_LIST_All_GROUPS"), "item 1 is ok");
+		    equal(oGroupListItems[1].getTitle(), oLangBundle.getText("gr1"), "item 2 is ok");
+		    equal(oGroupListItems[2].getTitle(), oLangBundle.getText("gr2"), "item 3 is ok");
+		    equal(oGroupListItems[3].getTitle(), oLangBundle.getText("gr3"), "item 4 is ok");
+		});
+		
+	</script>
+
+</head>
+<body>
+	<div id="qunit"></div>
+	<div id="content"></div>
+</body>
+</html>

@@ -1,0 +1,24 @@
+
+/*
+ * remove dialog standard padding
+ */
+.sapMDialog .sapMDialogScrollCont {
+	padding: 0;
+}
+
+/*
+ * do not wrap tile info 
+ */
+.sapMStdTileInfo {
+	white-space: normal;
+	margin-top: 0rem;
+	text-align: left;
+	color: #555;
+}
+
+/*
+ * make tile title larger
+ */
+.sapMStdTileTitle {
+	font-size: 1.1rem;
+}

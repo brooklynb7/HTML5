@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Sharing View Unit Test</title>
+
+<!-- UI5 Bootstrap -->
+<script id="sap-ui-bootstrap" 
+		type="text/javascript"
+		src="../../../../../../../resources/sap-ui-core.js"
+		data-sap-ui-theme="sap_bluecrystal"
+		data-sap-ui-libs="sap.m,sap.ui.layout"
+		data-sap-ui-language="en">
+</script>
+
+<!-- libraries to be tested ******** LATER SHOULD BE IN THE BOOTSTRAP ******** -->
+
+<!-- QUnit libraries -->
+	<link rel="stylesheet"
+		  href="../../../../../../../resources/sap/ui/thirdparty/qunit.css"
+		  type="text/css" media="screen" />
+	<script src="../../../../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+	<script type="text/javascript" src="../../../../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
+	<script type="text/javascript" src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
+	
+	
+    <!-- The feed widget script is loaded by the component  -->
+	<!-- <script type="text/javascript" src="https://integration3.cubetree.com/assets/feed_widget_v1.js"></script> -->
+    
+    <script>
+    	
+	  //************************************ BEGIN OF A FIX FOR IE8 FOR THE WINDOW>GETCOMPUTEDSTYLE USED IN THE MOBILE LIB *******************************************//
+		if (!window.getComputedStyle) {
+			window.getComputedStyle = function (dom) {  
+				var style;        
+				var returns = {};
+				style = dom.currentStyle;
+				for(var prop in style){                
+	    			returns[prop] = style[prop];            
+	    		}            
+	    		return returns;
+			}
+		}
+		//************************************ END OF A FIX FOR IE8 FOR THE TRIM METHOD USED IN THE MOBILE LIB *******************************************//
+	 	jQuery.sap.require("jquery.sap.resources");
+	 	jQuery.sap.require("sap.collaboration.library");
+		var sLocale = sap.ui.getCore().getConfiguration().getLanguage();
+		var modulePath = jQuery.sap.getModulePath("sap.collaboration.components");
+		var oLangBundle = jQuery.sap.resources({url : modulePath + "/i18n/messagebundle.properties", locale: sLocale});
+		
+		var aJamGroups = [];
+		
+		var sJamUrl = "https://integration3.sapjam.com";
+		var sObjectShare = "this is the prefix note text";
+		
+		var oObjectListItem = new sap.m.ObjectListItem("ObjectItem",{
+     		title : "Sales Order 1",
+     		number : "788885,23",
+     		numberUnit : "USD",
+     		firstStatus: new sap.m.ObjectStatus({text : "Open", state:"Warning"}),
+			}); 
+		
+		var sPrefixId = "View1";
+		var oSharingView = sap.ui.view({
+			id: sPrefixId + "_SharingView", 
+			viewData : {
+				controlId: 	sPrefixId, 
+				langBundle: oLangBundle,
+				jamGroups: aJamGroups,
+				jamUrl: sJamUrl,
+				objectDisplay: oObjectListItem,
+       			objectShare: sObjectShare,
+       			objectId: "newId"	
+			}, 
+			type: sap.ui.core.mvc.ViewType.JS, 
+			viewName: "sap.collaboration.components.fiori.sharing.Sharing"
+		});
+		
+		oSharingView.placeAt("content");
+    </script>
+    
+    <script type="text/javascript">
+		//var sPrefixId = "View1";
+		
+		module("Sharing View Rendering");
+	
+		test("TestViewRenderedOK", function() {
+		    var sViewId = sPrefixId + "_SharingView";
+		    notEqual(jQuery.sap.domById(sViewId), null, "Create Sharing View outer HTML Element is rendered.");
+		});
+		
+		test("TestSharingVboxRenderedOK", function() {
+		    var sSharingVboxId = sPrefixId + "_SharingVbox";
+		    notEqual(jQuery.sap.domById(sSharingVboxId), null, "Create Sharing Table outer HTML Element is rendered.");
+		});
+		
+		test("TestSharingVboxContentRenderedOK", function() {
+			var sSharingVboxId = sPrefixId + "_SharingVbox";
+		    var oSharingVbox = sap.ui.getCore().byId(sSharingVboxId);
+		    
+		    var iRows = oSharingVbox.getItems().length;
+		    equal(iRows, 1, "1 row in the Vbox");
+		    
+		    
+		    var oRow1Layout = oSharingVbox.getItems()[0];
+		    equal(oRow1Layout.getId(), sPrefixId + "_NoDataLayout", "row1 content is OK");
+		    var oRow1LayoutContent1 = oSharingVbox.getItems()[0].getContent()[0];
+		    equal(oRow1LayoutContent1.getId(), sPrefixId + "_NoDataDiv", "No Data Div is rendered");
+		    //console.log(oRow1LayoutContent1);
+		    equal(oRow1LayoutContent1.getContent(), "<div>You do not have any groups defined. Create one in SAP Jam.</div>", "No Data Div text is OK");
+		    var oRow1LayoutContent2 = oSharingVbox.getItems()[0].getContent()[1];
+		    equal(oRow1LayoutContent2.getId(), sPrefixId + "_LinkVbox", "Link Vbox is rendered");
+		    equal(oRow1LayoutContent2.getItems()[0].getId(), sPrefixId + "_JamLink", "Jam Link is rendered");
+		    equal(oRow1LayoutContent2.getItems()[0].getText(), "Go to SAP Jam", "Jam Link Text is Ok")
+		    
+		});
+		
+		test("TestViewConfigurationSetOK", function() {
+		    var sViewId = sPrefixId + "_SharingView";
+		    var oSharingView = sap.ui.getCore().byId(sViewId);
+		    var oSharingViewController = oSharingView.getController();
+		    
+		    equal(oSharingView.getViewData().jamUrl, sJamUrl, "Jam Url is ok");
+		    
+		    equal(oSharingViewController.sPrefixId, sPrefixId, "Prefix Id is ok");
+		    equal(oSharingViewController.oLangBundle, oLangBundle, "Language Bundle is ok");
+		    equal(oSharingViewController.aJamGroups, aJamGroups, "groups are ok");
+		    equal(oSharingViewController.sObjectShare, sObjectShare, "Note prefix text is ok");
+		    equal(oSharingViewController.oObjectDisplay, oObjectListItem, "Object to be displayed is ok");
+		});
+		
+	</script>
+
+</head>
+<body>
+	<div id="qunit"></div>
+	<div id="content"></div>
+</body>
+</html>

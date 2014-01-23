@@ -1,0 +1,156 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+<title>Fiori Wave 2: Test Page for OverflowContainer</title>
+
+<script src="../../../../../resources/sap-ui-core.js" id="sap-ui-bootstrap"
+    data-sap-ui-libs="sap.m" data-sap-ui-theme="sap_bluecrystal"
+    data-sap-ui-xx-bindingSyntax="complex" data-sap-ui-noConflict="true">
+</script>
+
+<link rel="stylesheet" href="../../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
+<script type="text/javascript" src="../../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+<script type="text/javascript" src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
+<script type="text/javascript" src="../../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
+<script type="text/javascript" src="utils/qunithelper.js"></script>
+
+
+<script type="text/javascript" src="OverflowContainerTest.js"></script>
+
+<script type="text/javascript">
+    QUnit.config.autostart = false;
+    jQuery(document).ready(function() {
+        QUnit.start();
+    });
+
+    // require dialog module
+    jQuery.sap.require("sap.m.IconTabBar");
+    jQuery.sap.require("sap.ca.ui.OverflowContainer");
+    jQuery.sap.require("sap.ui.layout.form.SimpleForm");
+    var oHtml = new sap.ui.core.HTML(
+            {
+                content : '<div id="contentHolder"></div><h1 id="qunit-header">Fiori Wave 2: Test Page for OverflowContainer</h1><h2 id="qunit-banner"></h2><h2 id="qunit-userAgent"></h2><ol id="qunit-tests"></ol>',
+                afterRendering : function() {
+                    oHorizontal.placeAt("contentHolder");
+                }
+            });
+
+    var page = new sap.m.Page("myFirstPage", {
+        title : "Fiori - OverflowContainer Test",
+        showNavButton : true,
+        enableScrolling : true,
+        content : oHtml
+    });
+
+    var  oOverflowContainer1 = new sap.ca.ui.OverflowContainer("OverflowContainer1", {
+        content :[
+            new sap.ui.layout.form.SimpleForm({
+                minWidth : 1024,
+                maxContainerCols : 2,
+                content : [
+                    new sap.m.Label({ // this starts a new group
+                        text: "Company Address"
+                    }),
+                    new sap.m.Label({
+                        text: 'Name'
+                    }),
+                    new sap.m.Text({
+                        text: 'SAP Germany'
+                    }),
+                    new sap.m.Label({
+                        text: 'Street'
+                    }),
+                    new sap.m.Text({
+                        text: 'Dietmar-Hopp-Allee 16'
+                    }),
+                    new sap.m.Label({
+                        text: 'City'
+                    }),
+                    new sap.m.Text({
+                        text: '69190 Walldorf'
+                    }),
+                    new sap.m.Label({
+                        text: 'Country'
+                    }),
+                    new sap.m.Text({
+                        text: 'Germany'
+                    })
+                ]
+            })
+        ]
+    });
+    var  oOverflowContainer2 = new sap.ca.ui.OverflowContainer("OverflowContainer2",{
+        content :[
+            new sap.m.List({
+                items: [
+                    new sap.m.FeedListItem({
+                        sender: "Giselle Ashante-Ramirez",
+                        info: "Request",
+                        timestamp: "March 03, 2013",
+                        text: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum."
+                    }),
+                    new sap.m.FeedListItem({
+                        sender: "Johannes Schaffensteiger",
+                        info: "Reply",
+                        timestamp: "March 04, 2013",
+                        text: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore"
+                    }),
+                    new sap.m.FeedListItem({
+                        sender: "Giselle Ashante-Ramirez",
+                        info: "Request",
+                        timestamp: "March 04, 2013",
+                        text: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat"
+                    }),
+                    new sap.m.FeedListItem({
+                        sender: "Johannes Schaffensteiger",
+                        info: "Rejection",
+                        timestamp: "March 07, 2013",
+                        text: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua."
+                    })
+                ]
+            })
+        ]
+    });
+
+    var oIconTabFilter1 = new sap.m.IconTabFilter("iconTabFilter1",{
+        key:"key1",
+        count:"1",
+        text:"Simple Form",
+        icon:"sap-icon://task",
+        content: oOverflowContainer1
+    });
+
+    var oIconTabFilter2 = new sap.m.IconTabFilter("iconTabFilter2",{
+        key:"key2",
+        text:"List",
+        icon:"sap-icon://task",
+        content:oOverflowContainer2
+    });
+
+    var oTabContainer = new sap.m.IconTabBar({
+    	 id : "TabContainer",
+   		items: [
+               oIconTabFilter1,
+               oIconTabFilter2
+    	   ]
+    });
+
+    var oHorizontal = new sap.m.HBox({
+        items : [ oTabContainer ]
+    });
+
+    var app = new sap.m.App("myApp", {
+        initPage : "myFirstPage"
+    });
+
+    app.addPage(page).placeAt("content");
+
+</script>
+
+</head>
+<body id="body" class="sapUiBody">
+    <div id="content"></div>
+</body>
+</html>

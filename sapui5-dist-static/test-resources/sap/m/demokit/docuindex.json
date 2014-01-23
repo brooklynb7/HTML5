@@ -1,0 +1,75 @@
+{"demo": { "text": "Mobile", "links": [
+	{
+		"text": "sap.m Explored", 
+		"ref": "test-resources/sap/m/demokit/explored/index.html",
+		"icon": "custom/explored",
+		"desc": "A quick run through all those controls in the sap.m library"
+	},
+	{
+		"text": "Icon Explorer", 
+		"ref": "test-resources/sap/m/demokit/icon-explorer/index.html", 
+		"icon": "business-objects-explorer", 
+		"desc": "Helps you in finding icons out of a build-in set of almost 500 icons"
+	},
+	{
+		"text": "Approve Purchase Orders", 
+		"ref": "test-resources/sap/m/demokit/poa/index.html", 
+		"icon": "approvals", 
+		"desc": "A real world example of an approval process app"
+	},
+	{
+		"text": "Shopping Cart", 
+		"ref": "test-resources/sap/m/demokit/cart/index.html?responderOn=true", 
+		"icon": "cart", 
+		"desc": "The classical business process along finding & ordering products"
+	},
+	{
+		"text": "MaKit", 
+		"ref": "test-resources/sap/m/demokit/makit/index.html", 
+		"icon": "bar-chart", 
+		"desc": "Shows you how to realize business charts with the MaKit control"
+	},
+	{
+		"text": "Hello World", 
+		"ref": "test-resources/sap/m/demokit/helloworld/index.html", 
+		"icon": "globe", 
+		"desc": "This is were it all starts when developing with sap.m"
+	},
+	{
+		"text": "Best Practice Hello World", 
+		"ref": "test-resources/sap/m/demokit/helloworld_bp/index.html", 
+		"icon": "globe", 
+		"desc": "A good code template to build a best practice app"
+	},
+	{
+		"text": "Split App", 
+		"ref": "test-resources/sap/m/demokit/splitapp/index.html", 
+		"icon": "custom/splitapp", 
+		"desc": "The SplitApp control adapts between phone and tablet devices"
+	},
+	{
+		"text": "Flex Box", 
+		"ref": "test-resources/sap/m/demokit/flexbox/index.html", 
+		"icon": "Chart-Tree-Map", 
+		"desc": "Provides thorough documentation for the FlexBox layout control"
+	},
+	{
+		"text": "Model View Controller", 
+		"ref": "test-resources/sap/m/demokit/mvc/App_with_rootView.html", 
+		"icon": "share-2", 
+		"desc": "Explores possible usages of SAPUI5 MVC with sap.m controls"
+	},
+	{
+		"text": "Navigation", 
+		"ref": "test-resources/sap/m/demokit/navigation/index.html", 
+		"icon": "menu2", 
+		"desc": "React to the changes of browser history with the history plugin"
+	},
+	{
+		"text": "CRUD Patterns", 
+		"ref": "test-resources/sap/m/demokit/crud/index.html", 
+		"icon": "crm-sales", 
+		"desc": "A design best practice for realizing CRUD patterns on the phone"
+	}
+]}
+}

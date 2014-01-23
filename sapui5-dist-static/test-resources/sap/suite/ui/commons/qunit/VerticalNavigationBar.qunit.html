@@ -1,0 +1,110 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>VerticalNavigationBar - sap.suite.ui.commons</title>
+
+<!-- UI5 Bootstrap -->
+<script id="sap-ui-bootstrap" 
+		type="text/javascript"
+		src="../../../../../../resources/sap-ui-core.js"
+		data-sap-ui-theme="sap_goldreflection"
+		data-sap-ui-libs="sap.ui.commons,sap.suite.ui.commons"
+		data-sap-ui-language="en">
+</script>
+
+<!-- QUnit libraries -->
+<link rel="stylesheet"
+	href="../../../../../../resources/sap/ui/thirdparty/qunit.css"
+	type="text/css" media="screen" />
+	<script src="../../../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+	<script type="text/javascript" src="../../../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
+    <script type="text/javascript" src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
+
+<script>
+	var oNavBar = new sap.suite.ui.commons.VerticalNavigationBar({ id: "navBar" });
+    oNavBar.placeAt("uiArea1");
+
+    var oNavItem1 = new sap.suite.ui.commons.CountingNavigationItem({ text: "Item 1"} );
+    var oNavItem2 = new sap.suite.ui.commons.CountingNavigationItem({ text: "Item 2", href: "http://item2.org/" });
+    var oNavItem3 = new sap.suite.ui.commons.CountingNavigationItem({ text: "Item 3", quantity: "220" });
+
+
+    module("VerticalNavigationBar rendering", {
+        setup: function() {
+            oNavBar.removeAllItems();
+            oNavBar.addItem(oNavItem1);
+            oNavBar.addItem(oNavItem2);
+            oNavBar.addItem(oNavItem3);
+            sap.ui.getCore().applyChanges();
+        },
+        teardown: function() {
+        }
+    });
+
+    test("VerticalNavigationBar is rendered", function() {
+        ok(jQuery.sap.domById(oNavBar.getId()), "VerticalNavigationBar outer HTML element is rendered.");
+
+        var aNavElements = jQuery(".sapSuiteTvNavBar");
+        equal(aNavElements.length, 1, "1 outer division is rendered.");
+
+        var aUlElements = jQuery.sap.byId(oNavBar.getId() + "-list");
+        equal(aUlElements.length, 1, "1 ul tag is rendered.");
+    });
+
+    test("VerticalNavigationBar's items are rendered", function() {
+        var oDomRef = jQuery.sap.domById(oNavItem1.getId());
+        ok(oDomRef, "Item element exists in the page");
+
+        var aItems = jQuery(".sapSuiteTvNavBarItem");
+        equal(aItems.length, 3, "3 items are rendered.");
+
+        var aItemLinks = jQuery(".sapSuiteTvNavBarItem>.sapSuiteTvNavBarItemLink");
+        equal(aItemLinks.length, 3, "3 item links are rendered.");
+        equal(aItemLinks[0].href, "javascript:void(0);", "Default link is rendered for the first item.");
+        equal(aItemLinks[1].href, "http://item2.org/", "Defined link is rendered for the second item.");
+
+        var aItemTexts = jQuery(".sapSuiteTvNavBarItem>.sapSuiteTvNavBarItemLink>.sapSuiteTvNavBarItemName");
+        equal(aItemTexts.length, 3, "3 item texts are rendered.");
+        equal(aItemTexts[1].innerHTML, "Item 2", "Item 2 text is written to the page for the second item.");
+        //jQuery returns px instead em, so only check that margin is negative and equal modulo to padding
+        equal(    jQuery(aItemTexts[2]).css("margin-right"),
+              "-"+jQuery(aItemTexts[2]).css("padding-right"),
+              "Margin  and padding styles are calculated and written to the page for the third item.");
+
+        var aItemQty = jQuery(".sapSuiteTvNavBarItem>.sapSuiteTvNavBarItemLink>.sapSuiteTvNavBarItemQty");
+        equal(aItemQty.length, 1, "1 item quantity text is rendered.");
+        equal(aItemQty[0].innerHTML, " (220)", "Quantity text is written to the page for the third item.");
+    });
+
+    test("VerticalNavigationBar's selected item is rendered", function() {
+        oNavBar.setSelectedItem(oNavItem2);
+
+        equal(oNavBar.getSelectedItem(), oNavItem2.getId(), "Second item is selected.");
+
+        var aSelectedItems = jQuery(".sapUiUx3NavBarItemSel");
+        equal(aSelectedItems.length, 1, "1 item is selected.");
+        equal(aSelectedItems.children()[0].id, oNavItem2.getId(), "DOM element marked as selected should be the one with the same ID as the selected item.");
+    });
+
+    test("VerticalNavigationBar's tooltips", function() {
+        var sId = oNavItem2.getId();
+
+        oNavBar._showTooltip(sId);
+        ok(oNavBar._oBarItemsMap[sId], "Tooltip for second item created.");
+        
+        equal(oNavBar._oBarItemsMap[sId].doOpen, true, "Tooltip for second item opened.");
+      
+        oNavBar._hideTooltip(sId);        
+        equal(oNavBar._oBarItemsMap[sId].doOpen, false, "Tooltip for second item closed.");
+    });
+
+</script>
+
+</head>
+<body class="sapUiBody">
+	<div id="qunit"></div>
+    <div id="uiArea1"></div>
+</body>
+</html>
+       

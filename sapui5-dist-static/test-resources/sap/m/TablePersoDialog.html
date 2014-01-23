@@ -1,0 +1,98 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>TablePersoDialog - sap.m</title>
+<script src="../../../resources/sap-ui-core.js"
+	id="sap-ui-bootstrap"
+	data-sap-ui-libs="sap.m"
+	data-sap-ui-compatVersion="1.16"
+	data-sap-ui-theme="sap_bluecrystal">
+</script>
+
+<script type="text/javascript">
+
+jQuery.sap.require("sap.m.TablePersoDialog");
+
+var oData = {
+	items: [
+		{ name: "Michelle", color: "orange", number: 3.14 },
+		{ name: "Joseph", color: "blue", number: 1.618 },
+		{ name: "David", color: "green", number: 0 },
+	],
+	cols: ["Name", "Color", "Number"]
+};
+
+var oTable = new sap.m.Table({
+	headerText: "Info",
+	headerContent: [
+		new sap.m.Button("idPersonalizationButton", {
+			icon: "sap-icon://table-view",
+			text: "Personalize"
+		})
+	],
+	columns: oData.cols.map(function (colname) {
+		return new sap.m.Column({ header: new sap.m.Label({ text: colname })})
+	})
+});
+
+
+oTable.setModel(new sap.ui.model.json.JSONModel(oData));
+oTable.bindAggregation("items", "/items", new sap.m.ColumnListItem({
+	cells: oData.cols.map(function (colname) {
+		return new sap.m.Label({ text: "{" + colname.toLowerCase() + "}" })
+	})
+}));
+
+
+var oTablePersoDialog = new sap.m.TablePersoDialog({persoDialogFor: oTable});
+oTablePersoDialog.attachConfirm(function() {
+	var oPersoData = oTablePersoDialog.retrievePersonalizations();
+	for (var c = 0, cl = oPersoData.aColumns.length; c < cl; c++) {
+		var oCol = oPersoData.aColumns[c];
+		jQuery.sap.log.info("Column '" + oCol.text + "', order " + oCol.order + ", visible: " + oCol.visible);
+	}
+});
+oTablePersoDialog.attachCancel(function() {
+	jQuery.sap.log.info("Personalizations were cancelled");
+});
+
+sap.ui.getCore().byId("idPersonalizationButton").attachPress(function() {
+	oTablePersoDialog.open();
+});
+
+new sap.m.HBox({
+	items: [
+		new sap.m.RadioButton("idWidthNormal", {
+			groupName: "contentWidth",
+			text: "Normal",
+			selected: true,
+			select: function(oEvent) {
+				if (oEvent.getParameter("selected")) {
+					oTablePersoDialog.setContentWidth("");
+				}
+			}
+		}),
+		new sap.m.RadioButton("idWidthWide", {
+			groupName: "contentWidth",
+			text: "Wide",
+			select: function(oEvent) {
+				if (oEvent.getParameter("selected")) {
+					oTablePersoDialog.setContentWidth("700px");
+				}
+			}
+		}),
+	]
+}).placeAt("content");
+
+oTable.placeAt("content");
+
+
+
+</script>
+
+</head>
+<body id="body" class="sapUiBody">
+<div id="content"></div>
+</body>
+</html>

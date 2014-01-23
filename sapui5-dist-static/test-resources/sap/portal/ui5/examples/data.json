@@ -1,0 +1,79 @@
+{
+        "placeAt": "body",
+        "componentId": "cmpSite",
+        "childComponents": {
+
+            "items": [
+                {
+                    "componentId": "cmpHeader",
+                    "componentModel": {
+                        "uctype": "sap.ui.model.json.JSONModel",
+                        "borderDesign": "Box",
+                        "text": "Widget 1"
+                    },
+                    "view": {
+                        "uctype": "sap.portal.ui5.plugins.UI5PanelView"
+                    }
+                },
+                {
+                    "componentId": "cmpPage",
+                    "componentModel": {
+                        "uctype": "sap.ui.model.json.JSONModel",
+                        "borderDesign": "Box",
+                        "text": "Widget 2"
+                    },
+                    "view": {
+                        "uctype": "sap.portal.ui5.plugins.UI5PanelView"
+                    }
+                },
+                {
+                    "componentId": "cmpFooter",
+                    "componentModel": {
+                        "uctype": "sap.ui.model.json.JSONModel",
+                        "borderDesign": "Box",
+                        "text": "Widget 3"
+                    },
+                    "view": {
+                        "uctype": "sap.portal.ui5.plugins.UI5PanelView"
+                    }
+                }
+            ]
+
+        },
+        "componentModel": {
+            "uctype": "sap.ui.model.json.JSONModel",
+            "borderDesign": "Box",
+            "text": "Simple Site"
+        },
+        "view": {
+            "uctype": "sap.portal.ui5.plugins.UI5PanelView"
+        },
+        "layout": {
+            "uctype": "sap.portal.ui5.core.AbsoluteLayoutEngine"
+        },
+        "layoutData": {
+            "items": [
+                {
+                    "componentId": "cmpHeader",
+                    "width": "100px",
+                    "height": "100px",
+                    "top": "20px",
+                    "left": "50px"
+                },
+                {
+                    "componentId": "cmpPage",
+                    "width": "200px",
+                    "height": "100px",
+                    "top": "150px",
+                    "left": "150px"
+                },
+                {
+                    "componentId": "cmpFooter",
+                    "width": "100px",
+                    "height": "150px",
+                    "top": "80px",
+                    "left": "20px"
+                }
+            ]
+        }
+}

@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+	<title>Test Page for GeneratedAssociations</title>
+
+   	<script src="../../../../../../resources/sap-ui-core.js"
+            id="sap-ui-bootstrap"
+            data-sap-ui-libs="sap.ui.commons"
+            data-sap-ui-theme="sap_goldreflection" >
+    </script>
+
+   	<script>
+	   	
+   	new sap.ui.commons.ListBox("listbox", {
+   		items: [
+			new sap.ui.core.Item({
+				text: "Item 1",
+				key: "item1"
+			}),
+			new sap.ui.core.Item({
+				text: "Item 2",
+				key: "item2"
+			}),
+			new sap.ui.core.Item({
+				text: "Item 3",
+				key: "item3"
+			})
+   		]
+   	});
+   	
+   	new sap.ui.commons.ComboBox("combobox", {
+   		listBox: "listbox"
+   	});
+   	
+   	new sap.ui.commons.TextField("textfield");
+   	
+   	new sap.ui.commons.Button("button", {
+   		ariaLabelledBy: "textfield"
+   	});
+	
+   	</script>
+
+</head>
+<body class="sapUiBody" role="application"></body>
+</html>

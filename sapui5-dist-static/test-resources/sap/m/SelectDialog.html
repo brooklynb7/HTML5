@@ -1,0 +1,406 @@
+<!DOCTYPE HTML>
+<html>
+     <head>
+          <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+          <title>SelectDialog - sap.m</title>
+          <script src="../../../resources/sap-ui-core.js"
+                type="text/javascript"
+                id="sap-ui-bootstrap"
+                data-sap-ui-libs="sap.ui.commons,sap.m"
+                data-sap-ui-theme="sap_bluecrystal">
+          </script>
+          <script type="text/javascript">
+
+                jQuery.sap.require("sap.ui.model.FilterOperator");
+                jQuery.sap.require("sap.m.MessageBox");
+                jQuery.sap.require("sap.ui.model.odata.ODataModel");
+
+                var app = new sap.m.App("myApp", {initialPage:"page1"});
+                
+                var doSearch = function(oEvent){
+                     var filter = [];
+                     var sVal = oEvent.getParameter("value");
+                     if(sVal !== undefined) {
+                         //Get the binded items
+                         var itemsBinding = oEvent.getParameter("itemsBinding");
+
+                         // create the local filter to apply
+                         var selectFilter = new sap.ui.model.Filter("title", sap.ui.model.FilterOperator.Contains , sVal);
+                         filter.push(selectFilter);
+                    
+                         // and apply the filter to the bound items, and the Select Dialog will update
+                         itemsBinding.filter(filter);
+                    }
+
+                
+                };
+                
+                var doSearch1 = function(oEvent){
+                    var filter = [];
+                    var sVal = oEvent.getParameter("value");
+                    var sEventType = oEvent.getParameter("eventType");
+                    var itemsBinding = oEvent.getParameter("itemsBinding");
+                    
+                    var  selectFilter = new sap.ui.model.Filter("ProductID", sap.ui.model.FilterOperator.Contains , sVal);
+                    filter.push(selectFilter);
+                    itemsBinding.filter(filter);
+               
+               };
+               
+               var doLiveChange = function(oEvent){
+            	   var filter = [];
+                   var sVal = oEvent.getParameter("value");
+                   var sEventType = oEvent.getParameter("eventType");
+                   if(sVal !== undefined) {
+                       //Get the binded items
+                       var itemsBinding = oEvent.getParameter("itemsBinding");
+
+                       // create the local filter to apply
+                       var selectFilter = new sap.ui.model.Filter("title", sap.ui.model.FilterOperator.Contains , sVal);
+                       filter.push(selectFilter);
+                  
+                       // and apply the filter to the bound items, and the Select Dialog will update
+                       itemsBinding.filter(filter);
+                   }
+               };
+               
+               var updateDialog = function(sVal){
+                   var filter = [];
+
+                       //Get the binded items
+                       var itemsBinding = oSelectDialog1.getBinding("items");
+
+                       if(sVal !== undefined) {
+
+                           // create the local filter to apply
+                           var selectFilter = new sap.ui.model.Filter("title", sap.ui.model.FilterOperator.Contains , sVal);
+                           filter.push(selectFilter);
+                      
+                           // and apply the filter to the bound items, and the Select Dialog will update
+                           itemsBinding.filter(filter);
+                       }
+               };
+
+                /* dummy list data */
+                var listData = {
+                     superheros: [ {
+                               title: "Chuck Norris",
+                               description: "Roundhouse-Kick, UndefeatableRoundhouse-Kick, UndefeatableRoundhouse-Kick, UndefeatableRoundhouse-Kick, Undefeatable",
+                               icon: "sap-icon://employee",
+                          }, {
+                               title: "The incredible Hulk",
+                               description: "Lots of Anger, Mutation",
+                               icon: "sap-icon://e-care",
+                          }, {
+                               title: "Superman",
+                               description: "Flying, Laser Sight",
+                               icon: "sap-icon://competitor",
+                          },{
+                               title: "Bud Spencer",
+                               description: "Dampfhammer, Beating",
+                               icon: "sap-icon://dimension",
+                          }, {
+                               title: "Obelix",
+                               description: "Hinkelstein, Eating",
+                               icon: "sap-icon://badge",
+                          }, {
+                               title: "Spiderman",
+                               description: "Climb walls, Cobwebbs",
+                               icon: "sap-icon://burglary",
+                          }, {
+                               title: "Darth Vader",
+                               description: "The force",
+                               icon: "sap-icon://alert",
+                          }, {
+                               title: "Agent Smith",
+                               description: "Matrix virus",
+                               icon: "sap-icon://attachment",
+                          }, {
+                               title: "Lucky Luke",
+                               description: "Incredible gun prowess",
+                               icon: "sap-icon://accept",
+                          }, {
+                               title: "Jack Sparrow",
+                               description: "Pirate, Bad Luck",
+                               icon: "sap-icon://arobase",
+                          } ]
+                };
+                
+                var oModelList = new sap.ui.model.json.JSONModel();
+                oModelList.setData(listData);
+                
+                var itemTemplate = new sap.m.StandardListItem({
+                     title: "{title}",
+                     description: "{description}",
+                     icon: "{icon}",
+                     active: true
+                })
+
+                /* dialog data */
+                var dialogData = {
+                     title: "Forward to...",
+                     noDataMessage: "Sorry, we can't find what you are looking for.. No data available!",
+                };
+
+                var oModelDialog = new sap.ui.model.json.JSONModel();
+                oModelDialog.setData(dialogData);
+
+                /* 1) select dialog with list binding and static parameters */
+                var oSelectDialog1 = new sap.m.SelectDialog("SelectDialog1", {
+                     title: "Choose a World Domination companion",
+                     noDataText: "Sorry, no domination partners are available",
+                     search : doSearch,
+                     liveChange: doLiveChange
+                });
+
+                // set model & bind Aggregation
+                oSelectDialog1.setModel(oModelList);
+                oSelectDialog1.bindAggregation("items", "/superheros", itemTemplate);
+
+                // attach close listener
+                oSelectDialog1.attachConfirm(function(evt) {
+                     var selectedItem = evt.getParameter("selectedItem");
+                     if (selectedItem) {
+                          oInput1.setValue("You selected: "+ selectedItem.getTitle());
+                     }
+                });
+
+                var oInput1 = new sap.m.Input({
+                     type: "Text",
+                     placeholder: "Open SelectDialog with List Binding and input value connected to this field",
+                     showValueHelp: true,
+                     valueHelpRequest: function () {
+                         oSelectDialog1.open(oInput1.getValue());
+                         
+                         oSelectDialog1.setModel(oModelList);
+                         oSelectDialog1.bindAggregation("items", "/superheros", itemTemplate);
+                         updateDialog(oInput1.getValue());
+                         }
+                });
+
+                /* 2) select dialog with list binding and dialog binding */
+                var oSelectDialog2 = new sap.m.SelectDialog("SelectDialog2", {
+                     title: "{dialog>/title}",
+                     noDataText: "{dialog>/noDataMessage}",
+                     search : doSearch
+                });
+
+                // alert message box on close
+                oSelectDialog2.attachConfirm(function(evt) {
+                     var selectedItem = evt.getParameter("selectedItem");
+                     if (selectedItem) {
+                          sap.m.MessageBox.alert("Message will be forwarded to " + selectedItem.getTitle());
+                     }
+                });
+
+                var oInput2 = new sap.m.Input({
+                     type: "Text",
+                     placeholder: "Open SelectDialog with Dialog Binding & List Binding",
+                     showValueHelp: true
+
+                })
+                var oButton2 = new sap.m.Button("Button2", {
+                     text: "Open SelectDialog with Dialog Binding & List Binding",
+                     press: function(evt) {
+                          oSelectDialog2.open("");
+
+                          // then set model & bind Aggregation
+                          oSelectDialog2.bindAggregation("items", "/superheros", itemTemplate);
+                          oSelectDialog2.setModel(oModelList);
+                          oSelectDialog2.setModel(oModelDialog,"dialog");
+                     }
+                });
+
+                /* 3) select dialog with list binding auto destroy on close */
+                var oSelectDialog3 = new sap.m.SelectDialog("SelectDialog3", {
+                     title: "Choose a World Domination companion",
+                     noDataText: "Sorry, no world domination companions available",
+                     search : doSearch
+                });
+
+                // set model & bind Aggregation
+                oSelectDialog3.setModel(oModelList);
+                oSelectDialog3.bindAggregation("items", "/items", itemTemplate);
+
+                // attach close listener
+                oSelectDialog3.attachConfirm(function(evt) {
+                     var selectedItem = evt.getParameter("selectedItem");
+                     if (selectedItem) {
+                          oButton3.setText("You selected: "+ selectedItem.getTitle());
+                     }
+                     oSelectDialog3.destroy();
+                     oSelectDialog3 = null;
+                });
+
+                var oButton3 = new sap.m.Button("Button3", {
+                     text: "Open SelectDialog with destroy call in close event & late binding",
+                     press: function(evt) {
+                          oSelectDialog3.open("");
+
+                          // then set model & bind Aggregation
+                          oSelectDialog3.bindAggregation("items", "/superheros", itemTemplate);
+                          oSelectDialog3.setModel(oModelList);
+                          oSelectDialog3.setModel(oModelDialog,"dialog");
+                     }
+                });
+
+                /* 4) select dialog with web service binding (adapted from growinglist) */
+                var sProxyBaseUrl = "../../../proxy/";
+
+                var aServices = [
+                     {
+                          serviceUrl : sProxyBaseUrl + "http/services.odata.org/(S(k0llwbowwin2l5shlweie0c2))/OData/OData.svc/",
+                          products : {
+                               collection : "/Products",
+                               properties : [ "ID", "Name", "Description", "ReleaseDate", "Price", "Rating" ]
+                          }
+                     },
+                     {
+                          serviceUrl : sProxyBaseUrl + "http/ldcibcn.wdf.sap.corp:53600/sap/bc/sepm_odata/purchase/",
+                          products : {
+                               collection : "/ProductCollection",
+                               properties : [ "ProductID", "Name", "Price/Amount", "Price/CurrencyCode" ]
+                          }
+                     }
+                ];
+
+                var oSelectDialog4 = new sap.m.SelectDialog("SelectDialog4", {
+                     title: "Choose a product",
+                     noDataText: "Sorry, no products available",
+                     search : doSearch1
+                });
+                
+                var oProductItemTemplate = new sap.m.StandardListItem({
+                     title : "{ProductID}",
+                     description : "{Name}",
+                     icon : "images/travel_expend.png",
+                     activeIcon: "images/travel_expend_grey.png",
+                     iconInset : false,
+                     type : "Detail",
+                     counter: 99,
+                     selected: false,
+                     info: "{Price/CurrencyCode}",
+                     infoState: "Warning",
+                     active: true
+                });
+
+                // attach close listener
+                oSelectDialog4.attachConfirm(function(evt) {
+                     var selectedItem = evt.getParameter("selectedItem");
+                     if (selectedItem) {
+                          oButton4.setText("You selected: "+ selectedItem.getTitle());
+                     }
+                });
+
+                var oButton4 = new sap.m.Button("Button4", {
+                     text: "Open SelectDialog with web service ",
+                     press: function(evt) {
+                          // open dialog
+                          oSelectDialog4.open("");
+                          
+                          // set model & bind Aggregation later (busy indicator should be displayed until the service is done)
+                          var oModel = new sap.ui.model.odata.ODataModel(aServices[1].serviceUrl, true, "anzeiger", "display");
+                          oSelectDialog4.setModel(oModel);
+                          oSelectDialog4.bindAggregation("items", "/ProductCollection", oProductItemTemplate);
+                     }
+                });
+
+                /* 5) reuse of dialog2 to show a forward footer button scenario */
+                var oButton5 = new sap.m.Button("Button5", {
+                     text: "Forward to...",
+                     press: function() {
+                          // open dialog
+                          oSelectDialog2.open("");
+
+                          // then set model & bind Aggregation
+                          oSelectDialog2.setModel(oModelList);
+                          oSelectDialog2.bindAggregation("items", "/superheros", itemTemplate);
+                          oSelectDialog2.setModel(oModelDialog,"dialog");
+
+                     }
+                });
+
+                var oSelectDialog6 = new sap.m.SelectDialog("SelectDialog6", {
+                     title: "Choose several World Domination companions",
+                     noDataText: "Sorry, no world domination companions available",
+                     multiSelect: true,
+                     search : doSearch
+                });
+
+                // set model & bind Aggregation
+                oSelectDialog6.setModel(oModelList);
+                oSelectDialog6.bindAggregation("items", "/superheros", itemTemplate);
+     
+                // attach close listener
+                oSelectDialog6.attachConfirm(function(evt) {
+                     var selectedItems = evt.getParameter("selectedItems");
+                     if (selectedItems) {
+                          var sel = "";
+                          for (var i=0; i<selectedItems.length; i++) {
+                               sel += selectedItems[i].getTitle();
+                               if (i<selectedItems.length-1) sel+= ', ';
+                          }
+                          oInput1.setValue("You selected: "+ sel);
+                     }
+                });
+                
+                
+                var oButton6 = new sap.m.Button("Button6", {
+                     text: "Open SelectDialog in MultiSelect mode",
+                     press: function() {
+                          // open dialog
+                          oSelectDialog6.open("");
+
+                          // then set model & bind Aggregation
+                          oSelectDialog6.setModel(oModelList);
+                          oSelectDialog6.bindAggregation("items", "/superheros", itemTemplate);
+                          oSelectDialog6.setModel(oModelDialog,"dialog");
+
+                     }
+                });
+               
+             // attach Cancel listener
+                oSelectDialog1.attachCancel(function(evt) {
+                    oInput1.setValue("Cancel selected");
+                });
+                oSelectDialog2.attachCancel(function(evt) {
+                    oInput1.setValue("Cancel selected");
+                });
+                oSelectDialog3.attachCancel(function(evt) {
+                    oInput1.setValue("Cancel selected");
+                });
+                oSelectDialog4.attachCancel(function(evt) {
+                    oInput1.setValue("Cancel selected");
+                });
+                oSelectDialog6.attachCancel(function(evt) {
+                    oInput1.setValue("Cancel selected");
+                });
+                
+                
+                var page1 = new sap.m.Page("page1", {
+                     title:"Mobile SelectDialog Control",
+                     content:[
+                          new sap.m.VBox({
+                               items: [
+                                     oInput1,
+                                     oButton2,
+                                     oButton3,
+                                     oButton4,
+                                     oButton6
+                               ]
+                          })
+                     ],
+                     footer: new sap.m.Bar({ 
+                          contentRight: [oButton5]
+                     })
+                });
+
+                app.addPage(page1).placeAt("content");
+          </script>
+
+     </head>
+     <body id="body" class="sapUiBody">
+          <div id="content"></div>
+     </body>
+</html>
+

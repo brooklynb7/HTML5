@@ -1,0 +1,13 @@
+<SelectDialog
+        xmlns="sap.m"
+        id="CategorySelectDialog"
+        title="{i18n>CATEGORY}"
+        noDataText=""
+        filterPath="Value"
+        filterOperator="Contains"
+        items="{path : '/CategoryCodeCollection'
+				}"
+        confirm="closeCategorySelectDialog">
+    <StandardListItem
+            title="{Value}"/>
+</SelectDialog>

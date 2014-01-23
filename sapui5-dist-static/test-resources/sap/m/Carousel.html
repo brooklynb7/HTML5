@@ -1,0 +1,465 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		
+		<title>sap.m.Carousel Test</title>
+		<script id='sap-ui-bootstrap' type='text/javascript'
+			src='../../../resources/sap-ui-core.js'
+				data-sap-ui-theme='sap_mvi'
+				data-sap-ui-libs='sap.m'>
+		</script>
+		<script type="text/javascript">
+		
+		//Create demo page for mobile controls
+		function createAList(inset, id) {
+			var oList = new sap.m.List(id, {
+				inset : inset
+			});
+
+			var data = {
+				navigation : [ {
+					title : "Travel Expend",
+					description : "Access the travel expend workflow",
+					icon : "images/travel_expend.png",
+					iconInset : false,
+					type : "Navigation",
+					press : 'detailPage'
+				}, {
+					title : "Travel and expense report",
+					description : "Access travel and expense reports",
+					icon : "images/travel_expense_report.png",
+					iconInset : false,
+					type : "Navigation",
+					press : 'detailPage'
+				}, {
+					title : "Travel Request",
+					description : "Access the travel request workflow",
+					icon : "images/travel_request.png",
+					iconInset : false,
+					type : "Navigation",
+					press : 'detailPage'
+				}, {
+					title : "Work Accidents",
+					description : "Report your work accidents",
+					icon : "images/wounds_doc.png",
+					iconInset : false,
+					type : "Navigation",
+					press : 'detailPage'
+				}, {
+					title : "Travel Settings",
+					description : "Change your travel worflow settings",
+					icon : "images/settings.png",
+					iconInset : false,
+					type : "Navigation",
+					press : 'detailPage'
+				} ]
+			};
+
+			var oItemTemplate1 = new sap.m.StandardListItem({
+				title : "{title}",
+				description : "{description}",
+				icon : "{icon}",
+				iconInset : "{iconInset}",
+				type : "{type}"
+			});
+
+			function bindListData(data, itemTemplate, list) {
+				var oModel = new sap.ui.model.json.JSONModel();
+				// set the data for the model
+				oModel.setData(data);
+				// set the model to the list
+				list.setModel(oModel);
+
+				// bind Aggregation
+				list.bindAggregation("items", "/navigation", itemTemplate);
+			}
+
+			bindListData(data, oItemTemplate1, oList);
+
+			return oList;
+		}
+
+		var oDialog1;
+		function openDialog() {
+			oDialog1 = oDialog1 || new sap.m.Dialog("dialog1", {
+				title : "World Domination",
+				content : [ new sap.ui.core.HTML({
+					content : "<p>Do you want to start a new world domination campaign?</p>"
+				}), ],
+				leftButton : new sap.m.Button({
+					text : "Reject",
+					type : sap.m.ButtonType.Reject,
+					press : function() {
+						oDialog1.close();
+					}
+				}),
+				rightButton : new sap.m.Button({
+					text : "Accept",
+					type : sap.m.ButtonType.Accept,
+					press : function() {
+						oDialog1.close();
+					}
+				})
+			});
+
+			oDialog1.open();
+		}
+
+		var oPopover;
+		function openPopover() {
+			if (!oPopover) {
+				var oList = createAList(true, "l1");
+
+				var oScrollContainer = new sap.m.ScrollContainer({
+					horizontal : false,
+					vertical : true,
+					content : oList
+				});
+
+				var footer = new sap.m.Bar({
+					contentMiddle : [ new sap.m.Button({
+						icon : "images/SAPUI5.png"
+					}), new sap.m.Button({
+						icon : "images/SAPUI5.png"
+					}), new sap.m.Button({
+						icon : "images/SAPUI5.png"
+					}) ]
+				});
+
+				oPopover = new sap.m.Popover({
+					placement : sap.m.PlacementType.Bottom,
+					title : "Popover",
+					showHeader : true,
+					leftButton : new sap.m.Button({
+						text : "Left"
+					}),
+					rightButton : new sap.m.Button({
+						text : "Right"
+					}),
+					footer : footer,
+					content : [ oScrollContainer ]
+				});
+			}
+			oPopover.openBy(sap.ui.getCore().byId("pob"));
+		}
+
+		function getAllControls() {
+			var aControls = [ new sap.m.Text({
+				text : "This page features (almost) all UI5 Mobile Controls with visible UI parts at one glance. (This is a sap.m.Text control.)"
+			}),
+
+			new sap.m.Button("pob", {
+				text : "This is a Button. Press to OPEN POPOVER",
+				press : openPopover
+			}),
+
+			new sap.m.Slider({
+				min : 0,
+				max : 100,
+				value : 50
+			}),
+
+			new sap.m.HBox({
+				items : [ new sap.m.Label({
+					text : "This is a Switch:"
+				}), new sap.m.Switch({
+					state : true
+				})/* ,  new sap.m.CheckBox({
+					text : "And this is a CheckBox",
+					selected : true
+				})  */ ]
+			}),
+
+			new sap.m.HBox({
+				items : [ new sap.m.Label({
+					text : "This is a Label, describing RadioButtons:"
+				}), new sap.m.RadioButton({
+					selected : true
+				}), new sap.m.RadioButton({
+					selected : false
+				}), new sap.m.RadioButton({
+					selected : false
+				}) ]
+			}),
+
+			new sap.m.HBox({
+				items : [ new sap.m.Input({
+					placeholder : "Type here..."
+				}), new sap.m.Input({
+					type : sap.m.InputType.Number,
+					value : 42
+				}), ]
+			}),
+
+			new sap.m.HBox({
+				items : [ new sap.m.Input({
+					type : sap.m.InputType.Date
+				}), new sap.m.Select({
+					width : "10em",
+					items : [ new sap.ui.core.Item({
+						key : "1",
+						text : "first item"
+					}), new sap.ui.core.Item({
+						key : "2",
+						text : "second item"
+					}), new sap.ui.core.Item({
+						key : "3",
+						text : "third item"
+					}), new sap.ui.core.Item({
+						key : "4",
+						text : "fourth item"
+					}) ]
+				}) ]
+			}),
+
+			new sap.m.SearchField({
+				placeholder : "Search for...",
+				showMagnifier : true
+			}),
+
+			new sap.m.SegmentedButton({
+				buttons : [ new sap.m.Button("sbi1", {
+					text : "Seg-"
+				}), new sap.m.Button({
+					text : "-men-"
+				}), new sap.m.Button({
+					text : "-ted"
+				}) ],
+				selectedButton : "sbi1"
+			}),
+
+			createAList(true, "lins").setHeaderText("This is an inset List").setFooterText("This was an inset List"),
+
+			new sap.ui.core.HTML({
+				content : "<div class='headerHtml'>This is a core.HTML control with plain HTML content.</div>"
+			}),
+
+			createAList(false, "lnonins").setHeaderText("This is a non-inset List").setFooterText("This was a non-inset List") ];
+			return aControls;
+		}
+
+		var demoPage = new sap.m.Page("page1", {
+			title : "All Controls",
+
+			headerContent : new sap.m.Button({
+				text : "Open Dialog",
+				press : openDialog
+			}),
+			
+			content : new sap.m.VBox("vbox", {
+				items : getAllControls()
+			}),
+
+			footer : new sap.m.Bar({
+				contentMiddle : new sap.m.SegmentedButton('SegmentedBar', {
+					buttons : [ new sap.m.Button("sb1", {
+						text : "Seg-"
+					}), new sap.m.Button({
+						text : "-men-"
+					}), new sap.m.Button({
+						text : "-ted"
+					}) ],
+					selectedButton : "sb1"
+				})
+			})
+		});
+		
+		//Example of usage for 'BeforeShow' and 'AfterHide' events
+		demoPage.addEventDelegate({ 
+			onBeforeShow: function(evt) {
+				jQuery.sap.log.info("sap.m.Page: demo page is going to be shown");
+			},
+			onBeforeFirstShow: function(evt) {
+				jQuery.sap.log.info("sap.m.Page: first time, demo page is going to be shown");
+			},
+			onAfterHide: function(evt) {
+				jQuery.sap.log.info("sap.m.Page: demo page has been hidden");
+				//Remove content of 'demoPage' when it is discarded from the carousel
+				/* if(demoPage.getContent().length > 0) {
+					//Make sure you do not trigger re-rendering!
+					var i, ithCont;
+					for(i=0; i<demoPage.getContent().length; i++) {
+						ithCont = demoPage.getContent()[i];
+						demoPage.removeAggregation("content", ithCont, true);
+						ithCont.destroy();
+					}
+				} */
+			}
+		});
+
+			
+		// Create Images
+		var imgDesert = new sap.m.Image("desert", {
+			src: "images/demo/nature/desert.jpg",
+			alt: "Majestic Desert",
+			densityAware: false,
+			decorative: false
+		});
+		
+		var imgElephant = new sap.m.Image("elephant", {
+			src: "images/demo/nature/elephant.jpg",
+			alt: "Mighty Elephant",
+			densityAware: false,
+			decorative: false
+		});
+		
+		var imgFishImg = new sap.m.Image("fish", {
+			src: "images/demo/nature/fish.jpg",
+			alt: "Lively Fish",
+			densityAware: false,
+			decorative: false
+		});
+		
+		
+		var imgForest =  new sap.m.Image("forest", {
+			src: "images/demo/nature/forest.jpg",
+			alt: "Forest in Fall",
+			densityAware: false,
+			decorative: false
+		});
+		
+		
+		var imgHuntingLeopard = new sap.m.Image("huntingLeopard", {
+			src: "images/demo/nature/huntingLeopard.jpg",
+			alt: "Hunting Leopard, Full Speed",
+			densityAware: false,
+			decorative: false
+		});
+		
+		var imgPrairie = new sap.m.Image("prairie", {
+			src: "images/demo/nature/prairie.jpg",
+			alt: "Prairie in Dawn",
+			densityAware: false,
+			decorative: false
+		});
+		
+		var imgWaterfall = new sap.m.Image("waterfall", {
+			src: "images/demo/nature/waterfall.jpg",
+			alt: "Waterfall in the Jungle",
+			densityAware: false,
+			decorative: false
+		});
+		
+		//Please uncomment any of the following lines to test the corresponding
+		//carousel attribute
+		var carousel = new sap.m.Carousel("myCarousel", {
+			//pageIndicatorPlacement: sap.m.PlacementType.Top,
+			//pageIndicatorPlacement: sap.m.PlacementType.Bottom,
+			//activePage: imgElephant,
+			//width: "50%",
+			//height: "50%",
+			//showPageIndicator: false,
+			//loop: true,
+			//showBusyIndicator: false,
+			pages: [imgDesert, imgElephant, imgFishImg, demoPage, imgPrairie, imgForest, imgWaterfall]
+		});
+		
+		
+		//Listen to 'pageChanged' events
+		carousel.attachPageChanged(function(oControlEvent) {
+			jQuery.sap.log.info("sap.m.Carousel: page changed: old: " + oControlEvent.getParameters().oldActivePageId );
+			jQuery.sap.log.info("                              new: " + oControlEvent.getParameters().newActivePageId );
+			
+		});
+		
+		
+		
+		carousel.attachLoadPage(function(oControlEvent) {
+			var sPageId = oControlEvent.getParameters().pageId;
+			jQuery.sap.log.info("sap.m.Carousel: loading page " + sPageId  );
+			//Example for usage of 'loadPage' event: Add content to 'demoPage' when it is loaded into the carousel
+			/* if(sPageId == demoPage.getId()) {
+				//To demonstrate a loading delay, the following
+				//timeout waits for two seconds, until it hides the 
+				//carousel's busy indicator and shows the demo page
+				setTimeout(function() {
+					demoPage.addContent(new sap.m.VBox("vbox", {
+						items : getAllControls()
+					}));
+				}, 2000);
+			} else {
+				//All other pages are already loaded, the carousel needs to be informed
+				//about this, though
+				carousel.loadComplete(sPageId);
+			}  */
+		});
+		
+		//Example for usage of 'unloadPage' event: 
+		carousel.attachUnloadPage(function(oControlEvent) {
+			jQuery.sap.log.info("sap.m.Carousel: unloaded page: " + oControlEvent.getParameters().pageId );
+			
+			//You may also use this function to clean up the demo page
+			//instead of using the 'onAfterHide' delegate
+			
+		});
+		
+		
+		
+		
+		
+		var appCarousel = new sap.m.App("myApp", {initialPage:"carouselPage"});
+		
+		
+		var fnToggleBusyIndicator = function() {
+			var bShow = carousel.getShowBusyIndicator();
+			carousel.setShowBusyIndicator(!bShow);
+			if(bShow) {
+				oBusyIndicatorButton.setText("Show Busy Indicator");
+			} else {
+				oBusyIndicatorButton.setText("Hide Busy Indicator");
+			}
+		};
+		
+		var sizeItems = [];
+		
+		var k;
+		
+		for(k=1; k<7; k++) {
+			sizeItems[k] = new sap.ui.core.Item({
+				key: k,
+				text: k + "em",
+				size: k + "em",
+			}) 
+		}
+		
+		var oSizeSelect = new sap.m.Select({
+			name: "select-name0",
+			title: "Indicator Size",
+			items: sizeItems,
+			change: function(oControlEvent) {
+				carousel.setBusyIndicatorSize(oControlEvent.getParameter("selectedItem").getText());
+			}
+		});
+		
+		oSizeSelect.setSelectedKey("6");
+		
+		var oBusyIndicatorButton = new sap.m.Button({
+			text : "Hide Busy Indicator",
+			press : fnToggleBusyIndicator
+		});
+		
+		
+		
+		var carouselPage = new sap.m.Page("carouselPage", 
+			{title: "Carousel Test Page", 
+			enableScrolling: false,
+			headerContent : [oBusyIndicatorButton, oSizeSelect] }
+		);
+		
+		
+		carouselPage.addContent(carousel);
+		appCarousel.addPage(carouselPage);
+		appCarousel.placeAt("body");
+		
+		
+		
+		
+		
+		
+		</script>
+		
+	</head>
+	<body id="body" class="sapUiBody">
+	</body>
+</html>

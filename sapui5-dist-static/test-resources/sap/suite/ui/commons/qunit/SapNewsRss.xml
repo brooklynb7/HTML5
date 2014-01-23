@@ -1,0 +1,384 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd"
+xmlns:rawvoice="http://www.rawvoice.com/rawvoiceRssModule/"
+>
+
+<channel>
+	<title>SAP Newsroom</title>
+	<atom:link href="http://www.news-sap.com/feed/" rel="self" type="application/rss+xml" />
+	<link>http://www.news-sap.com</link>
+	<description>SAP Newsroom</description>
+	<lastBuildDate>Wed, 26 Jun 2013 18:18:39 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>http://wordpress.org/?v=3.5.2</generator>
+<!-- podcast_generator="Blubrry PowerPress/4.0.9" -->
+	<itunes:summary>SAP Newsroom</itunes:summary>
+	<itunes:author>SAP Newsroom</itunes:author>
+	<itunes:explicit>no</itunes:explicit>
+	<itunes:image href="http://cdn.news-sap.com/wp-content/plugins/powerpress/itunes_default.jpg" />
+	<itunes:subtitle>SAP Newsroom</itunes:subtitle>
+	<image>
+		<title>SAP Newsroom</title>
+		<url>http://www.news-sap.com/wp-content/plugins/powerpress/rss_default.jpg</url>
+		<link>http://www.news-sap.com</link>
+	</image>
+		<item>
+		<title>SAP Sybase IQ Software Smashes Previous Results and Sets World Record for Fastest Loading of Big Data</title>
+		<link>http://www.news-sap.com/sap-sybase-iq-software-smashes-previous-results-and-sets-world-record-for-fastest-loading-of-big-data/</link>
+		<comments>http://www.news-sap.com/sap-sybase-iq-software-smashes-previous-results-and-sets-world-record-for-fastest-loading-of-big-data/#comments</comments>
+		<pubDate>Tue, 25 Jun 2013 13:00:42 +0000</pubDate>
+		<dc:creator>SAP News</dc:creator>
+				<category><![CDATA[Database & Technology]]></category>
+		<category><![CDATA[Database & Technology News]]></category>
+		<category><![CDATA[Top Stories]]></category>
+		<category><![CDATA[BMMsoft]]></category>
+		<category><![CDATA[Guinness World Record]]></category>
+		<category><![CDATA[HP]]></category>
+		<category><![CDATA[newsbyte]]></category>
+		<category><![CDATA[Red Hat]]></category>
+		<category><![CDATA[SAP real-time data platform]]></category>
+		<category><![CDATA[SAP Sybase IQ]]></category>
+
+		<guid isPermaLink="false">http://www.news-sap.com/?p=7751</guid>
+		<description><![CDATA[WALLDORF — SAP today announced that version 16 of SAP Sybase IQ software has achieved a Guinness World Record for loading and indexing big data. In cooperation with BMMsoft, HP and Red Hat, SAP Sybase IQ 16 achieved an audited result of 34.3 terabytes per hour*, far surpassing the previous record of 14 terabytes per <a href="http://www.news-sap.com/sap-sybase-iq-software-smashes-previous-results-and-sets-world-record-for-fastest-loading-of-big-data/">(more...)</a>]]></description>
+				<content:encoded><![CDATA[<p><b><i><a href="http://cdn.news-sap.com/wp-content/blogs.dir/1/files/SAP-Sybase-IQ_Guinness.jpg"><img class="alignleft  wp-image-7752" alt="SAP-Sybase-IQ_Guinness" src="http://cdn.news-sap.com/wp-content/blogs.dir/1/files/SAP-Sybase-IQ_Guinness.jpg" width="160" height="114" /></a>WALLDORF —</i></b><b> </b><a href="http://www.sap.com">SAP</a> today announced that version 16 of <a href="http://www54.sap.com/pc/tech/database/software/sybase-iq-big-data-management/index.html">SAP Sybase IQ</a> software has achieved a Guinness World Record<strong><i> </i></strong>for loading and indexing big data.<span id="more-7751"></span> In cooperation with BMMsoft, HP and Red Hat, SAP Sybase IQ 16 achieved an audited result of 34.3 terabytes per hour*,<b> </b>far surpassing the previous record of 14 terabytes per hour achieved by the same team using a previous version of SAP Sybase IQ. SAP Sybase IQ 16, the latest version of the highly optimized real-time analytics server and enterprise data warehouse (EDW) for extreme data implements a new, fully parallel data loading capability and a next-generation column store, enabling the huge jump in big data performance.</p>
+<p>The new record easily eclipses previously published data loading results from within the industry for single-rack solutions, exhibiting the unprecedented ability to load and analyze 823 terabytes per day and 5.7 petabytes per week of structured and unstructured big data with SAP Sybase IQ 16. It also demonstrates the software’s ability to efficiently handle extreme-scale EDWs and big data analytics by providing high-speed data loading, indexing, immediate access and deep analysis of both structured data — for example, database records — and unstructured data such as emails, documents and multimedia files. SAP Sybase IQ makes it simpler and more cost-effective to exploit the value of extreme data at the speed of business, helping to transform companies with new insights and future business predictions that were previously thought impossible or impractical.</p>
+<p>“Big data requires enormous loading speed, data scalability and query speed, and with this world record result SAP Sybase IQ 16 has proven again its excellence in on-disk analytics for loading, storing and analyzing unified business intelligence and big data,” said Irfan Khan, chief technology officer and senior vice president, Database &amp; Technology, SAP AG. “With SAP, companies can run better with new real-time insights via acquisition, acceleration and analysis of big data sets through an integrated solution centered on SAP Sybase IQ and the SAP Real-Time Data Platform.”</p>
+<p>SAP Sybase IQ 16 is faster, more secure and more adaptable to changing business requirements. By extending the power of analytics to more people and processes with less effort and expense, SAP Sybase IQ 16 as an EDW enables the <a href="http://www54.sap.com/pc/tech/real-time-data-platform.html">SAP Real-Time Data Platform</a> to turn extreme data into actionable insight at the speed of business. SAP Sybase IQ also plays a clear role in the SAP Real-Time Data Platform as the near-line-store to the <a href="http://www.sap.com/hana">SAP HANA platform</a> that handles massive amounts of real-time and historical data.</p>
+<p>For more information, visit the <a href="http://www54.sap.com/pc/tech/database/software/sybase-iq-big-data-management/index.html">SAP Sybase IQ page on sap.com</a> and the <a href="http://www.news-sap.com/">SAP Newsroom</a>. Follow SAP on Twitter at <a href="http://twitter.com/sapnews/">@sapnews</a>.</p>
+<p><em>*The result mentioned was achieved using <a href="http://www54.sap.com/pc/tech/database/software/sybase-iq-big-data-management/index.html">SAP Sybase IQ 16</a>, <a href="http://www.designparticles.com/bmmsoft/resources-repository/edmtr-server-overview">BMMsoft EDMT 9</a> and <a href="http://www.redhat.com/products/enterprise-linux/server/">Red Hat Enterprise Linux 6.2 Intel 64</a> software<span style="text-decoration: underline;">, on </span><a href="http://www8.hp.com/us/en/products/proliant-servers/product-detail.html?oid=4231377">HP ProLiant DL980 G7</a>8 x Intel Xeon with E7-4870 @ 2.40GHz<span style="text-decoration: underline;">, </span>1TB RAM and16 x Fibre Channel HBA @8Gbps, along with <a href="http://www8.hp.com/us/en/products/disk-storage/product-detail.html?oid=5306969">HP 3PAR StoreServ 10800</a> (8 nodes) 320 x 600GB HDD @ 15Krpm. Customer results may vary and depend on system configuration.</em></p>
+<p><em>All other product and service names mentioned are the trademarks of their respective companies.</em></p>
+<p><b>Media Contact:</b><br />
+Jeff Neal, +1 (925) 336-6203, <a href="mailto:jeff.neal@sap.com">jeff.neal@sap.com</a>, PDT</p>
+]]></content:encoded>
+			<wfw:commentRss>http://www.news-sap.com/sap-sybase-iq-software-smashes-previous-results-and-sets-world-record-for-fastest-loading-of-big-data/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>SAP HANA Turns Two</title>
+		<link>http://www.news-sap.com/sap-hana-turns-two/</link>
+		<comments>http://www.news-sap.com/sap-hana-turns-two/#comments</comments>
+		<pubDate>Fri, 21 Jun 2013 16:50:39 +0000</pubDate>
+		<dc:creator>Vishal Sikka</dc:creator>
+				<category><![CDATA[Blogs]]></category>
+		<category><![CDATA[Database & Technology]]></category>
+		<category><![CDATA[Database & Technology Blogs]]></category>
+		<category><![CDATA[SAP HANA]]></category>
+		<category><![CDATA[SAP NetWeaver]]></category>
+		<category><![CDATA[Vishal Sikka]]></category>
+
+		<guid isPermaLink="false">http://www.news-sap.com/?p=7749</guid>
+		<description><![CDATA[SAP HANA, our breakthrough in-memory data platform turned 2 today! As I reflect on the journey, I was reminded of the day when Hasso challenged me to intellectually renew SAP in the winter of 2008. The journey began with SAP HANA, along the way it transformed all our products, changed our mindsets and drove our <a href="http://www.news-sap.com/sap-hana-turns-two/">(more...)</a>]]></description>
+				<content:encoded><![CDATA[<p><a href="http://cdn.news-sap.com/wp-content/blogs.dir/1/files/Sikka.jpg"><img class="alignleft  wp-image-3144" alt="Sikka" src="http://cdn.news-sap.com/wp-content/blogs.dir/1/files/Sikka.jpg" width="156" height="113" /></a>SAP HANA, our breakthrough in-memory data platform turned 2 today! As I reflect on the journey, I was reminded of the day when Hasso challenged me to intellectually renew SAP in the winter of 2008.<span id="more-7749"></span> The journey began with SAP HANA, along the way it transformed all our products, changed our mindsets and drove our aspirations. Liberated by this platform, we dared to dream again as the world’s premier builder of applications! Soon an incredible ecosystem of customers, partners and startups joined us, forever recasting the enterprise software industry on a new point of view SAP HANA.</p>
+<p>As I take on the role to run SAP’s development organization across database, technology, cloud, mobile and application areas, I know that SAP is renewed and ready to lead the development of the next generation of enterprise software going after the big problems and endless opportunities with passion and imagination – from personalized medicine to connected cars, from personalized education to managing fraud in real-time. We see a new enterprise, built entirely on SAP HANA in the future – where every aspect of your business, from transactions and analytics to customer feedback and interactions, happens in real time. This ‘new enterprise’ can happen because of the radical rethinking that we have put into SAP HANA. It is not wedded to the old ways of doing business!</p>
+<p>Also, my little girl has grown to be quite a trouble maker for our competition. Practically every day we see traditional database vendors trying to respond with promises to catch up, to release a product that will be 10x or 100x more. Two years on the innovation scale is a long time when you consider that Facebook was born in 2004 and Apple launched the iPhone in 2007. There has been a sea change in the industry in the two years since we launched SAP HANA, and it shows on these big earnings days. For me personally, any time I hear competitors ranting about SAP HANA, it tells me we are on the right path, doing the right things and making our customers successful. Every earnings call they continue to call out SAP HANA, constantly focusing on why their product is eventually going to be better. Yet after 1,500 SAP HANA customers in 2 years it’s clear that SAP HANA means what she says and delivers actions. We suspected that we were at least two years ahead of Oracle with SAP HANA, but with the statements made during their earnings call where they hinted at ‘future’ capabilities enabling them to better compete with SAP HANA, we now know we are MUCH further ahead. I suspect they are closer to four years behind us. The task is not only to build an in-memory columnar data platform, but also to optimize and run big demanding applications such as SAP Business Suite, BW, SAP BusinessObjects and soon SuccessFactors, Ariba and Hybris on such a platform. Our customers LOVE these applications and the next generation capabilities SAP HANA delivers!</p>
+<p>Here are my top 10 stats for you to reflect on:</p>
+<p style="padding-left: 30px;"><b>1) SAP crossed a run rate of $1 Billion on Cloud with over 30 Million customers</b>. SAP Success Factors &amp; Jam have more than 6000 customers and 24 million subscribers. Oracle’s claims need to beat these numbers to make sense.<br />
+<b>2) Ariba Business Network</b> has over <b>1 million companies</b> on it. Cloud is the natural software topology for collaboration across companies in a business network.<br />
+<b>3) SAP HANA Enterprise Cloud</b> offers infrastructure, platform and mission critical applications such as SAP Business Suite and BW today. The first customers are already live, while competitive products are yet to hit the market (we hear its next week!).<br />
+<b>4) SAP HANA has over 1500 customers</b> – in almost all cases SAP HANA was the lynchpin of our sales with over 50% of our transactions being standalone deals. Yes – databases are the fastest growing category at SAP with the rise of SAP HANA, and it is often at the expense of our competition, that has not kept up with innovation. The results speak for themselves. Larry’s mistrust of SAP HANA growth numbers is completely misplaced. Prominent financial analysts don’t agree with Oracle’s point of view.<br />
+<b>5) SAP HANA has now been sold across all 25 industry verticals at SAP</b>, including sports, retail and healthcare where new data driven business opportunities / models are emerging. The broad base of adoption is a clear sign of maturity and wide applicability of SAP HANA. Also, business benefits are strong, allowing CIOs to truly partner with their business without traditional bottlenecks. For example, Europe’s largest home improvement retailer got their payback on a large SAP HANA purchase in 3 days by delivering real-time visibility across 9 operating business units for improved purchasing, pricing and financial operations.<br />
+<b>6) An additional 700 customers on SAP HANA on AWS</b> are proving that SAP HANA is affordable for everyone. Try it out today on the <a href="http://www.saphana.com/marketplace">SAP HANA Marketplace</a>. We are relentless in changing the way business is done by using design thinking with our direct sales force, resulting in new direct to consumer and lower touch sales models with different pricing and deployment options.<br />
+<b>7) 69 solutions that are powered by SAP HANA are generally available today</b>. This includes <b>SAP BusinessObjects (including <a href="http://www.saphana.com/community/learn/solutions/sap-lumira/sap-lumira-desktop">Lumira</a>), SAP Business Suite and Business Warehouse (BW)</b>where customers are seeing remarkable business and technical benefits. This path continues relentlessly across cloud applications including SuccessFactors, Ariba and Hybris.<br />
+<b>8) 483 startups</b> are bringing break-through innovations from diverse fields such as fraud analytics and social media applications.<br />
+<b>9) Nine major hardware partners </b>offering SAP HANA appliances providing <b>open choice and access.<br />
+10) </b><b>Rich product innovations leading up to SAP HANA SP6</b> that provides an end to end data platform for transactions, analytics, natural language processing, events/time series, text search, geo-spatial, predictive libraries, business rules, planning functions and native application server capabilities, smart data access to HADOOP, complete integration with Sybase portfolio of products and enterprise readiness with high availability and disaster recovery.</p>
+<p>In essence, it has been torrid pace of innovation at SAP over the last two years! Besides business and technical performance, one of the reasons why SAP HANA has struck a chord with customers is because she fights against the pains that are created by sprawling databases. We built a re-imagined data platform that processes and analyzes fresh data on the fly. It eliminates latency from separation of transactions and analytics that is endemic with classic database architectures. It is massively parallel, scalable (1 Petabyte+ in main memory) and capable of answering the most complex questions at speeds never before imagined (see <a href="http://events.sap.com/sapphirenow/en/session/4804">Hasso’s demo</a> of a large retail data set from HPI students presented at SAPPHIRE NOW or <a href="http://www.youtube.com/watch?v=hS-0ZadT6so">eBay’s story</a> of early signal detection and analysis of their entire marketplace for predictive patterns).</p>
+<p>This has helped SAP HANA redefine the database market and shake its underpinnings with a different in-memory based architecture. It is no surprise that we see classic database vendors respond with new announcements practically every day offering competing alternatives to see which version of the story will stick with customers. Oracle announced one more alternative yesterday during their earnings call. As far I can keep count, this is Oracle’s third attempt at responding to SAP HANA. Attempt #1 was Exalytics (remember that!), attempt #2 was Exadata repositioned as an in-memory machine with additional flash storage and now attempt #3 with the new announcement of a product to be released in the future called Oracle 12.1C. Maybe, the third time is a charm.</p>
+<p>There are several implications for customers:</p>
+<p style="padding-left: 30px;">1) By announcing Oracle 12.1C, Larry just indicated the turning point in the database wars that we&#8217;ve been waiting for a long time. We saw similar announcements from others. If the database leader, Oracle, proceeds to deliver on a full blown In-Memory Database as promised today, SAP has essentially <b>&#8220;won&#8221; the strategic argument for the future design of enterprise applications</b>. This move will signify that they have effectively moved away from disk-based databases and that in-memory is the de-facto architecture for the next 30 years. Every SAP applications customer, including those considering SAP Business Suite on SAP HANA should now take the plunge with our in-memory centric architecture.<br />
+2) Every current and future Oracle customer should evaluate if they buy into an old architecture from Oracle today or wait for the new one while alternatives like SAP HANA are now mature and ready. As the database architecture and landscape shifts, we think that SAP HANA should be on your short list to evaluate. Thrilled customer references can help you make the switch.</p>
+<p style="padding-left: 30px;"><b>But, can you afford to wait?</b><br />
+We think you can expect more from your database. We think that SAP HANA is the platform for the future enterprise and consumer applications where instant analysis is part of every transaction, where collaboration is based on real-time data and where massive size and variety of data are not constraints to our imagination. We think this can shape your business to be real-time, instantly connected in a network of customers and partners. We think software can be purposeful and it can empower people to solve some wicked problems of our time. We are ready NOW to help you get there in a much simpler, faster and smarter way. You can’t afford to wait for the future from Oracle (Fusion customers can tell you that the wait is longer than the promise!) &#8211; grab it now with SAP HANA!</p>
+<p><em><a href="http://www.saphana.com/community/blogs/blog/2013/06/21/sap-hana-turns-2" target="_blank">This post originally appeared on www.saphana.com</a>.</em></p>
+]]></content:encoded>
+			<wfw:commentRss>http://www.news-sap.com/sap-hana-turns-two/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>SAP Press Conference: SMEs Are Equipped to Compete</title>
+		<link>http://www.news-sap.com/sap-press-conference-smes-are-equipped-to-compete/</link>
+		<comments>http://www.news-sap.com/sap-press-conference-smes-are-equipped-to-compete/#comments</comments>
+		<pubDate>Thu, 20 Jun 2013 16:02:48 +0000</pubDate>
+		<dc:creator>SAP News</dc:creator>
+				<category><![CDATA[SME]]></category>
+		<category><![CDATA[EIU]]></category>
+		<category><![CDATA[press conference]]></category>
+
+		<guid isPermaLink="false">http://www.news-sap.com/?p=7746</guid>
+		<description><![CDATA[On Tuesday, July 2, from 10:30 &#8211; 11:15 a.m. EDT, SAP will host an online press conference to present research findings entitled &#8220;SMEs are equipped to compete.&#8221; The Oxford Economics research program, sponsored by SAP, looked at small and midsize enterprises (SMEs) with an annual turnover of US $20-$750 million across the globe, and discovered findings that <a href="http://www.news-sap.com/sap-press-conference-smes-are-equipped-to-compete/">(more...)</a>]]></description>
+				<content:encoded><![CDATA[<p><a href="http://cdn.news-sap.com/wp-content/blogs.dir/1/files/SME_picto1.jpg"><img class="alignleft  wp-image-7748" alt="SME_picto" src="http://cdn.news-sap.com/wp-content/blogs.dir/1/files/SME_picto1.jpg" width="187" height="94" /></a>On Tuesday, July 2, from 10:30 &#8211; 11:15 a.m. EDT, SAP will host an online press conference to present research findings entitled &#8220;SMEs are equipped to compete.&#8221;<span id="more-7746"></span> The Oxford Economics research program, sponsored by SAP, looked at small and midsize enterprises (SMEs) with an annual turnover of US $20-$750 million across the globe, and discovered findings that overturn a number of stereotypes of smaller companies, often perceived as local or regional entities that are largely technophobic.</p>
+<p>The press conference will be hosted by Eric Duffaut, president of Global Ecosystem &amp; Channels, SAP, and Edward Cone, managing editor and senior analyst at Oxford Economics.</p>
+<p>To access the event, including Q&amp;A and chat functionality, visit: <a href="https://go.sap.corp/f8e">https://go.sap.corp/f8e</a>. Please enter your name and publication to register for the webcast.</p>
+<p><strong>Dial-ins:<br />
+</strong></p>
+<p style="padding-left: 30px;">US Toll-Free:  (866) 802-4355<br />
+US Toll:  (703) 639-132<br />
+<b>Conference ID: 1616744</b></p>
+<p style="padding-left: 30px;">France – 0080040402020<br />
+Germany -  080040402020<br />
+UK – 0080040402020<br />
+Brazil – 002180040402020<br />
+Hungary – 0080040402020<br />
+Poland – 008001113547<br />
+Spain – 0080040402020<br />
+Italy – 0080040402020<br />
+South Africa – 0980040402020<br />
+Portugal – 0080040402020<br />
+Mexico – 0018776820009<br />
+<b>Conference ID: 1616744 </b></p>
+<p><b>About the research </b></p>
+<ul>
+<li>Findings are based on 2,100 online interviews with SME executives around the world, thereof 12 in-depth interviews with senior SME executives.</li>
+<li>Respondents from 21 countries, including Australia, Brazil, Canada, Chile, China, Colombia, the Czech Republic, France, Germany, Hungary, India, Indonesia, Italy, Mexico, Poland, Portugal, Russia, South Africa, Spain, the United Kingdom and the US.</li>
+<li>Respondents represent five industries, including discrete manufacturing (25%), professional services (21%), consumer products (22%), retail (17%) and wholesale (16%).</li>
+</ul>
+]]></content:encoded>
+			<wfw:commentRss>http://www.news-sap.com/sap-press-conference-smes-are-equipped-to-compete/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>SAP Chief Sustainability Officer on CNBC Europe: Information Revelation</title>
+		<link>http://www.news-sap.com/sap-chief-sustainability-officer-on-cnbc-europe-information-revelation/</link>
+		<comments>http://www.news-sap.com/sap-chief-sustainability-officer-on-cnbc-europe-information-revelation/#comments</comments>
+		<pubDate>Wed, 19 Jun 2013 23:16:53 +0000</pubDate>
+		<dc:creator>SAP News</dc:creator>
+				<category><![CDATA[Sustainability]]></category>
+		<category><![CDATA[Sustainability News]]></category>
+		<category><![CDATA[Top Stories]]></category>
+		<category><![CDATA[CNBC Europe]]></category>
+		<category><![CDATA[Peter Graf]]></category>
+		<category><![CDATA[sustainability]]></category>
+		<category><![CDATA[video]]></category>
+
+		<guid isPermaLink="false">http://www.news-sap.com/?p=7733</guid>
+		<description><![CDATA[Peter Graf, chief sustainability officer of SAP, recently appeared on a segment as part of a special series by CNBC Europe called “Energy Opportunities” to help answer some of the big sustainability questions. Along with Elaine Weidman-Grunewald of Ericsson, Graf explains the profound effect the information and communications industries can have on clean energy and emissions.]]></description>
+				<content:encoded><![CDATA[<p><a href="http://cdn.news-sap.com/wp-content/blogs.dir/1/files/Peter-Graf_CNBC-Europe.jpg"><img class="alignleft  wp-image-7734" alt="Peter-Graf_CNBC-Europe" src="http://cdn.news-sap.com/wp-content/blogs.dir/1/files/Peter-Graf_CNBC-Europe.jpg" width="157" height="88" /></a>Peter Graf, chief sustainability officer of SAP, recently appeared on a segment as part of a special series by CNBC Europe called “Energy Opportunities” to help answer some of the big sustainability questions.<span id="more-7733"></span> Along with Elaine Weidman-Grunewald of Ericsson, Graf explains the profound effect the information and communications industries can have on clean energy and emissions.</p>
+<p><object id="CNBC_EO_VidPlayer" width="624" height="396" classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,40,0"><param name="allowScriptAccess" value="always" /><param name="allowFullScreen" value="true" /><param name="quality" value="high" /><param name="wmode" value="opaque" /><param name="swfversion" value="6.0.65.0" /><param name="expressinstall" value="https://www.energyopportunities.tv/eomedia/scripts/expressInstall.swf" /><param name="FlashVars" value="xmlsrc=http://www.energyopportunities.tv/eomedia/videos/2013_c1_sceneSetter.xml" /><param name="src" value="https://www.energyopportunities.tv/eomedia/flash/videoPlayer2.2.1_bb03.swf" /><param name="allowscriptaccess" value="always" /><param name="allowfullscreen" value="true" /><param name="flashvars" value="xmlsrc=http://www.energyopportunities.tv/eomedia/videos/2013_c1_sceneSetter.xml" /><embed id="CNBC_EO_VidPlayer" width="624" height="396" type="application/x-shockwave-flash" src="https://www.energyopportunities.tv/eomedia/flash/videoPlayer2.2.1_bb03.swf" allowScriptAccess="always" allowFullScreen="true" quality="high" wmode="opaque" swfversion="6.0.65.0" expressinstall="https://www.energyopportunities.tv/eomedia/scripts/expressInstall.swf" FlashVars="xmlsrc=http://www.energyopportunities.tv/eomedia/videos/2013_c1_sceneSetter.xml" allowscriptaccess="always" allowfullscreen="true" flashvars="xmlsrc=http://www.energyopportunities.tv/eomedia/videos/2013_c1_sceneSetter.xml" /><img src="http://cdn.news-sap.com/wp-includes/js/tinymce/themes/advanced/img/trans.gif" class="mceItemMedia mceItemFlash" width="624" height="396" data-mce-json="{'video':{},'params':{'quality':'high','wmode':'opaque','allowScriptAccess':'always','allowFullScreen':'true','swfversion':'6.0.65.0','expressinstall':'https://www.energyopportunities.tv/eomedia/scripts/expressInstall.swf','FlashVars':'xmlsrc=http://www.energyopportunities.tv/eomedia/videos/2013_c1_sceneSetter.xml','src':'https://www.energyopportunities.tv/eomedia/flash/videoPlayer2.2.1_bb03.swf'},'name':null,'object_html':'&lt;div&gt;&lt;h4&gt;Content on this page requires a newer version of Adobe Flash Player.&lt;/h4&gt;&lt;p&gt;&lt;a href=\&quot;http://www.adobe.com/go/getflashplayer\&quot;&gt;&lt;img src=\&quot;https://www.adobe.com/images/shared/download_buttons/get_flash_player.gif\&quot; alt=\&quot;Get Adobe Flash player\&quot; width=\&quot;112\&quot; height=\&quot;33\&quot; /&gt;&lt;/a&gt;&lt;/p&gt;&lt;/div&gt;&lt;p&gt;&lt;br /&gt;&lt;/p&gt;','hspace':null,'vspace':null,'align':null,'bgcolor':null}" alt="" /></object></p>
+]]></content:encoded>
+			<wfw:commentRss>http://www.news-sap.com/sap-chief-sustainability-officer-on-cnbc-europe-information-revelation/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Bouhdary: SAP Must Focus on Customers and Innovation to Meet Its Goals</title>
+		<link>http://www.news-sap.com/bouhdary-sap-must-focus-on-customers-and-innovation-to-meet-its-goals/</link>
+		<comments>http://www.news-sap.com/bouhdary-sap-must-focus-on-customers-and-innovation-to-meet-its-goals/#comments</comments>
+		<pubDate>Wed, 19 Jun 2013 20:00:26 +0000</pubDate>
+		<dc:creator>Derek Klobucher</dc:creator>
+				<category><![CDATA[Blogs]]></category>
+		<category><![CDATA[Industries & Solutions]]></category>
+		<category><![CDATA[Industries & Solutions Blogs]]></category>
+		<category><![CDATA[innovation]]></category>
+		<category><![CDATA[SAP Business Trends]]></category>
+		<category><![CDATA[SAP HANA]]></category>
+		<category><![CDATA[SAP Industry Analyst Base Camp]]></category>
+
+		<guid isPermaLink="false">http://www.news-sap.com/?p=7744</guid>
+		<description><![CDATA[Manure and rockets may seem like an odd couple. But SAP is listening, according to the company’s Chief Customer Value Officer Chakib Bouhdary. It’s listening to its customers, and it’s going to adapt to help them in any way possible &#8212; even if it means supporting a fertilizer company whose plan for growth involves acquiring a <a href="http://www.news-sap.com/bouhdary-sap-must-focus-on-customers-and-innovation-to-meet-its-goals/">(more...)</a>]]></description>
+				<content:encoded><![CDATA[<p><img class="alignleft" alt="" src="http://scn.sap.com/servlet/JiveServlet/downloadImage/38-87449-233610/300-150/SAP+Industry+Analyst+Base+Camp+Keynote+06-19-13-1.jpg" width="180" height="90" />Manure and rockets may seem like an odd couple. But SAP is listening, according to the company’s Chief Customer Value Officer <a href="http://scn.sap.com/people/chakib.bouhdary" data-containerid="-1" data-containertype="-1" data-objectid="15712" data-objecttype="3">Chakib Bouhdary</a>. It’s listening to its customers, and it’s going to adapt to help them in any way possible &#8212; even if it means supporting a fertilizer company whose plan for growth involves acquiring a satellite company.<span id="more-7744"></span></p>
+<p>This fertilizer company’s solution can help farmers increase yields by up to 30 percent by tailoring its formula to each location’s soil composition, seed depth and concentration, Bouhdary explained to industry analysts and other influencers Tuesday. It calculates the formula based on satellite data, which helps bring in a bigger harvest &#8212; and cultivates (pun intended) fierce customer loyalty.</p>
+<p>“This is such a unique scenario &#8212; such a competitive advantage &#8212; that you haven’t even thought about how to process these zillions of data,” Bouhdary said. “It needs to be built in a new CRM functionality, so not only the farmer becomes integral in CRM, but the land and every piece of the land becomes a CRM entry.”</p>
+<p><strong>Keeping it Simple</strong><br />
+Preparing for solutions to tomorrow’s problems was the type of innovation that Bouhdary discussed during his keynote at the fourth annual <a href="http://scn.sap.com/community/business-trends/blog/2013/06/18/analysts-descend-on-newtown-square-to-cover-their-bases" data-containerid="68842" data-containertype="37" data-objectid="87331" data-objecttype="38">SAP Industry Analyst Base Camp</a>, running Tuesday and Wednesday in Newtown Square. He also underscored the logic behind the company’s flagship in-memory platform SAP HANA, and described his team’s new method for keeping track of SAP’s 25 industry focuses.</p>
+<p>Databases had always been tremendously complex, often laden with too much hardware, Bouhdary stated. Systems were expensive to buy and maintain, which left little time or money to innovate.</p>
+<p>“So we decided to innovate; we built a database from scratch, and that was HANA,” Bouhdary said. “With HANA we believe we are achieving the goal of bringing all of those infrastructures, databases and data formats into one place.”</p>
+<p><strong>It’s All in the Delivery</strong><br />
+<img class="alignright" alt="" src="http://scn.sap.com/servlet/JiveServlet/downloadImage/38-87449-233611/300-150/SAP+Industry+Analyst+Base+Camp+Keynote+06-19-13-2.jpg" width="300" height="150" />SAP is also taking its eye for innovation and looking inward to streamline its method providing solutions, according to Bouhdary, reorganizing the company into “swim lanes.” Following a successful pilot program in Banking, all of SAP’s value engineers across the globe will focus on industry segments, merging with industry teams regionally.</p>
+<p>“There was no point in talking about solutions if you cannot deliver them to every customer around the world,” Bouhdary said. “We’re taking nearly 2,000 people, and we are dividing them by sector, and they’re going to be integrated into one team end-to-end &#8212; that is a major, major change.”</p>
+<p>More than 60 influencers from 15 countries are attending the Base Camp, according SAP Senior Vice President of Solution Marketing <a href="http://scn.sap.com/people/denise.broady" data-containerid="-1" data-containertype="-1" data-objectid="15714" data-objecttype="3">Denise Broady</a>, who introduced Bouhdary. She explained how, over the past year, SAP has focused on industries and bringing innovation to the market.</p>
+<p>“It’s the perfect storm, from an SAP perspective,” Broady said.</p>
+<p>Such an event can make natural bedfellows of previously inconceivable business partners &#8212; even fertilizer and satellite companies.</p>
+<p><em>Follow Derek on Twitter: @DKlobucher</em></p>
+<p><strong>Related Media:</strong><br />
+“<a href="http://scn.sap.com/community/business-trends/blog/2013/06/18/analysts-descend-on-newtown-square-to-cover-their-bases" data-containerid="68842" data-containertype="37" data-objectid="87331" data-objecttype="38">Analysts Descend on Newtown Square to Cover Their Bases</a>” in SAP Business Trends<br />
+“<a href="http://scn.sap.com/community/business-trends/blog/2013/06/19/sap-customer-panel-how-deloitte-intel-and-blount-run-better" data-containerid="68842" data-containertype="37" data-objectid="87448" data-objecttype="38">SAP Customer Panel: How Deloitte, Intel and Blount Run Better</a>” in SAP Business Trends<br />
+“<a href="http://scn.sap.com/community/business-trends/blog/2013/06/12/new-healthcare-research-tool-is-a-shot-in-the-arm-for-personalized-medicine">New Healthcare Research Tool Is A Shot In The Arm for Personalized Medicine</a>” in SAP Business Trends</p>
+<p><i><a href="http://scn.sap.com/community/business-trends/blog/2013/06/19/bouhdary-sap-must-focus-on-customers-and-innovation-to-meet-its-goals">Thist post originally appeared on SAP Business Trends</a>.</i></p>
+]]></content:encoded>
+			<wfw:commentRss>http://www.news-sap.com/bouhdary-sap-must-focus-on-customers-and-innovation-to-meet-its-goals/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>SAP Customer Panel: How Deloitte, Intel and Blount Run Better</title>
+		<link>http://www.news-sap.com/sap-customer-panel-how-deloitte-intel-and-blount-run-better/</link>
+		<comments>http://www.news-sap.com/sap-customer-panel-how-deloitte-intel-and-blount-run-better/#comments</comments>
+		<pubDate>Wed, 19 Jun 2013 19:30:33 +0000</pubDate>
+		<dc:creator>Tim Clark</dc:creator>
+				<category><![CDATA[Blogs]]></category>
+		<category><![CDATA[Ecosystem]]></category>
+		<category><![CDATA[Ecosystem Blogs]]></category>
+		<category><![CDATA[Industries & Solutions]]></category>
+		<category><![CDATA[Industries & Solutions Blogs]]></category>
+		<category><![CDATA[Blount]]></category>
+		<category><![CDATA[Deloitte]]></category>
+		<category><![CDATA[Intel]]></category>
+		<category><![CDATA[SAP Business Trends]]></category>
+		<category><![CDATA[SAP Industry Analyst Base Camp]]></category>
+
+		<guid isPermaLink="false">http://www.news-sap.com/?p=7742</guid>
+		<description><![CDATA[Barely a few hours into Day 1 of SAP’s Industry Analyst Base Camp I had a tough time keeping up with the tidal wave of great information being evangelized. SAP Chief Strategy Officer, Chakib Bouhdary, did a remarkable job setting the stage of what’s to come from SAP Industries during his info-packed keynote. Immediately following Chakib, Bonnie D. Graham, host <a href="http://www.news-sap.com/sap-customer-panel-how-deloitte-intel-and-blount-run-better/">(more...)</a>]]></description>
+				<content:encoded><![CDATA[<p><span style="font-size: 13px;"><img class="alignleft" alt="" src="http://scn.sap.com/servlet/JiveServlet/downloadImage/38-87448-233529/352-264/panelpic.JPG" width="211" height="158" />Barely a few hours into Day 1 of </span><a style="font-size: 13px;" href="http://scn.sap.com/community/business-trends/blog/2013/06/18/analysts-descend-on-newtown-square-to-cover-their-bases" data-containerid="68842" data-containertype="37" data-objectid="87331" data-objecttype="38">SAP’s Industry Analyst Base Camp</a><span style="font-size: 13px;"> I had a tough time keeping up with the tidal wave of great information being evangelized.<span id="more-7742"></span> SAP Chief Strategy Officer, Chakib Bouhdary, did a remarkable job </span><a style="font-size: 13px;" href="http://scn.sap.com/community/business-trends/blog/2013/06/19/bouhdary-sap-must-focus-on-customers-and-innovation-to-meet-its-goals" data-containerid="68842" data-containertype="37" data-objectid="87449" data-objecttype="38">setting the stage</a><span style="font-size: 13px;"> of what’s to come from SAP Industries during his info-packed keynote. Immediately following Chakib, </span><a style="font-size: 13px;" href="http://scn.sap.com/people/bonnied.graham" data-containerid="-1" data-containertype="-1" data-objectid="410835" data-objecttype="3">Bonnie D. Graham</a><span style="font-size: 13px;">, host of </span><a style="font-size: 13px;" href="http://scn.sap.com/community/business-trends/blog/2013/06/13/sap-game-changers-radio-83-the-next-generation-social-and-business" data-containerid="68842" data-containertype="37" data-objectid="87076" data-objecttype="38">SAP’s Game Changers Radio</a><span style="font-size: 13px;"> program led a panel discussion featuring SAP customers </span><a style="font-size: 13px;" href="http://events.sap.com/sapphirenow/en/session/2269">Deloitte</a><span style="font-size: 13px;">, </span><a style="font-size: 13px;" href="http://www.blount.com/">Blount</a><span style="font-size: 13px;"> and </span><a style="font-size: 13px;" href="http://www.sap.com/corporate-en/news.epx?PressID=20498">Intel</a><span style="font-size: 13px;">. It was fascinating to learn of the different business pain points each customer struggled with and how SAP helped them overcome adversity.</span></p>
+<p><strong>First question to panelists: What was the status quo and what did you need to innovate?</strong><br />
+John Irvin, Senior Manager, Analytics and Reporting Studio at Deloitte identified three areas in analytics reporting as serious issues. Time to market was taking 6-12 months and within that time, the customer’s business was changing. “We weren’t agile enough meeting customers needs,” said Irvin. Customers were also asking for functionality Deloitte couldn’t deliver. “We needed to think ‘mobile everything’ and we couldn’t deliver on our current platform, said Irvin. Data latency was also an issue, the best Deloitte could deliver to users was data that was 24 hours old. “They needed real time analytics,” said Irvin.</p>
+<p>Mardi Slick, HRIS manager for Blount, one of the world’s largest producers of chainsaws and outdoor equipment, had paper based performance management system that was “pretty ugly”. Complicating matters, HR managers would randomly change the process. “We had no visibility at all,” said Slick. “We’d get 50-60% of performance evaluations sent in late.”</p>
+<p>Like Deloitte and Blount, Intel was also looking to make a large group within the company become more productive. Nimish Shah, Director, Enterprise Applications at Intel said he needed to help unleash productivity on all of the company’s mobile devices. As Shah puts it: “How do we bring in unique apps to help the business transform?”</p>
+<p><strong>With pain points established, Graham shifted gears and asked panelists to share experiences with their evaluations process. What did buy-in entail and how were teams involved to change things?</strong><br />
+For Deloitte, the process kicked off in IT with internal assessments to meet customer needs. 18 months ago, they conducted proof-of-concepts with <a href="http://www.experiencehana.com/welcome">SAP HANA</a>. This involved compiling contact and influence finder apps, all related to Deloitte customers. These various apps allow Deloitte employees to see all points of contacts for customers. It took three weeks to develop an all-inclusive app, powered by SAP HANA. “That’s when we knew SAP HANA was real,” said Deloitte’s Irvin. “We made decisions to go live with SAP HANA to 300 managers and used that as a raod show for non-SAP folks to show them what we are able to deliver on SAP HANA. We showed business owners we could search through hundreds of millions of rows of data in a second.”</p>
+<p>For Blount, the buy-in process first and foremost involved researching top providers for the HR tool they were looking for. “SAP and SuccessFactors were obviously in top three,” said Slick who showed global HR teams both technologies. “SuccessFactors was the direction we wanted to go. Senior leadership said it was viable and exactly what we wanted.”</p>
+<p>For Intel, a large part of their buy-in involved releasing enough apps that employees trust. “We wanted to enable a variety of smartphones and reengineer business processes so the look and feel on mobile and desktop were similar,” said Shah. “How do we enable theses ecosystems? We looked at SAP Sybase products, put out SLAs for everything. We’re now using more SAP products as a result.”</p>
+<p><strong>At this point in the conversation, Graham asked panelists to elaborate on their game changing experiences. What worked? What didn’t? Lessons learned?</strong><br />
+For Deloitte’s Irvin, buy in worked from IT and business users. “That was instrumental to our success,” said Irvin. “We heard a lot of ‘wows’ and ‘that’s amazing’ throughout the entire process.” Getting quick wins was also critical for Deloitte’s success. “Turning people who love the latest and greatest onto SAP HANA was the best thing we could have ever done,” said Irvin.</p>
+<p>Blount’s Slick believes it was critical to do proper research and know best practices. Knowing how to manage people was also a lesson learned throughout the process. “You’re always going to get a stodgy person who knows how to do things better.,” said Slick. “Clearly defining intent, and how you are going to get there, helps. People need to feel supported by changes, not annoyed by them.”</p>
+<p>Intel’s Shah learned it was an ambitious project to radically change Intel’s business by mobilizing everything with the desire to still gain a lot of value. “Security is something we are still learning about,” said Shah. “There is a lot of fear of data falling into wrong hands.” As a result, new “container levels” were established that tell mobile users if they are in a safe place or if security level is suspect.</p>
+<p><strong>When panelists were asked to define key benefits and value derived within 1-3 years, here’s how they responded:</strong><br />
+Deloitte’s Irvin: “Users of our [contact information] pilot group are saving 2-10 hours per week of them having to track down information from various systems.”</p>
+<p>Blount’s Slick: “Visibility of status is everything. We can see where every evaluation is at, goals, where they are behind, etc. It’s invaluable. We went from being the HR police to empowering managers to do their jobs. We are 100% compliant now which is great. We are properly managing underperformers and superstars as well.”</p>
+<p>Intel’s Shah: “We’re saving 57 minutes a day per employee for enabling BYOD which is what we set out to do. Now have 7 million hours saved due to the flexibility mobile offers.”</p>
+<p><strong>Five years from now…</strong><br />
+For Deloitte’s Irvin, it’s all about SAP HANA. He predicts Deloitte will be completely off Business Warehouse and onto SAP HANA and run its entire ERP system on SAP HANA as well. “Whether finished or just starting it will be happening,” said Irvin. In addition,  Irvin expects all apps developed internally at Deloitte will source all their data from the SAP HANA platform. “That’s the most radical idea in all of this,” said Irvin. “What typically happens in most organizations is you have a hub of data which is fed different interfaces across different areas of the business.”</p>
+<p>Blount’s Slick said her company will move to cloud completely in next five years. “It’s much easier to manage and you’re always presented with newest, best-in-industry solutions and they are constantly rolling things out every quarter,” said Slick. “But it has to work on mobile device first.”</p>
+<p>Intel’s Shah said he is always exploring new businesses and initiatives, which makes cloud compelling. “The challenges is how to manage business orchestration across cloud offerings,” said Shah. “SAP HANA will be used to help manage mobile needs. Our customers are looking to solve business problems.”</p>
+<p><i><a href="http://scn.sap.com/community/business-trends/blog/2013/06/19/sap-customer-panel-how-deloitte-intel-and-blount-run-better">This post originally appeared on SAP Business Trends</a>.</i></p>
+]]></content:encoded>
+			<wfw:commentRss>http://www.news-sap.com/sap-customer-panel-how-deloitte-intel-and-blount-run-better/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>SAP Student Academy Offers Online Training for University Students</title>
+		<link>http://www.news-sap.com/sap-student-academy-offers-online-training-for-university-students/</link>
+		<comments>http://www.news-sap.com/sap-student-academy-offers-online-training-for-university-students/#comments</comments>
+		<pubDate>Wed, 19 Jun 2013 13:00:13 +0000</pubDate>
+		<dc:creator>SAP News</dc:creator>
+				<category><![CDATA[Industries & Solutions]]></category>
+		<category><![CDATA[Industries & Solutions News]]></category>
+		<category><![CDATA[Top Stories]]></category>
+		<category><![CDATA[e-academy]]></category>
+		<category><![CDATA[newsbyte]]></category>
+		<category><![CDATA[SAP Education]]></category>
+		<category><![CDATA[SAP Student Academy]]></category>
+		<category><![CDATA[SAP University Alliances]]></category>
+
+		<guid isPermaLink="false">http://www.news-sap.com/?p=7726</guid>
+		<description><![CDATA[WALLDORF — SAP today introduced a new online training program as part of its strategy to close the SAP skills gap in the information and communication technology market and foster co-development with university students. Now available and specifically tailored to the needs of university students, the SAP Student Academy program offers a strong value proposition <a href="http://www.news-sap.com/sap-student-academy-offers-online-training-for-university-students/">(more...)</a>]]></description>
+				<content:encoded><![CDATA[<p><b><i><a href="http://cdn.news-sap.com/wp-content/blogs.dir/1/files/SAP-Student-Academy.jpg"><img class="alignleft  wp-image-7727" alt="SAP-Student-Academy" src="http://cdn.news-sap.com/wp-content/blogs.dir/1/files/SAP-Student-Academy.jpg" width="159" height="106" /></a>WALLDORF — </i></b><a href="http://www.sap.com/">SAP</a> today introduced a new online training program as part of its strategy to close the SAP skills gap in the information and communication technology market and foster co-development with university students.<span id="more-7726"></span> Now available and specifically tailored to the needs of university students, the <a href="http://scn.sap.com/docs/DOC-42342">SAP Student Academy</a> program offers a strong value proposition to universities to make their students more employable through early in-study completion of SAP certifications. The program covers core SAP certification tracks in the major market categories of business applications, database and technology, analytics and mobile.</p>
+<p>SAP Student Academy is a joint initiative between the <a href="http://www54.sap.com/training-education/overview.html">SAP Education</a> organization and the <a href="http://www.sap.com/corporate-en/our-company/university-alliances/index.epx">SAP University Alliances</a> program that aims to increase the placement of SAP certification curricula within the university sector through the provision of high-value, electronic learning content. It includes access to the well-established <a href="https://training.sap.com/us/en/training-options/e-academy">e-academy</a> certification training offering from SAP Education, which consists of an extensive suite of e-learning courses mapped to the knowledge requirements of the respective SAP certification along with other supporting learning elements, such as simulations, demonstrations and exercises. SAP is offering the e-learning content within SAP Student Academy at a reduced rate for universities, helping them equip students with the knowledge needed to get started in the job market.</p>
+<p>Students are able to access a training server for a specified period in order to practice their acquired knowledge in an SAP solution training environment. If students have content-related questions along the learning path, they can receive remote, asynchronous tutor support from SAP Education. SAP Student Academy also offers universities access to an extensive e-learning subscription library that they can make available to their students so they can expand their knowledge across all SAP solution areas.</p>
+<p>“SAP Student Academy marks a big step forward for SAP and its ecosystem to build qualified SAP resources in the market at the university level and across all SAP solution areas, including the <a href="http://www.sap.com/solutions/technology/in-memory-computing-platform/hana/overview/index.epx">SAP HANA platform</a>,” said Markus Schwarz, senior vice president and global head, SAP Education. “Arming students with knowledge of SAP solutions can give them an extra advantage as they leave university and enter the workforce. Equally important, the online learning format provides students with the flexibility to access course content when they want and from the device of their choice.”</p>
+<p>“For universities, SAP Student Academy provides a unique opportunity to complement existing education programs with professional learning content and training systems from SAP and allows universities to become part of the wider SAP network,” said Ann Rosenberg, global head of SAP University Alliances. “By broadening their curricula to include more SAP content, educators can help their students attain full SAP certification.”</p>
+<p>To learn more, visit the <a href="http://scn.sap.com/community/training-and-education">training and education</a> and <a href="http://scn.sap.com/community/uac">SAP University Alliances</a> pages on SAP Community Network and watch a <a href="http://www.youtube.com/watch?v=Nu6lCywy6xA">video</a>. For more information, visit the <a href="http://www.news-sap.com/">SAP Newsroom</a>. Follow SAP on Twitter at <a href="http://twitter.com/sapnews/">@sapnews</a>, <a href="http://twitter.com/sapedu">@SAPEDU</a> and <a href="https://twitter.com/SAP_UA">@SAP_UA</a>.</p>
+<p><b>Media Contact:</b><br />
+Martin Gwisdalla, +49 (6227) 7-67275, <a href="mailto:martin.gwisdalla@sap.com">martin.gwisdalla@sap.com</a>, CET</p>
+]]></content:encoded>
+			<wfw:commentRss>http://www.news-sap.com/sap-student-academy-offers-online-training-for-university-students/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+		</item>
+		<item>
+		<title>SAP Solutions Transform the World’s Largest Sailing Event, 2013 Kieler Woche</title>
+		<link>http://www.news-sap.com/sap-solutions-transform-the-worlds-largest-sailing-event-2013-kieler-woche/</link>
+		<comments>http://www.news-sap.com/sap-solutions-transform-the-worlds-largest-sailing-event-2013-kieler-woche/#comments</comments>
+		<pubDate>Wed, 19 Jun 2013 06:00:12 +0000</pubDate>
+		<dc:creator>SAP News</dc:creator>
+				<category><![CDATA[Corporate]]></category>
+		<category><![CDATA[Corporate News]]></category>
+		<category><![CDATA[Industries & Solutions]]></category>
+		<category><![CDATA[Industries & Solutions News]]></category>
+		<category><![CDATA[Top Stories]]></category>
+		<category><![CDATA[Kiel Week]]></category>
+		<category><![CDATA[Kieler Woche]]></category>
+		<category><![CDATA[newsbyte]]></category>
+		<category><![CDATA[SAP Sponsors]]></category>
+		<category><![CDATA[SAP Sponsorships]]></category>
+		<category><![CDATA[SAP Sports & Entertainment]]></category>
+
+		<guid isPermaLink="false">http://www.news-sap.com/?p=7725</guid>
+		<description><![CDATA[KIEL, Germany — As part of its broader push to transform the sports and entertainment industry with leading technology, SAP is continuing its partnership with the world’s largest sailing event, the Kieler Woche, taking place June 22-30 in Kiel, Germany. Since first partnering with the event in 2010, SAP technology has helped sailors improve their performance, <a href="http://www.news-sap.com/sap-solutions-transform-the-worlds-largest-sailing-event-2013-kieler-woche/">(more...)</a>]]></description>
+				<content:encoded><![CDATA[<p><b><i><img class="alignleft" alt="" src="http://cdn.news-sap.com/wp-content/blogs.dir/1/files/Sailing.jpg" width="150" height="97" />KIEL, Germany —</i></b> As part of its broader push to transform the sports and entertainment industry with leading technology,<b><i> </i></b><a href="http://www.sap.com/">SAP</a> is continuing its partnership with the world’s largest sailing event, the Kieler Woche, taking place June 22-30 in Kiel, Germany.<span id="more-7725"></span> Since first partnering with the event in 2010, SAP technology has helped sailors improve their performance, made it easier for fans to track and understand the race and delivered real-time insights to media.</p>
+<p>“We have been working with the Kieler Woche team on solutions that enhance the regatta for sailors, spectators and the media,” said Jim Hagemann Snabe, co-CEO, SAP AG. “Our innovative technology provides sailors with tools to analyze and improve their performance, make well-informed decisions and adjust their strategy as needed — in real time.”</p>
+<p>Bringing sailing fans and spectators closer to the action, <a href="http://www.kieler-woche.de/">the official regatta website</a> will feature an online “<a href="http://livecenter.kieler-woche.de/">SAP Live Center</a>,” available in German and English, making the regatta action accessible to an international audience. New this year, SAP will deliver the English version of Kieler Woche TV on the regatta website, providing three hours of live daily race footage and expert SAP commentary. For the first time at Kieler Woche, SAP will also hold “Regatta Reviews” on the Audi Main Stage, enabling all sailors to benefit from SAP expert analysis. More information on how to participate in sailor debriefs and Regatta Reviews is available on the regatta website and at the “SAP Sailors Lounge” on site.</p>
+<p>“SAP continues to play a major role in international sailing and we are thrilled to continue working with our longstanding partner for the 2013 Kieler Woche,” said Nikolaus Rickers, CEO, Point of Sailing Marketing GmbH. “SAP solutions are not only assisting the development of sailing around the world but have helped our regatta run more efficiently than ever before. SAP has implemented solutions that enhance the regatta for sailors, spectators and the media, and we are confident that their support will help us to once again deliver a world-class event.”</p>
+<p>The new technology builds on the platform of innovations from SAP that enhance the Kieler Woche experience for participants. These include sailing analytics that display race information in real time and give access to the latest data with the click of a button; post-race replays and visualizations; onsite debriefs between SAP technology experts and sailors; and the “Race Committee” mobile app, which allows the race committee, spectators and other stakeholders to easily schedule races, communicate race starts and ends, register start violations and update race status.</p>
+<p>SAP announced the sports and entertainment industry as its 25th vertical industry segment in May at the SAPPHIRE NOW conference. For more information, see: “<a href="http://www.news-sap.com/saps-got-game-technology-to-reshape-the-sports-and-entertainment-industry/">SAP’s Got Game: Technology to Reshape the Sports and Entertainment Industry</a>.” To learn more about SAP’s sponsorship of 2013 Kieler Woche, see: “<a href="http://www.news-sap.com/sap-continues-sponsorship-of-worlds-largest-sailing-regatta-kieler-woche/">SAP Continues Sponsorship of World’s Largest Sailing Regatta, Kieler Woche</a>.”</p>
+<p>For more information, visit <a href="http://www.sapsponsorships.com">www.sapsponsorships.com</a>, <a href="http://www.kieler-woche.de/english">www.kieler-woche.de/english</a> and the <a href="http://www.news-sap.com/">SAP Newsroom</a>. Follow SAP on Twitter at <a href="http://twitter.com/sapnews/">@sapnews</a> and <a href="http://www.twitter.com/sapsponsors">@SAPsponsors</a>.</p>
+<p><b>Media Contacts:</b><br />
+Jim Dever, +1 (610) 661-2161, <a href="mailto:james.dever@sap.com">james.dever@sap.com</a>, EDT<br />
+Tanja Charrier, +49 (6227) 7 48522, <a href="mailto:tanja.charrier@sap.com">tanja.charrier@sap.com</a>, CET<br />
+Stefan Lacher, +49 (1609) 081-9688, <a href="mailto:stefan.lacher@sap.com">stefan.lacher@sap.com</a>, CET</p>
+<p>&nbsp;</p>
+]]></content:encoded>
+			<wfw:commentRss>http://www.news-sap.com/sap-solutions-transform-the-worlds-largest-sailing-event-2013-kieler-woche/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Analysts Descend on Newtown Square to Cover Their Bases</title>
+		<link>http://www.news-sap.com/analysts-descend-on-newtown-square-to-cover-their-bases/</link>
+		<comments>http://www.news-sap.com/analysts-descend-on-newtown-square-to-cover-their-bases/#comments</comments>
+		<pubDate>Tue, 18 Jun 2013 19:00:30 +0000</pubDate>
+		<dc:creator>Derek Klobucher</dc:creator>
+				<category><![CDATA[Blogs]]></category>
+		<category><![CDATA[Industries & Solutions]]></category>
+		<category><![CDATA[Industries & Solutions Blogs]]></category>
+		<category><![CDATA[SAP Business Trends]]></category>
+		<category><![CDATA[SAP Industry Analyst Base Camp]]></category>
+
+		<guid isPermaLink="false">http://www.news-sap.com/?p=7740</guid>
+		<description><![CDATA[More than 60 industry analysts from around the world will gather in Newtown Square on Tuesday and Wednesday to learn more about SAP’s latest and greatest during the company’s fourth annual influencer conference. The SAP Industry Analyst Base Camp at the company’s North American headquarters will promote SAP’s industry vision, strategy, solutions, innovations and five market categories. <a href="http://www.news-sap.com/analysts-descend-on-newtown-square-to-cover-their-bases/">(more...)</a>]]></description>
+				<content:encoded><![CDATA[<p><img class="alignleft" alt="" src="http://scn.sap.com/servlet/JiveServlet/downloadImage/38-87331-232649/300-150/SAP+Industry+Analyst+Base+Camp+Promotional+06-18-13.jpg" width="300" height="150" />More than 60 <a href="http://seekingalpha.com/article/82146-industry-analysts-vs-financial-analysts-how-silly">industry analysts</a> from around the world will gather in Newtown Square on Tuesday and Wednesday to learn more about SAP’s latest and greatest during the company’s fourth annual influencer conference.<span id="more-7740"></span> The SAP Industry Analyst Base Camp at the company’s North American headquarters will promote SAP’s industry vision, strategy, solutions, innovations and five market categories.</p>
+<p>This year’s theme is “Driving Innovation and Value for Industries.” Organizers expect the invitation-only Base Camp will showcase how SAP’s innovative portfolio delivers value to SAP’s customers via in-depth breakout sessions for individual industries, SAP executive presentations and demonstrations.</p>
+<p>“We’ll have 64 influencers attending the Analyst Base Camp 2013,” SAP Senior Analyst Relations Manager Christian Kretz said Monday. “It is the biggest Base Camp ever.”</p>
+<p>This will also be the first Base Camp with participation by customers. They will share their experiences during the Industry Customer Panel with SAP Radio host <a href="http://scn.sap.com/people/bonnied.graham" data-containerid="-1" data-containertype="-1" data-objectid="410835" data-objecttype="3">Bonnie D. Graham</a> on Tuesday afternoon.</p>
+<p>“Overwhelming feedback from last year’s event was that these leading analysts want to hear directly from SAP customers,” event lead Jennifer Prevoznik said Monday. “<a href="http://www.blount.com/%E2%80%8E">Blount</a>, <a href="http://www.deloitte.com/%E2%80%8E">Deloitte</a>, and <a href="http://www.intel.com/">Intel</a> and will be on stage for an intimate conversation about how their companies have used SAP solutions to revolutionize their businesses.”</p>
+<p><img class="alignright" alt="" src="http://scn.sap.com/servlet/JiveServlet/downloadImage/38-87331-233093/300-150/SAP+Industry+Analyst+Base+Camp+Promotional+06-18-13-B.jpg" width="300" height="150" />A cocktail reception and dinner on Tuesday evening will give the analysts a chance to network with customers, journalists and other influencers, as well as SAP executives and spokespeople. Breakout sessions on Wednesday will focus on Banking, Manufacturing and eight other SAP <a href="http://www.sap.com/mena/industries/index.epx">Industries</a>. There will also be one-on-one meetings with SAP executives.</p>
+<p>“SAP recently announced Sports and Entertainment as its most recent industry focus,” Prevoznik noted. “We will preview this area during our executive panel on Wednesday.”</p>
+<p><a href="http://scn.sap.com/community/business-trends">SAP Business Trends</a> will feature coverage of the event all week. Get a minute-by-minute account of the SAP Industry Analyst Base Camp &#8212; and the latest on SAP Industries in general &#8212; on Twitter with the hashtag #SAPIndustries.</p>
+<p><em>Follow Derek on Twitter: @DKlobucher</em></p>
+<p><strong>Related Media:</strong><br />
+“<a href="http://scn.sap.com/community/business-trends/blog/2013/06/12/new-healthcare-research-tool-is-a-shot-in-the-arm-for-personalized-medicine" data-containerid="68842" data-containertype="37" data-objectid="87030" data-objecttype="38">New Healthcare Research Tool Is A Shot In The Arm for Personalized Medicine</a>” in SAP Business Trends<br />
+“<a href="http://scn.sap.com/community/business-trends/blog/2013/06/07/sap-co-ceo-shows-why-we-must-gain-ability-for-sustainability" data-containerid="68842" data-containertype="37" data-objectid="86756" data-objecttype="38">SAP Co-CEO Shows Why We Must Gain Ability for Sustainability</a>” in SAP Business Trends<br />
+“<a href="http://seekingalpha.com/article/82146-industry-analysts-vs-financial-analysts-how-silly">Industry Analysts Vs. Financial Analysts: How Silly</a>” in Seeking Alpha</p>
+<p><i><a href="http://scn.sap.com/community/business-trends/blog/2013/06/18/analysts-descend-on-newtown-square-to-cover-their-bases">This post originally appeared on SAP Business Trends</a>.</i><i></i></p>
+]]></content:encoded>
+			<wfw:commentRss>http://www.news-sap.com/analysts-descend-on-newtown-square-to-cover-their-bases/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Will Electric Vehicles Boost Harmful Emissions?</title>
+		<link>http://www.news-sap.com/will-electric-vehicles-boost-harmful-emissions/</link>
+		<comments>http://www.news-sap.com/will-electric-vehicles-boost-harmful-emissions/#comments</comments>
+		<pubDate>Tue, 18 Jun 2013 18:00:30 +0000</pubDate>
+		<dc:creator>Tim Clark</dc:creator>
+				<category><![CDATA[Blogs]]></category>
+		<category><![CDATA[Sustainability]]></category>
+		<category><![CDATA[Sustainability Blogs]]></category>
+		<category><![CDATA[electric vehicles]]></category>
+		<category><![CDATA[Peter Graf]]></category>
+		<category><![CDATA[SAP Business Trends]]></category>
+		<category><![CDATA[sustainability]]></category>
+
+		<guid isPermaLink="false">http://www.news-sap.com/?p=7738</guid>
+		<description><![CDATA[Electric Vehicles recently hit a critical milestone of 100,000 sold in the U.S., a number expected to jump to 3 million by 2020. While it’s a fraction of the 15.6 million fossil-fuel cars Americans bought last year, environmentalists deem these numbers a very positive sign of things to come. But how and where will all of <a href="http://www.news-sap.com/will-electric-vehicles-boost-harmful-emissions/">(more...)</a>]]></description>
+				<content:encoded><![CDATA[<p><img class="alignleft" alt="" src="http://scn.sap.com/servlet/JiveServlet/downloadImage/38-87359-232861/224-149/car1.jpg" width="224" height="149" />Electric Vehicles recently hit a critical milestone of 100,000 sold in the U.S., <a href="http://www.businesswire.com/news/home/20130618005476/en/Plug-In-Electric-Vehicles-Reach-3-Million-Annual?utm_source=dlvr.it&amp;utm_medium=twitter">a number expected to jump to 3 million by 2020</a>. While it’s a fraction of the 15.6 million fossil-fuel cars Americans bought last year, environmentalists deem these numbers a very positive sign of things to come.<span id="more-7738"></span> But how and where will all of these electric vehicles plug in and charge? Won’t this add more strain to the energy grid, increase demand for coal and ultimately boost harmful emissions?</p>
+<p>I had a chance to catch up with <a href="http://scn.sap.com/people/peter.graf">Peter Graf</a>, SAP’s Chief Sustainability Officer, to learn more.</p>
+<p>According to Graf, electric cars make the most sense if the energy they consume comes from renewable sources of energy like solar (SAP uses 60% renewables for all electricity globally). In the future, this concept means less reliable sources of renewable energy can actually use electric cars as an electricity buffer, and charge or feed from those car batteries, depending on the need for electricity in the grid. “It will allow us to increase renewables in our energy mix significantly, without increasing the risk of power outages,” said Graf.</p>
+<p>Sounds great. But what if this doesn’t happen and most electric vehicles plug in via more traditional means?</p>
+<p>“Even if electric cars are charged via a central power plant, they are causing less emissions per car as a conventional car,” said Graf. “If a car is powered by coal fired power plants exclusively, it is much easier to deploy means to reduce the emissions centrally via carbon storage and clean coal as compared to millions of cars on the road.”</p>
+<p>Still skeptical? I was too until I watched the below news clip featuring SAP’s Graf. It showcases a real, working electric vehicle ecosystem and for me, removed serious doubts around cost, scalability (Wireless car charging?! Cool!) and the aforementioned emissions concerns.</p>
+<p>Watch news clip: “<a href="http://sap-tv.com/story/3329/electric-cars-at-sap-turning-silicon-valley-into-modern-day-motor-city">Electric Cars at SAP: Turning Silicon Valley into a Modern Day Motor City</a>.”</p>
+<p>Do you get charged up thinking about electric vehicles? Sound off in the comments below.</p>
+<p><b>You might also like:</b><br />
+<b><a href="http://scn.sap.com/community/business-trends/blog/2013/05/02/sap-s-twogo-ride-sharing-app-puts-the-brakes-on-costs-revs-up-engagement">SAP’s TwoGo Ride-Sharing App Puts the Brakes on Costs, Revs Up Engagement</a></b></p>
+<p><i><a href="http://scn.sap.com/community/business-trends/blog/2013/06/18/will-electric-vehicles-boost-harmful-emissions">This post originally appeared on SAP Business Trends</a>.</i></p>
+]]></content:encoded>
+			<wfw:commentRss>http://www.news-sap.com/will-electric-vehicles-boost-harmful-emissions/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+	</channel>
+</rss>

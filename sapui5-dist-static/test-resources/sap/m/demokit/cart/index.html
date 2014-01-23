@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta charset="UTF-8">
+		
+		<title>Shopping Cart</title>
+		
+		<script id="sap-ui-bootstrap" type="text/javascript"
+			src="../../../../../resources/sap-ui-core.js"
+			data-sap-ui-theme="sap_bluecrystal"
+			data-sap-ui-xx-bindingSyntax="complex"
+			data-sap-ui-libs="sap.m, sap.me">
+		</script>
+		
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+		
+		<script>
+			
+			// tell UI5 where to find stuff
+			sap.ui.localResources("util");
+			sap.ui.localResources("view");
+			sap.ui.localResources("model");
+			jQuery.sap.registerModulePath('Application', 'Application');
+			
+			// launch application
+			jQuery.sap.require("Application");
+			var oApp = new Application({root : "content"});
+			
+		</script>
+		
+	</head>
+	<body class="sapUiBody" id="content">
+	</body>
+</html>

@@ -1,0 +1,23 @@
+ 					<IconTabFilter xmlns="sap.m"
+                            key="Quantities"
+                            icon="sap-icon://example">
+                        <form:SimpleForm xmlns:form="sap.ui.layout.form"
+                                id="QUANTITY_FORM"
+                                minWidth="1024"
+                                maxContainerCols="2">
+                            <form:content xmlns:form="sap.ui.layout.form">
+                                <Label xmlns="sap.m" text="{i18n>COMPLAINT_QTY}"/>
+                                <Text xmlns="sap.m" text="{ComplaintQty}"/>
+                                <Label xmlns="sap.m" text="{i18n>REF_QTY}"/>
+                                <Text xmlns="sap.m" text="{RefQuantity}"/>
+                                <Label xmlns="sap.m" text="{i18n>RET_DELIVERY_UNIT}"/>
+                                <Text xmlns="sap.m" text="{ReturnDeliveryUnit}"/>
+                                <Label xmlns="sap.m" text="{i18n>RETURNED_ON}"/>
+                                <Text xmlns="sap.m" text="{path:'ReturnedOn',  type:'sap.ca.ui.model.type.Date', formatOptions : { style:'medium'}}"/>
+                                <Label xmlns="sap.m" text="{i18n>DEF_QTY_INTERNAL}"/>
+                                <Text xmlns="sap.m" text="{DefiniteQuantityInternal}"/>                               
+                                <Label xmlns="sap.m" text="{i18n>DEF_QTY_EXTERNAL}"/>
+                                <Text xmlns="sap.m" text="{DefiniteQuantityExternal}"/>             
+                            </form:content>
+                        </form:SimpleForm>
+                    </IconTabFilter>

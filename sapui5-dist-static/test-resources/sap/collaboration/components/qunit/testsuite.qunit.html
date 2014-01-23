@@ -1,0 +1,44 @@
+<html>
+ <head>
+  <title>TestSuite for sap.collaboration.components</title>
+  <script language="javascript" src="/jsunit-testrunner/app/jsUnitCore.js"></script>
+ </head>
+ <body>
+  <script language="javascript">
+
+  /**
+   * Add test pages to this test suite function.
+   * Please order alphabetically
+   */
+  function suite() {
+    var suite = new top.jsUnitTestSuite();
+    var contextPath = "/" + window.location.pathname.split("/")[1];
+    
+    //suite.addTestPage(contextPath + "/test-resources/sap/collaboration/components/fiori/feed/qunit/Component.qunit.html");
+    suite.addTestPage(contextPath + "/test-resources/sap/collaboration/components/fiori/feed/qunit/DetailView_SplitApp.qunit.html");
+    suite.addTestPage(contextPath + "/test-resources/sap/collaboration/components/fiori/feed/qunit/DetailView_WidgetCompanyFeed.qunit.html");
+    suite.addTestPage(contextPath + "/test-resources/sap/collaboration/components/fiori/feed/qunit/DetailView_Widget_ExternalObjectFeed.qunit.html");
+    suite.addTestPage(contextPath + "/test-resources/sap/collaboration/components/fiori/feed/qunit/SplitAppView.qunit.html");
+    suite.addTestPage(contextPath + "/test-resources/sap/collaboration/components/fiori/sharing/qunit/SharingViewWithNoGroups.qunit.html");    
+    suite.addTestPage(contextPath + "/test-resources/sap/collaboration/components/fiori/utils/qunit/JamUtil.qunit.html");
+    
+   //Incompatible with IE8 (most likely due to sap.m library)
+    if (!navigator.userAgent.match(/MSIE 8/g)) {
+        suite.addTestPage(contextPath + "/test-resources/sap/collaboration/components/fiori/feed/qunit/AppView.qunit.html");
+    	suite.addTestPage(contextPath + "/test-resources/sap/collaboration/components/fiori/feed/qunit/feedTypeMasterView.qunit.html");
+        suite.addTestPage(contextPath + "/test-resources/sap/collaboration/components/fiori/feed/qunit/GroupMasterView.qunit.html");
+        suite.addTestPage(contextPath + "/test-resources/sap/collaboration/components/fiori/sharing/qunit/RerenderingSharingComponent.qunit.html");
+        suite.addTestPage(contextPath + "/test-resources/sap/collaboration/components/fiori/sharing/qunit/SharingComponent.qunit.html");
+        suite.addTestPage(contextPath + "/test-resources/sap/collaboration/components/fiori/sharing/qunit/SharingView.qunit.html");
+        //suite.addTestPage(contextPath + "/test-resources/sap/collaboration/components/fiori/utils/qunit/ODataUtil.qunit.html");
+        
+    }    
+   
+    return suite;
+  }
+
+  redirectToTestrunnerIfRequired();
+
+  </script>
+ </body>
+</html>

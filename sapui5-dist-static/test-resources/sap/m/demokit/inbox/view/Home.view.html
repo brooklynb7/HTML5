@@ -1,0 +1,37 @@
+<template data-controller-name="view.Home">
+	<div data-sap-ui-type="sap.m.Page" data-title="Approvals" class="sapMPageHideHeaderWhenShellHeader" data-enable-scrolling="false">
+		<div data-sap-ui-type="sap.m.TileContainer">
+			<div data-sap-ui-aggregation="tiles">
+				<div data-sap-ui-type="sap.m.StandardTile" 
+					data-title="Leave Requests" 
+					data-number="{number>/lr/number}"
+					data-number-unit="Requests"
+					data-icon="sap-icon://inbox"
+					data-press="leaveRequestTilePress" >
+				</div>
+				<div data-sap-ui-type="sap.m.StandardTile" 
+					data-icon="sap-icon://request"
+					data-title="Purchase Orders" 
+					data-number="{number>/po/number}"
+					data-number-unit="Orders"
+					data-info="Approve Purchase Orders"
+					data-press="purchaseOrderTilePress"> 
+				</div>
+				<div data-sap-ui-type="sap.m.StandardTile"
+					data-icon="sap-icon://doc-attachment" 
+					data-title="Empty Tile 2" 
+					data-number="111001"
+					data-number-unit="usd"
+					data-info="Don't click on this tile"> 
+				</div>
+				<div data-sap-ui-type="sap.m.StandardTile" 
+					data-icon="sap-icon://attachment"
+					data-title="Empty Tile 3" 
+					data-number="150000000"
+					data-number-unit="usd"
+					data-info="Don't click on this tile"> 
+				</div>
+			</div>
+		</div>
+	</div>
+</template>

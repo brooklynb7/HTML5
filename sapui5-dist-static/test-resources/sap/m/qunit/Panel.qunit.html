@@ -1,0 +1,70 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+		<title>Test Page for sap.m.Panel</title>
+		<script id="sap-ui-bootstrap"
+				data-sap-ui-theme="sap_bluecrystal"
+				type="text/javascript"
+				data-sap-ui-noConflict="true"
+				data-sap-ui-libs="sap.m"
+				src="../../../../resources/sap-ui-core.js">
+		</script>
+		<link rel="stylesheet" href="../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
+		<script type="text/javascript" src="../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+		<script type="text/javascript" src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
+		<script type="text/javascript" src="../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
+		<script type="text/javascript">
+
+		// create and add app
+		var app = new sap.m.App("myApp");
+		app.placeAt("uiArea1");
+
+		oPanel1 = new sap.m.Panel("testPanel", {
+			headerText: "This is the Panel header",
+			content: [
+				new sap.m.Text({
+					text: "This is a Text control"
+				})          
+			],
+			width: "200px",
+			height: "300px"
+		});
+
+		// create and add a page 
+		var page = new sap.m.Page({
+			title:"Panel",
+			content : [
+				oPanel1
+			]
+		});
+		app.addPage(page);
+
+		oPanel1.setWidth("400px");
+
+		test("Basic checks", function() {
+			var $testPanel = jQuery("#testPanel");
+			ok($testPanel.hasClass("sapMPanel"), "sapMPanel class present");
+			ok(jQuery("div:first-of-type", $testPanel).hasClass("sapMPanelHdr"), "sapMPanelHdr class present");
+		});
+		test("Sizes", function() {
+			var $testPanel = jQuery("#testPanel");
+			equal($testPanel.width(), 400, "Width is 400px");
+			equal($testPanel.height(), 300, "Width is 300px");
+		});
+		</script>
+
+	</head>
+	<body class="sapUiBody">
+		<h1 id="qunit-header">QUnit page for sap.m.Panel</h1>
+		<h2 id="qunit-banner"></h2>
+	 	<h2 id="qunit-userAgent"></h2>
+		<div id="qunit-testrunner-toolbar"></div>
+		<div id="qunit-fixture">test markup, will be hidden</div>
+		<ol id="qunit-tests"></ol>
+
+		<div id="uiArea1"></div>
+
+	</body>
+</html>

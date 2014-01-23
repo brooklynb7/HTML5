@@ -1,0 +1,64 @@
+<template data-controller-name="view.LrDetail">
+	<div id="page" data-sap-ui-type="sap.m.Page" data-title="Leave Request" data-show-nav-button="true" data-nav-button-press="back">
+		<div data-sap-ui-aggregation="content">
+			<div data-sap-ui-type="sap.m.ObjectHeader" 
+				data-title-active="true"
+				data-title-press="showRequestor"
+				data-title="{lr>requestor}"
+				data-number="{lr>days}"
+				data-number-unit="days">
+				<div data-sap-ui-aggregation="attributes">
+					<div data-sap-ui-type="sap.m.ObjectAttribute" data-text="{path:'lr>type', formatter:'util.Formatter.lrType'}">
+					</div>
+				</div>
+				<div data-sap-ui-aggregation="firstStatus">
+					<div data-sap-ui-type="sap.m.ObjectStatus" data-text="{path:'lr>agoDays', formatter:'util.Formatter.agoDays'}">
+					</div>
+				</div>
+			</div>
+			<div data-sap-ui-type="sap.me.TabContainer">
+				<div data-sap-ui-aggregation="contentInfo">
+					<div data-sap-ui-type="sap.ui.core.mvc.HTMLView" data-view-name="view.LrDetailInfo">
+					</div>
+				</div>
+				<div data-sap-ui-aggregation="contentNotes">
+					<div data-sap-ui-type="sap.ui.core.mvc.HTMLView" data-view-name="view.LrDetailNotes">
+					</div>
+				</div>
+				<div data-sap-ui-aggregation="contentAttachments">
+					<div data-sap-ui-type="sap.ui.core.mvc.HTMLView" data-view-name="view.LrDetailAttachment">
+					</div>
+				</div>
+			</div>
+			<div data-sap-ui-type="sap.m.IconTabBar">
+				<div data-sap-ui-aggregation="items">
+					<div data-sap-ui-type="sap.m.IconTabFilter" data-show-all="true" data-count="5" data-text="Items"></div>
+					<div data-sap-ui-type="sap.m.IconTabSeparator"></div>
+					<div data-sap-ui-type="sap.m.IconTabFilter" data-icon="sap-icon://task" data-icon-color="Critical" data-count="5" data-text="Open" ></div>
+					<div data-sap-ui-type="sap.m.IconTabFilter" data-icon="sap-icon://instance" data-icon-color="Negative" data-count="5" data-text="In Process" ></div>
+					<div data-sap-ui-type="sap.m.IconTabFilter" data-icon="sap-icon://shipping-status" data-icon-color="Positive" data-count="5" data-text="Shipped" ></div>
+				</div>
+				<div data-sap-ui-aggregation="content">
+					<div data-sap-ui-type="sap.ui.core.mvc.HTMLView" data-view-name="view.LrDetailTable">
+					</div>
+				</div>
+			</div>
+		</div>
+		<div data-sap-ui-aggregation="footer">
+			<div data-sap-ui-type="sap.m.Bar" data-translucent="true">
+				<div data-sap-ui-aggregation="contentRight">
+					<div data-sap-ui-type="sap.m.Button" 
+						data-text="Accept" 
+						data-icon="sap-icon://accept" 
+						data-press="approve">
+					</div>
+					<div data-sap-ui-type="sap.m.Button" 
+						data-text="Reject" 
+						data-icon="sap-icon://decline" 
+						data-press="reject">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</template>

@@ -1,0 +1,27 @@
+<html>
+ <head>
+  <title>QUnit TestSuite for sap.ui.table</title>
+  <script language="javascript" src="/jsunit-testrunner/app/jsUnitCore.js"></script>
+ </head>
+ <body>
+  <script language="javascript">
+
+  /**
+   * Add test pages to this test suite function.
+   * Please order alphabetically
+   */
+  function suite() {
+    var suite = new top.jsUnitTestSuite();
+    var contextPath = "/" + window.location.pathname.split("/")[1];
+    suite.addTestPage(contextPath + "/test-resources/sap/ui/table/qunit/Table.qunit.html");
+    suite.addTestPage(contextPath + "/test-resources/sap/ui/table/qunit/TableGrouping.qunit.html");
+    suite.addTestPage(contextPath + "/test-resources/sap/ui/table/qunit/TreeTable.qunit.html");
+    suite.addTestPage(contextPath + "/test-resources/sap/ui/table/qunit/DataTable.qunit.html");
+    return suite;
+  }
+
+  redirectToTestrunnerIfRequired();
+
+  </script>
+ </body>
+</html>

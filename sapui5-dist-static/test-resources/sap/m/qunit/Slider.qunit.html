@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta charset="UTF-8">
+		<title>Test Page for sap.m.slider</title>
+		<script id="sap-ui-bootstrap"
+				data-sap-ui-theme="sap_bluecrystal"
+				data-sap-ui-noConflict="true"
+				data-sap-ui-libs="sap.m"
+				src="../../../../resources/sap-ui-core.js">
+		</script>
+		<link rel="stylesheet" href="../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
+		<script src="../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+		<script src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
+		<script src="../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
+		<script src="../../../../resources/sap/ui/thirdparty/sinon.js"></script>
+
+		<script>
+			var oApp = new sap.m.App("myApp", { initialPage:"page1" }),
+
+				oSlider0 = new sap.m.Slider(),
+
+				oSlider1 = new sap.m.Slider({
+					width: "300px",
+					value: 69,
+					min: 10,
+					max: 100,
+					step: 1,
+					progress: false,
+					visible: false,
+					enabled: false
+				}),
+
+				oSlider2 = new sap.m.Slider({
+					width: "250px",
+					value: 67,
+					min: 5,
+					max: 90,
+					step: 1,
+					progress: true,
+					visible: true,
+					enabled: true,
+					name: "slider1"
+				}),
+
+				oSlider3 = new sap.m.Slider({
+					value: 70,
+					min: 10,
+					max: 100,
+					width: "150px",
+					step: 5,
+					progress : true,
+					visible: true,
+					enabled: true,
+					liveChange: function(oControlEvent) {
+						jQuery.sap.log.info("Event fired: 'liveChange' value property to " + oControlEvent.getParameter("value") + " on " + this);
+					},
+					change : function(oControlEvent) {
+						jQuery.sap.log.info("Event fired: 'change' value property to " + oControlEvent.getParameter("value") + " on " + this);
+					}
+				}),
+
+				oSlider4 = new sap.m.Slider({
+					value: 27,
+					width: "10em",
+					liveChange: function(oControlEvent) {
+						jQuery.sap.log.info("Event fired: 'liveChange' value property to " + oControlEvent.getParameter("value") + " on " + this);
+					},
+					change : function(oControlEvent) {
+						jQuery.sap.log.info("Event fired: 'change' value property to " + oControlEvent.getParameter("value") + " on " + this);
+					}
+				}),
+
+				oSlider5 = new sap.m.Slider({
+					value: 20,
+					width: "15em",
+					enabled: false,
+					liveChange: function(oControlEvent) {
+						jQuery.sap.log.info("Event fired: 'liveChange' value property to " + oControlEvent.getParameter("value") + " on " + this);
+					},
+					change : function(oControlEvent) {
+						jQuery.sap.log.info("Event fired: 'change' value property to " + oControlEvent.getParameter("value") + " on " + this);
+					}
+				}),
+
+				oSlider6 = new sap.m.Slider({
+					value: 10.34,
+					step: 0.1,
+					liveChange: function(oControlEvent) {
+						jQuery.sap.log.info("Event fired: 'liveChange' value property to " + oControlEvent.getParameter("value") + " on " + this);
+					},
+					change : function(oControlEvent) {
+						jQuery.sap.log.info("Event fired: 'change' value property to " + oControlEvent.getParameter("value") + " on " + this);
+					}
+				}),
+
+				oSlider7 = new sap.m.Slider({
+					value: 50.34,
+					step: 0.01,
+					min: 50,
+					liveChange: function(oControlEvent) {
+						jQuery.sap.log.info("Event fired: 'liveChange' value property to " + oControlEvent.getParameter("value") + " on " + this);
+					},
+					change : function(oControlEvent) {
+						jQuery.sap.log.info("Event fired: 'change' value property to " + oControlEvent.getParameter("value") + " on " + this);
+					}
+				}),
+
+				oSlider8 = new sap.m.Slider({
+					value: 150,
+					step: 50,
+					min: 0,
+					max: 500,
+					liveChange: function(oControlEvent) {
+						jQuery.sap.log.info("Event fired: 'liveChange' value property to " + oControlEvent.getParameter("value") + " on " + this);
+					},
+					change : function(oControlEvent) {
+						jQuery.sap.log.info("Event fired: 'change' value property to " + oControlEvent.getParameter("value") + " on " + this);
+					}
+				}),
+
+				oSlider9 = new sap.m.Slider({
+					value: 160,
+					step: 0.5,
+					min: 0,
+					max: 500,
+					liveChange: function(oControlEvent) {
+						jQuery.sap.log.info("Event fired: 'liveChange' value property to " + oControlEvent.getParameter("value") + " on " + this);
+					},
+					change : function(oControlEvent) {
+						jQuery.sap.log.info("Event fired: 'change' value property to " + oControlEvent.getParameter("value") + " on " + this);
+					}
+				}),
+
+				oSlider10 = new sap.m.Slider({
+					step: 0.01,
+					value: 10.35,
+					min: 0,
+					max: 500,
+					liveChange: function(oControlEvent) {
+						jQuery.sap.log.info("Event fired: 'liveChange' value property to " + oControlEvent.getParameter("value") + " on " + this);
+					},
+					change : function(oControlEvent) {
+						jQuery.sap.log.info("Event fired: 'change' value property to " + oControlEvent.getParameter("value") + " on " + this);
+					}
+				}),
+
+				oSlider11 = new sap.m.Slider({
+					step: 0.01,
+					value: 66,
+					min: 10.4,
+					max: 500.5,
+					liveChange: function(oControlEvent) {
+						jQuery.sap.log.info("Event fired: 'liveChange' value property to " + oControlEvent.getParameter("value") + " on " + this);
+					},
+					change : function(oControlEvent) {
+						jQuery.sap.log.info("Event fired: 'change' value property to " + oControlEvent.getParameter("value") + " on " + this);
+					}
+				}),
+
+				oSlider12 = new sap.m.Slider({
+					step: 0.01,
+					value: 10.35,
+					min: 0,
+					max: 500,
+					liveChange: function(oControlEvent) {
+						jQuery.sap.log.info("Event fired: 'liveChange' value property to " + oControlEvent.getParameter("value") + " on " + this);
+					},
+					change : function(oControlEvent) {
+						jQuery.sap.log.info("Event fired: 'change' value property to " + oControlEvent.getParameter("value") + " on " + this);
+					}
+				}),
+
+				oSlider13 = new sap.m.Slider({
+					value: 99,
+					liveChange: function(oControlEvent) {
+						jQuery.sap.log.info("Event fired: 'liveChange' value property to " + oControlEvent.getParameter("value") + " on " + this);
+					},
+					change : function(oControlEvent) {
+						jQuery.sap.log.info("Event fired: 'change' value property to " + oControlEvent.getParameter("value") + " on " + this);
+					}
+				}),
+
+				oSlider14 = new sap.m.Slider({
+					value: 1,
+					liveChange: function(oControlEvent) {
+						jQuery.sap.log.info("Event fired: 'liveChange' value property to " + oControlEvent.getParameter("value") + " on " + this);
+					},
+					change : function(oControlEvent) {
+						jQuery.sap.log.info("Event fired: 'change' value property to " + oControlEvent.getParameter("value") + " on " + this);
+					}
+				}),
+
+				oSlider15 = new sap.m.Slider({
+					value: 90,
+					liveChange: function(oControlEvent) {
+						jQuery.sap.log.info("Event fired: 'liveChange' value property to " + oControlEvent.getParameter("value") + " on " + this);
+					},
+					change : function(oControlEvent) {
+						jQuery.sap.log.info("Event fired: 'change' value property to " + oControlEvent.getParameter("value") + " on " + this);
+					}
+				}),
+
+				oSlider16 = new sap.m.Slider({
+					liveChange: function(oControlEvent) {
+						jQuery.sap.log.info("Event fired: 'liveChange' value property to " + oControlEvent.getParameter("value") + " on " + this);
+					},
+					change : function(oControlEvent) {
+						jQuery.sap.log.info("Event fired: 'change' value property to " + oControlEvent.getParameter("value") + " on " + this);
+					}
+				}),
+
+				aSliders = [oSlider0, oSlider1, oSlider2, oSlider3, oSlider4, oSlider5, oSlider6, oSlider7, oSlider8, oSlider9, oSlider10, oSlider11, oSlider12, oSlider13, oSlider14, oSlider15, oSlider16],
+		
+				oPage = new sap.m.Page("page1", {
+					title: "Mobile Slider Control",
+					content : aSliders
+				});
+
+			oApp.addPage(oPage);
+
+			oApp.placeAt("slider-content");
+
+			QUnit.config.autostart = false;
+			jQuery(document).ready(function() {
+				QUnit.start();
+			});
+
+			var fnCacheAndInitializeDomRefs = function(sId) {
+
+				// global variables
+				oSlider = sap.ui.getCore().byId(sId);
+				$Slider = oSlider.$();
+				$SliderInner = $Slider.children("." + sap.m.SliderRenderer.CSS_CLASS + "Inner");
+				$ProgressIndicator = $SliderInner.children("." + sap.m.SliderRenderer.CSS_CLASS + "Progress");
+				$Handle = $SliderInner.children("." + sap.m.SliderRenderer.CSS_CLASS + "Handle");
+				$Input = $Slider.children("input." + sap.m.SliderRenderer.CSS_CLASS + "Input");
+			};
+
+			module("Properties");
+
+			test("default Values", function() {
+				strictEqual(oSlider0.getWidth(), "100%", "Default slider width on " + oSlider0);
+				strictEqual(oSlider0.getEnabled(), true, "By default the slider is enabled on " + oSlider0);
+				strictEqual(oSlider0.getVisible(), true, "By default the slider is visible on " + oSlider0);
+				strictEqual(oSlider0.getName(), "", 'By default the slider name is "" on ' + oSlider0);
+				strictEqual(oSlider0.getMin(), 0, "By default the slider min is 0 on " + oSlider0);
+				strictEqual(oSlider0.getMax(), 100, "By default the slider max is 100 on " + oSlider0);
+				strictEqual(oSlider0.getStep(), 1, "By default the slider step is 1 on " + oSlider0);
+				strictEqual(oSlider0.getProgress(), true, "By default the slider progress is true on " + oSlider0);
+				strictEqual(oSlider0.getValue(), 0, "By default the slider value is 0 on " + oSlider0);
+			});
+
+			/* =========================================================== */
+			/*                 begin: HTML module                          */
+			/* =========================================================== */
+
+			module("HTML");
+
+			/* ------------------------------ */
+			/* rendering                      */
+			/* ------------------------------ */
+
+			test("rendering", function() {
+
+				aSliders.forEach(function(oSlider) {
+					fnCacheAndInitializeDomRefs(oSlider.getId());
+
+					if (oSlider.getEnabled()) {
+						ok($Slider.length, "The slider HTML DIV element container exist on " + oSlider);
+						ok($SliderInner.length, "The slider HTML DIV element exist on " + oSlider);
+
+						if (oSlider.getProgress()) {
+							ok($ProgressIndicator.length, "The slider progress indicator HTML DIV element exist on " + oSlider);
+						}
+
+						ok($Handle.length, "The slider handle HTML Span element exist on " + oSlider);
+						ok($Handle.children("span").length, "The slider handle HTML Span inner element exist on " + oSlider);
+
+						if (oSlider.getName()) {
+							ok($Input.length, "The slider HTML input element exist on " + oSlider);
+						} else {
+							ok(!$Input.length, "The slider HTML input element does not exist on " + oSlider);
+						}
+					}
+				});
+			});
+
+			/* =========================================================== */
+			/*                 end: HTML module                            */
+			/* =========================================================== */
+
+
+			/* =========================================================== */
+			/*                 begin: CSS and DOM module                   */
+			/* =========================================================== */
+
+			module("CSS and DOM");
+
+			test("css class and attributes", function() {
+				var i = 0,
+					oSlider0 = sap.ui.getCore().byId("__slider0"),
+					oSlider1 = sap.ui.getCore().byId("__slider1"),
+					oSlider2 = sap.ui.getCore().byId("__slider2"),
+					oSlider5 = sap.ui.getCore().byId("__slider5"),
+
+					$SldCont0 = oSlider0.$(),
+					$SldCont2 = oSlider2.$(),
+					$SldCont5 = oSlider5.$(),
+
+					$Sld0 = $SldCont0.children("." + sap.m.SliderRenderer.CSS_CLASS + "Inner"),
+					$Sld2 = $SldCont2.children("." + sap.m.SliderRenderer.CSS_CLASS + "Inner"),
+					$Sld5 = $SldCont5.children("." + sap.m.SliderRenderer.CSS_CLASS + "Inner"),
+
+					$Input0 = $SldCont0.children("input"),
+					$Input2 = $SldCont2.children("input"),
+					$Input5 = $SldCont5.children("input");
+
+				for (; i < aSliders.length; i++) {
+					fnCacheAndInitializeDomRefs(aSliders[i].getId());
+
+					if (oSlider.getEnabled()) {
+						ok($Slider.hasClass(sap.m.SliderRenderer.CSS_CLASS), 'The slider root HTML Div element "must have" the CSS class "' + sap.m.SliderRenderer.CSS_CLASS + '" on ' + oSlider);
+						ok($SliderInner.hasClass(sap.m.SliderRenderer.CSS_CLASS + "Inner"), 'The slider first-child HTML Div element "must have" the CSS class "' + sap.m.SliderRenderer.CSS_CLASS + 'Inner" on ' + oSlider);
+
+						if (oSlider.getProgress()) {
+							ok($ProgressIndicator.hasClass(sap.m.SliderRenderer.CSS_CLASS + "Progress"), 'The slider progress indicator HTML Div element "must have" the CSS class "' + sap.m.SliderRenderer.CSS_CLASS + 'Progress" on ' + oSlider);
+						}
+
+						ok($Handle.hasClass(sap.m.SliderRenderer.CSS_CLASS + "Handle"), 'The slider handle HTML Span element "must have" the CSS class "' + sap.m.SliderRenderer.CSS_CLASS + 'Handle" on ' + oSlider);
+						ok($Handle.children().hasClass(sap.m.SliderRenderer.CSS_CLASS + "HandleInner"), 'The slider handle HTML Span inner element "must have" the CSS class "' + sap.m.SliderRenderer.CSS_CLASS + 'HandleInner" on ' + oSlider);
+
+						if (oSlider.getName()) {
+							ok($Input.hasClass(sap.m.SliderRenderer.CSS_CLASS + "Input"), 'The slider HTML Input element "must have" the CSS class "' + sap.m.SliderRenderer.CSS_CLASS + 'Input" on ' + oSlider);
+						}
+					}
+				}
+
+				// oSlider0
+				strictEqual(jQuery.trim($SldCont0.attr("style")), "width: 100%;", 'Check if the style attribute has the value of "100%" on ' + oSlider0);
+
+				ok($Sld0.children("." + sap.m.SliderRenderer.CSS_CLASS + "Progress").length, 'The slider div element "must have" the css class "' + sap.m.SliderRenderer.CSS_CLASS + 'Progress" on ' + oSlider0);
+				ok($Sld0.children("span").hasClass(sap.m.SliderRenderer.CSS_CLASS + "Handle"), 'The slider span thumb element "must have" the css class "' + sap.m.SliderRenderer.CSS_CLASS + 'Handle" on ' + oSlider0);
+
+				if (oSlider0.getName()) {
+					strictEqual(Number($Input0.attr("value")), 0, 'The "value" attribute of the INPUT is 0 on ' + oSlider0);
+					strictEqual(Number($Input0.prop("value")), 0, 'The "value" property of the INPUT is 0 on ' + oSlider0);
+				}
+
+				// oSlider1
+				strictEqual(oSlider1.$().length, 0, 'The slider is not visible on' + oSlider1);
+
+				// oSlider2
+				ok($SldCont2.hasClass(sap.m.SliderRenderer.CSS_CLASS), 'The slider root html element "must have" the css class "' + sap.m.SliderRenderer.CSS_CLASS + '" on ' + oSlider2);
+				strictEqual(jQuery.trim($SldCont2.attr("style")), "width: 250px;", 'Check if the style attribute has the value of "250px" on ' + oSlider2);
+
+				ok($Sld0.children("." + sap.m.SliderRenderer.CSS_CLASS + "Progress").length, 'The slider div element "must have" the css class "' + sap.m.SliderRenderer.CSS_CLASS + 'Progress" on ' + oSlider2);
+				ok($Sld0.children("span").hasClass(sap.m.SliderRenderer.CSS_CLASS + "Handle"), 'The slider span thumb element "must have" the css class "' + sap.m.SliderRenderer.CSS_CLASS + 'Handle" on ' + oSlider2);
+
+				if (oSlider2.getName()) {
+					strictEqual(Number($Input2.attr("value")), 67, 'The "value" attribute of the INPUT is 67 on ' + oSlider2);
+					strictEqual(Number($Input2.prop("value")), 67, 'The "value" property of the INPUT is 67 on ' + oSlider2);
+				}
+
+				// oSlider5
+				ok($SldCont5.hasClass(sap.m.SliderRenderer.CSS_CLASS), 'The slider root html element "must have" the css class "' + sap.m.SliderRenderer.CSS_CLASS + '" on ' + oSlider5);
+				strictEqual(jQuery.trim($SldCont5.attr("style")), "width: 15em;", 'Check if the style attribute has the value of "15em" on ' + oSlider5);
+
+				ok($Sld5.children("." + sap.m.SliderRenderer.CSS_CLASS + "Progress").length, 'The slider div element "must have" the css class "' + sap.m.SliderRenderer.CSS_CLASS + 'Progress" on ' + oSlider5);
+				ok($Sld5.children("span").hasClass(sap.m.SliderRenderer.CSS_CLASS + "Handle"), 'The slider span thumb element "must have" the css class "' + sap.m.SliderRenderer.CSS_CLASS + 'Handle" on ' + oSlider5);
+
+				if (oSlider5.getName()) {
+					strictEqual(Number($Input5.attr("value")), 20, 'The "value" attribute of the INPUT is 20 on ' + oSlider5);
+					strictEqual(Number($Input5.prop("value")), 20, 'The "value" property of the INPUT is 20 on ' + oSlider5);
+				}
+			});
+
+			/* =========================================================== */
+			/*                 end: CSS and DOM module                     */
+			/* =========================================================== */
+
+
+			/* =========================================================== */
+			/*                 begin: API module                           */
+			/* =========================================================== */
+
+			module("Methods");
+
+			test("getter / setter", function() {
+				sap.ui.getCore().applyChanges();
+
+				strictEqual(oSlider1.getWidth(), "300px", 'Check if getWidth() return "300px" on ' + oSlider1);
+				strictEqual(oSlider1.getMin(), 10, 'Check if the getMin() return 10 on ' + oSlider1);
+				strictEqual(oSlider1.getMax(), 100, 'Check if getMax() return 100 on ' + oSlider1);
+				strictEqual(oSlider1.getStep(), 1, 'Check if getStep() return 1 on ' + oSlider1);
+				strictEqual(oSlider1.getProgress(), false, 'Check if getProgress() return false on ' + oSlider1);
+				strictEqual(oSlider1.getVisible(), false, 'Check if getVisible() return false on ' + oSlider1);
+				strictEqual(oSlider1.getEnabled(), false, 'Check if getEnabled() return false on ' + oSlider1);
+				strictEqual(oSlider1.getValue(), 69, 'Check if getValue() return 69 on ' + oSlider1);
+
+				strictEqual(oSlider2.getWidth(), "250px", 'Check if getWidth() return "250px" on ' + oSlider2);
+				strictEqual(oSlider2.getMin(), 5, 'Check if getMin() return 5 on ' + oSlider2);
+				strictEqual(oSlider2.getMax(), 90, 'Check if getMax() return 90 on ' + oSlider2);
+				strictEqual(oSlider2.getStep(), 1, 'Check if getStep() return 1 on ' + oSlider2);
+				strictEqual(oSlider2.getProgress(), true, 'Check if getProgress() return true on ' + oSlider2);
+				strictEqual(oSlider2.getVisible(), true, 'Check if getVisible() return true on ' + oSlider2);
+				strictEqual(oSlider2.getEnabled(), true, 'Check if getEnabled() return true on ' + oSlider2);
+				strictEqual(oSlider2.getValue(), 67, 'Check if getValue() return 67 on ' + oSlider2);
+
+				strictEqual(oSlider3.getWidth(), "150px", 'Check if getWidth() return "150px" on ' + oSlider3);
+				strictEqual(oSlider3.getMin(), 10, 'Check if getMin() return 10 on ' + oSlider3);
+				strictEqual(oSlider3.getMax(), 100, 'Check if getMax() return 100 on ' + oSlider3);
+				strictEqual(oSlider3.getStep(), 5, 'Check if getStep() return 5 on ' + oSlider3);
+				strictEqual(oSlider3.getProgress(), true, 'Check if getProgress() return true on ' + oSlider3);
+				strictEqual(oSlider3.getVisible(), true, 'Check if getVisible() return true on ' + oSlider3);
+				strictEqual(oSlider3.getEnabled(), true, 'Check if getEnabled() return true on ' + oSlider3);
+				strictEqual(oSlider3.getValue(), 70, 'Check if getValue() return 70 on ' + oSlider3);
+
+				strictEqual(oSlider4.getWidth(), "10em", 'Check if getWidth() return "10em" on ' + oSlider4);
+				strictEqual(oSlider4.getMin(), 0, 'Check if getMin() return 0 on ' + oSlider4);
+				strictEqual(oSlider4.getMax(), 100, 'Check if getMax() return 100 on ' + oSlider4);
+				strictEqual(oSlider4.getStep(), 1, 'Check if getStep() return 1 on ' + oSlider4);
+				strictEqual(oSlider4.getProgress(), true, 'Check if getProgress() return true on ' + oSlider4);
+				strictEqual(oSlider4.getVisible(), true, 'Check if getVisible() return true on ' + oSlider4);
+				strictEqual(oSlider4.getEnabled(), true, 'Check if getEnabled() return true on ' + oSlider4);
+				strictEqual(oSlider4.getValue(), 27, 'Check if getValue() return 27 on ' + oSlider4);
+
+				strictEqual(oSlider5.getWidth(), "15em", 'Check if getWidth() return "15em" on ' + oSlider5);
+				strictEqual(oSlider5.getMin(), 0, 'Check if getMin() return 0 on ' + oSlider5);
+				strictEqual(oSlider5.getMax(), 100, 'Check if getMax() return 100 on ' + oSlider5);
+				strictEqual(oSlider5.getStep(), 1, 'Check if getStep() return 1 on ' + oSlider5);
+				strictEqual(oSlider5.getProgress(), true, 'Check if getProgress() return true on ' + oSlider5);
+				strictEqual(oSlider5.getVisible(), true, 'Check if getVisible() return true on ' + oSlider5);
+				strictEqual(oSlider5.getEnabled(), false, 'Check if getEnabled() return false on ' + oSlider5);
+				strictEqual(oSlider5.getValue(), 20, 'Check if getValue() return 20 on ' + oSlider5);
+
+				strictEqual(oSlider6.getWidth(), "100%", 'Check if getWidth() return "100%" on ' + oSlider6);
+				strictEqual(oSlider6.getMin(), 0, 'Check if getMin() return 0 on ' + oSlider6);
+				strictEqual(oSlider6.getMax(), 100, 'Check if getMax() return 100 on ' + oSlider6);
+				strictEqual(oSlider6.getStep(), 0.1, 'Check if getStep() return 0.1 on ' + oSlider6);
+				strictEqual(oSlider6.getProgress(), true, 'Check if getProgress() return true on ' + oSlider6);
+				strictEqual(oSlider6.getVisible(), true, 'Check if getVisible() return true on ' + oSlider6);
+				strictEqual(oSlider6.getEnabled(), true, 'Check if getEnabled() return true on ' + oSlider6);
+				strictEqual(oSlider6.getValue(), 10.3, 'Check if getValue() return 10.3 on ' + oSlider6);
+
+				strictEqual(oSlider7.getWidth(), "100%", 'Check if getWidth() return "100%" on ' + oSlider7);
+				strictEqual(oSlider7.getMin(), 50, 'Check if getMin() return 50 on ' + oSlider7);
+				strictEqual(oSlider7.getMax(), 100, 'Check if getMax() return 100 on ' + oSlider7);
+				strictEqual(oSlider7.getStep(), 0.01, 'Check if getStep() return 0.1 on ' + oSlider7);
+				strictEqual(oSlider7.getProgress(), true, 'Check if getProgress() return true on ' + oSlider7);
+				strictEqual(oSlider7.getVisible(), true, 'Check if getVisible() return true on ' + oSlider7);
+				strictEqual(oSlider7.getEnabled(), true, 'Check if getEnabled() return true on ' + oSlider7);
+				strictEqual(oSlider7.getValue(), 50.34, 'Check if getValue() return 50.34 on ' + oSlider7);
+
+				strictEqual(oSlider8.getWidth(), "100%", 'Check if getWidth() return "100%" on ' + oSlider8);
+				strictEqual(oSlider8.getMin(), 0, 'Check if getMin() return 0 on ' + oSlider8);
+				strictEqual(oSlider8.getMax(), 500, 'Check if getMax() return 500 on ' + oSlider8);
+				strictEqual(oSlider8.getStep(), 50, 'Check if getStep() return 50 on ' + oSlider8);
+				strictEqual(oSlider8.getProgress(), true, 'Check if getProgress() return true on ' + oSlider8);
+				strictEqual(oSlider8.getVisible(), true, 'Check if getVisible() return true on ' + oSlider8);
+				strictEqual(oSlider8.getEnabled(), true, 'Check if getEnabled() return true on ' + oSlider8);
+				strictEqual(oSlider8.getValue(), 150, 'Check if getValue() return 150 on ' + oSlider8);
+
+				strictEqual(oSlider9.getWidth(), "100%", 'Check if getWidth() return "100%" on ' + oSlider9);
+				strictEqual(oSlider9.getMin(), 0, 'Check if getMin() return 0 on ' + oSlider9);
+				strictEqual(oSlider9.getMax(), 500, 'Check if getMax() return 500 on ' + oSlider9);
+				strictEqual(oSlider9.getStep(), 0.5, 'Check if getStep() return 0.5 on ' + oSlider9);
+				strictEqual(oSlider9.getProgress(), true, 'Check if getProgress() return true on ' + oSlider9);
+				strictEqual(oSlider9.getVisible(), true, 'Check if getVisible() return true on ' + oSlider9);
+				strictEqual(oSlider9.getEnabled(), true, 'Check if getEnabled() return true on ' + oSlider9);
+				strictEqual(oSlider9.getValue(), 160, 'Check if getValue() return 160 on ' + oSlider9);
+
+				strictEqual(oSlider10.getWidth(), "100%", 'Check if getWidth() return "100%" on ' + oSlider10);
+				strictEqual(oSlider10.getMin(), 0, 'Check if getMin() return 0 on ' + oSlider10);
+				strictEqual(oSlider10.getMax(), 500, 'Check if getMax() return 500 on ' + oSlider10);
+				strictEqual(oSlider10.getStep(), 0.01, 'Check if getStep() return 0.01 on ' + oSlider10);
+				strictEqual(oSlider10.getProgress(), true, 'Check if getProgress() return true on ' + oSlider10);
+				strictEqual(oSlider10.getVisible(), true, 'Check if getVisible() return true on ' + oSlider10);
+				strictEqual(oSlider10.getEnabled(), true, 'Check if getEnabled() return true on ' + oSlider10);
+				strictEqual(oSlider10.getValue(), 10.35, 'Check if getValue() return 10.35 on ' + oSlider10);
+
+				strictEqual(oSlider11.getWidth(), "100%", 'Check if getWidth() return "100%" on ' + oSlider11);
+				strictEqual(oSlider11.getMin(), 10.4, 'Check if getMin() return 10.4 on ' + oSlider11);
+				strictEqual(oSlider11.getMax(), 500.5, 'Check if getMax() return 500.5 on ' + oSlider11);
+				strictEqual(oSlider11.getStep(), 0.01, 'Check if getStep() return 0.01 on ' + oSlider11);
+				strictEqual(oSlider11.getProgress(), true, 'Check if getProgress() return true on ' + oSlider11);
+				strictEqual(oSlider11.getVisible(), true, 'Check if getVisible() return true on ' + oSlider11);
+				strictEqual(oSlider11.getEnabled(), true, 'Check if getEnabled() return true on ' + oSlider11);
+				strictEqual(oSlider11.getValue(), 66, 'Check if getValue() return 10.35 on ' + oSlider11);
+
+				strictEqual(oSlider12.getWidth(), "100%", 'Check if getWidth() return "100%" on ' + oSlider12);
+				strictEqual(oSlider12.getMin(), 0, 'Check if getMin() return 0 on ' + oSlider12);
+				strictEqual(oSlider12.getMax(), 500, 'Check if getMax() return 500 on ' + oSlider12);
+				strictEqual(oSlider12.getStep(), 0.01, 'Check if getStep() return 0.01 on ' + oSlider12);
+				strictEqual(oSlider12.getProgress(), true, 'Check if getProgress() return true on ' + oSlider12);
+				strictEqual(oSlider12.getVisible(), true, 'Check if getVisible() return true on ' + oSlider12);
+				strictEqual(oSlider12.getEnabled(), true, 'Check if getEnabled() return true on ' + oSlider12);
+				strictEqual(oSlider12.getValue(), 10.35, 'Check if getValue() return 10.35 on ' + oSlider12);
+
+				oSlider12.setValue("100");	// string
+				strictEqual(oSlider12.getValue(), 10.35, 'Check if getValue() return 10.35 on ' + oSlider12);
+
+				oSlider12.setValue(1e+309);	// infinite positive number
+				strictEqual(oSlider12.getValue(), 10.35, 'Check if getValue() return 10.35 on ' + oSlider12);
+
+				oSlider12.setValue(-1e+309);	// infinite negative number
+				strictEqual(oSlider12.getValue(), 10.35, 'Check if getValue() return 10.35 on ' + oSlider12);
+			});
+
+			test("public", function() {
+				oSlider2.stepDown();
+				strictEqual(oSlider2.getValue(), 66, 'Check the slider value after calling stepDown(), the value is 66 on ' + oSlider2);
+				oSlider2.stepUp();
+				strictEqual(oSlider2.getValue(), 67, 'Check the slider value after calling stepUp(), the value is 67 on ' + oSlider2);
+				oSlider2.stepDown(1);
+				strictEqual(oSlider2.getValue(), 66, 'Check the slider value after calling stepDown(true), the value is 66 on ' + oSlider2);
+				oSlider2.stepUp(1);
+				strictEqual(oSlider2.getValue(), 67, 'Check the slider value after calling stepUp(true), the value is 67 on ' + oSlider2);
+				oSlider2.stepDown(3);
+				strictEqual(oSlider2.getValue(), 64, 'Check the slider value after calling stepDown(3), the value is 64 on ' + oSlider2);
+				oSlider2.stepUp(3);
+				strictEqual(oSlider2.getValue(), 67, 'Check the slider value after calling stepUp(3), the value is 67 on ' + oSlider2);
+
+				oSlider2.setStep(3);
+				sap.ui.getCore().applyChanges();
+				strictEqual(oSlider2.getValue(), 66, 'Check the slider value after calling setStep(3), the value is 66 on ' + oSlider2);
+
+				oSlider2.stepDown(3);
+				strictEqual(oSlider2.getValue(), 57, 'Check the slider value after calling stepDown(3), the value is 57 on ' + oSlider2);
+				oSlider2.stepUp(3);
+				strictEqual(oSlider2.getValue(), 66, 'Check the slider value after calling stepUp(3), the value is 66 on ' + oSlider2);
+
+				oSlider2.setStep(1);
+				sap.ui.getCore().applyChanges();
+				strictEqual(oSlider2.getStep(), 1, 'Check if getStep() return 1 on ' + oSlider2);
+
+				oSlider2.setStep(-1);
+				sap.ui.getCore().applyChanges();
+				strictEqual(oSlider2.getStep(), 1, 'After calling setStep(-1), check if getStep() return 1 on ' + oSlider2);
+
+				oSlider2.setValue(67);
+				strictEqual(oSlider2.getValue(), 67, 'Check if getValue() return 67 on ' + oSlider2);
+
+				strictEqual(parseFloat(oSlider2.getWidth()), parseFloat(oSlider2.$().width()) + parseFloat(oSlider2.$().css("padding-left")) + parseFloat(oSlider2.$().css("padding-right")), "Check the slider width on " + oSlider2);
+
+				if (oSlider2.getName()) {
+					strictEqual(oSlider2.getValue(), Number(oSlider2.$().children("input").attr("value")), 'Check the "value" attribute of the native input type range on ' + oSlider2);
+				}
+
+				ok(!!oSlider2.$().children("." + sap.m.SliderRenderer.CSS_CLASS + "Inner").children("." + sap.m.SliderRenderer.CSS_CLASS + "Progress").length, 'Check if the slider has the css class "' + sap.m.SliderRenderer.CSS_CLASS + 'Progress" on ' + oSlider2);
+			});
+
+			/* =========================================================== */
+			/*                 end: API module                             */
+			/* =========================================================== */
+
+
+			/* =========================================================== */
+			/*                      begin: Events module                   */
+			/* =========================================================== */
+
+			module("Events");
+
+			/* -------------------------------- */
+			/* touchstart, touchmove, touchend  */
+			/* -------------------------------- */
+
+			test("Firing events", function() {
+				var touches = {
+						0: {
+							pageX: 150,
+							length: 1
+						}
+					},
+
+					oEventTouchStart = jQuery.Event("touchstart", {
+						target: oSlider2.$(),
+						touches: touches,
+						targetTouches: touches,
+						originalEvent: {
+							touches: touches
+						}
+					}),
+
+					oEventTouchMove = jQuery.Event("touchmove", {
+						target: oSlider2.$(),
+						touches: touches,
+						targetTouches: touches,
+						originalEvent: {
+							touches: touches
+						}
+					}),
+
+					oEventTouchEnd = jQuery.Event("touchend", {
+						targetTouches: touches,
+						originalEvent: {
+							touches: touches
+						}
+					}),
+
+					j,
+					i,
+					fPaddingR = parseFloat(oSlider2.$().css("padding-right")),
+					iRemainder,
+					iValue;
+
+				oSlider2.ontouchstart(oEventTouchStart);
+
+				ok(oSlider2.$().children("." + sap.m.SliderRenderer.CSS_CLASS + "Inner").hasClass(sap.m.SliderRenderer.CSS_CLASS + "Pressed"), 'On touchstart event the slider innner div muss have the css class “' + sap.m.SliderRenderer.CSS_CLASS + 'Pressed”');
+
+				oSlider2.ontouchend(oEventTouchEnd);
+
+				ok(!oSlider2.$().children("." + sap.m.SliderRenderer.CSS_CLASS + "Inner").hasClass(sap.m.SliderRenderer.CSS_CLASS + "Pressed"), 'On touchend the slider muss not have the css class “' + sap.m.SliderRenderer.CSS_CLASS + 'Pressed”');
+
+				iValue = Math.round((((150 - fPaddingR) / oSlider2.$().width()) * (90 - 5)) + 5);
+
+				strictEqual(iValue, oSlider2.getValue(), "On tap the slider value is " + iValue);
+
+				// changing the x-coordinate of the touch relative to the left
+				oEventTouchStart.targetTouches["0"].pageX = 200;
+
+				oSlider2.ontouchstart(oEventTouchStart);
+				oSlider2.ontouchend(oEventTouchEnd);
+
+				iValue = Math.round((((200 - fPaddingR) / oSlider2.$().width()) * (90 - 5)) + 5);
+
+				strictEqual(iValue, oSlider2.getValue(), "On tap the slider value is " + iValue);
+
+				// changing the event target
+				oEventTouchStart.target = oSlider2._$Handle;
+				oSlider2.ontouchstart(oEventTouchStart);
+				oSlider2.ontouchend(oEventTouchEnd);
+
+				iValue = Math.round((((200 - fPaddingR) / oSlider2.$().width()) * (90 - 5)) + 5);
+
+				strictEqual(iValue, oSlider2.getValue(), "On tap the slider value is " + iValue);
+
+				// changing the step and the x-coordinate of the touch relative to the left
+				oEventTouchStart.target = oSlider2.$();
+				oSlider2.setStep(3);
+				oEventTouchStart.targetTouches["0"].pageX = 234;
+
+				oSlider2.ontouchstart(oEventTouchStart);
+				oSlider2.ontouchend(oEventTouchEnd);
+
+				iValue = Math.round((((234 - fPaddingR) / oSlider2.$().width()) * (90 - 5)) + 5);
+				iRemainder = Math.abs(iValue % 3);
+				iValue = (iRemainder >= 3 / 2) ? iValue + 3 - iRemainder : iValue - iRemainder;
+
+				strictEqual(iValue, oSlider2.getValue(), "On tap the slider value is " + iValue);
+
+				// testing change and livechange event
+				oSlider2.setStep(1);
+				j = oEventTouchStart.targetTouches["0"].pageX = oEventTouchMove.targetTouches["0"].pageX = 200;
+
+				iValue = oSlider2.getValue();
+
+				oSlider2.ontouchstart(oEventTouchStart);
+
+				oSlider2.attachLiveChange(function onLiveChangeHandler(oEvent) {
+					strictEqual(oEvent.getParameter("value"), iValue, "On live change event the slider value is " + oEvent.getParameter("value"));
+				}, oSlider2);
+
+				oSlider2.attachChange(function onChangeHandler(oEvent) {
+					strictEqual(oEvent.getParameter("value"), iValue, "On change event the slider value is " + oEvent.getParameter("value"));
+				}, oSlider2);
+
+				iRemainder = Math.abs(iValue % 1);
+
+				for (i = j + 1; i < j + 41; i++) {
+					oEventTouchMove.targetTouches["0"].pageX = i;
+					iValue = Math.round((((i - fPaddingR) / oSlider2.$().width()) * (90 - 5)) + 5);
+					iValue = (iRemainder >= 1 / 2) ? iValue + 1 - iRemainder : iValue - iRemainder;
+					iValue = (iValue > 90) ? 90 : (iValue < 5) ? 5 : iValue;
+
+					oSlider2.ontouchmove(oEventTouchMove);
+
+					strictEqual(iValue, oSlider2.getValue(), "On touch move event the slider value is " + iValue);
+				}
+
+				oEventTouchEnd.targetTouches["0"].pageX = oEventTouchMove.targetTouches["0"].pageX;
+
+				oSlider2.ontouchend(oEventTouchEnd);
+
+				// suppress multiTouch events
+				oEventTouchStart.targetTouches.length = 2;
+				oSlider2.ontouchstart(oEventTouchStart);
+
+				ok(!oSlider2.$().children("." + sap.m.SliderRenderer.CSS_CLASS).hasClass("." + sap.m.SliderRenderer.CSS_CLASS + "Pressed"), 'If there is more than one touch related to the slider, the touchstart event will be suppresed, the slider muss not have the css class “' + sap.m.SliderRenderer.CSS_CLASS + 'Pressed”');
+				ok(!!(typeof oSlider2._iDiffX === "undefined"), "If there is more than one touch related to the slider, the touchstart event will be suppresed, the _iDiffX property is undefined");
+				ok(!!(typeof oSlider2._iStartValue === "undefined"), "If there is more than one touch related to the slider, the touchstart event will be suppresed, the _iStartValue property is undefined");
+			});
+
+			/* ------------------------------ */
+			/* onsapincrease                  */
+			/* ------------------------------ */
+
+			test("Firing events: onsapincrease", function() {
+				var fnFireChangeAndLiveChangeEventsSpy = sinon.spy(oSlider13, "_fireChangeAndLiveChange");
+
+				sap.ui.test.qunit.triggerKeydown(oSlider13.getDomRef(), jQuery.sap.KeyCodes.ARROW_RIGHT);
+				sap.ui.test.qunit.triggerKeydown(oSlider13.getDomRef(), jQuery.sap.KeyCodes.ARROW_RIGHT);
+
+				// assertions
+				strictEqual(oSlider13.getValue(), 100, "The slider value must be increased to 100 on " + oSlider13);
+				strictEqual(fnFireChangeAndLiveChangeEventsSpy.callCount, 1, "_fireChangeAndLiveChange() method must be called exactly once on " + oSlider13);
+
+				// cleanup
+				fnFireChangeAndLiveChangeEventsSpy.restore();
+			});
+
+			/* ------------------------------ */
+			/* onsapdecrease                  */
+			/* ------------------------------ */
+
+			test("Firing events: onsapdecrease", function() {
+				var fnFireChangeAndLiveChangeEventsSpy = sinon.spy(oSlider14, "_fireChangeAndLiveChange");
+
+				sap.ui.test.qunit.triggerKeydown(oSlider14.getDomRef(), jQuery.sap.KeyCodes.ARROW_LEFT);
+				sap.ui.test.qunit.triggerKeydown(oSlider14.getDomRef(), jQuery.sap.KeyCodes.ARROW_LEFT);
+
+				// assertions
+				strictEqual(oSlider14.getValue(), 0, "The slider value must be decreased to 0 on " + oSlider14);
+				strictEqual(fnFireChangeAndLiveChangeEventsSpy.callCount, 1, "_fireChangeAndLiveChange() method must be called exactly once on " + oSlider14);
+
+				// cleanup
+				fnFireChangeAndLiveChangeEventsSpy.restore();
+			});
+
+			/* ------------------------------ */
+			/* onsaphome                      */
+			/* ------------------------------ */
+
+			test("Firing events: onsaphome", function() {
+				var fnFireChangeAndLiveChangeEventsSpy = sinon.spy(oSlider15, "_fireChangeAndLiveChange");
+
+				sap.ui.test.qunit.triggerKeydown(oSlider15.getDomRef(), jQuery.sap.KeyCodes.HOME);
+				sap.ui.test.qunit.triggerKeydown(oSlider15.getDomRef(), jQuery.sap.KeyCodes.HOME);
+
+				// assertions
+				strictEqual(oSlider15.getValue(), 0, " on " + oSlider15);
+				strictEqual(fnFireChangeAndLiveChangeEventsSpy.callCount, 1, "_fireChangeAndLiveChange() method must be called exactly once on " + oSlider15);
+
+				// cleanup
+				fnFireChangeAndLiveChangeEventsSpy.restore();
+			});
+
+			/* ------------------------------ */
+			/* onsapend                       */
+			/* ------------------------------ */
+
+			test("Firing events: onsapend", function() {
+				var fnFireChangeAndLiveChangeEventsSpy = sinon.spy(oSlider16, "_fireChangeAndLiveChange");
+
+				sap.ui.test.qunit.triggerKeydown(oSlider16.getDomRef(), jQuery.sap.KeyCodes.END);
+				sap.ui.test.qunit.triggerKeydown(oSlider16.getDomRef(), jQuery.sap.KeyCodes.END);
+
+				// assertions
+				strictEqual(oSlider16.getValue(), 100, " on " + oSlider16);
+				strictEqual(fnFireChangeAndLiveChangeEventsSpy.callCount, 1, "_fireChangeAndLiveChange() method must be called exactly once on " + oSlider16);
+
+				// cleanup
+				fnFireChangeAndLiveChangeEventsSpy.restore();
+			});
+
+			/* =========================================================== */
+			/*                      end: Events module                     */
+			/* =========================================================== */
+		</script>
+	</head>
+	<body id="body" class="sapUiBody">
+		<h1 id="qunit-header">QUnit tests: sap.m.slider</h1>
+		<h2 id="qunit-banner"></h2>
+		<h2 id="qunit-userAgent"></h2>
+		<div id="qunit-testrunner-toolbar"></div>
+		<ol id="qunit-tests"></ol>
+		<div id="slider-content"></div>
+	</body>
+</html>

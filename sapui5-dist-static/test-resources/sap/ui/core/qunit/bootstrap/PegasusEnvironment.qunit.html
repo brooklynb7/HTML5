@@ -1,0 +1,132 @@
+<!DOCTYPE HTML>
+<!--
+  This test tries to mimic the way how the Pegasus platform (HTML Client Platform - HCP) 
+  uses SAPUI5.
+  
+  Most important aspects:
+  - jQuery is already loaded by HCP, so one of the sap-ui-core files without jQuery is used
+  - SAPUI5 is loaded dynamically without a script tag, so the resource root can not be determined
+  - modules are also loaded from a different location that must be configured
+  
+  Contact on HCP side currently (Nov. 2010) is Indresh MS (I031144).
+  
+  @author Frank Weigel    
+  -->
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    		
+		<title>Pegasus Environment Test Page</title>
+		
+		<!-- QUnit Initialization -->
+		<link rel="stylesheet" href="../../../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
+		<script type="text/javascript" src="../../../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+		<script type="text/javascript" src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
+		<!--script type="text/javascript" src="../../../../../../resources/sap/ui/qunit/QUnitUtils.js"></script-->
+		
+		<!--  Pegasus loads jQuery on its own. It uses version 1.4.2, but as we now only have 1.7.1ff, we use that one  -->
+		<script type="text/javascript" src="../../../../../../resources/sap/ui/thirdparty/jquery/jquery-1.7.1.js" ></script>
+
+		<script type="text/javascript">
+		
+			/* helper to load modules dynamically */
+			function load(sUrl) {
+				jQuery.ajax({
+					url : sUrl,
+					dataType : 'script', 
+					async : false,
+					error: function() { throw new Error("failed to load " + sUrl); }
+				});
+			}
+
+			test("Load SAPUI5 Core", function() {
+
+				/* 
+				 * In Pegasus, SAPUI5 is loaded dynamically somewhen after the HCP framework has been initialized.
+				 * To ensure a sufficiently similar test context, we ensure that the tests run after document.ready  
+				 */
+				equal(document.readyState, "complete", "document is ready");
+				 
+				/* now the SAPUI5 core without jQuery can be loaded */ 
+				/* this is the new configuration possibility which is NOT YET available for pegasus */ 
+				window["sap-ui-config"] = {
+					theme : "sap_ux",
+					resourceRoots : { 
+						"" :  "../../../../../../resources/"
+					}
+				};
+				load('../../../../../../resources/sap-ui-core-nojQuery.js');
+				load('../../../../../../resources/sap/ui/qunit/QUnitUtils.js')
+
+				/* check that SAPUI5 has been loaded */
+				ok(!!jQuery.sap, "jQuery.sap namespace exists");
+				ok(!!window.sap, "sap namespace exists");
+				ok(!!sap.ui, "sap.ui namespace exists");
+				ok(typeof sap.ui.getCore === "function", "sap.ui.getCore exists");
+				ok(!!sap.ui.getCore(), "sap.ui.getCore() returns a value");
+
+			});
+
+        	/* Library Loading should work now as well*/
+			test("Load a Library", function() {
+            	sap.ui.getCore().loadLibrary("sap.ui.commons");
+            	ok(!!jQuery.sap.getObject("sap.ui.commons"), "lib namespace exists");
+            	ok(!!sap.ui.commons.Button, "Control from lib is available");
+            	ok(!sap.ui.commons.Button.prototype.attachPress, "control not initialized");
+            	new sap.ui.commons.Button();
+            	ok(typeof sap.ui.commons.Button.prototype.attachPress === "function", "control lazily loaded initialized");
+			});
+			
+        	/* The real application logic is executed even later */
+        	test("Create SAPUI5 UI", function() {
+		        var oLayout = new sap.ui.commons.layout.MatrixLayout("toolbarLayout");
+						oLayout.setLayoutFixed(false);
+		        var oTB1 = new sap.ui.commons.Button("oTB1");
+		        oTB1.setText("Save");
+		        oTB1.attachPress(function() {
+			        pressed = true;
+		        });
+		        var oTB2 = new sap.ui.commons.Button("oTB2");
+		        oTB2.setText("Close");
+		        var oTB3 = new sap.ui.commons.Button("oTB3");
+		        oTB3.setText("New");
+		        var oTB4 = new sap.ui.commons.Button("oTB4");
+		        oTB4.setText("Change Status");
+		        var oTB5 = new sap.ui.commons.Button("oTB5");
+		        oTB5.setText("Check For Duplicates");
+		        oTB5.setEnabled(false);
+		        var oTB6 = new sap.ui.commons.Button("oTB6");
+		        oTB6.setText("Web services");
+		        oTB6.setIcon("../../images/rss-14x14.gif");
+				oLayout.createRow(oTB1, oTB2, oTB3, oTB4, oTB5, oTB6);
+				oLayout.placeAt('uiArea');
+				ok(true, "creation of UI worked");
+
+				// the UI is invalid now and we have to wait for rerendering
+				// stop test execution for 50ms (should allow a rerendering)
+				QUnit.stop();
+				setTimeout(function(){QUnit.start()},50);
+       	});
+
+        	test("Check that rendering worked", function() {
+				ok(jQuery("#oTB1").size() === 1, "control has been rendered"); 
+        	});
+        	
+        	test("Check eventing", function() {
+            	pressed = false;
+            	jQuery("#oTB1").focus().click();
+            	ok(pressed, "event 'press' has been fired");
+        	});
+        	
+        </script>
+</head>
+    <body class="sapUiBody" role="application">
+		<h1 id="qunit-header">Bootstrap Variant 'Pegasus Environment'</h1>
+		<h2 id="qunit-banner"></h2>
+	 	<h2 id="qunit-userAgent"></h2>
+		<div id="qunit-testrunner-toolbar"></div>
+		<ol id="qunit-tests"></ol>
+		<br>
+	    <div id="uiArea"></div>
+    </body>
+</html>

@@ -1,0 +1,399 @@
+{
+	"SAPVB": {
+		"version": "2.0",
+		"Data": {
+			"Set": [
+				{
+					"name": "Spots",
+					"type": "N",
+					"N": {
+						"name": "Spots",
+						"E": [
+							{
+								"E": "true",
+								"F": "true",
+								"A": "2.0;48.0;0",
+								"B": "Object:Object1\r\nTooltip:Object of type Location",
+								"G": "A8",
+								"I": "pin_blue.png",
+								"K": "3+kpUtORWWbhAAAACkI4Bw==",
+								"R": "LOCATION",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "8.0;48.0;0",
+								"B": "Object:Object2\r\nTooltip:Object of type Search Result",
+								"G": "13",
+								"I": "pin_blue.png",
+								"K": "4OkpUtORWWbhAAAACkI4Bw==",
+								"R": "SEARCH",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "14.0;48.0;0",
+								"B": "Object:Object3\r\nTooltip:Object of type Multi",
+								"G": "89",
+								"I": "pin_white.png",
+								"K": "4ekpUtORWWbhAAAACkI4Bw==",
+								"R": "MULTI",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "20.0;48.0;0",
+								"B": "Object:Object4\r\nTooltip:Object of type Zone",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "4ukpUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "26.0;48.0;0",
+								"B": "Object:Object5\r\nTooltip:Object of type Truck",
+								"G": "7Q",
+								"I": "pin_blue.png",
+								"K": "4+kpUtORWWbhAAAACkI4Bw==",
+								"R": "TRUCK",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "32.0;48.0;0",
+								"B": "Object:Object6\r\nTooltip:Object of type Train",
+								"G": "7R",
+								"I": "pin_blue.png",
+								"K": "5OkpUtORWWbhAAAACkI4Bw==",
+								"R": "TRAIN",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "38.0;48.0;0",
+								"B": "Object:Object7\r\nTooltip:Object of type Ship",
+								"G": "7S",
+								"I": "pin_blue.png",
+								"K": "5ekpUtORWWbhAAAACkI4Bw==",
+								"R": "SHIP",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "44.0;48.0;0",
+								"B": "Object:Object8\r\nTooltip:Object of type Airplane",
+								"G": "7T",
+								"I": "pin_blue.png",
+								"K": "5ukpUtORWWbhAAAACkI4Bw==",
+								"R": "AIRPLANE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "50.0;48.0;0",
+								"B": "Object:Object9\r\nTooltip:Object of type highlighted Multi",
+								"G": "89",
+								"I": "pin_yellow.png",
+								"K": "5+kpUtORWWbhAAAACkI4Bw==",
+								"R": "MULTI",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							}
+						]
+					}
+				},
+				{
+					"name": "Boxes",
+					"type": "N",
+					"N": {
+						"name": "Boxes"
+					}
+				},
+				{
+					"name": "Circles",
+					"type": "N",
+					"N": {
+						"name": "Circles"
+					}
+				},
+				{
+					"name": "CirclesGeoDist",
+					"type": "N",
+					"N": {
+						"name": "CirclesGeoDist"
+					}
+				},
+				{
+					"name": "PieCharts",
+					"type": "N",
+					"N": {
+						"name": "PieCharts"
+					}
+				},
+				{
+					"name": "Links",
+					"type": "N",
+					"N": {
+						"name": "Links",
+						"E": [
+							{
+								"Y": "0",
+								"Z": "1",
+								"A": "5.0;48.0;0",
+								"B": "Object:Link1\r\nTooltip:Object Relation with default color",
+								"C": "RGB(107,152,202)",
+								"D": "RGB(10,30,130)",
+								"R": "NONE",
+								"H": "2.000000;48.000000;0.000000;8.000000;48.000000;0.000000",
+								"K": "6OkpUtORWWbhAAAACkI4Bw==",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"Y": "0",
+								"Z": "1",
+								"A": "11.0;48.0;0",
+								"B": "Object:Link2\r\nTooltip:Object Relation highlighted",
+								"C": "RGB(255,255,102)",
+								"D": "RGB(234,234,0)",
+								"R": "NONE",
+								"H": "8.000000;48.000000;0.000000;14.000000;48.000000;0.000000",
+								"K": "6ekpUtORWWbhAAAACkI4Bw==",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"Y": "0",
+								"Z": "1",
+								"A": "17.0;48.0;0",
+								"B": "Object:Link3\r\nTooltip:Object Relation with custom color",
+								"C": "RGBA(255,137,167,161)",
+								"D": "RGBA(255,137,167,161)",
+								"R": "NONE",
+								"H": "14.000000;48.000000;0.000000;20.000000;48.000000;0.000000",
+								"K": "6ukpUtORWWbhAAAACkI4Bw==",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							}
+						]
+					}
+				},
+				{
+					"name": "Areas",
+					"type": "N",
+					"N": {
+						"name": "Areas"
+					}
+				}
+			],
+			"Remove": [
+				{
+					"name": "Spots",
+					"type": "E",
+					"N": {
+						"name": "Spots"
+					}
+				},
+				{
+					"name": "Boxes",
+					"type": "E",
+					"N": {
+						"name": "Boxes"
+					}
+				},
+				{
+					"name": "Circles",
+					"type": "E",
+					"N": {
+						"name": "Circles"
+					}
+				},
+				{
+					"name": "CirclesGeoDist",
+					"type": "E",
+					"N": {
+						"name": "CirclesGeoDist"
+					}
+				},
+				{
+					"name": "PieCharts",
+					"type": "E",
+					"N": {
+						"name": "PieCharts"
+					}
+				},
+				{
+					"name": "Links",
+					"type": "E",
+					"N": {
+						"name": "Links"
+					}
+				},
+				{
+					"name": "Areas",
+					"type": "E",
+					"N": {
+						"name": "Areas"
+					}
+				}
+			]
+		},
+		"Automation": {
+			"Call": {
+				"handler": "FLYTOHANDLER",
+				"name": "START",
+				"Param": [
+					{
+						"name": "pObject"
+					},
+					{
+						"name": "x",
+						"#": "2.6E1"
+					},
+					{
+						"name": "y",
+						"#": "4.8E1"
+					},
+					{
+						"name": "z",
+						"#": "0"
+					},
+					{
+						"name": "lod",
+						"#": "2.91 "
+					},
+					{
+						"name": "pitch",
+						"#": "0.0"
+					},
+					{
+						"name": "yaw",
+						"#": "0.0"
+					},
+					{
+						"name": "mode",
+						"#": "5"
+					},
+					{
+						"name": "time",
+						"#": "6"
+					}
+				]
+			}
+		}
+	}
+}

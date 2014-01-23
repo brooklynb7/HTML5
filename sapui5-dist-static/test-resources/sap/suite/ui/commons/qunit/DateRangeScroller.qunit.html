@@ -1,0 +1,1244 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>DateRangeScroller - sap.suite.ui.commons</title>
+
+<!-- UI5 Bootstrap -->
+<script id="sap-ui-bootstrap" type="text/javascript"
+	src="../../../../../../resources/sap-ui-core.js"
+	data-sap-ui-theme="sap_goldreflection"
+	data-sap-ui-libs="sap.ui.commons,sap.suite.ui.commons"></script>
+
+<!-- QUnit libraries -->
+<link rel="stylesheet"
+	href="../../../../../../resources/sap/ui/thirdparty/qunit.css"
+	type="text/css" media="screen" />
+<script src="../../../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+<script type="text/javascript"
+	src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
+<script type="text/javascript"
+	src="../../../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
+
+<script>
+    var index = 10;
+    function next() {
+
+        return index++;
+    }
+
+    var oDateRangeScroller, oDecrementButton, oIncrementButton, oDateRange, oLabel, oLabelArea;
+    var oDateRangeType = sap.suite.ui.commons.DateRange;
+    var sModuleSuffix = " - sap.suite.ui.commons.DateRangeScroller";
+
+    /*******************************************************************************************************************/
+    var sDateRangeScroller1Id = "drs1";
+    new sap.suite.ui.commons.DateRangeScroller(sDateRangeScroller1Id).placeAt("div1");
+
+    var sDateRangeScroller2Id = "drs2";
+    new sap.suite.ui.commons.DateRangeScroller(sDateRangeScroller2Id).placeAt("div2");
+
+    var sDateRangeScroller3Id = "drs3";
+    var oDateRangeScroller3 = new sap.suite.ui.commons.DateRangeScroller(sDateRangeScroller3Id);
+    oDateRangeScroller3.attachChange(handleDateChange);
+    oDateRangeScroller3.placeAt("div3");
+
+    var sDateRangeScroller4Id = "drs4";
+    new sap.suite.ui.commons.DateRangeScroller(sDateRangeScroller4Id).placeAt("div4");
+
+    qutils.delayTestStart();
+
+    module("Control Rendering" + sModuleSuffix, {
+        setup : function() {
+
+            oDateRangeScroller = sap.ui.getCore().getControl(sDateRangeScroller1Id);
+            oDecrementButton = jQuery.sap.byId(oDateRangeScroller.getId() + '-decrementScrollButton')[0];
+            oIncrementButton = jQuery.sap.byId(oDateRangeScroller.getId() + '-incrementScrollButton')[0];
+            oLabel = oDateRangeScroller._oDateRangeLabel;
+        }
+    });
+
+    test("TestDateRangeScrollerRenderedOK", function() {
+
+        notEqual(oDateRangeScroller, null, "DateRangeScroller outer HTML Element should be rendered.");
+    });
+
+    test("TestLeftScrollButtonRenderedOK", function() {
+
+        notEqual(oDecrementButton, null, "LeftScrollButton HTML Element should be rendered.");
+    });
+
+    test("TestRightScrollButtonRenderedOK", function() {
+
+        notEqual(oIncrementButton, null, "RightScrollButton HTML Element should be rendered.");
+    });
+
+    test("TestLabelRenderedOK", function() {
+
+        notEqual(oLabel, null, "DateRangeLabel HTML Element should be rendered.");
+    });
+
+    test("TestToolTipTextOK", function() {
+
+        notEqual(oDecrementButton.title, "DATERANGESCROLLER_PREV_TEXT", "Tool Tip Text should not equal to name of the property.");
+        notEqual(oIncrementButton.title, "DATERANGESCROLLER_NEXT_TEXT", "Tool Tip Text should not equal to name of the property.");
+    });
+
+    test("DateRangeLabelIncrementDayOK", function() {
+
+        oDateRangeScroller.incrementDateRange();
+        equal(oLabel.getText(), jQuery("label#" + oLabel.getId()).text(), "Date range label is rendered incorrectly.");
+    });
+
+    test("DateRangeLabelDecrementDayOK", function() {
+
+        oDateRangeScroller.decrementDateRange().decrementDateRange();
+        equal(oLabel.getText(), jQuery("label#" + oLabel.getId()).text(), "Date range label is rendered incorrectly.");
+    });
+
+    /*******************************************************************************************************************/
+
+    module("Set Date Range" + sModuleSuffix, {
+        setup : function() {
+
+            oDateRangeScroller = new sap.suite.ui.commons.DateRangeScroller("drs" + next());
+            oDecrementButton = jQuery.sap.byId(oDateRangeScroller.getId() + '-decrementScrollButton')[0];
+            oIncrementButton = jQuery.sap.byId(oDateRangeScroller.getId() + '-incrementScrollButton')[0];
+            oDateRange = oDateRangeScroller._oDateRange;
+            oDateRangeLabel = oDateRangeScroller._oDateRangeLabel;
+        }
+    });
+
+    test("TestSetDateRangeDay", function() {
+
+        var dExpectedStartDate = new Date(2013, 0, 4, 0, 0, 0, 0);
+        var dInitialDate = new Date(2013, 0, 4, 22, 22, 22, 1);
+
+        oDateRangeScroller.setDateRangeDay(dInitialDate);
+        equal(oDateRange.startDate.toString(), dExpectedStartDate.toString(), "Start date should equal the initial date with time adjusted to the beginning of the day.");
+    });
+
+    test("TestSetDateRangeDayInvalidInitialDate", function() {
+
+        var dExpectedStartDate = new Date(2013, 0, 4, 0, 0, 0, 0);
+        var dInitialDate = new Date(2013, 0, 4, 22, 22, 22, 1);
+
+        oDateRangeScroller.setDateRangeDay(dInitialDate);
+        oDateRangeScroller.setDateRangeDay();
+        equal(oDateRange.startDate.toString(), dExpectedStartDate.toString(), "Start date should equal the initial date with time adjusted to the beginning of the day.");
+
+        oDateRangeScroller.setDateRangeDay(dInitialDate);
+        oDateRangeScroller.setDateRangeDay(null);
+        equal(oDateRange.startDate.toString(), dExpectedStartDate.toString(), "Start date should equal the initial date with time adjusted to the beginning of the day.");
+
+        oDateRangeScroller.setDateRangeDay(dInitialDate);
+        oDateRangeScroller.setDateRangeDay("abc");
+        equal(oDateRange.startDate.toString(), dExpectedStartDate.toString(), "Start date should equal the initial date with time adjusted to the beginning of the day.");
+
+        oDateRangeScroller.setDateRangeDay(dInitialDate);
+        oDateRangeScroller.setDateRangeDay(new Date("abc"));
+        equal(oDateRange.startDate.toString(), dExpectedStartDate.toString(), "Start date should equal the initial date with time adjusted to the beginning of the day.");
+    });
+
+    test("TestSetDateRangeWeekWithDefaults", function() {
+
+        var dExpectedStartDate = new Date(2013, 0, 14);
+        var dExpectedEndDate = new Date(2013, 0, 20, 23, 59, 59);
+        var dInitialDate = new Date(2013, 0, 15, 15, 23, 44, 8);
+
+        oDateRangeScroller.setDateRangeWeek(dInitialDate);
+
+        equal(oDateRange.startDate.toString(), dExpectedStartDate.toString(),
+                "Start date should equal the initial date with date adjusted to the beginning of the week and time adjusted to the beginning of the day.");
+        equal(oDateRange.endDate.toString(), dExpectedEndDate.toString(),
+                "End date should equal the set end date with date adjusted by the default duration and time adjusted to the end of the day.");
+    });
+
+    test("TestSetDateRangeWeekInitialDateIsFirstDayOfWeek", function() {
+
+        var iFirstDay = 3; //Wed
+        var dExpectedStartDate = new Date(2013, 0, 9); //Wed			
+        var dExpectedEndDate = new Date(2013, 0, 15, 23, 59, 59); //Tues								
+        var dInitialDate = new Date(2013, 0, 9, 15, 23, 44, 8); //Wed
+
+        oDateRangeScroller.setDateRangeWeek(dInitialDate, {
+            firstDayOfWeek : iFirstDay
+        });
+
+        equal(oDateRange.startDate.getDay(), iFirstDay, "Start date should fall on week day" + iFirstDay);
+        equal(oDateRange.startDate.toString(), dExpectedStartDate.toString(),
+                "Start date should equal the initial date with date adjusted to the beginning of the week and time adjusted to the beginning of the day.");
+        equal(oDateRange.endDate.toString(), dExpectedEndDate.toString(),
+                "End date should equal the set end date with date adjusted to the end of the week and time adjusted to the end of the day.");
+    });
+
+    test("TestSetDateRangeWeekInitialDateLastDayOfWeek", function() {
+
+        var iFirstDay = 3; // Wed
+        var dExpectedStartDate = new Date(2013, 0, 9); // Wed			
+        var dExpectedEndDate = new Date(2013, 0, 15, 23, 59, 59); // Following Tues								
+        var dInitialDate = new Date(2013, 0, 15, 15, 23, 44, 8); // Tues
+
+        oDateRangeScroller.setDateRangeWeek(dInitialDate, {
+            firstDayOfWeek : iFirstDay
+        });
+
+        equal(oDateRange.startDate.getDay(), iFirstDay, "Initial date should be week day" + iFirstDay);
+        equal(oDateRange.startDate.toString(), dExpectedStartDate.toString(),
+                "Start date should equal the initial date with date adjusted to the beginning of the week and time adjusted to the beginning of the day.");
+        equal(oDateRange.endDate.toString(), dExpectedEndDate.toString(),
+                "End date should equal the set end date with date adjusted to the end of the week and time adjusted to the end of the day.");
+    });
+
+    test("TestSetDateRangeWeekInvalidInitialDate", function() {
+
+        var dExpectedStartDate = new Date(2013, 0, 14); //Mon			
+        var dExpectedEndDate = new Date(2013, 0, 20, 23, 59, 59); //Sun								
+        var dInitialDate = new Date(2013, 0, 15); //Tues
+
+        // Start with a valid week range and then see if setting an invalid initial
+        // date changes the date range.
+
+        oDateRangeScroller.setDateRangeWeek(dInitialDate);
+        oDateRangeScroller.setDateRangeWeek(); //undefined
+        equal(oDateRange.startDate.toString(), dExpectedStartDate.toString(),
+                "Start date should equal the initial date with date adjusted to the beginning of the week and time adjusted to the beginning of the day.");
+        equal(oDateRange.endDate.toString(), dExpectedEndDate.toString(),
+                "End date should equal the set end date with date adjusted to the end of the week and time adjusted to the end of the day.");
+
+        oDateRangeScroller.setDateRangeWeek(dInitialDate);
+        oDateRangeScroller.setDateRangeWeek(null);
+        equal(oDateRange.startDate.toString(), dExpectedStartDate.toString(),
+                "Start date should equal the initial date with date adjusted to the beginning of the week and time adjusted to the beginning of the day.");
+        equal(oDateRange.endDate.toString(), dExpectedEndDate.toString(),
+                "End date should equal the set end date with date adjusted to the end of the week and time adjusted to the end of the day.");
+
+        oDateRangeScroller.setDateRangeWeek(dInitialDate);
+        oDateRangeScroller.setDateRangeWeek("abc");
+        equal(oDateRange.startDate.toString(), dExpectedStartDate.toString(),
+                "Start date should equal the initial date with date adjusted to the beginning of the week and time adjusted to the beginning of the day.");
+        equal(oDateRange.endDate.toString(), dExpectedEndDate.toString(),
+                "End date should equal the set end date with date adjusted to the end of the week and time adjusted to the end of the day.");
+
+        oDateRangeScroller.setDateRangeWeek(dInitialDate);
+        oDateRangeScroller.setDateRangeWeek(new Date("abc"));
+        equal(oDateRange.startDate.toString(), dExpectedStartDate.toString(),
+                "Start date should equal the initial date with date adjusted to the beginning of the week and time adjusted to the beginning of the day.");
+        equal(oDateRange.endDate.toString(), dExpectedEndDate.toString(),
+                "End date should equal the set end date with date adjusted to the end of the week and time adjusted to the end of the day.");
+
+        oDateRangeScroller.setDateRangeWeek(dInitialDate);
+        oDateRangeScroller.setDateRangeWeek(23);
+        equal(oDateRange.startDate.toString(), dExpectedStartDate.toString(),
+                "Start date should equal the initial date with date adjusted to the beginning of the week and time adjusted to the beginning of the day.");
+        equal(oDateRange.endDate.toString(), dExpectedEndDate.toString(),
+                "End date should equal the set end date with date adjusted to the end of the week and time adjusted to the end of the day.");
+    });
+
+    test("TestSetDateRangeWeekInvalidDuration", function() {
+
+        var dExpectedStartDate = new Date(2012, 11, 24); //Mon (default first day) 			
+        var dExpectedEndDate = new Date(2012, 11, 30, 23, 59, 59); //Sun, default duration is 7 days
+        var dInitialDate = new Date(2012, 11, 26); //Wed
+
+        oDateRangeScroller.setDateRangeWeek(dInitialDate);
+        oDateRangeScroller.setDateRangeWeek(dInitialDate, {
+            duration : null
+        });
+        equal(oDateRange.startDate.toString(), dExpectedStartDate.toString(), "Start date should not be changed if the duration is null.");
+        equal(oDateRange.endDate.toString(), dExpectedEndDate.toString(), "End date should not be changed if the duration is null.");
+
+        oDateRangeScroller.setDateRangeWeek(dInitialDate);
+        oDateRangeScroller.setDateRangeWeek(dInitialDate, {
+            duration : ""
+        });
+        equal(oDateRange.startDate.toString(), dExpectedStartDate.toString(), "Start date should not be changed if the duration is an empty string.");
+        equal(oDateRange.endDate.toString(), dExpectedEndDate.toString(), "End date should not be changed if the duration is an empty string.");
+
+        oDateRangeScroller.setDateRangeWeek(dInitialDate);
+        oDateRangeScroller.setDateRangeWeek(dInitialDate, {
+            duration : "a"
+        });
+        equal(oDateRange.startDate.toString(), dExpectedStartDate.toString(), "Start date should not be changed if the duration is a string.");
+        equal(oDateRange.endDate.toString(), dExpectedEndDate.toString(), "End date should not be changed if the duration is a string.");
+
+        oDateRangeScroller.setDateRangeWeek(dInitialDate);
+        oDateRangeScroller.setDateRangeWeek(dInitialDate, {
+            duration : 8
+        });
+        equal(oDateRange.startDate.toString(), dExpectedStartDate.toString(), "Start date should not be changed if the duration is greater than 7.");
+        equal(oDateRange.endDate.toString(), dExpectedEndDate.toString(), "End date should not be changed if the duration is greater than 7.");
+
+        oDateRangeScroller.setDateRangeWeek(dInitialDate);
+        oDateRangeScroller.setDateRangeWeek(dInitialDate, {
+            duration : -1
+        });
+        equal(oDateRange.startDate.toString(), dExpectedStartDate.toString(), "Start date should not be changed if the duration is negative.");
+        equal(oDateRange.endDate.toString(), dExpectedEndDate.toString(), "End date should not be changed if the duration is negative.");
+
+        oDateRangeScroller.setDateRangeWeek(dInitialDate);
+        oDateRangeScroller.setDateRangeWeek(dInitialDate, {
+            duration : Number.NEGATIVE_INFINITY
+        });
+        equal(oDateRange.startDate.toString(), dExpectedStartDate.toString(), "Start date should not be changed if the duration is NEGATIVE_INFINITY.");
+        equal(oDateRange.endDate.toString(), dExpectedEndDate.toString(), "End date should not be changed if the duration is NEGATIVE_INFINITY.");
+
+        oDateRangeScroller.setDateRangeWeek(dInitialDate);
+        oDateRangeScroller.setDateRangeWeek(dInitialDate, {
+            duration : Number.POSITIVE_INFINITY
+        });
+        equal(oDateRange.startDate.toString(), dExpectedStartDate.toString(), "Start date should not be changed if the duration is POSITIVE_INFINITY.");
+        equal(oDateRange.endDate.toString(), dExpectedEndDate.toString(), "End date should not be changed if the duration is POSITIVE_INFINITY.");
+
+        oDateRangeScroller.setDateRangeWeek(dInitialDate);
+        oDateRangeScroller.setDateRangeWeek(dInitialDate, {
+            duration : Number.NaN
+        });
+        equal(oDateRange.startDate.toString(), dExpectedStartDate.toString(), "Start date should not be changed if the duration is NaN.");
+        equal(oDateRange.endDate.toString(), dExpectedEndDate.toString(), "End date should not be changed if the duration is NaN.");
+    });
+
+    test("TestSetDateRangeWeekInvalidFirstDayOfWeek", function() {
+
+        var dExpectedStartDate = new Date(2012, 11, 31);
+        var dExpectedEndDate = new Date(2013, 0, 6, 23, 59, 59);
+        var dInitialDate = new Date(2013, 0, 3);
+        var dAttemptedInitialDate = new Date(1989, 0, 5);
+        var sTestFailMsg = "Date range should not be changed when first day of the week is not valid.";
+
+        // Set the initial date to fall inside the week of December 31, 2012 for each invalid scenario below. This should cause
+        // the control's start/end dates to match the expected start/end dates.
+        oDateRangeScroller.setDateRangeWeek(dInitialDate);
+        oDateRangeScroller.setDateRangeWeek(dAttemptedInitialDate, {
+            firstDayOfWeek : ""
+        });
+        equal(oDateRange.startDate.toString(), dExpectedStartDate.toString(), "Start date should not be changed when first day of the week is an empty string.");
+        equal(oDateRange.endDate.toString(), dExpectedEndDate.toString(), "End date should not be changed when first day of the week is an empty string.");
+
+        oDateRangeScroller.setDateRangeWeek(dInitialDate);
+        oDateRangeScroller.setDateRangeWeek(dAttemptedInitialDate, {
+            firstDayOfWeek : "a"
+        });
+        equal(oDateRange.startDate.toString(), dExpectedStartDate.toString(), "Start date should not be changed when first day of the week is a string.");
+        equal(oDateRange.endDate.toString(), dExpectedEndDate.toString(), "End date should not be changed when first day of the week is a string.");
+
+        oDateRangeScroller.setDateRangeWeek(dInitialDate);
+        oDateRangeScroller.setDateRangeWeek(dAttemptedInitialDate, {
+            firstDayOfWeek : null
+        });
+        equal(oDateRange.startDate.toString(), dExpectedStartDate.toString(), "Start date should not be changed when first day of the week is null.");
+        equal(oDateRange.endDate.toString(), dExpectedEndDate.toString(), "End date should not be changed when first day of the week is null.");
+
+        oDateRangeScroller.setDateRangeWeek(dInitialDate);
+        oDateRangeScroller.setDateRangeWeek(dAttemptedInitialDate, {
+            firstDayOfWeek : -1
+        });
+        equal(oDateRange.startDate.toString(), dExpectedStartDate.toString(), "Start date should not be changed when first day of the week is negative.");
+        equal(oDateRange.endDate.toString(), dExpectedEndDate.toString(), "End date should not be changed when first day of the week is negative.");
+
+        oDateRangeScroller.setDateRangeWeek(dInitialDate);
+        oDateRangeScroller.setDateRangeWeek(dAttemptedInitialDate, {
+            firstDayOfWeek : 7
+        });
+        equal(oDateRange.startDate.toString(), dExpectedStartDate.toString(), "Start date should not be changed when first day of the week is greater than 6.");
+        equal(oDateRange.endDate.toString(), dExpectedEndDate.toString(), "End date should not be changed when first day of the week is greater than 6.");
+
+        oDateRangeScroller.setDateRangeWeek(dInitialDate);
+        oDateRangeScroller.setDateRangeWeek(dAttemptedInitialDate, {
+            firstDayOfWeek : Number.NEGATIVE_INFINITY
+        });
+        equal(oDateRange.startDate.toString(), dExpectedStartDate.toString(), "Start date should not be changed when first day of the week is NEGATIVE_INFINITY.");
+        equal(oDateRange.endDate.toString(), dExpectedEndDate.toString(), "End date should not be changed when first day of the week is NEGATIVE_INFINITY.");
+
+        oDateRangeScroller.setDateRangeWeek(dInitialDate);
+        oDateRangeScroller.setDateRangeWeek(dAttemptedInitialDate, {
+            firstDayOfWeek : Number.POSITIVE_INFINITY
+        });
+        equal(oDateRange.startDate.toString(), dExpectedStartDate.toString(), "Start date should not be changed when first day of the week is POSITIVE_INFINITY.");
+        equal(oDateRange.endDate.toString(), dExpectedEndDate.toString(), "End date should not be changed when first day of the week is POSITIVE_INFINITY.");
+
+        oDateRangeScroller.setDateRangeWeek(dInitialDate);
+        oDateRangeScroller.setDateRangeWeek(dAttemptedInitialDate, {
+            firstDayOfWeek : Number.NaN
+        });
+        equal(oDateRange.startDate.toString(), dExpectedStartDate.toString(), "Start date should not be changed when first day of the week is NaN.");
+        equal(oDateRange.endDate.toString(), dExpectedEndDate.toString(), "End date should not be changed when first day of the week is NaN.");
+    });
+
+    test("TestSetDateRangeWeekOneDayDuration", function() {
+
+        var dExpectedStartDate = new Date(2012, 11, 24);
+        var dExpectedEndDate = new Date(2012, 11, 24, 23, 59, 59);
+        var dInitialDate = new Date(2012, 11, 24);
+
+        oDateRangeScroller.setDateRangeWeek(dInitialDate, {
+            duration : 1
+        });
+
+        equal(oDateRange.startDate.toString(), dExpectedStartDate.toString(), "Start date should equal the initial date with time adjusted to the beginning of the day.");
+        equal(oDateRange.endDate.toString(), dExpectedEndDate.toString(), "End date should equal the day after the initial date with time adjusted to the end of the day.");
+    });
+
+    test("TestSetDateRangeWeekMaxDuration", function() {
+
+        var iMaxWeekDuration = 7;
+        var dExpectedStartDate = new Date(2012, 11, 24);
+        var dExpectedEndDate = new Date(2012, 11, 30, 23, 59, 59);
+        var dInitialDate = new Date(2012, 11, 27);
+
+        oDateRangeScroller.setDateRangeWeek(dInitialDate, {
+            duration : iMaxWeekDuration
+        });
+
+        equal(oDateRange.startDate.toString(), dExpectedStartDate.toString(), "Start date should equal the initial date with time adjusted to the beginning of the day.");
+        equal(oDateRange.endDate.toString(), dExpectedEndDate.toString(), "End date should equal the " + iMaxWeekDuration
+                + " date after the start date and time adjusted to the end of the day.");
+    });
+
+    test("TestSetDateRangeMonth", function() {
+
+        var dExpectedStartDate = new Date(2013, 0, 1);
+        var dExpectedEndDate = new Date(2013, 0, 31, 23, 59, 59);
+
+        var dInitialDate = new Date(2013, 0, 18, 45, 13, 6);
+        oDateRangeScroller.setDateRangeMonth(dInitialDate);
+
+        equal(oDateRange.startDate.toString(), dExpectedStartDate.toString(),
+                "Start date should equal the initial date with date adjusted to the beginning of the month and time adjusted to the beginning of the day.");
+        equal(oDateRange.endDate.toString(), dExpectedEndDate.toString(),
+                "End date should equal the set end date with date adjusted to the end of the month and time adjusted to the end of the day.");
+    });
+
+    test("TestSetDateRangeMonthInvalidInitialDate", function() {
+
+        var dExpectedStartDate = new Date(2013, 0, 1);
+        var dExpectedEndDate = new Date(2013, 0, 31, 23, 59, 59);
+        var dInitialDate = new Date(2013, 0, 18, 45, 13, 6);
+
+        oDateRangeScroller.setDateRangeMonth(dInitialDate);
+        oDateRangeScroller.setDateRangeMonth();
+        equal(oDateRange.startDate.toString(), dExpectedStartDate.toString(),
+                "Start date should equal the initial date with date adjusted to the beginning of the month and time adjusted to the beginning of the day.");
+        equal(oDateRange.endDate.toString(), dExpectedEndDate.toString(),
+                "End date should equal the set end date with date adjusted to the end of the month and time adjusted to the end of the day.");
+
+        oDateRangeScroller.setDateRangeMonth(dInitialDate);
+        oDateRangeScroller.setDateRangeMonth(null);
+        equal(oDateRange.startDate.toString(), dExpectedStartDate.toString(),
+                "Start date should equal the initial date with date adjusted to the beginning of the month and time adjusted to the beginning of the day.");
+        equal(oDateRange.endDate.toString(), dExpectedEndDate.toString(),
+                "End date should equal the set end date with date adjusted to the end of the month and time adjusted to the end of the day.");
+
+        oDateRangeScroller.setDateRangeMonth(dInitialDate);
+        oDateRangeScroller.setDateRangeMonth("abc");
+        equal(oDateRange.startDate.toString(), dExpectedStartDate.toString(),
+                "Start date should equal the initial date with date adjusted to the beginning of the month and time adjusted to the beginning of the day.");
+        equal(oDateRange.endDate.toString(), dExpectedEndDate.toString(),
+                "End date should equal the set end date with date adjusted to the end of the month and time adjusted to the end of the day.");
+
+        oDateRangeScroller.setDateRangeMonth(dInitialDate);
+        oDateRangeScroller.setDateRangeMonth(new Date("abc"));
+        equal(oDateRange.startDate.toString(), dExpectedStartDate.toString(),
+                "Start date should equal the initial date with date adjusted to the beginning of the month and time adjusted to the beginning of the day.");
+        equal(oDateRange.endDate.toString(), dExpectedEndDate.toString(),
+                "End date should equal the set end date with date adjusted to the end of the month and time adjusted to the end of the day.");
+    });
+
+    test("TestSetDateRangeYear", function() {
+
+        var dExpectedStartDate = new Date(2013, 0, 1);
+        var dExpectedEndDate = new Date(2013, 11, 31, 23, 59, 59);
+
+        var dInitialDate = new Date(2013, 7, 18, 45, 13, 6);
+        oDateRangeScroller.setDateRangeYear(dInitialDate);
+
+        equal(oDateRange.startDate.toString(), dExpectedStartDate.toString(),
+                "Start date should equal the initial date with date adjusted to the beginning of the year and time adjusted to the beginning of the day.");
+        equal(oDateRange.endDate.toString(), dExpectedEndDate.toString(),
+                "End date should equal the set end date with date adjusted to the end of the year and time adjusted to the end of the day.");
+    });
+
+    test("TestSetDateRangeYearInvalidInitialDate", function() {
+
+        var dExpectedStartDate = new Date(2013, 0, 1);
+        var dExpectedEndDate = new Date(2013, 11, 31, 23, 59, 59);
+        var dInitialDate = new Date(2013, 7, 18, 45, 13, 6);
+
+        oDateRangeScroller.setDateRangeYear(dInitialDate);
+        oDateRangeScroller.setDateRangeYear();
+        equal(oDateRange.startDate.toString(), dExpectedStartDate.toString(),
+                "Start date should equal the initial date with date adjusted to the beginning of the year and time adjusted to the beginning of the day.");
+        equal(oDateRange.endDate.toString(), dExpectedEndDate.toString(),
+                "End date should equal the set end date with date adjusted to the end of the year and time adjusted to the end of the day.");
+
+        oDateRangeScroller.setDateRangeYear(dInitialDate);
+        oDateRangeScroller.setDateRangeYear(null);
+        equal(oDateRange.startDate.toString(), dExpectedStartDate.toString(),
+                "Start date should equal the initial date with date adjusted to the beginning of the year and time adjusted to the beginning of the day.");
+        equal(oDateRange.endDate.toString(), dExpectedEndDate.toString(),
+                "End date should equal the set end date with date adjusted to the end of the year and time adjusted to the end of the day.");
+
+        oDateRangeScroller.setDateRangeYear(dInitialDate);
+        oDateRangeScroller.setDateRangeYear("abc");
+        equal(oDateRange.startDate.toString(), dExpectedStartDate.toString(),
+                "Start date should equal the initial date with date adjusted to the beginning of the year and time adjusted to the beginning of the day.");
+        equal(oDateRange.endDate.toString(), dExpectedEndDate.toString(),
+                "End date should equal the set end date with date adjusted to the end of the year and time adjusted to the end of the day.");
+
+        oDateRangeScroller.setDateRangeYear(dInitialDate);
+        oDateRangeScroller.setDateRangeYear(new Date("abc"));
+        equal(oDateRange.startDate.toString(), dExpectedStartDate.toString(),
+                "Start date should equal the initial date with date adjusted to the beginning of the year and time adjusted to the beginning of the day.");
+        equal(oDateRange.endDate.toString(), dExpectedEndDate.toString(),
+                "End date should equal the set end date with date adjusted to the end of the year and time adjusted to the end of the day.");
+    });
+
+    test("TestSetDateRangeCustomInvalidDuration", function() {
+
+        var dExpectedStartDate = new Date(2012, 11, 24);
+        var dExpectedEndDate = new Date(2012, 11, 24, 23, 59, 59);
+        var dInitialDate = new Date(2012, 11, 24);
+
+        oDateRangeScroller.setDateRangeCustom(dInitialDate);
+        oDateRangeScroller.setDateRangeCustom(dInitialDate, null);
+        equal(oDateRange.startDate.toString(), dExpectedStartDate.toString(), "Start date should not be changed if the duration is null.");
+        equal(oDateRange.endDate.toString(), dExpectedEndDate.toString(), "End date should not be changed if the duration is null.");
+
+        oDateRangeScroller.setDateRangeCustom(dInitialDate);
+        oDateRangeScroller.setDateRangeCustom(dInitialDate, "");
+        equal(oDateRange.startDate.toString(), dExpectedStartDate.toString(), "Start date should not be changed if the duration is an empty string.");
+        equal(oDateRange.endDate.toString(), dExpectedEndDate.toString(), "End date should not be changed if the duration is an empty string.");
+
+        oDateRangeScroller.setDateRangeCustom(dInitialDate);
+        oDateRangeScroller.setDateRangeCustom(dInitialDate, "a");
+        equal(oDateRange.startDate.toString(), dExpectedStartDate.toString(), "Start date should not be changed if the duration is a string.");
+        equal(oDateRange.endDate.toString(), dExpectedEndDate.toString(), "End date should not be changed if the duration is a string.");
+
+        oDateRangeScroller.setDateRangeCustom(dInitialDate);
+        oDateRangeScroller.setDateRangeCustom(dInitialDate, -1);
+        equal(oDateRange.startDate.toString(), dExpectedStartDate.toString(), "Start date should not be changed if the duration is negative.");
+        equal(oDateRange.endDate.toString(), dExpectedEndDate.toString(), "End date should not be changed if the duration is negative.");
+
+        oDateRangeScroller.setDateRangeCustom(dInitialDate);
+        oDateRangeScroller.setDateRangeCustom(dInitialDate, Number.NEGATIVE_INFINITY);
+        equal(oDateRange.startDate.toString(), dExpectedStartDate.toString(), "Start date should not be changed if the duration is NEGATIVE_INFINITY.");
+        equal(oDateRange.endDate.toString(), dExpectedEndDate.toString(), "End date should not be changed if the duration is NEGATIVE_INFINITY.");
+
+        oDateRangeScroller.setDateRangeCustom(dInitialDate);
+        oDateRangeScroller.setDateRangeCustom(dInitialDate, Number.POSITIVE_INFINITY);
+        equal(oDateRange.startDate.toString(), dExpectedStartDate.toString(), "Start date should not be changed if the duration is POSITIVE_INFINITY.");
+        equal(oDateRange.endDate.toString(), dExpectedEndDate.toString(), "End date should not be changed if the duration is POSITIVE_INFINITY.");
+
+        oDateRangeScroller.setDateRangeCustom(dInitialDate);
+        oDateRangeScroller.setDateRangeCustom(dInitialDate, Number.NaN);
+        equal(oDateRange.startDate.toString(), dExpectedStartDate.toString(), "Start date should not be changed if the duration is NaN.");
+        equal(oDateRange.endDate.toString(), dExpectedEndDate.toString(), "End date should not be changed if the duration is NaN.");
+
+    });
+
+    test("TestSetDateRangeCustomIntervalZeroDays", function() {
+
+        var dExpectedStartDate = new Date(2013, 0, 8);
+        var dExpectedEndDate = new Date(2013, 0, 8, 23, 59, 59);
+
+        oDateRangeScroller.setDateRangeCustom(dExpectedStartDate);
+        oDateRangeScroller.setDateRangeCustom(dExpectedStartDate, 0); // Scroller should ignore zero interval
+
+        equal(oDateRange.startDate.toString(), dExpectedStartDate.toString(), "Start date should equal the initial date with date and time adjusted to the beginning of the day.");
+        equal(oDateRange.endDate.toString(), dExpectedEndDate.toString(), "End date should equal the start date with the time adjusted to the end of the day.");
+    });
+
+    test("TestSetDateRangeCustomIntervalOneDay", function() {
+
+        var dInitialDate = new Date(2013, 0, 8);
+        var dExpectedStartDate = new Date(dInitialDate);
+        var dExpectedEndDate = new Date(2013, 0, 8, 23, 59, 59);
+
+        oDateRangeScroller.setDateRangeCustom(dInitialDate, 1);
+
+        equal(oDateRange.startDate.toString(), dExpectedStartDate.toString(), "Start date should equal the initial date with date and time adjusted to the beginning of the day.");
+        equal(oDateRange.endDate.toString(), dExpectedEndDate.toString(),
+                "End date should equal the start date with the date adjusted 1 day forward and time adjusted to the end of the day.");
+    });
+
+    test("TestSetDateRangeCustomInterval21Days", function() {
+
+        var dInitialDate = new Date(2013, 0, 8);
+        var dExpectedStartDate = new Date(dInitialDate);
+        var dExpectedEndDate = new Date(2013, 0, 28, 23, 59, 59);
+
+        oDateRangeScroller.setDateRangeCustom(dInitialDate, 21);
+
+        equal(oDateRange.startDate.toString(), dExpectedStartDate.toString(), "Start date should equal the initial date with date and time adjusted to the beginning of the day.");
+        equal(oDateRange.endDate.toString(), dExpectedEndDate.toString(),
+                "End date should equal the start date with the date adjusted 1 day forward and time adjusted to the end of the day.");
+    });
+
+    /*******************************************************************************************************************/
+
+    module("Properties" + sModuleSuffix, {
+        setup : function() {
+
+            oDateRangeScroller = new sap.suite.ui.commons.DateRangeScroller("drs" + next());
+            oDecrementButton = jQuery.sap.byId(oDateRangeScroller.getId() + '-decrementScrollButton')[0];
+            oIncrementButton = jQuery.sap.byId(oDateRangeScroller.getId() + '-incrementScrollButton')[0];
+            oDateRange = oDateRangeScroller._oDateRange;
+        }
+    });
+
+    /*******************************************************************************************************************/
+    module("Increment/Decrement" + sModuleSuffix, {
+        setup : function() {
+
+            oDateRangeScroller = new sap.suite.ui.commons.DateRangeScroller("drs" + next());
+            oDecrementButton = jQuery.sap.byId(oDateRangeScroller.getId() + '-decrementScrollButton')[0];
+            oIncrementButton = jQuery.sap.byId(oDateRangeScroller.getId() + '-incrementScrollButton')[0];
+            oDateRange = oDateRangeScroller._oDateRange;
+            oDateRangeLabel = oDateRangeScroller._oDateRangeLabel;
+        }
+    });
+
+    test("TestIncrementDay", function() {
+
+        var dStartPlusOneDay = new Date(oDateRange.startDate);
+        dStartPlusOneDay.setDate(dStartPlusOneDay.getDate() + 1);
+        var dEndPlusOneDay = new Date(oDateRange.endDate);
+        dEndPlusOneDay.setDate(dEndPlusOneDay.getDate() + 1);
+
+        oDateRangeScroller.incrementDateRange();
+        equal(oDateRange.startDate.toString(), dStartPlusOneDay.toString(), "Start date should be the start of the next day.")
+        equal(oDateRange.endDate.toString(), dEndPlusOneDay.toString(), "End date should be the end of the next day.")
+
+        equal(oDateRangeLabel.getText(), createDateRangeLabel(dStartPlusOneDay, dEndPlusOneDay, "day"), "Date range label should equal the adjusted date range scroller label.");
+    });
+
+    test("TestDecrementDay", function() {
+
+        var dStartMinusOneDay = new Date(oDateRange.startDate);
+        dStartMinusOneDay.setDate(dStartMinusOneDay.getDate() - 1);
+        var dEndMinusOneDay = new Date(oDateRange.endDate);
+        dEndMinusOneDay.setDate(dEndMinusOneDay.getDate() - 1);
+
+        oDateRangeScroller.decrementDateRange();
+        equal(oDateRange.startDate.toString(), dStartMinusOneDay.toString(), "Start date should be the start of the previous day.")
+        equal(oDateRange.endDate.toString(), dEndMinusOneDay.toString(), "End date should be the end of the previous day.")
+
+        equal(oDateRangeLabel.getText(), createDateRangeLabel(dStartMinusOneDay, dEndMinusOneDay, "day"), "Date range label should equal the adjusted date range scroller label.");
+    });
+
+    test("TestIncrementWeek", function() {
+
+        var dInitialDate = new Date(2012, 11, 10);
+        oDateRangeScroller.setDateRangeWeek(dInitialDate);
+
+        var dStartPlusOneWeek = new Date(dInitialDate);
+        dStartPlusOneWeek.setDate(dStartPlusOneWeek.getDate() + 7);
+
+        var dEndPlusOneWeek = new Date(dStartPlusOneWeek);
+        resetDateToEndOfWeek(dEndPlusOneWeek);
+
+        oDateRangeScroller.incrementDateRange();
+        equal(oDateRange.startDate.toString(), dStartPlusOneWeek.toString(), "Start date should be the start of the next week.")
+        equal(oDateRange.endDate.toString(), dEndPlusOneWeek.toString(), "End date should be the end of the next week.")
+    });
+
+    test("TestDecrementWeek", function() {
+
+        var dInitialDate = new Date(2012, 11, 10);
+        oDateRangeScroller.setDateRangeWeek(dInitialDate);
+
+        var dStartMinusOneWeek = new Date(dInitialDate);
+        dStartMinusOneWeek.setDate(dStartMinusOneWeek.getDate() - 7);
+
+        var dEndMinusOneWeek = new Date(dStartMinusOneWeek);
+        resetDateToEndOfWeek(dEndMinusOneWeek);
+
+        oDateRangeScroller.decrementDateRange();
+        equal(oDateRange.startDate.toString(), dStartMinusOneWeek.toString(), "Start date should be the start of the previous week.")
+        equal(oDateRange.endDate.toString(), dEndMinusOneWeek.toString(), "End date should be the end of the previous week.")
+    });
+
+    test("TestIncrementCustomInterval", function() {
+
+        var dInitialDate = new Date(2013, 0, 1);
+        oDateRangeScroller.setDateRangeCustom(dInitialDate, 9);
+
+        var dExpectedStartDate = new Date(2013, 0, 10);
+        var dExpectedEndDate = new Date(2013, 0, 18, 23, 59, 59);
+
+        oDateRangeScroller.incrementDateRange();
+
+        equal(oDateRange.startDate.toString(), dExpectedStartDate.toString(), "Start date should be the start date plus Custom Interval.")
+        equal(oDateRange.endDate.toString(), dExpectedEndDate.toString(), "End date should be the new start date plus Custom Interval.")
+    });
+
+    test("TestDecrementCustomInterval", function() {
+
+        var dInitialDate = new Date(2013, 0, 18);
+        oDateRangeScroller.setDateRangeCustom(dInitialDate, 9);
+
+        var dExpectedStartDate = new Date(2013, 0, 9);
+        var dExpectedEndDate = new Date(2013, 0, 17, 23, 59, 59);
+
+        oDateRangeScroller.decrementDateRange();
+
+        equal(oDateRange.startDate.toString(), dExpectedStartDate.toString(), "Start date should be the start date minus Custom Interval.")
+        equal(oDateRange.endDate.toString(), dExpectedEndDate.toString(), "End date should be the new start date minus Custom Interval.")
+    });
+
+    test("TestIncrementMonth", function() {
+
+        var dInitialDate = new Date(2012, 11, 10);
+        oDateRangeScroller.setDateRangeMonth(dInitialDate);
+
+        var dStartPlusOneMonth = new Date(dInitialDate);
+        dStartPlusOneMonth.setMonth(dStartPlusOneMonth.getMonth() + 1);
+        resetDateToStartOfMonth(dStartPlusOneMonth);
+
+        var dEndPlusOneMonth = new Date(dStartPlusOneMonth);
+        resetDateToEndOfMonth(dEndPlusOneMonth);
+
+        oDateRangeScroller.incrementDateRange();
+        equal(oDateRange.startDate.toString(), dStartPlusOneMonth.toString(), "Start date should be the start of the next month.")
+        equal(oDateRange.endDate.toString(), dEndPlusOneMonth.toString(), "End date should be the end of the next month.")
+    });
+
+    test("TestDecrementMonth", function() {
+
+        var dInitialDate = new Date(2012, 11, 10);
+        oDateRangeScroller.setDateRangeMonth(dInitialDate);
+
+        var dStartMinusOneMonth = new Date(dInitialDate);
+        dStartMinusOneMonth.setMonth(dStartMinusOneMonth.getMonth() - 1);
+        resetDateToStartOfMonth(dStartMinusOneMonth);
+
+        var dEndMinusOneMonth = new Date(dStartMinusOneMonth);
+        resetDateToEndOfMonth(dEndMinusOneMonth);
+
+        oDateRangeScroller.decrementDateRange();
+        equal(oDateRange.startDate.toString(), dStartMinusOneMonth.toString(), "Start date should be the start of the previous month.");
+        equal(oDateRange.endDate.toString(), dEndMinusOneMonth.toString(), "End date should be the end of the previous month.");
+    });
+
+    test("TestIncrementYear", function() {
+
+        var dInitialDate = new Date(2012, 11, 10);
+        oDateRangeScroller.setDateRangeYear(dInitialDate);
+
+        var dStartPlusOneYear = new Date(dInitialDate);
+        resetDateToStartOfYear(dStartPlusOneYear);
+        dStartPlusOneYear.setFullYear(dStartPlusOneYear.getFullYear() + 1);
+
+        var dEndPlusOneYear = new Date(dStartPlusOneYear);
+        resetDateToEndOfYear(dEndPlusOneYear);
+
+        oDateRangeScroller.incrementDateRange();
+        equal(oDateRange.startDate.toString(), dStartPlusOneYear.toString(), "Start date should be the start of the next year.")
+        equal(oDateRange.endDate.toString(), dEndPlusOneYear.toString(), "End date should be the end of the next year.")
+    });
+
+    test("TestDecrementYear", function() {
+
+        var dInitialDate = new Date(2012, 11, 10);
+        oDateRangeScroller.setDateRangeYear(dInitialDate);
+
+        var dStartMinusOneYear = new Date(dInitialDate);
+        resetDateToStartOfYear(dStartMinusOneYear);
+        dStartMinusOneYear.setFullYear(dStartMinusOneYear.getFullYear() - 1);
+
+        var dEndMinusOneYear = new Date(dStartMinusOneYear);
+        resetDateToEndOfYear(dEndMinusOneYear);
+
+        oDateRangeScroller.decrementDateRange();
+        equal(oDateRange.startDate.toString(), dStartMinusOneYear.toString(), "Start date should be the start of the previous year.")
+        equal(oDateRange.endDate.toString(), dEndMinusOneYear.toString(), "End date should be the end of the previous year.")
+    });
+
+    /*******************************************************************************************************************/
+
+    module("Date Range Increment Button Press" + sModuleSuffix, {
+        setup : function() {
+
+            oDateRangeScroller = sap.ui.getCore().getControl(sDateRangeScroller2Id);
+            oDecrementButton = jQuery.sap.byId(oDateRangeScroller.getId() + '-decrementScrollButton')[0];
+            oIncrementButton = jQuery.sap.byId(oDateRangeScroller.getId() + '-incrementScrollButton')[0];
+            oDateRange = oDateRangeScroller._oDateRange;
+        }
+    });
+
+    test("TestIncrementDateRangeButtonClick", function() {
+
+        var dStartPlusOneDay = new Date(oDateRange.startDate);
+        dStartPlusOneDay.setDate(dStartPlusOneDay.getDate() + 1);
+        var dEndPlusOneDay = new Date(oDateRange.endDate);
+        dEndPlusOneDay.setDate(dEndPlusOneDay.getDate() + 1);
+
+        jQuery.sap.log.info("inc button id=" + oIncrementButton.id);
+        qutils.triggerEvent("click", oIncrementButton.id);
+
+        equal(oDateRange.startDate.toString(), dStartPlusOneDay.toString(), "Start date should be the start of the next day.")
+        equal(oDateRange.endDate.toString(), dEndPlusOneDay.toString(), "End date should be the end of the next day.")
+    });
+
+    test("TestDecrementDateRangeButtonClick", function() {
+
+        var dStartMinusOneDay = new Date(oDateRange.startDate);
+        dStartMinusOneDay.setDate(dStartMinusOneDay.getDate() - 1);
+        var dEndMinusOneDay = new Date(oDateRange.endDate);
+        dEndMinusOneDay.setDate(dEndMinusOneDay.getDate() - 1);
+
+        qutils.triggerEvent("click", oDecrementButton.id);
+
+        equal(oDateRange.startDate.toString(), dStartMinusOneDay.toString(), "Start date should be the start of the previous day.")
+        equal(oDateRange.endDate.toString(), dEndMinusOneDay.toString(), "End date should be the end of the previous day.")
+    });
+
+    /*******************************************************************************************************************/
+    var sMsg = "Event captured";
+    var sMsgAfterEvent = null, oEventDateRange = null, dStartEventDate = null, dEndEventDate = null;
+    function handleDateChange(oEvent) {
+
+        sMsgAfterEvent = sMsg;
+        oEventDateRange = oEvent.getParameter('dateRange');
+        dStartEventDate = oEventDateRange.startDate;
+        dEndEventDate = oEventDateRange.endDate;
+    }
+
+    module("Date Range Increment/Decrement Button Press" + sModuleSuffix, {
+        setup : function() {
+
+            oDateRangeScroller = sap.ui.getCore().getControl(sDateRangeScroller3Id);
+            oDecrementButton = jQuery.sap.byId(oDateRangeScroller.getId() + '-decrementScrollButton')[0];
+            oIncrementButton = jQuery.sap.byId(oDateRangeScroller.getId() + '-incrementScrollButton')[0];
+            oDateRange = oDateRangeScroller._oDateRange;
+        },
+        teardown : function() {
+
+            sMsgAfterEvent = null;
+            dStartEventDate = null;
+            dEndEventDate = null;
+        }
+    });
+
+    test("TestDecrementDateRangeButtonClickEvent", function() {
+
+        qutils.triggerEvent("click", oDecrementButton.id);
+        equal(sMsgAfterEvent, sMsg, "Decrement event successfully captured.")
+        notEqual(dStartEventDate, null, "Event StartDate is not null.")
+        notEqual(dEndEventDate, null, "Event EndDate is not null.")
+        ok(dStartEventDate instanceof Date, "Event has statDate as Date Object")
+        ok(dEndEventDate instanceof Date, "Event has endDate as Date Object")
+    });
+
+    test("TestIncrementDateRangeButtonClickEvent", function() {
+
+        qutils.triggerEvent("click", oIncrementButton.id);
+        equal(sMsgAfterEvent, sMsg, "Increment event successfully captured.")
+        notEqual(dStartEventDate, null, "Event StartDate is not null.")
+        notEqual(dEndEventDate, null, "Event EndDate is not null.")
+        ok(dStartEventDate instanceof Date, "Event has StatDate as Date Object")
+        ok(dEndEventDate instanceof Date, "Event has EndDate as Date Object")
+    });
+
+    /*******************************************************************************************************************/
+    var sMsg = "Event captured";
+    var sMsgAfterEvent = null, oEventDateRange = null, dStartEventDate = null, dEndEventDate = null;
+    function handleDateChange(oEvent) {
+
+        sMsgAfterEvent = sMsg;
+        oEventDateRange = oEvent.getParameter('dateRange');
+        dStartEventDate = oEventDateRange.startDate;
+        dEndEventDate = oEventDateRange.endDate;
+    }
+
+    module("Date Range Increment/Decrement Right/Left/Up/Down Arrow Press" + sModuleSuffix, {
+        setup : function() {
+
+            oDateRangeScroller = sap.ui.getCore().getControl(sDateRangeScroller3Id);
+            oLabelArea = jQuery.sap.byId(oDateRangeScroller.getId() + '-labelarea')[0];
+            oDateRange = oDateRangeScroller._oDateRange;
+        },
+        teardown : function() {
+
+            sMsgAfterEvent = null;
+            dStartEventDate = null;
+            dEndEventDate = null;
+        }
+    });
+
+    test("TestDecrementDateRangeLeftArrowClickEvent", function() {
+
+        qutils.triggerKeyboardEvent(oLabelArea.id, "ARROW_LEFT");
+        equal(sMsgAfterEvent, sMsg, "Decrement event successfully captured.")
+        notEqual(dStartEventDate, null, "Event StartDate is not null.")
+        notEqual(dEndEventDate, null, "Event EndDate is not null.")
+        ok(dStartEventDate instanceof Date, "Event has statDate as Date Object")
+        ok(dEndEventDate instanceof Date, "Event has endDate as Date Object")
+    });
+
+    test("TestDecrementDateRangeDownArrowClickEvent", function() {
+
+        qutils.triggerKeyboardEvent(oLabelArea.id, "ARROW_DOWN");
+        equal(sMsgAfterEvent, sMsg, "Decrement event successfully captured.")
+        notEqual(dStartEventDate, null, "Event StartDate is not null.")
+        notEqual(dEndEventDate, null, "Event EndDate is not null.")
+        ok(dStartEventDate instanceof Date, "Event has statDate as Date Object")
+        ok(dEndEventDate instanceof Date, "Event has endDate as Date Object")
+    });
+
+    test("TestIncrementDateRangeRightArrowClickEvent", function() {
+
+        qutils.triggerKeyboardEvent(oLabelArea.id, "ARROW_RIGHT");
+        equal(sMsgAfterEvent, sMsg, "Increment event successfully captured.")
+        notEqual(dStartEventDate, null, "Event StartDate is not null.")
+        notEqual(dEndEventDate, null, "Event EndDate is not null.")
+        ok(dStartEventDate instanceof Date, "Event has StatDate as Date Object")
+        ok(dEndEventDate instanceof Date, "Event has EndDate as Date Object")
+    });
+
+    test("TestIncrementDateRangeUpArrowClickEvent", function() {
+
+        qutils.triggerKeyboardEvent(oLabelArea.id, "ARROW_UP");
+        equal(sMsgAfterEvent, sMsg, "Increment event successfully captured.")
+        notEqual(dStartEventDate, null, "Event StartDate is not null.")
+        notEqual(dEndEventDate, null, "Event EndDate is not null.")
+        ok(dStartEventDate instanceof Date, "Event has StatDate as Date Object")
+        ok(dEndEventDate instanceof Date, "Event has EndDate as Date Object")
+    });
+
+    /*******************************************************************************************************************/
+
+    module("Start/End Date Range API Test" + sModuleSuffix, {
+        setup : function() {
+
+            oDateRangeScroller = sap.ui.getCore().getControl(sDateRangeScroller4Id);
+            oDecrementButton = jQuery.sap.byId(oDateRangeScroller.getId() + '-decrementScrollButton')[0];
+            oIncrementButton = jQuery.sap.byId(oDateRangeScroller.getId() + '-incrementScrollButton')[0];
+            oDateRange = oDateRangeScroller._oDateRange;
+        }
+    });
+
+    test("TestDefaultDayRangeApiForDayDateRange", function() {
+
+        var dCurrentDate = new Date();
+        var oDefaultDateRange = oDateRangeScroller.getDateRange();
+        equal(oDefaultDateRange.startDate.getDate(), dCurrentDate.getDate(), "Start Date same as current date")
+        equal(oDefaultDateRange.endDate.getDate(), dCurrentDate.getDate(), "End Date same as current date")
+    });
+
+    test("TestDayRangeApiForDayDateRange", function() {
+
+        var oDateRangeBefore = oDateRangeScroller.getDateRange();
+        qutils.triggerEvent("click", oIncrementButton.id);
+        var oDateRangeAfter = oDateRangeScroller.getDateRange();
+        var dExpectDate = new Date();
+        dExpectDate.setDate(oDateRangeBefore.startDate.getDate() + 1);
+        equal(oDateRangeAfter.startDate.getDate(), dExpectDate.getDate(), "Start Date incremented by 1 day")
+        equal(oDateRangeAfter.endDate.getDate(), dExpectDate.getDate(), "End Date incremented by 1 day")
+        qutils.triggerEvent("click", oDecrementButton.id);
+        oDateRangeAfter = oDateRangeScroller.getDateRange();
+        equal(oDateRangeAfter.startDate.getDate(), oDateRangeBefore.startDate.getDate(), "Start Date decremented by 1 day")
+        equal(oDateRangeAfter.endDate.getDate(), oDateRangeBefore.endDate.getDate(), "End Date decremented by 1 day")
+    });
+
+    test("TestDayRangeApiForMonthDateRange", function() {
+
+        var dInitialDate = new Date(2012, 11, 10);
+        oDateRangeScroller.setDateRangeMonth(dInitialDate);
+        var oDateRangeBefore = oDateRangeScroller.getDateRange();
+        qutils.triggerEvent("click", oIncrementButton.id);
+        var oDateRangeAfter = oDateRangeScroller.getDateRange();
+        var dExpectStartDate = new Date(2013, 0, 1);
+        var dExpectEndDate = new Date(2013, 0, 31);
+
+        equal(oDateRangeAfter.startDate.getMonth(), dExpectStartDate.getMonth(), "Start Month incremented by 1 month")
+        equal(oDateRangeAfter.endDate.getMonth(), dExpectEndDate.getMonth(), "End Month incremented by 1 month")
+        qutils.triggerEvent("click", oDecrementButton.id);
+        oDateRangeAfter = oDateRangeScroller.getDateRange();
+        equal(oDateRangeAfter.startDate.getMonth(), oDateRangeBefore.startDate.getMonth(), "Start Month decremented by 1 month")
+        equal(oDateRangeAfter.endDate.getMonth(), oDateRangeBefore.endDate.getMonth(), "End Month decremented by 1 month")
+    });
+
+    test("TestDayRangeApiForYearDateRange", function() {
+
+        var dInitialDate = new Date(2012, 11, 10);
+        oDateRangeScroller.setDateRangeYear(dInitialDate);
+
+        var oDateRangeBefore = oDateRangeScroller.getDateRange();
+        qutils.triggerEvent("click", oIncrementButton.id);
+        var oDateRangeAfter = oDateRangeScroller.getDateRange();
+        var dExpectStartDate = new Date(2013, 0, 1);
+        var dExpectEndDate = new Date(2013, 11, 31);
+
+        equal(oDateRangeAfter.startDate.getFullYear(), dExpectStartDate.getFullYear(), "Start Year incremented by 1 year")
+        equal(oDateRangeAfter.endDate.getFullYear(), dExpectEndDate.getFullYear(), "End Year incremented by 1 year")
+
+        qutils.triggerEvent("click", oDecrementButton.id);
+
+        oDateRangeAfter = oDateRangeScroller.getDateRange();
+        equal(oDateRangeAfter.startDate.getFullYear(), oDateRangeBefore.startDate.getFullYear(), "Start Year decremented by 1 year")
+        equal(oDateRangeAfter.endDate.getFullYear(), oDateRangeBefore.endDate.getFullYear(), "End Year decremented by 1 year")
+    });
+
+    /*******************************************************************************************************************/
+    module("Text Rendering For Date Ranges" + sModuleSuffix, {
+        setup : function() {
+
+            oDateRangeScroller = new sap.suite.ui.commons.DateRangeScroller("drs" + next());
+            dateRange = oDateRangeScroller._oDateRange;
+            oDateRangeLabel = oDateRangeScroller._oDateRangeLabel;
+        }
+    });
+
+    test("TestRenderLabelDayDateRange", function() {
+
+        var dInitialDate = new Date();
+        oDateRangeScroller.setDateRangeDay(dInitialDate);
+        var dExpectedDate = new Date(dInitialDate);
+        var oDateFormat = sap.ui.core.format.DateFormat.getDateInstance({
+            pattern : 'MMMM d, YYYY'
+        });
+
+        var sExpectedDate = oDateFormat.format(dExpectedDate, false);
+        equal(oDateRangeLabel.getText(), sExpectedDate, "Date range label formatted as " + sExpectedDate);
+    });
+
+    test("TestRenderLabelWeekDateRangeSameMonth", function() {
+
+        var dInitialDate = new Date(2013, 0, 7);
+        oDateRangeScroller.setDateRangeWeek(dInitialDate);
+
+        var oExpectedStartDate = new Date(dInitialDate);
+        var oExpectedEndDate = new Date(2013, 0, 13);
+
+        var sDateRangeLabel = createDateRangeLabel(oExpectedStartDate, oExpectedEndDate, "week");
+        equal(oDateRangeLabel.getText(), sDateRangeLabel, "Date range label formatted as " + sDateRangeLabel);
+    });
+
+    test("TestRenderLabelWeekDateRangeSpanMonths", function() {
+
+        var dInitialDate = new Date(2013, 0, 28);
+        oDateRangeScroller.setDateRangeWeek(dInitialDate);
+
+        var oExpectedStartDate = new Date(dInitialDate);
+        var oExpectedEndDate = new Date(2013, 1, 3);
+        var sDateRangeLabel = createDateRangeLabel(oExpectedStartDate, oExpectedEndDate, "week");
+        equal(oDateRangeLabel.getText(), sDateRangeLabel, "Date range label formatted as " + sDateRangeLabel);
+    });
+
+    test("TestRenderLabelWeekDateRangeSpanYears", function() {
+
+        var dInitialDate = new Date(2012, 11, 31);
+        oDateRangeScroller.setDateRangeWeek(dInitialDate);
+
+        var oExpectedStartDate = new Date(dInitialDate);
+        var oExpectedEndDate = new Date(2013, 0, 6);
+        var sDateRangeLabel = createDateRangeLabel(oExpectedStartDate, oExpectedEndDate, "week");
+        equal(oDateRangeLabel.getText(), sDateRangeLabel, "Date range label formatted as " + sDateRangeLabel);
+    });
+
+    test("TestRenderLabelMonthDateRange", function() {
+
+        var oExpectedDate = new Date(2013, 0, 1);
+        var oDateFormat = sap.ui.core.format.DateFormat.getDateInstance({
+            pattern : 'MMMM YYYY'
+        });
+        for ( var i = 0; i < 12; i++) {
+            oExpectedDate.setMonth(i);
+            oDateRangeScroller.setDateRangeMonth(oExpectedDate);
+            var sExpectedDate = oDateFormat.format(oExpectedDate, false);
+            equal(oDateRangeLabel.getText(), sExpectedDate, "Date range label formatted as " + sExpectedDate);
+        }
+    });
+
+    test("TestRenderLabelYearDateRange", function() {
+
+        var dDate = new Date(2013, 0, 1);
+        oDateRangeScroller.setDateRangeYear(dDate);
+
+        var dExpectedDate = new Date(dDate);
+        var oDateFormat = sap.ui.core.format.DateFormat.getDateInstance({
+            pattern : 'YYYY'
+        });
+        var sExpectedDate = oDateFormat.format(dExpectedDate, false);
+        equal(oDateRangeLabel.getText(), sExpectedDate, "Date range label formatted as " + sExpectedDate);
+    });
+
+    /*******************************************************************************************************************/
+
+    module("Test for date format API" + sModuleSuffix, {
+        setup : function() {
+
+            oDateRangeScroller = new sap.suite.ui.commons.DateRangeScroller("drs" + next());
+        }
+    });
+
+    test("TestDateFormatIsNotSetInitially", function() {
+
+        equal(oDateRangeScroller._oDateFormat, null, "Date format of the control should not be set initially.");
+    });
+
+    test("TestDateFormatIsSetCorrectly", function() {
+
+        var oLocale = new sap.ui.core.Locale("de");
+        oDateRangeScroller.setDateFormat(sap.ui.core.format.DateFormat.getDateInstance(oLocale));
+        notEqual(oDateRangeScroller._oDateFormat, null, "Date format of the control should be set to supplied date format.");
+        oDateRangeScroller.setDateFormat(null);
+        equal(oDateRangeScroller._oDateFormat, null, "Date format of the control should not be set if null is passed.");
+        oDateRangeScroller.setDateFormat(sap.ui.core.format.DateFormat.getDateInstance(oLocale));
+        notEqual(oDateRangeScroller._oDateFormat, null, "Date format of the control should be set to supplied date format.");
+        oDateRangeScroller.setDateFormat(new Boolean(true));
+        equal(oDateRangeScroller._oDateFormat, null, "Date format of the control should not be set if invalid obj is passed.");
+    });
+
+    test("TestCorrectDateFormatIsUsed", function() {
+
+        var dInitDate = new Date();
+        var oLocaleDe = new sap.ui.core.Locale("de");
+        var oDateFormatDe = sap.ui.core.format.DateFormat.getDateInstance(oLocaleDe);
+
+        oDateRangeScroller.setDateRangeDay(dInitDate);
+        equal(oDateRangeScroller._oDateRangeLabel.getText(), createDateRangeLabel(dInitDate, null, "day"), "Date range label should be equal the date range scroller label.");
+
+        oDateRangeScroller.setDateFormat(oDateFormatDe);
+        equal(oDateRangeScroller._oDateRangeLabel.getText(), oDateFormatDe.format(dInitDate, false),
+                "Date range label format should equal the format provided by supplied DateFormat Object.");
+    });
+
+    // *********** Utility Methods **************
+
+    function resetDateToStartOfYear(dDate) {
+
+        dDate.setMonth(0);
+        resetDateToStartOfMonth(dDate);
+    };
+
+    function resetDateToEndOfYear(dDate) {
+
+        dDate.setMonth(11);
+        resetDateToEndOfMonth(dDate);
+    };
+
+    function resetDateToStartOfMonth(dDate) {
+
+        dDate.setDate(1);
+        resetDateToStartOfDay(dDate);
+    };
+
+    function resetDateToEndOfMonth(dDate) {
+
+        dDate.setDate(1);
+        dDate.setMonth(dDate.getMonth() + 1);
+        dDate.setDate(0);
+        resetDateToEndOfDay(dDate);
+    };
+
+    function resetDateToStartOfWeek(dDate) {
+
+        var iCurrentDay = dDate.getDay();
+        var iStartDayOfWeek = 1;
+        var iShiftback = (iCurrentDay - iStartDayOfWeek + 7) % 7;
+        dDate.setDate(dDate.getDate() - iShiftback);
+        resetDateToStartOfDay(dDate);
+    };
+
+    function resetDateToEndOfWeek(dDate) {
+
+        resetDateToStartOfWeek(dDate);
+        dDate.setDate(dDate.getDate() + 6);
+        resetDateToEndOfDay(dDate);
+    };
+
+    function resetDateToStartOfDay(dDate) {
+
+        dDate.setHours(0);
+        dDate.setMinutes(0);
+        dDate.setSeconds(0);
+    };
+
+    function resetDateToEndOfDay(dDate) {
+
+        dDate.setHours(23);
+        dDate.setMinutes(59);
+        dDate.setSeconds(59);
+    };
+
+    function resetDateToEndOfCustomDate(dDate, iCustomInterval) {
+
+        dDate.setDate(dDate.getDate() + iCustomInterval);
+        resetDateToEndOfDay(dDate);
+    }
+
+    function createEndDate(dStartDate, iInterval) {
+
+        var dEndDate = new Date(dStartDate); // Default to start date if range is invalid
+        dEndDate.setDate(dEndDate.getDate() + iInterval - 1); //Subtract a day since the date range includes the start day            
+        resetDateToEndOfDay(dEndDate);
+        return dEndDate;
+    }
+
+    function createDateRangeLabel(dStartDate, dEndDate, sRangeType, oDateFormat) {
+
+        var oDateFormatter;
+        var sDateRangeLabelText;
+        switch (sRangeType) {
+        case ("day"):
+            oDateFormatter = oDateFormat ? oDateFormat : sap.ui.core.format.DateFormat.getDateInstance({
+                pattern : "MMMM d, YYYY"
+            });
+            sDateRangeLabelText = oDateFormatter.format(dStartDate, false);
+            break;
+        case ("week"):
+            var oStartDateFormat = oDateFormat ? oDateFormat : sap.ui.core.format.DateFormat.getDateInstance({
+                pattern : 'MMMM d'
+            });
+            var oEndDateFormat = oDateFormat ? oDateFormat : sap.ui.core.format.DateFormat.getDateInstance({
+                pattern : 'MMMM d, YYYY'
+            });
+            if (dStartDate.getYear() != dEndDate.getYear()) {
+                oStartDateFormat = oEndDateFormat;
+            } else if (dStartDate.getMonth() == dEndDate.getMonth()) {
+                oEndDateFormat = oDateFormat ? oDateFormat : sap.ui.core.format.DateFormat.getDateInstance({
+                    pattern : 'd, YYYY'
+                });
+            }
+            var sStartDate = oStartDateFormat.format(dStartDate, false);
+            var sEndDate = oEndDateFormat.format(dEndDate, false);
+            sDateRangeLabelText = sStartDate + " - " + sEndDate;
+            break;
+        case ("month"):
+            oDateFormatter = oDateFormat ? oDateFormat : sap.ui.core.format.DateFormat.getDateInstance({
+                pattern : 'MMMM YYYY'
+            });
+            sDateRangeLabelText = oDateFormatter.format(dStartDate, false);
+            break;
+        case ("year"):
+            oDateFormatter = oDateFormat ? oDateFormat : sap.ui.core.format.DateFormat.getDateInstance({
+                pattern : 'YYYY'
+            });
+            sDateRangeLabelText = oDateFormatter.format(dStartDate, false);
+            break;
+        default:
+            sDateRangeLabelText = dStartDate + " - " + dEndDate;
+        }
+        return sDateRangeLabelText;
+    };
+
+    function isValidDate(dDate) {
+
+        if (Object.prototype.toString.call(dDate) !== "[object Date]") {
+            return false;
+        }
+        return !isNaN(dDate.getTime());
+    }
+</script>
+</head>
+
+<body class="sapUiBody" role="application">
+	<div id="qunit"></div>
+	<div id="div1"></div>
+	<div id="div2"></div>
+	<div id="div3"></div>
+	<div id="div4"></div>
+</body>
+</html>

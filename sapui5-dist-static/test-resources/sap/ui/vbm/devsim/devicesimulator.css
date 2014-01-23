@@ -1,0 +1,106 @@
+
+html,body {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	overflow: hidden;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+}
+
+body {
+	background: #fff url(images/background.jpg) no-repeat left top;
+	background-size: 100% 100%;
+}
+
+
+/* CONFIG */
+
+
+nav#configArea {
+	display: block;
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	padding: 12px;
+	background-color: rgba(0, 0, 0, .3);
+	width: 407px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	z-index: 5;
+	cursor: move;
+}
+
+nav#configArea .sapUiBtn,
+nav#configArea .sapUiTfCombo,
+nav#configArea .sapUiTfBrd  {
+	margin: 4px;
+}
+
+nav#configArea .sapUiLbl {
+	color: #fff;
+	vertical-align: top;
+	margin-top: 5px;
+}
+
+nav#configArea .sapUiLnk,
+nav#configArea .sapUiLnk:hover {
+	margin-left: 3px;
+	color: white;
+}
+
+/* make qrcode more visible */
+canvas[id*=qrcode] {
+	border: 20px solid white;
+}
+.sapUiVlt {
+	background-color: white;
+}
+
+
+
+/* PHONE FRAME */
+
+#frameTray {
+	position: absolute;
+	left: 20px;
+	top: 20px;
+	cursor: move;
+}
+
+#device {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background-image: url(images/iPhone.png);
+	background-repeat: no-repeat;
+	z-index: -1;
+	-webkit-transition-property: -webkit-transform;
+}
+
+#theFrame {
+	margin: 153px 32px;
+	border: none;
+	z-index: 3;
+}
+
+
+.animating {
+	-webkit-transition-property: -webkit-transform;
+	-webkit-transition-duration: 500ms;
+}
+
+.animatingPortrait {
+	-webkit-transform: rotate(-90deg);
+}
+.animatingLandscape {
+	-webkit-transform: rotate(90deg);
+}
+
+
+/* CLOCK */
+#clock {
+	position: absolute;
+	text-align: center;
+}

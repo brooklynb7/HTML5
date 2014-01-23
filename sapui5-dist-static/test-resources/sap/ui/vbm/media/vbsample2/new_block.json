@@ -1,0 +1,19 @@
+{
+	"SAPVB": {
+		"version": "2.0",
+		"xmlns:VB": "VB",
+		"Data": {
+			"Set": {
+				"type": "N",
+				"name": "Buildings",
+				"N": {
+					"name": "Buildings",
+					"E": {
+						"pos": "22.744694;53.350531;0.0",
+						"scale": "0.05;0.05;0.2"
+					}
+				}
+			}
+		}
+	}
+}

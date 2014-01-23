@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html data-sap-ui-dk-category="Controls/Complex" data-sap-ui-dk-controls="sap.suite.ui.commons.UnifiedThingInspector">
+<head>
+    <meta charset="UTF-8">
+    <title>UnifiedThingInspector - sap.suite.ui.commons</title>
+
+    <!-- UI5 Bootstrap -->
+    <script id="sap-ui-bootstrap" type="text/javascript"
+    		src="../../../../../../resources/sap-ui-core.js"
+            data-sap-ui-libs="sap.ui.commons, sap.ui.demokit, sap.suite.ui.commons, sap.m"
+            data-sap-ui-theme="sap_bluecrystal">
+    </script>
+
+<script id="unufiedThingInspector1" type="text/javascript">
+    jQuery.sap.initMobile();
+
+    var formOverview = new sap.ui.commons.form.SimpleForm("formOverview", {
+		minWidth: 1024,
+		maxContainerCols: 1,
+		content: [
+			new sap.ui.commons.Title({text: "General"}),
+			new sap.m.Label({text: "Address:"}),
+			new sap.m.Text({text: "Hohenzollerstrasse 30"}),
+			new sap.m.Label({text: ""}),
+			new sap.m.Text({text: "80539 Munchen"}),
+			new sap.m.Label({text: "Wohnort:"}),
+			new sap.m.Text({text: "Germany"}),
+			new sap.m.Label({text: "Disputed Invoices:"}),
+			new sap.m.Text({text: "1"}),
+			new sap.m.Label({text: "Payment Terms:"}),
+			new sap.m.Text({text: "Payable now due net"}),
+			new sap.m.Label({text: "Risk Class:"}),
+			new sap.m.Text({text: "Medium Default Risk"}),
+			new sap.ui.commons.Title({text: "Sub Header"}),
+			new sap.m.Label({text: "Sales Order"}),
+			new sap.m.Link({text: "44400000013285"}),
+			new sap.m.Label({text: "Recipient:"}),
+			new sap.m.Link({text: "John Bradford"}),
+			new sap.m.Label({text: "Ordered On:"}),
+			new sap.m.Text({text: "Nov. 11, 2013"}),
+			new sap.m.Label({text: "Last Changed On:"}),
+			new sap.m.Text({text: "Jan. 1, 2013"}),
+			new sap.m.Label({text: "Created By:"}),
+			new sap.m.Link({text: "Steven Tyler"})
+		]
+	});
+
+    var oContactsData = {
+        content : [{
+            name: "Jag, Mick",
+            phone: "+1 (692) 742-2633"
+        }, {
+            name: "Bradford, John",
+            phone: "+1 (635) 457-2875"
+        }, {
+            name: "Stiff, Clark",
+            phone: "+1 (703) 515-8363"
+        }]
+    };
+
+    var oTemplateContactsData = new sap.m.StandardListItem({
+        title : "{name}",
+        description : "{phone}"
+    });
+
+    var oListContacts = new sap.m.List({
+        headerText : "Contacts",
+        items : {
+            path : "/content",
+            template : oTemplateContactsData
+        }
+    });
+
+    var oItemsData = {
+        navigation : [{
+            name : "Headphone",
+            qty : "10 EA",
+            limit : "15.00 Eur",
+            price : "12.00 EUR"
+        }, {
+            name : "Mouse Pad",
+            qty : "1 EA",
+            limit : "5.00 Eur",
+            price : "3.00 EUR"
+        }, {
+            name : "Monitor",
+            qty : "8 EA",
+            limit : "60.00 Eur",
+            price : "45.00 EUR"
+        }, {
+            name : "Optic Mouse",
+            qty : "2 EA",
+            limit : "40.00 Eur",
+            price : "15.00 EUR"
+        }, {
+            name : "Dock Station",
+            qty : "1 EA",
+            limit : "90.00 Eur",
+            price : "55.00 EUR"
+        }]
+    };
+			
+    var oTemplateItemsData = new sap.m.ColumnListItem({
+        type : "Navigation",
+        unread : false,
+        cells : [
+            new sap.m.Label({text : "{name}"}),
+            new sap.m.Label({text : "{qty}"}),
+            new sap.m.Label({text : "{limit}"}),
+            new sap.m.Label({text : "{price}"})
+        ]
+    });
+
+    var oListItems = new sap.m.List({
+        threshold: 2,
+        inset : false,
+        mode: "MultiSelect",
+        showUnread : true,
+        scrollToLoad : true,
+        headerText : "Items (5)",
+        columns : [
+            new sap.m.Column({
+            styleClass : "name",
+            hAlign : "Left",
+            header : new sap.m.Label({text : "Name"})
+        }), new sap.m.Column({
+            hAlign : "Center",
+            styleClass : "qty",
+            header : new sap.m.Label({text : "Qty"}),
+            minScreenWidth : "Tablet",
+            demandPopin : true
+        }), new sap.m.Column({
+            hAlign : "Right",
+            styleClass : "limit",
+            width : "30%",
+            header : new sap.m.Label({text : "Value"}),
+            demandPopin : true
+        }), new sap.m.Column({
+            hAlign : "Right",
+            styleClass : "price",
+            width : "30%",
+            header : new sap.m.Label({text : "Price"}),
+            footer : new sap.m.Label({text : "130.00 EUR"}),
+            minScreenWidth : "XXSmall",
+            demandPopin : true
+        })],
+        items: {
+            path : "/navigation",
+            template : oTemplateItemsData
+        }
+    });
+
+    var oModelContacts = new sap.ui.model.json.JSONModel();
+    oModelContacts.setData(oContactsData);
+    oListContacts.setModel(oModelContacts);
+
+    var oModelItems = new sap.ui.model.json.JSONModel();
+    oModelItems.setData(oItemsData);
+    oListItems.setModel(oModelItems);
+
+    var oFacetData = {
+        overview: formOverview,
+        contacts: oListContacts,
+        items: oListItems
+    };
+
+    function setFacetContent(sKey) {
+        oUTI.removeAllFacetContent();
+        oUTI.addFacetContent(oFacetData[sKey]);
+    }
+
+    var oData = {
+        title: "Sales Order",
+        name: "44000012640000006565656565600000000002121",
+        description: "Standard Order",
+        firstStatus: "1 Day Ago",
+        facets: [{
+            key: "overview",
+            title: "Overview"
+        }, {
+            key: "contacts",
+            title: "Contacts",
+            quantity: 3
+        }, {
+            key: "items",
+            title: "Items",
+            quantity: 5
+        }]
+    };
+    var oModel = new sap.ui.model.json.JSONModel();
+    oModel.setData(oData);
+
+    var oFacetTemplate = new sap.suite.ui.commons.ThingFacet({
+        key: "{key}",
+        title: "{title}",
+        quantity: "{quantity}"
+    });
+
+    var aActionButtons = [
+        new sap.m.Button({
+            icon: "sap-icon://decline",
+            text: "Reject",
+            press: function() { alert("Reject action pressed.")}
+        }),
+        new sap.m.Button({
+            icon: "sap-icon://accept",
+            text: "Accept",
+            press: function() { alert("Accept action pressed.")}
+        }),
+        new sap.m.Button({
+            icon: "sap-icon://email",
+            text: "EMail",
+            press: function() { alert("EMail action pressed.")}
+        }),
+        new sap.m.Button({
+            icon: "sap-icon://forward",
+            text: "Forward",
+            press: function() { alert("Forward action pressed.")}
+        }),
+        new sap.m.Button({
+            icon: "sap-icon://delete",
+            text: "Delete",
+            press: function() { alert("Delete action pressed.")}
+        })
+    ];
+
+    var oUTI = new sap.suite.ui.commons.UnifiedThingInspector({
+		id: "unified",
+		height: "600px",
+        title: "{/title}",
+        name: "{/name}",
+        description: "{/description}",
+        firstStatus: "{/firstStatus}",
+        secondStatus: "{/secondStatus}",
+		facets: {
+            path: "/facets",
+            template: oFacetTemplate
+        },
+        actions: aActionButtons,
+        facetSelected: function(oEvent) {
+            setFacetContent(oEvent.getParameter("key"));
+        },
+        backAction: function() {
+            alert("Back action pressed.")
+        }
+	});
+
+    oUTI.setModel(oModel);
+
+    oUTI.selectDefaultFacet();
+	oUTI.placeAt("sample1");
+</script>
+</head>
+
+<body class="sapUiDemokitBody" role="application">
+<h1 color="Blue" icon="images/ctrls/uthinginspector-icon.png">UnifiedThingInspector</h1>
+
+<h2>Introduction</h2>
+<p>This control is used to display object factsheets on mobile and desktop devices. 
+   The master panel can display a title, up to two rows of text status and a navigation bar with the list of facets (ThingFacet).
+   Title and quantity of ThingFacets are shown in the list.
+   The detail panel displays the content of the selected facets.
+</p>
+<br/>
+
+<h2>Example</h2>
+<div code-sample="sample1" script="unufiedThingInspector1"></div>
+	
+<br/>
+<p><a class="sapUiDemokitSrcLink" href="../../../../../../docs/api/symbols/sap.suite.ui.commons.UnifiedThingInspector.html">UnifiedThingInspector API documentation</a></p>
+<br/>
+
+</body>
+</html>

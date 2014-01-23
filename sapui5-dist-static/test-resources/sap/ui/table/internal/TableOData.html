@@ -1,0 +1,174 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+<title>Table - OData Test Page - sap.ui.table</title>
+<link rel="shortcut icon" type="image/x-icon" href="../images/controls/sap.ui.table.Table.gif">
+
+<!-- ********************************************************************** -->
+<!-- SAPUI5 Bootstrap:                                                     -->
+<!-- Extend the "libs" property if you like to import additional libraries  -->
+<!-- ********************************************************************** -->
+<script id="sap-ui-bootstrap" 
+	type="text/javascript"
+	data-sap-ui-libs="sap.ui.commons,sap.ui.table"
+	data-sap-ui-theme="sap_goldreflection"
+	src="../../../../../resources/sap-ui-core.js"
+	data-sap-ui-modules="sap.ui.core.plugin.DeclarativeSupport"></script>
+
+<script type="text/javascript">	
+
+function loadData() {
+	
+	// fetch the relevant properties
+	var sServiceUrl = sap.ui.getCore().byId("txtServiceUrl").getValue();
+	var sCollection = sap.ui.getCore().byId("txtCollection").getValue();
+	var sProperties = sap.ui.getCore().byId("txtProperties").getValue();
+	var bUseJSON = sap.ui.getCore().byId("chkUseJSON").getChecked();
+	var sUser = sap.ui.getCore().byId("txtUser").getValue();
+	var sPassword = sap.ui.getCore().byId("txtPassword").getValue();
+	var sThreshold = sap.ui.getCore().byId("txtThreshold").getValue();
+
+	sUser = sUser && sUser.length > 0 ? sUser : null;
+	sPassword = sPassword && sPassword.length > 0 ? sPassword : null;
+	
+	// modify the service url when using a proxy
+	var sTargetUrl = "../../../../../proxy/" + sServiceUrl.replace("://", "/");
+	
+	// cleanup the table
+	var oTable = sap.ui.getCore().byId("tblData");
+	oTable.unbindRows();
+
+	// update the properties
+	oTable.setTitle(sServiceUrl + " - " + sCollection);
+	//oTable.setThreshold(parseInt(sThreshold));
+	
+	// recreate the columns
+	oTable.destroyColumns();
+	var aProperties = sProperties.split(",");
+	jQuery.each(aProperties, function(iIndex, sProperty) {
+		oTable.addColumn(new sap.ui.table.Column({
+			label: sProperty, 
+			template: sProperty, 
+			sortProperty: sProperty, 
+			filterProperty: sProperty
+		}));
+	});
+
+	var oModel = new sap.ui.model.odata.ODataModel(sTargetUrl, bUseJSON, sUser, sPassword);
+	oTable.setModel(oModel);
+	oTable.bindRows("/" + sCollection);
+	
+} // fn: loadData
+
+jQuery(function() {
+
+	var sServiceUrl = "http://services.odata.org/Northwind/Northwind.svc/";
+	var sCollection = "Products";
+	var sProperties = "ProductID,ProductName,QuantityPerUnit,UnitPrice";
+	var bUseJSON = true;
+	var sUser = null;
+	var sPassword = null;
+
+	/*
+	sServiceUrl = "http://10.66.12.84:50080/sap/opu/sdata/sap/WSHUMANTASKOPERATIONSIMPL/?sap-client=100"; // KRISHNAN/abcd1234
+	sCollection = "BPMTaskCollection";
+	sProperties = "id,task_type";
+	bUseJSON = true;
+	sUser = "KRISHNAN";
+	sPassword = "abcd1234";
+
+	sServiceUrl = "http://10.66.189.125:50000/sap/opu/sdata/sap/ZBANKRFCDL/"; // demo, usertest
+	sCollection = "z_bank_rfc_dlCollection";
+	sProperties = "post_bank,swift_code,addr_no,street,city";
+	bUseJSON = false;
+	sUser = "demo";
+	sPassword = "usertest";
+	*/
+	
+	sap.ui.getCore().byId("txtServiceUrl").setValue(sServiceUrl);
+	sap.ui.getCore().byId("txtCollection").setValue(sCollection);
+	sap.ui.getCore().byId("txtProperties").setValue(sProperties);
+	sap.ui.getCore().byId("chkUseJSON").setChecked(bUseJSON);
+	sap.ui.getCore().byId("txtUser").setValue(sUser);
+	sap.ui.getCore().byId("txtPassword").setValue(sPassword);
+	
+});
+
+</script>
+
+</head>
+
+<body class="sapUiBody" role="application">
+
+	<h1>Test Page for sap.ui.table.Table</h1>
+
+	<div data-sap-ui-type="sap.ui.commons.layout.MatrixLayout" layout-fixed="false" style="margin: 20px; width: 1%;">
+		<div data-sap-ui-type="sap.ui.commons.layout.MatrixLayoutRow">
+			<div data-sap-ui-type="sap.ui.commons.layout.MatrixLayoutCell">
+				<span data-sap-ui-type="sap.ui.commons.Label" text="Service Url:"></span>
+			</div>
+			<div data-sap-ui-type="sap.ui.commons.layout.MatrixLayoutCell">
+				<span data-sap-ui-type="sap.ui.commons.TextField" id="txtServiceUrl" width="400px"></span>
+			</div>
+			<div data-sap-ui-type="sap.ui.commons.layout.MatrixLayoutCell">
+				<span data-sap-ui-type="sap.ui.commons.Button" text="Load Data..." press="loadData"></span>
+			</div>
+		</div>
+		<div data-sap-ui-type="sap.ui.commons.layout.MatrixLayoutRow">
+			<div data-sap-ui-type="sap.ui.commons.layout.MatrixLayoutCell">
+				<span data-sap-ui-type="sap.ui.commons.Label" text="Collection:"></span>
+			</div>
+			<div data-sap-ui-type="sap.ui.commons.layout.MatrixLayoutCell">
+				<span data-sap-ui-type="sap.ui.commons.TextField" id="txtCollection" width="400px"></span>
+			</div>
+		</div>
+		<div data-sap-ui-type="sap.ui.commons.layout.MatrixLayoutRow">
+			<div data-sap-ui-type="sap.ui.commons.layout.MatrixLayoutCell">
+				<span data-sap-ui-type="sap.ui.commons.Label" text="Properties:"></span>
+			</div>
+			<div data-sap-ui-type="sap.ui.commons.layout.MatrixLayoutCell">
+				<span data-sap-ui-type="sap.ui.commons.TextField" id="txtProperties" width="400px" tooltip="Format: 'prop1,prop2'"></span>
+			</div>
+		</div>
+		<div data-sap-ui-type="sap.ui.commons.layout.MatrixLayoutRow">
+			<div data-sap-ui-type="sap.ui.commons.layout.MatrixLayoutCell">
+				<span data-sap-ui-type="sap.ui.commons.Label" text="Use JSON:"></span>
+			</div>
+			<div data-sap-ui-type="sap.ui.commons.layout.MatrixLayoutCell">
+				<span data-sap-ui-type="sap.ui.commons.CheckBox" id="chkUseJSON"></span>
+			</div>
+		</div>
+		<div data-sap-ui-type="sap.ui.commons.layout.MatrixLayoutRow">
+			<div data-sap-ui-type="sap.ui.commons.layout.MatrixLayoutCell">
+				<span data-sap-ui-type="sap.ui.commons.Label" text="Username:"></span>
+			</div>
+			<div data-sap-ui-type="sap.ui.commons.layout.MatrixLayoutCell">
+				<span data-sap-ui-type="sap.ui.commons.TextField" id="txtUser" width="200px"></span>
+			</div>
+		</div>
+		<div data-sap-ui-type="sap.ui.commons.layout.MatrixLayoutRow">
+			<div data-sap-ui-type="sap.ui.commons.layout.MatrixLayoutCell">
+				<span data-sap-ui-type="sap.ui.commons.Label" text="Password:"></span>
+			</div>
+			<div data-sap-ui-type="sap.ui.commons.layout.MatrixLayoutCell">
+				<span data-sap-ui-type="sap.ui.commons.PasswordField" id="txtPassword" width="200px"></span>
+			</div>
+		</div>
+		<div data-sap-ui-type="sap.ui.commons.layout.MatrixLayoutRow">
+			<div data-sap-ui-type="sap.ui.commons.layout.MatrixLayoutCell">
+				<span data-sap-ui-type="sap.ui.commons.Label" text="Threshold:"></span>
+			</div>
+			<div data-sap-ui-type="sap.ui.commons.layout.MatrixLayoutCell">
+				<span data-sap-ui-type="sap.ui.commons.TextField" id="txtThreshold" width="50px" value="100"></span>
+			</div>
+		</div>
+	</div>
+
+	<div data-sap-ui-type="sap.ui.table.Table" 
+	     id="tblData" style="margin: 20px;" selection-mode="Multi"></div>
+	
+</body>
+</html>

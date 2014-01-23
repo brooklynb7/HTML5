@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta charset="UTF-8" />
+	
+	<title>UI Development Toolkit for HTML5 (SAPUI5)</title>
+	
+	<style>
+	html {
+		background: #ffffff; /* Old browsers */
+		background: -moz-linear-gradient(top, #ffffff 0%, #ffffff 50%, #cfcfcf 100%); /* FF3.6+ */
+		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(50%,#ffffff), color-stop(100%,#cfcfcf)); /* Chrome,Safari4+ */
+		background: -webkit-linear-gradient(top, #ffffff 0%,#ffffff 50%,#cfcfcf 100%); /* Chrome10+,Safari5.1+ */
+		background: -ms-linear-gradient(top, #ffffff 0%,#ffffff 50%,#cfcfcf 100%); /* IE10+ */
+		background: linear-gradient(top, #ffffff 0%,#ffffff 50%,#cfcfcf 100%); /* W3C */
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#cfcfcf',GradientType=0 ); /* IE6-9 */
+		background-repeat: no-repeat;
+		min-height: 100%;
+	}
+	body {
+		font-family: Calibri, Tahoma, Arial, Helvetica, sans-serif;
+		margin: 0;
+		padding: 0;
+	}
+	
+	h1 {
+		margin: 3px 0;
+	}
+
+    h2 {
+      margin: 8px 0px 5px 0px;
+    }
+
+    h3 {
+      margin: 18px 0px 3px 0px;
+    }
+
+    ul {
+      margin-top: 3px;
+      margin-bottom: 6px;
+    }
+
+    #banner-div {
+      padding: 0 15px;
+      border-bottom: 5px solid gray;
+    }
+    
+    #content {
+		padding: 15px;
+	}
+	
+	.codeblock {
+		border: 1px solid #555;
+		border-radius: 3px;
+		-moz-border-radius: 3px;
+		-webkit-border-radius: 3px;
+		background-color: #EEE;
+		padding: 5px;
+	}
+	
+	#footer {
+		font-size: 9pt;
+		position: fixed;
+		bottom: 1px;
+		left: 45%;
+		border: 1px solid #DDDDDD;
+		background-color: white;
+	}
+
+	</style>
+	
+	<script src="resources/sap-ui-core.js"></script>
+	
+	<script>
+	
+		var loc = document.location.href;
+		loc = loc.substr(0, loc.lastIndexOf("/"));
+		
+		jQuery.ajax({
+			url: "resources/",
+			success: function(data, textStatus, jqXHR) { 
+				jQuery("#resBrowser").css("display", "block");
+			}
+		});
+		
+	</script>
+	<script id="internalExampleScript">
+		jQuery(function(){
+			if ( jQuery.sap.syncHead("sdk/") )  {
+				jQuery("#Demokit").css("display", "inline").children("a").attr("href","sdk/");
+			} else if ( jQuery.sap.syncHead("../demokit/") ) {
+					jQuery("#Demokit").css("display", "inline").children("a").attr("href","../demokit/");
+			}else{
+				jQuery("#Demokit").remove();
+			}
+			jQuery("#internalExampleScript").remove();
+		});
+	</script>
+	
+</head>
+<body>
+	<div id="banner-div">
+		<h1 style="color:gray;">
+			<span style="color:#aaa;font-size:120%;">
+				<span style="font-weight:bold;">SAP</span><span style="color:#000;">UI</span><span style="color:#F0AB00;">5</span>
+			</span> - UI Development Toolkit for HTML5
+		</h1>
+	</div>
+	
+	<div id="content">
+	
+	<h2>Welcome to SAPUI5</h2>
+	
+	<h3>Using SAPUI5</h3>
+	You can use SAPUI5 in any HTML file with the following bootstrap script tag which already contains jQuery:
+	
+	<pre class="codeblock">
+&lt;script id="sap-ui-bootstrap"
+   src="<a href="resources/sap-ui-core.js"><script>document.write(loc)</script>/resources/sap-ui-core.js</a>"
+   data-sap-ui-theme="sap_goldreflection"
+   data-sap-ui-libs="sap.ui.commons"&gt;&lt;/script&gt;</pre>
+
+	<div id="resBrowser" style="display: none;"><p>The available resources (libraries, themes,...) can be inspected in the <a href="resources/">resource browser</a>.</div> 
+
+
+	<p>
+        A simple application page could look like this:  
+        <pre class="codeblock">
+&lt;!DOCTYPE html&gt;  
+&lt;html&gt;&lt;head&gt;  
+    &lt;meta http-equiv='X-UA-Compatible' content='IE=edge' /&gt;  
+    &lt;title&gt;Hello World&lt;/title&gt;  
+  
+    &lt;script id='sap-ui-bootstrap' 
+        src='<a href="resources/sap-ui-core.js"><script>document.write(loc)</script>/resources/sap-ui-core.js</a>'  
+        data-sap-ui-theme='sap_goldreflection'  
+        data-sap-ui-libs='sap.ui.commons'&gt;&lt;/script&gt;   
+  
+&lt;script&gt;  
+    var btn = new sap.ui.commons.Button({  
+        text:'Hello World',  
+        press:function(){alert('Hello!')}  
+    });  
+    btn.placeAt('content');  
+&lt;/script&gt;
+
+&lt;/head&gt;
+&lt;body class='sapUiBody'&gt;
+    &lt;div id='content'>&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>  
+ 
+
+	
+	If your application requires a UI5 library not deployed on this server, but deployed at a different location, 
+	that library can be loaded as follows (the example loads it from a folder relative to the application HTML page):
+	<pre class="codeblock">
+sap.ui.getCore().loadLibrary("sample.uilib", "resources/sample/uilib");
+var oExample = new sample.uilib.Example({text : "Hello SAPUI5", tooltip : "My Tooltip"});</pre>
+	<p>
+	
+	<span id="Demokit" style="display:none;">For a more extensive introduction check the <a href=".">SAPUI5 Demokit</a>.</span>
+	
+	</div>
+	
+	<div id="footer"> &copy; 2009-2013 SAP AG. Do not distribute without permission.</div>
+</body>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <link href="style/sapvbistyle.css" type="text/css" rel="stylesheet" />
+
+        <script src="../../../../resources/sap-ui-core.js"
+            id="Script1"
+            data-sap-ui-libs="sap.ui.vbm"
+            data-sap-ui-theme="sap_goldreflection" >
+        </script>
+
+            <script>
+                   
+                // creation of visual business...............................//
+                sap.ui.localResources("vbitestapp");
+
+                // create the html version of visual business................//
+                var oVBIHTML = new sap.ui.vbm.VBI('vbiH',
+                {
+                    width : 600,
+                    height: 500,
+                    plugin: false
+                    
+                });
+                oVBIHTML.placeAt("vbiHTML");
+
+                // create the native version of visual business..............//
+                var oVBINATIVE = new sap.ui.vbm.VBI('vbiN',
+                {
+                    width : 600,
+                    height: 500,
+                    plugin: true
+                });
+                oVBINATIVE.placeAt("vbiNATIVE");
+
+                // load the json and set the default text area text
+				var dat = $.getJSON("media/vbsample2/main.json", function( dat ) 
+				{
+                    // load the same initial data into both implementations..//
+                    oVBIHTML.load( dat );
+                    oVBINATIVE.load( dat );
+				});
+            </script>
+       </head>
+    
+       <body class="sapUiBody" >
+        <h1>Visual Business UI5: Duet Sample</h1>
+        <ul>
+        <li> Shows the same API usage on a HTML5 and the Native imlementation.
+        </ul> 
+        <table>
+            <tr>
+                <td><h2>HTML5</h2></td>
+                <td><h2>NATIVE</h2></td>
+            </tr>
+            <tr>
+                <td><div id="vbiHTML"></div></td>
+                <td><div id="vbiNATIVE"></div></td>
+            </tr>
+        </table>
+           <script>
+                //...........................................................//
+                // setting some objects......................................//
+      
+                function onSetBlock()
+                {
+                    // load the json and set the default text area text
+				    var dat = $.getJSON("media/vbsample2/new_block.json", function( dat ) 
+				    {
+                        oVBIHTML.load( dat );
+                        oVBINATIVE.load( dat );
+				    });
+                };
+      
+                function onSetPie()
+                {
+				    var dat = $.getJSON("media/vbsample2/new_pie.json", function( dat ) 
+				    {
+                        oVBIHTML.load( dat );
+                        oVBINATIVE.load( dat );
+				    });
+                };
+
+                function onSetFlags()
+                {
+				    var dat = $.getJSON("media/vbsample2/new_flags.json", function( dat ) 
+				    {
+                        oVBIHTML.load( dat );
+                        oVBINATIVE.load( dat );
+				    });
+                };
+      
+                function onClearMap()
+                {
+				    var dat = $.getJSON("media/vbsample2/clear.json", function( dat ) 
+				    {
+                        oVBIHTML.load( dat );
+                        oVBINATIVE.load( dat );
+				    });
+                };
+
+                function onDetailWindow()
+                {
+				    var dat = $.getJSON("media/vbsample2/opendetail.json", function( dat ) 
+				    {
+                        oVBIHTML.load( dat );
+                        oVBINATIVE.load( dat );                            
+				    });
+                };
+
+		</script>
+		<button onclick=onSetBlock() >Set Block</button>
+		<button onclick=onSetPie() >Set Pie</button>
+		<button onclick=onSetFlags() >Set Flags</button>
+		<button onclick=onClearMap() >Clear Map</button>
+        <button onclick=onDetailWindow() >Open Detail Window</button>
+
+       </body>
+</html>

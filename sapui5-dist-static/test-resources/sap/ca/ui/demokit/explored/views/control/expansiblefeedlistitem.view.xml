@@ -1,0 +1,23 @@
+<core:View xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:ui="sap.ca.ui"
+    controllerName="sap.ca.ui.sample.views.control.ExpansibleFeedListItem">
+    <Page id="page">
+        <content>
+            <List growing="true" growingThreshold="4" showNoteInput="true"
+                textMaxLength="1000" addNote="_handleAddNote">
+                <ui:ExpansibleFeedListItem senderPress="_openPopover"
+                    iconPress="_openPopover" sender="Pasquale Tallarico" text="Non ha telefonato." timestamp="Mon Oct 21 15:21 2013"
+                    icon="sap-icon://account" info="Approved" maxLines="3"></ui:ExpansibleFeedListItem>
+                <ui:ExpansibleFeedListItem senderPress="_openPopover"
+                    iconPress="_openPopover" sender="L'Americano" text="Ha telefonato?" timestamp="Mon Oct 21 15:20 2013"
+                    icon="sap-icon://account" info="Approved" maxLines="3"></ui:ExpansibleFeedListItem>
+                <ui:ExpansibleFeedListItem senderPress="_openPopover"
+                    iconPress="_openPopover" sender="Antonio La Trippa" text="Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio! Vota Antonio!" timestamp="Mon Oct 21 15:19 2013"
+                    icon="sap-icon://account" info="Approved" maxLines="3"></ui:ExpansibleFeedListItem>
+            </List>
+        </content>
+        <footer>
+            <Bar>
+            </Bar>
+        </footer>
+    </Page>
+</core:View>

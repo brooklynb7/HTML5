@@ -1,0 +1,262 @@
+{
+	"SAPVB": {
+		"version": "2.0",
+		"xmlns:VB": "VB",
+		"Data": {
+			"Set": [
+				{
+					"N": [
+						{
+							"name": "Node1",
+							"VB:s": "0",
+							"E": [
+								{
+									"VB:ix": "0",
+									"VB:s": "0",
+									"A1": "A1",
+									"A2": "A2"
+								},
+								{
+									"VB:ix": "1",
+									"VB:s": "0",
+									"A1": "A1",
+									"A2": "A2",
+									"N": {
+										"name": "NodeSub1",
+										"VB:s": "0",
+										"E": [
+											{
+												"VB:ix": "0 ",
+												"VB:s": "0",
+												"SA1": "A1",
+												"SA2": "A1"
+											},
+											{
+												"VB:ix": "1 ",
+												"VB:s": "0",
+												"SA1": "A1",
+												"SA2": "A2"
+											},
+											{
+												"VB:ix": "2 ",
+												"VB:s": "0",
+												"SA1": "A1",
+												"SA2": "A3"
+											}
+										]
+									}
+								},
+								{
+									"VB:ix": "2 ",
+									"VB:s": "0",
+									"A1": "A1",
+									"A2": "A2"
+								}
+							]
+						},
+						{
+							"name": "Node2",
+							"VB:s": "0",
+							"E": [
+								{
+									"VB:ix": "0",
+									"VB:s": "0",
+									"A1": "A1",
+									"A2": "A2"
+								},
+								{
+									"VB:ix": "1",
+									"VB:s": "0",
+									"A1": "A1",
+									"A2": "A2"
+								},
+								{
+									"VB:ix": "2",
+									"VB:s": "0",
+									"A1": "A1",
+									"A2": "A2"
+								}
+							]
+						}
+					]
+				},
+				{
+					"type": "N",
+					"name": "Node1.1.NodeSub1",
+					"N": {
+						"name": "NodeSub1",
+						"VB:s": "A2New3",
+						"E": [
+							{
+								"VB:ix": "0",
+								"VB:s": "0",
+								"SA1": "A1New",
+								"SA2": "A2New1"
+							},
+							{
+								"VB:ix": "1",
+								"VB:s": "0",
+								"SA1": "A1New",
+								"SA2": "TestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKeyTestingLongKey"
+							},
+							{
+								"VB:ix": "2",
+								"VB:s": "0",
+								"SA1": "A1new",
+								"SA2": "A2New3"
+							},
+							{
+								"VB:ix": "3",
+								"VB:s": "0",
+								"SA1": "A1new",
+								"SA2": "A2New4"
+							}
+						]
+					}
+				},
+				{
+					"type": "N",
+					"name": "Node1",
+					"N": {
+						"name": "Node1",
+						"VB:s": "1",
+						"E": {
+							"VB:ix": "0",
+							"VB:s": "0",
+							"A1": "A1",
+							"A2": "A2"
+						}
+					}
+				},
+				{
+					"type": "N",
+					"name": "Node1.1.NodeSub1",
+					"N": {
+						"name": "NodeSub1",
+						"E": {
+							"SA2": "A2New4",
+							"SA1": "NewAttribute1"
+						}
+					}
+				}
+			],
+			"Remove": {
+				"type": "E",
+				"name": "Node1.1.NodeSub1",
+				"N": {
+					"name": "NodeSub1",
+					"E": [
+						{
+							"SA2": "A2New1"
+						},
+						{
+							"SA2": "A2New3"
+						},
+						{
+							"SA2": "A2New2"
+						}
+					]
+				}
+			}
+		},
+		"DataTypes": {
+			"Set": {
+				"N": [
+					{
+						"name": "Node1",
+						"A": [
+							{
+								"name": "Attribute1",
+								"alias": "A1",
+								"type": "string"
+							},
+							{
+								"name": "Attribute2",
+								"alias": "A2",
+								"type": "string"
+							}
+						],
+						"N": {
+							"name": "NodeSub1",
+							"key": "SubAttribute2",
+							"A": [
+								{
+									"name": "SubAttribute1",
+									"alias": "SA1",
+									"type": "string"
+								},
+								{
+									"name": "SubAttribute2",
+									"alias": "SA2",
+									"type": "string"
+								}
+							]
+						}
+					},
+					{
+						"name": "Node2",
+						"key": "VB:ix",
+						"A": [
+							{
+								"name": "Attribute1",
+								"alias": "A1",
+								"type": "string"
+							},
+							{
+								"name": "Attribute2",
+								"alias": "A2",
+								"type": "string"
+							}
+						]
+					},
+					{
+						"name": "Node3",
+						"key": "VB:ix",
+						"A": [
+							{
+								"name": "Attribute1",
+								"alias": "A1",
+								"type": "string"
+							},
+							{
+								"name": "Attribute2",
+								"alias": "A2",
+								"type": "string"
+							}
+						],
+						"N": {
+							"name": "Node4",
+							"key": "VB:ix",
+							"A": [
+								{
+									"name": "Attribute1",
+									"alias": "A1",
+									"type": "string"
+								},
+								{
+									"name": "Attribute2",
+									"alias": "A2",
+									"type": "string"
+								}
+							]
+						}
+					}
+				]
+			},
+			"Remove": [
+				{
+					"name": "Node3.Attribute1",
+					"type": "A"
+				},
+				{
+					"name": "Node3.Node4",
+					"type": "N"
+				},
+				{
+					"name": "Node3",
+					"type": "N"
+				}
+			]
+		}
+	}
+}

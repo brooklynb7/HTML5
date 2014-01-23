@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Note Taker test suite page</title>
+
+    <!-- UI5 Bootstrap -->
+    <script src="../../../../../resources/sap-ui-core.js"
+            type="text/javascript"
+            id="sap-ui-bootstrap"
+            data-sap-ui-libs="sap.ui.commons, sap.suite.ui.commons"
+            data-sap-ui-theme="sap_goldreflection"></script>
+
+    <!-- FOOTERS generation -->
+	<script type="text/javascript">
+		function generateFooterForNoteTaker1() {
+            var oML = new sap.ui.commons.layout.MatrixLayout("nt1-layout", {
+                layoutFixed: true,
+                width: "500px",
+                columns: 3,
+                widths: ["120px", "120px", "120px"]
+            });
+
+	        var oLastEditedLabel = new sap.ui.commons.Label("nt1-le-label", {
+                text: "Last edited/deleted:"
+            });
+		    var oTextView = new sap.ui.commons.TextView("NT1_LAST_EDITED");
+
+            // visible count row
+            var oVisibleCountLabel = new sap.ui.commons.Label("nt1-vis-label", {
+                text: "Visible card:"
+            });
+            var oVisCountField = new sap.ui.commons.TextField("nt1-vis-field", {
+                value: 3
+            });
+            var oSetVisButton = new sap.ui.commons.Button("nt1-vis-button", {
+                text: "Update",
+                press: function() {
+                    var count = sap.ui.getCore().byId("nt1-vis-field").getValue();
+                    if (!isNaN(count)) {
+                        sap.ui.getCore().byId("NT1").setVisibleNotes(parseInt(count));
+                    }
+                }
+            });
+
+            // view all limit row
+            var oViewAllLimitLabel = new sap.ui.commons.Label("nt1-viewAll-label", {
+                text: "View All limit [characters]:"
+            });
+            var oViewAllLimitField = new sap.ui.commons.TextField("nt1-viewAll-field", {
+                value: 1800
+            });
+            var oViewAllLimitButton = new sap.ui.commons.Button("nt1-viewAll-button", {
+                text: "Set",
+                press: function() {
+                    var limit = sap.ui.getCore().byId("nt1-viewAll-field").getValue();
+                    if (!isNaN(limit)) {
+                        sap.ui.getCore().byId("NT1").setCardViewAllTrigger(parseInt(limit));
+                    }
+                }
+            });
+
+            oML.createRow(oVisibleCountLabel, oVisCountField, oSetVisButton);
+            oML.createRow(oViewAllLimitLabel, oViewAllLimitField, oViewAllLimitButton);
+            oML.createRow(oLastEditedLabel, oTextView);
+            oML.placeAt("contentArea1-foot");
+		}
+	
+		function generateFooterForNoteTaker2() {
+	        // layout
+            var oML = new sap.ui.commons.layout.MatrixLayout("nt2-layout", {
+                layoutFixed: true,
+                width: "500px",
+                columns: 3,
+                widths: ["120px", "120px", "80px"]
+            });
+
+            // visible count row
+	        var oVisibleCountLabel = new sap.ui.commons.Label("nt2-vis-label", {
+                text: "Visible card:"
+            });
+	        var oVisCountField = new sap.ui.commons.TextField("nt2-vis-field", {
+                value: 1
+            });
+	        var oSetVisButton = new sap.ui.commons.Button("nt2-set-visible-cards", {
+                text: "Update",
+                press: function() {
+                    var count = sap.ui.getCore().byId("nt2-vis-field").getValue();
+                    if (isNaN(count)) {
+                        return;
+                    }
+                    sap.ui.getCore().byId("NT2").setVisibleNotes(parseInt(count));
+                }
+            });
+
+            // view all limit row
+            var oViewAllLimitLabel = new sap.ui.commons.Label("nt2-viewAll-label", {
+                text: "View All limit [characters]:"
+            });
+            var oViewAllLimitField = new sap.ui.commons.TextField("nt2-viewAll-field", {
+                value: 1800
+            });
+            var oViewAllLimitButton = new sap.ui.commons.Button("nt2-viewAll-btn", {
+                text: "Set",
+                press: function() {
+                    var limit = sap.ui.getCore().byId("nt2-viewAll-field").getValue();
+                    if (isNaN(limit)) {
+                        return;
+                    }
+                    sap.ui.getCore().byId("NT2").setCardViewAllTrigger(parseInt(limit));
+                }
+            });
+
+            // populate layout
+	        oML.createRow(oVisibleCountLabel, oVisCountField,     oSetVisButton);
+	        oML.createRow(oViewAllLimitLabel, oViewAllLimitField, oViewAllLimitButton);
+	        oML.placeAt("contentArea2-foot");
+		}
+	
+		function generateFooterForNoteTaker3() {
+
+            // layout
+            var oML = new sap.ui.commons.layout.MatrixLayout("nt3-layout", {
+                layoutFixed: true,
+                width: "500px",
+                columns: 3,
+                widths: ["120px", "120px", "80px"]
+            });
+
+            // view model row
+	        var oViewModelButton = new sap.ui.commons.Button("nt3-viewModel-btn", {
+                text : "View model",
+	            press : function(e) {
+	                var oCore = sap.ui.getCore();
+	                var noteTaker2 = oCore.getControl("NT3");
+	                alert(noteTaker2.getBinding("cards").getModel().getJSON());
+                }
+	        });
+
+            // tag filter row; TODO: remove this block when the filter provided from UI
+            var oTagFilterLabel = new sap.ui.commons.Label("nt3-tagFilter-label", {
+                text: "Tag filter:"
+            });
+            var oTagFilterField = new sap.ui.commons.TextField("nt3-tagFilter-field", {
+                value: "PRM"
+            });
+            var oTagFilterButton = new sap.ui.commons.Button("nt3-tagFilter-btn", {
+                text: "Set",
+                press: function(e) {
+                    var oCore = sap.ui.getCore();
+                    var sTagCriterion = oCore.getControl("nt3-tagFilter-field").getValue();
+                    var taker = oCore.getControl("NT3");
+                    if (sTagCriterion=="") {
+                        taker.setFilterCriteria({});
+                    }
+                    else {
+                        taker.setFilterCriteria({tags: sTagCriterion.split(" ")});
+                    }
+                }
+            });
+
+            var oLastLabel = new sap.ui.commons.Label("nt3-la-label", {
+                text: "Last added card:"
+            });
+            var oLastTextView = new sap.ui.commons.TextView("nt3-la-text");
+
+            // populate layout
+            oML.createRow(oViewModelButton);
+            oML.createRow(oTagFilterLabel, oTagFilterField, oTagFilterButton);
+            oML.createRow(oLastLabel, oLastTextView);
+            oML.placeAt("contentArea3-foot");
+		}
+
+        var iCardUidIndex = 1;
+        function generateUid() {
+            return "uid-" + (iCardUidIndex++);
+        }
+	</script>
+    <script type="text/javascript">
+
+        var taker = new sap.suite.ui.commons.NoteTaker({
+            id: "NT1",
+            attachmentName : "attachment",
+            attachmentUploadUrl: "../../../../../upload",
+            attachmentSelect : function(e) {
+            	jQuery.sap.log.info("NTF: Attachment was selected - " + e.getParameter("filename"));
+            	this.setNextCardUid("Card-" + Math.floor((Math.random()*1000)+1));
+            	this.uploadAttachment();
+            	this.setNextCardAttachmentUrl("http://nexus.wdf.sap.corp:8081/nexus/service/local/templates/settings/LeanDI/content");
+            },
+            attachmentUploadComplete : function(e) {
+            	jQuery.sap.log.info("NTF: Attachment was uploaded - " + e.getParameter("response") + " UId " + e.getParameter("uid"));
+            },
+            attachmentDelete : function(e) {
+                jQuery.sap.log.info("NTF: Attachment was deleted - " + e.getParameter("filename") + " UId " + e.getParameter("uid"));
+            },
+            attachmentClick : function(e) {
+                if( e.getParameter("isCardAttachment")) {
+                    jQuery.sap.log.info("NTF: Attachment was clicked on card - " + e.getParameter("filename") + " UId " + e.getParameter("uid"));
+                } else {
+                    jQuery.sap.log.info("NTF: Attachment was clicked on feeder - " + e.getParameter("filename") + " UId " + e.getParameter("uid"));    
+                }
+                
+            }
+        });
+        
+        taker.setVisibleNotes(3);
+        
+        var card = new sap.suite.ui.commons.NoteTakerCard({
+            id: "NTC1",
+            uid: "NTC1",
+            header: "Card header 1",
+            body: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt " +
+                    "ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris " +
+                    "nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit " +
+                    "esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt " +
+                    "in culpa qui officia deserunt mollit anim id est laborum. \n\r" +
+                    "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt " +
+                    "ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris " +
+                    "nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit " +
+                    "esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt " +
+                    "in culpa qui officia deserunt mollit anim id est laborum. \n\r" +
+                    "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt " +
+                    "ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris " +
+                    "nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit " +
+                    "esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt " +
+                    "in culpa qui officia deserunt mollit anim id est laborum. " +
+                    "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt " +
+                    "ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris " +
+                    "nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit " +
+                    "esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt " +
+                    "in culpa qui officia deserunt mollit anim id est laborum. " +
+                    "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt " +
+                    "ut labore et dolore magna aliqua. http://www.sap.com",
+            tags: "PRM newsletter action".split(" "),
+        	thumbUp : true,
+            attachmentUrl: "http://server/path/attachment.xml",
+            attachmentFilename: "attachment.pdf"
+        });
+        taker.addCard(card);
+        
+        card = new sap.suite.ui.commons.NoteTakerCard({
+            id: "NTC2",
+            uid: "NTC2",
+            header: "Card header 2",
+            body: "Card text body 2",
+            thumbDown : true
+        });
+        taker.addCard(card);
+        
+        card = new sap.suite.ui.commons.NoteTakerCard({
+            id: "NTC3",
+            uid: "NTC3",
+            header: "Card header 3",
+            body: "Card text body 3",
+            tags: "PRM 1on1 tag3".split(" ")
+        });
+        taker.addCard(card);
+        
+        card = new sap.suite.ui.commons.NoteTakerCard({
+            id: "NTC4",
+            uid: "NTC4",
+            header: "Card header 4",
+            body: "Card text body 4"
+        });
+        taker.addCard(card);
+        
+        taker.attachEditCard(function(oEvent) {
+            var title =  oEvent.getParameter("title");
+            var uid = oEvent.getParameter("uid");
+            
+            sap.ui.getCore().byId("NT1_LAST_EDITED").setText("UID: " + uid + "\n\r" +  "Title: " + title);
+        });
+
+        taker.attachDeleteCard(function(oEvent) {
+            var title =  oEvent.getParameter("title");
+            var uid = oEvent.getParameter("uid");
+
+            sap.ui.getCore().byId("NT1_LAST_EDITED").setText("UID: " + uid + "\n\r" +  "Title: " + title);
+        });
+
+        taker.attachAddCard(function(oEvent) {
+            var oCard = oEvent.getParameter("card");
+            oCard.setUid(generateUid());
+        });
+
+        taker.placeAt("contentArea1");
+        generateFooterForNoteTaker1();
+
+        var taker2 = new sap.suite.ui.commons.NoteTaker({
+            id: "NT2",
+            visibleNotes: 1,
+            attachmentUploadUrl: "../../../../../upload",
+            attachmentSelect : function(e) {
+            	jQuery.sap.log.info("NTF: Attachment was selected - " + e.getParameter("filename"));
+            	this.setNextCardUid("Card-" + Math.floor((Math.random()*1000)+1));
+            	this.uploadAttachment();
+            },
+            attachmentUploadComplete : function(e) {
+            	jQuery.sap.log.info("NTF: Attachment was uploaded - " + e.getParameter("response") + " UId " + e.getParameter("uid"));
+            },
+            attachmentDelete : function(e) {
+                jQuery.sap.log.info("NTF: Attachment was deleted - " + e.getParameter("filename") + " UId " + e.getParameter("uid"));
+            },
+            attachmentClick : function(e) {
+                if( e.getParameter("isCardAttachment")) {
+                    jQuery.sap.log.info("NTF: Attachment was clicked on card - " + e.getParameter("filename") + " UId " + e.getParameter("uid"));
+                } else {
+                    jQuery.sap.log.info("NTF: Attachment was clicked on feeder - " + e.getParameter("filename") + " UId " + e.getParameter("uid"));    
+                }
+                
+            }
+        });
+        
+        taker2.placeAt("contentArea2");
+        generateFooterForNoteTaker2();
+        
+        var oJsonData = {
+              visibleNotes: 4,
+              cards: [
+                  {
+                      uid : "cars1",
+                      header : "Card title 1",
+                      body : "Card body 1",
+                      timestamp: new Date(2012, 1, 21, 15, 25, 30, 0),
+                      tags: ["PRM", "OneOnOne"],
+                  	  thumbUp : true,
+                  	  attachmentFilename : "Bonus.pdf",
+                  	  attachmentUrl : "http://nexus.wdf.sap.corp:8081/nexus/service/local/templates/settings/LeanDI/content"
+                  },
+                  {
+                      uid : "cars2",
+                      header : "Card title 2",
+                      body : "Card body 2",
+                      timestamp: new Date(2010, 1, 22, 15, 25, 30, 0),
+                  	  tags: ["PRM"],
+                  	  thumbDown : true
+                  },
+                  {
+                      uid : "cars3",
+                      header : "Card title 3",
+                      body : "Card body 3",
+                      timestamp: new Date(2011, 1, 23, 15, 25, 30, 0),
+                      tags: ["OneOnOne"],
+                      thumbUp : true
+                  }
+              ]
+        };
+
+        var oNoteTakerCardTemplate = new sap.suite.ui.commons.NoteTakerCard({
+            uid : "{uid}",
+            header : "{header}",
+            body : "{body}",
+            timestamp: "{timestamp}",
+            tags: "{tags}",
+            thumbUp : "{thumbUp}",
+            thumbDown : "{thumbDown}",
+            attachmentFilename : "{attachmentFilename}",
+            attachmentUrl : "{attachmentUrl}"
+        });
+        
+            // JSON model
+        var oJsonModel = new sap.ui.model.json.JSONModel();
+        oJsonModel.setData(oJsonData);
+        var taker3 = new sap.suite.ui.commons.NoteTaker({
+            // properties
+            id: "NT3",
+            visibleNotes: "{/visibleNotes}",
+            cards: {
+                path: "/cards",
+                template: oNoteTakerCardTemplate
+            },
+
+            // event handlers
+            addCard: function(e) {
+                var sUid = generateUid();
+                var sTitle = e.getParameter('title');
+                oJsonModel.oData.cards.push({
+                    uid : sUid,
+                    header : sTitle,
+                	body : e.getParameter('body'),
+                	timestamp : e.getParameter('timestamp'),
+                	tags : e.getParameter('tags'),
+                	attachmentFilename : e.getParameter('attachmentFilename'),
+                	attachmentUrl : e.getParameter('attachmentUrl')
+                });
+                oJsonModel.checkUpdate();
+
+                sap.ui.getCore().byId("nt3-la-text").setText("UID: " + sUid + "\n" +  "Title: " + sTitle);
+            },
+            deleteCard: function(oEvent) {
+                var title =  oEvent.getParameter("title");
+                var body = oEvent.getParameter("body");
+                var timestamp = oEvent.getParameter("timestamp");
+                var uid = oEvent.getParameter("uid");
+
+                var cardsJson = this.getModel().getData().cards;
+
+                // this code is written for IE8 browser :)
+                var pos = 0;
+                var card2deletePos = 0;
+                for(var entry in cardsJson) {
+                    if(cardsJson[entry].uid == uid) {
+                        card2deletePos = pos;
+                        break;
+                    }
+                    pos++;
+                  }
+                  
+                cardsJson.splice(card2deletePos,1);
+                var a = cardsJson;
+                this.getModel().checkUpdate();
+            },
+            editCard: function(oEvent) {
+                var cardsJson = this.getModel().getData().cards;
+                
+                var title =  oEvent.getParameter("title");
+                var body = oEvent.getParameter("body");
+                var timestamp = oEvent.getParameter("timestamp");
+                var tags = oEvent.getParameter("tags");
+                var thumbDown = oEvent.getParameter("thumbDown");
+                var thumbUp = oEvent.getParameter("thumbUp");
+                var uid = oEvent.getParameter("uid");
+                
+                var pos = 0;
+                var card2editPos = 0;
+                for(var entry in cardsJson) {
+                    if(cardsJson[entry].uid == uid) {
+                        card2editPos = pos;
+                        break;
+                    }
+                    pos++;
+                  }
+                
+                var editCard = cardsJson[card2editPos];
+
+                
+                editCard["header"] = title;
+                editCard["body"] = body;
+                editCard["timestamp"] = timestamp;
+                editCard["tags"] = tags;
+                editCard["thumbDown"] = thumbDown;
+                editCard["thumbUp"] = thumbUp;
+                
+                this.getModel().checkUpdate();
+            },
+            attachmentUploadUrl: "../../../../../upload",
+            attachmentSelect : function(e) {
+            	jQuery.sap.log.info("NTF: Attachment was selected - " + e.getParameter("filename"));
+            	this.setNextCardUid("Card-" + Math.floor((Math.random()*1000)+1));
+            	this.setNextCardAttachmentUrl("http://nexus.wdf.sap.corp:8081/nexus/service/local/templates/settings/LeanDI/content " + Math.floor((Math.random()*1000)+1));
+            	this.uploadAttachment();
+            },
+            attachmentUploadComplete : function(e) {
+            	jQuery.sap.log.info("NTF: Attachment was uploaded - " + e.getParameter("response") + " UId " + e.getParameter("uid"));
+            },
+            attachmentDelete : function(e) {
+                jQuery.sap.log.info("NTF: Attachment was deleted - " + e.getParameter("filename") + " UId " + e.getParameter("uid"));
+            },
+            attachmentClick : function(e) {
+                if( e.getParameter("isCardAttachment")) {
+                    jQuery.sap.log.info("NTF: Attachment was clicked on card - " + e.getParameter("filename") + " UId " + e.getParameter("uid"));
+                } else {
+                    jQuery.sap.log.info("NTF: Attachment was clicked on feeder - " + e.getParameter("filename") + " UId " + e.getParameter("uid"));    
+                }
+                
+            }
+        });
+        taker3.setModel(oJsonModel);
+        taker3.placeAt("contentArea3");
+        generateFooterForNoteTaker3();
+    </script>
+</head>
+
+<body class="sapUiBody" role="application">
+    <h1>Note Taker Demo-page</h1>
+    <div id="contentArea1"></div>
+    <br/>
+    <div id="contentArea1-foot"></div>
+    <br/>
+    <p><h3>Note taker with no cards predefined</h3>
+    <div id="contentArea2"></div>
+    <br/>
+    <br/>
+    <div id="contentArea2-foot"> </div>
+    <br/>
+    <br/>
+    <p><h3>Note taker with databinding</h3>
+    <div id="contentArea3"></div>
+    <br/>
+    <br/>
+    <div id="contentArea3-foot"> </div>
+</body>
+</html>

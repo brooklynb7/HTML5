@@ -1,0 +1,101 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta charset="UTF-8">
+		<title>Select using Data Binding - sap.m</title>
+		<style type="text/css">
+		</style>
+		<script src="../../../resources/sap-ui-core.js"
+			id="sap-ui-bootstrap"
+			data-sap-ui-libs="sap.m"
+			data-sap-ui-theme="sap_mvi">
+		</script>
+		<script>
+		var oApp = new sap.m.App("myApp", {initialPage:"page1"}),
+
+			//	create JSON model instance
+			oModel = new sap.ui.model.json.JSONModel(),
+
+			// JSON sample data
+			mData = {
+
+				// path : items
+				"items" : [
+					{
+						"value": "0",
+						"text": "item 0"
+					},
+					{
+						"value": "1",
+						"text": "item 1"
+					},
+					{
+						"value": "2",
+						"text": "item 2"
+					},
+					{
+						"value": "3",
+						"text": "item 3"
+					},
+					{
+						"value": "4",
+						"text": "item 4"
+					},
+					{
+						"value": "5",
+						"text": "item 5"
+					},
+					{
+						"value": "6",
+						"text": "item 6"
+					},
+					{
+						"value": "7",
+						"text": "item 7"
+					},
+					{
+						"value": "8",
+						"text": "item 8"
+					},
+				],
+
+				// path : selectedKey
+				"selected": "5"
+		};
+
+		//	set the data for the model
+		oModel.setData(mData);
+
+		// set the model to the core
+		sap.ui.getCore().setModel(oModel);
+
+		var oItemTemplate = new sap.ui.core.Item({
+				key: "{value}",
+				text: "{text}"
+			}),
+
+			sSelectedKeyTemplate = "{selected}",
+
+			// select
+			oSelect0 = new sap.m.Select({
+				items: {path : "/items", template: oItemTemplate},
+				selectedKey: {path : "/selected", template: sSelectedKeyTemplate},
+				change: function(oControlEvent) {
+					jQuery.sap.log.info("Event fired: 'change' value property to " + oControlEvent.getParameter("selectedItem") + " on " + this);
+				}
+			}),
+
+			// page
+			oPage1 = new sap.m.Page("page1", {
+				title: "Mobile Select Control",
+				content : [ oSelect0 ]
+			});
+
+		oApp.addPage(oPage1);
+
+		oApp.placeAt("body");
+		</script>
+	</head>
+	<body id="body" class="sapUiBody"></body>
+</html>

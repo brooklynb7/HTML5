@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<!--
+  Tests the bootstrap variant where the bootstrap tag is part of the head.
+  
+  @author Frank Weigel    
+  -->
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<title>Test Page for Bootstrap with 'preload' Files</title>
+    		
+    	<script>
+    		var settings = {
+    			language : 'xy',
+    			numberFormat : '1',
+    			dateFormat : '1',
+    			timeformat : '1',
+    			theme : 'corbu'
+    			
+    		};
+    		
+    		window["sap-ui-config"] = {
+    			language : settings.language,
+    			theme : settings.theme,
+    			'xx-bootTask' : function(callback) {
+  					console && console.info("starting custom boot task");
+    				setTimeout(function() {
+    					sap.ui.getCore().applyTheme(settings.theme);
+    					console && console.info("finishing custom boot task");
+    					callback();
+    				}, 2500);
+    			}
+    		}
+    	</script>
+		<script id="sap-ui-bootstrap" 
+				type="text/javascript" 
+				src="../../../../../resources/sap-ui-core.js"
+				data-sap-ui-libs="sap.ui.commons,sap.ui.table,sap.ui.ux3"
+				data-sap-ui-theme="sap_goldreflection"
+				data-sap-ui-preload="sync" 
+				>
+		</script>    
+		
+	</head>
+	
+    <body class="sapUiBody" role="application">
+    </body>
+</html>

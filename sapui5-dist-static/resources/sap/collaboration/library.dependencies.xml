@@ -1,0 +1,99 @@
+<?xml version="1.0" ?>
+<library  version="2.0" name="sap.collaboration">
+  <module name="sap/collaboration/components/fiori/feed/Component.js" size="7253" compressedSize="3244">
+    <requires>
+      <module name="sap/collaboration/library.js"/>
+      <module name="sap/collaboration/components/utils/CommonUtil.js"/>
+      <module name="sap/collaboration/components/utils/JamUtil.js"/>
+      <module name="sap/collaboration/components/utils/OdataUtil.js"/>
+      <module name="sap/ui/core/UIComponent.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/collaboration/components/fiori/feed/app/App.controller.js" size="5476" compressedSize="2315" raw="true">
+  </module>
+  <module name="sap/collaboration/components/fiori/feed/app/App.view.js" size="1140" compressedSize="311" raw="true">
+  </module>
+  <module name="sap/collaboration/components/fiori/feed/commons/Detail.controller.js" size="3745" compressedSize="1696">
+    <requires>
+      <module name="sap/collaboration/components/utils/JamUtil.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/collaboration/components/fiori/feed/commons/Detail.view.js" size="1524" compressedSize="597" raw="true">
+  </module>
+  <module name="sap/collaboration/components/fiori/feed/dialog/Component.js" size="9773" compressedSize="4041">
+    <requires>
+      <module name="sap/collaboration/library.js"/>
+      <module name="sap/collaboration/components/utils/CommonUtil.js"/>
+      <module name="sap/collaboration/components/utils/JamUtil.js"/>
+      <module name="sap/collaboration/components/utils/OdataUtil.js"/>
+      <module name="sap/ui/core/UIComponent.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/collaboration/components/fiori/feed/splitApp/FeedTypeMaster.controller.js" size="4564" compressedSize="1743" raw="true">
+  </module>
+  <module name="sap/collaboration/components/fiori/feed/splitApp/FeedTypeMaster.view.js" size="2665" compressedSize="1202" raw="true">
+  </module>
+  <module name="sap/collaboration/components/fiori/feed/splitApp/GroupMaster.controller.js" size="4487" compressedSize="2356" raw="true">
+  </module>
+  <module name="sap/collaboration/components/fiori/feed/splitApp/GroupMaster.view.js" size="1494" compressedSize="532" raw="true">
+  </module>
+  <module name="sap/collaboration/components/fiori/feed/splitApp/SplitApp.controller.js" size="5561" compressedSize="2361" raw="true">
+  </module>
+  <module name="sap/collaboration/components/fiori/feed/splitApp/SplitApp.view.js" size="1318" compressedSize="351" raw="true">
+  </module>
+  <module name="sap/collaboration/components/fiori/sharing/Component.js" size="8940" compressedSize="3756">
+    <requires>
+      <module name="sap/collaboration/components/utils/OdataUtil.js"/>
+      <module name="sap/collaboration/components/utils/CommonUtil.js"/>
+      <module name="sap/ui/core/UIComponent.js"/>
+      <module name="sap/m/MessageBox.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/collaboration/components/fiori/sharing/Sharing.controller.js" size="3983" compressedSize="1980" raw="true">
+  </module>
+  <module name="sap/collaboration/components/fiori/sharing/Sharing.view.js" size="3632" compressedSize="1710" raw="true">
+  </module>
+  <module name="sap/collaboration/components/fiori/sharing/dialog/Component.js" size="6709" compressedSize="3330">
+    <requires>
+      <module name="sap/collaboration/components/utils/OdataUtil.js"/>
+      <module name="sap/collaboration/components/utils/CommonUtil.js"/>
+      <module name="sap/ui/core/UIComponent.js"/>
+      <module name="sap/m/MessageToast.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/collaboration/components/utils/CommonUtil.js" size="1240" compressedSize="751">
+    <requires>
+      <module name="sap/m/MessageBox.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/collaboration/components/utils/JamUtil.js" size="5765" compressedSize="3074">
+    <description>JamUtil helper class  Is responsible for the integration and communication with the JAM APIs</description>
+    <requires>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/collaboration/components/utils/OdataUtil.js" size="3507" compressedSize="1240">
+    <description>OdataUtil helper class  Is responsible for the integration and communication with the Backend OData Server</description>
+    <requires>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/collaboration/library.js" size="2768" compressedSize="630">
+    <description>Initialization Code and shared classes of library sap.collaboration (1.16.4)</description>
+    <requires>
+      <module name="sap/ui/core/Core.js"/>
+      <module name="sap/ui/core/library.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+    <includes>
+      <module name="sap/collaboration/AppType.js"/>
+      <module name="sap/collaboration/FeedType.js"/>
+    </includes>
+  </module>
+</library>

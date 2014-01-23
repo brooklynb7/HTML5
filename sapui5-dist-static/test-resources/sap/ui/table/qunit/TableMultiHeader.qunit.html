@@ -1,0 +1,102 @@
+<!DOCTYPE HTML>
+
+<!-- 
+  Tested class: sap.ui.table.Table
+  Author: d029506
+-->
+
+<html>
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<script id="sap-ui-bootstrap" 
+		type="text/javascript"
+		src="../../../../../resources/sap-ui-core.js"
+		data-sap-ui-theme="sap_platinum"
+		data-sap-ui-noConflict="true"
+	    data-sap-ui-libs="sap.ui.core,sap.ui.commons,sap.ui.table" >
+    </script>
+    <link rel="stylesheet" href="../../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
+    <script type="text/javascript" src="../../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+    <script type="text/javascript" src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
+    <script type="text/javascript" src="../../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
+
+<script type="text/javascript">	
+	
+   // TABLE TEST DATA
+	var aData = [
+   		{lastName: "Dente", name: "Al", checked: true },
+   		{lastName: "Friese", name: "Andy", checked: true},
+   		{lastName: "Mann", name: "Anita", checked: false},
+   		{lastName: "Schutt", name: "Doris", checked: true},
+   		{lastName: "Open", name: "Doris", checked: true},
+   		{lastName: "Dewit", name: "Kenya", checked: false},
+   		{lastName: "Zar", name: "Lou", checked: true},
+   		{lastName: "Burr", name: "Tim", checked: true},
+   		{lastName: "Hughes", name: "Tish", checked: true},
+   		{lastName: "Lester", name: "Mo", checked: true},
+   		{lastName: "Case", name: "Justin", checked: false},
+   		{lastName: "Time", name: "Justin", checked: true},
+   		{lastName: "Barr", name: "Gaye", checked: true},
+   		{lastName: "Poole", name: "Gene", checked: true},
+   		{lastName: "Ander", name: "Corey", checked: false},
+   		{lastName: "Early", name: "Brighton", checked: true},
+   		{lastName: "Noring", name: "Constance", checked: true},
+   		{lastName: "Haas", name: "Jack", checked: true},
+   		{lastName: "Tress", name: "Matt", checked: true},
+   		{lastName: "Turner", name: "Paige", checked: true}
+   	];
+
+	var oTable = new sap.ui.table.Table("table");
+	
+	oTable.setSelectionMode(sap.ui.table.SelectionMode.Multi);
+
+	var oControl = new sap.ui.commons.TextView().bindProperty("text", "lastName");
+	var oColumn = new sap.ui.table.Column({multiLabels: [
+			new sap.ui.commons.Label({text: "Last Name"}),
+			new sap.ui.commons.Label({text: "Second level header"})
+		], template: oControl, sortProperty: "lastName", filterProperty: "lastName"});
+	oTable.addColumn(oColumn);
+	oControl = new sap.ui.commons.TextField().bindProperty("value", "name");
+	oTable.addColumn(new sap.ui.table.Column({multiLabels: [
+			new sap.ui.commons.Label({text: "First Name", textAlign: "Right"}),
+			new sap.ui.commons.Label({text: "Name of the person"})
+		], template: oControl, sortProperty: "name", filterProperty: "name"}));
+	oControl = new sap.ui.commons.CheckBox().bindProperty("checked", "checked");
+ 	oTable.addColumn(new sap.ui.table.Column({label: new sap.ui.commons.Label({text: "Checked (very long label text to show wrapping behavior)" /*, wrapping: true */}), template: oControl, sortProperty: "checked", filterProperty: "checked", hAlign: "Center"}));
+	
+	var oModel = new sap.ui.model.json.JSONModel();
+	oModel.setData({modelData: aData});
+	oTable.setModel(oModel);
+	oTable.bindRows("/modelData");
+
+	oTable.placeAt("target1");
+
+	//********** Tests start********************************************
+	qutils.delayTestStart();
+
+	module("Check if all header rows exist");
+
+	test("Headers", 1, function() {
+	 	 equal(jQuery.sap.byId("table").find(".sapUiTableColHdr .sapUiTableCol").length, 6, "Total count of headers");
+	});
+	
+	test("Equal widths", 3, function() {
+		var $Table = jQuery.sap.byId("table");
+		var $Head1 = $Table.find(".sapUiTableColHdr:eq(0)");
+		var $Head2 = $Table.find(".sapUiTableColHdr:eq(1)");
+	 	 equal($Head1.find(".sapUiTableCol:eq(0)").width(), $Head2.find(".sapUiTableCol:eq(0)").width(), "First column headers have equal width");
+	 	 equal($Head1.find(".sapUiTableCol:eq(1)").width(), $Head2.find(".sapUiTableCol:eq(1)").width(), "Second column headers have equal width");
+	 	 equal($Head1.find(".sapUiTableCol:eq(2)").width(), $Head2.find(".sapUiTableCol:eq(2)").width(), "Third column headers have equal width");
+	});
+	
+	 </script>
+  </head>
+  <body class="sapUiBody">
+    <h1 id="qunit-header">qUnit Page for sap.ui.table.Table</h1>
+    <h2 id="qunit-banner"></h2>
+    <h2 id="qunit-userAgent"></h2>
+    <ol id="qunit-tests"></ol>
+    <div id="qunit-fixture">test markup, will be hidden</div>
+    <div id="target1"></div>
+  </body>
+</html>

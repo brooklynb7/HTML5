@@ -1,0 +1,221 @@
+<core:View xmlns:core="sap.ui.core"
+           xmlns="sap.m"
+           xmlns:ui="sap.ca.ui"
+           xmlns:html="http://www.w3.org/1999/xhtml"
+           controllerName="sap.ca.ui.sample.views.type.Number"
+    >
+<Page id="page">
+    <content>
+        <html:h1>Demo page to demonstrate Number type formatting</html:h1>
+        <html:p>Number format and types are locale dependant, you can specify sap-language in url to test it.</html:p>
+
+        <html:h3>Short, standard and percentage styles</html:h3>
+        <html:p>A Style formatOption has been added with 3 styles.</html:p>
+        <html:ul>
+            <html:li>standard : standard UI5 formatting of Numbers using locale dependent separators.</html:li>
+            <html:li>short : Numbers greater than one million are "shortified"</html:li>
+            <html:li>percentage : formatting of percent numbers.</html:li>
+
+        </html:ul>
+        <List items="{/Styles}" headerDesign="Plain">
+            <columns>
+                <Column>
+                    <Label text="Raw value"/>
+                </Column>
+                <Column>
+                    <Label text="style = standard"/>
+                </Column>
+                <Column>
+                    <Label text="style = short"/>
+                </Column>
+                <Column>
+                    <Label text="style = percentage"/>
+                </Column>
+            </columns>
+            <items>
+                <ColumnListItem>
+                    <Label text="{Number}"/>
+                    <Label text="{path:'Number', type:'sap.ca.ui.model.type.Number'}"/>
+                    <Label text="{path:'Number', type:'sap.ca.ui.model.type.Number', formatOptions : {style:'short'}}"/>
+                    <Label text="{path:'Number', type:'sap.ca.ui.model.type.Number', formatOptions : {style:'percentage'}}"/>
+                </ColumnListItem>
+            </items>
+        </List>
+
+        <html:h3>Handling number of Decimals in standard style</html:h3>
+        <html:p>A decimals formatOption has been added.</html:p>
+        <html:p>It specifies the exact number of decimals which should be displayed.</html:p>
+        <html:p>Logically equivalent to setting both minFractionDigits and maxFractionDigits wit UI5 formatter.</html:p>
+        <List items="{/Decimals}" headerDesign="Plain">
+            <columns>
+                <Column>
+                    <Label text="Raw value"/>
+                </Column>
+                <Column>
+                    <Label text="default"/>
+                </Column>
+                <Column>
+                    <Label text="Decimals=0"/>
+                </Column>
+                <Column>
+                    <Label text="Decimals=3"/>
+                </Column>
+            </columns>
+            <items>
+                <ColumnListItem>
+                    <Label text="{Number}"/>
+                    <Label text="{path:'Number', type:'sap.ca.ui.model.type.Number'}"/>
+                    <Label text="{path:'Number', type:'sap.ca.ui.model.type.Number', formatOptions : {decimals:0}}"/>
+                    <Label text="{path:'Number', type:'sap.ca.ui.model.type.Number', formatOptions : {decimals:3}}"/>
+                </ColumnListItem>
+            </items>
+        </List>
+
+        <html:h3>Handling number of Decimals in short style</html:h3>
+        <html:p>A shortdecimals formatOption has been added. Default value is 1.</html:p>
+        <html:p>It specifies the exact number of decimals which should be displayed when number is "shortified".</html:p>
+        <html:p>When number is not shortified, decimals formatOption is applied as in standard style.</html:p>
+        <List items="{/Styles}" headerDesign="Plain">
+            <columns>
+                <Column>
+                    <Label text="Raw value"/>
+                </Column>
+                <Column>
+                    <Label text="shortDecimals=2"/>
+                </Column>
+                <Column>
+                    <Label text="shortDecimals=2, decimals=1"/>
+                </Column>
+            </columns>
+            <items>
+                <ColumnListItem>
+                    <Label text="{Number}"/>
+                    <Label text="{path:'Number', type:'sap.ca.ui.model.type.Number', formatOptions : {style:'short',shortDecimals:2}}"/>
+                    <Label text="{path:'Number', type:'sap.ca.ui.model.type.Number', formatOptions : {style:'short',shortDecimals:2, decimals:1}}"/>
+                </ColumnListItem>
+            </items>
+        </List>
+
+        <html:h3>Handling number of Decimals in percentage style</html:h3>
+        <html:p>The decimals formatOption is used to specify the number of decimals to be displayed for percentage. Default value is 0.</html:p>
+        <List items="{/Percents}" headerDesign="Plain">
+            <columns>
+                <Column>
+                    <Label text="Raw value"/>
+                </Column>
+                <Column>
+                    <Label text="decimals not set"/>
+                </Column>
+                <Column>
+                    <Label text="decimals=3"/>
+                </Column>
+            </columns>
+            <items>
+                <ColumnListItem>
+                    <Label text="{Number}"/>
+                    <Label text="{path:'Number', type:'sap.ca.ui.model.type.Number', formatOptions : {style:'percentage'}}"/>
+                    <Label text="{path:'Number', type:'sap.ca.ui.model.type.Number', formatOptions : {style:'percentage', decimals:3}}"/>
+                </ColumnListItem>
+            </items>
+        </List>
+
+        <html:h3>Rounding</html:h3>
+        <html:p>UI5 Float type doesn't round correctly numbers when using maxFractionDigits option: resulting string is just truncated.</html:p>
+        <html:p>sap.ca.ui.model.type.Number rounds values to nearest.</html:p>
+
+        <List items="{/Roundings}" headerDesign="Standard">
+            <columns>
+                <Column>
+                    <html:table>
+                        <html:tr>
+                            <html:td>Raw</html:td>
+                        </html:tr>
+                        <html:tr>
+                            <html:td>value</html:td>
+                        </html:tr>
+                    </html:table>
+                </Column>
+                <Column>
+                    <html:table>
+                        <html:tr>
+                            <html:td>Number</html:td>
+                        </html:tr>
+                        <html:tr>
+                            <html:td>decimals=0</html:td>
+                        </html:tr>
+                    </html:table>
+                </Column>
+                <Column>
+                    <html:table>
+                        <html:tr>
+                            <html:td>UI5 Float</html:td>
+                        </html:tr>
+                        <html:tr>
+                            <html:td>maxFrac=0</html:td>
+                        </html:tr>
+                    </html:table>
+                </Column>
+                <Column>
+                    <html:table>
+                        <html:tr>
+                            <html:td>Number</html:td>
+                        </html:tr>
+                        <html:tr>
+                            <html:td>decimals=2</html:td>
+                        </html:tr>
+                    </html:table>
+                </Column>
+                <Column>
+                    <html:table>
+                        <html:tr>
+                            <html:td>UI5 Float</html:td>
+                        </html:tr>
+                        <html:tr>
+                            <html:td>maxFrac=2</html:td>
+                        </html:tr>
+                    </html:table>
+                </Column>
+            </columns>
+            <items>
+                <ColumnListItem>
+                    <Label text="{Number}"/>
+                    <Label text="{path:'Number', type:'sap.ca.ui.model.type.Number', formatOptions : {decimals:0}}"/>
+                    <Label text="{path:'Number', type:'sap.ui.model.type.Float', formatOptions : {maxFractionDigits:0}}"/>
+                    <Label text="{path:'Number', type:'sap.ca.ui.model.type.Number', formatOptions : {decimals:2}}"/>
+                    <Label text="{path:'Number', type:'sap.ui.model.type.Float', formatOptions : {maxFractionDigits:2}}"/>
+                </ColumnListItem>
+            </items>
+        </List>
+
+        <html:h3>Number of decimals coming from server</html:h3>
+        <html:p>All examples above are done using Number type in bindings.</html:p>
+        <html:p>When number of decimals to use is coming from server in a separate property, types cannot be used.</html:p>
+        <html:p>This can be done using a static formatting function.</html:p>
+        <List items="{/Decimals}" headerDesign="Plain">
+            <columns>
+                <Column>
+                    <Label text="Raw value"/>
+                </Column>
+                <Column>
+                    <Label text="Decimals"/>
+                </Column>
+                <Column>
+                    <Label text="formatted result"/>
+                </Column>
+            </columns>
+            <items>
+                <ColumnListItem>
+                    <Label text="{Number}"/>
+                    <Label text="{Decimals}"/>
+                    <Label text="{parts:[{path:'Number'},  {path:'Decimals'}], formatter:'.formatNumber'}"/>
+                </ColumnListItem>
+            </items>
+        </List>
+
+    </content>
+    <footer>
+        <Bar>
+        </Bar>
+    </footer>
+</Page>
+</core:View>

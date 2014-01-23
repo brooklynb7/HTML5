@@ -1,0 +1,358 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+<title>ThreePanelThingViewer - sap.suite.ui.commons</title>
+<script src="../../../../../resources/sap-ui-core.js"
+        type="text/javascript" id="sap-ui-bootstrap"
+        data-sap-ui-libs="sap.ui.ux3,sap.ui.commons,sap.suite.ui.commons"
+        data-sap-ui-theme="sap_goldreflection">
+</script>
+
+<script type="text/javascript">
+
+var oContactsData = [{
+    title : "Contacts",
+    colspan : true,
+    type : 2,
+    content : [{
+        name : "Jag, Mick",
+        phone : "+1 (692) 742-2633"
+    }, {
+        name : "Bradford, John",
+        phone : "+1 (635) 457-2875"
+    }, {
+        name : "Stiff, Clark",
+        phone : "+1 (703) 515-8363"
+    }]
+}];
+
+var oItemsData = [{
+    title : "Items",
+    colspan : true,
+    type : 1,
+    content : [{
+        number : 1,
+        unit : "20 ea",
+        name : "LED & Smd BA9S",
+        price : "$ 19.95"
+    }, {
+        number : 2,
+        unit : "35 ea",
+        name : "LED & Smd Tfl Canbus",
+        price : "$ 29.91"
+    }, {
+        number : 3,
+        unit : "40 ea",
+        name : "LED Angel Eyes",
+        price : "$ 21.90"
+    }]
+}];
+
+var oRelDocsData = [{
+    title : "Related Documents",
+    colspan : true
+}];
+
+var oOverviewData = oContactsData.concat(oItemsData, oRelDocsData);
+
+var oFacetContentTemplate = new sap.ui.ux3.ThingGroup({
+    title : "{title}",
+    colspan : "{colspan}",
+    content : new sap.ui.commons.RowRepeater({
+        rows :  {
+            path : "content",
+            factory : function(sId, oContext) {
+                var iNumber = oContext.getProperty("number");
+
+                if (iNumber) {
+                    return new sap.ui.commons.layout.MatrixLayout({
+                        rows : new sap.ui.commons.layout.MatrixLayoutRow({
+                            cells : [
+                                new sap.ui.commons.layout.MatrixLayoutCell({
+                                    content : new sap.ui.commons.Label({ text : "{number}" })
+                                }),
+                                new sap.ui.commons.layout.MatrixLayoutCell({
+                                    content : new sap.ui.commons.Label({ text : "{unit}" })
+                                }),
+                                new sap.ui.commons.layout.MatrixLayoutCell({
+                                    content : new sap.ui.commons.Label({ text : "{name}" })
+                                }),
+                                new sap.ui.commons.layout.MatrixLayoutCell({
+                                    content : new sap.ui.commons.Label({ text : "{price}" })
+                                })
+                            ]
+                        })
+                    });
+                } else {
+                    return new sap.ui.commons.layout.MatrixLayout({
+                        rows : [
+                            new sap.ui.commons.layout.MatrixLayoutRow({
+                                cells : new sap.ui.commons.layout.MatrixLayoutCell({
+                                    content : new sap.ui.commons.Label({ text : "{name}" })
+                                })
+                            }),
+                            new sap.ui.commons.layout.MatrixLayoutRow({
+                                cells : new sap.ui.commons.layout.MatrixLayoutCell({
+                                    content : new sap.ui.commons.Label({ text : "{phone}" })
+                                })
+                            })
+                        ]
+                    });
+                }
+            }
+        }
+    })
+});
+
+/***********************************************************************************************/
+var oData = {
+    type : "Sales Order",
+    title : "44000012641111700011234500",
+    subtitle : "Sales Title Nestle Lorem Ipsum Dolor Sit Amet",
+    icon : "images/Account_48.png",
+    showHeader : true,
+    logo : "images/img_key_company.png",
+    sidebarWidth : "226px",
+    facets : [{
+        key : "overview",
+        text : "Overview"
+    }, {
+        key : "contacts",
+        text : "Contacts",
+        quantity: 3
+    }, {
+        key : "items",
+        text : "Items",
+        quantity: 3
+    }, {
+        key : "related_documents",
+        text : "Related Documents",
+        quantity: 0
+    }, {
+        key : "addresses",
+        text : "Addresses",
+        quantity: 0
+    }, {
+        key : "activities",
+        text : "Activities",
+        quantity: 0
+    }, {
+        key : "Leads",
+        text : "Leads",
+        quantity: 0
+    }, {
+        key : "bank_details",
+        text : "Bank Details",
+        quantity: 0
+    }, {
+        key : "analytics",
+        text : "Analytics",
+        quantity: 0
+    }],
+    headerContent : [{
+        title : "General Information",
+        content : [{
+            label : "Delivery Status",
+            text : "Ordered"
+        }, {
+            label : "Invoice Status",
+            text : "Partially Invoiced"
+        }, {
+            label : "Total Value",
+            text : "91.680,00 USD"
+        }, {
+            label : "Sales",
+            text : "Global Sales"
+        }, {
+            label : "Organization",
+            text : "Consumer Industries"
+        }, {
+            label : "Lorem",
+            text : "Ipsum"
+        }, {
+            label : "Dolor",
+            text : "Sit Amet"
+        }, {
+            label : "Tempor",
+            text : "Labore"
+        }]
+    }, {
+        title : "Sub-Header",
+        content : [{
+            label : "Customer",
+            text : "Bortelli Corp"
+        }, {
+            label : "Recipient",
+            text : "John Bradford"
+        }, {
+            label : "Ordered On",
+            text : "Nov. 11, 2012"
+        }, {
+            label : "Last Changed On",
+            text : "Jan. 1, 2013"
+        }, {
+            label : "Created By",
+            text : "Steven Tyler"
+        }, {
+            label : "Lorem",
+            text : "Ipsum"
+        }, {
+            label : "Nonumy",
+            text : "Takimata"
+        }, {
+            label : "Justo",
+            text : "Duo Elitr"
+        }, {
+            label : "Labore",
+            text : "Sanctus"
+        }]
+    }, {
+        title : "Lorem Ipsum",
+        content : [{
+            label : "Lorem",
+            text : "Rebum"
+        }, {
+            label : "Ipsum",
+            text : "Tempor"
+        }, {
+            label : "At Vero",
+            text : "Invidunt"
+        }, {
+            label : "Voluptua",
+            text : "Nonumy"
+        }]
+    }],
+    facetContent : oOverviewData
+};
+
+var oModel = new sap.ui.model.json.JSONModel();
+oModel.setData(oData);
+
+var oFacetTemplate = new sap.suite.ui.commons.CountingNavigationItem({
+    key : "{key}",
+    text : "{text}",
+    quantity: "{quantity}"
+});
+
+var oHeaderContentTemplate = new sap.ui.ux3.ThingGroup({
+    title : "{title}",
+    content : new sap.ui.commons.layout.MatrixLayout({
+        rows : {
+            path : "content",
+            template : new sap.ui.commons.layout.MatrixLayoutRow({
+                cells : [
+                    new sap.ui.commons.layout.MatrixLayoutCell({
+                        hAlign : sap.ui.commons.layout.HAlign.End,
+                        vAlign : sap.ui.commons.layout.VAlign.Top,
+                        content : new sap.ui.commons.Label({
+                            text : {
+                                path : "label",
+                                formatter : function(fValue) {
+                                    return fValue + ":"
+                                }
+                            }
+                        })
+                    }),
+                    new sap.ui.commons.layout.MatrixLayoutCell({
+                        hAlign : sap.ui.commons.layout.HAlign.Begin,
+                        vAlign : sap.ui.commons.layout.VAlign.Top,
+                        content : new sap.ui.commons.TextView({
+                            text : "{text}"
+                        })
+                    })
+                ]
+            })
+        }
+    })
+});
+
+function setContent(sKey) {
+    switch (sKey) {
+        case "overview":
+            oData.facetContent = oOverviewData;
+            break;
+        case "contacts":
+            oData.facetContent = oContactsData;
+            break;
+        case "items":
+            oData.facetContent = oItemsData;
+            break;
+        case "related_documents":
+            oData.facetContent = oRelDocsData;
+            break;
+        default:
+            oData.facetContent = {};
+    }
+    oThingViewer.getModel().updateBindings();
+}
+
+var oThingViewer = new sap.suite.ui.commons.ThreePanelThingViewer({
+    id : "thing0001",
+    title : "{/title}",
+    titleLink : "{/titleLink}",
+    subtitle : "{/subtitle}",
+    type : "{/type}",
+    icon : "{/icon}",
+    showHeader : "{/showHeader}",
+    logo : "{/logo}",
+    description : "{/description}",
+    sidebarWidth : "{/sidebarWidth}",
+    facets : {
+        path : "/facets",
+        template : oFacetTemplate
+    },
+    headerContent : {
+        path : "/headerContent",
+        template : oHeaderContentTemplate
+    },
+    facetContent : {
+        path : "/facetContent",
+        template : oFacetContentTemplate
+    },
+    menuContent : [
+        new sap.ui.commons.Link({text: "1st Transaction Lorem Ipsum Dolor Sit Amet Lorem Ipsum", href: "http://www.sap.com"}),
+        new sap.ui.commons.Link({text: "2nd Transaction Dolor Sit Amet Tempor", href: "http://www.sap.com"}),
+        new sap.ui.commons.Link({text: "3rd Transaction Takimata Nonumy Duo Elitr", href: "#"}),
+        new sap.ui.commons.Link({text: "4th Transaction Sanctus Invidunt Nonumy", href: "#"}),
+        new sap.ui.commons.Link({text: "5th Transaction Labore Magna Accusam At", href: "#"}),
+        new sap.ui.commons.Link({text: "6th Transaction Vero Conseteur Duo Justo", href: "#"}),
+        new sap.ui.commons.Link({text: "7th Transaction Nagsy Nonumy Duo Elitr", href: "#"}),
+        new sap.ui.commons.Link({text: "8th Transaction Sanctus Invidunt Nagsy", href: "#"}),
+        new sap.ui.commons.Link({text: "9th Transaction Labore Magna Nagsy", href: "#"}),
+        new sap.ui.commons.Link({text: "10th Transaction Vero Conseteur Nagsy", href: "#"})
+    ],
+
+    facetSelected : function(oEvent) {
+        var sFacetKey = oEvent.getParameters().key;
+        setContent(sFacetKey);
+        this.setShowHeader("overview" == sFacetKey);
+    }
+});
+
+oThingViewer.setModel(oModel);
+//oThingViewer.placeAt("content");
+
+oThingViewer.setSelectedFacet(oThingViewer.getFacets()[0]);
+var oOpenButton = new sap.ui.commons.Button({
+    text : "open ThingViewer in Overlay"
+});
+
+var oOverlay = new sap.ui.ux3.OverlayContainer();
+oOverlay.addContent(oThingViewer);
+
+var fnPress = function() {
+    oOverlay.open();
+};
+
+oOpenButton.attachPress(fnPress);
+oOpenButton.placeAt("content");
+
+</script>
+
+</head>
+<body class="sapUiBody" role="application">
+<div id="content"></div>
+</body>
+</html>

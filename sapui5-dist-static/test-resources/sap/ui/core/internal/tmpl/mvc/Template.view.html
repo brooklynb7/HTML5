@@ -1,0 +1,27 @@
+<template data-controller-name="sap.ui.core.tmpl.mvc.Template">
+
+	<div id="myTemplate1InView" type="text/x-handlebars-template" style="display: none;">
+	
+		<h3>Static Text (One Way!)</h3>
+		{{text path="/title"}}
+		
+		<h3>Static Loops (One Way!)</h3>
+		{{#each path="/persons"}}
+			{{text path="firstName"}} {{text path="lastName"}}
+		{{/each}}
+		
+	</div>
+	
+	<div id="myTemplate2InView" type="text/x-handlebars-template"  data-context='{"title": "Hello World 123", "persons": [{"firstName": "Hugo", "lastName": "Maier"}, {"firstName": "Egon", "lastName": "Mueller"}]}'style="display: none;">
+	
+		<h3>Static Text (One Way!)</h3>
+		{{title}}
+		
+		<h3>Static Loops (One Way!)</h3>
+		{{#each persons}}
+			{{firstName}} {{lastName}}
+		{{/each}}
+		
+	</div>
+	
+</template>

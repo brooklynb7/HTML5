@@ -1,0 +1,40 @@
+<template data-controller-name="view.PoDetailInfo">
+	<div data-sap-ui-type="sap.ui.commons.form.SimpleForm" id="myForm1" data-min-width="1024" data-max-container-cols="2" data-editable="false">
+		<div data-sap-ui-aggregation="content">
+			<div data-sap-ui-type="sap.ui.core.Title" data-text="Information"></div>
+			<div data-sap-ui-type="sap.m.Label" data-text="Purchase Order Number test Test Test"></div>
+			<div data-sap-ui-type="sap.m.Text" data-text="{po>orderNumber}"></div>
+			<div data-sap-ui-type="sap.m.Label" data-text="Account Assignment"></div>
+			<div data-sap-ui-type="sap.m.Text" data-text="{po>accountAssingment}"></div>
+			<div data-sap-ui-type="sap.m.Label" data-text="Delivery Date"></div>
+			<div data-sap-ui-type="sap.m.Text" data-text="{po>deliveryDate}"></div>
+			<div data-sap-ui-type="sap.m.Label" data-text="Plant"></div>
+			<div data-sap-ui-type="sap.m.Text" data-text="laksjdalkdjal jdalk jlkd jaslkdj salkd jlkasd jlksaj lksaj dlkasjd a"></div>
+		</div>
+	</div>
+	<div data-sap-ui-type="sap.ui.commons.form.SimpleForm" id="myForm2" data-min-width="1024" data-max-container-cols="2" data-editable="true">
+		<div data-sap-ui-aggregation="content">
+			<div data-sap-ui-type="sap.ui.core.Title" data-text="Information2"></div>
+			<div data-sap-ui-type="sap.m.Label" data-text="Company Code"></div>
+			<div data-sap-ui-type="sap.m.Input" data-editable="false" data-value="{po>companyCode}"></div>
+			<div data-sap-ui-type="sap.m.Label" data-text="Payment Terms"></div>
+			<div data-sap-ui-type="sap.m.Input" data-text="{po>companyCode}"></div>
+			<div data-sap-ui-type="sap.m.Label" data-text="Select"></div>
+			<div data-sap-ui-type="sap.m.Select">
+				<div data-sap-ui-aggregation="items" data-sap-ui-type="sap.ui.core.Item" data-text="First"></div>
+				<div data-sap-ui-aggregation="items" data-sap-ui-type="sap.ui.core.Item" data-text="Second"></div>
+				<div data-sap-ui-aggregation="items" data-sap-ui-type="sap.ui.core.Item" data-text="Third"></div>
+			</div>
+			<div data-sap-ui-type="sap.m.Label" data-text="Switch"></div>
+			<div data-sap-ui-type="sap.m.Switch"></div>
+			<div data-sap-ui-type="sap.m.Label" data-text="CheckBox"></div>
+			<div data-sap-ui-type="sap.m.CheckBox" data-text="CheckBox"></div>
+			<div data-sap-ui-type="sap.m.Label" data-text="Radio Buttons"></div>
+			<div data-sap-ui-type="sap.m.RadioButton" data-groupName="group" data-text="RadioButton"></div>
+			<div data-sap-ui-type="sap.m.RadioButton" data-groupName="group" data-text="RadioButton 2"></div>
+			<div data-sap-ui-type="sap.m.RadioButton" data-groupName="group" data-text="RadioButton 3"></div>
+			<div data-sap-ui-type="sap.m.Label" data-text="Text Area"></div>
+			<div data-sap-ui-type="sap.m.TextArea" data-text=""></div>
+		</div>
+	</div>
+</template>

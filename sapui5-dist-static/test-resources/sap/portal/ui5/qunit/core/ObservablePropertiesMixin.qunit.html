@@ -1,0 +1,621 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset='UTF-8'/>
+    <title>Qunit</title>
+
+    <!-- UI5 Bootstrap -->
+    <script id='sap-ui-bootstrap'
+            type='text/javascript'
+            src='../../../../../../resources/sap-ui-core.js'
+            data-sap-ui-theme='sap_goldreflection'
+            data-sap-ui-libs='sap.ui.commons,sap.portal.ui5'></script>
+
+    <!-- QUnit libraries -->
+    <link rel='stylesheet'
+          href='../../../../../../resources/sap/ui/thirdparty/qunit.css'
+          type='text/css' media='screen'/>
+    <script src='../../../../../../resources/sap/ui/thirdparty/qunit.js'></script>
+    <script type='text/javascript' src='/jsunit-testrunner/qunit/qunit-jsunit.js'></script>
+    <script type='text/javascript' src='../../../../../../resources/sap/ui/qunit/QUnitUtils.js'></script>
+    <script>
+
+        module('sap.portal.ui5.core.ObservablePropertiesMixin');
+
+        test('Observe property', function() {
+
+            var calledCallback1 = false,
+                actual1 = [];
+
+            sap.ui.base.ManagedObject.extend('sap.portal.ui5.core.tests.TestClass', {
+
+                metadata: {
+                    properties: {
+                        aaa: {
+                            type: 'string',
+                            defaultValue: '123'
+                        }
+                    },
+                    mixins: ['sap.portal.ui5.core.ObservablePropertiesMixin']
+                },
+
+                callback1: sap.portal.ui5.core.PropertyObserver(['aaa'], function(sName, sValue, sOldValue) {
+
+                    calledCallback1 = true;
+                    actual1.push({ 0: sName, 1: sValue, 2: sOldValue });
+
+                })
+
+            }, sap.portal.ui5.core.ObjectMetadata);
+
+            var instance1 = new sap.portal.ui5.core.tests.TestClass;
+
+            instance1.setAaa('321');
+
+            ok(calledCallback1, 'Observer is called');
+
+            deepEqual(actual1, [
+                { 0: 'aaa', 1: '321', 2: '123' }
+            ], 'Integrity check');
+
+        });
+
+        test('Observe property while no change of property value', function() {
+
+            var calledCallback1 = false,
+                actual1 = [];
+
+            sap.ui.base.ManagedObject.extend('sap.portal.ui5.core.tests.TestClass', {
+
+                metadata: {
+                    properties: {
+                        aaa: {
+                            type: 'string',
+                            defaultValue: '123'
+                        }
+                    },
+                    mixins: ['sap.portal.ui5.core.ObservablePropertiesMixin']
+                },
+
+                callback1: sap.portal.ui5.core.PropertyObserver(['aaa'], function(sName, sValue, sOldValue) {
+
+                    calledCallback1 = true;
+                    actual1.push(arguments);
+
+                })
+
+            }, sap.portal.ui5.core.ObjectMetadata);
+
+            var instance1 = new sap.portal.ui5.core.tests.TestClass;
+
+            instance1.setAaa('123');
+
+            ok(!calledCallback1, 'Observer is not called');
+
+            deepEqual(actual1, [], 'Integrity check');
+
+        });
+
+        test('Observe two properties', function() {
+
+            var calledCallback1 = 0,
+                actual1 = [];
+
+            sap.ui.base.ManagedObject.extend('sap.portal.ui5.core.tests.TestClass', {
+
+                metadata: {
+                    properties: {
+                        aaa: {
+                            type: 'string',
+                            defaultValue: '123'
+                        },
+                        bbb: {
+                            type: 'string',
+                            defaultValue: '333'
+                        }
+                    },
+                    mixins: ['sap.portal.ui5.core.ObservablePropertiesMixin']
+                },
+
+                callback1: sap.portal.ui5.core.PropertyObserver(['aaa', 'bbb'], function(sName, sValue, sOldValue) {
+
+                    calledCallback1++;
+                    actual1.push({ 0: sName, 1: sValue, 2: sOldValue });
+
+                })
+
+            }, sap.portal.ui5.core.ObjectMetadata);
+
+            var instance1 = new sap.portal.ui5.core.tests.TestClass;
+
+            instance1.setAaa('321');
+            instance1.setBbb('456');
+
+            ok(calledCallback1 === 2, 'Observer is called');
+            deepEqual(actual1, [
+                { 0: 'aaa', 1: '321', 2: '123' },
+                { 0: 'bbb', 1: '456', 2: '333' }
+            ], 'Integrity check');
+
+        });
+
+        test('Observe using multiple observers', function() {
+
+            var calledCallback1 = 0, actual1 = [],
+                calledCallback2 = 0, actual2 = [],
+                calledCallback3 = 0, actual3 = [];
+
+            sap.ui.base.ManagedObject.extend('sap.portal.ui5.core.tests.TestClass', {
+
+                metadata: {
+                    properties: {
+                        aaa: {
+                            type: 'string',
+                            defaultValue: 'a-test0'
+                        },
+                        bbb: {
+                            type: 'string',
+                            defaultValue: 'b-test0'
+                        },
+                        ccc: {
+                            type: 'string',
+                            defaultValue: 'c-test0'
+                        }
+                    },
+                    mixins: ['sap.portal.ui5.core.ObservablePropertiesMixin']
+                },
+
+                callback1: sap.portal.ui5.core.PropertyObserver(['aaa', 'bbb'], function(sName, sValue, sOldValue) {
+
+                    calledCallback1++;
+                    actual1.push({ 0: sName, 1: sValue, 2: sOldValue });
+
+                }),
+
+                callback2: sap.portal.ui5.core.PropertyObserver(['bbb'], function(sName, sValue, sOldValue) {
+
+                    calledCallback2++;
+                    actual2.push({ 0: sName, 1: sValue, 2: sOldValue });
+
+                }),
+
+                callback3: sap.portal.ui5.core.PropertyObserver(['ccc'], function(sName, sValue, sOldValue) {
+
+                    calledCallback3++;
+                    actual3.push({ 0: sName, 1: sValue, 2: sOldValue });
+
+                })
+
+            }, sap.portal.ui5.core.ObjectMetadata);
+
+            var instance1 = new sap.portal.ui5.core.tests.TestClass;
+
+            instance1.setAaa('a-test1'); // 1
+            instance1.setBbb('b-test1'); // 1,2
+            instance1.setCcc('c-test1'); // 3
+
+            instance1.setAaa('a-test2'); // 1
+            instance1.setBbb('b-test2'); // 1,2
+            instance1.setCcc('c-test2'); // 3
+
+            ok(calledCallback1 === 4, 'Observer 1 is called');
+
+            deepEqual(actual1, [
+                { 0: 'aaa', 1: 'a-test1', 2: 'a-test0' },
+                { 0: 'bbb', 1: 'b-test1', 2: 'b-test0' },
+                { 0: 'aaa', 1: 'a-test2', 2: 'a-test1' },
+                { 0: 'bbb', 1: 'b-test2', 2: 'b-test1' }
+            ], 'Integrity check 1');
+
+            ok(calledCallback2 === 2, 'Observer 2 is called');
+
+            deepEqual(actual2, [
+                { 0: 'bbb', 1: 'b-test1', 2: 'b-test0' },
+                { 0: 'bbb', 1: 'b-test2', 2: 'b-test1' }
+            ], 'Integrity check');
+
+            ok(calledCallback3 === 2, 'Observer 3 is called');
+
+            deepEqual(actual3, [
+                { 0: 'ccc', 1: 'c-test1', 2: 'c-test0' },
+                { 0: 'ccc', 1: 'c-test2', 2: 'c-test1' }
+            ], 'Integrity check');
+
+        });
+
+        test('Observe property on init', function() {
+
+            var calledCallback1 = 0,
+                actual1 = [];
+
+            sap.ui.base.ManagedObject.extend('sap.portal.ui5.core.tests.TestClass', {
+
+                metadata: {
+                    properties: {
+                        aaa: {
+                            type: 'string',
+                            defaultValue: '123'
+                        }
+                    },
+                    mixins: ['sap.portal.ui5.core.ObservablePropertiesMixin']
+                },
+
+                callback1: sap.portal.ui5.core.PropertyObserver(['aaa'], function(sName, sValue, sOldValue) {
+
+                    calledCallback1++;
+                    actual1.push({ 0: sName, 1: sValue, 2: sOldValue });
+
+                }).callOnInit()
+
+            }, sap.portal.ui5.core.ObjectMetadata);
+
+            var instance1 = new sap.portal.ui5.core.tests.TestClass;
+
+            instance1.setAaa('321');
+
+            ok(calledCallback1 === 2, 'Observer is called');
+
+            deepEqual(actual1, [
+                { 0: 'aaa', 1: '123', 2: null },
+                { 0: 'aaa', 1: '321', 2: '123' }
+            ], 'Integrity check');
+
+        });
+
+        test('Observers inheritance test - case inherit from parent', function() {
+
+            var calledCallback1 = 0, actual1 = [],
+                calledCallback2 = 0, actual2 = [],
+                calledCallback3 = 0, actual3 = [];
+
+            sap.ui.base.ManagedObject.extend('sap.portal.ui5.core.tests.TestClass', {
+
+                metadata: {
+                    properties: {
+                        aaa: {
+                            type: 'string',
+                            defaultValue: 'a-test0'
+                        },
+                        bbb: {
+                            type: 'string',
+                            defaultValue: 'b-test0'
+                        },
+                        ccc: {
+                            type: 'string',
+                            defaultValue: 'c-test0'
+                        }
+                    },
+                    mixins: ['sap.portal.ui5.core.ObservablePropertiesMixin']
+                },
+
+                callback1: sap.portal.ui5.core.PropertyObserver(['aaa', 'bbb'], function(sName, sValue, sOldValue) {
+
+                    calledCallback1++;
+                    actual1.push({ 0: sName, 1: sValue, 2: sOldValue });
+
+                }),
+
+                callback2: sap.portal.ui5.core.PropertyObserver(['bbb'], function(sName, sValue, sOldValue) {
+
+                    calledCallback2++;
+                    actual2.push({ 0: sName, 1: sValue, 2: sOldValue });
+
+                }),
+
+                callback3: sap.portal.ui5.core.PropertyObserver(['ccc'], function(sName, sValue, sOldValue) {
+
+                    calledCallback3++;
+                    actual3.push({ 0: sName, 1: sValue, 2: sOldValue });
+
+                })
+
+            }, sap.portal.ui5.core.ObjectMetadata);
+
+            sap.portal.ui5.core.tests.TestClass.extend('sap.portal.ui5.core.tests.TestClass2', {
+            });
+
+            var instance1 = new sap.portal.ui5.core.tests.TestClass2;
+
+            instance1.setAaa('a-test1'); // 1
+            instance1.setBbb('b-test1'); // 1,2
+            instance1.setCcc('c-test1'); // 3
+
+            instance1.setAaa('a-test2'); // 1
+            instance1.setBbb('b-test2'); // 1,2
+            instance1.setCcc('c-test2'); // 3
+
+            ok(calledCallback1 === 4, 'Observer 1 is called');
+
+            deepEqual(actual1, [
+                { 0: 'aaa', 1: 'a-test1', 2: 'a-test0' },
+                { 0: 'bbb', 1: 'b-test1', 2: 'b-test0' },
+                { 0: 'aaa', 1: 'a-test2', 2: 'a-test1' },
+                { 0: 'bbb', 1: 'b-test2', 2: 'b-test1' }
+            ], 'Integrity check');
+
+            ok(calledCallback2 === 2, 'Observer 2 is called');
+
+            deepEqual(actual2, [
+                { 0: 'bbb', 1: 'b-test1', 2: 'b-test0' },
+                { 0: 'bbb', 1: 'b-test2', 2: 'b-test1' }
+            ], 'Integrity check');
+
+            ok(calledCallback3 === 2, 'Observer 3 is called');
+
+            deepEqual(actual3, [
+                { 0: 'ccc', 1: 'c-test1', 2: 'c-test0' },
+                { 0: 'ccc', 1: 'c-test2', 2: 'c-test1' }
+            ], 'Integrity check');
+
+        });
+
+        test('Observers inheritance test - case inherit from parent & override', function() {
+
+            var calledCallback1 = 0, actual1 = [],
+                calledCallback2 = 0, actual2 = [],
+                calledCallback3 = 0, actual3 = [];
+
+            sap.ui.base.ManagedObject.extend('sap.portal.ui5.core.tests.TestClass', {
+
+                metadata: {
+                    properties: {
+                        aaa: {
+                            type: 'string',
+                            defaultValue: 'a-test0'
+                        },
+                        bbb: {
+                            type: 'string',
+                            defaultValue: 'b-test0'
+                        },
+                        ccc: {
+                            type: 'string',
+                            defaultValue: 'c-test0'
+                        }
+                    },
+                    mixins: ['sap.portal.ui5.core.ObservablePropertiesMixin']
+                },
+
+                callback1: sap.portal.ui5.core.PropertyObserver(['aaa', 'bbb'], function(sName, sValue, sOldValue) {
+
+                    calledCallback1++;
+                    actual1.push({ 0: sName, 1: sValue, 2: sOldValue });
+
+                }),
+
+                callback2: sap.portal.ui5.core.PropertyObserver(['bbb'], function(sName, sValue, sOldValue) {
+
+                    calledCallback2++;
+                    actual2.push({ 0: sName, 1: sValue, 2: sOldValue });
+
+                }),
+
+                callback3: sap.portal.ui5.core.PropertyObserver(['ccc'], function(sName, sValue, sOldValue) {
+
+                    calledCallback3++;
+                    actual3.push({ 0: sName, 1: sValue, 2: sOldValue });
+
+                })
+
+            }, sap.portal.ui5.core.ObjectMetadata);
+
+            sap.portal.ui5.core.tests.TestClass.extend('sap.portal.ui5.core.tests.TestClass2', {
+
+                callback3: sap.portal.ui5.core.PropertyObserver(['ccc'], function(sName, sValue, sOldValue) {
+
+                    calledCallback3++;
+                    actual3.push({ 0: sName, 1: sValue, 2: sOldValue, 3: 'addon' });
+
+                })
+
+            });
+
+            var instance1 = new sap.portal.ui5.core.tests.TestClass2;
+
+            instance1.setAaa('a-test1'); // 1
+            instance1.setBbb('b-test1'); // 1,2
+            instance1.setCcc('c-test1'); // 3
+
+            instance1.setAaa('a-test2'); // 1
+            instance1.setBbb('b-test2'); // 1,2
+            instance1.setCcc('c-test2'); // 3
+
+            ok(calledCallback1 === 4, 'Observer 1 is called');
+
+            deepEqual(actual1, [
+                { 0: 'aaa', 1: 'a-test1', 2: 'a-test0' },
+                { 0: 'bbb', 1: 'b-test1', 2: 'b-test0' },
+                { 0: 'aaa', 1: 'a-test2', 2: 'a-test1' },
+                { 0: 'bbb', 1: 'b-test2', 2: 'b-test1' }
+            ], 'Integrity check');
+
+            ok(calledCallback2 === 2, 'Observer 2 is called');
+
+            deepEqual(actual2, [
+                { 0: 'bbb', 1: 'b-test1', 2: 'b-test0' },
+                { 0: 'bbb', 1: 'b-test2', 2: 'b-test1' }
+            ], 'Integrity check');
+
+            ok(calledCallback3 === 2, 'Observer 3 is called');
+
+            deepEqual(actual3, [
+                { 0: 'ccc', 1: 'c-test1', 2: 'c-test0', 3: 'addon' },
+                { 0: 'ccc', 1: 'c-test2', 2: 'c-test1', 3: 'addon' }
+            ], 'Integrity check');
+
+        });
+
+        test('Observers inheritance test - case inherit from parent & override + super', function() {
+
+            var calledCallback1 = 0, actual1 = [],
+                calledCallback2 = 0, actual2 = [],
+                calledCallback3 = 0, actual3 = [];
+
+            sap.ui.base.ManagedObject.extend('sap.portal.ui5.core.tests.TestClass', {
+
+                metadata: {
+                    properties: {
+                        aaa: {
+                            type: 'string',
+                            defaultValue: 'a-test0'
+                        },
+                        bbb: {
+                            type: 'string',
+                            defaultValue: 'b-test0'
+                        },
+                        ccc: {
+                            type: 'string',
+                            defaultValue: 'c-test0'
+                        }
+                    },
+                    mixins: ['sap.portal.ui5.core.ObservablePropertiesMixin']
+                },
+
+                callback1: sap.portal.ui5.core.PropertyObserver(['aaa', 'bbb'], function(sName, sValue, sOldValue) {
+
+                    calledCallback1++;
+                    actual1.push({ 0: sName, 1: sValue, 2: sOldValue });
+
+                }),
+
+                callback2: sap.portal.ui5.core.PropertyObserver(['bbb'], function(sName, sValue, sOldValue) {
+
+                    calledCallback2++;
+                    actual2.push({ 0: sName, 1: sValue, 2: sOldValue });
+
+                }),
+
+                callback3: sap.portal.ui5.core.PropertyObserver(['ccc'], function(sName, sValue, sOldValue) {
+
+                    calledCallback3++;
+                    actual3.push({ 0: sName, 1: sValue, 2: sOldValue });
+
+                })
+
+            }, sap.portal.ui5.core.ObjectMetadata);
+
+            sap.portal.ui5.core.tests.TestClass.extend('sap.portal.ui5.core.tests.TestClass2', {
+
+                callback3: sap.portal.ui5.core.PropertyObserver(['ccc'], function(sName, sValue, sOldValue) {
+
+                    calledCallback3++;
+                    actual3.push({ 0: sName, 1: sValue, 2: sOldValue, 3: 'addon' });
+
+                    this._super.apply(this, arguments);
+
+                })
+
+            });
+
+            var instance1 = new sap.portal.ui5.core.tests.TestClass2;
+
+            instance1.setAaa('a-test1'); // 1
+            instance1.setBbb('b-test1'); // 1,2
+            instance1.setCcc('c-test1'); // 3
+
+            instance1.setAaa('a-test2'); // 1
+            instance1.setBbb('b-test2'); // 1,2
+            instance1.setCcc('c-test2'); // 3
+
+            ok(calledCallback1 === 4, 'Observer 1 is called');
+
+            deepEqual(actual1, [
+                { 0: 'aaa', 1: 'a-test1', 2: 'a-test0' },
+                { 0: 'bbb', 1: 'b-test1', 2: 'b-test0' },
+                { 0: 'aaa', 1: 'a-test2', 2: 'a-test1' },
+                { 0: 'bbb', 1: 'b-test2', 2: 'b-test1' }
+            ], 'Integrity check');
+
+            ok(calledCallback2 === 2, 'Observer 2 is called');
+
+            deepEqual(actual2, [
+                { 0: 'bbb', 1: 'b-test1', 2: 'b-test0' },
+                { 0: 'bbb', 1: 'b-test2', 2: 'b-test1' }
+            ], 'Integrity check');
+
+            ok(calledCallback3 === 4, 'Observer 3 is called');
+
+            deepEqual(actual3, [
+                { 0: 'ccc', 1: 'c-test1', 2: 'c-test0', 3: 'addon' },
+                { 0: 'ccc', 1: 'c-test1', 2: 'c-test0' },
+                { 0: 'ccc', 1: 'c-test2', 2: 'c-test1', 3: 'addon' },
+                { 0: 'ccc', 1: 'c-test2', 2: 'c-test1' }
+            ], 'Integrity check');
+
+        });
+
+        test('Observe nested properties - 1 level', function() {
+
+            var calledCallback1 = 0, actual1 = [];
+
+            sap.ui.base.ManagedObject.extend('sap.portal.ui5.core.tests.TestClass', {
+
+                metadata: {
+                    properties: {
+                        name: {
+                            type: 'string',
+                            defaultValue: 'world'
+                        }
+                    },
+                    mixins: ['sap.portal.ui5.core.ObservablePropertiesMixin']
+                }
+
+            }, sap.portal.ui5.core.ObjectMetadata);
+
+            sap.ui.base.ManagedObject.extend('sap.portal.ui5.core.tests.TestClass2', {
+
+                metadata: {
+                    properties: {
+                        greetings: {
+                            type: 'string',
+                            defaultValue: 'world'
+                        },
+                        client: {
+                            type: 'any',
+                            defaultValue: new sap.portal.ui5.core.tests.TestClass
+                        }
+                    },
+                    mixins: ['sap.portal.ui5.core.ObservablePropertiesMixin']
+                },
+
+                callback1: sap.portal.ui5.core.PropertyObserver(
+                    ['client.name'],
+                    function(sKey, sValue, sOldValue, oObserver) {
+
+                        calledCallback1++;
+                        actual1.push({ 0: sKey, 1: sValue, 2: sOldValue });
+
+                    }
+                )
+
+            }, sap.portal.ui5.core.ObjectMetadata);
+
+            var instance1 = new sap.portal.ui5.core.tests.TestClass2;
+            instance1.getClient().setName('earth');
+
+            ok(calledCallback1 === 1, 'Observer 1 is called');
+
+            deepEqual(actual1, [
+                { 0: 'client.name', 1: 'earth', 2: 'world' }
+            ], 'Integrity check');
+
+            instance1.setClient( new sap.portal.ui5.core.tests.TestClass );
+
+            /* NOT SUPPORTED YET
+            ok(calledCallback1 === 2, 'Observer 1 is called again');
+
+            deepEqual(actual1, [
+                { 0: 'client.name', 1: 'earth', 2: 'world' },
+                { 0: 'client.name', 1: 'world', 2: 'earth' },
+            ], 'Integrity check');
+            */
+
+        });
+
+    </script>
+</head>
+
+<body class='sapUiBody'>
+<div id='qunit'></div>
+<div id='uiArea0'></div>
+</body>
+</html>

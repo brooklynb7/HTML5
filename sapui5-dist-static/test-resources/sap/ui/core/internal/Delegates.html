@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+		<title>Delegates - sap.ui.core</title>
+
+		<script id="sap-ui-bootstrap" 
+				type="text/javascript"
+				src="../../../../../resources/sap-ui-core.js"
+				data-sap-ui-theme="sap_goldreflection"
+				data-sap-ui-libs="sap.ui.commons">
+		</script>
+
+		<script>
+			function log(text) {
+				var elem = document.createElement("div");
+				elem.innerHTML = new Date() + ": " + text;
+				document.body.appendChild(elem);
+			}
+			
+			var btn1 = new sap.ui.commons.Button({text:"My Button"});
+			
+			btn1.addDelegate({
+				onclick: function(oEvent) {
+					log("Traditional Delegate, this is: " + this + ", event target is: " + oEvent.target);
+				}
+			});
+			
+			btn1.addDelegate({
+				onclick: function(oEvent) {
+					log("Traditional Delegate with CLONING, this is: " + this + ", event target is: " + oEvent.target);
+				}
+			}, false, true);
+			
+			btn1.addDelegate({
+				onclick: function(oEvent) {
+					log("Traditional Delegate with CLONING and BUTTON as 'this' context, this is: " + this + ", event target is: " + oEvent.target);
+				}
+			}, false, btn1, true);
+			
+			btn1.addEventDelegate({
+				onclick: function(oEvent) {
+					log("New-Style Delegate with BUTTON as 'this' context, this is: " + this + ", event target is: " + oEvent.target);
+				}
+			}, btn1);
+			
+			var btn2 = btn1.clone();
+			
+			btn1.placeAt("content");
+			btn2.placeAt("content2");
+
+
+		</script>
+	</head>
+	<body class="sapUiBody" role="application">
+		Original:
+		<div id="content"></div>
+		
+		Clone:
+		<div id="content2"></div>
+
+	</body>
+</html>

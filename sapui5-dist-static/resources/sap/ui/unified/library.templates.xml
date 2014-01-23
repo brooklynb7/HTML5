@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Library name="sap.ui.unified" xmlns="http://www.sap.com/ui5/ide/templates/xmlview">
+<Template name="sap.ui.unified.ContentSwitcher" alias="ContentSwitcher,Switcher">
+	<jsTemplate><![CDATA[new sap.ui.unified.ContentSwitcher({
+	id: "${id}", // sap.ui.core.ID
+	animation: "None", // string
+	activeContent: 1, // int
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	content1: [], // sap.ui.core.Control
+	content2: [] // sap.ui.core.Control
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<ContentSwitcher xmlns="sap.ui.unified"
+	id="${id}"
+	animation="None"
+	activeContent="1">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<content1></content1> <!-- sap.ui.core.Control -->
+		<content2></content2> <!-- sap.ui.core.Control -->
+</ContentSwitcher>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.ui.unified.Shell" alias="Shell">
+	<jsTemplate><![CDATA[new sap.ui.unified.Shell({
+	id: "${id}", // sap.ui.core.ID
+	icon: undefined, // sap.ui.core.URI
+	showPane: undefined, // boolean
+	showCurtain: undefined, // boolean
+	showCurtainPane: undefined, // boolean
+	headerHiding: undefined, // boolean
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	content: [], // sap.ui.core.Control
+	paneContent: [], // sap.ui.core.Control
+	curtainContent: [], // sap.ui.core.Control
+	curtainPaneContent: [], // sap.ui.core.Control
+	headItems: [], // sap.ui.unified.ShellHeadItem
+	headEndItems: [], // sap.ui.unified.ShellHeadItem
+	search: undefined // sap.ui.core.Control
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<Shell xmlns="sap.ui.unified"
+	id="${id}"
+	icon=""
+	showPane=""
+	showCurtain=""
+	showCurtainPane=""
+	headerHiding="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<content></content> <!-- sap.ui.core.Control -->
+		<paneContent></paneContent> <!-- sap.ui.core.Control -->
+		<curtainContent></curtainContent> <!-- sap.ui.core.Control -->
+		<curtainPaneContent></curtainPaneContent> <!-- sap.ui.core.Control -->
+		<headItems></headItems> <!-- sap.ui.unified.ShellHeadItem -->
+		<headEndItems></headEndItems> <!-- sap.ui.unified.ShellHeadItem -->
+		<search></search> <!-- sap.ui.core.Control -->
+</Shell>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.ui.unified.ShellHeadItem" alias="ShellHeadItem,Item">
+	<jsTemplate><![CDATA[new sap.ui.unified.ShellHeadItem({
+	id: "${id}", // sap.ui.core.ID
+	startsSection: false, // boolean
+	selected: false, // boolean
+	showMarker: false, // boolean
+	icon: undefined, // sap.ui.core.URI
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	press: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<ShellHeadItem xmlns="sap.ui.unified"
+	id="${id}"
+	startsSection="false"
+	selected="false"
+	showMarker="false"
+	icon=""
+	press="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+</ShellHeadItem>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.ui.unified.ShellOverlay" alias="ShellOverlay,Overlay">
+	<jsTemplate><![CDATA[new sap.ui.unified.ShellOverlay({
+	id: "${id}", // sap.ui.core.ID
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	content: [], // sap.ui.core.Control
+	search: undefined, // sap.ui.core.Control
+	shell: undefined, // sap.ui.unified.Shell
+	closed: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<ShellOverlay xmlns="sap.ui.unified"
+	id="${id}"
+	shell=""
+	closed="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<content></content> <!-- sap.ui.core.Control -->
+		<search></search> <!-- sap.ui.core.Control -->
+</ShellOverlay>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.ui.unified.SplitContainer" alias="SplitContainer,Container">
+	<jsTemplate><![CDATA[new sap.ui.unified.SplitContainer({
+	id: "${id}", // sap.ui.core.ID
+	showSecondaryContent: undefined, // boolean
+	secondaryContentWidth: "250px", // sap.ui.core.CSSSize
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	content: [], // sap.ui.core.Control
+	secondaryContent: [] // sap.ui.core.Control
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<SplitContainer xmlns="sap.ui.unified"
+	id="${id}"
+	showSecondaryContent=""
+	secondaryContentWidth="250px">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<content></content> <!-- sap.ui.core.Control -->
+		<secondaryContent></secondaryContent> <!-- sap.ui.core.Control -->
+</SplitContainer>
+]]></xmlTemplate>
+</Template>
+</Library>

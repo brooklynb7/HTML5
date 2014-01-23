@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+	<edmx:Reference Uri="/coco/vocabularies/UI.xml">
+		<edmx:Include Namespace="com.sap.vocabularies.UI.v1"
+			Alias="UI" />
+	</edmx:Reference>
+	<edmx:Reference Uri="/coco/vocabularies/Communication.xml">
+		<edmx:Include Namespace="com.sap.vocabularies.Communication.v1"
+			Alias="vCard" />
+	</edmx:Reference>
+	<edmx:Reference
+		Uri="http://docs.oasis-open.org/odata/odata/v4.0/cs01/vocabularies/Org.OData.Measures.V1.xml">
+		<edmx:Include Namespace="Org.OData.Measures.V1" Alias="CQP" />
+	</edmx:Reference>
+
+	<edmx:Reference Url="/sap/OPU/ODATA/sap/ESPM_NAV_SRV/$metadata">
+		<edmx:Include Namespace="ESPM_NAV_SRV" Alias="ESPM_NAV_SRV" />
+	</edmx:Reference>
+	<edmx:DataServices>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm"
+			Namespace="com.sap.tip.pa.ESPM_NAV_SRV" Alias="EPMDemoCEAnno">
+			<Annotations Target="ESPM_NAV_SRV.Product/Price">
+				<Annotation Term="CQP.IsoCurrency" Path="CurrencyCode" />
+			</Annotations>
+			<Annotations Target="ESPM_NAV_SRV.Product/WeightMeasure">
+				<Annotation Term="CQP.UnitOfMeasure" Path="WeightUnit" />
+			</Annotations>
+			<Annotations Target="ESPM_NAV_SRV.Product/Width">
+				<Annotation Term="CQP.UnitOfMeasure" Path="DimUnit" />
+			</Annotations>
+			<Annotations Target="ESPM_NAV_SRV.Product/Depth">
+				<Annotation Term="CQP.UnitOfMeasure" Path="DimUnit" />
+			</Annotations>
+			<Annotations Target="ESPM_NAV_SRV.Product/Height">
+				<Annotation Term="CQP.UnitOfMeasure" Path="DimUnit" />
+			</Annotations>
+			<Annotations Target="ESPM_NAV_SRV.Product">
+				<Annotation Term="UI.HeaderInfo">
+					<Record>
+						<PropertyValue Property="TypeName" String="Product" />
+						<PropertyValue Property="TypeNamePlural" String="Products" />
+						<PropertyValue Property="ImageUrl" Path="ProductPicUrl" />
+						<PropertyValue Property="Title">
+							<Record>
+								<PropertyValue Property="Value" Path="Name" />
+							</Record>
+						</PropertyValue>
+						<PropertyValue Property="Description">
+							<Record>
+								<PropertyValue Property="Label" String="Description" />
+								<PropertyValue Property="Value" Path="Description" />
+							</Record>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+				<Annotation Term="UI.Identification">
+					<Collection>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="Product ID" />
+							<PropertyValue Property="Value" Path="ProductID" />
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="Price" />
+							<PropertyValue Property="Value" Path="Price" />
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="Weight" />
+							<PropertyValue Property="Value" Path="WeightMeasure" />
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="Category" />
+							<PropertyValue Property="Value" Path="Category" />
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="Supplier" />
+							<PropertyValue Property="Value" Path="SupplierName" />
+						</Record>
+					</Collection>
+				</Annotation>
+				<Annotation Term="UI.LineItem">
+					<Collection>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="ProductPicUrl">
+								<Annotation Term="UI.IsImageURL" />
+							</PropertyValue>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="Product ID" />
+							<PropertyValue Property="Value" Path="ProductID" />
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="Product" />
+							<PropertyValue Property="Value" Path="Name" />
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="Price" />
+							<PropertyValue Property="Value" Path="Price" />
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="Weight" />
+							<PropertyValue Property="Value" Path="WeigthMeasure" />
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="Description" />
+							<PropertyValue Property="Value" Path="Description" />
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="Category" />
+							<PropertyValue Property="Value" Path="Category" />
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="Supplier" />
+							<PropertyValue Property="Value" Path="SupplierName" />
+						</Record>
+					</Collection>
+				</Annotation>
+				<!-- <Annotation Term="UI.Facets"> -->
+				<!-- <Collection> -->
+				<!-- <Record Type="UI.CollectionFacet"> -->
+				<!-- <PropertyValue Property="FacetLabel" -->
+				<!-- String="Overview " /> -->
+				<!-- <PropertyValue Property="FacetID" String="1 " /> -->
+				<!-- <PropertyValue Property="Facets"> -->
+				<!-- <Collection> -->
+				<!-- <Record Type="UI.CollectionFacet"> -->
+				<!-- <PropertyValue Property="FacetLabel" -->
+				<!-- String="General " /> -->
+				<!-- <PropertyValue Property="FacetID" String="100 " /> -->
+				<!-- <PropertyValue Property="Facets"> -->
+				<!-- <Collection> -->
+				<!-- <Record Type="UI.FieldCollectionFacet"> -->
+				<!-- <PropertyValue Property="FacetLabel" String="Dimensions" /> -->
+				<!-- <PropertyValue Property="FacetID" String="F1" /> -->
+				<!-- <PropertyValue Property="Data"> -->
+				<!-- <Collection> -->
+				<!-- <Record Type="UI.DataField"> -->
+				<!-- <PropertyValue Property="Label" String="Width" /> -->
+				<!-- <PropertyValue Property="Value" Path="Width" /> -->
+				<!-- </Record> -->
+				<!-- <Record Type="UI.DataField"> -->
+				<!-- <PropertyValue Property="Label" String="Depth" /> -->
+				<!-- <PropertyValue Property="Value" Path="Depth" /> -->
+				<!-- </Record> -->
+				<!-- <Record Type="UI.DataField"> -->
+				<!-- <PropertyValue Property="Label" String="Height" /> -->
+				<!-- <PropertyValue Property="Value" Path="Height" /> -->
+				<!-- </Record> -->
+				<!-- </Collection> -->
+				<!-- </PropertyValue> -->
+				<!-- </Record> -->
+				<!-- </Collection> -->
+				<!-- </PropertyValue> -->
+				<!-- </Record> -->
+				<!-- </Collection> -->
+				<!-- </PropertyValue> -->
+				<!-- </Record> -->
+				<!-- </Collection> -->
+				<!-- </Annotation> -->
+				<Annotation Term="UI.Facets">
+					<!-- <Collection> -->
+					<!-- <Record Type="UI.CollectionFacet"> -->
+					<!-- <PropertyValue Property="FacetLabel" -->
+					<!-- String="Overview " /> -->
+					<!-- <PropertyValue Property="FacetID" String="1 " /> -->
+					<!-- <PropertyValue Property="Facets"> -->
+					<!-- <Collection> -->
+					<!-- <Record Type="UI.CollectionFacet"> -->
+					<!-- <PropertyValue Property="FacetLabel" -->
+					<!-- String="General " /> -->
+					<!-- <PropertyValue Property="FacetID" String="100 " /> -->
+					<!-- <PropertyValue Property="Facets"> -->
+					<!-- <Collection> -->
+					<!-- <Record Type="UI.ReferenceFacet"> -->
+					<!-- <PropertyValue Property="FacetLabel" String="Product" /> -->
+					<!-- <PropertyValue Property="FacetID" String="1000 " /> -->
+					<!-- <PropertyValue Property="UseTerm" String="UI.Identification" /> -->
+					<!-- </Record> -->
+					<!-- </Collection> -->
+					<!-- </PropertyValue> -->
+					<!-- </Record> -->
+					<!-- </Collection> -->
+					<!-- </PropertyValue> -->
+					<!-- </Record> -->
+					<!-- </Collection> -->
+					<Collection>
+						<Record Type="UI.CollectionFacet">
+							<Annotation Term="UI.IsSummary" />
+							<PropertyValue Property="Label"
+								String="General                       " />
+							<PropertyValue Property="Facets">
+								<Collection>
+									<Record Type="UI.ReferenceFacet">
+										<PropertyValue Property="Label"
+											String="General                       " />
+										<PropertyValue Property="Target" AnnotationPath="@UI.Identification" />
+									</Record>
+								</Collection>
+							</PropertyValue>
+						</Record>
+						
+						<Record Type="UI.ReferenceFacet">
+							<PropertyValue Property="Label"
+								String="Bernd                      " />
+							<PropertyValue Property="Target" AnnotationPath="@UI.Identification" />
+						</Record>
+						<Record Type="UI.ReferenceFacet">
+							<PropertyValue Property="Label"
+								String="Paul                       " />
+							<PropertyValue Property="Target" AnnotationPath="@UI.HeaderInfo" />
+						</Record>
+											<Record Type="UI.ReferenceFacet">
+							<PropertyValue Property="Label"
+								String="Egon                      " />
+							<PropertyValue Property="Target" AnnotationPath="@UI.Identification" />
+						</Record>
+						<Record Type="UI.ReferenceFacet">
+							<PropertyValue Property="Label"
+								String="Otto                       " />
+							<PropertyValue Property="Target" AnnotationPath="@UI.HeaderInfo" />
+						</Record>
+											<Record Type="UI.ReferenceFacet">
+							<PropertyValue Property="Label"
+								String="Bernd                      " />
+							<PropertyValue Property="Target" AnnotationPath="@UI.Identification" />
+						</Record>
+						<Record Type="UI.ReferenceFacet">
+							<PropertyValue Property="Label"
+								String="Paul                       " />
+							<PropertyValue Property="Target" AnnotationPath="@UI.HeaderInfo" />
+						</Record>
+					
+					</Collection>
+					
+				</Annotation>
+			</Annotations>
+			<Annotations Target="ESPM_NAV_SRV.ProductCE">
+				<Annotation Term="UI.IsCallableEntity" />
+			</Annotations>
+		</Schema>
+	</edmx:DataServices>
+</edmx:Edmx>

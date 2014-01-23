@@ -1,0 +1,69 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+  	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <title>RowRepeater - sap.ui.commons test with OData</title>
+
+    <script id="sap-ui-bootstrap"
+			data-sap-ui-theme="sap_goldreflection"
+			data-sap-ui-trace="true"
+			type="text/javascript"
+			data-sap-ui-libs="sap.ui.commons"
+			src="../../../../../resources/sap-ui-core.js"
+			>
+		</script>
+
+	<script type="text/javascript">
+
+		var sProxyBaseUrl = "../../../../../proxy/";
+
+		var aServices = [
+		  {
+		  	serviceUrl: sProxyBaseUrl + "http/services.odata.org/(S(k0llwbowwin2l5shlweie0c2))/OData/OData.svc/",
+			products: { 
+				collection: "/Products", 
+				properties: ["ID", "Name", "Description", "ReleaseDate", "Price", "Rating"]
+			}
+		  },
+		  {
+		  	serviceUrl: sProxyBaseUrl + "http/ldcigiq.wdf.sap.corp:50015/sap/bc/sepm_odata_srv/purchase/",
+	  		products: { 
+	  			collection: "/ProductCollection", 
+	  			properties: ["ProductID", "Name", "Price/Amount", "Price/CurrencyCode"]
+	  		}
+		  }
+		];
+
+		jQuery.sap.require("sap.ui.model.odata.ODataModel");
+		var oModel = new sap.ui.model.odata.ODataModel(aServices[1].serviceUrl);
+		sap.ui.getCore().setModel(oModel);
+
+		// create a template for the row repeater 
+		var oML = new sap.ui.commons.layout.MatrixLayout();
+		var aControls = [];
+		jQuery.each(aServices[1].products.properties, function(iIndex, sProperty) {
+			aControls.push(new sap.ui.commons.TextView({
+				text: "{" + sProperty + "}" 
+			}))
+		});
+		oML.createRow.apply(oML, aControls);
+
+		// create the row repeater control
+		var oRowRepeater = new sap.ui.commons.RowRepeater("rr1", { 
+			currentPage: 1
+		});
+		oRowRepeater.bindRows(aServices[1].products.collection, oML);
+		oRowRepeater.setNoData(new sap.ui.commons.TextView({text: "Sorry, no data available!"}));
+		oRowRepeater.placeAt("content");
+
+  </script>
+  </head>
+  <body class="sapUiBody" role="application">
+      <h1>Test Page for sap.ui.commons.RowRepeater</h1>
+
+      <div id="content"></div>
+
+  </body>
+</html>

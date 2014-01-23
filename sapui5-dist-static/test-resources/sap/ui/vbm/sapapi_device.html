@@ -1,0 +1,34 @@
+﻿<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta>
+        <link href="style/sapvbistyle.css" type="text/css" rel="stylesheet" />
+
+		<title>SAPUI5 Device Simulator</title>
+
+        <script id='sap-device' src="../../../../resources/sap-ui-core.js"
+            data-sap-ui-libs="sap.ui.vbm"
+            data-sap-ui-theme="sap_goldreflection" >
+        </script>
+
+        <link rel="stylesheet" href="devsim/DeviceSimulator.css">
+
+  		<script src='devsim/deviceinfos.js'></script>
+		<script src='devsim/framecontenthandler.js'></script>
+		<script src='devsim/devicesimulator.js'></script>
+	</head>
+	<body class='sapUiBody'>
+	
+		<nav id="configArea">
+			<div id="devices"></div>
+			<div id="otherDevices"></div>
+			<div id="urlFieldHolder"></div>
+		</nav>
+
+		<section id="frameTray" class="portrait">
+			<div id="device"></div>
+			<iframe id="theFrame"></iframe>
+			<div id="clock">12:99</div>
+		</section>
+	</body>
+</html>

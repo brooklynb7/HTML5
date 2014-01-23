@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <link href="style/sapvbistyle.css" type="text/css" rel="stylesheet" />
+
+            <script src="../../../../resources/sap-ui-core.js"
+                    id="sap-ui-bootstrap"
+                    data-sap-ui-libs="sap.ui.vbm"
+                    data-sap-ui-theme="sap_goldreflection" >
+            </script>
+            <!-- add sap.ui.table,sap.ui.ux3 and/or other libraries to 'data-sap-ui-libs' if required -->
+
+            <script>
+                // creation of visual business...........................//
+                sap.ui.localResources("vbitestapp");
+
+                var oVBI1 = new sap.ui.vbm.VBI('vbiWrap2',
+                {
+                    width : 600,
+                    height: 620
+                });
+                oVBI1.placeAt("content");
+
+                // load the json and set the default text area text
+				var dat = $.getJSON("media/ZoomToMultiplePositions/main.json", function( dat ) 
+				{
+                    oVBI1.load( dat );
+				});
+                
+            	function onBtnZoomIn()
+            	{
+                	//oVBI1.zoomToGeoPosition( 8.643494, 49.303412, 15 );
+                	oVBI1.zoomToGeoPosition( [8.695679, 8.65036, 8.276825], [50.112653, 49.886672, 50.003326] );
+                	
+            	};
+            </script>
+       </head>
+    
+       <body class="sapUiBody" >
+        <h1>Visual Business UI5: Loading Testing - Zoom to multiple Locations</h1>
+        <table>
+            <tr>
+                <td><div id="content"></div></td>
+            </tr>
+        </table>
+        <button id="btnZoomIn" onClick="onBtnZoomIn()">Zoom Test</button> 
+       </body>
+</html>

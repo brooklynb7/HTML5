@@ -1,0 +1,157 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+		<title>Theme Color Parameters</title>
+
+		<script id="sap-ui-bootstrap"
+				data-sap-ui-theme="sap_mvi"
+				type="text/javascript"
+				data-sap-ui-libs="sap.m"
+                src="../../../../resources/sap-ui-core.js"
+				>
+		</script>
+
+		<script type="text/javascript">
+
+		jQuery.sap.require("sap.ui.core.theming.Parameters");
+
+		var aBasicParameters = [
+			{ param: "sapUiBrand", group: "Brand Colors"},
+			{ param: "sapUiHighlight", group: "Brand Colors"},
+			{ param: "sapUiSelected", group: "Brand Colors"},
+			{ param: "sapUiActive", group: "Brand Colors"},
+			
+			{ param: "sapUiBase", group: "Base Colors"},
+			{ param: "sapUiBaseBG", group: "Base Colors"},
+			{ param: "sapUiElement", group: "Base Colors"},
+			{ param: "sapUiBaseBorder", group: "Base Colors"},
+			{ param: "sapUiBaseText", group: "Base Colors"}, 
+			
+			{ param: "sapUiPageBG", group: "Background Colors"},
+			{ param: "sapUiInputBG", group: "Background Colors"},
+			{ param: "sapUiLightBG", group: "Background Colors"},
+			{ param: "sapUiMediumBG", group: "Background Colors"},
+			{ param: "sapUiDarkBG", group: "Background Colors"},
+			{ param: "sapUiBlackBG", group: "Background Colors"},
+			
+			{ param: "sapUiText", group: "Text Colors"},
+			{ param: "sapUiTextInverted", group: "Text Colors"},	
+			
+			{ param: "sapUiError", group: "Semantic Colors"},
+			{ param: "sapUiErrorBG", group: "Semantic Colors"},
+			{ param: "sapUiWarningBG", group: "Semantic Colors"},
+
+			{ param: "sapUiButton", group: "Button Background Colors"},
+			{ param: "sapUiButtonAccept", group: "Button Background Colors"},
+			{ param: "sapUiButtonReject", group: "Button Background Colors"},
+			{ param: "sapUiBarButton", group: "Button Background Colors"},
+			
+			{ param: "sapUiBarBG", group: "Bar Colors"},
+			{ param: "sapUiBarText", group: "Bar Colors"},
+			{ param: "sapUiBarHeading", group: "Bar Colors"},
+			
+			{ param: "sapUiListBG", group: "List"},
+			
+			{ param: "sapUiRed", group: "Other"},
+			{ param: "sapUiYellow", group: "Other"},
+			{ param: "sapUiGreen", group: "Other"},
+			
+			{ param: "sapUiShadowTint", group: "Other"}
+			
+		];
+
+		sap.ui.core.Control.extend("my.ColorBox", {
+			metadata : {
+				properties : {
+					"text" : "string",
+					"color" : "string",
+					"group" : "string"
+				}
+			},
+
+			renderer : function(oRm, oControl) {
+				oRm.write("<div");
+				oRm.writeControlData(oControl);
+				oRm.addStyle("width", "400px");
+				oRm.addStyle("height", "50px");
+				oRm.addStyle("border-width", "1px");
+				oRm.addStyle("border-style", "solid");
+				oRm.writeStyles();
+				oRm.addClass("myColorBox");
+				oRm.writeClasses();
+				oRm.write(">");
+				oRm.write("<div");
+				oRm.addStyle("width", "300px");
+				oRm.addStyle("float", "left");
+				oRm.writeStyles();
+				oRm.write("><span style='font-weight:bold;margin-right:5px;'>Name:</span>");
+				oRm.writeEscaped(oControl.getText());
+				oRm.write("<br><span style='font-weight:bold;margin-right:5px;'>Color Code:</span>");
+				oRm.writeEscaped(oControl.getColor());
+				var bIsCentral = !!oControl.getGroup();
+				oRm.write("<br><span style='font-weight:bold;margin-right:5px;color:"+(bIsCentral ? "green" : "red")+";'>Group:</span>");
+				oRm.writeEscaped(bIsCentral ? oControl.getGroup() : "Other / Not central");
+				oRm.write("</div>");
+				oRm.write("<div");
+				oRm.addStyle("width", "100px");
+				oRm.addStyle("height", "100%");
+				oRm.addStyle("background-color", oControl.getColor());
+				oRm.addStyle("float", "left");
+				oRm.writeStyles();
+				oRm.write(">");
+				oRm.write("</div>");
+				oRm.write("</div>");
+			},
+		});
+
+		function fetchParameters() {
+			var mAllParameters = sap.ui.core.theming.Parameters.get();
+
+			var oProcessed = {}; 
+
+			// Loop over the central parameters
+			for (var i=0; i<aBasicParameters.length; i++) {
+				var sValue = mAllParameters[aBasicParameters[i].param];
+				if(sValue) {
+					var oColorBox = new my.ColorBox({text: aBasicParameters[i].param, color: sValue, group: aBasicParameters[i].group});
+					oColorBox.placeAt("content");
+					oProcessed[aBasicParameters[i].param] = aBasicParameters[i].param;
+				}
+			}
+
+			new sap.m.Label({text:"Outdated parameters inherited from base (shall be removed)"}).addStyleClass("big").placeAt("content");
+
+			// Now loop over the rest
+			for (var name in mAllParameters) {
+				var sValue = mAllParameters[name];
+				if(sValue && !oProcessed[name] && (sValue.slice(0,1) == "#" || sValue.slice(0,3) == "rgb" )){
+					// must be a color
+					var oColorBox = new my.ColorBox({text: name, color: sValue}).addStyleClass("legacy");
+					oColorBox.placeAt("content");
+				}
+			}
+		}
+
+		fetchParameters();
+
+		</script>
+        
+        <style>
+            .myColorBox {
+                font-size: 12px;
+            }
+            .big {
+            	font-size: 200%;
+            	margin: 30px 0;
+            }
+        </style>
+	</head>
+
+	<body class="sapUiBody">
+		<h1>Test Page for Theme Color Parameters</h1>
+
+		<div id="content"></div>
+	</body>
+</html>

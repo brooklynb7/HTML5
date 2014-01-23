@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>NoteTakerFeeder - sap.suite.ui.commons</title>
+
+    <!-- UI5 Bootstrap -->
+    <script src="../../../../../resources/sap-ui-core.js"
+            type="text/javascript"
+            id="sap-ui-bootstrap"
+            data-sap-ui-libs="sap.ui.commons, sap.suite.ui.commons"
+            data-sap-ui-theme="sap_goldreflection"></script>
+
+    <script type="text/javascript">
+        var noteTakerFeeder1 = new sap.suite.ui.commons.NoteTakerFeeder({
+            id: "NTF1",
+            tags: [
+                "PRM",
+                "action",
+                "topic"
+            ]
+        });
+
+        noteTakerFeeder1.placeAt("contentArea1");
+    </script>
+</head>
+
+<body class="sapUiBody">
+    <h1>Test Page for sap.suite.ui.commons.NoteTakerFeeder</h1>
+    <div id="contentArea1"></div>
+</body>
+</html>

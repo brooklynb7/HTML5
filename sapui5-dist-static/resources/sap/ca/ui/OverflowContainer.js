@@ -1,0 +1,11 @@
+/*!
+ * SAP UI development toolkit for HTML5 (SAPUI5) (c) Copyright
+ * 		2009-2012 SAP AG. All rights reserved
+ */
+jQuery.sap.declare("sap.ca.ui.OverflowContainer");jQuery.sap.require("sap.ca.ui.library");jQuery.sap.require("sap.ui.core.Control");sap.ui.core.Control.extend("sap.ca.ui.OverflowContainer",{metadata:{library:"sap.ca.ui",properties:{"overflowHeight":{type:"sap.ui.core.CSSSize",group:"Dimension",defaultValue:'200px'},"expanded":{type:"boolean",group:"Behavior",defaultValue:false}},aggregations:{"content":{type:"sap.ui.core.Control",multiple:true,singularName:"content"}}}});
+sap.ca.ui.OverflowContainer.prototype.init=function(){this._oExpandCollapseBtn=new sap.m.Button({icon:"sap-icon://slim-arrow-down",type:sap.m.ButtonType.Unstyled,tap:jQuery.proxy(this._toggleExpandCollapse,this)}).addStyleClass("sapCaUiOCBtn");this._oExpandCollapseBtn.setParent(this)};
+sap.ca.ui.OverflowContainer.prototype._toggleExpandCollapse=function(){var $=this.$();var a=jQuery.sap.byId(this.getId()+"-content");this.setProperty("expanded",!this.getExpanded(),true);var b=jQuery.sap.byId(this.getId()+"-overlay");var i=this.getExpanded();if(i){b.hide();this._oExpandCollapseBtn.setProperty("icon","sap-icon://slim-arrow-up",false);$.height(a.outerHeight(true))}else{this._oExpandCollapseBtn.setProperty("icon","sap-icon://slim-arrow-down",false);$.css("height",this.getOverflowHeight());b.show()}};
+sap.ca.ui.OverflowContainer.prototype.onAfterRendering=function(){this._renderButtonVisibility();var b=this.getExpanded()?"sap-icon://slim-arrow-up":"sap-icon://slim-arrow-down";this._oExpandCollapseBtn.setProperty("icon",b,false)};
+sap.ca.ui.OverflowContainer.prototype._renderButtonVisibility=function(){var $=jQuery.sap.byId(this.getId()+"-content");var a=jQuery.sap.byId(this.getId()+"-overlay");var c=$.outerHeight(true);if(c>this.$().outerHeight(true)){this._oExpandCollapseBtn.setVisible(true);a.show()}else{a.hide();var b=this.$();if(c>0){b.css("height",c);if(!this.getExpanded()){this._oExpandCollapseBtn.setVisible(false)}}else{this.invalidate()}}};
+sap.ca.ui.OverflowContainer.prototype._getButton=function(){return this._oExpandCollapseBtn};
+sap.ca.ui.OverflowContainer.prototype.exit=function(){this._oExpandCollapseBtn.destroy()};

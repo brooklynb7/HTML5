@@ -1,0 +1,6 @@
+/*!
+ * SAP UI development toolkit for HTML5 (SAPUI5) (c) Copyright 2009-2013 SAP AG. All rights reserved
+ */
+jQuery.sap.declare("sap.ushell.ui.launchpad.SearchResultAppItem");jQuery.sap.require("sap.ushell.library");jQuery.sap.require("sap.m.Button");sap.m.Button.extend("sap.ushell.ui.launchpad.SearchResultAppItem",{metadata:{library:"sap.ushell",properties:{"searchTerm":{type:"string",group:"Appearance",defaultValue:null},"targetUrl":{type:"sap.ui.core.URI",group:"Behavior",defaultValue:null}}}});
+// Copyright (c) 2013 SAP AG, All Rights Reserved
+(function(){"use strict";sap.ushell.ui.launchpad.SearchResultAppItem.prototype.init=function(){if(sap.m.Button.prototype.init){sap.m.Button.prototype.init.call(this)}this.setType(sap.m.ButtonType.Transparent);this.attachPress(this._onPress,this);this.addStyleClass("sapUshellSearchResultAppItem")};sap.ushell.ui.launchpad.SearchResultAppItem.prototype.exit=function(){if(sap.m.Button.prototype.exit){sap.m.Button.prototype.exit.call(this)}this.detachPress(this._onPress,this)};sap.ushell.ui.launchpad.SearchResultAppItem.prototype.setTargetUrl=function(u){this.setEnabled(!!u);this.setProperty("targetUrl",u);return this};sap.ushell.ui.launchpad.SearchResultAppItem.prototype._onPress=function(){if(this.getTargetUrl()){window.location=this.getTargetUrl()}}}());

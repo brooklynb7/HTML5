@@ -1,0 +1,108 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<script id="sap-ui-bootstrap" 
+		type="text/javascript"
+		src="../../../../../resources/sap-ui-core.js"
+		data-sap-ui-theme="sap_platinum"
+		data-sap-ui-noConflict="true"
+	    data-sap-ui-libs="sap.ui.core,sap.ui.commons,sap.ui.table" >
+    </script>
+    <link rel="stylesheet" href="../../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
+    <script type="text/javascript" src="../../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+    <script type="text/javascript" src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
+    <script type="text/javascript" src="../../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
+
+    <script  language="javascript">
+
+	// TABLE TEST DATA
+	var aData = [
+   		{lastName: "Dente", firstName: "Al", role: "Administrator", gender: "male"},
+   		{lastName: "Friese", firstName: "Andy", role: "User", gender: "male"},
+   		{lastName: "Mann", firstName: "Anita", role: "Administrator", gender: "female"},
+   		{lastName: "Schutt", firstName: "Doris", role: "User", gender: "female"},
+   		{lastName: "Open", firstName: "Doris", role: "Administrator", gender: "female"},
+   		{lastName: "Dewit", firstName: "Kenya", role: "User", gender: "female"},
+   		{lastName: "Zar", firstName: "Lou", role: "Administrator", gender: "male"},
+   		{lastName: "Burr", firstName: "Tim", role: "User", gender: "male"},
+   		{lastName: "Hughes", firstName: "Darin", role: "Administrator", gender: "male"},
+   		{lastName: "Lester", firstName: "Mo", role: "User", gender: "male"},
+   		{lastName: "Case", firstName: "Joseph", role: "Administrator", gender: "male"},
+   		{lastName: "Time", firstName: "Justin", role: "User", gender: "male"},
+   		{lastName: "Barr", firstName: "Gaye", role: "Administrator", gender: "male"},
+   		{lastName: "Poole", firstName: "Gene", role: "User", gender: "male"},
+   		{lastName: "Ander", firstName: "Corey", role: "Administrator", gender: "female"},
+   		{lastName: "Early", firstName: "Brighton", role: "User", gender: "male"},
+   		{lastName: "Noring", firstName: "Constance", role: "Administrator", gender: "female"},
+   		{lastName: "Haas", firstName: "Jack", role: "User", gender: "male"},
+   		{lastName: "Tress", firstName: "Matt", role: "Administrator", gender: "male"},
+   		{lastName: "Turner", firstName: "Paige", role: "User", gender: "female"}
+   	];
+
+	var oTable = new sap.ui.table.Table("table", {
+		title: "Table Grouping",
+		visibleRowCount: 5,
+		enableGrouping: true
+	});
+
+	oTable.addColumn(new sap.ui.table.Column("colLastName", {label: "Last Name", template: "lastName", sortProperty: "lastName", filterProperty: "lastName"}));
+	oTable.addColumn(new sap.ui.table.Column("colFirstName", {label: "First Name", template: "firstName", sortProperty: "firstName", filterProperty: "firstName"}));
+ 	oTable.addColumn(new sap.ui.table.Column("colRole", {label: "Role", template: "role", sortProperty: "role", filterProperty: "role"}));
+	oTable.addColumn(new sap.ui.table.Column("colGender", {label: "Gender", template: "gender", sortProperty: "gender", filterProperty: "gender"}));
+
+	var oModel = new sap.ui.model.json.JSONModel();
+	oModel.setData({data: aData});
+	oTable.setModel(oModel);
+	oTable.bindRows("/data");
+
+	oTable.placeAt("content");
+
+
+	// *************************************************************************
+	// QUNIT TEST CODE
+	// *************************************************************************
+
+	qutils.delayTestStart();
+
+	module("Basic checks");
+
+	test("InitialRowCount", 1, function() {
+	 	equal(oTable.getBinding("rows").getLength(), 20, "Row count is correct!");
+	});
+	
+	test("GroupedRowCount", 1, function() {
+		oTable.setGroupBy("colRole");
+	 	equal(oTable.getBinding("rows").getLength(), 22, "Row count is correct!");
+	});
+	
+	test("ExpandCollapseGroup", 3, function() {
+		var oBinding = oTable.getBinding("rows");
+		oBinding.collapse(0);
+	 	equal(oBinding.getLength(), 12, "Row count is correct!");
+	 	ok(oBinding.isGroupHeader(0) && oBinding.isGroupHeader(1), "First and second line are group headers!");
+		oBinding.expand(0);
+	 	equal(oBinding.getLength(), 22, "Row count is correct!");
+	});
+	
+	/*
+	asyncTest("ResetAndCheckRowCount", 1, function() {
+		oTable.setGroupBy(null);
+		setTimeout(function() {
+			start();
+		 	equal(oTable.getBinding("rows").getLength(), 20, "Row count is correct!");
+		}, 100);
+	});
+	*/
+	
+	</script>
+  </head>
+  <body class="sapUiBody">
+    <h1 id="qunit-header">qUnit Page for sap.ui.table.Table</h1>
+    <h2 id="qunit-banner"></h2>
+    <h2 id="qunit-userAgent"></h2>
+    <ol id="qunit-tests"></ol>
+    <div id="qunit-fixture">test markup, will be hidden</div>
+    <div id="content"></div>
+  </body>
+</html>

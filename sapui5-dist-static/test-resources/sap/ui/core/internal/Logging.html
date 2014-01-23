@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Console Feature Test</title>
+		<script type="text/javascript" >
+
+			function collectInfos() {
+				
+				var html=[];
+				
+				function write() {
+					html.push.apply(html, arguments);
+				}
+				
+				write("Report created at " + new Date() + "<br>");
+				
+				if ( !window.console ) {
+					write("<span class='error'>No console available</span><br>\n");
+				} else {
+	
+					write("<span class='info'>Console object exists</span><br>\n");
+	
+					function check(name, params) {
+						if ( console[name] ) {
+							write("<span class='info'>Console supports method '" + name + "'</span><br>\n");
+							try { 
+								console[name](params[0], params[1], params[2]);
+							} catch (error) {
+								write("<span class='error'>Calling method '" + name + "' threw an error: " + error + "</span><br>\n");
+							}
+						} else {
+							write("<span class='error'>Console has no '" + name + "' method (" + (typeof console[name]) + ")</span><br>\n");
+						}
+					}
+	
+					var expected = {
+						"error" : ["Some error"],
+						"warn" : ["Some warning"],
+						"info" : ["Some info"],
+						"log" : ["Some log with params (%d and %s)", 5, "abc"],
+						"debug" : ["Some debug info"],
+						"trace" : ["Some trace info"]
+					};
+	
+					// check for expected methods
+					for(var name in expected) {
+						check(name, expected[name]);
+					}
+	
+					// now document any unexpected methods
+					write("<hr><br>\n");
+					for(var name in console) {
+						if ( !expected[name] ) { 					
+							write("<span class='info'>Console supports method '" + name + "'</span><br>\n");
+						}
+					}
+				}
+				write("<span class='info'>Done.</span><br>\n");
+				
+				document.getElementById("report").innerHTML = html.join("");
+			}
+			
+			setTimeout(collectInfos, 200);
+			
+		</script>
+	</head>
+	<body class="sapUiBody">
+		<h1>Console Feature Test</h1>
+		<div id="report"></div>
+	</body>
+</html>

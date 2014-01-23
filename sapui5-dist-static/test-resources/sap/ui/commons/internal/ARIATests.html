@@ -1,0 +1,89 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+		<title>Test Page for ARIA Testing of Commons Controls</title>
+
+		<script id="sap-ui-bootstrap"
+				data-sap-ui-theme="sap_goldreflection"
+				type="text/javascript"
+				data-sap-ui-libs="sap.ui.commons"
+				src="../../../../../resources/sap-ui-core.js"
+				>
+		</script>
+
+		<script type="text/javascript">
+			var oCore = sap.ui.getCore(); 
+
+			oCore.attachInitEvent(function () {
+				jQuery.sap.log.info("Listener of Loaded Event called - Application Code");
+
+				var oML = new sap.ui.commons.layout.MatrixLayout("ml");
+				oML.setLayoutFixed(false);
+
+				var oButton = new sap.ui.commons.Button("button", {text:"click here", tooltip:"click here to toggle enabled state of item in list below",
+					press:function(){
+						var oItem = sap.ui.getCore().getElementById("dsblItem");
+						oItem.setEnabled(!oItem.getEnabled());
+					}});
+				var oLabel = new sap.ui.commons.Label("lblBtn", {text:"Toggle Button:", labelFor:oButton});
+				oML.createRow(oLabel, oButton);
+
+
+				// a plain ListBox
+		        var oListBox = new sap.ui.commons.ListBox("lb1");
+		        oLabel = new sap.ui.commons.Label("lblLB", {text:"ListBox:", labelFor:oListBox});		        
+
+		        var oItem = new sap.ui.core.ListItem();
+		        oItem.setText("Hallo");
+		        oListBox.addItem(oItem);
+
+		        oItem = new sap.ui.core.ListItem();
+		        oItem.setText("Second Item");
+		        oListBox.addItem(oItem);
+
+		        oItem = new sap.ui.core.ListItem("dsblItem");
+		        oItem.setText("Disabled Item");
+		        oItem.setEnabled(false);
+		        oListBox.addItem(oItem);
+
+		        oItem = new sap.ui.core.ListItem();
+		        oItem.setText("Another Item");
+		        oListBox.addItem(oItem);
+
+		        oListBox.setSelectedIndex(1);
+		        //sap.ui.setRoot("target1", oListBox);
+		        oML.createRow(oLabel, oListBox);
+
+
+				// ComboBox using new enhanced constructor
+			    var oCombo1 = new sap.ui.commons.ComboBox("myCombo1", {tooltip:"This combobox is created using the new constructor", 
+			        items : [new sap.ui.core.ListItem({text:"first item"}), 
+			                	new sap.ui.core.ListItem({text:"second item"}),
+			             		new sap.ui.core.ListItem({text:"third item"}),
+			             		new sap.ui.core.ListItem({text:"fourth item"}),
+			             		new sap.ui.core.ListItem({text:"fifth item"}),
+			             		new sap.ui.core.ListItem({text:"sixth item"})],
+			        change : function(oControlEvent) {/*alert("ComboBox " + oControlEvent.getSource().getId() + " now is " + oControlEvent.getSource().getValue());*/}
+			    });
+		        oLabel = new sap.ui.commons.Label("lblCmb", {text:"ComboBox:", labelFor:oCombo1});
+			    //sap.ui.setRoot("target2", oCombo1);
+			    oML.createRow(oLabel, oCombo1);
+
+			    oML.placeAt("target1");
+
+			});
+		</script>
+	</head>
+
+	<body class="sapUiBody" role="application">
+		<h1>Test Page for ARIA Testing of Commons Controls</h1>
+
+		<div id="target1"></div> 
+
+		<div id="target2"></div>
+
+
+	</body>
+</html>

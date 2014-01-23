@@ -1,0 +1,860 @@
+
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<title>TableSelectDialog - sap.m</title>
+		<script src="../../../resources/sap-ui-core.js"
+			type="text/javascript"
+			id="sap-ui-bootstrap"
+			data-sap-ui-libs="sap.ui.commons,sap.m"
+			data-sap-ui-compatVersion="1.16"
+			data-sap-ui-theme="sap_bluecrystal">
+		</script>
+		<script type="text/javascript">
+		
+		var doSearch = function(oEvent){
+			// create an array to hold the filters we create
+			var filter = [];
+			//Get the value that been entered in the Dialog Search
+			var sVal = oEvent.getParameter("value");
+
+			//Get the binded items
+			var itemsBinding = oEvent.getParameter("itemsBinding");
+
+			if(sVal !== undefined) {
+				// create the local filter to apply
+				var	selectFilter = new sap.ui.model.Filter("name", sap.ui.model.FilterOperator.Contains , sVal);
+				filter.push(selectFilter);			
+
+				// and apply the filter to the bound items, and the Table Select Dialog will update
+				itemsBinding.filter(filter);
+			}
+		};
+		
+		var doliveChange = function(oEvent){
+			// create an array to hold the filters we create
+			var filter = [];
+			//Get the value that been entered in the Dialog Search
+			var sVal = oEvent.getParameter("value");
+			//Get the binded items
+			var itemsBinding = oEvent.getParameter("itemsBinding");
+
+			if(sVal !== undefined) {
+				// create the local filter to apply
+				var  selectFilter = new sap.ui.model.Filter("name", sap.ui.model.FilterOperator.Contains , sVal);
+				filter.push(selectFilter);
+
+				// and apply the filter to the bound items, and the Table Select Dialog will update
+				itemsBinding.filter(filter);
+			}			
+		};
+		
+		var updateDialog = function(sVal){
+			// create an array to hold the filters we create
+			var filter = [];
+
+			//Get the binded items
+			var itemsBinding = oTableSelectDialog1.getBinding("items");
+
+			if(sVal !== undefined) {
+				// create the local filter to apply
+				var  selectFilter = new sap.ui.model.Filter("name", sap.ui.model.FilterOperator.Contains , sVal);
+				filter.push(selectFilter);				
+
+				// and apply the filter to the bound items, and the Table Select Dialog will update
+				itemsBinding.filter(filter);
+			}
+		};
+
+		var app = new sap.m.App("myApp", {initialPage:"page1"});
+
+		/* dialog data */
+		var dialogData = {
+			title: "Choose your tech..",
+			noDataMessage: "We don't have any tech to show here and we are very sorry for that!",
+		};
+		
+		var oModelDialog = new sap.ui.model.json.JSONModel();
+		oModelDialog.setData(dialogData);	
+		
+		// create the data to be shown in the table
+		var data = {
+		navigation : [{
+				name : "Headphone",
+				qty : "10 EA",
+				limit : "15.00 Eur",
+				price : "12.00 EUR"
+			}, {
+				name : "Mouse Pad",
+				qty : "1 EA",
+				limit : "5.00 Eur",
+				price : "3.00 EUR"
+			}, {
+				name : "Monitor",
+				qty : "8 EA",
+				limit : "60.00 Eur",
+				price : "45.00 EUR"
+			}, {
+				name : "Optic Mouse",
+				qty : "2 EA",
+				limit : "40.00 Eur",
+				price : "15.00 EUR"
+			}, {
+				name : "Dock Station",
+				qty : "1 EA",
+				limit : "90.00 Eur",
+				price : "55.00 EUR"
+			}]
+		};
+		
+		// create the model to hold the data
+		var oModel = new sap.ui.model.json.JSONModel();
+		oModel.setData(data);
+
+		// create the data to be shown in the table
+		var data9 = {
+		navigation : [{
+				name : "Tablet",
+				qty : "1 EA",
+				limit : "150.00 Eur",
+				price : "120.00 EUR"
+			}, {
+				name : "Docking Station",
+				qty : "1 EA",
+				limit : "15.00 Eur",
+				price : "13.00 EUR"
+			}, {
+				name : "DVD-R",
+				qty : "10 EA",
+				limit : "6.00 Eur",
+				price : "4.00 EUR"
+			}, {
+				name : "Headset",
+				qty : "1 EA",
+				limit : "20.00 Eur",
+				price : "15.00 EUR"
+			}, {
+				name : "Power Supply",
+				qty : "1 EA",
+				limit : "32.00 Eur",
+				price : "20.00 EUR"
+			}]
+		};
+		
+		// create the model to hold the data
+		var oModel9 = new sap.ui.model.json.JSONModel();
+		oModel9.setData(data9);		
+		
+		// create the data to be shown in the table
+		var data2 = {
+			navigation : [{
+				name : "Headphone",
+				lname : "Headphone 1234567890120 12345678",
+				ean13 : "1234567890120",
+				ean8 : "12345678",  
+				qty : "10 EA",
+				limit : "15.00 Eur",
+				backorder : "10,000",
+				price : "12.00 EUR"
+			}, {
+				name : "Mouse Pad",
+				lname : "Mouse Pad 1234565544123 1234565544123",
+				ean13 : "1234565544123",
+				ean8 : "1234565544123",
+				qty : "1 EA",
+				limit : "5.00 Eur",
+				backorder : "25,000",
+				price : "3.00 EUR"
+			}, {
+				name : "Monitor",
+				lname : "Monitor 1234565544133 15675678",
+				ean13 : "1234565544133",
+				ean8 : "15675678",
+				qty : "8 EA",
+				limit : "60.00 Eur",
+				backorder : "125,000",
+				price : "45.00 EUR"
+			}, {
+				name : "Optic Mouse",
+				lname : "Optic Mouse 2222365544133 15232678",
+				ean13 : "2222365544133",
+				ean8 : "15232678",
+				qty : "2 EA",
+				limit : "40.00 Eur",
+				backorder : "125,500",
+				price : "15.00 EUR"
+			}, {
+				name : "Dock Station",
+				lname : "Dock Station 2221121244133 15675222",
+				ean13 : "2221121244133",
+				ean8 : "15675222",
+				qty : "1 EA",
+				limit : "90.00 Eur",
+				backorder : "25,000",
+				price : "55.00 EUR"
+			}, {
+				name : "Dock Station",
+				lname : "Dock Station 2221121244133 15675222",
+				ean13 : "2221121244133",
+				ean8 : "15675222",
+				qty : "1 EA",
+				limit : "90.00 Eur",
+				backorder : "25,000",
+				price : "55.00 EUR"
+			}, {
+				name : "Dock Station",
+				lname : "Dock Station 2221121244133 15675222",
+				ean13 : "2221121244133",
+				ean8 : "15675222",
+				qty : "1 EA",
+				limit : "90.00 Eur",
+				backorder : "25,000",
+				price : "55.00 EUR"
+			}]
+		};
+
+		
+		// create the model to hold the data
+		var oModel2 = new sap.ui.model.json.JSONModel();
+		oModel2.setData(data2);
+	
+		// create our new Table Select Dialog		
+		var oTableSelectDialog1 = new sap.m.TableSelectDialog("TableSelectDialog1", {
+			title: "Choose a piece of tech",
+			noDataText: "Sorry, no tech available today",
+			search : doSearch,
+			columns : [
+				new sap.m.Column({
+					styleClass : "name",
+					hAlign : "Left",
+					header : new sap.m.Label({
+						text : "Name"
+					})
+				}),
+				new sap.m.Column({
+					hAlign : "Center",
+					styleClass : "qty",
+					popinDisplay : "Inline",
+					header : new sap.m.Label({
+						text : "Qty"
+					}),
+					minScreenWidth : "Tablet",
+					demandPopin : true
+				}),
+				new sap.m.Column({
+					hAlign : "Right",
+					styleClass : "limit",
+					width : "30%",
+					header : new sap.m.Label({
+						text : "Value"
+					}),
+					minScreenWidth : "Tablet",
+					demandPopin : true
+				}),
+				new sap.m.Column({
+					hAlign : "Right",
+					styleClass : "price",
+					width : "30%",
+					popinDisplay : "Inline",
+					header : new sap.m.Label({
+						text : "Price"
+					}),
+					minScreenWidth : "Tablet",
+					demandPopin : true
+				})
+			]
+		});
+			
+		// create the template for the items binding
+		var template = new sap.m.ColumnListItem({
+			type : "Navigation",
+			unread : false,
+			cells : [
+				new sap.m.Label({
+					text : "{name}"
+				}),
+				new sap.m.Label({
+					text: "{qty}"
+				}), new sap.m.Label({
+					text: "{limit}"
+				}), new sap.m.Label({
+					text : "{price}"
+				})
+			]
+		});
+		
+		// create the template for the items binding
+		var template2 = new sap.m.ColumnListItem({
+			type : "Navigation",
+			unread : false,
+			cells : [
+				new sap.m.Label({
+					text : "{name}"
+				}),
+				new sap.m.Label({
+					text: "{qty}"
+				}), new sap.m.Label({
+					text: "{limit}"
+				}), new sap.m.Label({
+					text : "{backorder}"
+				}), new sap.m.Label({
+					text : "{price}"
+				})
+			]
+		});
+
+		// create the template for the items binding
+		var template3 = new sap.m.ColumnListItem({
+			type : "Navigation",
+			unread : false,
+			cells : [
+				new sap.m.Label({
+					text : "{name}"
+				}),  new sap.m.Label({
+					text : "{lname}"
+				}),  new sap.m.Label({
+					text : "{ean13}"
+				}),  new sap.m.Label({
+					text : "{ean8}"
+				}),  new sap.m.Label({
+					text: "{qty}"
+				}), new sap.m.Label({
+					text: "{limit}"
+				}), new sap.m.Label({
+					text : "{backorder}"
+				}), new sap.m.Label({
+					text : "{price}"
+				})
+			]
+		});
+
+		// set model & bind Aggregation
+		oTableSelectDialog1.setModel(oModel9);
+		oTableSelectDialog1.bindAggregation("items", "/navigation", template);
+	
+		// attach confirm listener
+		oTableSelectDialog1.attachConfirm(function(evt) {
+			var selectedItem = evt.getParameter("selectedItem");
+			if (selectedItem) {
+				//Get all the cells and pull back the first one which will be the name content
+				var oCells = selectedItem.getCells();
+				var oCell = oCells[0];				
+				//Now update the input with the value
+				oInput1.setValue("Item selected is : " + oCell.getText());
+			}
+		});
+
+		// attach Cancel listener
+		oTableSelectDialog1.attachCancel(function(evt) {
+			oInput1.setValue("Cancel selected");
+		});
+		
+		
+		var oInput1 = new sap.m.Input({
+			type: "Text",
+			placeholder: "Open TableSelectDialog with Items Binding",
+			showValueHelp: true,
+			valueHelpRequest: function () {
+				oTableSelectDialog1.open(oInput1.getValue());
+
+				oTableSelectDialog1.setModel(oModel);
+				oTableSelectDialog1.bindAggregation("items", "/navigation", template);
+				
+				updateDialog(oInput1.getValue());
+			}
+		});
+		
+		/* 2) table select dialog with binding and dialog binding */
+		var oTableSelectDialog2 = new sap.m.TableSelectDialog("TableSelectDialog2", {
+			title: "{dialog>/title}",
+			noDataText: "{dialog>/noDataMessage}",
+			search : doSearch,
+			liveChange : doliveChange,
+			columns : [
+				new sap.m.Column({
+					styleClass : "name",
+					hAlign : "Left",
+					header : new sap.m.Label({
+						text : "Name"
+					})
+				}),
+				new sap.m.Column({
+					hAlign : "Center",
+					styleClass : "qty",
+					popinDisplay : "Inline",
+					header : new sap.m.Label({
+						text : "Qty"
+					}),
+					minScreenWidth : "Tablet",
+					demandPopin : true
+				}),
+				new sap.m.Column({
+					hAlign : "Right",
+					styleClass : "limit",
+					width : "30%",
+					header : new sap.m.Label({
+						text : "Value"
+					}),
+					minScreenWidth : "Tablet",
+					demandPopin : true
+				}),
+				new sap.m.Column({
+					hAlign : "Right",
+					styleClass : "price",
+					width : "30%",
+					popinDisplay : "Inline",
+					header : new sap.m.Label({
+						text : "Price"
+					}),
+					minScreenWidth : "Tablet",
+					demandPopin : true
+				})
+			]
+		});
+		
+		var oInput2 = new sap.m.Input({
+			type: "Text",
+			placeholder: "Open TableSelectDialog with Dialog Binding & Items Binding",
+			showValueHelp: true,
+			valueHelpRequest: function () {
+				oTableSelectDialog2.open(oInput2.getValue());
+				
+				// then set model & bind Aggregation
+				oTableSelectDialog2.bindAggregation("items", "/navigation", template);
+				oTableSelectDialog2.setModel(oModel);
+				oTableSelectDialog2.setModel(oModelDialog,"dialog");
+			}
+		});
+		
+		// attach confirm listener
+		oTableSelectDialog2.attachConfirm(function(evt) {
+			var selectedItem = evt.getParameter("selectedItem");
+			if (selectedItem) {
+				//Get all the cells and pull back the first one which will be the name content
+				var oCells = selectedItem.getCells();
+				var oCell = oCells[0];				
+				//Now update the input with the value
+				oInput2.setValue("Item selected is : " + oCell.getText());
+			}
+		});
+
+		// attach Cancel listener
+		oTableSelectDialog2.attachCancel(function(evt) {
+			oInput2.setValue("Cancel selected");
+		});
+		
+		
+		/* 3) table dialog with binding auto destroy on close */
+		var oTableSelectDialog3 = new sap.m.TableSelectDialog("TableSelectDialog3", {
+			title: "{dialog>/title}",
+			noDataText: "{dialog>/noDataMessage}",
+			search : doSearch,
+			columns : [
+				new sap.m.Column({
+					hAlign : "Left",
+					header : new sap.m.Label({
+						text : "Name"
+					})
+				}),
+				new sap.m.Column({
+					hAlign : "Center",
+					popinDisplay : "Inline",
+					header : new sap.m.Label({
+						text : "Qty"
+					}),
+					minScreenWidth : "Tablet",
+					demandPopin : true
+				}),
+				new sap.m.Column({
+					hAlign : "Right",
+					width : "30%",
+					header : new sap.m.Label({
+						text : "Value"
+					}),
+					minScreenWidth : "Tablet",
+					demandPopin : true
+				}),
+				new sap.m.Column({
+					hAlign : "Right",
+					width : "30%",
+					popinDisplay : "Inline",
+					header : new sap.m.Label({
+						text : "Price"
+					}),
+					minScreenWidth : "Tablet",
+					demandPopin : true
+				})
+			]
+		});
+		
+		// attach confirm listener
+		oTableSelectDialog3.attachConfirm(function(evt) {
+			var selectedItem = evt.getParameter("selectedItem");
+			if (selectedItem) {
+				//Get all the cells and pull back the first one which will be the name content
+				var oCells = selectedItem.getCells();
+				var oCell = oCells[0];				
+				//Now update the input with the value
+				oInput1.setValue("Item selected is : " + oCell.getText());
+			}
+			//Now destroy it
+			oTableSelectDialog3.destroy();
+			oTableSelectDialog3 = null;
+		});
+
+		// attach Cancel listener
+		oTableSelectDialog3.attachCancel(function(evt) {
+			oInput1.setValue("Cancel selected");
+		});
+
+		var oButton3 = new sap.m.Button("Button3", {
+			text: "Open TableSelectDialog with destroy call in close event & late binding",
+			press: function(evt) {
+				oTableSelectDialog3.open();
+
+				// then set model & bind Aggregation
+				oTableSelectDialog3.bindAggregation("items", "/navigation", template);
+				oTableSelectDialog3.setModel(oModel);
+			}
+		});
+		
+		/* 4) multi select table dialog with binding  */
+		var oTableSelectDialog4 = new sap.m.TableSelectDialog("TableSelectDialog4", {
+			title: "Choose several tech products",
+			noDataText: "Sorry, no tech today",
+			multiSelect: true,
+			search : doSearch,
+			liveChange : doliveChange,
+			columns : [
+				new sap.m.Column({
+					hAlign : "Left",
+					header : new sap.m.Label({
+						text : "Name"
+					})
+				}),
+				new sap.m.Column({
+					hAlign : "Center",
+					popinDisplay : "Inline",
+					header : new sap.m.Label({
+						text : "Qty"
+					}),
+					minScreenWidth : "Tablet",
+					demandPopin : true
+				}),
+				new sap.m.Column({
+					hAlign : "Right",
+					header : new sap.m.Label({
+						text : "Value"
+					}),
+					minScreenWidth : "Tablet",
+					demandPopin : true
+				}),
+				new sap.m.Column({
+					hAlign : "Right",
+					popinDisplay : "Inline",
+					header : new sap.m.Label({
+						text : "Price"
+					}),
+					minScreenWidth : "Tablet",
+					demandPopin : true
+				})
+			]
+		});
+
+		// set model & bind Aggregation
+		oTableSelectDialog4.setModel(oModel);
+		oTableSelectDialog4.bindAggregation("items", "/navigation", template);
+
+		// attach confirm listener
+		oTableSelectDialog4.attachConfirm(function(evt) {
+			var selectedItems = evt.getParameter("selectedItems");
+			if (selectedItems) {
+				var sel = "";
+				//Loop through all selected items
+				for (var i=0; i<selectedItems.length; i++) {
+					//Get all the cells and pull back the first one which will be the name content
+					var oCells = selectedItems[i].getCells();
+					var oCell = oCells[0];
+					//Update the text
+					sel += oCell.getText();
+					if (i<selectedItems.length-1) sel+= ', ';
+				}
+				oInput1.setValue("You selected: "+ sel);
+			}
+		});
+
+		// attach Cancel listener
+		oTableSelectDialog4.attachCancel(function(evt) {
+			oInput1.setValue("Cancel selected");
+		});
+		
+		
+		var oButton4 = new sap.m.Button("Button4", {
+			text: "Open TableSelectDialog in MultiSelect mode",
+			press: function() {
+				// open dialog
+				oTableSelectDialog4.open();
+			}
+		});
+		
+		/* 5) multi select table dialog with large binding */
+		var oTableSelectDialog5 = new sap.m.TableSelectDialog("TableSelectDialog5", {
+			title: "Choose several extended tech products",
+			noDataText: "Sorry, no tech today",
+			multiSelect: true,
+			search : doSearch,
+			columns : [
+				new sap.m.Column({
+					width : "150px",
+					hAlign : "Left",
+					header : new sap.m.Label({
+						text : "Name"
+					})
+				}),
+				new sap.m.Column({
+					hAlign : "Center",
+					width : "90px",
+					popinDisplay : "Inline",
+					header : new sap.m.Label({
+						text : "Qty"
+					}),
+					minScreenWidth : "Tablet",
+					demandPopin : true
+				}),
+				new sap.m.Column({
+					hAlign : "Right",
+					width : "100px",
+					header : new sap.m.Label({
+						text : "Value"
+					}),
+					minScreenWidth : "Tablet",
+					demandPopin : true
+				}),				
+				new sap.m.Column({
+					hAlign : "Center",
+					width : "150px",
+					popinDisplay : "Inline",
+					header : new sap.m.Label({
+						text : "Back Order"
+					}),
+					minScreenWidth : "Tablet",
+					demandPopin : true
+				}),
+				new sap.m.Column({
+					hAlign : "Right",
+					width : "150px",
+					popinDisplay : "Inline",
+					header : new sap.m.Label({
+						text : "Price"
+					}),
+					minScreenWidth : "Tablet",
+					demandPopin : true
+				})
+			]
+		});
+
+		// set model & bind Aggregation
+		oTableSelectDialog5.setModel(oModel2);
+		oTableSelectDialog5.bindAggregation("items", "/navigation", template2);
+
+
+		// attach confirm listener
+		oTableSelectDialog5.attachConfirm(function(evt) {
+			var selectedItems = evt.getParameter("selectedItems");
+			if (selectedItems) {
+				var sel = "";
+				//Loop through all selected items
+				for (var i=0; i<selectedItems.length; i++) {
+					//Get all the cells and pull back the first one which will be the name content
+					var oCells = selectedItems[i].getCells();
+					var oCell = oCells[0];
+					//Update the text
+					sel += oCell.getText();
+					if (i<selectedItems.length-1) sel+= ', ';
+				}
+				oInput1.setValue("You selected: "+ sel);
+			}
+		});
+
+		// attach Cancel listener
+		oTableSelectDialog5.attachCancel(function(evt) {
+			oInput1.setValue("Cancel selected");
+		});
+		
+		
+		var oButton5 = new sap.m.Button("Button5", {
+			text: "Open TableSelectDialog in MultiSelect mode with large data",
+			press: function() {
+				// open dialog
+				oTableSelectDialog5.open();
+			}
+		});
+
+		/* 6) table dialog with large binding */
+		var oTableSelectDialog6 = new sap.m.TableSelectDialog("TableSelectDialog6", {
+			title: "Choose an extended tech products",
+			noDataText: "Sorry, no tech today",
+			search : doSearch,
+			columns : [
+				new sap.m.Column({
+					width : "150px",
+					hAlign : "Left",
+					header : new sap.m.Label({
+						text : "Name"
+					})
+				}),
+				new sap.m.Column({
+					width : "250px",
+					hAlign : "Left",
+					header : new sap.m.Label({
+						text : "Long Name"
+					}),
+					popinDisplay : "Inline",
+					minScreenWidth : "Tablet",
+					demandPopin : true
+				}),
+				new sap.m.Column({
+					hAlign : "Center",
+					width : "290px",
+					popinDisplay : "Inline",
+					header : new sap.m.Label({
+						text : "EAN 13"
+					}),
+					minScreenWidth : "Tablet",
+					demandPopin : true
+				}),
+				new sap.m.Column({
+					hAlign : "Center",
+					width : "290px",
+					popinDisplay : "Inline",
+					header : new sap.m.Label({
+						text : "EAN 8"
+					}),
+					minScreenWidth : "Tablet",
+					demandPopin : true
+				}),
+				new sap.m.Column({
+					hAlign : "Center",
+					width : "190px",
+					popinDisplay : "Inline",
+					header : new sap.m.Label({
+						text : "Qty"
+					}),
+					minScreenWidth : "Tablet",
+					demandPopin : true
+				}),
+				new sap.m.Column({
+					hAlign : "Right",
+					width : "200px",
+					header : new sap.m.Label({
+						text : "Value"
+					}),
+					minScreenWidth : "Tablet",
+					demandPopin : true
+				}),
+				new sap.m.Column({
+					hAlign : "Center",
+					width : "250px",
+					popinDisplay : "Inline",
+					header : new sap.m.Label({
+						text : "Back Order"
+					}),
+					minScreenWidth : "2400px",
+					demandPopin : true
+				}),
+				new sap.m.Column({
+					hAlign : "Right",
+					width : "250px",
+					popinDisplay : "Inline",
+					header : new sap.m.Label({
+						text : "Price"
+					}),
+					minScreenWidth : "2400px",
+					demandPopin : true
+				})
+			]
+		});
+
+		// set model & bind Aggregation
+		oTableSelectDialog6.setModel(oModel2);
+		oTableSelectDialog6.bindAggregation("items", "/navigation", template3);
+
+		// attach confirm listener
+		oTableSelectDialog6.attachConfirm(function(evt) {
+			if (oTableSelectDialog6.getMultiSelect()) {
+				var selectedItems = evt.getParameter("selectedItems");
+				if (selectedItems) {
+					var sel = "";
+					//Loop through all selected items
+					for (var i=0; i<selectedItems.length; i++) {
+						//Get all the cells and pull back the first one which will be the name content
+						var oCells = selectedItems[i].getCells();
+						var oCell = oCells[0];
+						//Update the text
+						sel += oCell.getText();
+						if (i<selectedItems.length-1) sel+= ', ';
+					}
+					oInput1.setValue("You selected: "+ sel);
+				}
+			} else {
+				var selectedItem = evt.getParameter("selectedItem");
+				if (selectedItem) {
+					//Get all the cells and pull back the first one which will be the name content
+					var oCells = selectedItem.getCells();
+					var oCell = oCells[0];				
+					//Now update the input with the value
+					oInput1.setValue("Item selected is : " + oCell.getText());
+				}
+			}
+		});
+
+		// attach Cancel listener
+		oTableSelectDialog6.attachCancel(function(evt) {
+			oInput1.setValue("Cancel selected");
+		});
+		
+		var oButton6 = new sap.m.Button("Button6", {
+			text: "Open TableSelectDialog with very large data",
+			press: function() {
+				// open dialog
+				oTableSelectDialog6.setMultiSelect(false);
+				oTableSelectDialog6.open();
+			}
+		});
+		
+		var oButton7 = new sap.m.Button("Button7", {
+			text: "Open TableSelectDialog with multi Select and very large data",
+			press: function() {
+				// open dialog
+				oTableSelectDialog6.setMultiSelect(true);
+				oTableSelectDialog6.open();
+			}
+		});
+
+		// create the application page
+		var page1 = new sap.m.Page("page1", {
+			title:"Mobile TableSelectDialog Control",
+			content:[
+				new sap.m.VBox({
+					items: [
+						oInput1,
+						oInput2,
+						oButton3,
+						oButton4,
+						oButton5,
+						oButton6,
+						oButton7
+						]
+				})
+			]
+		});
+	
+		app.addPage(page1).placeAt("content");
+			
+	</script>
+	</head>
+	<body id="body" class="sapUiBody">
+		<div id="content"></div>
+	</body>
+</html>

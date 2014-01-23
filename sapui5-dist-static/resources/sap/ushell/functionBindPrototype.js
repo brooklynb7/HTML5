@@ -1,0 +1,2 @@
+// Copyright (c) 2013 SAP AG, All Rights Reserved
+(function(){"use strict";jQuery.sap.declare("sap.ushell.functionBindPrototype");if(!Function.prototype.bind){Function.prototype.bind=function(t){if(typeof this!=="function"){throw new TypeError("Function.prototype.bind - what is trying to be bound is not callable")}var a=Array.prototype.slice.call(arguments,1),T=this,n=function(){},b=function(){return T.apply(this instanceof n&&t?this:t,a.concat(Array.prototype.slice.call(arguments)))};n.prototype=this.prototype;b.prototype=new n();return b}}}());

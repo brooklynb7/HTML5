@@ -1,0 +1,225 @@
+<!DOCTYPE HTML>
+<html data-sap-ui-dk-category="Controls/Complex" data-sap-ui-dk-controls="sap.viz.ui5.Bar,sap.viz.ui5.Donut,sap.viz.ui5.Line">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta charset="UTF-8"/>
+    <title>Table - SAPUI5 Demo Kit</title>
+    <meta name="keywords" content="Control Table" />
+    <link rel="stylesheet" type="text/css" href="../../../../theme/default.css"></link>
+    <script id="sap-ui-bootstrap"
+        src="../../../../resources/sap-ui-core.js"
+        data-sap-ui-theme="sap_goldreflection"
+        data-sap-ui-libs="sap.ui.core,sap.ui.commons,sap.viz,sap.ui.demokit"
+        >
+    </script>
+    <script src="../../../../js/utils.js"></script>
+
+<script id='BarChartSimpleExample'> 
+
+    // some business data 
+	var oModel = new sap.ui.model.json.JSONModel({
+		businessData : [
+			{Country :"Canada",revenue:410.87,profit:-141.25, population:34789000},
+			{Country :"China",revenue:338.29,profit:133.82, population:1339724852},
+			{Country :"France",revenue:487.66,profit:348.76, population:65350000},
+			{Country :"Germany",revenue:470.23,profit:217.29, population:81799600},
+			{Country :"India",revenue:170.93,profit:117.00, population:1210193422},
+			{Country :"United States",revenue:905.08,profit:609.16, population:313490000}
+		]
+	});		
+
+    // A Dataset defines how the model data is mapped to the chart 
+	var oDataset = new sap.viz.ui5.data.FlattenedDataset({
+
+		// a Bar Chart requires exactly one dimension (x-axis) 
+		dimensions : [ 
+			{
+				axis : 1, // must be one for the x-axis, 2 for y-axis
+				name : 'Country', 
+				value : "{Country}"
+			} 
+		],
+
+		// it can show multiple measures, each results in a new set of bars in a new color 
+		measures : [ 
+		    // measure 1
+			{
+				name : 'Profit', // 'name' is used as label in the Legend 
+				value : '{profit}' // 'value' defines the binding for the displayed value   
+			},
+			{
+				name : 'Revenue', 
+				value : '{revenue}'
+			} 
+		],
+		
+		// 'data' is used to bind the whole data collection that is to be displayed in the chart 
+		data : {
+			path : "/businessData"
+		}
+		
+	});
+
+    // create a Bar chart
+    // you also might use Combination, Line, StackedColumn100, StackedColumn or Column
+    // for Donut and Pie please remove one of the two measures in the above Dataset.  
+	var oBarChart = new sap.viz.ui5.Bar({
+		width : "80%",
+		height : "400px",
+		plotArea : {
+		//'colorPalette' : d3.scale.category20().range()
+		},
+		title : {
+			visible : true,
+			text : 'Profit and Revenue By Country'
+		},
+		dataset : oDataset
+	});
+
+    // attach the model to the chart and display it
+	oBarChart.setModel(oModel);
+	oBarChart.placeAt("sample1");
+	
+</script>
+<script id='BarChartEventingExample'>
+    
+    // create a bigger model with more data
+	var oBiggerModel = new sap.ui.model.json.JSONModel({
+		businessData : (function() {
+			var oData = [];
+			for(var c=0; c<2000; c++) {
+				oData.push({
+					Country: "Country" + c,
+					population: 1000000 + Math.random() * 10000000,
+					profit: 200 * Math.random()
+				});
+			}
+			return oData;
+		}())
+	});
+
+	// a Scatter has slightly different requirements than a Bar
+	var oScatterDataset = new sap.viz.ui5.data.FlattenedDataset({
+		
+		dimensions : [ {
+			axis : 1,
+			name : 'Country',
+			value : "{Country}"
+		} ],
+		
+		// a scatter chart requires two measure groups:
+		measures : [ 
+			{
+				group: 1,
+				name : 'Population',
+				value : '{population}'
+			} ,
+			{
+				group: 2,
+				name : 'Profit',
+				value : '{profit}'
+			} ,
+		],
+		
+		data : {
+			path : "/businessData"
+		}
+		
+	});
+	
+	// create a Scatter chart and attach all kinds of event handlers to it
+	var oScatterChart = new sap.viz.ui5.Scatter({
+		width : "80%",
+		height : "400px",
+		line : {
+		//'colorPalette' : d3.scale.category20().range()
+		},
+		title : {
+			visible : true,
+			text : 'Profit and Revenue By Country'
+		},
+		showTooltip : function(oEvent) {
+			log("showTooltip fired");
+		},
+		hideTooltip : function(oEvent) {
+			log("hideTooltip fired");
+		},
+	 	selectData : function(oEvent) {
+	 		log("selectData fired with data of length " + oEvent.getParameter("data").length);
+	 	},
+	 	deselectData : function(oEvent) {
+	 		log("deselectData fired with data of length " + oEvent.getParameter("data").length);
+	 	},
+		dataset : oScatterDataset
+	});
+
+	// attach the model to the chart and display it
+	oScatterChart.setModel(oBiggerModel);
+	oScatterChart.placeAt("sample2");
+
+	// create a simple 'log' feature for the event handlers 
+	var oDoLog = new sap.ui.commons.CheckBox({text:"Record Log Messages", checked:true}).placeAt("sample2");
+	var oLog = new sap.ui.commons.TextArea({width:"100%", rows:7}).placeAt("sample2");
+	function log(sMsg) {
+		if ( !oDoLog.getChecked() ) {
+			return;
+		}
+		oLog.setValue(new Date() + ":" + sMsg + "\n" + oLog.getValue().split(/\n/g).slice(0,20).join('\n'));
+	}
+	
+</script>
+
+	</head>
+	<body class="sapUiDemokitBody">
+	<h1 color="Blue" icon="images/ctrls/vizcharts-icon.png">VIZ Charts</h1>
+	
+	<h2>Introduction</h2>
+	
+	<p>
+	The sap.viz charting library provides a set of flexible chart controls that allow to easily represent business data in a feature rich, graphical manner.
+    Beside pure presentation, VIZ charts support some user interaction. <code>show-/hideTooltip</code> events are fired when the user hovers over a chart element.
+    <code>select/deselectData</code> events are fired whenever data in the chart is selected or deselected by the user.     
+	</p>
+	
+	<h2>Example</h2>
+	<p>
+	The following code snippet shows the basic capabilities of the Bar chart control:   
+	</p>
+	<div code-sample="sample1" script="BarChartSimpleExample"></div>
+	
+	<p>
+	Several chart types have the same requirements regarding their data structure (e.g. same number of dimensions, measures). 
+	It is quite easy to switch between such charts. Just use a different constructor and - if you need configuration - adapt the 
+	name of the main configuration property.    
+	</p>
+	<p>Try it out and replace the <code>Bar</code> chart in the sample above with a <code>Combination</code>, </code><code>Line</code>, 
+	<code>Column</code>, <code>StackedColumn</code> or <code>StackedColumn100</code> chart.
+	</p>
+	<p>Please note that <code>Pie</code> and <code>Donut</code> chart can be used as well, but they can display only a single measure.
+	Therefore you have to remove the second measure from the FlattenedDataSet definition in Example 1.
+	</p>
+
+	<h2>Eventing</h2>
+	<p>
+	The following example shows how to attach events to a chart. 
+	</p>
+	<p>
+	Note: Unfortunately, the interface for event parameters is not fully stable yet and documentation for the parameters 
+	is still missing. Please check the content of oEvent.getParameters() to learn about the parameters and 
+	please expect changes (name and structure) in future versions.
+	</p>
+	<p>
+	Note: As the logging in a textarea slows down the behavior of the chart, you might switch off the logging to see the performance of the eventing.
+	</p>
+	<div code-sample="sample2" script="BarChartEventingExample"></div>
+
+	<h2>Settings (Overview)</h2>
+	<div cue-card="sap.viz.ui5.Bar"></div>
+
+	<h2>API Documentation</h2>
+	<p>See <a class="sapUiDemokitSrcLink" href="../../../../docs/api/symbols/sap.viz.ui5.Bar.html">Bar Chart</a>, 
+	<a class="sapUiDemokitSrcLink" href="../../../../docs/api/symbols/sap.viz.ui5.data.FlattenedDataset.html">FlattenedDataset</a> and 
+	<a class="sapUiDemokitSrcLink" href="../../../../docs/api/symbols/sap.viz.ui5.html">general sap.viz</a> API documentation</p>
+
+</body>
+</html>

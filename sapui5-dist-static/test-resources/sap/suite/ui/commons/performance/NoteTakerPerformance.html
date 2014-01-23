@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Note Taker Performance</title>
+
+    <!-- UI5 Bootstrap -->
+    <script src="../../../../../../resources/sap-ui-core.js"
+            type="text/javascript"
+            id="sap-ui-bootstrap"
+            data-sap-ui-libs="sap.ui.commons, sap.suite.ui.commons"
+            data-sap-ui-theme="sap_goldreflection"></script>
+
+    <script type="text/javascript">
+
+    	function querystring(key) {
+    	   var re = new RegExp('(?:\\?|&)'+key+'=(.*?)(?=&|$)','gi');
+    	   var r=[], m;
+    	   while ((m=re.exec(document.location.search)) != null) r.push(m[1]);
+    	   return r;
+    	};
+    
+    	var sBody = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt " +
+        "ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris " +
+        "nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit " +
+        "esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt " +
+        "in culpa qui officia deserunt mollit anim id est laborum. \n\r" +
+        "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt " +
+        "ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris " +
+        "nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit " +
+        "esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt " +
+        "in culpa qui officia deserunt mollit anim id est laborum. \n\r" +
+        "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt " +
+        "ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris " +
+        "nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit " +
+        "esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt " +
+        "in culpa qui officia deserunt mollit anim id est laborum. " +
+        "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt " +
+        "ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris " +
+        "nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit " +
+        "esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt " +
+        "in culpa qui officia deserunt mollit anim id est laborum. " +
+        "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt " +
+        "ut labore et dolore magna aliqua. http://www.sap.com";
+        
+        var iCardNumber = querystring("sap-ui-cards-number");
+        var oJsonData = {
+        		cards: [], 
+                visibleNotes: 4
+        };
+        
+        for (var i = 0; i < iCardNumber; i++) {
+        	oJsonData.cards.push({
+                header : "Card title " + (i + 1),
+                body :  sBody,
+                timestamp: new Date(2012, 1, 21, 15, 25, 30, 0),
+                tags: ["PRM", "OneOnOne"],
+            	  thumbUp : true,
+            	  attachmentFilename : "Bonus.pdf",
+            	  attachmentUrl : "http://nexus.wdf.sap.corp:8081/nexus/service/local/templates/settings/LeanDI/content"
+            });
+        }
+        
+        var oNoteTakerCardTemplate = new sap.suite.ui.commons.NoteTakerCard({
+            header : "{header}",
+            body : "{body}",
+            timestamp: "{timestamp}",
+            tags: "{tags}",
+            thumbUp : "{thumbUp}",
+            thumbDown : "{thumbDown}",
+            attachmentFilename : "{attachmentFilename}",
+            attachmentUrl : "{attachmentUrl}"
+        });
+        
+            // JSON model
+        var oJsonModel = new sap.ui.model.json.JSONModel();
+        oJsonModel.setData(oJsonData);
+        var noteTaker = new sap.suite.ui.commons.NoteTaker({
+            // properties
+            id: "NT1",
+            visibleNotes: "{/visibleNotes}",
+            cards: {
+                path: "/cards",
+                template: oNoteTakerCardTemplate
+            }
+
+        });
+        noteTaker.setModel(oJsonModel);
+        noteTaker.placeAt("contentArea");
+    </script>
+</head>
+
+<body class="sapUiBody" role="application">
+    <h1>Note Taker Performance testing</h1>
+    <div id="contentArea"></div>
+    <br>
+    <span>*To set the number of cards displaed in this NoteTaker please add a "&sap-ui-cards-number=" parameter to the page URL.</span>
+</body>
+</html>

@@ -1,0 +1,484 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+<title>Attachment List Item - sap.m</title>
+
+<script src="../../../../../resources/sap-ui-core.js" type="text/javascript"
+	id="sap-ui-bootstrap" data-sap-ui-libs="sap.m"
+	data-sap-ui-theme="sap_bluecrystal">    
+</script>
+
+
+<script type="text/javascript">
+    //jQuery.sap.require("sap.ui.core.IconPool");
+    jQuery.sap.require("sap.m.MessageBox");
+
+    // random functions
+    function getRandomIntWithRange (min, max) {
+	    return Math.round(Math.random() * (max - min) + min);
+	}
+    function getRandomBool() {
+	    return Boolean(getRandomIntWithRange(0,1));
+	}
+    
+    function getRandomNumberUnit() {
+    	var options = [ 
+    		"EUR",
+    		"USD",
+    		"€",
+    		"$",
+    		"Pcs.",
+    		"Boxes",
+    		"Requests",
+    		"Items",
+    		"Things"
+    	];
+    	var n = getRandomIntWithRange(0, options.length-1);
+    	return options[n];
+    }
+    
+    function getRandomTitle() {
+    	var options = [ 
+ 	      	"Ñagçyfox Lorem ipsum Title",
+ 	    	"Create Purchase Orders",
+ 	    	"Get icecream",
+ 	    	"Do some action",
+ 	   		"Imagine a fancy title here",
+ 	   		"This is a tile",
+ 	   		"I am a tile and i have a really long description text, let's see how this works out",
+ 	   		"you gotta be :§$(&!)(\"&!)(&%)#*+ kidding me",
+ 	    	"Start Windows 8 Emulator",
+ 	    	"All your tile are belong to us",
+ 	    	"Yet another tile name",
+ 	    	"Don't you tap me" 	    	
+ 	   	];
+    	var n = getRandomIntWithRange(0, options.length-1);
+    	return options[n];
+    }
+    
+    function getRandomInfo() {
+    	var options = [ 
+ 	      	"Four score and seven years ago",
+ 	    	"2 seconds ago",
+ 	    	"some decades ago",
+ 	    	"just now",
+ 	   		"tomorrow",
+ 	   		"quarter past 4",
+ 	   		"2 hours ago",
+ 	   		"1 day ago"	    	
+ 	   	];
+    	var n = getRandomIntWithRange(0, options.length-1);
+    	return options[n];
+    }
+    
+    function getRandomInfoState() {
+    	var options = [ 
+ 	      	sap.ui.core.ValueState.Info,
+ 	      	sap.ui.core.ValueState.Warning,
+ 	      	sap.ui.core.ValueState.Error,
+ 	   	];
+    	var n = getRandomIntWithRange(0, options.length-1);
+    	return options[n];
+    }
+    
+    function getRandomIcon() {
+    	var options = [ 
+   	      	"inbox",
+   	    	"accept",
+   	    	"warning2",
+   	    	"alert",
+   	   		"delete",
+   	   		"open-command-field",
+   	   		"incident",
+   	   		"hint",
+   	   		"add",
+   	   		"pdf-attachment",
+   	   		"doc-attachment",
+   	   		"general-leave-request",
+   	   		"home",
+   	   		"employee",
+   	   		"retail-store",
+   	   		"notes",
+   	   		"personnel-view",
+   	   		"attachment"
+   	   	];
+ 	    var n = getRandomIntWithRange(0, options.length-1);
+    	return sap.ui.core.IconPool.getIconURI(options[n]);
+    }
+    
+   	// events 
+    function handlePress(oEvent) {
+	    alert('tile ' + oEvent.oSource.getTitle() + ' pressed');
+	}
+    
+    function handleMove(oEvent) {
+	    alert('tile moved');
+	}
+    
+    function handleDelete(oEvent) {
+	    alert('tile deleted');
+	}
+    
+    // arrays for functionality
+    var tileTypes = {
+		0 : "Tile",
+		1 : "StandardTile",
+		2 : "CustomTile",
+    };
+    
+    var selectedTileType = 1;
+  	
+    function refreshPage(tileMode) {
+    	// cleanup page
+    	if(tileMode<3) {
+			page.destroyContent();
+	    	page.setTitle("Selected tile type: "+tileTypes[tileMode]);
+    	
+	    	// create content
+	    	tileMode = parseInt (tileMode);
+	    	content = switchTiles (tileMode);
+	    	
+	    	// add content to page
+	    	page.addContent(content);
+    	} else { // options
+    		switch (tileMode) {
+    		case 3: // editable
+    			content.setEditable(!content.getEditable());
+    			break;
+    		case 4:
+    			content.scrollIntoView(0);
+    			break;
+    		case 5:
+    			alert("First tile on this page is: "+content.getPageFirstTileIndex());
+    			break;
+    		case 6: // add Tile
+    			content.addTile(getTiles(0,1,0));
+    			break;
+    		case 7: // add StandardTile
+    			content.addTile(getTiles(1,1,0));
+    			break;
+    		case 8: // add CustomTile
+    			content.addTile(getTiles(2,1,0));
+    			break;
+    		}
+    	}
+    }
+    
+	function switchTiles (tileMode) {
+
+		//alert("TileContainer");
+		content = new sap.m.TileContainer({
+	        tiles : getTiles(tileMode, 20, 0)
+	    });
+		content.setEditable(false);
+
+		// edit stuff
+		content.attachTileDelete(function(oEvent) {
+			handleDelete(oEvent);
+			content.deleteTile(oEvent.getParameter("tile"));
+		});
+		content.attachTileMove(function(oEvent) {
+			handleMove(oEvent);
+		});
+		
+		return content;
+	}
+	
+	function getTiles(tileMode, amount, start) {
+		var tiles = new Array();
+		
+		switch(tileMode) {
+		case 1: // StandardTile
+			//alert("StandardTile");
+			 for ( var i = start; i < (amount + start); i++) {
+				 	var tile = new sap.m.StandardTile({
+		                icon : getRandomIcon(),
+		                number : getRandomIntWithRange(1,10000000),
+		                numberUnit : getRandomNumberUnit(),
+		                title : getRandomTitle(),
+		                info : getRandomInfo(),
+		                infoState : getRandomInfoState(),
+		                press : handlePress
+		            });
+		            tiles.push(tile);
+		        }
+			break;
+		case 2: // CustomTile
+			//alert("CustomTile");
+			
+			sap.ui.controller("my.own.controller", {
+				// implement an event handler in the Controller
+				doSomething: function() {
+					alert("Hello World!");
+				}
+			});
+			
+			// a number of own views
+			var numberOfCustomViews = 6;
+			
+			// standardTile
+			sap.ui.jsview("CustomTileView0", {
+					
+				// define the (default) controller type for this View
+				getControllerName: function() {
+					return "my.own.controller";
+				},
+				
+				// defines the UI of this View
+				createContent: function(oController) {
+					// button text is bound to Model, "press" action is bound to Controller's event handler
+					return new sap.m.StandardTile({
+						icon : getRandomIcon(),
+		                number : getRandomIntWithRange(1,10000000),
+		                numberUnit : getRandomNumberUnit(),
+		                title : getRandomTitle(),
+		                info : getRandomInfo(),
+		                infoState : getRandomInfoState(),
+		                press : handlePress
+		            })
+				}
+			});
+			
+			// button
+			sap.ui.jsview("CustomTileView1", {
+							
+				// define the (default) controller type for this View
+				getControllerName: function() {
+					return "my.own.controller";
+				},
+				
+				// defines the UI of this View
+				createContent: function(oController) {
+					// button text is bound to Model, "press" action is bound to Controller's event handler
+					return new sap.m.Button({
+						text : "Just a button",
+		                press : handlePress
+		            })
+				}
+			});
+			
+			// text
+			sap.ui.jsview("CustomTileView2", {
+				
+				// define the (default) controller type for this View
+				getControllerName: function() {
+					return "my.own.controller";
+				},
+				
+				// defines the UI of this View
+				createContent: function(oController) {
+					return new sap.m.Text({
+			   			text: "Just a Text. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis commodo sollicitudin sem at imperdiet. Vestibulum imperdiet tellus eu mi vehicula eu aliquam ante posuere. Proin ac enim sit amet ante blandit auctor. Sed tristique sapien sed dui tincidunt vitae pellentesque risus vehicula. Mauris hendrerit pretium vestibulum. Curabitur interdum odio et massa vestibulum lacinia. Praesent fringilla ullamcorper interdum. In hac habitasse platea dictumst. Quisque nulla dolor, laoreet sed pellentesque sit amet, dignissim at ipsum. Curabitur arcu enim, molestie ac lobortis pellentesque, dictum et ligula. In et mi odio. Praesent facilisis, justo sed lobortis venenatis, massa justo molestie metus, malesuada ornare massa dui non nisl. Suspendisse interdum lacus nec diam elementum non imperdiet purus tempus." 
+			   		})
+				}
+			});
+			
+			// button + text
+			sap.ui.jsview("CustomTileView3", {
+				
+				// define the (default) controller type for this View
+				getControllerName: function() {
+					return "my.own.controller";
+				},
+				
+				// defines the UI of this View
+				createContent: function(oController) {
+					// button text is bound to Model, "press" action is bound to Controller's event handler
+					return [ new sap.m.Button({
+						text : "A nice little button",
+			            press : handlePress
+			        })
+					,
+					new sap.m.Text({
+			   			text: "And a Text. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis commodo sollicitudin sem at imperdiet. Vestibulum imperdiet tellus eu mi vehicula eu aliquam ante posuere. Proin ac enim sit amet ante blandit auctor. Sed tristique sapien sed dui tincidunt vitae pellentesque risus vehicula. Mauris hendrerit pretium vestibulum. Curabitur interdum odio et massa vestibulum lacinia. Praesent fringilla ullamcorper interdum. In hac habitasse platea dictumst. Quisque nulla dolor, laoreet sed pellentesque sit amet, dignissim at ipsum. Curabitur arcu enim, molestie ac lobortis pellentesque, dictum et ligula. In et mi odio. Praesent facilisis, justo sed lobortis venenatis, massa justo molestie metus, malesuada ornare massa dui non nisl. Suspendisse interdum lacus nec diam elementum non imperdiet purus tempus." 
+			   		})
+					];
+				}
+			});
+			
+			// list
+			sap.ui.jsview("CustomTileView4", {
+				// define the (default) controller type for this View
+				getControllerName: function() {
+					return "my.own.controller";
+				},
+				
+				// defines the UI of this View
+				createContent: function(oController) {
+					// button text is bound to Model, "press" action is bound to Controller's event handler
+					list = new sap.m.List({
+						inset: false,
+						headerText: 'This Is The Header Of The List',
+		    		});
+					
+					for(i=0; i<5; i++) {
+						listItem = new sap.m.StandardListItem({
+							title: "A list item",
+							description: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr",
+						});
+	    		
+		            	listItem.setCounter(getRandomIntWithRange(1,100));
+		            	listItem.setUnread(getRandomBool());
+		            	listItem.setSelected(getRandomBool());
+			            list.addItem(listItem); 
+					}
+					return list;
+				}
+			});
+			
+			// label
+			sap.ui.jsview("CustomTileView5", {
+				// define the (default) controller type for this View
+				getControllerName: function() {
+					return "my.own.controller";
+				},
+				
+				// defines the UI of this View
+				createContent: function(oController) {
+					return new sap.m.Label({
+			   			text: "A Label with a lot of text. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis commodo sollicitudin sem at imperdiet. Vestibulum imperdiet tellus eu mi vehicula eu aliquam ante posuere. Proin ac enim sit amet ante blandit auctor. Sed tristique sapien sed dui tincidunt vitae pellentesque risus vehicula. Mauris hendrerit pretium vestibulum. Curabitur interdum odio et massa vestibulum lacinia. Praesent fringilla ullamcorper interdum. In hac habitasse platea dictumst. Quisque nulla dolor, laoreet sed pellentesque sit amet, dignissim at ipsum. Curabitur arcu enim, molestie ac lobortis pellentesque, dictum et ligula. In et mi odio. Praesent facilisis, justo sed lobortis venenatis, massa justo molestie metus, malesuada ornare massa dui non nisl. Suspendisse interdum lacus nec diam elementum non imperdiet purus tempus." 
+			   		})
+				}
+			});
+			
+			// multiple controls
+			sap.ui.jsview("CustomTileView6", {
+				// define the (default) controller type for this View
+				getControllerName: function() {
+					return "my.own.controller";
+				},
+				
+				// defines the UI of this View
+				createContent: function(oController) {
+					return [
+						    new sap.m.Button({
+						    	text: "A Button",
+						    }),
+				    	 	new sap.m.Button( {
+						        	"text": "A Message Box",
+						        	"press": function(){
+										sap.m.MessageBox.alert("Alert some message");
+									}
+						        }),
+						    new sap.m.Input({placeholder : "Gimme input"}),
+						    new sap.m.Slider({
+								value: 30,
+								liveChange: function(oControlEvent) {
+									jQuery.sap.log.info("Event fired: 'liveChange' value property to " + oControlEvent.getParameter("value") + " on " + this);
+								},
+								change : function(oControlEvent) {
+									jQuery.sap.log.info("Event fired: 'change' value property to " + oControlEvent.getParameter("value") + " on " + this);
+								}
+							})
+						  ]
+				}
+			});
+				
+			
+			for (var i=start; i<(amount + start); i++){
+				var oTile = new sap.m.CustomTile({
+					content: sap.ui.view({type:sap.ui.core.mvc.ViewType.JS, viewName:"CustomTileView"+getRandomIntWithRange(0,numberOfCustomViews)})
+				});
+				tiles.push(oTile);
+			}
+			break;
+		case 0: // Tile
+		default:
+			for ( var i = start; i < (amount + start); i++) {
+				var tile = new sap.m.Tile({
+	                icon : getRandomIcon(),
+	                number : getRandomIntWithRange(1,10000000),
+	                numberUnit : getRandomNumberUnit(),
+	                title : getRandomTitle(),
+	                info : getRandomInfo(),
+	                infoState : getRandomInfoState(),
+	                press : handlePress
+	            });
+	            tiles.push(tile);
+	        }
+		
+		}
+		
+		if(amount===1) { return tiles[0]; } else { return tiles; }
+	}
+	
+	// compose buttons for tile types
+	tileTypesLength = Object.keys(tileTypes).length;
+    var buttons = new Array();
+    buttons.push(new sap.m.Label( { "text" : "Select Tile type:"}));
+    for(i=0; i<tileTypesLength; i++) {
+    	buttons.push(new sap.m.Button( {
+			"text": tileTypes[i],
+			 "press" : function(i) {
+				 return function() {
+					 refreshPage(i);
+		      }}(i)
+		} ));
+    }
+    buttons.push(new sap.m.Label( { "text" : "Select Options:"}));
+    buttons.push(new sap.m.Button( {
+		"text": "Editable",
+		 "press" : function(i) {
+			 return function() {
+				 refreshPage(i);
+	      }}(tileTypesLength)
+	} ));
+    buttons.push(new sap.m.Button( {
+		"text": "Call ScrollIntoView(0)",
+		 "press" : function(i) {
+			 return function() {
+				 refreshPage(i);
+	      }}(tileTypesLength+1)
+	} ));
+    buttons.push(new sap.m.Button( {
+		"text": "Call getPageFirstTileIndex()",
+		 "press" : function(i) {
+			 return function() {
+				 refreshPage(i);
+	      }}(tileTypesLength+2)
+	} ));
+    
+    buttons.push(new sap.m.Button( {
+		"text": "Add Tile",
+		 "press" : function(i) {
+			 return function() {
+				 refreshPage(i);
+	      }}(tileTypesLength+3)
+	} ));
+    
+    buttons.push(new sap.m.Button( {
+		"text": "Add Standard Tile",
+		 "press" : function(i) {
+			 return function() {
+				 refreshPage(i);
+	      }}(tileTypesLength+4)
+	} ));
+    
+    buttons.push(new sap.m.Button( {
+		"text": "Add Custom Tile",
+		 "press" : function(i) {
+			 return function() {
+				 refreshPage(i);
+	      }}(tileTypesLength+5)
+	} ));
+	
+    var app = new sap.m.App();
+    var page = new sap.m.Page("MultiTileTest",{
+		title : "MultiTile Test Page",
+		footer : new sap.m.Bar({
+			enableFlexBox : true,
+			contentMiddle : buttons
+		})
+	});
+    app.addPage(page);
+    page.setEnableScrolling(false);
+    refreshPage(selectedTileType);
+    app.placeAt('body');
+</script>
+
+</head>
+<body id="body" class="sapUiBody">
+</body>
+</html>

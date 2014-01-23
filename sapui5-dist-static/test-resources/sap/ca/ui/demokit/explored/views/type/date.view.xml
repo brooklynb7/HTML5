@@ -1,0 +1,96 @@
+<core:View xmlns:core="sap.ui.core"
+           xmlns="sap.m"
+           xmlns:ui="sap.ca.ui"
+           xmlns:html="http://www.w3.org/1999/xhtml"
+           controllerName="sap.ca.ui.sample.views.type.Date"
+    >
+<Page id="page">
+    <content>
+        <html:h1>Demo page to demonstrate Date, DateTime and Time types formatting</html:h1>
+
+        <html:ul>
+        <html:li>A new daysAgo style have been added to the Date type.</html:li>
+        <html:li>An UTC formatOption have been added to Date, DateTime and Time types.</html:li>
+        </html:ul>
+
+        <html:h3>Date type and daysAgo style</html:h3>
+        <html:p>daysAgo style can be used to display the number of days between the date and now e.g. formatOptions : { style:'daysAgo'}</html:p>
+        <html:p>If the date is in the future or is more than 6 days in the past, the medium style will be used</html:p>
+
+        <List items="{/DaysAgo}" headerDesign="Plain">
+            <columns>
+                <Column width="300px">
+                    <Label text="Raw value"/>
+                </Column>
+                <Column>
+                    <Label text="style = daysAgo"/>
+                </Column>
+                <Column>
+                    <Label text="style = long"/>
+                </Column>
+            </columns>
+            <items>
+                <ColumnListItem>
+                    <Label text="{path:'Date', type:'sap.ca.ui.model.type.DateTime', formatOptions : { style:'long'}}"/>
+                    <Label text="{path:'Date', type:'sap.ca.ui.model.type.Date', formatOptions : { style:'daysAgo'}}"/>
+                    <Label text="{path:'Date', type:'sap.ca.ui.model.type.Date', formatOptions : { style:'long'}}"/>
+                </ColumnListItem>
+            </items>
+        </List>
+
+        <html:h3>UTC formatOption for Date, DateTime and Time types</html:h3>
+        <html:p>You can specify that you want to display the date in UTC using the UTC formatOption e.g. { UTC: true }</html:p>
+        <html:p>Default value is UTC = false</html:p>
+
+        <List items="{/UTC}" headerDesign="Plain">
+            <columns>
+                <Column width="300px">
+                    <Label text="Raw value"/>
+                </Column>
+                <Column>
+                    <Label text="UTC = false"/>
+                </Column>
+                <Column>
+                    <Label text="UTC = true"/>
+                </Column>
+            </columns>
+            <items>
+                <ColumnListItem>
+                    <Label text="{path:'Date', type:'sap.ca.ui.model.type.DateTime', formatOptions : { style:'long'}}"/>
+                    <Label text="{path:'Date', type:'sap.ca.ui.model.type.Date', formatOptions : { style:'medium'}}"/>
+                    <Label text="{path:'Date', type:'sap.ca.ui.model.type.Date', formatOptions : { style:'medium', UTC: true}}"/>
+                </ColumnListItem>
+            </items>
+        </List>
+
+        <html:h3>Date type, daysAgo style and UTC</html:h3>
+        <html:p>You can combine daysAgo style and UTC in formatOption e.g. { style: 'daysAgo', UTC: true }</html:p>
+
+        <List items="{/UTC}" headerDesign="Plain">
+            <columns>
+                <Column width="300px">
+                    <Label text="Raw value"/>
+                </Column>
+                <Column>
+                    <Label text="UTC = false"/>
+                </Column>
+                <Column>
+                    <Label text="UTC = true"/>
+                </Column>
+            </columns>
+            <items>
+                <ColumnListItem>
+                    <Label text="{path:'Date', type:'sap.ca.ui.model.type.DateTime', formatOptions : { style:'long'}}"/>
+                    <Label text="{path:'Date', type:'sap.ca.ui.model.type.Date', formatOptions : { style:'daysAgo'}}"/>
+                    <Label text="{path:'Date', type:'sap.ca.ui.model.type.Date', formatOptions : { style:'daysAgo', UTC: true}}"/>
+                </ColumnListItem>
+            </items>
+        </List>
+
+    </content>
+    <footer>
+        <Bar>
+        </Bar>
+    </footer>
+</Page>
+</core:View>

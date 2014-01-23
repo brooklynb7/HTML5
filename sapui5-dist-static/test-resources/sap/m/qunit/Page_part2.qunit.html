@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<title>Test page for sap.m.Page</title>
+		<script id="sap-ui-bootstrap" data-sap-ui-theme="sap_mvi"
+			data-sap-ui-noConflict="true"
+			data-sap-ui-libs="sap.m" src="../../../../resources/sap-ui-core.js">
+		</script>
+		<link rel="stylesheet" href="../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
+		<script src="../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+		<script src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
+		<script src="../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
+		<script>
+		jQuery.sap.require("sap.ui.core.theming.Parameters");
+
+		// app
+		var oApp = new sap.m.App("myApp"),
+
+			// page
+			oPage0 = new sap.m.Page("overviewPage"),
+
+			// to know whether is platform dependent or not
+			bPlatformDependent = !!sap.ui.core.theming.Parameters.get("sapMPlatformDependent"),
+
+			sTheme = sap.ui.getCore().getConfiguration().getTheme();
+
+		oApp.addPage(oPage0);
+
+		oApp.placeAt("page-content");
+
+		QUnit.config.autostart = false;
+
+		jQuery(document).ready(function() {
+			QUnit.start();
+		});
+
+		QUnit.begin(function() {
+
+			// global variables
+			oPage = sap.ui.getCore().byId("overviewPage");
+			$Page = oPage.$();
+			$PageHeader = $Page.children("header");
+			$PageSection = $Page.children("section");
+			$PageScroll = $PageSection.children();
+		});
+
+		module("API");
+
+		test("properties and default values", function() {
+			strictEqual(oPage.getTitle(), "");
+			strictEqual(oPage.getShowNavButton(), false);
+			strictEqual(oPage.getShowHeader(), true);
+
+			if (!bPlatformDependent) {
+				strictEqual(oPage.getNavButtonText(), "");
+			}
+
+			strictEqual(oPage.getEnableScrolling(), true);
+			strictEqual(oPage.getIcon(), "");
+			strictEqual(oPage.getBackgroundDesign(), "Standard");
+			strictEqual(oPage.getNavButtonType(), "Back");
+		});
+
+		module("HTML");
+
+		test("rendering", function() {
+			ok($Page.length, "The page HTML div element exists on " + oPage);
+			ok($PageHeader.length, "The page header HTML element exists on " + oPage);
+			ok($PageSection.length, "The page section HTML element exists on " + oPage);
+			ok($PageScroll.length, "The page scroll HTML div element exists on " + oPage);
+		});
+
+		module("CSS and DOM");
+
+		test("classes and attributes", function() {
+
+			// classes
+			ok($Page.hasClass("sapMPage"), 'The page HTML Div element "must have" the CSS class "sapMPage" on ' + oPage);
+			ok($Page.hasClass("sapMPageWithHeader"), 'The page HTML Div element "must have" the CSS class "sapMPageWithHeader" on ' + oPage);
+			//ok($PageSection.hasClass("sapMPageBgStandard"), 'The page section HTML element "must have" the CSS class "sapMPageBgStandard" on ' + oPage);
+			ok($PageScroll.hasClass("sapMPageScroll"), 'The page scroll HTML Div element "must have" the CSS class "sapMPageScroll" on ' + oPage);
+			ok($PageScroll.hasClass("sapMPageScrollEnabled"), 'The page scroll HTML Div element "must have" the CSS class "sapMPageScrollEnabled" on ' + oPage);
+
+			// styles
+			strictEqual($Page.css("position"), "absolute", 'The page HTML Div element is absolute positioned, "position: absolute" on ' + oPage);
+			strictEqual($Page.css("top"), "0px", 'The page HTML Div element is absolute positioned, "top: 0px" on '  + oPage);
+			strictEqual($Page.css("left"), "0px", 'The page HTML Div element is absolute positioned, "left: 0px" on ' + oPage);
+			strictEqual($Page.css("display"), "block", 'The page HTML Div element is displayed as block, "diplay: block" on ' + oPage);
+
+			strictEqual($PageSection.css("position"), "absolute", 'The page section HTML element is absolute positioned, "position: absolute" on ' + oPage);
+
+			if (jQuery.device.is.phone || jQuery.device.is.tablet) {
+				strictEqual($PageSection.css("top"), "0px", 'The page section HTML element is absolute positioned, "top: 0px" on ' + oPage);
+				strictEqual($PageSection.css("left"), "0px", 'The page section HTML element is absolute positioned, "left: 0px" ' + oPage);
+				strictEqual($PageSection.css("bottom"), "0px", 'The page section HTML element is absolute positioned, "bottom: 0px" ' + oPage);
+				strictEqual($PageSection.css("right"), "0px", 'The page section HTML element is absolute positioned, "right: 0px" ' + oPage);
+
+				strictEqual($PageScroll.css("border-style"), "solid", 'The page scroll HTML Div element "must have" a "border-style" of "solid" on ' + oPage);
+				strictEqual($PageScroll.css("border-right-width"), "0px", 'The page scroll HTML Div element "must have" a "border-right-width" of "0px" on ' + oPage);
+				strictEqual($PageScroll.css("border-left-width"), "0px", 'The page scroll HTML Div element "must have" a "border-left-width" of "0px" on ' + oPage);
+				strictEqual($PageScroll.css("border-bottom-width"), "0px", 'The page scroll HTML Div element "must have" a "border-bottom-width" of "0px" on ' + oPage);
+
+				if (sTheme === "sap_bluecrystal") {
+					strictEqual($PageScroll.css("border-top-width"), "48px", 'The page scroll HTML Div element "must have" a "border-bottom-width" of "48px" on ' + oPage);
+				} else if (sTheme === "sap_mvi") {
+					if (jQuery.os.ios) {
+						strictEqual($PageScroll.css("border-top-width"), "44px", 'The page scroll HTML Div element "must have" a "border-bottom-width" of "44px" on ' + oPage);
+					} else if (jQuery.os.android) {
+						strictEqual($PageScroll.css("border-top-width"), "48px", 'The page scroll HTML Div element "must have" a "border-bottom-width" of "48px" on ' + oPage);
+					}
+				}
+			} else if (jQuery.device.is.desktop) {
+				strictEqual($PageSection.css("left"), "0px", 'The page section HTML element is absolute positioned, "left: 0px" on ' + oPage);
+				strictEqual($PageSection.css("bottom"), "0px", 'The page section HTML element is absolute positioned, "bottom: 0px" on ' + oPage);
+				strictEqual($PageSection.css("right"), "0px", 'The page section HTML element is absolute positioned, "right: 0px" ' + oPage);
+			}
+
+			if (jQuery.device.is.desktop) {
+				if (sTheme === "sap_bluecrystal") {
+					strictEqual($PageSection.css("top"), "48px", 'The page section HTML element is absolute positioned, "top: 48px"');
+				}
+			}
+		});
+		</script>
+	</head>
+	<body id="body" class="sapUiBody">
+		<h1 id="qunit-header">QUnit tests for sap.m.Page</h1>
+		<h2 id="qunit-banner"></h2>
+		<h2 id="qunit-userAgent"></h2>
+		<div id="qunit-testrunner-toolbar"></div>
+		<ol id="qunit-tests"></ol>
+		<div id="page-content" class="page-content"></div>
+	</body>
+</html>

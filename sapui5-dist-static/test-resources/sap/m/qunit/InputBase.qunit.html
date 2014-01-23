@@ -1,0 +1,126 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+<title>Test Page for sap.ui.m.InputBase</title>
+<script id="sap-ui-bootstrap" data-sap-ui-theme="sap_mvi"
+	type="text/javascript" data-sap-ui-noConflict="true"
+	data-sap-ui-libs="sap.m" src="../../../../resources/sap-ui-core.js">
+</script>
+
+<link rel="stylesheet" href="../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
+<script type="text/javascript" src="../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+<script type="text/javascript" src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
+<script type="text/javascript" src="../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
+
+
+<script type="text/javascript">
+
+	var i1;
+	var i2;
+	var value = "value";
+
+	var oInputBase = new sap.m.InputBase("i1");
+	//oInput.setMaxLength(12);
+	//@TODO Write qunit for maxlength
+	oInputBase.placeAt("content");
+	oInputBase.setValue("ABCD");
+
+	var oInputBase2 = new sap.m.InputBase("i2");
+	oInputBase2.setVisible(false);
+	oInputBase2.placeAt("content");
+
+	var oInputBase3 = new sap.m.InputBase("i3");
+	oInputBase3.setValueState("Error");
+	oInputBase3.placeAt("content");
+
+	var oInputBase4 = new sap.m.InputBase("i4");
+	oInputBase4.setVisible(false);
+	oInputBase4.placeAt("content");
+
+	qutils.delayTestStart();
+
+	module("Basic", {
+		setup : function() {
+			i1 = sap.ui.getCore().getControl("i1");
+			i2 = sap.ui.getCore().getControl("i2");
+			i3 = sap.ui.getCore().getControl("i3");
+			i4 = sap.ui.getCore().getControl("i4");
+		},
+		teardown : function() {
+			i1 = null;
+			i2 = null;
+			i3 = null;
+			i4 = null;
+		}
+	});
+
+	// test property accessor methods
+	test("Value", function() {
+		i1.setValue(value);
+		equals(i1.getValue(), value, "Input value is "+value);
+	});
+
+	test("InputEnabled", function() {
+		var enabled = false;
+		i1.setEnabled(enabled);
+		equals(i1.getEnabled(), enabled, "Input is disabled");
+		enabled = true;
+		i1.setEnabled(enabled);
+		equals(i1.getEnabled(), enabled, "Input is enabled");
+	});
+
+	test("Placeholder", function() {
+		var placeholder = "Placeholder";
+		i1.setPlaceholder(placeholder);
+		equals(i1.getPlaceholder(), placeholder, "Placeholder for text");
+	});
+
+	test("Visible", function() {
+		equals(i1.$().length, 1, "Visible input found");
+		equals(i4.$().length, 0, "Invisible input not found");
+	});
+
+	test("Change", function() {
+		i1.setValue("new");
+		sap.ui.getCore().applyChanges();
+		i1.attachChange(function() {
+			equals(this.getValue(), "new", "New value in onChange");
+		});
+		i1._onChange(jQuery.Event("change"));
+		equals(i1.getValue(),"new", "Value after onchange");
+	});
+
+	test("Value States", function() {
+		equals(i3.$().hasClass('sapMInputBaseError'), true, "Before new value state : Error");
+
+		i3.setValueState("Warning");
+		sap.ui.getCore().applyChanges();
+
+		equals(i3.$().hasClass('sapMInputBaseWarning'), true, "After new value state : Warning");
+
+		i3.setValueState();
+
+		equals(i3.getValueState(), "None", "Last value state : None");
+	});
+
+	test("Destroy", function() {
+		strictEqual(i3.$().length, 1, "Before destroy Input is available");
+		i3.destroy();
+		strictEqual(i3.$().length, 0, "Input is destroyed");
+	});
+
+</script>
+
+</head>
+<body>
+	<h1 id="qunit-header">QUnit page for sap.ui.m.Input</h1>
+	<h2 id="qunit-banner"></h2>
+	<h2 id="qunit-userAgent"></h2>
+	<div id="qunit-testrunner-toolbar"></div>
+	<div id="qunit-fixture">test markup, will be hidden</div>
+	<ol id="qunit-tests"></ol>
+	<div id="content"></div>
+</body>
+</html>

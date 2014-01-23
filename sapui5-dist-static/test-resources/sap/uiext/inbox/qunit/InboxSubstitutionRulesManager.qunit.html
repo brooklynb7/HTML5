@@ -1,0 +1,671 @@
+<!DOCTYPE HTML>
+<!-- 
+  Tested control/class: sap.uiext.inbox.SubstitutionRulesManager
+  Author: Vasu Kesiraju <I047306>
+-->
+
+<html>
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<script id="sap-ui-bootstrap" 
+		type="text/javascript"
+		src="../../../../../resources/sap-ui-core.js"
+		data-sap-ui-theme="sap_goldreflection"
+		data-sap-ui-noConflict="true"
+		data-sap-ui-libs="sap.uiext.inbox">
+	</script>
+	<link rel="stylesheet" href="../../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
+	<script type="text/javascript" src="../../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+	<script type="text/javascript" src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
+	<script type="text/javascript" src="../../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
+
+	<!-- Control initialization -->
+
+<script language="javascript">
+	
+		//Test Data From Mock Server
+		// redirect any resource loading for "sap.uiext.inbox.qunit.mockServer" to the local folder "mockServer/" 
+			jQuery.sap.registerModulePath("sap.uiext.inbox.qunit.mockServer", "mockServer/");
+			
+			// now load and activate the mock server
+			jQuery.sap.require("sap.uiext.inbox.qunit.mockServer.InboxMockServerQUnit");
+			jQuery.sap.require("sap.ui.core.format.DateFormat");
+			
+			var INBOX_ID = "inbox";
+			module("Load");
+			test("InboxCreationOk",function() {
+				sap.ui.getCore().applyChanges(); 
+				var $Inbox = jQuery.sap.byId(INBOX_ID);
+				equals(false, ( $Inbox === undefined), "Checking if the Inbox Control is created and is not undefined.");
+				equals(false, ( $Inbox === null), "Checking if the Inbox Control is created and is not null.");
+				
+			});
+			
+			var _oBundle = sap.ui.getCore().getLibraryResourceBundle("sap.uiext.inbox");
+			var substitutionRules = new sap.uiext.inbox.SubstitutionRulesManager("sub1");
+			var utils = substitutionRules.getSubstitutionRulesManagerUtils();
+			
+			var currentDate = new Date();
+			var pastDate = new Date(currentDate.getTime() - 77777777777);
+			var futureDate = new Date(currentDate.getTime() + 888888888);
+			var futureDate2 = new Date(currentDate.getTime() + 9999999999);
+			var dateFormatter = sap.ui.core.format.DateFormat.getDateInstance({style : "medium" });
+			
+			var SINCE_TXT = _oBundle.getText("SUBSTITUTION_RULE_SINCE_LABEL");
+			var UNTIL_TXT = _oBundle.getText("SUBSTITUTION_RULE_UNTIL_LABEL");
+			var ACTIVE_FOR = _oBundle.getText("SUBSTITUTION_RULE_ACTIVE_FOR_LABEL") + " ";
+			var ACTIVE_IN = _oBundle.getText("SUBSTITUTION_RULE_ACTIVE_IN_LABEL") + " ";
+			var FROM_TXT = _oBundle.getText("SUBSTITUTION_SUBSTITUTION_FROM_DATE_LABEL") + " : ";
+			var DISABLED_TXT = _oBundle.getText("SUBSTITUTION_DISABLED_STATUS");
+			var OUTDATED_TXT = _oBundle.getText("SUBSTITUTION_OUT_OF_DATE_RANGE");
+			var CURRENTLY_RECEIVING_TASKS_FROM = _oBundle.getText("SUBSTIUTION_RULE_CURRENTLY_RECEIVING_TASKS_FROM") + " ";
+			var ACTIVATE_TO_RECEIVE_TASKS_FROM = _oBundle.getText("SUBSTIUTION_RULE_TURN_ON_TO_RECEIVE_TASKS_FROM") + " ";
+			var FROM_LOWERCASE = _oBundle.getText("SUBSTITUTION_RULE_FROM_TXT");
+			var RULES_IS_DISABLED_BY = _oBundle.getText("SUBSTIUTION_RULE_IS_CURRENTLY_DISABLED_BY");
+			
+				
+		//Additional Tets based on Mock Server
+		
+		module( "View Substitution Rules", {
+			  setup: function() {
+			  		qutils.triggerMouseEvent(INBOX_ID  +"--settingsButton", "click");
+					qutils.triggerKeydown(INBOX_ID + "--inboxSettingsMenu", jQuery.sap.KeyCodes.ARROW_DOWN, false, false, false);
+					qutils.triggerMouseEvent(INBOX_ID + "--manageSubstitutionMI", "click");
+					sap.ui.getCore().applyChanges(); 
+				    ok( true, "setup function successfully executed" );
+			  }, teardown: function() {
+					qutils.triggerMouseEvent(INBOX_ID + "--substitutionRulesManager--substitutionOverlayContainer-close", "click");
+				    ok( true, "teardown function successfully executed" );
+			  }
+			});
+			
+		
+			var RR_TEXT_VIEW_ID = "rowRepSubstNameTxtView";
+			var RR_USER_FRDLY_TXT_ID = "rowRepUsrFriendlyTxt";
+			var RR_SINCE_DATE_VIEW_ID = "rowRepSinceDateTxt";
+			var RR_UNTIL_DATE_VIEW_ID = "rowRepUntilDateTxt";
+			var RR_ACTIVE_TEXT_ID = "rowRepActiveTxt";
+			var RR_DELETE_IMG = "rowRepDeleteImg";
+			
+			var MY_SUBS_ACTIVE_RULE_RR_SUBS_NAME = INBOX_ID + "--substitutionRulesManager--mySubstitutesactive--" + RR_TEXT_VIEW_ID + "-" + INBOX_ID + "--substitutionRulesManager--mySubstitutesactive--subsRowRepeater-";
+			var MY_SUBS_ACTIVE_RULE_RR_SINCE_DATE = INBOX_ID + "--substitutionRulesManager--mySubstitutesactive--" + RR_SINCE_DATE_VIEW_ID + "-" + INBOX_ID + "--substitutionRulesManager--mySubstitutesactive--subsRowRepeater-";
+			var MY_SUBS_ACTIVE_RULE_RR_UNTIL_DATE = INBOX_ID + "--substitutionRulesManager--mySubstitutesactive--" + RR_UNTIL_DATE_VIEW_ID + "-" + INBOX_ID + "--substitutionRulesManager--mySubstitutesactive--subsRowRepeater-";
+			var MY_SUBS_ACTIVE_RULE_RR_STATUS_TXT = INBOX_ID + "--substitutionRulesManager--mySubstitutesactive--" + RR_ACTIVE_TEXT_ID + "-" + INBOX_ID + "--substitutionRulesManager--mySubstitutesactive--subsRowRepeater-";
+			var MY_SUBS_ACTIVE_RULE_RR_DELETE_IMG = INBOX_ID + "--substitutionRulesManager--mySubstitutesactive--" + RR_DELETE_IMG + "-" + INBOX_ID + "--substitutionRulesManager--mySubstitutesactive--subsRowRepeater-";
+
+			var MY_SUBS_IN_ACTIVE_RULE_RR_SUBS_NAME = INBOX_ID + "--substitutionRulesManager--mySubstitutesinactive--" + RR_TEXT_VIEW_ID + "-" + INBOX_ID + "--substitutionRulesManager--mySubstitutesinactive--subsRowRepeater-";
+			var MY_SUBS_IN_ACTIVE_RULE_RR_SINCE_DATE = INBOX_ID + "--substitutionRulesManager--mySubstitutesinactive--" + RR_SINCE_DATE_VIEW_ID + "-" + INBOX_ID + "--substitutionRulesManager--mySubstitutesinactive--subsRowRepeater-";
+			var MY_SUBS_IN_ACTIVE_RULE_RR_UNTIL_DATE = INBOX_ID + "--substitutionRulesManager--mySubstitutesinactive--" + RR_UNTIL_DATE_VIEW_ID + "-" + INBOX_ID + "--substitutionRulesManager--mySubstitutesinactive--subsRowRepeater-";
+			var MY_SUBS_IN_ACTIVE_RULE_RR_STATUS_TXT = INBOX_ID + "--substitutionRulesManager--mySubstitutesinactive--" + RR_ACTIVE_TEXT_ID + "-" + INBOX_ID + "--substitutionRulesManager--mySubstitutesinactive--subsRowRepeater-";
+			var MY_SUBS_IN_ACTIVE_RULE_RR_DELETE_IMG = INBOX_ID + "--substitutionRulesManager--mySubstitutesinactive--" + RR_DELETE_IMG + "-" + INBOX_ID + "--substitutionRulesManager--mySubstitutesinactive--subsRowRepeater-";
+
+			
+			asyncTest("Test For View My Substitution Rules", function() {
+
+				setTimeout(function() {
+							
+					equal(jQuery.sap.byId(MY_SUBS_ACTIVE_RULE_RR_SUBS_NAME + "0").text(), "Manjusha Anand", "Page 1 Row 1 of My Substitution Active Rules");//Checking Substitute Name
+					equal(jQuery.sap.byId(MY_SUBS_ACTIVE_RULE_RR_SINCE_DATE + "0").text(), SINCE_TXT + " : " + dateFormatter.format(currentDate), "Page 1 Row 1 of My Substitution Active Rules");//Checking Since Date
+					equal(jQuery.sap.byId(MY_SUBS_ACTIVE_RULE_RR_UNTIL_DATE + "0").text(), UNTIL_TXT + " : " + dateFormatter.format(futureDate), "Page 1 Row 1 of My Substitution Active Rules");//Checking Until Date
+					//using SubstitutionRuleManagerUtils method, hence TODO: make sure there is test written for _getNoOfDays() function
+					equal(jQuery.sap.byId(MY_SUBS_ACTIVE_RULE_RR_STATUS_TXT + "0").text(), ACTIVE_FOR +utils._getNoOfDays(true, currentDate, futureDate), "Page 1 Row 1 of My Substitution Active Rules");//Checking Status Text
+					//TODO: Check Enable/Disable Segmented Button State (ON/OFF)
+					equal(jQuery.sap.byId(MY_SUBS_ACTIVE_RULE_RR_DELETE_IMG + "0").length, 1, "Page 1 Row 1 of My Substitution Active Rules");//Testing Delete Image
+							
+							
+					equal(jQuery.sap.byId(MY_SUBS_ACTIVE_RULE_RR_SUBS_NAME + "1").text(), "Sharan Kumar Bojja", "Page 1 Row 2 of My Substitution Active Rules");
+					equal(jQuery.sap.byId(MY_SUBS_ACTIVE_RULE_RR_SINCE_DATE + "1").text(), SINCE_TXT + " : " + dateFormatter.format(pastDate), "Page 1 Row 2 of My Substitution Active Rules");
+					equal(jQuery.sap.byId(MY_SUBS_ACTIVE_RULE_RR_UNTIL_DATE + "1").text(), UNTIL_TXT + " : " + dateFormatter.format(futureDate2), "Page 1 Row 2 of My Substitution Active Rules");
+					equal(jQuery.sap.byId(MY_SUBS_ACTIVE_RULE_RR_STATUS_TXT + "1").text(), ACTIVE_FOR + utils._getNoOfDays(true, pastDate, futureDate2), "Page 1 Row 2 of My Substitution Active Rules");
+					//TODO: Check Enable/Disable Segmented Button State (ON/OFF)
+					equal(jQuery.sap.byId(MY_SUBS_ACTIVE_RULE_RR_DELETE_IMG + "1").length, 0, "Page 1 Row 2 of My Substitution Active Rules");
+							
+	   		      	qutils.triggerMouseEvent(INBOX_ID + "--substitutionRulesManager--mySubstitutesactive--subsRowRepeater-fp-a--2", "click");//Goto NextPage of Active Rules
+
+					equal(jQuery.sap.byId(MY_SUBS_IN_ACTIVE_RULE_RR_SUBS_NAME + "0").text(), "Ranbir Kapoor", "Page 1 Row 1 of My Substitution In-Active Rules");
+					equal(jQuery.sap.byId(MY_SUBS_IN_ACTIVE_RULE_RR_SINCE_DATE + "0").text(), FROM_TXT + dateFormatter.format(pastDate), "Page 1 Row 1 of My Substitution In-Active Rules");
+					equal(jQuery.sap.byId(MY_SUBS_IN_ACTIVE_RULE_RR_UNTIL_DATE + "0").text(), UNTIL_TXT + " : "+dateFormatter.format(pastDate), "Page 1 Row 1 of My Substitution In-Active Rules");
+					equal(jQuery.sap.byId(MY_SUBS_IN_ACTIVE_RULE_RR_STATUS_TXT + "0").text(), OUTDATED_TXT, "Page 1 Row 1 of My Substitution In-Active Rules");
+					//TODO: Check Enable/Disable Segmented Button State (ON/OFF)
+					equal(jQuery.sap.byId(MY_SUBS_IN_ACTIVE_RULE_RR_DELETE_IMG + "0").length, 0, "Page 1 Row 2 of My Substitution In-Active Rules");
+	   		      			
+							
+	   		      	equal(jQuery.sap.byId(MY_SUBS_IN_ACTIVE_RULE_RR_SUBS_NAME + "1").text(), "Karishma Kapoor", "Page 1 Row 2 of My Substitution In-Active Rules");
+					equal(jQuery.sap.byId(MY_SUBS_IN_ACTIVE_RULE_RR_SINCE_DATE + "1").text(), FROM_TXT +dateFormatter.format(futureDate), "Page 1 Row 2 of My Substitution In-Active Rules");
+					equal(jQuery.sap.byId(MY_SUBS_IN_ACTIVE_RULE_RR_UNTIL_DATE + "1").text(), UNTIL_TXT + " : "+dateFormatter.format(futureDate), "Page 1 Row 2 of My Substitution In-Active Rules");
+					equal(jQuery.sap.byId(MY_SUBS_IN_ACTIVE_RULE_RR_STATUS_TXT + "1").text(), DISABLED_TXT , "Page 1 Row 2 of My Substitution In-Active Rules");
+					//TODO: Check Enable/Disable Segmented Button State (ON/OFF)
+					equal(jQuery.sap.byId(MY_SUBS_IN_ACTIVE_RULE_RR_DELETE_IMG + "1").length, 1, "Page 1 Row 2 of My Substitution In-Active Rules");
+							
+	   		      	qutils.triggerMouseEvent(INBOX_ID + "--substitutionRulesManager--mySubstitutesinactive--subsRowRepeater-fp-a--2", "click");//Goto NextPage of InActive Rules
+		 	}, 1000);
+
+			setTimeout(function() {
+
+					equal(jQuery.sap.byId(MY_SUBS_ACTIVE_RULE_RR_SUBS_NAME + "2").text(), "Madarapu Prashanth", "Page 2 Row 1 of My Substitution Active Rules");
+					equal(jQuery.sap.byId(MY_SUBS_ACTIVE_RULE_RR_SINCE_DATE + "2").text(), SINCE_TXT + " : " + dateFormatter.format(currentDate), "Page 2 Row 1 of My Substitution Active Rules");
+					equal(jQuery.sap.byId(MY_SUBS_ACTIVE_RULE_RR_UNTIL_DATE + "2").text(), UNTIL_TXT + " : " + dateFormatter.format(futureDate2), "Page 2 Row 1 of My Substitution Active Rules");
+					equal(jQuery.sap.byId(MY_SUBS_ACTIVE_RULE_RR_STATUS_TXT + "2").text(), ACTIVE_FOR +utils._getNoOfDays(true, currentDate, futureDate2), "Page 2 Row 1 of My Substitution Active Rules");
+					//TODO: Check Enable/Disable Segmented Button State (ON/OFF)
+					equal(jQuery.sap.byId(MY_SUBS_ACTIVE_RULE_RR_DELETE_IMG + "2").length, 0, "Page 2 Row 1 of My Substitution Active Rules");
+						
+							
+					equal(jQuery.sap.byId(MY_SUBS_ACTIVE_RULE_RR_SUBS_NAME + "3").text(), "James Bond", "Page 2 Row 2 of My Substitution Active Rules");
+					equal(jQuery.sap.byId(MY_SUBS_ACTIVE_RULE_RR_SINCE_DATE + "3").text(), SINCE_TXT + " : " + dateFormatter.format(currentDate), "Page 2 Row 2 of My Substitution Active Rules");
+					equal(jQuery.sap.byId(MY_SUBS_ACTIVE_RULE_RR_UNTIL_DATE + "3").text(), UNTIL_TXT + " : " + dateFormatter.format(currentDate), "Page 2 Row 2 of My Substitution Active Rules");
+					equal(jQuery.sap.byId(MY_SUBS_ACTIVE_RULE_RR_STATUS_TXT + "3").text(), ACTIVE_FOR +utils._getNoOfDays(true, currentDate, currentDate), "Page 2 Row 2 of My Substitution Active Rules");
+					//TODO: Check Enable/Disable Segmented Button State (ON/OFF)
+					equal(jQuery.sap.byId(MY_SUBS_ACTIVE_RULE_RR_DELETE_IMG + "3").length, 1, "Page 1 Row 2 of My Substitution Active Rules");
+							
+					//Testing Substitute Name
+					equal(jQuery.sap.byId(MY_SUBS_IN_ACTIVE_RULE_RR_SUBS_NAME + "2").text(), "Sonam Kapoor", "Page 2 Row 1 of My Substitution In-Active Rules");
+					equal(jQuery.sap.byId(MY_SUBS_IN_ACTIVE_RULE_RR_SINCE_DATE + "2").text(), FROM_TXT  + dateFormatter.format(pastDate), "Page 2 Row 1 of My Substitution In-Active Rules");
+					equal(jQuery.sap.byId(MY_SUBS_IN_ACTIVE_RULE_RR_UNTIL_DATE + "2").text(), UNTIL_TXT + " : " + dateFormatter.format(currentDate), "Page 2 Row 1 of My Substitution In-Active Rules");
+					equal(jQuery.sap.byId(MY_SUBS_IN_ACTIVE_RULE_RR_STATUS_TXT + "2").text(), DISABLED_TXT , "Page 2 Row 1 of My Substitution In-Active Rules");
+					//TODO: Check Enable/Disable Segmented Button State (ON/OFF)
+					equal(jQuery.sap.byId(MY_SUBS_IN_ACTIVE_RULE_RR_DELETE_IMG + "2").length, 1, "Page 2 Row 1 of My Substitution In-Active Rules");
+							
+							
+					equal(jQuery.sap.byId(MY_SUBS_IN_ACTIVE_RULE_RR_SUBS_NAME + "3").text(), "James Kapoor", "Page 2 Row 2 of My Substitution In-Active Rules");
+					equal(jQuery.sap.byId(MY_SUBS_IN_ACTIVE_RULE_RR_SINCE_DATE + "3").text(), FROM_TXT  + dateFormatter.format(pastDate), "Page 2 Row 2 of My Substitution In-Active Rules");
+					equal(jQuery.sap.byId(MY_SUBS_IN_ACTIVE_RULE_RR_UNTIL_DATE + "3").text(), UNTIL_TXT + " : " + dateFormatter.format(futureDate), "Page 2 Row 2 of My Substitution In-Active Rules");
+					equal(jQuery.sap.byId(MY_SUBS_IN_ACTIVE_RULE_RR_STATUS_TXT + "3").text(), DISABLED_TXT , "Page 2 Row 2 of My Substitution In-Active Rules");
+					//TODO: Check Enable/Disable Segmented Button State (ON/OFF)
+					equal(jQuery.sap.byId(MY_SUBS_IN_ACTIVE_RULE_RR_DELETE_IMG + "3").length, 0, "Page 2 Row 2 of My Substitution In-Active Rules");
+				    start(); 
+		 	}, 1000);
+		});
+			
+			//TESTS FOR I AM SUSBSTITUTING
+			
+			var I_AM_SUBS_ACTIVE_RULE_RR_SUBS_NAME = INBOX_ID + "--substitutionRulesManager--iamSubstitutingactive--" + RR_TEXT_VIEW_ID + "-" + INBOX_ID + "--substitutionRulesManager--iamSubstitutingactive--subsRowRepeater-";
+			var I_AM_SUBS_ACTIVE_RULE_RR_USR_FRDLY_TXT = INBOX_ID + "--substitutionRulesManager--iamSubstitutingactive--" + RR_USER_FRDLY_TXT_ID + "-" + INBOX_ID + "--substitutionRulesManager--iamSubstitutingactive--subsRowRepeater-";
+			var I_AM_SUBS_ACTIVE_RULE_RR_SINCE_DATE = INBOX_ID + "--substitutionRulesManager--iamSubstitutingactive--" + RR_SINCE_DATE_VIEW_ID + "-" + INBOX_ID + "--substitutionRulesManager--iamSubstitutingactive--subsRowRepeater-";
+			var I_AM_SUBS_ACTIVE_RULE_RR_UNTIL_DATE = INBOX_ID + "--substitutionRulesManager--iamSubstitutingactive--" + RR_UNTIL_DATE_VIEW_ID + "-" + INBOX_ID + "--substitutionRulesManager--iamSubstitutingactive--subsRowRepeater-";
+			var I_AM_SUBS_ACTIVE_RULE_RR_STATUS_TXT = INBOX_ID + "--substitutionRulesManager--iamSubstitutingactive--" + RR_ACTIVE_TEXT_ID + "-" + INBOX_ID + "--substitutionRulesManager--iamSubstitutingactive--subsRowRepeater-";
+			var I_AM_SUBS_ACTIVE_RULE_RR_DELETE_IMG = INBOX_ID + "--substitutionRulesManager--iamSubstitutingactive--" + RR_DELETE_IMG + "-" + INBOX_ID + "--substitutionRulesManager--iamSubstitutingactive--subsRowRepeater-";
+			
+
+			var I_AM_SUBS_IN_ACTIVE_RULE_RR_SUBS_NAME = INBOX_ID + "--substitutionRulesManager--iamSubstitutinginactive--" + RR_TEXT_VIEW_ID + "-" + INBOX_ID + "--substitutionRulesManager--iamSubstitutinginactive--subsRowRepeater-";
+			var I_AM_SUBS_IN_ACTIVE_RULE_RR_USR_FRDLY_TXT = INBOX_ID + "--substitutionRulesManager--iamSubstitutinginactive--" + RR_USER_FRDLY_TXT_ID + "-" + INBOX_ID + "--substitutionRulesManager--iamSubstitutinginactive--subsRowRepeater-";
+			var I_AM_SUBS_IN_ACTIVE_RULE_RR_SINCE_DATE = INBOX_ID + "--substitutionRulesManager--iamSubstitutinginactive--" + RR_SINCE_DATE_VIEW_ID + "-" + INBOX_ID + "--substitutionRulesManager--iamSubstitutinginactive--subsRowRepeater-";
+			var I_AM_SUBS_IN_ACTIVE_RULE_RR_UNTIL_DATE = INBOX_ID + "--substitutionRulesManager--iamSubstitutinginactive--" + RR_UNTIL_DATE_VIEW_ID + "-" + INBOX_ID + "--substitutionRulesManager--iamSubstitutinginactive--subsRowRepeater-";
+			var I_AM_SUBS_IN_ACTIVE_RULE_RR_STATUS_TXT = INBOX_ID + "--substitutionRulesManager--iamSubstitutinginactive--" + RR_ACTIVE_TEXT_ID + "-" + INBOX_ID + "--substitutionRulesManager--iamSubstitutinginactive--subsRowRepeater-";
+			var I_AM_SUBS_IN_ACTIVE_RULE_RR_DELETE_IMG = INBOX_ID + "--substitutionRulesManager--iamSubstitutinginactive--" + RR_DELETE_IMG + "-" + INBOX_ID + "--substitutionRulesManager--iamSubstitutinginactive--subsRowRepeater-";
+
+			asyncTest("Test For Viewing 'I am Substituting Rules'", function() {
+
+				qutils.triggerMouseEvent(INBOX_ID + "--substitutionRulesManager--iamSubstituting", "click");
+				
+				setTimeout(function() {
+							
+					equal(jQuery.sap.byId(I_AM_SUBS_ACTIVE_RULE_RR_SUBS_NAME + "0").text(), "Amir Khan", "Page 1 Row 1 of I am Substituting Active Rules");//Checking Substitute Name
+					equal(jQuery.sap.byId(I_AM_SUBS_ACTIVE_RULE_RR_USR_FRDLY_TXT + "0").text(), CURRENTLY_RECEIVING_TASKS_FROM + "Amir Khan", "Page 1 Row 1 of I am Substituting Active Rules");//Checking User Friendly Text
+					equal(jQuery.sap.byId(I_AM_SUBS_ACTIVE_RULE_RR_SINCE_DATE + "0").text(), SINCE_TXT + " : " + dateFormatter.format(pastDate), "Page 1 Row 1 of I am Substituting Active Rules");//Checking Since Date
+					equal(jQuery.sap.byId(I_AM_SUBS_ACTIVE_RULE_RR_UNTIL_DATE + "0").text(), UNTIL_TXT + " : " + dateFormatter.format(futureDate), "Page 1 Row 1 of I am Substituting Active Rules");//Checking Until Date
+					equal(jQuery.sap.byId(I_AM_SUBS_ACTIVE_RULE_RR_STATUS_TXT + "0").text(), ACTIVE_FOR + utils._getNoOfDays(true, pastDate, futureDate), "Page 1 Row 1 of I am Substituting Active Rules");//Checking Status Text
+					//TODO: Check Enable/Disable Segmented Button State (ON/OFF)
+					equal(jQuery.sap.byId(I_AM_SUBS_ACTIVE_RULE_RR_DELETE_IMG + "0").length, 0, "Page 1 Row 1 of I am Substituting Active Rules");//Testing Delete Image
+							
+							
+					equal(jQuery.sap.byId(I_AM_SUBS_ACTIVE_RULE_RR_SUBS_NAME + "1").text(), "Salman Khan", "Page 1 Row 2 of I am Substituting Active Rules");
+					equal(jQuery.sap.byId(I_AM_SUBS_ACTIVE_RULE_RR_USR_FRDLY_TXT + "1").text(), CURRENTLY_RECEIVING_TASKS_FROM + "Salman Khan", "Page 1 Row 2 of I am Substituting Active Rules");
+					equal(jQuery.sap.byId(I_AM_SUBS_ACTIVE_RULE_RR_SINCE_DATE + "1").text(), SINCE_TXT + " : " + dateFormatter.format(currentDate), "Page 1 Row 2 of I am Substituting Active Rules");
+					equal(jQuery.sap.byId(I_AM_SUBS_ACTIVE_RULE_RR_UNTIL_DATE + "1").text(), UNTIL_TXT + " : " + dateFormatter.format(currentDate), "Page 1 Row 2 of I am Substituting Active Rules");
+					equal(jQuery.sap.byId(I_AM_SUBS_ACTIVE_RULE_RR_STATUS_TXT + "1").text(), ACTIVE_FOR + utils._getNoOfDays(true, currentDate, currentDate), "Page 1 Row 2 of I am Substituting Active Rules");
+					//TODO: Check Enable/Disable Segmented Button State (ON/OFF)
+					equal(jQuery.sap.byId(I_AM_SUBS_ACTIVE_RULE_RR_DELETE_IMG + "1").length, 0, "Page 1 Row 2 of I am Substituting Active Rules");
+							
+	   		      	qutils.triggerMouseEvent(INBOX_ID + "--substitutionRulesManager--iamSubstitutingactive--subsRowRepeater-fp-a--2", "click");//Goto NextPage of Active Rules
+
+					equal(jQuery.sap.byId(I_AM_SUBS_IN_ACTIVE_RULE_RR_SUBS_NAME + "0").text(), "Manjusha Roy", "Page 1 Row 1 of I am Substituting In-Active Rules");
+					equal(jQuery.sap.byId(I_AM_SUBS_IN_ACTIVE_RULE_RR_USR_FRDLY_TXT + "0").text(), RULES_IS_DISABLED_BY + " Manjusha Roy", "Page 1 Row 1 of I am Substituting In-Active Rules");
+					equal(jQuery.sap.byId(I_AM_SUBS_IN_ACTIVE_RULE_RR_SINCE_DATE + "0").text(), FROM_TXT  + dateFormatter.format(currentDate), "Page 1 Row 1 of I am Substituting In-Active Rules");
+					equal(jQuery.sap.byId(I_AM_SUBS_IN_ACTIVE_RULE_RR_UNTIL_DATE + "0").text(), UNTIL_TXT + " : " + dateFormatter.format(currentDate), "Page 1 Row 1 of I am Substituting In-Active Rules");
+					equal(jQuery.sap.byId(I_AM_SUBS_IN_ACTIVE_RULE_RR_STATUS_TXT + "0").text(), DISABLED_TXT , "Page 1 Row 1 of I am Substituting In-Active Rules");
+					//TODO: Check Enable/Disable Segmented Button State (ON/OFF)
+					equal(jQuery.sap.byId(I_AM_SUBS_IN_ACTIVE_RULE_RR_DELETE_IMG + "0").length, 0, "Page 1 Row 2 of I am Substituting In-Active Rules");
+	   		      								
+	   		      	equal(jQuery.sap.byId(I_AM_SUBS_IN_ACTIVE_RULE_RR_SUBS_NAME + "1").text(), "Sharan Roy", "Page 1 Row 2 of I am Substituting In-Active Rules");
+					equal(jQuery.sap.byId(I_AM_SUBS_IN_ACTIVE_RULE_RR_USR_FRDLY_TXT + "1").text(), ACTIVATE_TO_RECEIVE_TASKS_FROM + "Sharan Roy", "Page 1 Row 2 of I am Substituting Active Rules");
+					equal(jQuery.sap.byId(I_AM_SUBS_IN_ACTIVE_RULE_RR_SINCE_DATE + "1").text(), FROM_TXT  + dateFormatter.format(currentDate), "Page 1 Row 2 of I am Substituting Active Rules");
+					equal(jQuery.sap.byId(I_AM_SUBS_IN_ACTIVE_RULE_RR_UNTIL_DATE + "1").text(), UNTIL_TXT + " : " + dateFormatter.format(futureDate), "Page 1 Row 2 of I am Substituting Active Rules");
+					equal(jQuery.sap.byId(I_AM_SUBS_IN_ACTIVE_RULE_RR_STATUS_TXT + "1").text(), DISABLED_TXT , "Page 1 Row 2 of I am Substituting Active Rules");
+					//TODO: Check Enable/Disable Segmented Button State (ON/OFF)
+					equal(jQuery.sap.byId(I_AM_SUBS_IN_ACTIVE_RULE_RR_DELETE_IMG + "1").length, 0, "Page 1 Row 2 of I am Substituting Active Rules");
+					
+	   		      	qutils.triggerMouseEvent(INBOX_ID + "--substitutionRulesManager--iamSubstitutinginactive--subsRowRepeater-fp-a--2", "click");//Goto NextPage of InActive Rules
+		 	}, 1000);
+
+			setTimeout(function() {
+
+					equal(jQuery.sap.byId(I_AM_SUBS_ACTIVE_RULE_RR_SUBS_NAME + "2").text(), "Shah Rukh Khan", "Page 2 Row 1 of I am Substituting Active Rules");
+					equal(jQuery.sap.byId(I_AM_SUBS_ACTIVE_RULE_RR_USR_FRDLY_TXT + "2").text(), CURRENTLY_RECEIVING_TASKS_FROM + "Shah Rukh Khan", "Page 2 Row 1 of I am Substituting Active Rules");
+					equal(jQuery.sap.byId(I_AM_SUBS_ACTIVE_RULE_RR_SINCE_DATE + "2").text(), SINCE_TXT + " : " + dateFormatter.format(currentDate), "Page 2 Row 1 of I am Substituting Active Rules");
+					equal(jQuery.sap.byId(I_AM_SUBS_ACTIVE_RULE_RR_UNTIL_DATE + "2").text(), UNTIL_TXT + " : " + dateFormatter.format(futureDate2), "Page 2 Row 1 of I am Substituting Active Rules");
+					equal(jQuery.sap.byId(I_AM_SUBS_ACTIVE_RULE_RR_STATUS_TXT + "2").text(), ACTIVE_FOR + utils._getNoOfDays(true, currentDate, futureDate2), "Page 2 Row 1 of I am Substituting Active Rules");
+					//TODO: Check Enable/Disable Segmented Button State (ON/OFF)
+					equal(jQuery.sap.byId(I_AM_SUBS_ACTIVE_RULE_RR_DELETE_IMG + "2").length, 0, "Page 2 Row 1 of I am Substituting Active Rules");
+					
+							
+					equal(jQuery.sap.byId(I_AM_SUBS_ACTIVE_RULE_RR_SUBS_NAME + "3").text(), "James Bond Khan", "Page 2 Row 2 of I am Substituting Active Rules");
+					equal(jQuery.sap.byId(I_AM_SUBS_ACTIVE_RULE_RR_USR_FRDLY_TXT + "3").text(), CURRENTLY_RECEIVING_TASKS_FROM + "James Bond Khan", "Page 2 Row 2 of I am Substituting Active Rules");
+					equal(jQuery.sap.byId(I_AM_SUBS_ACTIVE_RULE_RR_SINCE_DATE + "3").text(), SINCE_TXT + " : " + dateFormatter.format(currentDate), "Page 2 Row 2 of I am Substituting Active Rules");
+					equal(jQuery.sap.byId(I_AM_SUBS_ACTIVE_RULE_RR_UNTIL_DATE + "3").text(), UNTIL_TXT + " : " + dateFormatter.format(futureDate), "Page 2 Row 2 of I am Substituting Active Rules");
+					equal(jQuery.sap.byId(I_AM_SUBS_ACTIVE_RULE_RR_STATUS_TXT + "3").text(), ACTIVE_FOR + utils._getNoOfDays(true, currentDate, futureDate), "Page 2 Row 2 of I am Substituting Active Rules");
+					//TODO: Check Enable/Disable Segmented Button State (ON/OFF)
+					equal(jQuery.sap.byId(I_AM_SUBS_ACTIVE_RULE_RR_DELETE_IMG + "3").length, 0, "Page 1 Row 2 of I am Substituting Active Rules");
+					
+					//Testing Substitute Name
+					equal(jQuery.sap.byId(I_AM_SUBS_IN_ACTIVE_RULE_RR_SUBS_NAME + "2").text(), "Roy Prashanth", "Page 2 Row 1 of I am Substituting In-Active Rules");
+					equal(jQuery.sap.byId(I_AM_SUBS_IN_ACTIVE_RULE_RR_USR_FRDLY_TXT + "2").text(), ACTIVATE_TO_RECEIVE_TASKS_FROM + "Roy Prashanth "+ FROM_LOWERCASE + " " + dateFormatter.format(futureDate) , "Page 2 Row 1 of I am Substituting In-Active Rules");
+					equal(jQuery.sap.byId(I_AM_SUBS_IN_ACTIVE_RULE_RR_SINCE_DATE + "2").text(), FROM_TXT  + dateFormatter.format(futureDate), "Page 2 Row 1 of I am Substituting  In-Active Rules");
+					equal(jQuery.sap.byId(I_AM_SUBS_IN_ACTIVE_RULE_RR_UNTIL_DATE + "2").text(), UNTIL_TXT + " : " + dateFormatter.format(futureDate), "Page 2 Row 1 of I am Substituting  In-Active Rules");
+					equal(jQuery.sap.byId(I_AM_SUBS_IN_ACTIVE_RULE_RR_STATUS_TXT + "2").text(), DISABLED_TXT , "Page 2 Row 1 of I am Substituting  In-Active Rules");
+					//TODO: Check Enable/Disable Segmented Button State (ON/OFF)
+					equal(jQuery.sap.byId(I_AM_SUBS_IN_ACTIVE_RULE_RR_DELETE_IMG + "2").length, 0, "Page 2 Row 1 of I am Substituting  In-Active Rules");
+							
+							
+					equal(jQuery.sap.byId(I_AM_SUBS_IN_ACTIVE_RULE_RR_SUBS_NAME + "3").text(), "James Roy", "Page 2 Row 2 of I am Substituting In-Active Rules");
+					equal(jQuery.sap.byId(I_AM_SUBS_IN_ACTIVE_RULE_RR_USR_FRDLY_TXT + "3").text(), "", "Page 2 Row 2 of I am Substituting In-Active Rules");
+					equal(jQuery.sap.byId(I_AM_SUBS_IN_ACTIVE_RULE_RR_SINCE_DATE + "3").text(), FROM_TXT  + dateFormatter.format(pastDate), "Page 2 Row 2 of I am Substituting In-Active Rules");
+					equal(jQuery.sap.byId(I_AM_SUBS_IN_ACTIVE_RULE_RR_UNTIL_DATE + "3").text(), UNTIL_TXT + " : " + dateFormatter.format(pastDate), "Page 2 Row 2 of I am Substituting In-Active Rules");
+					equal(jQuery.sap.byId(I_AM_SUBS_IN_ACTIVE_RULE_RR_STATUS_TXT + "3").text(), OUTDATED_TXT, "Page 2 Row 2 of I am Substituting In-Active Rules");
+					//TODO: Check Enable/Disable Segmented Button State (ON/OFF)
+					equal(jQuery.sap.byId(I_AM_SUBS_IN_ACTIVE_RULE_RR_DELETE_IMG + "3").length, 0, "Page 2 Row 2 of I am Substituting In-Active Rules");
+			    start(); 
+		 	}, 1000);
+		});
+			
+		//TODO: Fix these tests later	
+			
+	/*	module( "Tests For Enable/Disable/Delete  Substitution Rules", {
+			setup: function() {
+			  		qutils.triggerMouseEvent(INBOX_ID  +"--settingsButton", "click");
+					qutils.triggerKeydown(INBOX_ID + "--inboxSettingsMenu", jQuery.sap.KeyCodes.ARROW_DOWN, false, false, false);
+					qutils.triggerMouseEvent(INBOX_ID + "--manageSubstitutionMI", "click");
+					sap.ui.getCore().applyChanges(); 
+				    ok( true, "setup function successfully executed" );
+			  }, teardown: function() {
+					qutils.triggerMouseEvent(INBOX_ID + "--substitutionRulesManager--substitutionOverlayContainer-close", "click");
+				    ok( true, "teardown function successfully executed" );
+			  }
+			});
+		
+			var sMessageBarTextViewID = INBOX_ID + "--substitutionRulesManager--msbBarTextView"
+			var SUBSTITUTION_RULE_UPDATED_SUCCESSFULLY = _oBundle.getText("SUBSTITUTION_VALIDATION_MESSAGE_SUBSTITUTION_RULE_UPDATED_SUCCESSFULLY");
+			var SUBSTITUTION_RULE_DELETED_SUCCESSFULLY = _oBundle.getText("SUBSTITUTION_VALIDATION_MESSAGE_SUBSTITUTION_RULE_DELETED_SUCCESSFULLY");
+			
+			asyncTest("Test For Enable Substitution Rules", function() {
+
+			 	qutils.triggerMouseEvent(INBOX_ID + "--substitutionRulesManager--mySubstitutesinactive--rowRepOnSegBtn-"+INBOX_ID+"--substitutionRulesManager--mySubstitutesinactive--subsRowRepeater-0", "click");
+			 	setTimeout(function() {
+					start(); 
+					equal(jQuery.sap.byId(sMessageBarTextViewID).text(), SUBSTITUTION_RULE_UPDATED_SUCCESSFULLY, "Testing Enable substitution Rule");
+				}, 2000);
+			});					
+
+			asyncTest("Test For Disable Substitution Rules", function() {
+			 	qutils.triggerMouseEvent(INBOX_ID + "--substitutionRulesManager--mySubstitutesactive--rowRepOffSegBtn-"+INBOX_ID+"--substitutionRulesManager--mySubstitutesactive--subsRowRepeater-0", "click");
+				setTimeout(function() {
+				  start(); 
+				  equal(jQuery.sap.byId(sMessageBarTextViewID).text(), SUBSTITUTION_RULE_UPDATED_SUCCESSFULLY, "Testing Disable substitution Rule");
+				}, 2000);
+			});					
+	
+			asyncTest("Test For Delete Substitution Rules", function() {
+			 	qutils.triggerMouseEvent(INBOX_ID + "--substitutionRulesManager--mySubstitutesactive--rowRepDeleteImg-"+INBOX_ID+"--substitutionRulesManager--mySubstitutesactive--subsRowRepeater-0", "click");
+				setTimeout(function() {
+				  start(); 
+				  equal(jQuery.sap.byId(sMessageBarTextViewID).text(), SUBSTITUTION_RULE_DELETED_SUCCESSFULLY, "Testing Delete substitution Rule");
+				}, 2000);
+			});					
+	*/
+			
+		//Tests Starts
+		//Testing Method:
+		//sap.uiext.inbox.SubstitutionRulesManagerUtils._getText = function(value, isSubstitutedUserRules, isActiveSubstRule, bIsRecieveTasks, beginDate, endDate)
+		//and
+		//sap.uiext.inbox.SubstitutionRulesManagerUtils._getStatus = function(isSubstitutedUserRules, isActiveSubstRule, beginDate, endDate) 
+		module("Test Substitution Utils");
+		test("GetTextAndGetStatusTestForMySubstitutes", function() {
+			var sActualStatus;
+			var sActualText;
+			
+			var sMySubstituteUser_1 = "Dubbrow, Patrick"; //mapped to value
+			var sMySubstituteUser_2 = "Breyer, Tobias"; //mapped to value
+			var bIsSubstitutedUserRules = true; //true if its "My Substitution Rules"
+			var bIsActiveSubstRule; //mapped to IsEnabled
+			var bIsRecieveTasks; //mapped to SupportsEnableSubtitution
+			var oDateRange;
+			
+			//Scenario  :  My Substitution Rules 
+			//IsEnabled = true 
+			//SupportsEnableSubtitution = true 
+			//Date Range = CURRENT
+			bIsActiveSubstRule = true;
+			bIsRecieveTasks = true;
+			oDateRange = currentDate; // giving begin Date and end date as same. Thats means rule will be active for 1 day.
+			sActualStatus = utils._getStatus(bIsSubstitutedUserRules, bIsActiveSubstRule, oDateRange, oDateRange);
+			equals(sActualStatus,  _oBundle.getText("SUBSTITUTION_RULE_ACTIVE_FOR_LABEL") + " "+ utils._getNoOfDays(bIsActiveSubstRule, oDateRange, oDateRange));
+			sActualText = utils._getText(sMySubstituteUser_1, bIsSubstitutedUserRules, bIsActiveSubstRule, bIsRecieveTasks, oDateRange, oDateRange);
+			equals(sActualText, sMySubstituteUser_1 +" "+ _oBundle.getText("SUBSTIUTION_RULE_CURRENTLY_RECEIVING_TASKS"));
+			
+			//Scenario  :  My Substitution Rules 
+			//IsEnabled = true 
+			//SupportsEnableSubtitution = true 
+			//Date Range = IN FUTURE
+			bIsActiveSubstRule = true;
+			bIsRecieveTasks = true;
+			oDateRange = futureDate;
+			sActualStatus = utils._getStatus(bIsSubstitutedUserRules, bIsActiveSubstRule, oDateRange, oDateRange);
+			equals(sActualStatus, _oBundle.getText("SUBSTITUTION_RULE_ACTIVE_IN_LABEL") + " " +utils._getNoOfDays(bIsActiveSubstRule, oDateRange, oDateRange));
+			sActualText = utils._getText(sMySubstituteUser_1, bIsSubstitutedUserRules, bIsActiveSubstRule, bIsRecieveTasks, oDateRange, oDateRange);
+			equals(sActualText, sMySubstituteUser_1 + " " +_oBundle.getText("SUBSTIUTION_RULE_WILL_RECEIVE_TASKS_FROM") + " " + utils._getFormattedDate(oDateRange));
+			
+			//Scenario  :  My Substitution Rules 
+			//IsEnabled = true 
+			//SupportsEnableSubtitution = true 
+			//Date Range = IN PAST
+			bIsActiveSubstRule = true;
+			bIsRecieveTasks = true;
+			oDateRange = pastDate;
+			sActualStatus = utils._getStatus(bIsSubstitutedUserRules, bIsActiveSubstRule, oDateRange, oDateRange);
+			equals(sActualStatus, _oBundle.getText("SUBSTITUTION_OUT_OF_DATE_RANGE"));
+			sActualText = utils._getText(sMySubstituteUser_1, bIsSubstitutedUserRules, bIsActiveSubstRule, bIsRecieveTasks, oDateRange, oDateRange);
+			equals(sActualText, "");
+			
+			//Scenario  :  My Substitution Rules 
+			//IsEnabled = false 
+			//SupportsEnableSubtitution = true 
+			//Date Range = CURRENT
+			bIsActiveSubstRule = false;
+			bIsRecieveTasks = true;
+			oDateRange = currentDate; // giving begin Date and end date as same. Thats means rule will be active for 1 day.
+			sActualStatus = utils._getStatus(bIsSubstitutedUserRules, bIsActiveSubstRule, oDateRange, oDateRange);
+			equals(sActualStatus,  _oBundle.getText("SUBSTITUTION_DISABLED_STATUS"));
+			sActualText = utils._getText(sMySubstituteUser_1, bIsSubstitutedUserRules, bIsActiveSubstRule, bIsRecieveTasks, oDateRange, oDateRange);
+			equals(sActualText,  _oBundle.getText("SUBSTITUTION_RULE_ENABLE_FOR") + " " + sMySubstituteUser_1 + " " + _oBundle.getText("SUBSTITUTION_RULE_TO_RECIEVE_TASKS"));
+			
+			//Scenario  :  My Substitution Rules 
+			//IsEnabled = false 
+			//SupportsEnableSubtitution = true 
+			//Date Range = IN FUTURE
+			bIsActiveSubstRule = false;
+			bIsRecieveTasks = true;
+			oDateRange = futureDate;
+			sActualStatus = utils._getStatus(bIsSubstitutedUserRules, bIsActiveSubstRule, oDateRange, oDateRange);
+			equals(sActualStatus, _oBundle.getText("SUBSTITUTION_DISABLED_STATUS"));
+			sActualText = utils._getText(sMySubstituteUser_1, bIsSubstitutedUserRules, bIsActiveSubstRule, bIsRecieveTasks, oDateRange, oDateRange);
+			equals(sActualText,  _oBundle.getText("SUBSTITUTION_RULE_ENABLE_FOR") + " " + sMySubstituteUser_1 + " " +
+								_oBundle.getText("SUBSTITUTION_RULE_TO_RECIEVE_TASKS") + " " + _oBundle.getText("SUBSTITUTION_RULE_FROM_TXT") + " " + utils._getFormattedDate(oDateRange));
+			
+			//Scenario  :  My Substitution Rules 
+			//IsEnabled = false 
+			//SupportsEnableSubtitution = true 
+			//Date Range = IN PAST
+			bIsActiveSubstRule = false;	
+			bIsRecieveTasks = true;
+			oDateRange = pastDate;
+			sActualStatus = utils._getStatus(bIsSubstitutedUserRules, bIsActiveSubstRule, oDateRange, oDateRange);
+			equals(sActualStatus, _oBundle.getText("SUBSTITUTION_OUT_OF_DATE_RANGE"));
+			sActualText = utils._getText(sMySubstituteUser_1, bIsSubstitutedUserRules, bIsActiveSubstRule, bIsRecieveTasks, oDateRange, oDateRange);
+			equals(sActualText, "");
+			
+			//Scenario  :  My Substitution Rules 
+			//IsEnabled = true 
+			//SupportsEnableSubtitution = false 
+			//Date Range = CURRENT
+			bIsActiveSubstRule = true;
+			bIsRecieveTasks = false;
+			oDateRange = currentDate; // giving begin Date and end date as same. Thats means rule will be active for 1 day.
+			sActualStatus = utils._getStatus(bIsSubstitutedUserRules, bIsActiveSubstRule, oDateRange, oDateRange);
+			equals(sActualStatus,  _oBundle.getText("SUBSTITUTION_RULE_ACTIVE_FOR_LABEL") + " "+ utils._getNoOfDays(bIsActiveSubstRule, oDateRange, oDateRange));
+			sActualText = utils._getText(sMySubstituteUser_1, bIsSubstitutedUserRules, bIsActiveSubstRule, bIsRecieveTasks, oDateRange, oDateRange);
+			equals(sActualText, sMySubstituteUser_1 +" "+ _oBundle.getText("SUBSTIUTION_RULE_CURRENTLY_RECEIVING_TASKS"));
+			
+			//Scenario  :  My Substitution Rules 
+			//IsEnabled = true 
+			//SupportsEnableSubtitution = false 
+			//Date Range = IN FUTURE
+			bIsActiveSubstRule = true;
+			bIsRecieveTasks = false;
+			oDateRange = futureDate;
+			sActualStatus = utils._getStatus(bIsSubstitutedUserRules, bIsActiveSubstRule, oDateRange, oDateRange);
+			equals(sActualStatus, _oBundle.getText("SUBSTITUTION_RULE_ACTIVE_IN_LABEL") + " " +utils._getNoOfDays(bIsActiveSubstRule, oDateRange, oDateRange));
+			sActualText = utils._getText(sMySubstituteUser_1, bIsSubstitutedUserRules, bIsActiveSubstRule, bIsRecieveTasks, oDateRange, oDateRange);
+			equals(sActualText, sMySubstituteUser_1 + " " +_oBundle.getText("SUBSTIUTION_RULE_WILL_RECEIVE_TASKS_FROM") + " " + utils._getFormattedDate(oDateRange));
+			
+			//Scenario  :  My Substitution Rules 
+			//IsEnabled = true 
+			//SupportsEnableSubtitution = false 
+			//Date Range = IN PAST
+			bIsActiveSubstRule = true;
+			bIsRecieveTasks = false;
+			oDateRange = pastDate;
+			sActualStatus = utils._getStatus(bIsSubstitutedUserRules, bIsActiveSubstRule, oDateRange, oDateRange);
+			equals(sActualStatus, _oBundle.getText("SUBSTITUTION_OUT_OF_DATE_RANGE"));
+			sActualText = utils._getText(sMySubstituteUser_1, bIsSubstitutedUserRules, bIsActiveSubstRule, bIsRecieveTasks, oDateRange, oDateRange);
+			equals(sActualText, "");
+			
+			//Scenario  :  My Substitution Rules 
+			//IsEnabled = false 
+			//SupportsEnableSubtitution = false 
+			//Date Range = CURRENT
+			bIsActiveSubstRule = false;
+			bIsRecieveTasks = false;
+			oDateRange = currentDate; 
+			sActualStatus = utils._getStatus(bIsSubstitutedUserRules, bIsActiveSubstRule, oDateRange, oDateRange);
+			equals(sActualStatus, _oBundle.getText("SUBSTITUTION_DISABLED_STATUS"));
+			sActualText = utils._getText(sMySubstituteUser_1, bIsSubstitutedUserRules, bIsActiveSubstRule, bIsRecieveTasks, oDateRange, oDateRange);
+			equals(sActualText, sMySubstituteUser_1 + " " + _oBundle.getText("SUBSTIUTION_RULE_HAS_NOT_ACTIVATED_YOUR"));
+			
+			//Scenario  :  My Substitution Rules 
+			//IsEnabled = false 
+			//SupportsEnableSubtitution = false 
+			//Date Range = IN FUTURE
+			bIsActiveSubstRule = false;
+			bIsRecieveTasks = false;
+			oDateRange = futureDate;
+			sActualStatus = utils._getStatus(bIsSubstitutedUserRules, bIsActiveSubstRule, oDateRange, oDateRange);
+			equals(sActualStatus, _oBundle.getText("SUBSTITUTION_DISABLED_STATUS"));
+			sActualText = utils._getText(sMySubstituteUser_1, bIsSubstitutedUserRules, bIsActiveSubstRule, bIsRecieveTasks, oDateRange, oDateRange);
+			equals(sActualText, sMySubstituteUser_1 + " " + _oBundle.getText("SUBSTIUTION_RULE_HAS_NOT_ACTIVATED_YOUR"));
+			
+			//Scenario  :  My Substitution Rules 
+			//IsEnabled = false 
+			//SupportsEnableSubtitution = false 
+			//Date Range = IN PAST
+			bIsActiveSubstRule = false;
+			bIsRecieveTasks = false;
+			oDateRange = pastDate;
+			sActualStatus = utils._getStatus(bIsSubstitutedUserRules, bIsActiveSubstRule, oDateRange, oDateRange);
+			equals(sActualStatus, _oBundle.getText("SUBSTITUTION_OUT_OF_DATE_RANGE"));
+			sActualText = utils._getText(sMySubstituteUser_1, bIsSubstitutedUserRules, bIsActiveSubstRule, bIsRecieveTasks, oDateRange, oDateRange);
+			equals(sActualText, "");
+			
+		});
+		
+		//Testing Method:
+		//sap.uiext.inbox.SubstitutionRulesManagerUtils._getText = function(value, isSubstitutedUserRules, isActiveSubstRule, enabled, mode, takenOver,beginDate, endDate)
+		//and
+		//sap.uiext.inbox.SubstitutionRulesManagerUtils._getStatus = function(value, isSubstitutedUserRules, isActiveSubstRule, enabled, mode, takenOver,beginDate, endDate)
+		//isSubstitutedUserRules = false;
+		test("GetTextAndGetStatusTestForIamSubstituting", function() {
+			var sIamSubstitutingUser_1 = "Hoenig, Romy"; //mapped to value
+			var sIamSubstitutingUser_2 = "Klinker, Boris"; //mapped to value
+			var bIsSubstitutedUserRules = false; //false if its "I am Substituting"
+			var bIsActiveSubstRule; //mapped to IsEnabled
+			var bIsRecieveTasks; //mapped to SupportsEnableSubtitution	
+
+			//Scenario  :  I am Substituting 
+			//IsEnabled = true 
+			//SupportsEnableSubtitution = true 
+			//Date Range = CURRENT
+			bIsActiveSubstRule = true;
+			bIsRecieveTasks = true;
+			oDateRange = currentDate; // giving begin Date and end date as same. Thats means rule will be active for 1 day.
+			sActualStatus = utils._getStatus(bIsSubstitutedUserRules, bIsActiveSubstRule, oDateRange, oDateRange);
+			equals(sActualStatus,  _oBundle.getText("SUBSTITUTION_RULE_ACTIVE_FOR_LABEL") + " "+ utils._getNoOfDays(bIsActiveSubstRule, oDateRange, oDateRange));
+			sActualText = utils._getText(sIamSubstitutingUser_1, bIsSubstitutedUserRules, bIsActiveSubstRule, bIsRecieveTasks, oDateRange, oDateRange);
+			equals(sActualText, _oBundle.getText("SUBSTIUTION_RULE_CURRENTLY_RECEIVING_TASKS_FROM") + " " + sIamSubstitutingUser_1);
+			
+			
+			//Scenario  :  I am Substituting 
+			//IsEnabled = true 
+			//SupportsEnableSubtitution = true 
+			//Date Range = IN FUTURE
+			bIsActiveSubstRule = true;
+			bIsRecieveTasks = true;
+			oDateRange = futureDate;
+			sActualStatus = utils._getStatus(bIsSubstitutedUserRules, bIsActiveSubstRule, oDateRange, oDateRange);
+			equals(sActualStatus, _oBundle.getText("SUBSTITUTION_RULE_ACTIVE_IN_LABEL") + " " +utils._getNoOfDays(bIsActiveSubstRule, oDateRange, oDateRange));
+			sActualText = utils._getText(sIamSubstitutingUser_1, bIsSubstitutedUserRules, bIsActiveSubstRule, bIsRecieveTasks, oDateRange, oDateRange);
+			equals(sActualText,  _oBundle.getText("SUBSTIUTION_RULE_YOU_WILL_RECEIVE_TASKS_FROM") + " " + sIamSubstitutingUser_1 + " " + _oBundle.getText("SUBSTITUTION_RULE_FROM_TXT") + " " + utils._getFormattedDate(oDateRange));
+			
+			//Scenario  :  I am Substituting 
+			//IsEnabled = true 
+			//SupportsEnableSubtitution = true 
+			//Date Range = IN PAST
+			bIsActiveSubstRule = true;
+			bIsRecieveTasks = true;
+			oDateRange = pastDate;
+			sActualStatus = utils._getStatus(bIsSubstitutedUserRules, bIsActiveSubstRule, oDateRange, oDateRange);
+			equals(sActualStatus, _oBundle.getText("SUBSTITUTION_OUT_OF_DATE_RANGE"));
+			sActualText = utils._getText(sIamSubstitutingUser_1, bIsSubstitutedUserRules, bIsActiveSubstRule, bIsRecieveTasks, oDateRange, oDateRange);
+			equals(sActualText, "");
+			
+			//Scenario  :  I am Substituting 
+			//IsEnabled = false 
+			//SupportsEnableSubtitution = true 
+			//Date Range = CURRENT
+			bIsActiveSubstRule = false;
+			bIsRecieveTasks = true;
+			oDateRange = currentDate; // giving begin Date and end date as same. Thats means rule will be active for 1 day.
+			sActualStatus = utils._getStatus(bIsSubstitutedUserRules, bIsActiveSubstRule, oDateRange, oDateRange);
+			equals(sActualStatus,  _oBundle.getText("SUBSTITUTION_DISABLED_STATUS"));
+			sActualText = utils._getText(sIamSubstitutingUser_1, bIsSubstitutedUserRules, bIsActiveSubstRule, bIsRecieveTasks, oDateRange, oDateRange);
+			equals(sActualText,  _oBundle.getText("SUBSTIUTION_RULE_TURN_ON_TO_RECEIVE_TASKS_FROM") + " " + sIamSubstitutingUser_1);
+			
+			//Scenario  :  I am Substituting 
+			//IsEnabled = false 
+			//SupportsEnableSubtitution = true 
+			//Date Range = IN FUTURE
+			bIsActiveSubstRule = false;
+			bIsRecieveTasks = true;
+			oDateRange = futureDate;
+			sActualStatus = utils._getStatus(bIsSubstitutedUserRules, bIsActiveSubstRule, oDateRange, oDateRange);
+			equals(sActualStatus, _oBundle.getText("SUBSTITUTION_DISABLED_STATUS"));
+			sActualText = utils._getText(sIamSubstitutingUser_1, bIsSubstitutedUserRules, bIsActiveSubstRule, bIsRecieveTasks, oDateRange, oDateRange);
+			equals(sActualText,  _oBundle.getText("SUBSTIUTION_RULE_TURN_ON_TO_RECEIVE_TASKS_FROM") + " " + sIamSubstitutingUser_1 + " " + _oBundle.getText("SUBSTITUTION_RULE_FROM_TXT") + " " + utils._getFormattedDate(oDateRange));
+			
+			//Scenario  :  I am Substituting 
+			//IsEnabled = false 
+			//SupportsEnableSubtitution = true 
+			//Date Range = IN PAST
+			bIsActiveSubstRule = false;
+			bIsRecieveTasks = true;
+			oDateRange = pastDate;
+			sActualStatus = utils._getStatus(bIsSubstitutedUserRules, bIsActiveSubstRule, oDateRange, oDateRange);
+			equals(sActualStatus, _oBundle.getText("SUBSTITUTION_OUT_OF_DATE_RANGE"));
+			sActualText = utils._getText(sIamSubstitutingUser_1, bIsSubstitutedUserRules, bIsActiveSubstRule, bIsRecieveTasks, oDateRange, oDateRange);
+			equals(sActualText, "");
+			
+			//Scenario  :  I am Substituting 
+			//IsEnabled = true 
+			//SupportsEnableSubtitution = false 
+			//Date Range = CURRENT
+			bIsActiveSubstRule = true;
+			bIsRecieveTasks = false;
+			oDateRange = currentDate; // giving begin Date and end date as same. Thats means rule will be active for 1 day.
+			sActualStatus = utils._getStatus(bIsSubstitutedUserRules, bIsActiveSubstRule, oDateRange, oDateRange);
+			equals(sActualStatus,  _oBundle.getText("SUBSTITUTION_RULE_ACTIVE_FOR_LABEL") + " "+ utils._getNoOfDays(bIsActiveSubstRule, oDateRange, oDateRange));
+			sActualText = utils._getText(sIamSubstitutingUser_1, bIsSubstitutedUserRules, bIsActiveSubstRule, bIsRecieveTasks, oDateRange, oDateRange);
+			equals(sActualText, _oBundle.getText("SUBSTIUTION_RULE_CURRENTLY_RECEIVING_TASKS_FROM") + " " + sIamSubstitutingUser_1 );
+			
+			//Scenario  :  I am Substituting 
+			//IsEnabled = true 
+			//SupportsEnableSubtitution = false 
+			//Date Range = IN FUTURE
+			bIsActiveSubstRule = true;
+			bIsRecieveTasks = false;
+			oDateRange = futureDate;
+			sActualStatus = utils._getStatus(bIsSubstitutedUserRules, bIsActiveSubstRule, oDateRange, oDateRange);
+			equals(sActualStatus, _oBundle.getText("SUBSTITUTION_RULE_ACTIVE_IN_LABEL") + " " +utils._getNoOfDays(bIsActiveSubstRule, oDateRange, oDateRange));
+			sActualText = utils._getText(sIamSubstitutingUser_1, bIsSubstitutedUserRules, bIsActiveSubstRule, bIsRecieveTasks, oDateRange, oDateRange);
+			equals(sActualText,  _oBundle.getText("SUBSTIUTION_RULE_YOU_WILL_RECEIVE_TASKS_FROM") + " " + sIamSubstitutingUser_1 + " " + _oBundle.getText("SUBSTITUTION_RULE_FROM_TXT") + " " + utils._getFormattedDate(oDateRange));
+			
+			//Scenario  :  I am Substituting 
+			//IsEnabled = true 
+			//SupportsEnableSubtitution = false 
+			//Date Range = IN PAST
+			bIsActiveSubstRule = true;
+			bIsRecieveTasks = false;
+			oDateRange = pastDate;
+			sActualStatus = utils._getStatus(bIsSubstitutedUserRules, bIsActiveSubstRule, oDateRange, oDateRange);
+			equals(sActualStatus, _oBundle.getText("SUBSTITUTION_OUT_OF_DATE_RANGE"));
+			sActualText = utils._getText(sIamSubstitutingUser_1, bIsSubstitutedUserRules, bIsActiveSubstRule, bIsRecieveTasks, oDateRange, oDateRange);
+			equals(sActualText, "");
+			
+			//Scenario  :  I am Substituting 
+			//IsEnabled = false 
+			//SupportsEnableSubtitution = false 
+			//Date Range = CURRENT
+			bIsActiveSubstRule = false;
+			bIsRecieveTasks = false;
+			oDateRange = currentDate; // giving begin Date and end date as same. Thats means rule will be active for 1 day.
+			sActualStatus = utils._getStatus(bIsSubstitutedUserRules, bIsActiveSubstRule, oDateRange, oDateRange);
+			equals(sActualStatus, _oBundle.getText("SUBSTITUTION_DISABLED_STATUS"));
+			sActualText = utils._getText(sIamSubstitutingUser_1, bIsSubstitutedUserRules, bIsActiveSubstRule, bIsRecieveTasks, oDateRange, oDateRange);
+			equals(sActualText, _oBundle.getText("SUBSTIUTION_RULE_IS_CURRENTLY_DISABLED_BY") + " " +  sIamSubstitutingUser_1);
+			
+			//Scenario  :  I am Substituting 
+			//IsEnabled = false 
+			//SupportsEnableSubtitution = false 	
+			//Date Range = IN FUTURE
+			bIsActiveSubstRule = false;
+			bIsRecieveTasks = false;
+			oDateRange = futureDate;
+			sActualStatus = utils._getStatus(bIsSubstitutedUserRules, bIsActiveSubstRule, oDateRange, oDateRange);
+			equals(sActualStatus, _oBundle.getText("SUBSTITUTION_DISABLED_STATUS"));
+			sActualText = utils._getText(sIamSubstitutingUser_1, bIsSubstitutedUserRules, bIsActiveSubstRule, bIsRecieveTasks, oDateRange, oDateRange);
+			equals(sActualText,  _oBundle.getText("SUBSTIUTION_RULE_YOU_WILL_RECEIVE_TASKS_FROM") + " " + sIamSubstitutingUser_1 + " " + _oBundle.getText("SUBSTITUTION_RULE_FROM_TXT") + " " + utils._getFormattedDate(oDateRange));
+			
+			//Scenario  :  I am Substituting 
+			//IsEnabled = false 
+			//SupportsEnableSubtitution = false 
+			//Date Range = IN PAST
+			bIsActiveSubstRule = false;
+			bIsRecieveTasks = false;
+			oDateRange = pastDate;
+			sActualStatus = utils._getStatus(bIsSubstitutedUserRules, bIsActiveSubstRule, oDateRange, oDateRange);
+			equals(sActualStatus, _oBundle.getText("SUBSTITUTION_OUT_OF_DATE_RANGE"));
+			sActualText = utils._getText(sIamSubstitutingUser_1, bIsSubstitutedUserRules, bIsActiveSubstRule, bIsRecieveTasks, oDateRange, oDateRange);
+			equals(sActualText, "");
+			
+		});
+		
+		//TODO: Test _getNoOfDays HIGH
+		//TODO; Test _getTimeDiff
+		//TODO: _getFormattedDate
+		//TODO: _isOutDated
+		
+	</script>
+
+<title>Qunit Test for SubstitutionUtils</title>
+
+
+
+</head>
+<body class="sapUiBody">
+	<h1 id="qunit-header">QUnit Tests For: Inbox Subtitution Rules Manager</h1>
+		<h2 id="qunit-banner"></h2>
+		<h2 id="qunit-userAgent"></h2>
+		<ol id="qunit-tests"></ol>
+		<div id="qunit-fixture">test markup, will be hidden</div>
+		<div id="canvas" style="height:300px; width:300px"></div>
+		<br>
+		<div id="uiArea1" style="width: 80%;"></div>
+
+</body>
+</html>

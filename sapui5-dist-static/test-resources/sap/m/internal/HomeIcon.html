@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		
+		<title>Home Icon Test</title>
+		
+		<script src="../../../../resources/sap-ui-core.js"
+			type="text/javascript" 
+			id="sap-ui-bootstrap"
+			data-sap-ui-libs="sap.m"
+			data-sap-ui-theme="sap_bluecrystal">
+		</script>
+		
+		<script type="text/javascript">
+		
+			var app = new sap.m.App("myApp", {
+				initialPage:"page1", 
+				pages:[
+					new sap.m.Page("page1", {
+						title:"Home Icons",
+						content : [ new sap.m.Text({
+							text : "Nothing to see here... add this app to your home screen or bookmark it and you should see one of the following images/icons being used. iOS will apply a glow effect on them.",
+						}),
+						new sap.m.Image({
+							src: "../images/home_57.png"
+						}),
+						new sap.m.Image({
+							src: "../images/home_114.png"
+						}),
+						new sap.m.Image({
+							src: "../images/home_72.png"
+						}),
+						new sap.m.Image({
+							src: "../images/home_144.png"
+						}),
+						new sap.m.Image({
+							src: "../images/favicon.ico"
+						})
+						]
+					})
+			    ],
+			    homeIcon: {
+			   	    'phone':'../images/home_57.png',
+			   	    'phone@2':'../images/home_114.png',
+			   	    'tablet':'../images/home_72.png',
+			   	    'tablet@2':'../images/home_144.png',
+			   	    'icon':'../images/favicon.ico'
+			   	}
+		    }).placeAt("body");
+
+		</script>
+
+		
+	</head>
+	<body id="body" class="sapUiBody">
+	</body>
+</html>

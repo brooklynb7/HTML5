@@ -1,0 +1,72 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<title>qUnit Page for sap.me.TabContainer</title>
+
+		<script id="sap-ui-bootstrap" 
+			type="text/javascript"
+			src="../../../../resources/sap-ui-core.js"
+			data-sap-ui-theme="sap_mvi"
+			data-sap-ui-noConflict="true"
+			data-sap-ui-libs="sap.m,sap.me">
+		</script>
+
+		<link rel="stylesheet" href="../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
+		<script type="text/javascript" src="../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+		<script type="text/javascript" src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
+		<script type="text/javascript" src="../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
+
+		<script language="javascript">
+			var tc = new sap.me.TabContainer("tc", {
+				contentInfo: new sap.m.Button({text: "Info"}),
+				contentAttachments: new sap.m.Button({text: "Attachments"}),
+				contentNotes: new sap.m.Button({text: "Notes"})
+			}).placeAt("content");
+			
+			
+			QUnit.config.autostart = false;
+			jQuery(document).ready(function() {
+				QUnit.start();
+			});
+			
+			
+			
+			
+			test("TabContainer rendered", function() {
+				ok(jQuery.sap.domById("tc"), "TabContainer should be rendered");
+				equal(jQuery(".sapUIMeTabContainerButtons").length, 1, "Buttons area should be rendered");
+				
+				var $buttons = jQuery(".sapUIMeTabContainerButtons").children();
+				equal($buttons.filter(":eq(0)").length, 1, "First Button should be rendered");
+				equal($buttons.filter(":eq(1)").length, 1, "Second Button should be rendered");
+				equal($buttons.filter(":eq(2)").length, 1, "Third Button should be rendered");
+			});
+			
+			test("Selection", function() {
+				var $buttons = jQuery(".sapUIMeTabContainerButtons").children();
+				equal($buttons.filter(":eq(0)").hasClass("sapUIMeTabContainerTabSelected"), true, "First Button should be marked as selected");
+				equal($buttons.filter(":eq(1)").hasClass("sapUIMeTabContainerTabSelected"), false,"Second Button should not be marked as selected");
+				equal($buttons.filter(":eq(2)").hasClass("sapUIMeTabContainerTabSelected"), false, "Third  Button should not be marked as selected");
+				
+				tc.setSelectedTab(1);
+				sap.ui.getCore().applyChanges();
+				
+				var $buttons = jQuery(".sapUIMeTabContainerButtons").children();
+				equal($buttons.filter(":eq(0)").hasClass("sapUIMeTabContainerTabSelected"), false, "First Button should not be marked as selected");
+				equal($buttons.filter(":eq(1)").hasClass("sapUIMeTabContainerTabSelected"), true,"Second Button should be marked as selected");
+				equal($buttons.filter(":eq(2)").hasClass("sapUIMeTabContainerTabSelected"), false, "Third  Button should not be marked as selected");
+			});
+			
+			
+		</script>
+	</head>
+	<body id="body" class="sapUiBody">
+		<h1 id="qunit-header">qUnit Page for sap.me.TabContainer</h1>
+		<h2 id="qunit-banner"></h2>
+		<h2 id="qunit-userAgent"></h2>
+		<ol id="qunit-tests"></ol>
+		
+		<div id="content"></div>
+	</body>
+</html>

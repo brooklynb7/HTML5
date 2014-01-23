@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta charset="UTF-8"/>
+	<title>FeedAggregator - sap.suite.ui.commons.util</title>
+
+    <!-- UI5 Bootstrap -->
+    <script id="sap-ui-bootstrap"
+            type="text/javascript"
+            src="../../../../../../resources/sap-ui-core.js"
+            data-sap-ui-theme="sap_bluecrystal"
+            data-sap-ui-libs="sap.ui.commons,sap.suite.ui.commons"></script>
+
+    <!-- QUnit libraries -->
+    <link rel="stylesheet"
+          href="../../../../../../resources/sap/ui/thirdparty/qunit.css"
+          type="text/css" media="screen" />
+    <script src="../../../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+    <script type="text/javascript" src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
+    <script type="text/javascript" src="../../../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>    
+
+	<script>
+		jQuery.sap.require("sap.suite.ui.commons.util.DateUtils");
+		jQuery.sap.require("sap.suite.ui.commons.util.FeedAggregator");
+		
+		module("getFeeds - sap.suite.ui.commons.util.FeedAggregator");
+		
+		asyncTest("GetMultipleFeeds", function (){
+			var requestCompleted = function(oControlEvent){
+				start();
+				equal(jsonModel.getData().items.length, 25, "The number of unfiltered articles must be equal to 25.");
+			};
+			
+			var requestFailed = function(oControlEvent){
+				ok(false);
+			}
+			var jsonModel = sap.suite.ui.commons.util.FeedAggregator.getFeeds(["SapNewsRss.xml", "NprRss.xml"], [], [], requestCompleted, requestFailed);
+		});
+		
+		asyncTest("GetMultipleFeedsFiltered", function (){
+			var requestCompleted = function(oControlEvent){
+				start();
+				equal(jsonModel.getData().items.length, 2, "The number of filtered articles must be equal to 2.");
+			};
+			
+			var requestFailed = function(oControlEvent){
+				ok(false);
+			}
+			var jsonModel = sap.suite.ui.commons.util.FeedAggregator.getFeeds(["SapNewsRss.xml", "NprRss.xml"], ["SAP Solutions", "SAP Student", "Evergreen Question", "Teary Paula Deen",], ["Sailing Event", "HBCU"], requestCompleted, requestFailed);
+		});
+		
+		asyncTest("CaseInSensitiveFiltering", function (){
+			var requestCompleted = function(oControlEvent){
+				start();
+				equal(jsonModel.getData().items.length, 2, "The number of case insensitive filtered articles must be equal to 2.");
+			};
+			
+			var requestFailed = function(oControlEvent){
+				ok(false);
+			}
+			var jsonModel = sap.suite.ui.commons.util.FeedAggregator.getFeeds(["SapNewsRss.xml", "NprRss.xml"], ["sAP SoluTIONs", "sAp StUDENt", "Evergreen Question", "Teary Paula Deen",], ["Sailing EVEnt", "hbCU"], requestCompleted, requestFailed);
+		});
+		
+	</script>
+</head>
+
+<body class="sapUiBody" role="application">
+	<div id="qunit"></div>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset='UTF-8'/>
+    <title>Qunit</title>
+
+    <!-- UI5 Bootstrap -->
+    <script id='sap-ui-bootstrap'
+            type='text/javascript'
+            src='../../../../../../resources/sap-ui-core.js'
+            data-sap-ui-theme='sap_goldreflection'
+            data-sap-ui-libs='sap.ui.commons,sap.portal.ui5'></script>
+
+    <!-- QUnit libraries -->
+    <link rel='stylesheet'
+          href='../../../../../../resources/sap/ui/thirdparty/qunit.css'
+          type='text/css' media='screen'/>
+    <script src='../../../../../../resources/sap/ui/thirdparty/qunit.js'></script>
+    <script type='text/javascript' src='/jsunit-testrunner/qunit/qunit-jsunit.js'></script>
+    <script type='text/javascript' src='../../../../../../resources/sap/ui/qunit/QUnitUtils.js'></script>
+    <script>
+
+        module('sap.portal.ui5.core.ComponentManager');
+
+        test('integration check', function () {
+
+            var sTestId = (+new Date()) + '-test-component-manager';
+
+            var cmp1 = new sap.portal.ui5.core.Component({
+                componentId: sTestId
+            });
+
+            ok(cmp1, 'component created');
+            equal(cmp1.getComponentId(), sTestId, 'component created with expected id');
+            equal(sap.portal.ui5.core.ComponentManager.getComponent(sTestId), cmp1, 'using componentManager to get Component by its id');
+            cmp1.destroy();
+            equal(sap.portal.ui5.core.ComponentManager.getComponent(sTestId), undefined, 'Get destroyed Component returns undefined');
+
+        });
+
+        test('register component with already existed id', function () {
+
+            var cmp1 = new sap.portal.ui5.core.Component({
+                componentId: '123'
+            });
+
+            ok(cmp1, 'Component with id created successfully');
+
+            throws(function () {
+
+                var cmp2 = new sap.portal.ui5.core.Component({
+                    componentId: '123'
+                });
+
+            }, 'already existed id causes exception');
+
+        });
+
+        test('register component with illegal id', function () {
+
+            throws(function () {
+                var cmp1 = new sap.portal.ui5.core.Component({
+                    componentId: {a: 1, b: 2}//id is an object
+                });
+            });
+
+        });
+
+        test('register invalid object', function () {
+
+            throws(function () {
+                sap.portal.ui5.core.ComponentManager.registerComponent('123', {a: 1, b: 2});
+            }, 'Register invalid object causes exception');
+
+        });
+
+        test('unregister component with illegal id', function () {
+
+            throws(function () {
+                sap.portal.ui5.core.ComponentManager.unregisterComponent({a: 1, b: 2});
+            }, 'Exception thrown');
+
+        });
+
+    </script>
+</head>
+
+<body class='sapUiBody'>
+<div id='qunit'></div>
+<div id='uiArea0'></div>
+</body>
+</html>

@@ -1,0 +1,1239 @@
+<!DOCTYPE HTML>
+<!-- 
+  Tested control/class: sap.viz.ui5.Bar
+  Author: i071838
+-->
+
+<html lang='en'>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<script id="sap-ui-bootstrap" type="text/javascript"
+  src="../../../../resources/sap-ui-core.js"
+  data-sap-ui-theme="sap_goldreflection" data-sap-ui-libs="sap.ui.core,sap.ui.commons,sap.viz">
+  
+</script>
+<link rel="stylesheet" href="../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
+<script type="text/javascript" src="../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+<script type="text/javascript" src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
+<script type="text/javascript" src="../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
+<script type="text/javascript" src="./js/data.js"></script>
+
+<!-- Control initialization -->
+<script language="javascript">
+  var timer = 20; 
+  
+  var oBarChart, vizOptions, oChart;
+  module("init with properties");
+
+  asyncTest('Check General Layout Properties', function() {
+    oChart = createChart(sap.viz.ui5.Bar, {
+      general: {
+        layout: {
+          padding : 1
+        }
+      },
+      dataset : getDataset('a1a2m1')
+    });
+    oChart.placeAt("content");  
+    vizOptions = oChart._getOptions();
+    var orignOptions = {
+        general: {
+          layout: {
+            padding : 1
+          }
+        }  
+    };
+    deepEqual(vizOptions.general, orignOptions.general, true, "Layout properties should be the same.");
+
+    setTimeout(function(){
+      start();  
+      oChart.getGeneral().getLayout().setPadding(5);
+      equal(oChart.getGeneral().getLayout().getPadding(), 5, "oChart.getGeneral().getLayout().setPadding(5), the padding should be 5.");
+    }, timer);
+  });
+  
+  asyncTest('Check Legend Properties', function() {
+    setTimeout(function(){
+      cleanChart();
+      start();  
+      oChart = createChart( sap.viz.ui5.Bar, {
+        legend : {
+          title : {
+            visible : true,
+            text : "Revenue"
+          }
+        },
+        plotArea : {
+          colorPalette : [ "red", "blue", "yellow" ]
+        },
+        dataset : getDataset('a1a2m1')
+      });
+      oChart.placeAt("content");  
+      vizOptions = oChart._getOptions();
+      
+      var orignOptions = {
+          legend: {
+            title : {
+              visible : true,
+              text : "Revenue"
+            }
+          }    
+      };
+      var orignOptions_plotarea = {
+        plotArea : {
+          colorPalette : [ "red", "blue", "yellow" ]
+        }
+      };
+      deepEqual(vizOptions.legend, orignOptions.legend, true, "Legend properties should be the same.");
+    }, timer);
+  });
+
+  module("Init with properties for charts");
+
+  asyncTest('Check Properties: Pie(plotArea.tooltip/plotArea.drawingEffect)',function(){
+    setTimeout(function(){
+      cleanChart();
+      start();  
+      
+      oChart = createChart( sap.viz.ui5.Pie, {
+        plotArea : {
+          toolTip : {
+            visible : true,
+            valueFormat : "0.00",
+            percentageFormat:"0.00%",
+            formatString: [".0"]
+          },
+          drawingEffect : "glossy"
+        },
+        dataset : getDataset('a1m1')
+      });
+      oChart.placeAt("content");
+      vizOptions = oChart._getOptions();
+
+      var options_pie_plotArea_tooltip = {
+        visible : false,
+        valueFormat : "0.00",
+        percentageFormat:"0.00%",
+        formatString: [".0"]
+      };
+      equal(oChart.getPlotArea().getToolTip().getVisible(), true, "Set Visible.");
+      deepEqual(oChart.getPlotArea().getToolTip().getFormatString(), options_pie_plotArea_tooltip.formatString, "Set FormatString.");
+      equal(oChart.getPlotArea().getDrawingEffect(), "glossy", "Set drawing effect.");
+    }, timer);
+  });
+
+  asyncTest('Check Properties: Donut(title/legend/plotArea/tooltip)', function() {
+    setTimeout(function(){
+      cleanChart();
+      start(); 
+      oChart = createChart( sap.viz.ui5.Donut, {
+        title : {
+          visible : true,
+          text : "This is customer defined title",
+          alignment : "left",
+        },
+        plotArea : {
+          colorPalette : [ "blue", "green", "yellow" ],
+          drawingEffect : sap.viz.ui5.types.Pie_drawingEffect.glossy
+        },
+        dataset : getDataset('a1m1')
+      });
+      oChart.placeAt("content");
+      vizOptions = oChart._getOptions();
+        
+      var options_donut_plotArea = {
+        colorPalette : [ "blue", "green", "yellow" ],
+        drawingEffect : 'glossy',
+        animation : {
+          dataLoading : false,
+          dataUpdating : false,
+          resizing : false
+        }
+      };
+      var options_donut_title = {
+        visible : true,
+        text : "This is customer defined title",
+        alignment : "left",
+      };
+      deepEqual(vizOptions.plotArea, options_donut_plotArea, "Init plotArea: oChart._getOptions().plotArea");
+      deepEqual(vizOptions.title, options_donut_title, "Init title: oChart._getOptions().title");
+      equal(oChart.getTitle().getVisible(), true, "Init title: oChart.getTitle().getVisible()");
+      equal(oChart.getLegend().getVisible(), true, "Default legend: oChart.getLegend().getVisible()");
+      equal(oChart.getPlotArea().getToolTip().getVisible(), true, "Default tooltip: oChart.getTooltip().getVisible()");
+      equal(oChart.getPlotArea().getToolTip().getFormatString().toString(), "null", "Default tooltip: oChart.getTooltip().getFormatString()");
+     }, timer);
+  });
+
+  asyncTest('Check Properties: Donut(invalid tooltip)', function() {
+    setTimeout(function(){
+      cleanChart();
+      start(); 
+      oChart = createChart( sap.viz.ui5.Donut, {
+        tooltip : {},
+        dataset : getDataset('a1m1')
+      });
+      oChart.placeAt("content");
+      vizOptions = oChart._getOptions();
+      equal(oChart._getOptions().tooltip, null, "Tooltip: oChart._getOptions().tooltip");
+    }, timer);
+  });
+  
+  asyncTest('Check Properties: Pie(datalabel.formatString)',function(){
+    setTimeout(function(){
+      cleanChart();
+      start();  
+      
+      var datalabelOps = {
+        visible: true
+      };
+      oChart = createChart( sap.viz.ui5.Pie, {
+        dataLabel : datalabelOps,
+        dataset : getDataset('a1m1')
+      });
+      oChart.placeAt("content");
+      vizOptions = oChart._getOptions();
+
+      deepEqual(vizOptions.dataLabel, datalabelOps,"Set FormatString.");
+    }, timer);
+  });
+
+  asyncTest('Check Properties: Combination(plotArea.bar/plotArea.line)', function(){
+    setTimeout(function(){
+      cleanChart();
+      start(); 
+      oChart = createChart( sap.viz.ui5.Combination, {
+        plotArea : {
+          bar : {
+            isRoundCorner : true
+          },
+          line : {
+            width : 5,
+            marker : {
+              visible : true,
+              shape : 'circle',
+              size : 5
+            }
+          }
+        },
+        dataset : getDataset('a1a2m1m1')
+      });
+      oChart.placeAt("content");
+      vizOptions = oChart._getOptions();
+      var options_combination = {
+        bar : {
+          isRoundCorner : true
+        },
+        line : {
+          width : 5,
+          marker : {
+            visible : true,
+            shape : 'circle',
+            size : 5
+          }
+        }
+      };
+      deepEqual(vizOptions.plotArea.bar, options_combination.bar, "Init plotArea.bar");
+      deepEqual(vizOptions.plotArea.line, options_combination.line, "Init plotArea.line");
+      equal(oChart.getPlotArea().getLine().getWidth(), 5, "Init plotArea.line: oChart.getPlotArea().getLine().getWidth()");
+      equal(oChart.getPlotArea().getLine().getMarker().getSize(), 5, "Init plotArea.line: oChart.getPlotArea().getLine().getWidth()");
+    }, timer);
+  });
+
+  asyncTest('Check Properties: Column(width/height)', function() {
+    setTimeout(function(){
+      cleanChart();
+      start(); 
+      oChart = createChart( sap.viz.ui5.Column, {
+        plotArea : {
+          colorPalette : [ "red", "blue", "yellow" ],
+          drawingEffect : sap.viz.ui5.types.VerticalBar_drawingEffect.glossy,
+          isRoundCorner : true
+        },
+        width : '300px',
+        height : '300px',
+        dataset : getDataset('a1a2m1')
+      });
+      oChart.placeAt("content");
+      vizOptions = oChart._getOptions();
+      var options_column = {
+        colorPalette : [ "red", "blue", "yellow" ],
+        drawingEffect : 'glossy',
+        animation : {
+          dataLoading : false,
+          dataUpdating : false,
+          resizing : false
+        },
+        isRoundCorner : true
+      };
+      deepEqual(vizOptions.plotArea.colorPalette, options_column.colorPalette, "Check column plotarea properties -- colorPalette.");
+      equal(vizOptions.plotArea.drawingEffect, options_column.drawingEffect, "Check column plotarea properties -- drawingEffect.");
+      deepEqual(vizOptions.plotArea.animation, options_column.animation, "Check column plotarea properties -- animation.");
+      equal(vizOptions.plotArea.isRoundCorner, options_column.isRoundCorner, "Check column plotarea properties -- isRoundCorner.");
+      equal(oChart.getWidth(), '300px', "Init width: oChart.getWidth()");
+      equal(oChart.getHeight(), '300px', "Init height: oChart.getHeight()");
+    }, timer);
+  });
+
+  asyncTest('Check Properties: Line (xAxis/yAxis)', function() {
+    setTimeout(function(){
+      cleanChart();
+      start(); 
+      oChart = createChart( sap.viz.ui5.Line, {
+        xAxis : {
+          lineSize : 5,
+          title : {
+            text : "customer defined title",
+            visible : true
+          },
+          color : "red",
+          visible : true
+        },
+        yAxis : {
+          lineSize : 5,
+          title : {
+            text : "customer defined title",
+            visible : true
+          },
+          color : "blue",
+          visible : true
+        },
+        dataset : getDataset('a1a2m1')
+      });
+      oChart.placeAt("content");
+      vizOptions = oChart._getOptions();
+      var options_line = {
+        yAxis : {
+          lineSize : "5",
+          color : "blue",
+          title : {
+            visible : true,
+            text : "customer defined title"
+          }
+        },
+        xAxis : {
+          lineSize : "5",
+          color : "red",
+          title : {
+            visible : true,
+            text : "customer defined title"
+          }
+        }
+      };
+
+      deepEqual(vizOptions.yAxis, options_line.yAxis, "Check line properties." + stringfyJSONCompareMessage(vizOptions.yAxis, options_line.yAxis));
+      deepEqual(vizOptions.xAxis, options_line.xAxis, "Check line properties." + stringfyJSONCompareMessage(vizOptions.xAxis, options_line.xAxis));
+    }, timer);
+  });
+
+  asyncTest( 'Check Properties: Bar(legend)',  function() {
+    setTimeout(function(){
+      cleanChart();
+      start(); 
+      oChart = createChart( sap.viz.ui5.Bar, {
+        legend : {
+          visible : true,
+          title : {
+            visible : true,
+            text : "customer defined legend title"
+          }
+        },
+        dataset : getDataset('a1a2m1')
+      });
+      oChart.placeAt("content");
+      vizOptions = oChart._getOptions();
+      var options_bar_legend = {
+        //visible: true,
+        title : {
+          visible : true,
+          text : "customer defined legend title"
+        }
+      };
+      deepEqual(vizOptions.legend, options_bar_legend, "Check bar legend properties.(Will remove the properties which same to default value)");
+    }, timer);
+  });
+
+  asyncTest('Check Properties: Bubble (shapePalette)', function() {
+    setTimeout(function(){
+      cleanChart();
+      start(); 
+      oChart = createChart( sap.viz.ui5.Bubble, {
+        plotArea : {
+          colorPalette : [ "red", "blue", "yellow" ],
+          shapePalette : [ 'triangle-up', 'triangle-down', 'triangle-left',
+              'triangle-right', 'cross' ],
+          drawingEffect : sap.viz.ui5.types.Bubble_drawingEffect.normal,
+        },
+        dataset : getDataset('a1m1m2m3m4')
+      });
+      oChart.placeAt("content");
+      vizOptions = oChart._getOptions();
+      var options_bubble = {
+        colorPalette : [ "red", "blue", "yellow" ],
+        shapePalette : [ 'triangle-up', 'triangle-down', 'triangle-left',
+            'triangle-right', 'cross' ],
+        //drawingEffect : 'normal',
+        animation : {
+          dataLoading : false,
+          dataUpdating : false,
+          resizing : false
+        }
+      };
+      deepEqual(vizOptions.plotArea, options_bubble, "Check bubble plotarea properties.");
+    }, timer);
+  });
+
+  asyncTest('Check Properties: Scatter (shapePalette)', function() {
+    setTimeout(function(){
+      cleanChart();
+      start();
+      oChart = createChart( sap.viz.ui5.Scatter, {
+        plotArea : {
+          colorPalette : [ "red", "blue", "yellow" ],
+          shapePalette : [ 'circle', 'triangle-down', 'cross', 'triangle-right',
+              'intersection' ],
+          drawingEffect : sap.viz.ui5.types.Scatter_drawingEffect.normal,
+          animation : {
+            dataLoading : false,
+            dataUpdating : false,
+            resizing : false
+          },
+        },
+        dataset : getDataset('a1m1m2')
+      });
+      oChart.placeAt("content");
+      vizOptions = oChart._getOptions();
+      var options_scatter = {
+        colorPalette : [ "red", "blue", "yellow" ],
+        shapePalette : [ 'circle', 'triangle-down', 'cross', 'triangle-right',
+            'intersection' ],
+        //drawingEffect : 'normal',
+        animation : {
+          dataLoading : false,
+          dataUpdating : false,
+          resizing : false
+        }
+      };
+      deepEqual(vizOptions.plotArea, options_scatter, "Check scatter plotarea properties.");
+    }, timer);
+  });
+
+  asyncTest( 'Check Properties: Stacked Column (legendGroup)', function() {
+    setTimeout(function(){
+      cleanChart();
+      start();
+      oChart = createChart( sap.viz.ui5.StackedColumn, {
+        legendGroup : {
+          layout : {
+            position : "left"
+          }
+        },
+        dataset : getDataset('a1a2m1')
+      });
+      oChart.placeAt("content");
+      vizOptions = oChart._getOptions();
+     
+      var options_stackedcolumn_legendContainer = {
+        layout : {
+          position : "left"
+        }
+      };
+          //console.log(JSON.stringify(vizOptions.legendContainer));
+          //console.log(JSON.stringify(options_stackedcolumn_legendContainer));
+          //equal(simpleObjectEquals(vizOptions.legendContainer,options_stackedcolumn_legendContainer),true,"Check stacked column legendContainer properties.");
+     deepEqual(vizOptions.legendGroup, options_stackedcolumn_legendContainer, "Check stacked column legendContainer properties.");
+    }, timer);
+  });
+
+  asyncTest( 'Check Properties: Percentage Stacked Column', function() {
+    setTimeout(function(){
+      cleanChart();
+      start();
+      oChart = createChart( sap.viz.ui5.StackedColumn100, {
+         plotArea : {
+           colorPalette : [ "red", "blue", "yellow" ],
+           drawingEffect : sap.viz.ui5.types.StackedVerticalBar_drawingEffect.glossy,
+           isRoundCorner : true
+         },
+         dataset : getDataset('a1a2m1')
+       });
+      oChart.placeAt("content");
+      vizOptions = oChart._getOptions();
+      var options_stackedcolumn_100 = {
+        colorPalette : [ "red", "blue", "yellow" ],
+        drawingEffect : 'glossy',
+        animation : {
+          dataLoading : false,
+          dataUpdating : false,
+          resizing : false
+        },
+        isRoundCorner : true
+      };
+      deepEqual(vizOptions.plotArea.colorPalette, options_stackedcolumn_100.colorPalette, "Check percentage stacked column plotarea properties -- colorPalette.");
+      equal(vizOptions.plotArea.drawingEffect, options_stackedcolumn_100.drawingEffect, "Check percentage stacked column plotarea properties -- drawingEffect.");
+      deepEqual(vizOptions.plotArea.animation, options_stackedcolumn_100.animation, "Check percentage stacked column plotarea properties -- animation.");
+      equal(vizOptions.plotArea.isRoundCorner, options_stackedcolumn_100.isRoundCorner, "Check percentage stacked column plotarea properties -- isRoundCorner.");
+    }, timer);
+  });
+
+  asyncTest( 'Check Properties: Dual Bar (interaction/dataLabel)', function() {
+    setTimeout(function(){
+      cleanChart();
+      start();
+      oChart = createChart( sap.viz.ui5.DualBar, {
+         interaction : {
+           selectability : {
+             mode : sap.viz.ui5.types.controller.Interaction_selectability_mode.single
+           }
+         },
+         dataLabel : {
+           visible : true,
+           position : sap.viz.ui5.types.Datalabel_position.outside
+         },
+         dataset : getDataset('a1a2m1m2')
+      });
+      oChart.placeAt("content");
+      vizOptions = oChart._getOptions();
+      var options_dualbar = {
+        interaction : {
+          selectability : {
+            mode : 'single'
+          }
+        },
+        dataLabel : {
+          visible : true,
+          position : 'outside'
+        }
+      };
+      deepEqual(vizOptions.interaction.selectability, options_dualbar.interaction.selectability, "Check dual bar properties (interaction).");
+      deepEqual(vizOptions.dataLabel, options_dualbar.dataLabel, "Check dual bar properties (dataLabel).");
+    }, timer);
+  });
+
+  asyncTest('Check Properties: Dual Column', function() {
+    setTimeout(function(){
+      cleanChart();
+      start();
+      oChart = createChart( sap.viz.ui5.DualColumn, {
+        dataLabel : {
+        },
+        dataset : getDataset('a1a2m1m2')
+      });
+      oChart.placeAt("content");
+      vizOptions = oChart._getOptions();
+      var options_dualbar = {
+        dataLabel : {
+          
+        }
+      };
+      deepEqual(vizOptions.dataLabel, options_dualbar.dataLabel,  "Check dual column properties.");
+    }, timer);
+  });
+
+  asyncTest( 'Check Properties: Dual Combination(plotArea.animation)', function() {
+    setTimeout(function(){
+      cleanChart();
+      start();
+      oChart = createChart( sap.viz.ui5.DualCombination, {
+        interaction : {
+          selectability : {
+            mode : sap.viz.ui5.types.controller.Interaction_selectability_mode.single
+          }
+        },
+        dataLabel : {
+          visible : true,
+          position : sap.viz.ui5.types.Datalabel_position.outside
+        },
+        plotArea : {
+          animation : {
+            dataLoading : false,
+            dataUpdating : false,
+            resizing : false
+          },
+          primaryValuesColorPalette : [ '#3D88C4', '#8FBADD', '#B8D4E9', '#7AAED6', '#A3C7E3' ],
+          secondaryValuesColorPalette : [ '#EE4A40', '#F16C64', '#F8B1AD', '#F05B52', '#F37D76' ],
+          drawingEffect : sap.viz.ui5.types.Bar_drawingEffect.glossy,
+          bar : {
+            isRoundCorner : true
+          },
+          line : {
+            width : 5,
+            marker : {
+              visible : true,
+              shape : 'circle',
+              size : 5
+            }
+          }
+        },
+        dataset : getDataset('a1a2m1m2')
+      });
+      oChart.placeAt("content");
+      vizOptions = oChart._getOptions();
+      var options_dualbar = {
+        interaction : {
+          selectability : {
+            mode : 'single'
+          }
+        },
+        dataLabel : {
+          visible : true,
+          position : 'outside',
+          formatString : [ [ null ] ]
+        },
+        plotArea : {
+          animation : {
+            dataLoading : false,
+            dataUpdating : false,
+            resizing : false
+          },
+          colorPalette : [ "#748CB2", "#9CC677", "#EACF5E", "#F9AD79",
+              "#D16A7C", "#8873A2", "#3A95B3", "#B6D949", "#FDD36C",
+              "#F47958", "#A65084", "#0063B1", "#0DA841", "#FCB71D",
+              "#F05620", "#B22D6E", "#3C368E", "#8FB2CF", "#95D4AB",
+              "#EAE98F", "#F9BE92", "#EC9A99", "#BC98BD", "#1EB7B2",
+              "#73C03C", "#F48323", "#EB271B", "#D9B5CA", "#AED1DA",
+              "#DFECB2", "#FCDAB0", "#F5BCB4" ],
+          primaryValuesColorPalette : [ '#3D88C4', '#8FBADD', '#B8D4E9', '#7AAED6', '#A3C7E3' ],
+          secondaryValuesColorPalette : [ '#EE4A40', '#F16C64', '#F8B1AD', '#F05B52', '#F37D76' ],
+          drawingEffect : 'glossy',
+          bar : {
+            isRoundCorner : true
+          },
+          line : {
+            width : 5,
+            marker : {
+              visible : true,
+              shape : 'circle',
+              size : 5
+            }
+          }
+        }
+      };
+      deepEqual(vizOptions.animtaion, options_dualbar.animation, "Check dual combination animation properties.");
+    }, timer);
+  });
+
+  asyncTest( 'Check Properties: Dual Line', function() {
+    setTimeout(function(){
+      cleanChart();
+      start();
+      oChart = createChart( sap.viz.ui5.DualLine, {
+        interaction : {
+          selectability : {
+            mode : sap.viz.ui5.types.controller.Interaction_selectability_mode.single
+          }
+        },
+        dataLabel : {
+          visible : true,
+          position : sap.viz.ui5.types.Datalabel_position.outside
+        },
+        plotArea : {
+          primaryValuesColorPalette : [ '#3D88C4', '#8FBADD', '#B8D4E9', '#7AAED6', '#A3C7E3' ],
+          secondaryValuesColorPalette : [ '#EE4A40', '#F16C64', '#F8B1AD', '#F05B52', '#F37D76' ],
+          drawingEffect : sap.viz.ui5.types.Bar_drawingEffect.glossy,
+          width : 5,
+          hoverline : {
+            visible : false
+          },
+          marker : {
+            visible : true,
+            shape : sap.viz.ui5.types.Line_marker_shape.diamond,
+            size : 5
+          }
+        },
+        dataset : getDataset('a1a2m1m2')
+      });
+      oChart.placeAt("content");
+      vizOptions = oChart._getOptions();
+      var options_dualline = {
+        interaction : {
+          selectability : {
+            mode : 'single'
+          }
+        },
+        dataLabel : {
+          visible : true,
+          position : 'outside'
+        },
+        plotArea : {
+          primaryValuesColorPalette : [ '#3D88C4', '#8FBADD', '#B8D4E9', '#7AAED6', '#A3C7E3' ],
+          secondaryValuesColorPalette : [ '#EE4A40', '#F16C64', '#F8B1AD', '#F05B52', '#F37D76' ],
+          drawingEffect : 'glossy',
+          width : 5,
+          hoverline : {
+            visible : false
+          },
+          marker : {
+            visible : true,
+            shape : 'diamond',
+            size : 5
+          },
+          animation: {
+            dataLoading : false,
+            dataUpdating : false,
+            resizing : false
+          }
+        }
+      };
+      deepEqual(vizOptions.interaction.selectability, options_dualline.interaction.selectability,"Check dual line properties. -- interaction.selectability");
+      deepEqual(vizOptions.dataLabel, options_dualline.dataLabel,"Check dual line properties. -- dataLabel");
+      deepEqual(vizOptions.plotArea, options_dualline.plotArea,"Check dual line properties. -- plotArea");
+    }, timer);
+  });
+
+  asyncTest('Check Properties: Dual Stacked Column',function() {
+    setTimeout(function(){
+      cleanChart();
+      start();
+      oChart = createChart( sap.viz.ui5.DualStackedColumn, {
+         dataLabel : {
+           visible : true,
+           position : sap.viz.ui5.types.Datalabel_position.outside
+         },
+         plotArea : {
+           primaryValuesColorPalette : [ '#3D88C4', '#8FBADD', '#B8D4E9', '#7AAED6', '#A3C7E3' ],
+           secondaryValuesColorPalette : [ '#EE4A40', '#F16C64', '#F8B1AD', '#F05B52', '#F37D76' ],
+           drawingEffect : sap.viz.ui5.types.Bar_drawingEffect.glossy,
+           isRoundCorner : true
+         },
+         dataset : getDataset('a1a2m1m2')
+       });
+      oChart.placeAt("content");
+      vizOptions = oChart._getOptions();
+      var options_dualbar = {
+        dataLabel : {
+          visible : true,
+          position : 'outside'
+        },
+        plotArea : {
+          primaryValuesColorPalette : [ '#3D88C4', '#8FBADD', '#B8D4E9', '#7AAED6', '#A3C7E3' ],
+          secondaryValuesColorPalette : [ '#EE4A40', '#F16C64', '#F8B1AD', '#F05B52', '#F37D76' ],
+          drawingEffect : 'glossy',
+          isRoundCorner : true,
+          animation: {
+            dataLoading : false,
+            dataUpdating : false,
+            resizing : false
+          }
+        }
+      };
+      deepEqual(vizOptions, options_dualbar, "Check dual stacked column properties.");
+    }, timer);
+  });
+
+  asyncTest( 'Check Properties: Dual Percentage Stacked Column', function() {
+    setTimeout(function(){
+      cleanChart();
+      start();
+      oChart = createChart( sap.viz.ui5.DualStackedColumn100, {
+        dataLabel : {
+          visible : true,
+          position : sap.viz.ui5.types.Datalabel_position.outside
+        },
+        plotArea : {
+          primaryValuesColorPalette : [ '#3D88C4', '#8FBADD', '#B8D4E9', '#7AAED6', '#A3C7E3' ],
+          secondaryValuesColorPalette : [ '#EE4A40', '#F16C64', '#F8B1AD', '#F05B52', '#F37D76' ],
+          drawingEffect : sap.viz.ui5.types.Bar_drawingEffect.glossy,
+          isRoundCorner : true
+        },
+        dataset : getDataset('a1a2m1m2')
+      });
+      oChart.placeAt("content");
+      vizOptions = oChart._getOptions();
+      var options_dualbar = {
+        dataLabel : {
+          visible : true,
+          position : 'outside'
+        },
+        plotArea : {
+          primaryValuesColorPalette : [ '#3D88C4', '#8FBADD', '#B8D4E9', '#7AAED6', '#A3C7E3' ],
+          secondaryValuesColorPalette : [ '#EE4A40', '#F16C64', '#F8B1AD', '#F05B52', '#F37D76' ],
+          drawingEffect : 'glossy',
+          isRoundCorner : true,
+          animation: {
+            dataLoading : false,
+            dataUpdating : false,
+            resizing : false
+          }
+        }
+      };
+      equal(simpleObjectEquals(vizOptions, options_dualbar), true, "Check dual percentage stacked column properties.");
+    }, timer);
+  });
+  
+  asyncTest('Check Properties: Pie (dataTransform)',function(){
+    setTimeout(function(){
+      cleanChart();
+      start();
+      oChart = createChart( sap.viz.ui5.Pie, { 
+         dataTransform : {
+           autoBinning: {
+             enable: true,
+             binNumber: 3
+           }
+        },
+        dataset : getDataset('a1a1m1')
+      });
+      oChart.placeAt("content"); 
+      var vizOptions = oChart._getOptions();
+      var options_pie = {
+       dataTransform : {
+         autoBinning: {
+           enable: true,
+           binNumber: 3
+        }
+       }
+      };
+      deepEqual(vizOptions.dataTransform, options_pie.dataTransform,"Check pie properties (dataTransform).");
+    },timer); 
+  });
+  
+  asyncTest('Check Properties: Scatter (dataTransform)',function(){
+    setTimeout(function(){
+      cleanChart();
+      start();
+      oChart = createChart( sap.viz.ui5.Scatter, { 
+          dataTransform : {
+             autoBinning: {
+                 enable: true,
+                 binNumber: 9
+             }
+        },
+        dataset : getDataset('a1a1m1m2')
+      });
+      oChart.placeAt("content"); 
+      var vizOptions = oChart._getOptions();
+      var options_scatter = {
+        dataTransform : {
+           autoBinning: {
+            enable: true,
+            binNumber: 9
+           }
+       }
+      };
+      deepEqual(vizOptions.dataTransform, options_scatter.dataTransform,"Check scatter properties (dataTransform).");
+     },timer); 
+ });
+
+  asyncTest("Check Properties: a1a1a2a2m1m2 Line with triangle marker: triangleUp/triangleDown/triangleLeft/triangleRight", function() {
+    setTimeout(function() {
+      cleanChart();
+      start();
+      var oDataset = new sap.viz.ui5.data.FlattenedDataset(a1a1a2a2m1m2Data);
+      var oModel = new sap.ui.model.json.JSONModel(a1a1a2a2m1m2Model);
+      oDataset.setModel(oModel);
+      oChart = createChart( sap.viz.ui5.Line, {
+        dataset : oDataset,
+        plotArea : {
+          marker : {
+            shape : "triangleUp",
+            size : 5,
+            visible : true
+          }
+        }
+      });
+      oChart.placeAt("content");
+      equal(oChart._getOptions().plotArea.marker.shape, "triangle-up", "The oChart._getOptions().plotArea.marker.shape: triangleUp should be converted into triangle-up");
+      equal(oChart.getPlotArea().getMarker().getShape(), "triangleUp", "Test oChart.getPlotArea().getMarker().getShape(): it should be triangleUp.");
+      oChart.getPlotArea().getMarker().setShape("triangleDown");
+      equal(oChart._getOptions().plotArea.marker.shape, "triangle-down", "The oChart._getOptions().plotArea.marker.shape: triangleDown should be converted into triangle-down");
+      equal(oChart.getPlotArea().getMarker().getShape(), "triangleDown", "Test oChart.getPlotArea().getMarker().getShape(): it should be triangleDown.");
+      oChart.getPlotArea().getMarker().setShape("triangleLeft");
+      equal(oChart._getOptions().plotArea.marker.shape, "triangle-left", "The oChart._getOptions().plotArea.marker.shape: triangleLeft should be converted into triangle-left");
+      equal(oChart.getPlotArea().getMarker().getShape(), "triangleLeft", "Test oChart.getPlotArea().getMarker().getShape(): it should be triangleLeft.");
+      oChart.getPlotArea().getMarker().setShape("triangleRight");
+      equal(oChart._getOptions().plotArea.marker.shape, "triangle-right", "The oChart._getOptions().plotArea.marker.shape:triangleUp should be converted into triangle-right");
+      equal(oChart.getPlotArea().getMarker().getShape(), "triangleRight", "Test oChart.getPlotArea().getMarker().getShape(): it should be triangleRight.");
+    }, timer);
+  });
+  
+  module("Set properties via function", {
+    setup : function() {
+      if(oChart === undefined){
+        cleanChart();
+        oChart = createChart( sap.viz.ui5.Bar, {
+          dataset : getDataset('a1a2m1')
+        });
+        oChart.placeAt("content");
+      }
+    }
+  });
+
+  asyncTest("Set Legend", function() {
+    setTimeout(function() {
+      start();
+      oChart.getLegend().getTitle().setVisible(true).setText("New Revenue");
+      //Get Options from bar chart
+      vizOptions = oChart._getOptions();
+    
+      //Viz chart should receive the following options.
+      var orignOptions = {
+        legend : {
+          title : {
+            visible : true,
+            text : "New Revenue"
+          }
+        }
+      };
+      deepEqual(vizOptions.legend, orignOptions.legend, "Legend properties should be the same.");
+    }, timer);
+  });
+
+  asyncTest("Set LegendContainer", function() {
+    setTimeout(function() {
+      start();
+      oChart.getLegendGroup().getLayout().setPosition('left');
+
+      //Get Options from bar chart
+      vizOptions = oChart._getOptions();
+      
+      //Viz chart should receive the following options.
+      var orignOptions = {
+        legendGroup : {
+          layout: {
+            position: 'left'
+          }
+        }
+      };
+      deepEqual(vizOptions.legendGroup, orignOptions.legendGroup, "Legend properties should be the same.");
+    }, timer);
+  });
+
+  asyncTest("Set Axis", function() {
+    setTimeout(function() {
+      start();
+      oChart.getXAxis().setAxisline(new sap.viz.ui5.types.Axis_axisline({
+        'visible' : false
+      })).setGridline(new sap.viz.ui5.types.Axis_gridline({
+        "type" : sap.viz.ui5.types.Axis_gridline_type.dotted,
+        "color" : "#ffffff",
+        "size" : "5"
+      })).setLabel(new sap.viz.ui5.types.Axis_label({
+        "visible" : false,
+      })).setTitle(new sap.viz.ui5.types.Axis_title({
+        "visible" : true,
+        "text" : 'tile'
+      })).setColor('yellow').setLineSize(5);
+      vizOptions = oChart._getOptions();
+      
+      var valueAxis_option = {
+        "lineSize" : "5",
+        "color" : "yellow",
+        "title" : {
+          "visible" : true,
+          "text" : 'tile'
+        },
+        "gridline" : {
+          "type" : "dotted",
+          "color" : "#ffffff",
+          "size" : "5"
+        },
+        "axisline" : {
+          "visible" : false
+        },
+        "label" : {
+          "visible" : false,
+          
+        }
+      };
+      deepEqual(vizOptions.xAxis, valueAxis_option, "Axis properties should be the same.");
+    }, timer);
+  });
+
+  asyncTest("Set Title", function() {
+    setTimeout(function() {
+      start();
+      oChart.getTitle().setVisible(true).setText('title of the bar chart').setAlignment(sap.viz.ui5.types.Title_alignment.left);
+      vizOptions = oChart._getOptions();
+  
+      var titleOption = {
+        "visible" : true,
+        "text" : "title of the bar chart",
+        "alignment" : "left"
+      };
+      deepEqual(vizOptions.title, titleOption, "Title properties should be the same.");
+    }, timer);
+  });
+
+  asyncTest("Set background effect and direction", function() {
+    setTimeout(function() {
+      start();
+      oChart.getBackground().setDirection(
+          sap.viz.ui5.types.Background_direction.horizontal).setDrawingEffect(
+          sap.viz.ui5.types.Background_drawingEffect.glossy);
+      vizOptions = oChart._getOptions();
+      
+      var backgroundOption = {
+        "drawingEffect" : "glossy",
+        "direction" : "horizontal"
+      };
+      deepEqual(vizOptions.background, backgroundOption, "Background properties should be the same.");
+    }, timer);
+  });
+
+  asyncTest("Set background border ", function() {
+    setTimeout(function() {
+      start();
+      
+      oChart.getBackground().setBorder(
+        new sap.viz.ui5.types.Background_border({
+          left : {
+            visible : false
+          },
+          right : {
+            visible : false
+          },
+          top : {
+            visible : false
+          },
+          bottom : {
+            visible : false
+          }
+        }));
+      vizOptions = oChart._getOptions();
+      
+      var backgroundOption = {
+        "border" : {
+          "left" : {
+            "visible" : false
+          },
+          "right" : {
+            "visible" : false
+          },
+          "top" : {
+            "visible" : false
+          },
+          "bottom" : {
+            "visible" : false
+          }
+        }
+      };
+      deepEqual(vizOptions.background.border, backgroundOption.border, "Background properties should be the same.");
+    }, timer);
+  });
+
+  asyncTest("Set datalabel property", function() {
+    setTimeout(function() {
+      start();
+      
+      oChart.getDataLabel().setVisible(true).setPosition(sap.viz.ui5.types.Datalabel_position.outside).setFormatString([ [ '0.00' ] ]);
+      vizOptions = oChart._getOptions();
+      
+      var datalabelOption = {
+        visible : true,
+        position : 'outside',
+        formatString : [ [ '0.00' ] ]
+      };
+      deepEqual(vizOptions.dataLabel, datalabelOption, "Datalabel properties should be the same.");
+    }, timer);
+  });
+
+  asyncTest('Set General Layout Properties', function() {
+    setTimeout(function() {
+      start();     
+      oChart.getGeneral().getLayout().setPadding(1);
+      vizOptions = oChart._getOptions();
+    
+      equal(oChart.getGeneral().getLayout().getPadding(), 1, "oChart.getGeneral().getLayout().setPadding(1), the padding should be 1.");
+    }, timer);
+  });
+  
+  module("Test css");
+
+  asyncTest("Check CSS style", function() {
+    //ok(true, "a1a2m1Model Bar chart.");
+    setTimeout(function() {
+      cleanChart();
+      start();
+      var css = '.v-background-body{  fill: #ffdead; }';
+      oChart = createChart( sap.viz.ui5.Bar, {
+        dataset : getDataset("a1a2m1"),
+        css : css,
+        selectData : function(oEvent) {
+          console.log(oEvent.getParameter("data"));
+        }
+      });
+      oChart.placeAt("content");
+      equal(oChart.getCss(), css, "Test css.");
+    }, timer);
+  });
+
+  module("Set default selection");
+  
+  asyncTest("Bar: Select single item by chart's API", function() {
+    ok(true, "a1a2m1Model Bar chart.");
+    setTimeout(function() {
+      cleanChart();
+      start();
+
+      oChart = createChart( sap.viz.ui5.Bar, {
+        dataset : getDataset("a1a2m1")
+      });
+      oChart.placeAt("content");
+      setTimeout(function() {
+        oChart.setDefaultSelection([ {
+          Color : "Red",
+          Product : "Car",
+          'Measure' : 'Revenue'
+        } ]);
+      }, timer);
+    }, timer);
+  });
+
+  asyncTest("Bar: Select single item by Dataset API", function() {
+    ok(true, "a1a2m1Model Bar chart.");
+    setTimeout(function() {
+      cleanChart();
+      start();
+
+      var oDataset = getDataset("a1a2m1");
+      oDataset.setDefaultSelection([ {
+        Color : "Red",
+        Product : "Car",
+        'Measure' : 'Revenue'
+      } ]);
+      oChart = createChart( sap.viz.ui5.Bar, {
+        dataset : oDataset
+      });
+      oChart.placeAt("content");
+    }, timer);
+  });
+
+  asyncTest("Bar: Select multiple item by Dataset API", function() {
+    ok(true, "a1a2m1Model Bar chart.");
+    setTimeout(function() {
+      cleanChart();
+      start();
+
+      var oDataset = getDataset("a1a2m1");
+      oDataset.setDefaultSelection([ {
+        Color : "Blue",
+        Product : "Car",
+        'Measure' : 'Revenue'
+      }, {
+        Color : "Red",
+        Product : "Truck",
+        'Measure' : 'Revenue'
+      } ]);
+      oChart = createChart( sap.viz.ui5.Bar, {
+        dataset : oDataset
+      });
+      oChart.placeAt("content");
+    }, timer);
+  });
+
+  asyncTest("Bar: Check selected data value", function() {
+    ok(true, "a1a2m1Model Bar chart.");
+    var oData;
+    setTimeout(function() {
+      cleanChart();
+      
+      var oDataset = getDataset("a1a2m1");
+      oDataset.setDefaultSelection([ {
+        Color : "Blue",
+        Product : "Car",
+        'Measure' : 'Revenue'
+      }, {
+        Color : "Red",
+        Product : "Truck",
+        'Measure' : 'Revenue'
+      } ]);
+      oChart = createChart( sap.viz.ui5.Bar, {
+        plotArea : {
+          animation : {
+            dataLoading : false,
+            dataUpdating : false,
+            resizing : false
+          }
+        },
+        dataset : oDataset,
+        selectData : function(oEvent) {
+          oData = oEvent.getParameter("data");
+          ok(true, "Event(selectData) is invoked.")
+          console.log(oEvent.getParameter("data"));
+          equal(oData[0].data[0].val, 72, "The first selected value should be 72.");
+          equal(oData[1].data[0].val, 40, "The first selected value should be 40.");
+        },
+        initialized : function(oControlEvent) {
+          initializedEventStatus = 1;
+          ok(true, "Event(initialized) should be invoked.");
+          start();
+        }
+      });
+      oChart.placeAt("content");
+    }, timer);
+  });
+  
+  module('selection');
+  
+  asyncTest("Get default selected info via selection API", function() {
+    ok(true, "a1a2m1Model Bar chart.");
+    setTimeout(function() {
+      cleanChart();
+      start();
+
+      var oDataset = getDataset("a1a2m1");
+      oDataset.setDefaultSelection([ {
+        Color : "Blue",
+        Product : "Car",
+        'Measure' : 'Revenue'
+      }, {
+        Color : "Red",
+        Product : "Truck",
+        'Measure' : 'Revenue'
+      } ]);
+      oChart = createChart( sap.viz.ui5.Bar, {
+        dataset : oDataset
+      });
+      oChart.placeAt("content");
+      setTimeout(function(){
+        var selected = oChart.selection();
+        var expected = [ {
+          Color : "Blue",
+          Product : "Car",
+          'Revenue': 72
+        }, {
+          Color : "Red",
+          Product : "Truck",
+          'Revenue': 40
+        } ];
+      }, timer);
+    }, timer);
+  });  
+
+  var cleanChart = function() {
+    if (oChart) {
+      oChart.destroy();
+    }
+  };
+  
+  var createChart = function(chartType, settings){
+    if(settings === undefined) {
+      settings = {};
+    }
+    if(settings.plotArea === undefined){
+      settings.plotArea = {};
+    }
+    settings.plotArea.animation = {
+      dataLoading : false,
+      dataUpdating : false,
+      resizing : false
+    };
+    return new chartType(settings);
+  };
+</script>
+
+<title>qunit Test for Chart Properties</title>
+
+</head>
+<body class="sapUiBody">
+  <h1 id="qunit-header">QUnit tests: chart properties</h1>
+  <h2 id="qunit-banner"></h2>
+  <h2 id="qunit-userAgent"></h2>
+  <div id='content'  style="width: 640px; height: 480px;" ></div>
+  <div id="qunit-testrunner-toolbar"></div>
+  <ol id="qunit-tests"></ol>
+
+</body>
+</html>

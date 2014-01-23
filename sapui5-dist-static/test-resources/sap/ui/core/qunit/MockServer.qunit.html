@@ -1,0 +1,824 @@
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<title>qUnit Page for sap.ui.core.util.MockServer Class</title>
+
+    <script id="sap-ui-bootstrap" 
+			type="text/javascript"
+			src="../../../../../resources/sap-ui-core.js"
+			data-sap-ui-theme="sap_platinum"
+			data-sap-ui-noConflict="true"
+			data-sap-ui-libs="sap.ui.commons" >
+		</script>
+    
+		<link rel="stylesheet" href="../../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
+		<script type="text/javascript" src="../../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+		<script type="text/javascript" src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
+		<script type="text/javascript" src="../../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
+
+		<script language="javascript">
+
+			// notepad control for list binding test
+			sap.ui.core.Element.extend("MyListItem", {
+				// the control API:
+				metadata : {
+					properties : {
+						"text" : "string"
+					}
+				}
+			});
+
+			sap.ui.core.Control.extend("MyList", {
+
+				// the control API:
+				metadata : {
+					aggregations : {
+						"items" : {
+							type : "MyListItem",
+							multiple : true
+						}
+					}
+				},
+
+				// the part creating the HTML:
+				renderer : function(oRm, oControl) {
+					oRm.write("<ul");
+					oRm.writeControlData(oControl);
+					oRm.writeClasses();
+					oRm.write(">");
+					jQuery.each(oControl.getItems(), function(iIndex, oItem) {
+						oRm.write("<li");
+						if (oItem.getTooltip_AsString()) {
+							oRm.writeAttributeEscaped("title", oItem.getTooltip_AsString());
+						}
+						oRm.write(">");
+						oRm.writeEscaped(oItem.getText());
+						oRm.write("</li>");
+					});
+					oRm.write("</ul>");
+				}
+
+			});
+
+			// require the mock server before testing
+			jQuery.sap.require("sap.ui.core.util.MockServer");
+
+			test("Basic", 11, function() {
+				var oMockServer = new sap.ui.core.util.MockServer({
+					rootUri : "http://localhost/myservice",
+					requests : [{
+						method : "GET",
+						path : "/projects",
+						response : function(oXhr) {
+							oXhr.respond(200, {
+								"Content-Type" : "application/json"
+							}, '[{ "id": "323233"}]');
+						}
+					}, {
+						method : "get", // Implicit Test: Gets uppercased
+						path : "/projects/:id",
+						response : function(oXhr, id) {
+							oXhr.respond(200, {
+								"Content-Type" : "application/json"
+							}, '[{ "id": ' + id + ' }]');
+						}
+					}, {
+						method : "GET",
+						path : "/projects2/(.*)",
+						response : function(oXhr, id) {
+							oXhr.respond(200, {
+								"Content-Type" : "application/json"
+							}, '[{ "id": ' + id + ' }]');
+						}
+					}]
+				});
+
+				ok(oMockServer, "Mock server is created");
+				oMockServer.start();
+				ok(oMockServer.isStarted(), "Mock server is started");
+				var oResponse = jQuery.sap.sjax({
+					url : "http://localhost/myservice/projects",
+					dataType : "json"
+				});
+				ok(oResponse.success, "Mock server responded");
+				equal(oResponse.statusCode, "200", "Response status is right");
+				deepEqual(oResponse.data, [{
+					"id" : "323233"
+				}], "Response is right");
+
+				oMockServer.stop();
+				ok(!oMockServer.isStarted(), "Mock server is stopped");
+				var oResponse = jQuery.sap.sjax({
+					url : "http://localhost/myservice/projects",
+					dataType : "json"
+				});
+				ok(!oResponse.success, "Response not faked");
+
+				oMockServer.start();
+				ok(oMockServer.isStarted(), "Mock server is started again");
+				var oResponse = jQuery.sap.sjax({
+					url : "http://localhost/myservice/projects",
+					dataType : "json"
+				});
+				ok(oResponse.success, "Mock server responded");
+				equal(oResponse.statusCode, "200", "Response status is right");
+				deepEqual(oResponse.data, [{
+					"id" : "323233"
+				}], "Response is right");
+
+				oMockServer.destroy();
+			});
+
+			test("Path with RegExp Pattern", 3, function() {
+				var oMockServer = new sap.ui.core.util.MockServer({
+					rootUri : "http://localhost/myservice",
+					requests : [{
+						method : "GET",
+						path : "/projects2/(.*)",
+						response : function(oXhr, id) {
+							oXhr.respond(200, {
+								"Content-Type" : "application/json"
+							}, '[{ "id": ' + id + ' }]');
+						}
+					}]
+				});
+
+				oMockServer.start();
+				ok(oMockServer.isStarted(), "Mock server is started");
+
+				var oResponse = jQuery.sap.sjax({
+					url : "http://localhost/myservice/projects2/323234",
+					dataType : "json"
+				});
+				ok(oResponse.success, "Mock server responded");
+				equal(oResponse.data[0].id, "323234", "RegExp groups are used right");
+
+				oMockServer.destroy();
+			});
+
+			test("Path with placeholder", 3, function() {
+				var oMockServer = new sap.ui.core.util.MockServer({
+					rootUri : "http://localhost/myservice",
+					requests : [{
+						method : "GET",
+						path : "/projects/:id",
+						response : function(oXhr, id) {
+							oXhr.respond(200, {
+								"Content-Type" : "application/json"
+							}, '[{ "id": ' + id + ' }]');
+						}
+					}]
+				});
+
+				oMockServer.start();
+				ok(oMockServer.isStarted(), "Mock server is started");
+
+				var oResponse = jQuery.sap.sjax({
+					url : "http://localhost/myservice/projects/323234",
+					dataType : "json"
+				});
+				ok(oResponse.success, "Mock server responded");
+				equal(oResponse.data[0].id, "323234", "Id is parsed right");
+
+				oMockServer.destroy();
+			});
+
+			test("Test assertion: Missing method", 1, function() {
+				var oMockServer = new sap.ui.core.util.MockServer({
+					rootUri : "http://localhost/myservice",
+					requests : [{
+						path : "/projects2/(.*)",
+						response : function(oXhr, id) {
+							oXhr.respond(200, {
+								"Content-Type" : "application/json"
+							}, '[{ "id": ' + id + ' }]');
+						}
+					}]
+				});
+
+				throws(function() {
+					oMockServer.start();
+				}, /method/, "Throws exception");
+				oMockServer.destroy();
+			});
+
+			test("Test assertion: Missing path", 1, function() {
+				var oMockServer = new sap.ui.core.util.MockServer({
+					rootUri : "http://localhost/myservice",
+					requests : [{
+						method : "GET",
+						response : function(oXhr, id) {
+							oXhr.respond(200, {
+								"Content-Type" : "application/json"
+							}, '[{ "id": ' + id + ' }]');
+						}
+					}]
+				});
+
+				throws(function() {
+					oMockServer.start();
+				}, /path/, "Throws exception");
+				oMockServer.destroy();
+			});
+
+			test("Test assertion: Missing response", 1, function() {
+				var oMockServer = new sap.ui.core.util.MockServer({
+					rootUri : "http://localhost/myservice",
+					requests : [{
+						method : "GET",
+						path : "/projects2/(.*)"
+					}]
+				});
+
+				throws(function() {
+					oMockServer.start();
+				}, /response/, "Throws exception");
+				oMockServer.destroy();
+			});
+
+			test("Two server", 10, function() {
+				var oMockServer1 = new sap.ui.core.util.MockServer({
+					rootUri : "http://localhost/myservice",
+					requests : [{
+						method : "GET",
+						path : "/projects",
+						response : function(oXhr) {
+							oXhr.respond(200, {
+								"Content-Type" : "application/json"
+							}, '[{ "id": "323233"}]');
+						}
+					}, {
+						method : "GET",
+						path : "/projects/:id",
+						response : function(oXhr, id) {
+							oXhr.respond(200, {
+								"Content-Type" : "application/json"
+							}, '[{ "id": ' + id + ' }]');
+						}
+					}]
+				});
+
+				var oMockServer2 = new sap.ui.core.util.MockServer({
+					rootUri : "http://localhost/myservice",
+					requests : [{
+						method : "GET",
+						path : "/projects2/(.*)",
+						response : function(oXhr, id) {
+							oXhr.respond(200, {
+								"Content-Type" : "application/json"
+							}, '[{ "id": ' + id + ' }]');
+						}
+					}]
+				});
+
+				oMockServer1.start();
+				ok(oMockServer1.isStarted(), "Mock server 1 is started");
+				oMockServer2.start();
+				ok(oMockServer2.isStarted(), "Mock server 2 is started");
+
+				var oResponse = jQuery.sap.sjax({
+					url : "http://localhost/myservice/projects",
+					dataType : "json"
+				});
+				ok(oResponse.success, "Mock server responded");
+				equal(oResponse.statusCode, "200", "Response status is right");
+				deepEqual(oResponse.data, [{
+					"id" : "323233"
+				}], "Response is right");
+
+				var oResponse = jQuery.sap.sjax({
+					url : "http://localhost/myservice/projects2/323234",
+					dataType : "json"
+				});
+				ok(oResponse.success, "Mock server responded");
+				equal(oResponse.data[0].id, "323234", "Id is parsed right");
+
+				oMockServer2.stop();
+				ok(!oMockServer2.isStarted(), "Mock server 2 is stopped");
+
+				var oResponse = jQuery.sap.sjax({
+					url : "http://localhost/myservice/projects2/323234",
+					dataType : "json"
+				});
+				ok(!oResponse.success, "Response is not faked");
+
+				oMockServer1.stop();
+				ok(!oMockServer1.isStarted(), "Mock server 1 is stopped");
+
+				oMockServer1.destroy();
+				oMockServer2.destroy();
+			});
+
+			test("Clean up", 15,
+					function() {
+						var oMockServer = new sap.ui.core.util.MockServer({
+							rootUri : "http://localhost/myservice",
+							requests : [{
+								method : "GET",
+								path : "/projects",
+								response : function(oXhr) {
+									oXhr.respond(200, {
+										"Content-Type" : "application/json"
+									}, '[{ "id": "323233"}]');
+								}
+							}, {
+								method : "GET",
+								path : "/projects/:id",
+								response : function(oXhr, id) {
+									oXhr.respond(200, {
+										"Content-Type" : "application/json"
+									}, '[{ "id": ' + id + ' }]');
+								}
+							}, {
+								method : "GET",
+								path : "/projects2/(.*)",
+								response : function(oXhr, id) {
+									oXhr.respond(200, {
+										"Content-Type" : "application/json"
+									}, '[{ "id": ' + id + ' }]');
+								}
+							}]
+						});
+
+						var oServer = sap.ui.core.util.MockServer._getInstance();
+
+						equal(jQuery.inArray(oMockServer, sap.ui.core.util.MockServer._aServers), 0, "Mock server is registered");
+
+						ok(oMockServer, "Mock server is created");
+						oMockServer.start();
+						ok(oMockServer.isStarted(), "Mock server is started");
+
+						equal(sap.ui.core.util.MockServer._aFilters.length, 3, "Filters are added to server");
+						equal(oServer.responses.length, 3, "Right response length at real sinonfake server obj");
+
+						oMockServer.stop();
+						ok(!oMockServer.isStarted(), "Mock server is stopped");
+
+						equal(sap.ui.core.util.MockServer._aFilters.length, 0, "Filters are removed from server");
+						equal(oServer.responses.length, 0, "Right response length on real sinonfake server obj");
+
+						oMockServer.start();
+						ok(oMockServer.isStarted(), "Mock server is started again");
+						equal(sap.ui.core.util.MockServer._aFilters.length, 3, "Filters are added to server");
+						equal(oServer.responses.length, 3, "Right response length at real sinonfake server obj");
+
+						oMockServer.destroy();
+						ok(!oMockServer.isStarted(), "Mock server is destroyed");
+						equal(sap.ui.core.util.MockServer._aFilters.length, 0, "Filters are removed from server");
+						equal(oServer.responses.length, 0, "Right response length on real sinonfake server obj");
+						equal(jQuery.inArray(oMockServer, sap.ui.core.util.MockServer._aServers), -1,
+								"Mock server is not registered anymore");
+					});
+
+			test("Start / Stop / Destroy all", 8, function() {
+				var oMockServer1 = new sap.ui.core.util.MockServer({
+					rootUri : "http://localhost/myservice",
+					requests : [{
+						method : "GET",
+						path : "/projects",
+						response : function(oXhr) {
+							oXhr.respond(200, {
+								"Content-Type" : "application/json"
+							}, '[{ "id": "323233"}]');
+						}
+					}, {
+						method : "GET",
+						path : "/projects/:id",
+						response : function(oXhr, id) {
+							oXhr.respond(200, {
+								"Content-Type" : "application/json"
+							}, '[{ "id": ' + id + ' }]');
+						}
+					}]
+				});
+
+				var oMockServer2 = new sap.ui.core.util.MockServer({
+					rootUri : "http://localhost/myservice",
+					requests : [{
+						method : "GET",
+						path : "/projects2/(.*)",
+						response : function(oXhr, id) {
+							oXhr.respond(200, {
+								"Content-Type" : "application/json"
+							}, '[{ "id": ' + id + ' }]');
+						}
+					}]
+				});
+
+				sap.ui.core.util.MockServer.startAll();
+				ok(oMockServer1.isStarted(), "Mock server 1 is started");
+				ok(oMockServer2.isStarted(), "Mock server 2 is started");
+
+				sap.ui.core.util.MockServer.stopAll();
+				ok(!oMockServer2.isStarted(), "Mock server 2 is stopped");
+				ok(!oMockServer2.isStarted(), "Mock server 2 is stopped");
+
+				sap.ui.core.util.MockServer.startAll();
+				ok(oMockServer1.isStarted(), "Mock server 1 is started");
+				ok(oMockServer2.isStarted(), "Mock server 2 is started");
+
+				sap.ui.core.util.MockServer.destroyAll();
+				ok(!oMockServer2.isStarted(), "Mock server 2 is stopped");
+				ok(!oMockServer2.isStarted(), "Mock server 2 is stopped");
+			});
+
+			asyncTest("Test Config: autoRespondAfter & async", 3, function() {
+				sap.ui.core.util.MockServer.config({
+					autoRespondAfter : 1000
+				})
+
+				var oMockServer = new sap.ui.core.util.MockServer({
+					rootUri : "http://localhost/myservice",
+					requests : [{
+						method : "GET",
+						path : "/projects/:id",
+						response : function(oXhr, id) {
+							oXhr.respond(200, {
+								"Content-Type" : "application/json"
+							}, '[{ "id": ' + id + ' }]');
+						}
+					}]
+				});
+
+				oMockServer.start();
+				ok(oMockServer.isStarted(), "Mock server is started");
+
+				var iBefore = new Date().getTime();
+				var oResponse = jQuery.ajax({
+					url : "http://localhost/myservice/projects/323234",
+					dataType : "json",
+					success : function() {
+						start();
+						ok(true, "Mock server responded");
+						var iNow = new Date().getTime();
+						var iRespondedAfter = iNow - iBefore;
+						// FF and IE seem to have to strange timing behaviour when the browser is started
+						// This is why we only use 950 ms here -> this is fair enough, as we only want to check hear if the response is delayed
+						// and the real implemention uses browser setTimeout functionality
+						ok(iRespondedAfter > 950, "Response after 1000ms (" + iRespondedAfter + " ms)");
+						oMockServer.destroy();
+						sap.ui.core.util.MockServer.config({
+							autoRespondAfter : 0
+						})
+					}
+				});
+			});
+
+			asyncTest("Test Config: autoRespond false & async", 2, function() {
+				sap.ui.core.util.MockServer.config({
+					autoRespond : false
+				})
+
+				var oMockServer = new sap.ui.core.util.MockServer({
+					rootUri : "http://localhost/myservice",
+					requests : [{
+						method : "GET",
+						path : "/projects/:id",
+						response : function(oXhr, id) {
+							oXhr.respond(200, {
+								"Content-Type" : "application/json"
+							}, '[{ "id": ' + id + ' }]');
+						}
+					}]
+				});
+
+				oMockServer.start();
+				ok(oMockServer.isStarted(), "Mock server is started");
+
+				var oResponse = jQuery.ajax({
+					url : "http://localhost/myservice/projects/323234",
+					dataType : "json",
+					success : function() {
+						start();
+						ok(true, "Mock server responded");
+						oMockServer.destroy();
+						sap.ui.core.util.MockServer.config({
+							autoRespond : true
+						})
+					}
+				});
+
+				window.setTimeout(function() {
+					sap.ui.core.util.MockServer.respond();
+				}, 1000);
+			});
+
+			test("xhr.respondJSON", 3, function() {
+				var oMockServer = new sap.ui.core.util.MockServer({
+					rootUri : "http://localhost/myservice",
+					requests : [{
+						method : "GET",
+						path : "/projects/:id",
+						response : function(oXhr, id) {
+							oXhr.respondJSON(200, null, '[{ "id": ' + id + ' }]');
+						}
+					}]
+				});
+
+				oMockServer.start();
+				ok(oMockServer.isStarted(), "Mock server is started");
+
+				var oResponse = jQuery.sap.sjax({
+					url : "http://localhost/myservice/projects/323234",
+					dataType : "json"
+				});
+				ok(oResponse.success, "Mock server responded");
+				equal(oResponse.data[0].id, "323234", "Right json is responded");
+
+				oMockServer.destroy();
+			});
+
+			var getXmlNodeText = function(oXmlNode) {
+				return oXmlNode.textContent || oXmlNode.text;
+			};
+
+			test("xhr.respondXML", 3, function() {
+				var oMockServer = new sap.ui.core.util.MockServer({
+					rootUri : "http://localhost/myservice",
+					requests : [{
+						method : "GET",
+						path : "/projects/:id",
+						response : function(oXhr, id) {
+							oXhr.respondXML(200, null, '<test>works</test>');
+						}
+					}]
+				});
+
+				oMockServer.start();
+				ok(oMockServer.isStarted(), "Mock server is started");
+
+				var oResponse = jQuery.sap.sjax({
+					url : "http://localhost/myservice/projects/323234",
+					dataType : "xml"
+				});
+				ok(oResponse.success, "Mock server responded");
+				equal(getXmlNodeText(oResponse.data.firstChild), "works", "Response is right");
+
+				oMockServer.destroy();
+			});
+
+			test("xhr.respondFile", 5, function() {
+				var oMockServer = new sap.ui.core.util.MockServer({
+					rootUri : "http://localhost/myservice",
+					requests : [{
+						method : "GET",
+						path : "/projects/:id",
+						response : function(oXhr, id) {
+							oXhr.respondFile(200, null, 'testdata/mockServerJSON.json');
+						}
+					}, {
+						method : "GET",
+						path : "/projects2/:id",
+						response : function(oXhr, id) {
+							oXhr.respondFile(200, null, 'testdata/mockServerXML.xml');
+						}
+					}]
+				});
+
+				oMockServer.start();
+				ok(oMockServer.isStarted(), "Mock server is started");
+
+				var oResponse = jQuery.sap.sjax({
+					url : "http://localhost/myservice/projects/323234",
+					dataType : "json"
+				});
+				ok(oResponse.success, "Mock server responded");
+				equal(oResponse.data.test, "works", "JSON: Response is right")
+
+				var oResponse = jQuery.sap.sjax({
+					url : "http://localhost/myservice/projects2/323234",
+					dataType : "xml"
+				});
+				ok(oResponse.success, "Mock server responded");
+				equal(getXmlNodeText(oResponse.data.firstChild), "works", "Response is right");
+
+				oMockServer.destroy();
+			});
+
+			var sURI = "/myservice/";
+
+			asyncTest("test $metadata xml", 10, function() {
+				var oMockServer = new sap.ui.core.util.MockServer({
+					rootUri : "/myservice/"
+				});
+				var sMetadataUrl = "testdata/DataModel.xml"// url to the service metadata document
+				var sMockdataBaseUrl = "testdata/"// base url which contains the mockdata
+				oMockServer.simulate(sMetadataUrl, sMockdataBaseUrl);
+				oMockServer.start();
+				ok(oMockServer.isStarted(), "Mock server is started");
+
+				var oResponse = jQuery.sap.sjax({
+					url : "/myservice/$metadata",
+					dataType : "xml"
+				});
+				ok(oResponse.success, "Mock server responded");
+				equal(jQuery(oResponse.data).find("Schema").children().length, 4, "Metadata XML: Response is right")
+
+				var oModel = initModel(sURI, true);
+				var oBinding = oModel.bindList("/LeaveHeaderCollection");
+				var handler = function() { // delay the following test
+					ok(oBinding.oEntityType, "entity type binding check");
+					equal(oBinding.oEntityType.name, "LeaveHeader", "entity type name check");
+					var oEntityType = oModel.oMetadata._getEntityTypeByPath("/LeaveHeaderCollection");
+					ok(oEntityType, "get entity type check");
+					equal(oEntityType.name, "LeaveHeader", "entity type name check");
+					var oPropMeta = oModel.oMetadata._getPropertyMetadata(oEntityType, "type");
+					ok(oPropMeta, "property type check");
+					equal(oPropMeta.name, "type", "entity type property check");
+					equal(oPropMeta.type, "Edm.String", "entity type property check");
+
+					oBinding.detachChange(handler);
+					start(); // resume normal testing
+				};
+				oBinding.attachChange(handler);
+				oBinding.getContexts();
+			});
+
+			asyncTest("test oDataModel _loadData JSON", function() {
+				var oModel = initModel(sURI, true);
+				oModel._loadData("LeaveHeaderCollection", null, function() {
+					equal(oModel.getProperty("/LeaveHeaderCollection(employeeid='JSMITH',type='Vacation')/type"), "Vacation",
+							"absolute path without context");
+					equal(oModel.getProperty("/LeaveHeaderCollection(employeeid='JSMITH',type='Vacation')/employeeid"), "JSMITH",
+							"absolute path without context");
+					oModel.createBindingContext("/LeaveHeaderCollection(employeeid='JSMITH',type='Vacation')", null, function(
+							newContext) {
+						equal(newContext.getProperty("employeeid"), "JSMITH", "relative path with context");
+						var iLength = 0;
+						var employee = oModel.getProperty("/");
+						var iKeys = 0;
+						jQuery.each(employee, function(iIndex, sKey) {
+							iKeys++;
+						});
+						equal(iKeys, 3);
+						start(); // resume normal testing			
+					});
+				});
+			});
+
+			var oLabel = new sap.ui.commons.Label("myLabel");
+			oLabel.placeAt("target1");
+
+			asyncTest("test getProperty on label", function() {
+				oLabel.setText("testText");
+				var oModel = initModel(sURI, true);
+				sap.ui.getCore().setModel(oModel);
+				oModel._loadData("LeaveItemCollection", null, function() {
+					equal(oLabel.getText(), "testText", "old text value");
+					oLabel.bindProperty("text", "/LeaveItemCollection(employeeid='JSMITH',itemid='1',type='Vacation')/from");
+					equal(oLabel.getText(), "2012-12-27", "text value from model");
+					oLabel.unbindProperty("text");
+					start();
+				});
+			});
+
+			asyncTest("test double load update", function() {
+				oLabel.setText("testText");
+				var oModel = initModel(sURI, true);
+				sap.ui.getCore().setModel(oModel);
+				oModel._loadData("LeaveItemCollection", null, function() {
+					equal(oLabel.getText(), "testText", "old text value");
+					oLabel.bindProperty("text", "/LeaveItemCollection(employeeid='JSMITH',itemid='1',type='Vacation')/from");
+					equal(oLabel.getText(), "2012-12-27", "new text value from model");
+					oLabel.unbindProperty("text");
+					oModel._loadData("LeaveHeaderCollection", null, function() {
+						equal(oLabel.getText(), "", "default value");
+						oLabel.bindProperty("text", "/LeaveHeaderCollection(employeeid='JSMITH',type='Vacation')/type");
+						equal(oLabel.getText(), "Vacation", "2nd new text value from model");
+						oLabel.unbindProperty("text");
+						start();
+					});
+				});
+			});
+
+			var oList = new MyList("myList");
+			var oListItem = new MyListItem();
+			oList.placeAt("target2");
+
+			asyncTest("test model bindAggregation on List", function() {
+				var oModel = initModel(sURI, true);
+				sap.ui.getCore().setModel(oModel);
+				oListItem.bindProperty("text", "type");
+				var oBinding = oList.bindAggregation("items", "/LeaveHeaderCollection", oListItem).getBinding('items');
+
+				var handler = function() {
+					var listItems = oList.getItems();
+					equal(listItems.length, 3, "length of items");
+					equal(listItems[0].getText(), "Vacation", "LeaveHeader 1 name");
+					oBinding.detachChange(handler);
+					start(); // resume normal testing
+				}
+				oBinding.attachChange(handler);
+			});
+
+			asyncTest("ListBinding getLength, getContexts", function() {
+				var oModel = initModel(sURI, true);
+				var oBinding = oModel.bindList("/LeaveItemCollection");
+
+				var handler = function() {
+					equal(oBinding.getPath(), "/LeaveItemCollection", "ListBinding path");
+					ok(oBinding.getModel() == oModel, "ListBinding model");
+					equal(oBinding.getLength(), 7, "length of items");
+					jQuery(oBinding.getContexts()).each(function(i, context) {
+						equal(context.getObject().itemid, (i + 1) + "", "ListBinding context");
+					});
+					oBinding.detachChange(handler);
+					start(); // resume normal testing
+				}
+				oBinding.attachChange(handler);
+				oBinding.getContexts();
+			});
+
+			asyncTest("test mock data in one file", 10, function() {
+				var oMockServer = new sap.ui.core.util.MockServer({
+					rootUri : "/myservice/"
+				});
+				var sMetadataUrl = "testdata/DataModel.xml"// url to the service metadata document
+				var sMockdataUrl = "testdata/MockData.json"// JSON file which contains the mockdata
+				oMockServer.simulate(sMetadataUrl, sMockdataUrl);
+				oMockServer.start();
+				ok(oMockServer.isStarted(), "Mock server is started");
+
+				var oResponse = jQuery.sap.sjax({
+					url : "/myservice/$metadata",
+					dataType : "xml"
+				});
+				ok(oResponse.success, "Mock server responded");
+				equal(jQuery(oResponse.data).find("Schema").children().length, 4, "Metadata XML: Response is right")
+
+				var oModel = initModel(sURI, true);
+				var oBinding = oModel.bindList("/LeaveHeaderCollection");
+				var handler = function() { // delay the following test
+					ok(oBinding.oEntityType, "entity type binding check");
+					equal(oBinding.oEntityType.name, "LeaveHeader", "entity type name check");
+					var oEntityType = oModel.oMetadata._getEntityTypeByPath("/LeaveHeaderCollection");
+					ok(oEntityType, "get entity type check");
+					equal(oEntityType.name, "LeaveHeader", "entity type name check");
+					var oPropMeta = oModel.oMetadata._getPropertyMetadata(oEntityType, "type");
+					ok(oPropMeta, "property type check");
+					equal(oPropMeta.name, "type", "entity type property check");
+					equal(oPropMeta.type, "Edm.String", "entity type property check");
+
+					oBinding.detachChange(handler);
+					start(); // resume normal testing
+				};
+				oBinding.attachChange(handler);
+				oBinding.getContexts();
+			});
+
+			asyncTest("test mock data generation", 10, function() {
+				var oMockServer = new sap.ui.core.util.MockServer({
+					rootUri : "/myservice/"
+				});
+				var sMetadataUrl = "testdata/DataModel.xml"// url to the service metadata document
+				oMockServer.simulate(sMetadataUrl);
+				oMockServer.start();
+				ok(oMockServer.isStarted(), "Mock server is started");
+
+				var oResponse = jQuery.sap.sjax({
+					url : "/myservice/$metadata",
+					dataType : "xml"
+				});
+				ok(oResponse.success, "Mock server responded");
+				equal(jQuery(oResponse.data).find("Schema").children().length, 4, "Metadata XML: Response is right")
+
+				var oModel = initModel(sURI, true);
+				var oBinding = oModel.bindList("/LeaveHeaderCollection");
+				var handler = function() { // delay the following test
+					ok(oBinding.oEntityType, "entity type binding check");
+					equal(oBinding.oEntityType.name, "LeaveHeader", "entity type name check");
+					var oEntityType = oModel.oMetadata._getEntityTypeByPath("/LeaveHeaderCollection");
+					ok(oEntityType, "get entity type check");
+					equal(oEntityType.name, "LeaveHeader", "entity type name check");
+					var oPropMeta = oModel.oMetadata._getPropertyMetadata(oEntityType, "type");
+					ok(oPropMeta, "property type check");
+					equal(oPropMeta.name, "type", "entity type property check");
+					equal(oPropMeta.type, "Edm.String", "entity type property check");
+
+					oBinding.detachChange(handler);
+					start(); // resume normal testing
+				};
+				oBinding.attachChange(handler);
+				oBinding.getContexts();
+			});
+
+			function initModel(sURI, bJSON) {
+				var oModel = new sap.ui.model.odata.ODataModel(sURI, bJSON);
+				return oModel;
+			};
+		</script>
+	</head>
+	<body>
+		<h1 id="qunit-header"><title>qUnit Page for sap.ui.core.util.MockServer Class</title></h1>
+		<h2 id="qunit-banner"></h2>
+		<h2 id="qunit-userAgent"></h2>
+		<ol id="qunit-tests"></ol>
+		<div id="qunit-fixture">test markup, will be hidden</div>
+		<div id="canvas" style="height:300px; width:300px"></div>
+		<div id="target1"></div>
+		<div id="target2"></div>
+		<div id="target3"></div>
+	</body>
+</html>

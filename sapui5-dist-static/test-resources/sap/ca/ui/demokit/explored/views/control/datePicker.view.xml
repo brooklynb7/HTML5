@@ -1,0 +1,111 @@
+<core:View xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:ui="sap.ca.ui" xmlns:html="http://www.w3.org/1999/xhtml"
+    controllerName="sap.ca.ui.sample.views.control.DatePicker">
+    <Page id="page">
+        <content>
+            <Label text="Default DatePicker controll : " />
+            <ui:DatePicker></ui:DatePicker>
+            <!---->
+            <Panel headerText="Test Page for - sap.ca.ui.DatePicker"
+                headerLevel="H1" />
+
+            <Label text="Change event parameters: " labelFor="TextView1" />
+            <Text id="TextView1" text="Initial"
+                semanticColor="Positive" design="Bold" />
+
+            <VBox>
+            <Label text="Binding event parameters: " labelFor="TextView3" />
+            <Text id="TextView3" text="Initial"
+                semanticColor="Positive" design="Bold" />
+
+            <Text />
+            <Text
+                text='Use the following control(s) to interact with the FIORI DatePicker:
+    Note:This control defualt user local settings defined by GateWay settings.
+    Otherwise the application one (on the URL ?sap-language=DE) will be used if supplied and
+        supported. A locale is supported if translations exist
+        for its "language+COUNTRY" or its "language-only". Otherwise
+        the default SAP "en" texts are used. ' />
+
+            <Label text="DatePicker control under test: "
+                labelFor="myDatePicker" />
+            <ui:DatePicker id="myDatePicker" tooltip="tooltip"
+                change="handleChange" />
+
+            <Label text="Current attributes: " labelFor="TextView2" />
+            <Text id="TextView2" text="Initial"
+                design="Bold" />
+
+            <Label
+                text="Set first day offset (0-Sunday, 1-Monday, ... 6-Saturday): "
+                labelFor="offset" />
+            <Input id="offset" type="Number" maxLength="1" width="3em"
+                liveChange="liveChangeOffset" />
+
+            <Button id="btn-popup" text="Open Sample Dialog"
+                press="openDialog" />
+
+            <Text text="Disabled / read only properties check" />
+
+            <Label text="Disabled : " labelFor="DP-Disabled" />
+            <ui:DatePicker
+                id="DP-Disabled"
+                value="{ path:'/modelDateValue', type:'sap.ca.ui.model.type.Date', formatOptions: { style: 'short'} }"
+                enabled="false"
+                width="10em"
+                change="handleChange" />
+
+            <Label text="Readonly : " labelFor="DP-ReadOnly" />
+            <ui:DatePicker
+                id="DP-ReadOnly"
+                value="{ path:'/modelDateValue', type:'sap.ca.ui.model.type.Date', formatOptions: { pattern: 'dd.MM.yy'} }"
+                editable="false"
+                width="10em"
+                change="handleChange" />
+
+            <Text
+                text="This are some DatePickers with DataBinding and different patterns using DataBinding" />
+
+            <Label text="Bound value '/modelDateValue1' :" />
+            <Text text="{ path : '/modelDateValue1'}" />
+
+            <Label text="Bound to '/modelDateValue1', but no type or formatOptions.  Always specify a type and format!:" />
+            <ui:DatePicker
+                width="20em"
+                value="{ path : '/modelDateValue1'}"
+                tooltip="No type, No formatOptions"
+                change="handleChange"
+            />
+            <Label text="Bound to '/modelDateValue2; formatOptions: \{ pattern: 'dd-MMM-yyyy'\} ( width 8em):" />
+            <ui:DatePicker
+                width="8em"
+                value="{ path : '/modelDateValue2', type:'sap.ca.ui.model.type.Date', formatOptions: { pattern: 'dd-MMM-yyyy'} }"
+                tooltip="formatOptions: \{ pattern: 'dd-MMM-yyyy'\}"
+                change="handleChange" />
+            <Label text="Bound to '/modelDateValue3: formatOptions: \{ style: 'medium' \} (10em):" />
+            <ui:DatePicker
+                width="10em"
+                value="{ path:'/modelDateValue3', type:'sap.ca.ui.model.type.Date', formatOptions: { style: 'medium'} }"
+                tooltip="formatOptions: \{ style: 'medium' \}"
+                change="handleChange" />
+
+            </VBox>
+
+            <html:div
+                style="position: fixed; left: 500px; bottom: 25px; border: 3px solid blue; padding: 5px; z-index: 1; background-color: lightBlue;">
+                <Label labelFor="DP-Fixed-input" text="DatePicker in fixed area" />
+                <ui:DatePicker id="DP-Fixed-input"
+                    value="{ path:'/modelDateValue', type:'sap.ca.ui.model.type.Date', formatOptions: { style: 'long'} }"
+                    editable="true" width="10em" change="handleChange" />
+            </html:div>
+
+        </content>
+
+        <footer>
+            <Bar>
+                <contentRight>
+                    <ui:DatePicker id="DP-footer-input" />
+                </contentRight>
+            </Bar>
+        </footer>
+    </Page>
+</core:View>

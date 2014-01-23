@@ -1,0 +1,4954 @@
+{
+	"SAPVB": {
+		"version": "2.0",
+		"Data": {
+			"Set": [
+				{
+					"name": "Spots",
+					"type": "N",
+					"N": {
+						"name": "Spots",
+						"E": [
+							{
+								"E": "true",
+								"F": "true",
+								"A": "1.5;42.5;0",
+								"B": "Coordinate of Country:Andorra\r\nLongitude:1.500000000000 (GPS)\r\nLatitude:42.500000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "yOopUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "54.0;24.0;0",
+								"B": "Coordinate of Country:United Arab Emirates\r\nLongitude:54.000000000000 (GPS)\r\nLatitude:24.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "yeopUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "65.0;33.0;0",
+								"B": "Coordinate of Country:Afghanistan\r\nLongitude:65.000000000000 (GPS)\r\nLatitude:33.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "yuopUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "-61.8;17.05;0",
+								"B": "Coordinate of Country:Antigua and Barbuda\r\nLongitude:61.800000000000-(GPS)\r\nLatitude:17.050000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "y+opUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "63.166667;18.25;0",
+								"B": "Coordinate of Country:Anguilla\r\nLongitude:63.166666666667 (GPS)\r\nLatitude:18.250000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "zOopUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "20.0;41.0;0",
+								"B": "Coordinate of Country:Albania\r\nLongitude:20.000000000000 (GPS)\r\nLatitude:41.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "zeopUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "45.0;40.0;0",
+								"B": "Coordinate of Country:Armenia\r\nLongitude:45.000000000000 (GPS)\r\nLatitude:40.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "zuopUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "68.75;12.25;0",
+								"B": "Coordinate of Country:Dutch Antilles\r\nLongitude:68.750000000000 (GPS)\r\nLatitude:12.250000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "z+opUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "18.5;12.5;0",
+								"B": "Coordinate of Country:Angola\r\nLongitude:18.500000000000 (GPS)\r\nLatitude:12.500000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "0OopUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "0.0;-90.0;0",
+								"B": "Coordinate of Country:Antarctica\r\nLongitude:0.000000000000 (GPS)\r\nLatitude:90.000000000000-(GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "0eopUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "-64.0;-34.0;0",
+								"B": "Coordinate of Country:Argentina\r\nLongitude:64.000000000000-(GPS)\r\nLatitude:34.000000000000-(GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "0uopUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "-170.0;-14.333333;0",
+								"B": "Coordinate of Country:American Samoa\r\nLongitude:170.000000000000-(GPS)\r\nLatitude:14.333333333333-(GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "0+opUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "13.333333;47.333333;0",
+								"B": "Coordinate of Country:Austria\r\nLongitude:13.333333333333 (GPS)\r\nLatitude:47.333333333333 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "1OopUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "133.0;-27.0;0",
+								"B": "Coordinate of Country:Australia\r\nLongitude:133.000000000000 (GPS)\r\nLatitude:27.000000000000-(GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "1eopUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "-69.966667;12.5;0",
+								"B": "Coordinate of Country:Aruba\r\nLongitude:69.966666666667-(GPS)\r\nLatitude:12.500000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "1uopUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "47.5;40.5;0",
+								"B": "Coordinate of Country:Azerbaijan\r\nLongitude:47.500000000000 (GPS)\r\nLatitude:40.500000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "1+opUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "18.0;44.0;0",
+								"B": "Coordinate of Country:Bosnia and Herzegovina\r\nLongitude:18.000000000000 (GPS)\r\nLatitude:44.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "2OopUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "-59.533333;13.166667;0",
+								"B": "Coordinate of Country:Barbados\r\nLongitude:59.533333333333-(GPS)\r\nLatitude:13.166666666667 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "2eopUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "90.0;24.0;0",
+								"B": "Coordinate of Country:Bangladesh\r\nLongitude:90.000000000000 (GPS)\r\nLatitude:24.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "2uopUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "4.0;50.833333;0",
+								"B": "Coordinate of Country:Belgium\r\nLongitude:4.000000000000 (GPS)\r\nLatitude:50.833333333333 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "2+opUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "-2.0;13.0;0",
+								"B": "Coordinate of Country:Burkina Faso\r\nLongitude:2.000000000000-(GPS)\r\nLatitude:13.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "3OopUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "25.0;43.0;0",
+								"B": "Coordinate of Country:Bulgaria\r\nLongitude:25.000000000000 (GPS)\r\nLatitude:43.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "3eopUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "50.55;26.0;0",
+								"B": "Coordinate of Country:Bahrain\r\nLongitude:50.550000000000 (GPS)\r\nLatitude:26.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "3uopUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "30.0;-3.5;0",
+								"B": "Coordinate of Country:Burundi\r\nLongitude:30.000000000000 (GPS)\r\nLatitude:3.500000000000-(GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "3+opUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "2.25;9.5;0",
+								"B": "Coordinate of Country:Benin\r\nLongitude:2.250000000000 (GPS)\r\nLatitude:9.500000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "4OopUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "-65.75;32.333333;0",
+								"B": "Coordinate of Country:Bermuda\r\nLongitude:65.750000000000-(GPS)\r\nLatitude:32.333333333333 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "4eopUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "114.666667;4.5;0",
+								"B": "Coordinate of Country:Brunei Darussalam\r\nLongitude:114.666666666667 (GPS)\r\nLatitude:4.500000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "4uopUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "-65.0;-17.0;0",
+								"B": "Coordinate of Country:Bolivia\r\nLongitude:65.000000000000-(GPS)\r\nLatitude:17.000000000000-(GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "4+opUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "-55.0;-10.0;0",
+								"B": "Coordinate of Country:Brazil\r\nLongitude:55.000000000000-(GPS)\r\nLatitude:10.000000000000-(GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "5OopUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "-76.0;24.25;0",
+								"B": "Coordinate of Country:Bahamas\r\nLongitude:76.000000000000-(GPS)\r\nLatitude:24.250000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "5eopUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "90.5;27.5;0",
+								"B": "Coordinate of Country:Bhutan\r\nLongitude:90.500000000000 (GPS)\r\nLatitude:27.500000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "5uopUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "3.4;-54.433333;0",
+								"B": "Coordinate of Country:Bouvet Islands\r\nLongitude:3.400000000000 (GPS)\r\nLatitude:54.433333333333-(GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "5+opUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "24.0;-22.0;0",
+								"B": "Coordinate of Country:Botswana\r\nLongitude:24.000000000000 (GPS)\r\nLatitude:22.000000000000-(GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "6OopUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "28.0;53.0;0",
+								"B": "Coordinate of Country:Belarus\r\nLongitude:28.000000000000 (GPS)\r\nLatitude:53.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "6eopUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "-88.75;17.25;0",
+								"B": "Coordinate of Country:Belize\r\nLongitude:88.750000000000-(GPS)\r\nLatitude:17.250000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "6uopUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "-95.0;60.0;0",
+								"B": "Coordinate of Country:Canada\r\nLongitude:95.000000000000-(GPS)\r\nLatitude:60.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "6+opUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "96.833333;-12.5;0",
+								"B": "Coordinate of Country:Coconut Islands\r\nLongitude:96.833333333333 (GPS)\r\nLatitude:12.500000000000-(GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "7OopUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "15.0;-1.0;0",
+								"B": "Coordinate of Country:Democratic Republic of the Congo\r\nLongitude:15.000000000000 (GPS)\r\nLatitude:1.000000000000-(GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "7eopUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "21.0;7.0;0",
+								"B": "Coordinate of Country:Central African Republic\r\nLongitude:21.000000000000 (GPS)\r\nLatitude:7.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "7uopUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "25.0;0.0;0",
+								"B": "Coordinate of Country:Republic of the Congo\r\nLongitude:25.000000000000 (GPS)\r\nLatitude:0.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "7+opUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "8.0;47.0;0",
+								"B": "Coordinate of Country:Switzerland\r\nLongitude:8.000000000000 (GPS)\r\nLatitude:47.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "8OopUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "-5.0;8.0;0",
+								"B": "Coordinate of Country:Cote d'Ivoire\r\nLongitude:5.000000000000-(GPS)\r\nLatitude:8.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "8eopUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "-159.766667;-21.233333;0",
+								"B": "Coordinate of Country:Cook Islands\r\nLongitude:159.766666666667-(GPS)\r\nLatitude:21.233333333333-(GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "8uopUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "-71.0;-30.0;0",
+								"B": "Coordinate of Country:Chile\r\nLongitude:71.000000000000-(GPS)\r\nLatitude:30.000000000000-(GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "8+opUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "12.0;6.0;0",
+								"B": "Coordinate of Country:Cameroon\r\nLongitude:12.000000000000 (GPS)\r\nLatitude:6.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "9OopUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "105.0;35.0;0",
+								"B": "Coordinate of Country:China\r\nLongitude:105.000000000000 (GPS)\r\nLatitude:35.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "9eopUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "-72.0;4.0;0",
+								"B": "Coordinate of Country:Colombia\r\nLongitude:72.000000000000-(GPS)\r\nLatitude:4.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "9uopUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "-84.0;10.0;0",
+								"B": "Coordinate of Country:Costa Rica\r\nLongitude:84.000000000000-(GPS)\r\nLatitude:10.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "9+opUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "21.0;44.0;0",
+								"B": "Coordinate of Country:Serbia and Montenegro\r\nLongitude:21.000000000000 (GPS)\r\nLatitude:44.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "+OopUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "-80.0;21.5;0",
+								"B": "Coordinate of Country:Cuba\r\nLongitude:80.000000000000-(GPS)\r\nLatitude:21.500000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "+eopUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "-24.0;16.0;0",
+								"B": "Coordinate of Country:Cape Verde\r\nLongitude:24.000000000000-(GPS)\r\nLatitude:16.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "+uopUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "105.666667;-10.5;0",
+								"B": "Coordinate of Country:Christmas Islnd\r\nLongitude:105.666666666667 (GPS)\r\nLatitude:10.500000000000-(GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "++opUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "33.0;35.0;0",
+								"B": "Coordinate of Country:Cyprus\r\nLongitude:33.000000000000 (GPS)\r\nLatitude:35.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "/OopUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "16.0;49.75;0",
+								"B": "Coordinate of Country:Czech Republic\r\nLongitude:16.000000000000 (GPS)\r\nLatitude:49.750000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "/eopUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "9.0;51.0;0",
+								"B": "Coordinate of Country:Germany\r\nLongitude:9.000000000000 (GPS)\r\nLatitude:51.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "/uopUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "43.0;11.5;0",
+								"B": "Coordinate of Country:Djibouti\r\nLongitude:43.000000000000 (GPS)\r\nLatitude:11.500000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "/+opUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "10.0;56.0;0",
+								"B": "Coordinate of Country:Denmark\r\nLongitude:10.000000000000 (GPS)\r\nLatitude:56.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "AOspUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "-61.333333;15.416667;0",
+								"B": "Coordinate of Country:Dominica\r\nLongitude:61.333333333333-(GPS)\r\nLatitude:15.416666666667 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "AespUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "-70.666667;19.0;0",
+								"B": "Coordinate of Country:Dominican Republic\r\nLongitude:70.666666666667-(GPS)\r\nLatitude:19.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "AuspUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "3.0;28.0;0",
+								"B": "Coordinate of Country:Algeria\r\nLongitude:3.000000000000 (GPS)\r\nLatitude:28.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "A+spUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "-77.5;-2.0;0",
+								"B": "Coordinate of Country:Ecuador\r\nLongitude:77.500000000000-(GPS)\r\nLatitude:2.000000000000-(GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "BOspUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "26.0;59.0;0",
+								"B": "Coordinate of Country:Estonia\r\nLongitude:26.000000000000 (GPS)\r\nLatitude:59.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "BespUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "30.0;27.0;0",
+								"B": "Coordinate of Country:Egypt\r\nLongitude:30.000000000000 (GPS)\r\nLatitude:27.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "BuspUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "-13.0;24.5;0",
+								"B": "Coordinate of Country:West Sahara\r\nLongitude:13.000000000000-(GPS)\r\nLatitude:24.500000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "B+spUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "39.0;15.0;0",
+								"B": "Coordinate of Country:Eritrea\r\nLongitude:39.000000000000 (GPS)\r\nLatitude:15.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "COspUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "-4.0;40.0;0",
+								"B": "Coordinate of Country:Spain\r\nLongitude:4.000000000000-(GPS)\r\nLatitude:40.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "CespUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "38.0;8.0;0",
+								"B": "Coordinate of Country:Ethiopia\r\nLongitude:38.000000000000 (GPS)\r\nLatitude:8.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "CuspUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "26.0;64.0;0",
+								"B": "Coordinate of Country:Finland\r\nLongitude:26.000000000000 (GPS)\r\nLatitude:64.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "C+spUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "175.0;-18.0;0",
+								"B": "Coordinate of Country:Fiji\r\nLongitude:175.000000000000 (GPS)\r\nLatitude:18.000000000000-(GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "DOspUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "-59.0;-51.75;0",
+								"B": "Coordinate of Country:Falkland Islands\r\nLongitude:59.000000000000-(GPS)\r\nLatitude:51.750000000000-(GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "DespUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "158.25;6.916667;0",
+								"B": "Coordinate of Country:Micronesia\r\nLongitude:158.250000000000 (GPS)\r\nLatitude:6.916666666667 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "DuspUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "-7.0;62.0;0",
+								"B": "Coordinate of Country:Faroe Islands\r\nLongitude:7.000000000000-(GPS)\r\nLatitude:62.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "D+spUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "2.0;46.0;0",
+								"B": "Coordinate of Country:France\r\nLongitude:2.000000000000 (GPS)\r\nLatitude:46.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "EOspUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "11.75;-1.0;0",
+								"B": "Coordinate of Country:Gabon\r\nLongitude:11.750000000000 (GPS)\r\nLatitude:1.000000000000-(GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "EespUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "-2.0;54.0;0",
+								"B": "Coordinate of Country:United Kingdom\r\nLongitude:2.000000000000-(GPS)\r\nLatitude:54.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "EuspUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "-61.666667;12.116667;0",
+								"B": "Coordinate of Country:Grenada\r\nLongitude:61.666666666667-(GPS)\r\nLatitude:12.116666666667 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "E+spUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "43.5;42.0;0",
+								"B": "Coordinate of Country:Georgia\r\nLongitude:43.500000000000 (GPS)\r\nLatitude:42.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "FOspUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "-53.0;4.0;0",
+								"B": "Coordinate of Country:French Guyana\r\nLongitude:53.000000000000-(GPS)\r\nLatitude:4.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "FespUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "-2.0;8.0;0",
+								"B": "Coordinate of Country:Ghana\r\nLongitude:2.000000000000-(GPS)\r\nLatitude:8.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "FuspUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "-5.366667;36.183333;0",
+								"B": "Coordinate of Country:Gibraltar\r\nLongitude:5.366666666667-(GPS)\r\nLatitude:36.183333333333 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "F+spUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "-40.0;72.0;0",
+								"B": "Coordinate of Country:Greenland\r\nLongitude:40.000000000000-(GPS)\r\nLatitude:72.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "GOspUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "-16.566667;13.466667;0",
+								"B": "Coordinate of Country:Gambia\r\nLongitude:16.566666666667-(GPS)\r\nLatitude:13.466666666667 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "GespUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "-10.0;11.0;0",
+								"B": "Coordinate of Country:Guinea\r\nLongitude:10.000000000000-(GPS)\r\nLatitude:11.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "GuspUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "-61.583333;16.25;0",
+								"B": "Coordinate of Country:Guadeloupe\r\nLongitude:61.583333333333-(GPS)\r\nLatitude:16.250000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "G+spUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "10.0;2.0;0",
+								"B": "Coordinate of Country:Equatorial Guinea\r\nLongitude:10.000000000000 (GPS)\r\nLatitude:2.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "HOspUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "22.0;39.0;0",
+								"B": "Coordinate of Country:Greece\r\nLongitude:22.000000000000 (GPS)\r\nLatitude:39.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "HespUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "-37.0;-54.5;0",
+								"B": "Coordinate of Country:South Georgia and the Southern Sandwich Islands\r\nLongitude:37.000000000000-(GPS)\r\nLatitude:54.500000000000-(GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "HuspUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "-90.25;15.5;0",
+								"B": "Coordinate of Country:Guatemala\r\nLongitude:90.250000000000-(GPS)\r\nLatitude:15.500000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "H+spUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "144.783333;13.466667;0",
+								"B": "Coordinate of Country:Guam\r\nLongitude:144.783333333333 (GPS)\r\nLatitude:13.466666666667 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "IOspUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "-15.0;12.0;0",
+								"B": "Coordinate of Country:Guinea-Bissau\r\nLongitude:15.000000000000-(GPS)\r\nLatitude:12.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "IespUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "-59.0;5.0;0",
+								"B": "Coordinate of Country:Guyana\r\nLongitude:59.000000000000-(GPS)\r\nLatitude:5.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "IuspUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "114.166667;22.25;0",
+								"B": "Coordinate of Country:Hong Kong\r\nLongitude:114.166666666667 (GPS)\r\nLatitude:22.250000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "I+spUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "72.516667;-53.1;0",
+								"B": "Coordinate of Country:Heard and McDonald Islands\r\nLongitude:72.516666666667 (GPS)\r\nLatitude:53.100000000000-(GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "JOspUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "-86.5;15.0;0",
+								"B": "Coordinate of Country:Honduras\r\nLongitude:86.500000000000-(GPS)\r\nLatitude:15.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "JespUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "15.5;45.166667;0",
+								"B": "Coordinate of Country:Croatia\r\nLongitude:15.500000000000 (GPS)\r\nLatitude:45.166666666667 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "JuspUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "-72.416667;19.0;0",
+								"B": "Coordinate of Country:Haiti\r\nLongitude:72.416666666667-(GPS)\r\nLatitude:19.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "J+spUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "20.0;47.0;0",
+								"B": "Coordinate of Country:Hungary\r\nLongitude:20.000000000000 (GPS)\r\nLatitude:47.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "KOspUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "120.0;-5.0;0",
+								"B": "Coordinate of Country:Indonesia\r\nLongitude:120.000000000000 (GPS)\r\nLatitude:5.000000000000-(GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "KespUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "-8.0;53.0;0",
+								"B": "Coordinate of Country:Ireland\r\nLongitude:8.000000000000-(GPS)\r\nLatitude:53.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "KuspUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "34.75;31.5;0",
+								"B": "Coordinate of Country:Israel\r\nLongitude:34.750000000000 (GPS)\r\nLatitude:31.500000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "K+spUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "77.0;20.0;0",
+								"B": "Coordinate of Country:India\r\nLongitude:77.000000000000 (GPS)\r\nLatitude:20.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "LOspUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "71.5;-6.0;0",
+								"B": "Coordinate of Country:British Indian Ocean Territory\r\nLongitude:71.500000000000 (GPS)\r\nLatitude:6.000000000000-(GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "LespUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "44.0;33.0;0",
+								"B": "Coordinate of Country:Iraq\r\nLongitude:44.000000000000 (GPS)\r\nLatitude:33.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "LuspUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "53.0;32.0;0",
+								"B": "Coordinate of Country:Iran\r\nLongitude:53.000000000000 (GPS)\r\nLatitude:32.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "L+spUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "-18.0;65.0;0",
+								"B": "Coordinate of Country:Iceland\r\nLongitude:18.000000000000-(GPS)\r\nLatitude:65.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "MOspUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "12.833333;42.833333;0",
+								"B": "Coordinate of Country:Italy\r\nLongitude:12.833333333333 (GPS)\r\nLatitude:42.833333333333 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "MespUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "-77.5;18.25;0",
+								"B": "Coordinate of Country:Jamaica\r\nLongitude:77.500000000000-(GPS)\r\nLatitude:18.250000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "MuspUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "36.0;31.0;0",
+								"B": "Coordinate of Country:Jordan\r\nLongitude:36.000000000000 (GPS)\r\nLatitude:31.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "M+spUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "138.0;36.0;0",
+								"B": "Coordinate of Country:Japan\r\nLongitude:138.000000000000 (GPS)\r\nLatitude:36.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "NOspUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "38.0;1.0;0",
+								"B": "Coordinate of Country:Kenya\r\nLongitude:38.000000000000 (GPS)\r\nLatitude:1.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "NespUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "75.0;41.0;0",
+								"B": "Coordinate of Country:Kyrgyzstan\r\nLongitude:75.000000000000 (GPS)\r\nLatitude:41.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "NuspUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "105.0;13.0;0",
+								"B": "Coordinate of Country:Cambodia\r\nLongitude:105.000000000000 (GPS)\r\nLatitude:13.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "N+spUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "175.0;4.416667;0",
+								"B": "Coordinate of Country:Kiribati\r\nLongitude:175.000000000000 (GPS)\r\nLatitude:4.416666666667 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "OOspUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "44.25;-12.166667;0",
+								"B": "Coordinate of Country:Comoros\r\nLongitude:44.250000000000 (GPS)\r\nLatitude:12.166666666667-(GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "OespUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "-62.75;17.333333;0",
+								"B": "Coordinate of Country:Saint Kitts and Nevis\r\nLongitude:62.750000000000-(GPS)\r\nLatitude:17.333333333333 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "OuspUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "127.0;40.0;0",
+								"B": "Coordinate of Country:North Korea\r\nLongitude:127.000000000000 (GPS)\r\nLatitude:40.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "O+spUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "128.0;36.5;0",
+								"B": "Coordinate of Country:South Korea\r\nLongitude:128.000000000000 (GPS)\r\nLatitude:36.500000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "POspUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "45.75;29.5;0",
+								"B": "Coordinate of Country:Kuwait\r\nLongitude:45.750000000000 (GPS)\r\nLatitude:29.500000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "PespUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "-80.5;19.5;0",
+								"B": "Coordinate of Country:Cayman Islands\r\nLongitude:80.500000000000-(GPS)\r\nLatitude:19.500000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "PuspUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "68.0;48.0;0",
+								"B": "Coordinate of Country:Kazakhstan\r\nLongitude:68.000000000000 (GPS)\r\nLatitude:48.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "P+spUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "105.0;18.0;0",
+								"B": "Coordinate of Country:Laos\r\nLongitude:105.000000000000 (GPS)\r\nLatitude:18.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "QOspUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "35.833333;33.833333;0",
+								"B": "Coordinate of Country:Lebanon\r\nLongitude:35.833333333333 (GPS)\r\nLatitude:33.833333333333 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "QespUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "-60.966667;13.883333;0",
+								"B": "Coordinate of Country:St. Lucia\r\nLongitude:60.966666666667-(GPS)\r\nLatitude:13.883333333333 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "QuspUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "9.533333;47.166667;0",
+								"B": "Coordinate of Country:Liechtenstein\r\nLongitude:9.533333333333 (GPS)\r\nLatitude:47.166666666667 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "Q+spUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "81.0;7.0;0",
+								"B": "Coordinate of Country:Sri Lanka\r\nLongitude:81.000000000000 (GPS)\r\nLatitude:7.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "ROspUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "-9.5;6.5;0",
+								"B": "Coordinate of Country:Liberia\r\nLongitude:9.500000000000-(GPS)\r\nLatitude:6.500000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "RespUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "28.5;-29.5;0",
+								"B": "Coordinate of Country:Lesotho\r\nLongitude:28.500000000000 (GPS)\r\nLatitude:29.500000000000-(GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "RuspUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "24.0;56.0;0",
+								"B": "Coordinate of Country:Lithuania\r\nLongitude:24.000000000000 (GPS)\r\nLatitude:56.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "R+spUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "6.166667;49.75;0",
+								"B": "Coordinate of Country:Luxembourg\r\nLongitude:6.166666666667 (GPS)\r\nLatitude:49.750000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "SOspUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "25.0;57.0;0",
+								"B": "Coordinate of Country:Latvia\r\nLongitude:25.000000000000 (GPS)\r\nLatitude:57.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "SespUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "17.0;25.0;0",
+								"B": "Coordinate of Country:Libya\r\nLongitude:17.000000000000 (GPS)\r\nLatitude:25.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "SuspUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "-5.0;32.0;0",
+								"B": "Coordinate of Country:Morocco\r\nLongitude:5.000000000000-(GPS)\r\nLatitude:32.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "S+spUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "7.4;43.733333;0",
+								"B": "Coordinate of Country:Monaco\r\nLongitude:7.400000000000 (GPS)\r\nLatitude:43.733333333333 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "TOspUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "29.0;47.0;0",
+								"B": "Coordinate of Country:Moldova\r\nLongitude:29.000000000000 (GPS)\r\nLatitude:47.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "TespUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "47.0;-20.0;0",
+								"B": "Coordinate of Country:Madagascar\r\nLongitude:47.000000000000 (GPS)\r\nLatitude:20.000000000000-(GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "TuspUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "168.0;9.0;0",
+								"B": "Coordinate of Country:Marshall Islands\r\nLongitude:168.000000000000 (GPS)\r\nLatitude:9.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "T+spUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "22.0;41.833333;0",
+								"B": "Coordinate of Country:Macedonia\r\nLongitude:22.000000000000 (GPS)\r\nLatitude:41.833333333333 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "UOspUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "-4.0;17.0;0",
+								"B": "Coordinate of Country:Mali\r\nLongitude:4.000000000000-(GPS)\r\nLatitude:17.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "UespUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "98.0;22.0;0",
+								"B": "Coordinate of Country:Burma\r\nLongitude:98.000000000000 (GPS)\r\nLatitude:22.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "UuspUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "105.0;46.0;0",
+								"B": "Coordinate of Country:Mongolia\r\nLongitude:105.000000000000 (GPS)\r\nLatitude:46.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "U+spUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "113.55;22.166667;0",
+								"B": "Coordinate of Country:Macau\r\nLongitude:113.550000000000 (GPS)\r\nLatitude:22.166666666667 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "VOspUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "145.75;15.2;0",
+								"B": "Coordinate of Country:North Mariana Islands\r\nLongitude:145.750000000000 (GPS)\r\nLatitude:15.200000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "VespUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "-61.0;14.666667;0",
+								"B": "Coordinate of Country:Martinique\r\nLongitude:61.000000000000-(GPS)\r\nLatitude:14.666666666667 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "VuspUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "-12.0;20.0;0",
+								"B": "Coordinate of Country:Mauretania\r\nLongitude:12.000000000000-(GPS)\r\nLatitude:20.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "V+spUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "-62.2;16.75;0",
+								"B": "Coordinate of Country:Montserrat\r\nLongitude:62.200000000000-(GPS)\r\nLatitude:16.750000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "WOspUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "14.583333;35.833333;0",
+								"B": "Coordinate of Country:Malta\r\nLongitude:14.583333333333 (GPS)\r\nLatitude:35.833333333333 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "WespUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "57.55;-20.283333;0",
+								"B": "Coordinate of Country:Mauritius\r\nLongitude:57.550000000000 (GPS)\r\nLatitude:20.283333333333-(GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "WuspUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "73.0;3.25;0",
+								"B": "Coordinate of Country:Maldives\r\nLongitude:73.000000000000 (GPS)\r\nLatitude:3.250000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "W+spUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "34.0;-13.5;0",
+								"B": "Coordinate of Country:Malawi\r\nLongitude:34.000000000000 (GPS)\r\nLatitude:13.500000000000-(GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "XOspUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "-102.0;23.0;0",
+								"B": "Coordinate of Country:Mexico\r\nLongitude:102.000000000000-(GPS)\r\nLatitude:23.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "XespUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "112.5;2.5;0",
+								"B": "Coordinate of Country:Malaysia\r\nLongitude:112.500000000000 (GPS)\r\nLatitude:2.500000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "XuspUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "35.0;-18.25;0",
+								"B": "Coordinate of Country:Mozambique\r\nLongitude:35.000000000000 (GPS)\r\nLatitude:18.250000000000-(GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "X+spUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "17.0;-22.0;0",
+								"B": "Coordinate of Country:Namibia\r\nLongitude:17.000000000000 (GPS)\r\nLatitude:22.000000000000-(GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "YOspUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "165.5;-21.5;0",
+								"B": "Coordinate of Country:New Caledonia\r\nLongitude:165.500000000000 (GPS)\r\nLatitude:21.500000000000-(GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "YespUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "8.0;16.0;0",
+								"B": "Coordinate of Country:Niger\r\nLongitude:8.000000000000 (GPS)\r\nLatitude:16.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "YuspUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "167.95;-29.033333;0",
+								"B": "Coordinate of Country:Norfolk Islands\r\nLongitude:167.950000000000 (GPS)\r\nLatitude:29.033333333333-(GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "Y+spUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "8.0;10.0;0",
+								"B": "Coordinate of Country:Nigeria\r\nLongitude:8.000000000000 (GPS)\r\nLatitude:10.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "ZOspUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "-85.0;13.0;0",
+								"B": "Coordinate of Country:Nicaragua\r\nLongitude:85.000000000000-(GPS)\r\nLatitude:13.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "ZespUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "5.75;52.5;0",
+								"B": "Coordinate of Country:Netherlands\r\nLongitude:5.750000000000 (GPS)\r\nLatitude:52.500000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "ZuspUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "10.0;62.0;0",
+								"B": "Coordinate of Country:Norway\r\nLongitude:10.000000000000 (GPS)\r\nLatitude:62.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "Z+spUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "84.0;28.0;0",
+								"B": "Coordinate of Country:Nepal\r\nLongitude:84.000000000000 (GPS)\r\nLatitude:28.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "aOspUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "166.916667;-0.533333;0",
+								"B": "Coordinate of Country:Nauru\r\nLongitude:166.916666666667 (GPS)\r\nLatitude:0.533333333333-(GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "aespUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "-162.866667;-19.033333;0",
+								"B": "Coordinate of Country:Niue\r\nLongitude:162.866666666667-(GPS)\r\nLatitude:19.033333333333-(GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "auspUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "174.0;-41.0;0",
+								"B": "Coordinate of Country:New Zealand\r\nLongitude:174.000000000000 (GPS)\r\nLatitude:41.000000000000-(GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "a+spUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "57.0;21.0;0",
+								"B": "Coordinate of Country:Oman\r\nLongitude:57.000000000000 (GPS)\r\nLatitude:21.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "bOspUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "-80.0;9.0;0",
+								"B": "Coordinate of Country:Panama\r\nLongitude:80.000000000000-(GPS)\r\nLatitude:9.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "bespUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "-76.0;-10.0;0",
+								"B": "Coordinate of Country:Peru\r\nLongitude:76.000000000000-(GPS)\r\nLatitude:10.000000000000-(GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "buspUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "-140.0;-15.0;0",
+								"B": "Coordinate of Country:French Polynesia\r\nLongitude:140.000000000000-(GPS)\r\nLatitude:15.000000000000-(GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "b+spUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "147.0;-6.0;0",
+								"B": "Coordinate of Country:Papua New Guinea\r\nLongitude:147.000000000000 (GPS)\r\nLatitude:6.000000000000-(GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "cOspUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "122.0;13.0;0",
+								"B": "Coordinate of Country:Philippines\r\nLongitude:122.000000000000 (GPS)\r\nLatitude:13.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "cespUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "70.0;30.0;0",
+								"B": "Coordinate of Country:Pakistan\r\nLongitude:70.000000000000 (GPS)\r\nLatitude:30.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "cuspUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "20.0;52.0;0",
+								"B": "Coordinate of Country:Poland\r\nLongitude:20.000000000000 (GPS)\r\nLatitude:52.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "c+spUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "-56.333333;46.833333;0",
+								"B": "Coordinate of Country:St. Pierre and Miquelon\r\nLongitude:56.333333333333-(GPS)\r\nLatitude:46.833333333333 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "dOspUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "-130.1;-25.066667;0",
+								"B": "Coordinate of Country:Pitcairn Islands\r\nLongitude:130.100000000000-(GPS)\r\nLatitude:25.066666666667-(GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "despUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "-66.5;18.25;0",
+								"B": "Coordinate of Country:Puerto Rico\r\nLongitude:66.500000000000-(GPS)\r\nLatitude:18.250000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "duspUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "30.0;31.0;0",
+								"B": "Coordinate of Country:Palestine\r\nLongitude:30.000000000000 (GPS)\r\nLatitude:31.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "d+spUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "-8.0;39.5;0",
+								"B": "Coordinate of Country:Portugal\r\nLongitude:8.000000000000-(GPS)\r\nLatitude:39.500000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "eOspUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "134.5;7.5;0",
+								"B": "Coordinate of Country:Palau\r\nLongitude:134.500000000000 (GPS)\r\nLatitude:7.500000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "eespUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "-58.0;-23.0;0",
+								"B": "Coordinate of Country:Paraguay\r\nLongitude:58.000000000000-(GPS)\r\nLatitude:23.000000000000-(GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "euspUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "51.25;25.5;0",
+								"B": "Coordinate of Country:Qatar\r\nLongitude:51.250000000000 (GPS)\r\nLatitude:25.500000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "e+spUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "55.6;-21.1;0",
+								"B": "Coordinate of Country:Reunion\r\nLongitude:55.600000000000 (GPS)\r\nLatitude:21.100000000000-(GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "fOspUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "25.0;46.0;0",
+								"B": "Coordinate of Country:Romania\r\nLongitude:25.000000000000 (GPS)\r\nLatitude:46.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "fespUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "100.0;60.0;0",
+								"B": "Coordinate of Country:Russian Federation\r\nLongitude:100.000000000000 (GPS)\r\nLatitude:60.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "fuspUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "30.0;-2.0;0",
+								"B": "Coordinate of Country:Rwanda\r\nLongitude:30.000000000000 (GPS)\r\nLatitude:2.000000000000-(GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "f+spUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "45.0;25.0;0",
+								"B": "Coordinate of Country:Saudi Arabia\r\nLongitude:45.000000000000 (GPS)\r\nLatitude:25.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "gOspUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "159.0;-8.0;0",
+								"B": "Coordinate of Country:Solomon Islands\r\nLongitude:159.000000000000 (GPS)\r\nLatitude:8.000000000000-(GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "gespUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "55.666667;-4.583333;0",
+								"B": "Coordinate of Country:Seychelles\r\nLongitude:55.666666666667 (GPS)\r\nLatitude:4.583333333333-(GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "guspUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "30.0;15.0;0",
+								"B": "Coordinate of Country:Sudan\r\nLongitude:30.000000000000 (GPS)\r\nLatitude:15.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "g+spUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "15.0;62.0;0",
+								"B": "Coordinate of Country:Sweden\r\nLongitude:15.000000000000 (GPS)\r\nLatitude:62.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "hOspUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "103.8;1.366667;0",
+								"B": "Coordinate of Country:Singapore\r\nLongitude:103.800000000000 (GPS)\r\nLatitude:1.366666666667 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "hespUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "-5.7;-15.933333;0",
+								"B": "Coordinate of Country:Saint Helena\r\nLongitude:5.700000000000-(GPS)\r\nLatitude:15.933333333333-(GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "huspUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "15.0;46.0;0",
+								"B": "Coordinate of Country:Slovenia\r\nLongitude:15.000000000000 (GPS)\r\nLatitude:46.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "h+spUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "20.0;78.0;0",
+								"B": "Coordinate of Country:Svalbard\r\nLongitude:20.000000000000 (GPS)\r\nLatitude:78.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "iOspUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "19.5;48.666667;0",
+								"B": "Coordinate of Country:Slovakia\r\nLongitude:19.500000000000 (GPS)\r\nLatitude:48.666666666667 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "iespUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "-11.5;8.5;0",
+								"B": "Coordinate of Country:Sierra Leone\r\nLongitude:11.500000000000-(GPS)\r\nLatitude:8.500000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "iuspUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "12.416667;43.766667;0",
+								"B": "Coordinate of Country:San Marino\r\nLongitude:12.416666666667 (GPS)\r\nLatitude:43.766666666667 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "i+spUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "-14.0;14.0;0",
+								"B": "Coordinate of Country:Senegal\r\nLongitude:14.000000000000-(GPS)\r\nLatitude:14.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "jOspUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "49.0;10.0;0",
+								"B": "Coordinate of Country:Somalia\r\nLongitude:49.000000000000 (GPS)\r\nLatitude:10.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "jespUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "-56.0;4.0;0",
+								"B": "Coordinate of Country:Suriname\r\nLongitude:56.000000000000-(GPS)\r\nLatitude:4.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "juspUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "7.0;1.0;0",
+								"B": "Coordinate of Country:Sao Tome and Principe\r\nLongitude:7.000000000000 (GPS)\r\nLatitude:1.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "j+spUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "-88.916667;13.833333;0",
+								"B": "Coordinate of Country:El Salvador\r\nLongitude:88.916666666667-(GPS)\r\nLatitude:13.833333333333 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "kOspUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "38.0;35.0;0",
+								"B": "Coordinate of Country:Syria\r\nLongitude:38.000000000000 (GPS)\r\nLatitude:35.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "kespUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "31.5;-26.5;0",
+								"B": "Coordinate of Country:Swaziland\r\nLongitude:31.500000000000 (GPS)\r\nLatitude:26.500000000000-(GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "kuspUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "-71.583333;21.75;0",
+								"B": "Coordinate of Country:Turks and Caicos Islands\r\nLongitude:71.583333333333-(GPS)\r\nLatitude:21.750000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "k+spUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "19.0;15.0;0",
+								"B": "Coordinate of Country:Chad\r\nLongitude:19.000000000000 (GPS)\r\nLatitude:15.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "lOspUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "67.0;-43.0;0",
+								"B": "Coordinate of Country:\r\nLongitude:67.000000000000 (GPS)\r\nLatitude:43.000000000000-(GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "lespUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "1.166667;8.0;0",
+								"B": "Coordinate of Country:Togo\r\nLongitude:1.166666666667 (GPS)\r\nLatitude:8.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "luspUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "100.0;15.0;0",
+								"B": "Coordinate of Country:Thailand\r\nLongitude:100.000000000000 (GPS)\r\nLatitude:15.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "l+spUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "71.0;39.0;0",
+								"B": "Coordinate of Country:Tajikistan\r\nLongitude:71.000000000000 (GPS)\r\nLatitude:39.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "mOspUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "-172.0;-9.0;0",
+								"B": "Coordinate of Country:Tokelau Islands\r\nLongitude:172.000000000000-(GPS)\r\nLatitude:9.000000000000-(GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "mespUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "125.75;-8.7;0",
+								"B": "Coordinate of Country:East Timor\r\nLongitude:125.750000000000 (GPS)\r\nLatitude:8.700000000000-(GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "muspUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "60.0;40.0;0",
+								"B": "Coordinate of Country:Turkmenistan\r\nLongitude:60.000000000000 (GPS)\r\nLatitude:40.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "m+spUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "9.0;34.0;0",
+								"B": "Coordinate of Country:Tunisia\r\nLongitude:9.000000000000 (GPS)\r\nLatitude:34.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "nOspUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "-175.0;-20.0;0",
+								"B": "Coordinate of Country:Tonga\r\nLongitude:175.000000000000-(GPS)\r\nLatitude:20.000000000000-(GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "nespUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "125.0;-9.0;0",
+								"B": "Coordinate of Country:East Timor\r\nLongitude:125.000000000000 (GPS)\r\nLatitude:9.000000000000-(GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "nuspUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "35.0;39.0;0",
+								"B": "Coordinate of Country:Turkey\r\nLongitude:35.000000000000 (GPS)\r\nLatitude:39.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "n+spUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "-61.0;11.0;0",
+								"B": "Coordinate of Country:Trinidad and Tobago\r\nLongitude:61.000000000000-(GPS)\r\nLatitude:11.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "oOspUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "178.0;-8.0;0",
+								"B": "Coordinate of Country:Tuvalu\r\nLongitude:178.000000000000 (GPS)\r\nLatitude:8.000000000000-(GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "oespUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "121.0;23.5;0",
+								"B": "Coordinate of Country:Taiwan\r\nLongitude:121.000000000000 (GPS)\r\nLatitude:23.500000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "ouspUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "35.0;-6.0;0",
+								"B": "Coordinate of Country:Tanzania\r\nLongitude:35.000000000000 (GPS)\r\nLatitude:6.000000000000-(GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "o+spUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "32.0;49.0;0",
+								"B": "Coordinate of Country:Ukraine\r\nLongitude:32.000000000000 (GPS)\r\nLatitude:49.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "pOspUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "32.0;1.0;0",
+								"B": "Coordinate of Country:Uganda\r\nLongitude:32.000000000000 (GPS)\r\nLatitude:1.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "pespUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "-97.0;38.0;0",
+								"B": "Coordinate of Country:USA\r\nLongitude:97.000000000000-(GPS)\r\nLatitude:38.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "puspUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "-56.0;-33.0;0",
+								"B": "Coordinate of Country:Uruguay\r\nLongitude:56.000000000000-(GPS)\r\nLatitude:33.000000000000-(GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "p+spUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "64.0;41.0;0",
+								"B": "Coordinate of Country:Uzbekistan\r\nLongitude:64.000000000000 (GPS)\r\nLatitude:41.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "qOspUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "12.45;41.9;0",
+								"B": "Coordinate of Country:Vatican City\r\nLongitude:12.450000000000 (GPS)\r\nLatitude:41.900000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "qespUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "-61.2;13.25;0",
+								"B": "Coordinate of Country:St. Vincent and the Grenadines\r\nLongitude:61.200000000000-(GPS)\r\nLatitude:13.250000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "quspUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "-66.0;8.0;0",
+								"B": "Coordinate of Country:Venezuela\r\nLongitude:66.000000000000-(GPS)\r\nLatitude:8.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "q+spUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "-64.5;18.5;0",
+								"B": "Coordinate of Country:British Virgin Islands\r\nLongitude:64.500000000000-(GPS)\r\nLatitude:18.500000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "rOspUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "-64.833333;18.333333;0",
+								"B": "Coordinate of Country:American Virgin Islands\r\nLongitude:64.833333333333-(GPS)\r\nLatitude:18.333333333333 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "respUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "106.0;16.0;0",
+								"B": "Coordinate of Country:Vietnam\r\nLongitude:106.000000000000 (GPS)\r\nLatitude:16.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "ruspUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "167.0;-16.0;0",
+								"B": "Coordinate of Country:Vanuatu\r\nLongitude:167.000000000000 (GPS)\r\nLatitude:16.000000000000-(GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "r+spUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "-176.2;-13.3;0",
+								"B": "Coordinate of Country:Wallis and Futuna Islands\r\nLongitude:176.200000000000-(GPS)\r\nLatitude:13.300000000000-(GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "sOspUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "-172.333333;-13.416667;0",
+								"B": "Coordinate of Country:Samoa\r\nLongitude:172.333333333333-(GPS)\r\nLatitude:13.416666666667-(GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "sespUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "48.0;15.0;0",
+								"B": "Coordinate of Country:Yemen\r\nLongitude:48.000000000000 (GPS)\r\nLatitude:15.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "suspUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "45.166667;-12.833333;0",
+								"B": "Coordinate of Country:Mayotte\r\nLongitude:45.166666666667 (GPS)\r\nLatitude:12.833333333333-(GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "s+spUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "19.0;44.0;0",
+								"B": "Coordinate of Country:YU\r\nLongitude:19.000000000000 (GPS)\r\nLatitude:44.000000000000 (GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "tOspUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "24.0;-29.0;0",
+								"B": "Coordinate of Country:South Africa\r\nLongitude:24.000000000000 (GPS)\r\nLatitude:29.000000000000-(GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "tespUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "27.5;-14.5;0",
+								"B": "Coordinate of Country:Zambia\r\nLongitude:27.500000000000 (GPS)\r\nLatitude:14.500000000000-(GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "tuspUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							},
+							{
+								"E": "true",
+								"F": "true",
+								"A": "30.0;-20.0;0",
+								"B": "Coordinate of Country:Zimbabwe\r\nLongitude:30.000000000000 (GPS)\r\nLatitude:20.000000000000-(GPS)",
+								"G": "5X",
+								"I": "pin_blue.png",
+								"K": "t+spUtORWWbhAAAACkI4Bw==",
+								"R": "ZONE",
+								"VB:s": "",
+								"xmlns:VB": "VB",
+								"N": [
+									{
+										"name": "DragSource"
+									},
+									{
+										"name": "DropTarget"
+									}
+								]
+							}
+						]
+					}
+				},
+				{
+					"name": "Boxes",
+					"type": "N",
+					"N": {
+						"name": "Boxes"
+					}
+				},
+				{
+					"name": "Circles",
+					"type": "N",
+					"N": {
+						"name": "Circles"
+					}
+				},
+				{
+					"name": "CirclesGeoDist",
+					"type": "N",
+					"N": {
+						"name": "CirclesGeoDist"
+					}
+				},
+				{
+					"name": "PieCharts",
+					"type": "N",
+					"N": {
+						"name": "PieCharts"
+					}
+				},
+				{
+					"name": "Links",
+					"type": "N",
+					"N": {
+						"name": "Links"
+					}
+				},
+				{
+					"name": "Areas",
+					"type": "N",
+					"N": {
+						"name": "Areas"
+					}
+				}
+			],
+			"Remove": [
+				{
+					"name": "Spots",
+					"type": "E",
+					"N": {
+						"name": "Spots"
+					}
+				},
+				{
+					"name": "Boxes",
+					"type": "E",
+					"N": {
+						"name": "Boxes"
+					}
+				},
+				{
+					"name": "Circles",
+					"type": "E",
+					"N": {
+						"name": "Circles"
+					}
+				},
+				{
+					"name": "CirclesGeoDist",
+					"type": "E",
+					"N": {
+						"name": "CirclesGeoDist"
+					}
+				},
+				{
+					"name": "PieCharts",
+					"type": "E",
+					"N": {
+						"name": "PieCharts"
+					}
+				},
+				{
+					"name": "Links",
+					"type": "E",
+					"N": {
+						"name": "Links"
+					}
+				},
+				{
+					"name": "Areas",
+					"type": "E",
+					"N": {
+						"name": "Areas"
+					}
+				}
+			]
+		},
+		"Automation": {
+			"Call": {
+				"handler": "FLYTOHANDLER",
+				"name": "START",
+				"Param": [
+					{
+						"name": "pObject"
+					},
+					{
+						"name": "x",
+						"#": "9.0000000000000568E-1"
+					},
+					{
+						"name": "y",
+						"#": "-6.0E0"
+					},
+					{
+						"name": "z",
+						"#": "0"
+					},
+					{
+						"name": "lod",
+						"#": "0.02 "
+					},
+					{
+						"name": "pitch",
+						"#": "0.0"
+					},
+					{
+						"name": "yaw",
+						"#": "0.0"
+					},
+					{
+						"name": "mode",
+						"#": "5"
+					},
+					{
+						"name": "time",
+						"#": "6"
+					}
+				]
+			}
+		}
+	}
+}

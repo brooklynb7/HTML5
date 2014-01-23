@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Library name="sap.me" xmlns="http://www.sap.com/ui5/ide/templates/xmlview">
+<Template name="sap.me.Calendar" alias="Calendar">
+	<jsTemplate><![CDATA[new sap.me.Calendar({
+	id: "${id}", // sap.ui.core.ID
+	visible: true, // boolean
+	hideNavControls: false, // boolean
+	hideMonthTitles: false, // boolean
+	monthsPerRow: 0, // int
+	dayWidth: 45, // int
+	dayHeight: 50, // int
+	weeksPerRow: 1, // int
+	singleRow: undefined, // boolean
+	monthsToDisplay: 1, // int
+	currentDate: undefined, // string
+	enableMultiselection: false, // boolean
+	firstDayOffset: 0, // int
+	disabledWeekDays: undefined, // any
+	disabledDates: undefined, // any
+	swipeToNavigate: false, // boolean
+	design: sap.me.CalendarDesign.Approval, // sap.me.CalendarDesign
+	width: "100%", // sap.ui.core.CSSSize
+	days: undefined, // any
+	months: undefined, // any
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	tapOnDate: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	changeCurrentDate: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	changeRange: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<Calendar xmlns="sap.me"
+	id="${id}"
+	visible="true"
+	hideNavControls="false"
+	hideMonthTitles="false"
+	monthsPerRow="0"
+	dayWidth="45"
+	dayHeight="50"
+	weeksPerRow="1"
+	singleRow=""
+	monthsToDisplay="1"
+	currentDate=""
+	enableMultiselection="false"
+	firstDayOffset="0"
+	disabledWeekDays=""
+	disabledDates=""
+	swipeToNavigate="false"
+	design="Approval"
+	width="100%"
+	days=""
+	months=""
+	tapOnDate=""
+	changeCurrentDate=""
+	changeRange="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+</Calendar>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.me.CalendarLegend" alias="CalendarLegend,Legend">
+	<jsTemplate><![CDATA[new sap.me.CalendarLegend({
+	id: "${id}", // sap.ui.core.ID
+	legendForType00: undefined, // string
+	legendForType01: undefined, // string
+	legendForType04: undefined, // string
+	legendForType06: undefined, // string
+	legendForType07: undefined, // string
+	legendForToday: undefined, // string
+	legendForSelected: undefined, // string
+	legendForSelected00: undefined, // string
+	legendForNormal: undefined, // string
+	expandable: true, // boolean
+	expanded: true, // boolean
+	width: "auto", // sap.ui.core.CSSSize
+	legendWidth: "12.5rem", // sap.ui.core.CSSSize
+	visible: true, // boolean
+	design: sap.me.CalendarDesign.Approval, // sap.me.CalendarDesign
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [] // sap.ui.core.CustomData
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<CalendarLegend xmlns="sap.me"
+	id="${id}"
+	legendForType00=""
+	legendForType01=""
+	legendForType04=""
+	legendForType06=""
+	legendForType07=""
+	legendForToday=""
+	legendForSelected=""
+	legendForSelected00=""
+	legendForNormal=""
+	expandable="true"
+	expanded="true"
+	width="auto"
+	legendWidth="12.5rem"
+	visible="true"
+	design="Approval">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+</CalendarLegend>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.me.OverlapCalendar" alias="OverlapCalendar,Calendar">
+	<jsTemplate><![CDATA[new sap.me.OverlapCalendar({
+	id: "${id}", // sap.ui.core.ID
+	startDate: undefined, // string
+	weeksPerRow: 2, // int
+	firstDayOffset: 0, // int
+	showOverlapIndicator: false, // boolean
+	visible: true, // boolean
+	swipeToNavigate: true, // boolean
+	width: "100%", // sap.ui.core.CSSSize
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	calendarEvents: [], // sap.me.OverlapCalendarEvent
+	endOfData: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	changeDate: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<OverlapCalendar xmlns="sap.me"
+	id="${id}"
+	startDate=""
+	weeksPerRow="2"
+	firstDayOffset="0"
+	showOverlapIndicator="false"
+	visible="true"
+	swipeToNavigate="true"
+	width="100%"
+	endOfData=""
+	changeDate="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<calendarEvents></calendarEvents> <!-- sap.me.OverlapCalendarEvent -->
+</OverlapCalendar>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.me.OverlapCalendarEvent" alias="OverlapCalendarEvent,Event">
+	<jsTemplate><![CDATA[new sap.me.OverlapCalendarEvent({
+	id: "${id}", // sap.ui.core.ID
+	startDay: undefined, // string
+	endDay: undefined, // string
+	relevant: undefined, // boolean
+	type: undefined, // string
+	typeName: undefined, // string
+	halfDay: false, // boolean
+	row: -1, // int
+	name: undefined, // string
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [] // sap.ui.core.CustomData
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<OverlapCalendarEvent xmlns="sap.me"
+	id="${id}"
+	startDay=""
+	endDay=""
+	relevant=""
+	type=""
+	typeName=""
+	halfDay="false"
+	row="-1"
+	name="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+</OverlapCalendarEvent>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.me.ProgressIndicator" alias="ProgressIndicator,Indicator">
+	<jsTemplate><![CDATA[new sap.me.ProgressIndicator({
+	id: "${id}", // sap.ui.core.ID
+	visible: true, // boolean
+	enabled: true, // boolean
+	barColor: sap.ui.core.BarColor.NEUTRAL, // sap.ui.core.BarColor
+	displayValue: "0%", // string
+	percentValue: 0, // int
+	showValue: true, // boolean
+	width: "100%", // sap.ui.core.CSSSize
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [] // sap.ui.core.CustomData
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<ProgressIndicator xmlns="sap.me"
+	id="${id}"
+	visible="true"
+	enabled="true"
+	barColor="NEUTRAL"
+	displayValue="0%"
+	percentValue="0"
+	showValue="true"
+	width="100%">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+</ProgressIndicator>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.me.TabContainer" alias="TabContainer,Container">
+	<jsTemplate><![CDATA[new sap.me.TabContainer({
+	id: "${id}", // sap.ui.core.ID
+	selectedTab: undefined, // int
+	badgeInfo: undefined, // int
+	badgeNotes: undefined, // int
+	badgeAttachments: undefined, // int
+	badgePeople: undefined, // int
+	expandable: true, // boolean
+	expanded: true, // boolean
+	visible: true, // boolean
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	contentInfo: undefined, // sap.ui.core.Control
+	contentAttachments: undefined, // sap.ui.core.Control
+	contentNotes: undefined, // sap.ui.core.Control
+	contentPeople: undefined, // sap.ui.core.Control
+	select: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	expand: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	collapse: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<TabContainer xmlns="sap.me"
+	id="${id}"
+	selectedTab=""
+	badgeInfo=""
+	badgeNotes=""
+	badgeAttachments=""
+	badgePeople=""
+	expandable="true"
+	expanded="true"
+	visible="true"
+	select=""
+	expand=""
+	collapse="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<contentInfo></contentInfo> <!-- sap.ui.core.Control -->
+		<contentAttachments></contentAttachments> <!-- sap.ui.core.Control -->
+		<contentNotes></contentNotes> <!-- sap.ui.core.Control -->
+		<contentPeople></contentPeople> <!-- sap.ui.core.Control -->
+</TabContainer>
+]]></xmlTemplate>
+</Template>
+</Library>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Sharing Component Unit Test</title>
+
+<!-- UI5 Bootstrap -->
+<script id="sap-ui-bootstrap" 
+		type="text/javascript"
+		src="../../../../../../../resources/sap-ui-core.js"
+		data-sap-ui-theme="sap_bluecrystal"
+		data-sap-ui-libs="sap.m,sap.ui.layout"
+		data-sap-ui-language="en">
+</script>
+
+<!-- libraries to be tested ******** LATER SHOULD BE IN THE BOOTSTRAP ******** -->
+
+<!-- QUnit libraries -->
+	<link rel="stylesheet"
+		  href="../../../../../../../resources/sap/ui/thirdparty/qunit.css"
+		  type="text/css" media="screen" />
+	<script src="../../../../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+	<script type="text/javascript" src="../../../../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
+	<script type="text/javascript" src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
+	
+	
+    <!-- The feed widget script is loaded by the component  -->
+	<!-- <script type="text/javascript" src="https://integration3.cubetree.com/assets/feed_widget_v1.js"></script> -->
+    
+    <script>
+    
+	  //************************************ BEGIN OF A FIX FOR IE8 FOR THE TRIM METHOD USED IN THE MOBILE LIB *******************************************//
+		
+		if (!String.prototype.trim) {
+		  String.prototype.trim = function () {
+		    return this.replace(/^\s+|\s+$/g, '');
+		  };
+		}
+		
+		
+		//************************************ END OF A FIX FOR IE8 FOR THE TRIM METHOD USED IN THE MOBILE LIB *******************************************//
+    	
+	    var hostUrl = "/uilib-sample";
+		var oDataServiceUrl = hostUrl + "/proxy/https" + 
+		"/vmw3814.wdf.sap.corp:44320/sap/opu/odata/sap/sm_integration_srv_u31_000";
+		
+		var oObjectListItem = new sap.m.ObjectListItem("object_item",{
+	 		title : "Sales Order 1",
+	 		number : "788885,23",
+	 		numberUnit : "USD",
+	 		firstStatus: new sap.m.ObjectStatus({text : "Open", state:"Warning"}),
+			}); 
+		
+		var oObjectListItem2 = new sap.m.ObjectListItem("object_item2",{
+	 		title : "Sales Order 2",
+	 		number : "100000",
+	 		numberUnit : "CAD",
+	 		firstStatus: new sap.m.ObjectStatus({text : "Closed", state:"Warning"}),
+			}); 
+		
+		var sharingCollaborationComponent = sap.ui.getCore().createComponent({
+	 		name: "sap.collaboration.components.fiori.sharing",
+	 		id: "sharingComponent",
+	 		settings: {	
+	    		oDataServiceUrl: oDataServiceUrl,
+	
+				object:{
+	                display: oObjectListItem,
+	                id:"http://sap.com/CRM/SaleOrders(111)",
+	                share: "this is sales order 1"
+	       		}
+	 		}
+	 	});
+		
+		sharingCollaborationComponent.aJamGroups = [ 
+   			{Id:"1",Name:"group1",GroupType:"Private External"},
+       	 	{Id:"2",Name:"group2",GroupType:"Private internal"},
+         	{Id:"3",Name:"group3",GroupType:"Public Internal"},
+         	{Id:"4",Name:"group4",GroupType:"Private External"}
+        ];
+		sharingCollaborationComponent.bOdataOn = false;
+		
+		sharingCollaborationComponent.getJamUrl = function(){
+			return "https://integration3.sapjam.com";
+		}
+		
+	 	
+	 	var componentContainer = new sap.ui.core.ComponentContainer("componentContainer", {
+	 		component: sharingCollaborationComponent
+	 	});
+	 	
+	 	componentContainer.placeAt("content");
+	 	
+	 	var fRerender = function(){
+	 		sharingCollaborationComponent.setObject({
+                display: oObjectListItem2,
+                id:"http://sap.com/CRM/SaleOrders(111)",
+                share: "this is sales order 2"
+       		});
+ 			
+ 			componentContainer.rerender();
+	 	}
+    </script>
+    
+    <script type="text/javascript">
+		
+		module("Sharing Component Rendering");
+	
+		test("TestViewRenderedOK", function() {
+		    var sCompId = "sharingComponent";
+		    notEqual(jQuery.sap.domById(sCompId), null, "Create Sharing Component outer HTML Element is rendered.");
+		});
+		
+		test("TestSharingViewRenderedOK", function() {
+		    var sSharingViewId = "sharingComponent_SharingView";
+		    notEqual(jQuery.sap.domById(sSharingViewId), null, "Create Sharing Table outer HTML Element is rendered.");
+		});
+		
+	</script>
+
+</head>
+<body>
+	<div id="qunit"></div>
+	<div id="content"></div>
+</body>
+</html>

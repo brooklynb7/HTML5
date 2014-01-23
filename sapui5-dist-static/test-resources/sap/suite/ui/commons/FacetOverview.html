@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Facet Overview- sap.suite.ui.commons</title>
+
+    <!-- UI5 Bootstrap -->
+    <script src="../../../../../resources/sap-ui-core.js"
+            type="text/javascript"
+            id="sap-ui-bootstrap"
+            data-sap-ui-libs="sap.ui.commons,sap.suite.ui.commons,sap.m"
+            data-sap-ui-theme="sap_goldreflection"></script>
+
+<style>
+    /* TODO TEMP WHILE NOT FIXED IN GRID */
+
+
+    /* GRID SPACING - general */
+
+    .sapUiGrid.sapUiGridVSpace0 div {
+        margin-bottom: 0;
+    }
+
+    .sapUiGrid.sapUiGridVSpace1 div {
+        margin-bottom: 0;
+    }
+
+    .sapUiGrid.sapUiGridVSpace2 div {
+        margin-bottom: 0;
+    }
+
+    .sapUiGrid.sapUiGridVSpace0 > div {
+        margin-bottom: 0;
+    }
+
+    .sapUiGrid.sapUiGridVSpace1 > div {
+        margin-bottom: 1rem;
+    }
+
+    .sapUiGrid.sapUiGridVSpace2 > div {
+        margin-bottom: 2rem;
+    }
+
+
+</style>
+
+<script type="text/javascript">
+    jQuery.sap.initMobile();
+
+    var form = new sap.ui.commons.form.SimpleForm("form-list", {
+        minWidth: 1024,
+        maxContainerCols: 1,
+        content: [
+            new sap.ui.commons.Label({text: "Valid From:"}),
+            new sap.m.Text({text: "01.01.2013"}),
+            new sap.ui.commons.Label({text: "Valid to: "}),
+            new sap.m.Text({text: "Partially invoiced"})
+        //    new sap.ui.commons.Label({text: "Responsible:"}),
+       //     new sap.m.Link({text: "John Bradford"})
+        ]
+    });
+
+    var form2 = new sap.ui.commons.form.Form("form-list2", {
+        layout: new sap.ui.commons.form.ResponsiveLayout(),
+        formContainers: [
+            new sap.ui.commons.form.FormContainer("F1C1", {
+                formElements: [
+                    new sap.ui.commons.form.FormElement({
+                        label: new sap.m.Label({text: "CeBit Demo"}),
+                        fields: [
+                            new sap.m.Text({text: "040 Event"})
+                        ]
+                    }),
+                    new sap.ui.commons.form.FormElement({
+                        label: new sap.m.Label({text: "Order 2"}),
+                        fields: [
+                            new sap.m.Text({text: "040 Event"})
+                        ]
+                    })
+                ]
+            }),
+
+            new sap.ui.commons.form.FormContainer("F1C2", {
+                formElements: [
+                    new sap.ui.commons.form.FormElement({
+                        label: new sap.m.Label({text: "Order 3"}),
+                        fields: [
+                            new sap.m.Text({text: "040 Event"})
+                        ]
+                    }),
+                    new sap.ui.commons.form.FormElement({
+                        label: new sap.m.Label({text: "Order 4"}),
+                        fields: [
+                            new sap.m.Text({text: "040 Event"})
+                        ]
+                    })
+                ]
+            })
+        ]
+    });
+
+    var hbox = new sap.m.HBox("hbox", {
+        hSpacing: 1,
+        items: [
+            new sap.m.Image({
+                src: "images/balloons.jpg",
+                height: "50px"
+            }),
+            new sap.m.Image({
+                src: "images/balloons.jpg",
+                height: "50px"
+            }),
+            new sap.m.Image({
+                src: "images/balloons.jpg",
+                height: "50px"
+            })
+        ] 
+    });
+
+	var facet = new sap.suite.ui.commons.FacetOverview("facet", {
+        title: "Very very very very very very very very long title",
+        quantity: 32,
+        content: form,
+        width: "400px",
+        press: function (oEvent) {
+            console.log("pressed " + oEvent.getParameter("id"));
+        }
+    });
+	
+
+    var facet2 = new sap.suite.ui.commons.FacetOverview("facet2", {
+        title: "Contacts",
+        quantity: 17,
+        content: form2,
+        press: function (oEvent) {
+            console.log("pressed another " + oEvent.getParameter("id"));
+        }
+    });
+
+    var facetNoQty = new sap.suite.ui.commons.FacetOverview("facetNoQty", {
+        title: "Sales Order",
+        content: hbox
+    });
+
+    facet.placeAt("sample1");
+    facet2.placeAt("sample2");
+    facetNoQty.placeAt("sample3");
+
+</script>
+</head>
+
+<body class="sapUiBody">
+	<div id="sample1" style="margin-bottom: 10px"></div>
+    <div id="sample2" style="margin-bottom: 10px"></div>
+    <div id="sample3" style="margin-bottom: 10px"></div>
+</body>
+</html>

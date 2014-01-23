@@ -1,0 +1,96 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<title>qUnit Page for sap.m.MessageBox</title>
+
+		<script id="sap-ui-bootstrap" 
+			type="text/javascript"
+			src="../../../../resources/sap-ui-core.js"
+			data-sap-ui-theme="sap_mvi"
+			data-sap-ui-noConflict="true"
+			data-sap-ui-libs="sap.m">
+		</script>
+
+		<link rel="stylesheet" href="../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
+		<script type="text/javascript" src="../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+		<script type="text/javascript" src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
+		<script type="text/javascript" src="../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
+
+		<script language="javascript">
+			QUnit.config.autostart = false;
+			jQuery(document).ready(function() {
+				QUnit.start();
+			});
+			
+			var oHtml = new sap.ui.core.HTML({
+				content : '<div id="contentHolder"></div><h1 id="qunit-header">qUnit Page for sap.m.MessageBox</h1><h2 id="qunit-banner"></h2><h2 id="qunit-userAgent"></h2><ol id="qunit-tests"></ol>'
+			});
+			
+			var page = new sap.m.Page("myFirstPage", {
+				title : "MessageBox Test",
+				showNavButton : true,
+				content : oHtml
+			});
+			
+			var app = new sap.m.App("myApp", {
+				initPage: "myFirstPage"
+			});
+			app.addPage(page).placeAt("content");
+			
+			var sMessageText = "Text to be tested";
+			var sMessageTitle = "Title to be tested";
+			
+			function callback(oAction){
+				ok(!oAction, "Dialog is closed by calling close method, so the action parameter is null");
+				start();
+			}
+			jQuery.sap.require("sap.m.MessageBox");
+			
+			asyncTest("show", function(){
+				sap.m.MessageBox.show(sMessageText, null, sMessageTitle, [sap.m.MessageBox.Action.OK, "Cancel", sap.m.MessageBox.Action.NO], callback, "messagebox1");
+				expect(6);
+				setTimeout(function(){
+					var oMessageBox = sap.ui.getCore().byId("messagebox1");
+					ok(oMessageBox, "Dialog should be created");
+					equal(oMessageBox.getType(), sap.m.DialogType.Message, "Dialog should have type Message");
+					ok(oMessageBox.getLeftButton(), "Left button is created");
+					ok(oMessageBox.getRightButton(), "Right button is also created");
+					equal(oMessageBox.getTitle(), sMessageTitle, "Title is assigned");
+					oMessageBox.close();
+				}, 500);
+			});
+			
+			asyncTest("alert", function(){
+				sap.m.MessageBox.alert(sMessageText, callback, sMessageTitle, "alertbox1");
+				expect(6);
+				setTimeout(function(){
+					var oMessageBox = sap.ui.getCore().byId("alertbox1");
+					ok(oMessageBox, "Dialog should be created");
+					equal(oMessageBox.getType(), sap.m.DialogType.Message, "Dialog should have type Message");
+					ok(oMessageBox.getLeftButton(), "Left button is created");
+					ok(!oMessageBox.getRightButton(), "No right button in alert dialog");
+					equal(oMessageBox.getTitle(), sMessageTitle, "Title is assigned");
+					oMessageBox.close();
+				}, 500);
+			});
+			
+			asyncTest("confirm", function(){
+				sap.m.MessageBox.confirm(sMessageText, callback, sMessageTitle, "confirmbox1");
+				expect(6);
+				setTimeout(function(){
+					var oMessageBox = sap.ui.getCore().byId("confirmbox1");
+					ok(oMessageBox, "Dialog should be created");
+					equal(oMessageBox.getType(), sap.m.DialogType.Message, "Dialog should have type Message");
+					ok(oMessageBox.getLeftButton(), "Left button is created");
+					ok(oMessageBox.getRightButton(), "Right button is also created");
+					equal(oMessageBox.getTitle(), sMessageTitle, "Title is assigned");
+					oMessageBox.close();
+				}, 500);
+			});
+		</script>
+	</head>
+	<body id="body" class="sapUiBody">
+    	<div id="content"></div>
+	</body>
+</html>

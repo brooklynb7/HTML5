@@ -1,0 +1,380 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		
+		<title>Popover (with NavContainer inside) - sap.m</title>
+		
+		<style>
+/* 			bottom */
+			.positioned{
+				position: absolute;
+				top: 10px;
+				right: 0px;
+			}
+			
+			
+/* 			right */
+			.positioned1{
+				position: absolute;
+				top: 10px;
+				left: 10px;
+			}
+			
+/* 			left */
+			.positioned2{
+				position: absolute;
+				top: 80px;
+				right: 10px;
+			}
+			
+/* 			top */
+			.positioned3{
+				position: absolute;
+				bottom: 10px;
+				left: 100px;
+			}
+			
+		</style>
+		
+		<script src="../../../../resources/sap-ui-core.js"
+			type="text/javascript" 
+			id="sap-ui-bootstrap"
+			data-sap-ui-libs="sap.m"
+			data-sap-ui-theme="sap_mvi">
+		</script>
+		
+		<script type="text/javascript">
+			
+			function bindListData(data, itemTemplate, list){
+				var oModel = new sap.ui.model.json.JSONModel();
+				// set the data for the model
+				oModel.setData(data);
+				// set the model to the list
+				list.setModel(oModel);
+				
+				var oDataTemplate = new sap.ui.core.CustomData({
+					key : "xyz"
+				});
+				oDataTemplate.bindProperty("value", "press");
+	
+				// add the CustomData template to the item template
+				itemTemplate.addCustomData(oDataTemplate);
+	
+				// bind Aggregation
+				list.bindAggregation("items", "/navigation", itemTemplate);
+			}
+			
+			
+			var app = new sap.m.App("myApp", {initialPage:"page1"});
+
+			/*************************************************************************/
+			/*     Create NavContainer with two pages inside and the first page      */
+			/*     contains a footer, there's no footer on the popover.              */
+			/*=======================================================================*/
+			
+			//begin: create the list
+			var oList1 = new sap.m.List({
+				inset: true
+			});
+			//end: create the list
+
+			var data1 = {
+				navigation : [ {
+					title : "Travel Expend",
+					description : "Access the travel expend workflow",
+					icon : "../images/travel_expend.png",
+					iconInset : false,
+					type : "Navigation",
+					press : 'detailPage'
+				}, {
+					title : "Travel and expense report",
+					description : "Access travel and expense reports",
+					icon : "../images/travel_expense_report.png",
+					iconInset : false,
+					type : "Navigation",
+					press : 'detailPage'
+				}, {
+					title : "Travel Request",
+					description : "Access the travel request workflow",
+					icon : "../images/travel_request.png",
+					iconInset : false,
+					type : "Navigation",
+					press : 'detailPage'
+				}, {
+					title : "Work Accidents",
+					description : "Report your work accidents",
+					icon : "../images/wounds_doc.png",
+					iconInset : false,
+					type : "Navigation",
+					press : 'detailPage'
+				}, {
+					title : "Travel Settings",
+					description : "Change your travel worflow settings",
+					icon : "../images/settings.png",
+					iconInset : false,
+					type : "Navigation",
+					press : 'detailPage'
+				} ]
+			};
+
+			var oItemTemplate1 = new sap.m.StandardListItem({
+				title : "{title}",
+				description : "{description}",
+				icon : "{icon}",
+				iconInset : "{iconInset}",
+				type : "{type}",
+				press: handlePress
+			});
+			
+			bindListData(data1, oItemTemplate1, oList1);
+			
+			function handlePress(e) {
+				oNavContainer.to(this.data("xyz"));
+			}
+			
+			
+			var footer = new sap.m.Bar({ 
+				contentLeft: [],	
+				contentMiddle: [new sap.m.Button({icon: "../images/SAPUI5.png"}),
+				                new sap.m.Button({icon: "../images/SAPUI5.png"}),
+				                new sap.m.Button({icon: "../images/SAPUI5.png"})],
+				contentRight: []
+			});
+			
+			
+			//begin: creating navContainer
+			var oNavContainer = new sap.m.NavContainer({
+				initialPage: "listPage"
+			});
+			
+			var oPage1 = new sap.m.Page("listPage", {
+				title: "Click on the list (with footer)",
+				showNavButton: false,
+				footer: footer,
+				content: [
+					oList1
+				]
+			});
+			
+			var oPage2 = new sap.m.Page("detailPage", {
+				title: "Detail Page",
+				showNavButton: true,
+				navButtonText: "listPage",
+				navButtonPress: function(){ oNavContainer.back(); },
+				content: [new sap.m.Button({
+					text: "Finish",
+					press: function(){
+						oPopover.close();
+					}
+				})]
+			});
+			
+			oNavContainer.addPage(oPage1).addPage(oPage2);
+			//end: creating navContainer
+			
+			
+			//begin: creating Popover
+			var oPopover = new sap.m.Popover({
+				placement: sap.m.PlacementType.Bottom,
+				modal: true,
+				showHeader: false,
+				beforeOpen: function(oEvent){
+					jQuery.sap.log.info("before popover opens!!!");
+				},
+				opened: function(oEvent){
+					jQuery.sap.log.info("popover is opened finally!!!");
+				},
+				closed: function(oEvent){
+					jQuery.sap.log.info("popover is closed properly!!!");
+					oNavContainer.back();
+				},
+				content: [
+					oNavContainer
+				],
+				contentWidth: "360px",
+				contentHeight: "350px"
+			});
+			//end: creating 
+
+			/*************************************************************************/
+			/*     Create NavContainer with two pages inside and the first page      */
+			/*     contains a footer, there's no footer on the popover.              */
+			/*=======================================================================*/
+			
+			//begin: create the list
+			var oList2 = new sap.m.List({
+				inset : true
+			});
+			
+			var data2 = {
+					navigation : [ {
+						title : "Travel Expend",
+						description : "Access the travel expend workflow",
+						icon : "../images/travel_expend.png",
+						iconInset : false,
+						type : "Navigation",
+						press : 'detailPage1'
+					}, {
+						title : "Travel and expense report",
+						description : "Access travel and expense reports",
+						icon : "../images/travel_expense_report.png",
+						iconInset : false,
+						type : "Navigation",
+						press : 'detailPage1'
+					}, {
+						title : "Travel Request",
+						description : "Access the travel request workflow",
+						icon : "../images/travel_request.png",
+						iconInset : false,
+						type : "Navigation",
+						press : 'detailPage1'
+					}, {
+						title : "Work Accidents",
+						description : "Report your work accidents",
+						icon : "../images/wounds_doc.png",
+						iconInset : false,
+						type : "Navigation",
+						press : 'detailPage1'
+					}, {
+						title : "Travel Settings",
+						description : "Change your travel worflow settings",
+						icon : "../images/settings.png",
+						iconInset : false,
+						type : "Navigation",
+						press : 'detailPage1'
+					} ]
+				};
+			
+			var oItemTemplate2 = new sap.m.StandardListItem({
+				title : "{title}",
+				description : "{description}",
+				icon : "{icon}",
+				iconInset : "{iconInset}",
+				type : "{type}",
+				press: handlePress1
+			});
+			
+			bindListData(data2, oItemTemplate2, oList2);
+			
+			function handlePress1(e) {
+				oNavContainer1.to(this.data("xyz"));
+			}
+			//end of the list creation
+			var footer1 = new sap.m.Bar({ 
+				contentLeft: [],	
+				contentMiddle: [new sap.m.Button({icon: "../images/SAPUI5.png"}),
+				                new sap.m.Button({icon: "../images/SAPUI5.png"}),
+				                new sap.m.Button({icon: "../images/SAPUI5.png"})],
+				contentRight: []
+			});
+			//begin: creating navContainer1
+			var oNavContainer1 = new sap.m.NavContainer({
+				initialPage: "listPage1"
+// 				width: "360px",
+// 				height: "280px"
+			});
+			
+			var oPage3 = new sap.m.Page("listPage1", {
+				title: "Click on the list",
+				showNavButton: false,
+				content: [
+					oList2
+				]
+			});
+			
+			var oPage4 = new sap.m.Page("detailPage1", {
+				title: "Detail Page",
+				showNavButton: true,
+				navButtonText: "listPage",
+				navButtonPress: function(){ oNavContainer1.back(); },
+				content: [new sap.m.Button({
+					text: "Finish",
+					press: function(){
+						oPopover1.close();
+					}
+				})]
+			});
+			
+			oNavContainer1.addPage(oPage3).addPage(oPage4);
+			//end: creating navContainer
+
+			//begin: creating Popover
+			var oPopover1 = new sap.m.Popover({
+				placement: sap.m.PlacementType.Bottom,
+				modal: true,
+				showHeader: false,
+				beforeOpen: function(oEvent){
+					jQuery.sap.log.info("before popover opens!!!");
+				},
+				opened: function(oEvent){
+					jQuery.sap.log.info("popover is opened finally!!!");
+				},
+				closed: function(oEvent){
+					jQuery.sap.log.info("popover is closed properly!!!");
+					oNavContainer1.back();
+				},
+				footer: footer1,
+				content: [
+					oNavContainer1
+				],
+				contentWidth: "360px",
+				contentHeight: "300px"
+			});
+			//end: creating Popover
+			
+			
+			/*************************************************************************/
+			/*                     Create buttons that opens the popover             */
+			/*=======================================================================*/
+			var oButton = new sap.m.Button({
+				text : "Footer in Popover(B)",
+				press : function() {
+					oPopover1.setPlacement(sap.m.PlacementType.Bottom);
+					oPopover1.openBy(this);
+				}
+			});
+			
+			oButton.addStyleClass("positioned");
+			var oButton1 = new sap.m.Button({
+				text : "Footer in Page(R)",
+				press : function() {
+					oPopover.setPlacement(sap.m.PlacementType.Right);
+					oPopover.openBy(this);
+				}
+			});
+			
+			oButton1.addStyleClass("positioned1");
+			var oButton2 = new sap.m.Button({
+				text : "Footer in Popover(L)",
+				press : function() {
+					oPopover1.setPlacement(sap.m.PlacementType.Left);
+					oPopover1.openBy(this);
+				}
+			});
+			
+			oButton2.addStyleClass("positioned2");
+			
+			var oButton3 = new sap.m.Button({
+				text : "Footer in Page(T)",
+				press : function() {
+					oPopover.setPlacement(sap.m.PlacementType.Top);
+					oPopover.openBy(this);
+				}
+			});
+			oButton3.addStyleClass("positioned3");
+			
+			var page1 = new sap.m.Page("page1", {
+				title:"Page 1",
+				content: [
+					oButton, oButton1, oButton2, oButton3
+				]
+			});
+			
+			app.addPage(page1);
+			app.placeAt("body");
+		</script>
+	</head>
+	<body id="body" class="sapUiBody">
+	</body>
+</html>

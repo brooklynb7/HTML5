@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JamUtil Unit Test</title>
+
+<!-- UI5 Bootstrap -->
+<script id="sap-ui-bootstrap" 
+		type="text/javascript"
+		src="../../../../../../../resources/sap-ui-core.js"
+		data-sap-ui-theme="sap_bluecrystal"
+		data-sap-ui-libs="sap.m"
+		data-sap-ui-language="en">
+</script>
+
+<!-- libraries to be tested ******** LATER SHOULD BE IN THE BOOTSTRAP ******** -->
+
+<!-- QUnit libraries -->
+	<link rel="stylesheet"
+		  href="../../../../../../../resources/sap/ui/thirdparty/qunit.css"
+		  type="text/css" media="screen" />
+	<script src="../../../../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+	<script type="text/javascript" src="../../../../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
+	<script type="text/javascript" src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
+	
+ <!-- SINON JS SUPPORT START -->
+	  <script type="text/javascript" src="../../../../../../../resources/sap/ui/thirdparty/sinon.js"></script>
+	  <!--[if IE]>
+	  <script type="text/javascript" src="../../../../../../../resources/sap/ui/thirdparty/sinon-ie.js"></script>
+	  <![endif]-->
+	  <script type="text/javascript" src="../../../../../../../resources/sap/ui/thirdparty/sinon-qunit.js"></script>
+ <!-- SINON JS SUPPORT END -->
+
+	
+	
+    <!-- The feed widget script is loaded by the component  -->
+	<!-- <script type="text/javascript" src="https://integration3.cubetree.com/assets/feed_widget_v1.js"></script> -->
+    
+    <script>
+    	
+	 	jQuery.sap.require("jquery.sap.resources");
+	 	jQuery.sap.require("sap.collaboration.library");
+	 	jQuery.sap.require("sap.collaboration.components.utils.JamUtil");
+		//var modulePath = jQuery.sap.getModulePath("sap.collaboration.components");
+	
+		var oJamUtil = new sap.collaboration.components.utils.JamUtil();
+	</script>
+    
+    <script type="text/javascript">
+		var jamToken = "1234";
+		var groupIds = "1,2,3,4,";
+		var oWidgetData = {
+				type: sap.collaboration.FeedType.follows, 
+				avatar: oJamUtil.FeedRenderedControllerConstants.jamWidgetCSS.avatar, 
+				post_mode: oJamUtil.FeedRenderedControllerConstants.jamWidgetCSS.post_mode, 
+				reply_mode: oJamUtil.FeedRenderedControllerConstants.jamWidgetCSS.reply_mode,
+				live_update: oJamUtil.FeedRenderedControllerConstants.jamWidgetCSS.live_update,
+				mobile_mode: oJamUtil.FeedRenderedControllerConstants.jamWidgetCSS.mobile_mode,
+				hide_bookmark: true,
+				single_use_token: jamToken
+			};
+		
+		module("JAM Util - My Follows Feed Widget");
+	
+		test("Test Widget Data", function() {
+		    var oTestWidgetData = oJamUtil.prepareWidgetData(jamToken, sap.collaboration.FeedType.follows, "", "");
+		    notEqual(oTestWidgetData, undefined, "Widget data is not empty.");
+		    deepEqual(oTestWidgetData, oWidgetData, "Widget data is ok");
+		});
+		
+		module("JAM Util - Company Feed Widget", {
+			setup: function(){
+				oWidgetData.type = sap.collaboration.FeedType.company;
+			}
+		});
+						
+		test("Test Widget Data", function() {
+		    var oTestWidgetData = oJamUtil.prepareWidgetData(jamToken, sap.collaboration.FeedType.company, "", "");
+		    notEqual(oTestWidgetData, undefined, "Widget data is not empty.");
+		    deepEqual(oTestWidgetData, oWidgetData, "Widget data is ok");
+		});
+		
+		module("JAM Util - Group Feed Widget", {
+			setup: function(){
+				oWidgetData.type = sap.collaboration.FeedType.group;
+				oWidgetData.group_id = "";
+			}			
+		});
+						
+		test("Test Widget Data - All Groups", function() {
+		    var oTestWidgetData = oJamUtil.prepareWidgetData(jamToken, sap.collaboration.FeedType.group, "", "");
+		    notEqual(oTestWidgetData, undefined, "Widget data is not empty.");
+		    deepEqual(oTestWidgetData, oWidgetData, "Widget data is ok");
+		});
+		
+		var oBusinessObject = {
+				id:	"http://services.odata.org/Northwind/Northwind.svc/Products(3)",
+				name: "Aniseed Syrup",
+				type: "http://services.odata.org/Northwind/Northwind.svc/$metadata#Products",
+				annotation_url: "https://dl.dropboxusercontent.com/u/5005669/MarkupNorthWind-V4.xml",
+				metadata_url: "http://services.odata.org/Northwind/Northwind.svc/$metadata#Products",
+				odata_url: "http://services.odata.org/Northwind/Northwind.svc/Products(3)",
+				ui_url: "http://services.odata.org/Northwind/Northwind.svc/Products(3)"
+		}
+
+		module("JAM Util - Object Feed Widget", {
+			setup: function(){
+				oWidgetData.type = oJamUtil.JamFeedType.Object;
+				oWidgetData.external_object = oBusinessObject;
+				oWidgetData.external_id = "http://services.odata.org/Northwind/Northwind.svc/Products(3)";
+				oWidgetData.external_type = "http://services.odata.org/Northwind/Northwind.svc/$metadata#Products";
+				delete oWidgetData["group_id"];
+			}
+		});
+						
+		test("Test Widget Data - Object", function() {
+		    var oTestWidgetData = oJamUtil.prepareWidgetData(jamToken, sap.collaboration.FeedType.object, "", oBusinessObject);
+		    notEqual(oTestWidgetData, undefined, "Widget data is not empty.");
+		    deepEqual(oTestWidgetData, oWidgetData, "Widget data is ok");
+		});
+		
+		test("Test Incorrect Settings", function(){			
+			var empty = "";
+			var wrong = "wrong";
+			var errMsgFeedTypeNotSupported = "Feed Type not supported";
+			
+			throws(function(){ oJamUtil.prepareWidgetData(); }, /Feed Type not supported/, "No arguments passed. Throwing expected error: 'Feed Type not supported'.");
+			throws(function(){ oJamUtil.prepareWidgetData(undefined); }, /Feed Type not supported/, "feedType: missing. Throwing expected error: 'Feed Type not supported'.");
+			throws(function(){ oJamUtil.prepareWidgetData(undefined, undefined); }, /Feed Type not supported/, "feedType: undefined. Throwing expected error: 'Feed Type not supported'.");
+			throws(function(){ oJamUtil.prepareWidgetData(undefined, empty); }, /Feed Type not supported/, "feedType: empty. Throwing expected error: 'Feed Type not supported'.");
+			throws(function(){ oJamUtil.prepareWidgetData(undefined, wrong); }, /Feed Type not supported/, "feedType: wrong. Throwing expected error: 'Feed Type not supported'.");
+			
+			throws(function(){ oJamUtil.prepareWidgetData(undefined, sap.collaboration.FeedType.object, undefined); }, /Object is undefined/, "object: missing. Throwing expected error: 'Object is undefined'.");
+			throws(function(){ oJamUtil.prepareWidgetData(undefined, sap.collaboration.FeedType.object, undefined, undefined); }, /Object is undefined/, "object: undefined. Throwing expected error: 'Object is undefined'.");
+			throws(function(){ oJamUtil.prepareWidgetData(undefined, sap.collaboration.FeedType.object, undefined, empty); }, /Object is undefined/, "object: empty string. Throwing expected error: 'Object is undefined'.");
+			throws(function(){ oJamUtil.prepareWidgetData(undefined, sap.collaboration.FeedType.object, undefined, {}); }, /Property 'id' is undefined/, "object: empty object. Throwing expected error: 'Property 'id' is undefined'."); 
+			throws(function(){ oJamUtil.prepareWidgetData(undefined, sap.collaboration.FeedType.object, undefined, wrong); }, /Property 'id' is undefined/, "object: wrong string. Throwing expected error: 'Property 'id' is undefined'.");
+			throws(function(){ oJamUtil.prepareWidgetData(undefined, sap.collaboration.FeedType.object, undefined, { wrong: wrong }); }, /Property 'id' is undefined/, "object: wrong object. Throwing expected error: 'Property 'id' is undefined'.");
+			
+			var businessObject = {};
+			throws(function(){ oJamUtil.prepareWidgetData(undefined, sap.collaboration.FeedType.object, undefined, businessObject); }, /Property 'id' is undefined/, "id: missing. Throwing expected error: 'Property 'id' is undefined'.");
+			businessObject.id = undefined;
+			throws(function(){ oJamUtil.prepareWidgetData(undefined, sap.collaboration.FeedType.object, undefined, businessObject); }, /Property 'id' is undefined/, "id: undefined. Throwing expected error: 'Property 'id' is undefined'.");
+			businessObject.id = empty;
+			throws(function(){ oJamUtil.prepareWidgetData(undefined, sap.collaboration.FeedType.object, undefined, businessObject); }, /Property 'id' is undefined/, "id: empty. Throwing expected error: 'Property 'id' is undefined'.");
+			businessObject.id = wrong;
+			ok(function(){ oJamUtil.prepareWidgetData(undefined, sap.collaboration.FeedType.object, undefined, businessObject); }, "id: 'wrong'. Does not throw exception.");
+			
+			throws(function(){ oJamUtil.prepareWidgetData(undefined, sap.collaboration.FeedType.object, undefined, businessObject); }, /Property 'type' is undefined/, "type: missing. Throwing expected error: 'Property 'type' is undefined'.");
+			businessObject.type = undefined;
+			throws(function(){ oJamUtil.prepareWidgetData(undefined, sap.collaboration.FeedType.object, undefined, businessObject); }, /Property 'type' is undefined/, "type: undefined. Throwing expected error: 'Property 'type' is undefined'.");
+			businessObject.type = empty;
+			throws(function(){ oJamUtil.prepareWidgetData(undefined, sap.collaboration.FeedType.object, undefined, businessObject); }, /Property 'type' is undefined/, "type: empty. Throwing expected error: 'Property 'id' type undefined'.");
+			businessObject.type = wrong;
+			ok(function(){ oJamUtil.prepareWidgetData(undefined, sap.collaboration.FeedType.object, undefined, businessObject); }, "type: 'wrong'. Does not throw exception.");
+		});
+		
+		//var spy;
+		//var stub;
+		var emptyFunction = function(){};
+		
+		module("JAM Util - Test Spy Methods");
+		
+		test("Load Feed Widget Script", function(){
+			var spy = sinon.spy(oJamUtil, "loadFeedWidgetScript");
+			spy();
+			oJamUtil.loadFeedWidgetScript();
+			ok(spy.called);
+			equal(spy.callCount,2,"called twice");
+			oJamUtil.loadFeedWidgetScript.restore();
+		});
+		
+		test("Initialize Jam Widget", function(){
+			var stub = sinon.stub(oJamUtil, "initializeJamWidget", emptyFunction);
+			//spy();
+			oJamUtil.initializeJamWidget();
+			ok(stub.called);
+			equal(stub.callCount,1,"called once");
+			oJamUtil.initializeJamWidget.restore();
+		});
+		
+		test("Create Jam Widget", function(){
+			var stub = sinon.stub(oJamUtil, "createJamWidget", emptyFunction);
+			//spy();
+			oJamUtil.createJamWidget();
+			ok(stub.called);
+			equal(stub.callCount,1,"called once");
+			oJamUtil.createJamWidget.restore();
+		});
+		
+	</script>
+
+</head>
+<body>
+	<div id="qunit"></div>
+</body>
+</html>

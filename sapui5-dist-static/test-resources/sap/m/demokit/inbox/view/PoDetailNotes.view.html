@@ -1,0 +1,12 @@
+<template>
+	<div data-sap-ui-type="sap.m.List" id="lrAttachments" data-items="{po>notes}"  data-show-separators="None">
+		<div data-sap-ui-aggregation="items" data-items="{po>notes}">
+			<div data-sap-ui-type="sap.m.FeedListItem"
+				data-thumbnail-src="{po>img}" 
+				data-text="{po>text}"
+				data-sender="{po>sender}"
+				data-timestamp="{po>date}" >
+			</div>
+		</div>
+	</div> 
+</template>

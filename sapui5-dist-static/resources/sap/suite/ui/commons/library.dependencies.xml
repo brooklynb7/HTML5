@@ -1,0 +1,406 @@
+<?xml version="1.0" ?>
+<library  version="2.0" name="sap.suite.ui.commons">
+  <module name="sap/suite/ui/commons/BusinessCard.js" size="9120" compressedSize="818">
+    <description>Provides control sap.suite.ui.commons.BusinessCard.</description>
+    <requires>
+      <module name="sap/suite/ui/commons/library.js"/>
+      <module name="sap/ui/core/Control.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/suite/ui/commons/BusinessCardRenderer.js" size="4712" compressedSize="2236">
+    <description>! SAP UI development toolkit for HTML5 (SAPUI5) (c) Copyright 2009-2012 SAP AG. All rights reserved</description>
+    <requires>
+      <module name="sap/ui/commons/Link.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/suite/ui/commons/CountingNavigationItem.js" size="4433" compressedSize="470">
+    <description>Provides control sap.suite.ui.commons.CountingNavigationItem.</description>
+    <requires>
+      <module name="sap/suite/ui/commons/library.js"/>
+      <module name="sap/ui/ux3/NavigationItem.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/suite/ui/commons/DateRangeScroller.js" size="31252" compressedSize="11154">
+    <description>Provides control sap.suite.ui.commons.DateRangeScroller.</description>
+    <requires>
+      <module name="sap/suite/ui/commons/library.js"/>
+      <module name="sap/ui/core/Control.js"/>
+      <module name="sap/ui/commons/Label.js"/>
+      <module name="sap/ui/core/format/DateFormat.js"/>
+      <module name="sap/suite/ui/commons/util/DateUtils.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/suite/ui/commons/DateRangeScrollerRenderer.js" size="3854" compressedSize="2189">
+    <description>! SAP UI development toolkit for HTML5 (SAPUI5) (c) Copyright 2009-2012 SAP AG. All rights reserved</description>
+    <requires>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/suite/ui/commons/DateRangeSlider.js" size="41473" compressedSize="10251">
+    <description>Provides control sap.suite.ui.commons.DateRangeSlider.</description>
+    <requires>
+      <module name="sap/suite/ui/commons/library.js"/>
+      <module name="sap/ui/core/Control.js"/>
+      <module name="jquery.sap.resources.js"/>
+      <module name="sap/suite/ui/commons/util/DateUtils.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/suite/ui/commons/DateRangeSliderInternal.js" size="46004" compressedSize="18838">
+    <description>Provides control sap.suite.ui.commons.DateRangeSliderInternal.</description>
+    <requires>
+      <module name="sap/suite/ui/commons/library.js"/>
+      <module name="sap/ui/commons/RangeSlider.js"/>
+      <module name="jquery.sap.resources.js"/>
+      <module name="sap/ui/core/format/DateFormat.js"/>
+      <module name="sap/ui/core/ResizeHandler.js"/>
+      <module name="sap/ui/commons/Label.js"/>
+      <module name="sap/suite/ui/commons/util/DateUtils.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/suite/ui/commons/DateRangeSliderInternalRenderer.js" size="15841" compressedSize="5847">
+    <description>! SAP UI development toolkit for HTML5 (SAPUI5) (c) Copyright 2009-2012 SAP AG. All rights reserved</description>
+    <requires>
+      <module name="sap/ui/commons/RangeSliderRenderer.js"/>
+      <module name="sap/ui/core/Renderer.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/suite/ui/commons/DateRangeSliderRenderer.js" size="1189" compressedSize="502">
+    <description>! SAP UI development toolkit for HTML5 (SAPUI5) (c) Copyright 2009-2012 SAP AG. All rights reserved</description>
+    <requires>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/suite/ui/commons/FacetOverview.js" size="13788" compressedSize="3232">
+    <description>Provides control sap.suite.ui.commons.FacetOverview.</description>
+    <requires>
+      <module name="sap/suite/ui/commons/library.js"/>
+      <module name="sap/ui/core/Control.js"/>
+      <module name="sap/ui/core/IconPool.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/suite/ui/commons/FacetOverviewRenderer.js" size="2694" compressedSize="1486">
+    <description>! SAP UI development toolkit for HTML5 (SAPUI5) (c) Copyright 2009-2012 SAP AG. All rights reserved</description>
+    <requires>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/suite/ui/commons/FeedItem.js" size="7774" compressedSize="1120">
+    <description>Provides control sap.suite.ui.commons.FeedItem.</description>
+    <requires>
+      <module name="sap/suite/ui/commons/library.js"/>
+      <module name="sap/ui/core/Element.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/suite/ui/commons/FeedItemHeader.js" size="9920" compressedSize="1732">
+    <description>Provides control sap.suite.ui.commons.FeedItemHeader.</description>
+    <requires>
+      <module name="sap/suite/ui/commons/library.js"/>
+      <module name="sap/m/ListItemBase.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/suite/ui/commons/FeedItemHeaderRenderer.js" size="4190" compressedSize="2294">
+    <description>@copyright</description>
+    <requires>
+      <module name="sap/ui/core/Renderer.js"/>
+      <module name="sap/m/ListItemBaseRenderer.js"/>
+      <module name="sap/suite/ui/commons/util/FeedItemUtils.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/suite/ui/commons/FeedTile.js" size="21215" compressedSize="5728">
+    <description>Provides control sap.suite.ui.commons.FeedTile.</description>
+    <requires>
+      <module name="sap/suite/ui/commons/library.js"/>
+      <module name="sap/ui/core/Control.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/suite/ui/commons/FeedTileRenderer.js" size="4730" compressedSize="2828">
+    <description>@copyright</description>
+    <requires>
+      <module name="sap/suite/ui/commons/util/FeedItemUtils.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/suite/ui/commons/KpiTile.js" size="7937" compressedSize="793">
+    <description>Provides control sap.suite.ui.commons.KpiTile.</description>
+    <requires>
+      <module name="sap/suite/ui/commons/library.js"/>
+      <module name="sap/ui/core/Control.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/suite/ui/commons/KpiTileRenderer.js" size="2048" compressedSize="1083">
+    <description>! SAP UI development toolkit for HTML5 (SAPUI5) (c) Copyright 2009-2012 SAP AG. All rights reserved</description>
+    <requires>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/suite/ui/commons/LaunchTile.js" size="8771" compressedSize="1197">
+    <description>Provides control sap.suite.ui.commons.LaunchTile.</description>
+    <requires>
+      <module name="sap/suite/ui/commons/library.js"/>
+      <module name="sap/ui/core/Control.js"/>
+      <module name="sap/ui/core/IconPool.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/suite/ui/commons/LaunchTileRenderer.js" size="2024" compressedSize="1105">
+    <description>@copyright</description>
+    <requires>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/suite/ui/commons/LinkActionSheet.js" size="11658" compressedSize="2484">
+    <description>Provides control sap.suite.ui.commons.LinkActionSheet.</description>
+    <requires>
+      <module name="sap/suite/ui/commons/library.js"/>
+      <module name="sap/m/ActionSheet.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/suite/ui/commons/LinkActionSheetRenderer.js" size="2373" compressedSize="1198">
+    <description>! SAP UI development toolkit for HTML5 (SAPUI5) (c) Copyright 2009-2012 SAP AG. All rights reserved</description>
+    <requires>
+      <module name="sap/m/ActionSheetRenderer.js"/>
+      <module name="sap/ui/core/Renderer.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/suite/ui/commons/NoteTaker.js" size="72982" compressedSize="20568">
+    <description>Provides control sap.suite.ui.commons.NoteTaker.</description>
+    <requires>
+      <module name="sap/suite/ui/commons/library.js"/>
+      <module name="sap/ui/core/Control.js"/>
+      <module name="sap/ui/commons/Carousel.js"/>
+      <module name="sap/ui/commons/SearchField.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/suite/ui/commons/NoteTakerCard.js" size="62954" compressedSize="24934">
+    <description>Provides control sap.suite.ui.commons.NoteTakerCard.</description>
+    <requires>
+      <module name="sap/suite/ui/commons/library.js"/>
+      <module name="sap/ui/core/Control.js"/>
+      <module name="sap/ui/core/Locale.js"/>
+      <module name="sap/ui/core/format/DateFormat.js"/>
+      <module name="sap/ui/ux3/OverlayContainer.js"/>
+      <module name="sap/ui/commons/Link.js"/>
+      <module name="sap/ui/commons/MessageBox.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/suite/ui/commons/NoteTakerCardRenderer.js" size="8060" compressedSize="4098">
+    <description>! SAP UI development toolkit for HTML5 (SAPUI5) (c) Copyright 2009-2012 SAP AG. All rights reserved</description>
+    <requires>
+      <module name="sap/suite/ui/commons/util/RenderUtils.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/suite/ui/commons/NoteTakerFeeder.js" size="46989" compressedSize="17759">
+    <description>Provides control sap.suite.ui.commons.NoteTakerFeeder.</description>
+    <requires>
+      <module name="sap/suite/ui/commons/library.js"/>
+      <module name="sap/ui/core/Control.js"/>
+      <module name="sap/ui/ux3/ToolPopup.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/suite/ui/commons/NoteTakerFeederRenderer.js" size="7274" compressedSize="4150">
+    <description>! SAP UI development toolkit for HTML5 (SAPUI5) (c) Copyright 2009-2012 SAP AG. All rights reserved</description>
+    <requires>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/suite/ui/commons/NoteTakerRenderer.js" size="4798" compressedSize="2824">
+    <description>! SAP UI development toolkit for HTML5 (SAPUI5) (c) Copyright 2009-2012 SAP AG. All rights reserved</description>
+    <requires>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/suite/ui/commons/RepeaterViewConfiguration.js" size="15049" compressedSize="1148">
+    <description>Provides control sap.suite.ui.commons.RepeaterViewConfiguration.</description>
+    <requires>
+      <module name="sap/suite/ui/commons/library.js"/>
+      <module name="sap/ui/core/Control.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/suite/ui/commons/SplitButton.js" size="22460" compressedSize="5107">
+    <description>Provides control sap.suite.ui.commons.SplitButton.</description>
+    <requires>
+      <module name="sap/suite/ui/commons/library.js"/>
+      <module name="sap/ui/core/Control.js"/>
+      <module name="sap/ui/commons/Button.js"/>
+      <module name="sap/ui/commons/MenuButton.js"/>
+      <module name="sap/ui/commons/MenuItem.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/suite/ui/commons/SplitButtonRenderer.js" size="1230" compressedSize="514">
+    <description>! SAP UI development toolkit for HTML5 (SAPUI5) (c) Copyright 2009-2012 SAP AG. All rights reserved</description>
+    <requires>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/suite/ui/commons/ThingCollection.js" size="18857" compressedSize="6754">
+    <description>Provides control sap.suite.ui.commons.ThingCollection.</description>
+    <requires>
+      <module name="sap/suite/ui/commons/library.js"/>
+      <module name="sap/ui/core/Control.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/suite/ui/commons/ThingCollectionRenderer.js" size="2996" compressedSize="1764">
+    <description>! SAP UI development toolkit for HTML5 (SAPUI5) (c) Copyright 2009-2012 SAP AG. All rights reserved</description>
+    <requires>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/suite/ui/commons/ThreePanelThingInspector.js" size="11721" compressedSize="2936">
+    <description>Provides control sap.suite.ui.commons.ThreePanelThingInspector.</description>
+    <requires>
+      <module name="sap/suite/ui/commons/library.js"/>
+      <module name="sap/ui/ux3/ThingInspector.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/suite/ui/commons/ThreePanelThingInspectorRenderer.js" size="416" compressedSize="404">
+    <description>! SAP UI development toolkit for HTML5 (SAPUI5) (c) Copyright 2009-2012 SAP AG. All rights reserved</description>
+    <requires>
+      <module name="sap/ui/ux3/ThingInspectorRenderer.js"/>
+      <module name="sap/ui/core/Renderer.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/suite/ui/commons/ThreePanelThingViewer.js" size="16030" compressedSize="5257">
+    <description>Provides control sap.suite.ui.commons.ThreePanelThingViewer.</description>
+    <requires>
+      <module name="sap/suite/ui/commons/library.js"/>
+      <module name="sap/ui/ux3/ThingViewer.js"/>
+      <module name="sap/suite/ui/commons/VerticalNavigationBar.js"/>
+      <module name="sap/ui/ux3/NavigationBar.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/suite/ui/commons/ThreePanelThingViewerRenderer.js" size="7006" compressedSize="4288">
+    <description>! SAP UI development toolkit for HTML5 (SAPUI5) (c) Copyright 2009-2012 SAP AG. All rights reserved</description>
+    <requires>
+      <module name="sap/ui/ux3/ThingViewerRenderer.js"/>
+      <module name="sap/ui/core/Renderer.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/suite/ui/commons/UnifiedThingGroup.js" size="6585" compressedSize="706">
+    <description>Provides control sap.suite.ui.commons.UnifiedThingGroup.</description>
+    <requires>
+      <module name="sap/suite/ui/commons/library.js"/>
+      <module name="sap/ui/core/Control.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/suite/ui/commons/UnifiedThingGroupRenderer.js" size="2097" compressedSize="1156">
+    <description>! SAP UI development toolkit for HTML5 (SAPUI5) (c) Copyright 2009-2012 SAP AG. All rights reserved</description>
+    <requires>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/suite/ui/commons/UnifiedThingInspector.js" size="61164" compressedSize="16400">
+    <description>Provides control sap.suite.ui.commons.UnifiedThingInspector.</description>
+    <requires>
+      <module name="sap/suite/ui/commons/library.js"/>
+      <module name="sap/ui/core/Control.js"/>
+      <module name="sap/m/NavContainer.js"/>
+      <module name="sap/ui/layout/Grid.js"/>
+      <module name="sap/ui/core/IconPool.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/suite/ui/commons/UnifiedThingInspectorRenderer.js" size="1166" compressedSize="575">
+    <description>! SAP UI development toolkit for HTML5 (SAPUI5) (c) Copyright 2009-2012 SAP AG. All rights reserved</description>
+    <requires>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/suite/ui/commons/VerticalNavigationBar.js" size="5909" compressedSize="1972">
+    <description>Provides control sap.suite.ui.commons.VerticalNavigationBar.</description>
+    <requires>
+      <module name="sap/suite/ui/commons/library.js"/>
+      <module name="sap/ui/ux3/NavigationBar.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/suite/ui/commons/VerticalNavigationBarRenderer.js" size="4859" compressedSize="2420">
+    <description>! SAP UI development toolkit for HTML5 (SAPUI5) (c) Copyright 2009-2012 SAP AG. All rights reserved</description>
+    <requires>
+      <module name="sap/ui/ux3/NavigationBarRenderer.js"/>
+      <module name="sap/ui/core/Renderer.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/suite/ui/commons/ViewRepeater.js" size="36406" compressedSize="9949">
+    <description>Provides control sap.suite.ui.commons.ViewRepeater.</description>
+    <requires>
+      <module name="sap/suite/ui/commons/library.js"/>
+      <module name="sap/ui/commons/RowRepeater.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/suite/ui/commons/ViewRepeaterRenderer.js" size="4152" compressedSize="1948">
+    <description>! SAP UI development toolkit for HTML5 (SAPUI5) (c) Copyright 2009-2012 SAP AG. All rights reserved</description>
+    <requires>
+      <module name="sap/ui/commons/RowRepeaterRenderer.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/suite/ui/commons/library.js" size="4348" compressedSize="1769">
+    <description>Initialization Code and shared classes of library sap.suite.ui.commons (1.16.4)</description>
+    <requires>
+      <module name="sap/ui/core/Core.js"/>
+      <module name="sap/ui/core/library.js"/>
+      <module name="sap/ui/commons/library.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+    <includes>
+      <module name="sap/suite/ui/commons/ThingGroupDesign.js"/>
+      <module name="sap/suite/ui/commons/ValueStatus.js"/>
+    </includes>
+  </module>
+  <module name="sap/suite/ui/commons/util/DateUtils.js" size="12219" compressedSize="4623">
+    <description>! SAP UI development toolkit for HTML5 (SAPUI5) (c) Copyright 2009-2012 SAP AG. All rights reserved</description>
+    <requires>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/suite/ui/commons/util/FeedAggregator.js" size="4403" compressedSize="1677">
+    <description>! SAP UI development toolkit for HTML5 (SAPUI5) (c) Copyright 2009-2012 SAP AG. All rights reserved</description>
+    <requires>
+      <module name="sap/suite/ui/commons/util/DateUtils.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/suite/ui/commons/util/FeedItemUtils.js" size="2354" compressedSize="1174">
+    <description>! SAP UI development toolkit for HTML5 (SAPUI5) (c) Copyright 2009-2012 SAP AG. All rights reserved</description>
+    <requires>
+      <module name="sap/suite/ui/commons/util/DateUtils.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/suite/ui/commons/util/RenderUtils.js" size="2183" compressedSize="1150">
+    <description>! SAP UI development toolkit for HTML5 (SAPUI5) (c) Copyright 2009-2012 SAP AG. All rights reserved</description>
+    <requires>
+      <module name="sap/ui/base/Object.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+</library>

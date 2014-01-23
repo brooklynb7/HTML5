@@ -1,0 +1,232 @@
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<script id="sap-ui-bootstrap" 
+		type="text/javascript"
+		src="../../../../../resources/sap-ui-core.js"
+		data-sap-ui-theme="sap_goldreflection"
+		data-sap-ui-language="en-US"
+		data-sap-ui-noConflict="true"
+		data-sap-ui-libs="sap.ui.commons,sap.uiext.inbox">
+	</script>
+		<link rel="stylesheet" href="../../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
+		<script type="text/javascript" src="../../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+		<script type="text/javascript" src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
+		<script type="text/javascript" src="../../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
+		<script>
+			// redirect any resource loading for "sap.uiext.inbox.qunit.mockServer" to the local folder "mockServer/" 
+			jQuery.sap.registerModulePath("sap.uiext.inbox.qunit.mockServer", "mockServer/");
+			
+			// now load and activate the mock server
+			jQuery.sap.require("sap.uiext.inbox.qunit.mockServer.InboxMockServerQUnit");
+
+			module("Load");
+
+			test("InboxCreationOk",function() {
+				sap.ui.getCore().applyChanges(); 
+				var $Inbox = jQuery.sap.byId("inbox");
+				equals(false, ( $Inbox === undefined), "Checking if the Inbox Control is created and is not undefined.");
+				equals(false, ( $Inbox === null), "Checking if the Inbox Control is created and is not null.");
+				
+			});
+			
+			module("SearchUsers");
+			
+			asyncTest("CheckIfForwardButton is Enabled on click of Task", function() {
+				sap.ui.getCore().applyChanges(); 
+				
+				var delayedCall = function() {
+					
+					qutils.triggerMouseEvent("inbox--listViewTable-rowsel0", "click");
+					sap.ui.getCore().applyChanges(); 
+					//check if Forward button is enabled
+					equal(sap.ui.getCore().getControl("inbox--forwardActionButton").getEnabled(), true, "Forward Button is enabled");
+					start();
+				
+				};
+				setTimeout(delayedCall, 0); 
+			
+			});
+			
+			asyncTest("Check If Search Users Popup is shown on click of Forward", function() {
+				qutils.triggerMouseEvent("inbox--forwardActionButton", "click");
+				var delayedCall = function() {
+					sap.ui.getCore().applyChanges(); 
+			
+					ok(jQuery.sap.byId("inbox--forwardTasksPopUp").length > 0, "Checking if the Search Users Popup is created and is not undefined.");
+					start();
+				}
+				
+				setTimeout(delayedCall, 0);
+				
+			});
+			
+			asyncTest("SearchUsersFailure on Clicking search icon", function() {
+				jQuery.sap.domById("inbox--oSearch").focus();
+				sap.ui.getCore().getControl("inbox--oSearch").setValue("fail");
+				qutils.triggerMouseEvent("inbox--oSearch-tf-searchico", "click");
+				
+				var delayedCall = function() {
+					sap.ui.getCore().applyChanges();
+					
+					//TODO: Failure message should not be displayed here. Needs to be changed once discussed with UX.
+					equal(jQuery.sap.byId("inbox--msbBarTextView").text(), "Action failed", "Correct message text rendered on failure of Search Users");
+					
+					start();
+				};
+				setTimeout(delayedCall, 0); 
+			}); 
+			
+			asyncTest("SearchUsersFailure on pressing Enter", function() {
+				jQuery.sap.domById("inbox--oSearch").focus();
+				sap.ui.getCore().getControl("inbox--oSearch").setValue("fail");
+				qutils.triggerKeyup("inbox--oSearch", jQuery.sap.KeyCodes.ENTER, false, false, false);
+				
+				var delayedCall = function() {
+					sap.ui.getCore().applyChanges();
+					
+					//TODO: Failure message should not be displayed here. Needs to be changed once discussed with UX.
+					equal(jQuery.sap.byId("inbox--msbBarTextView").text(), "Action failed", "Correct message text rendered on failure of Search Users");
+					
+					start();
+				};
+				setTimeout(delayedCall, 0); 
+			});
+			
+			asyncTest("Check if first row is not selected if searchUsers returns empty table on Clicking search icon", function() {
+				jQuery.sap.domById("inbox--oSearch").focus();
+				sap.ui.getCore().getControl("inbox--oSearch").setValue("xyz");
+				qutils.triggerMouseEvent("inbox--oSearch-tf-searchico", "click");
+					
+				var delayedCall = function() {
+					var oUserTable = sap.ui.getCore().getControl("inbox--userTable");
+					oUserTable.rerender();
+					
+					ok(oUserTable.getSelectedIndex() < 0, "The first row in the search results is not selected if no any result is returned");
+					start();
+				};
+				setTimeout(delayedCall, 0); 
+			});
+			
+			asyncTest("Check if first row is not selected if searchUsers returns empty table on pressing Enter", function() {
+				jQuery.sap.domById("inbox--oSearch").focus();
+				sap.ui.getCore().getControl("inbox--oSearch").setValue("xyz");
+				qutils.triggerKeyup("inbox--oSearch", jQuery.sap.KeyCodes.ENTER, false, false, false);
+				
+				var delayedCall = function() {
+					var oUserTable = sap.ui.getCore().getControl("inbox--userTable");
+					oUserTable.rerender();
+					
+					ok(oUserTable.getSelectedIndex() < 0, "The first row in the search results is not selected if no any result is returned");
+					start();
+				};
+				setTimeout(delayedCall, 0); 
+			});
+			
+			asyncTest("Check if first row is selected if searchUsers returns one result on Clicking search icon", function() {
+				jQuery.sap.domById("inbox--oSearch").focus();
+				sap.ui.getCore().getControl("inbox--oSearch").setValue("tes");
+				qutils.triggerMouseEvent("inbox--oSearch-tf-searchico", "click");
+					
+				var delayedCall = function() {
+					var oUserTable = sap.ui.getCore().getControl("inbox--userTable");
+					oUserTable.rerender();
+					
+					equal(oUserTable.getSelectedIndex() , 0, "The first row in the search results is selected if one result is returned");
+					equal(oUserTable.getRows()[0].getCells()[0].getValue() ,"TestUser",  "Correct Value Rendered in Column 1 for Row 1 in User Table");
+					equal(oUserTable.getRows()[0].getCells()[1].getValue() ,"TestUser",  "Correct Value Rendered in Column 2 for Row 1 in User Table");
+						
+					start();
+				};
+				setTimeout(delayedCall, 0); 
+			});
+			
+			asyncTest("Check if first row is selected if searchUsers returns one result on pressing Enter", function() {
+				jQuery.sap.domById("inbox--oSearch").focus();
+				sap.ui.getCore().getControl("inbox--oSearch").setValue("tes");
+				qutils.triggerKeyup("inbox--oSearch", jQuery.sap.KeyCodes.ENTER, false, false, false);
+				
+				var delayedCall = function() {
+					var oUserTable = sap.ui.getCore().getControl("inbox--userTable");
+					oUserTable.rerender();
+					
+					equal(oUserTable.getSelectedIndex() , 0, "The first row in the search results is selected if one result is returned");
+					equal(oUserTable.getRows()[0].getCells()[0].getValue() ,"TestUser",  "Correct Value Rendered in Column 1 for Row 1 in User Table");
+					equal(oUserTable.getRows()[0].getCells()[1].getValue() ,"TestUser",  "Correct Value Rendered in Column 2 for Row 1 in User Table");
+						
+					start();
+				};
+				setTimeout(delayedCall, 0); 
+			});
+			 
+			asyncTest("SearchUsers on Clicking search icon", function() {
+				jQuery.sap.domById("inbox--oSearch").focus();
+				sap.ui.getCore().getControl("inbox--oSearch").setValue("adm");
+				qutils.triggerMouseEvent("inbox--oSearch-tf-searchico", "click");
+				
+				var delayedCall = function() {
+					var oUserTable = sap.ui.getCore().getControl("inbox--userTable");
+					ok(oUserTable , "User Table is not undefined");
+					
+					//sap.ui.getCore().applyChanges();
+					//applychanges() is not working on the PopUp Dialog. Not sure if this is a bug. So calling an explicit rerender on the table, after the binding.
+					oUserTable.rerender();
+					
+					//check the values rendered in the table
+					ok(oUserTable.getRows().length > 0 , "Rows Rendered in User Table");
+					
+					equal(oUserTable.getSelectedIndex() , 0, "The first row in the search results is selected if more than one results are returned")
+					equal(oUserTable.getRows()[0].getCells()[0].getValue() ,"admin",  "Correct Value Rendered in Column 1 for Row 1 in User Table");
+					equal(oUserTable.getRows()[0].getCells()[1].getValue() ,"admin",  "Correct Value Rendered in Column 2 for Row 1 in User Table");
+					
+					equal(oUserTable.getRows()[1].getCells()[0].getValue() ,"Administrator",  "Correct Value Rendered in Column 1 for Row 2 in User Table");
+					equal(oUserTable.getRows()[1].getCells()[1].getValue() ,"Administrator",  "Correct Value Rendered in Column 2 for Row 2 in User Table");
+					
+					start();
+				};
+				setTimeout(delayedCall, 0); 
+			});
+			
+			asyncTest("SearchUsers on Clicking pressing enter", function() {
+				jQuery.sap.domById("inbox--oSearch").focus();
+				sap.ui.getCore().getControl("inbox--oSearch").setValue("adm");
+				qutils.triggerKeyup("inbox--oSearch", jQuery.sap.KeyCodes.ENTER, false, false, false);
+				
+				var delayedCall = function() {
+					var oUserTable = sap.ui.getCore().getControl("inbox--userTable");
+					ok(oUserTable , "User Table is not undefined");
+					
+					oUserTable.rerender();
+					
+					//check the values rendered in the table
+					ok(oUserTable.getRows().length > 0 , "Rows Rendered in User Table");
+					
+					equal(oUserTable.getSelectedIndex() , 0, "The first row in the search results is selected if more than one results are returned")
+					equal(oUserTable.getRows()[0].getCells()[0].getValue() ,"admin",  "Correct Value Rendered in Column 1 for Row 1 in User Table");
+					equal(oUserTable.getRows()[0].getCells()[1].getValue() ,"admin",  "Correct Value Rendered in Column 2 for Row 1 in User Table");
+					
+					equal(oUserTable.getRows()[1].getCells()[0].getValue() ,"Administrator",  "Correct Value Rendered in Column 1 for Row 2 in User Table");
+					equal(oUserTable.getRows()[1].getCells()[1].getValue() ,"Administrator",  "Correct Value Rendered in Column 2 for Row 2 in User Table");
+					
+					qutils.triggerMouseEvent("inbox--forwardTasksPopUp-close", "click");
+					
+					start();
+				};
+				setTimeout(delayedCall, 0); 
+			});
+			
+		</script>
+	</head>
+	<body>
+		<h1 id="qunit-header"><title>qUnit Page for Inbox Search Users</title></h1>
+		<h2 id="qunit-banner"></h2>
+		<h2 id="qunit-userAgent"></h2>
+		<ol id="qunit-tests"></ol>
+		<div id="qunit-fixture">test markup, will be hidden</div>
+		<div id="canvas" style="height:300px; width:300px"></div>
+		<br>
+		<div id="uiArea1" style="width: 80%;"></div>
+	</body>
+</html>

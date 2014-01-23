@@ -1,0 +1,15 @@
+<core:View
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:core="sap.ui.core" >
+	<Page
+		title="Welcome"
+		enableScrolling="false">
+		<content>
+			<mvc:HTMLView
+				id="titles"
+				viewName="views.titles"
+				height="100%" /> <!-- height required for background image -->
+		</content>
+	</Page>
+</core:View>

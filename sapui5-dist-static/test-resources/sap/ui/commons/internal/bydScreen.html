@@ -1,0 +1,299 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    		
+		<title>ByDesign-like Application Page</title>
+		<script id="sap-ui-bootstrap" 
+		       data-sap-ui-theme="sap_tradeshow_plus"
+		       data-sap-ui-trace="true"
+		       type="text/javascript"
+		       data-sap-ui-libs="sap.ui.commons"
+		       src="../../../../../resources/sap-ui-core.js"
+		       data-sap-ui-areas="uiArea1,uiArea2,toolbarArea,tabArea"
+		       >
+		</script>
+        
+        
+		<style>
+      .sapUiTabStrip {
+        	border: none !important; /* hack to fake a view-switch */
+      }
+      </style>
+        
+        <script type="text/javascript">
+				var oCore = sap.ui.getCore();
+				oCore.attachInitEvent(function () {
+        var uiArea1 = oCore.getUIArea("uiArea1");
+        var uiArea2 = oCore.getUIArea("uiArea2");
+        var toolbarArea = oCore.getUIArea("toolbarArea");
+        var tabArea = oCore.getUIArea("tabArea");
+        uiArea1.lock();
+        uiArea2.lock();
+        tabArea.lock();
+        toolbarArea.lock();
+
+
+        oTabStrip1 = new sap.ui.commons.TabStrip("tabstrip1");
+		oTabStrip1.setWidth("128ex");
+//		oTabStrip1.setHeight("1px");
+		var oDummyLabel = new sap.ui.commons.Label();
+		oTabStrip1.createTab("General",oDummyLabel);
+		var oButton1 = new sap.ui.commons.Button("button1",{text:"OK"});
+		oTabStrip1.createTab("Communication",oButton1);
+		var oButton2 = new sap.ui.commons.Button("button2",{text:"OK"});
+		oTabStrip1.createTab("Contacts",oButton2);
+		oTabStrip1.setSelectedIndex(0);
+		tabArea.setRootControl(oTabStrip1);
+
+        // a matrix layout
+        var oLayout = new sap.ui.commons.layout.MatrixLayout("toolbarLayout");
+				oLayout.setLayoutFixed(false);
+        var oTB1 = new sap.ui.commons.Button("oTB1", {press:function(){sap.ui.getCore().applyTheme("sap_platinum")}});
+        oTB1.setText("Save");
+        var oTB2 = new sap.ui.commons.Button("oTB2", {press:function(){sap.ui.getCore().applyTheme("sap_hcb")}});
+        oTB2.setText("Close");
+        var oTB3 = new sap.ui.commons.Button("oTB3", {press:function(){sap.ui.getCore().applyTheme("sap_ux")}});
+        oTB3.setText("New");
+        var oTB4 = new sap.ui.commons.Button("oTB4", {press:function(){sap.ui.getCore().applyTheme("sap_ci")}});
+        oTB4.setText("Change Status");
+        var oTB5 = new sap.ui.commons.Button("oTB5");
+        oTB5.setText("Check For Duplicates");
+        oTB5.setEnabled(false);
+        var oTB6 = new sap.ui.commons.Button("oTB6", {press:function(){sap.ui.getCore().applyTheme("edding")}});
+        oTB6.setText("Web services");
+        oTB6.setIcon("images/rss-14x14.gif");
+		oLayout.createRow(oTB1, oTB2, oTB3, oTB4, oTB5, oTB6);
+		toolbarArea.setRootControl(oLayout);
+
+
+		// the first column
+		oLayout = new sap.ui.commons.layout.MatrixLayout("column1");
+		oLayout.setLayoutFixed(false);
+
+        var oLabel = new sap.ui.commons.Label("accountGroupLabel");
+        oLabel.setText("Account");
+        oLabel.setDesign(sap.ui.commons.LabelDesign.Bold);
+		oLayout.createRow(oLabel);
+		
+        oLabel = new sap.ui.commons.Label("accIdLabel");
+        oLabel.setText("Account ID:");
+        var oInput = new sap.ui.commons.TextField("accIdTextField");
+        if(oLabel.setLabelFor)oLabel.setLabelFor(oInput.getId());
+        oInput.setValue("MC9785");
+        oInput.setEditable(false);
+        oInput.setWidth("17ex");
+		oLayout.createRow(oLabel, oInput);
+
+		oLabel = new sap.ui.commons.Label("accNameLabel");
+        oLabel.setText("Account Name:");
+        oInput = new sap.ui.commons.TextField("accNameTextField");
+        if(oLabel.setLabelFor)oLabel.setLabelFor(oInput.getId());
+        oInput.setValue("Silverstar Wholesale Corp");
+        oInput.setWidth("35ex");
+		oLayout.createRow(oLabel, oInput);
+
+		oLabel = new sap.ui.commons.Label("addNameLabel");
+        oLabel.setText("Additional Name:");
+        oInput = new sap.ui.commons.TextField("addNameTextField");
+        if(oLabel.setLabelFor) oLabel.setLabelFor(oInput.getId());
+        oInput.setWidth("35ex");
+		oLayout.createRow(oLabel, oInput);
+
+		var oCell = new sap.ui.commons.layout.MatrixLayoutCell("empty1");
+		var oLink = new sap.ui.commons.Link("addIdLink"); 
+		oLink.setText("Additional Identifiers");
+		oLayout.createRow(oCell, oLink);
+
+		oLabel = new sap.ui.commons.Label("cpLabel");
+        oLabel.setText("Contact Permissions:");
+        var oCombo = new sap.ui.commons.ComboBox("cpField");
+        if(oLabel.setLabelFor)oLabel.setLabelFor(oCombo.getId());
+        oCombo.setWidth("20ex");
+        var oButton = new sap.ui.commons.Button("permButton", {press:function(){sap.ui.getCore().applyTheme("sap_tradeshow_plus")}});
+        oButton.setText("Edit");
+        var innerLayout = new sap.ui.commons.layout.MatrixLayout("innerLayout"); // TODO: melting group? slim container?
+				innerLayout.setLayoutFixed(false);
+        innerLayout.createRow(oCombo, oButton);
+		oLayout.createRow(oLabel, innerLayout);
+		
+		oLabel = new sap.ui.commons.Label();
+        oLabel.setText("Prospect:");
+        var oCheckBox = new sap.ui.commons.CheckBox("proCB");
+        if(oLabel.setLabelFor)oLabel.setLabelFor(oInput.getId());
+		oLayout.createRow(oLabel, oCheckBox);
+		
+		oLabel = new sap.ui.commons.Label();
+        oLabel.setText("");
+		oLayout.createRow(oLabel);
+		
+		oLabel = new sap.ui.commons.Label();
+        oLabel.setText("Main Address");
+        oLabel.setDesign(sap.ui.commons.LabelDesign.Bold);
+		oLayout.createRow(oLabel);
+		
+		oLabel = new sap.ui.commons.Label();
+        oLabel.setText("Country:");
+        oInput = new sap.ui.commons.TextField("countryTextField");
+        oInput.setValue("US - United States");
+        if(oLabel.setLabelFor)oLabel.setLabelFor(oInput.getId());
+        oInput.setWidth("45ex");
+		oLayout.createRow(oLabel, oInput);
+
+		oLabel = new sap.ui.commons.Label();
+        oLabel.setText("House Number:");
+        oInput = new sap.ui.commons.TextField();
+        oInput.setValue("145");
+        if(oLabel.setLabelFor)oLabel.setLabelFor(oInput.getId());
+        oInput.setWidth("17ex");
+		oLayout.createRow(oLabel, oInput);
+
+		oLabel = new sap.ui.commons.Label();
+        oLabel.setText("Street:");
+        oInput = new sap.ui.commons.TextField();
+        oInput.setValue("Wolf Rd");
+        if(oLabel.setLabelFor)oLabel.setLabelFor(oInput.getId());
+        oInput.setWidth("35ex");
+		oLayout.createRow(oLabel, oInput);
+
+		oLabel = new sap.ui.commons.Label();
+        oLabel.setText("Picture:");
+        var oFileUploader = new sap.ui.commons.FileUploader();
+        if(oLabel.setLabelFor)oLabel.setLabelFor(oFileUploader.getId());
+        oFileUploader.setWidth("35ex");
+        oFileUploader.setUploadOnChange(true);
+		oLayout.createRow(oLabel, oFileUploader);
+		
+        uiArea1.setRootControl(oLayout);
+        
+        
+        // second column
+        oLayout = new sap.ui.commons.layout.MatrixLayout("column2");
+				oLayout.setLayoutFixed(false);
+
+        oLabel = new sap.ui.commons.Label("detailsGroupLabel");
+        oLabel.setText("Details");
+        oLabel.setDesign(sap.ui.commons.LabelDesign.Bold);
+		oLayout.createRow(oLabel);
+		
+        oLabel = new sap.ui.commons.Label();
+        oLabel.setText("Legal Form:");
+        oInput = new sap.ui.commons.TextField("legalFormField"); // TODO: F4 help
+        if(oLabel.setLabelFor)oLabel.setLabelFor(oInput.getId());
+        oInput.setWidth("19ex");
+        oInput.setValue("B.V.");
+		oLayout.createRow(oLabel, oInput);
+
+		oLabel = new sap.ui.commons.Label();
+        oLabel.setText("Legal Competence:");
+        var oCheckBox = new sap.ui.commons.CheckBox("legalCB");
+        oCheckBox.setChecked(true);
+        if(oLabel.setLabelFor)oLabel.setLabelFor(oInput.getId());
+		oLayout.createRow(oLabel, oCheckBox);
+
+		oLabel = new sap.ui.commons.Label();
+        oLabel.setText("ABC Classification:");
+        oCombo = new sap.ui.commons.ComboBox("abcField"); // TODO: ComboBox
+        if(oLabel.setLabelFor)oLabel.setLabelFor(oCombo.getId());
+        oCombo.setWidth("13ex");
+        oCombo.setValue("B-account");
+		oLayout.createRow(oLabel, oCombo);
+		
+		oLabel = new sap.ui.commons.Label();
+        oLabel.setText("Status:");
+        var oRadioButton = new sap.ui.commons.RadioButton("rbStatus1");
+        oRadioButton.setText("Active");
+        oRadioButton.setGroupName("rbStatus");
+        oRadioButton.setSelected(true);
+		oLayout.createRow(oLabel, oRadioButton);
+		
+		oLabel = new sap.ui.commons.Label();
+        oLabel.setText("");
+        oRadioButton = new sap.ui.commons.RadioButton("rbStatus2");
+        oRadioButton.setText("Inactive");
+        oRadioButton.setGroupName("rbStatus");
+		oLayout.createRow(oLabel, oRadioButton);
+		
+		oLabel = new sap.ui.commons.Label();
+        oLabel.setText("");
+        oRadioButton = new sap.ui.commons.RadioButton("rbStatus3");
+        oRadioButton.setText("Pending");
+        oRadioButton.setGroupName("rbStatus");
+		oLayout.createRow(oLabel, oRadioButton);
+
+		oLabel = new sap.ui.commons.Label();
+        oLabel.setText("");
+		oLayout.createRow(oLabel);
+		
+		oLabel = new sap.ui.commons.Label();
+        oLabel.setText("Main Communication");
+        oLabel.setDesign(sap.ui.commons.LabelDesign.Bold);
+		oLayout.createRow(oLabel);
+
+		oLabel = new sap.ui.commons.Label();
+        oLabel.setText("Phone:");
+        oInput = new sap.ui.commons.TextField();
+        oInput.setValue("+1 (518) 482-4863");
+        if(oLabel.setLabelFor)oLabel.setLabelFor(oInput.getId());
+        oInput.setWidth("35ex");
+		oLayout.createRow(oLabel, oInput);
+
+		oLabel = new sap.ui.commons.Label();
+        oLabel.setText("Fax:");
+        oInput = new sap.ui.commons.TextField();
+        oInput.setValue("+1 (518) 482-4867");
+        if(oLabel.setLabelFor)oLabel.setLabelFor(oInput.getId());
+        oInput.setWidth("35ex");
+		oLayout.createRow(oLabel, oInput);
+
+		oLabel = new sap.ui.commons.Label();
+        oLabel.setText("E-Mail:");
+        oInput = new sap.ui.commons.TextField();
+        oInput.setValue("info@silverstar-wholesale.us");
+        if(oLabel.setLabelFor)oLabel.setLabelFor(oInput.getId());
+        oInput.setWidth("35ex");
+		oLayout.createRow(oLabel, oInput);
+		
+		uiArea2.setRootControl(oLayout);
+
+
+/*
+		
+        oLabel = new sap.ui.commons.Label("label2"); 
+        oLabel.setText("Some Label with icon");
+        oLabel.setIcon("images/rss-16x16.gif");
+        var oTextView = new sap.ui.commons.TextView("textview1"); 
+        oTextView.setText("Some TextView");
+        var oRadioButton = new sap.ui.commons.RadioButton("rb1");
+        oRadioButton.setText("This is a �ag�efox RadioButton");
+*/
+
+ 		toolbarArea.unlock();
+		tabArea.unlock();
+        uiArea1.unlock();
+        uiArea2.unlock();
+    }
+);
+        </script>
+        <style>
+        </style>
+</head>
+    <body class="sapUiBody" role="application">
+    		
+
+        <h1><i>Corporate Account: Silverstar Wholesale Corp (MC9785)</i></h1>
+        This page is loosely mimicking a typical ByDesign screen (see <a href="images/ByD_screen_original.png">this one</a> for an example), showcasing as many different sap.ui.commons controls as possible.
+        <br>  <br>
+        <div id="toolbarArea"></div>
+        <br>
+        <div id="tabArea"></div>
+        <table>
+        	<tbody>
+        		<tr>
+        			<td valign="top" id="uiArea1"></td>
+        			<td> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </td>
+	        		<td valign="top" id="uiArea2"></td>
+	        	</tr>
+    	</table> 
+    </body>
+</html>

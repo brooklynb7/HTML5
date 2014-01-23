@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Feed Component Unit Tests</title>
+
+<!-- UI5 Bootstrap -->
+<script id="sap-ui-bootstrap" 
+		type="text/javascript"
+		src="../../../../../../../resources/sap-ui-core.js"
+		data-sap-ui-theme="sap_bluecrystal"
+		data-sap-ui-libs="sap.m"
+		data-sap-ui-language="en">
+</script>
+
+<!-- libraries to be tested ******** LATER SHOULD BE IN THE BOOTSTRAP ******** -->
+
+<!-- QUnit libraries -->
+	<link rel="stylesheet"
+		  href="../../../../../../../resources/sap/ui/thirdparty/qunit.css"
+		  type="text/css" media="screen" />
+	<script src="../../../../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+	<script type="text/javascript" src="../../../../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
+	<script type="text/javascript" src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
+	
+ <!-- SINON JS SUPPORT START -->
+	  <script type="text/javascript" src="../../../../../../../resources/sap/ui/thirdparty/sinon.js"></script>
+	  <!--[if IE]>
+	  <script type="text/javascript" src="../../../../../../../resources/sap/ui/thirdparty/sinon-ie.js"></script>
+	  <![endif]-->
+	  <script type="text/javascript" src="../../../../../../../resources/sap/ui/thirdparty/sinon-qunit.js"></script>
+ <!-- SINON JS SUPPORT END -->
+ 	
+    <!-- The feed widget script is loaded by the component  -->
+	<!-- <script type="text/javascript" src="https://integration3.cubetree.com/assets/feed_widget_v1.js"></script> -->
+    
+    <script>
+    	
+	 	jQuery.sap.require("jquery.sap.resources");
+		var sLocale = sap.ui.getCore().getConfiguration().getLanguage();
+		var modulePath = jQuery.sap.getModulePath("sap.collaboration.components");
+		var oLangBundle = jQuery.sap.resources({url : modulePath + "/i18n/messagebundle.properties", locale: sLocale});
+		
+		var feedCollaborationComponent = sap.ui.getCore().createComponent({
+	 		name: "sap.collaboration.components.fiori.feed",
+	 		id: "feedComponent",
+	 		settings: {	
+        		businessObject: "rami",
+        		odataServiceUrl:
+    			"http://localhost:8080/uilib-sample/proxy/https/vmw3814.wdf.sap.corp:44320/sap/opu/odata/sap/sm_integration_srv_u31_000",
+        		mode: {appType:"splitApp"}
+	 		}
+	 	});
+	 	
+	 	var componentContainer = new sap.ui.core.ComponentContainer("componentContainer", {
+	 		component: feedCollaborationComponent
+	 	});
+	 	
+	 	componentContainer.placeAt("content");
+    </script>
+    
+    <script type="text/javascript">
+		var sPrefixId = "View1";
+		var stubOnBeforeRendering;
+		var stubOnAfterRendering
+		
+		var emptyFunction = function(){};
+		
+		module("Component Rendering", {
+			setup: function(){
+				stubOnBeforeRendering = sinon.stub(feedCollaborationComponent, "onBeforeRendering", emptyFunction);
+				stubOnAfterRendering = sinon.stub(feedCollaborationComponent, "onAfterRendering", emptyFunction);
+			},
+			teardown: function(){
+				feedCollaborationComponent.onBeforeRendering.restore();
+				feedCollaborationComponent.onAfterRendering.restore();
+			}
+		});
+		
+		test("Test Stub for onBeforeRendering method", function(){			
+			stubOnBeforeRendering();
+			feedCollaborationComponent.onBeforeRendering();
+			ok(stubOnBeforeRendering.called);
+			equal(stubOnBeforeRendering.callCount,2,"called twice");
+			
+		});
+		
+		test("Test Stub for onAfterRendering method", function(){			
+			stubOnAfterRendering();
+			feedCollaborationComponent.onAfterRendering();
+			ok(stubOnAfterRendering.called);
+			equal(stubOnAfterRendering.callCount,2,"called twice");
+			
+		});
+	
+		test("TestComponentContainerRenderedOK", function() {
+		    var sId = "componentContainer";
+		    notEqual(jQuery.sap.domById(sId), null, "Create Component Container outer HTML Element is rendered.");
+		});
+		
+		test("TestComponentRenderedOK", function() {
+		    var sViewId = "feedComponent";
+		    notEqual(jQuery.sap.domById(sViewId), null, "Create Component outer HTML Element is rendered.");
+		});
+		
+		module("Rendering Methods");
+		
+
+		
+	</script>
+
+</head>
+<body>
+	<div id="qunit"></div>
+	<div id="content"></div>
+</body>
+</html>

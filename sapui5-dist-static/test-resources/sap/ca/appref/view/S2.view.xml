@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><core:View xmlns:core="sap.ui.core" xmlns="sap.m" controllerName="i2d.qm.qualityissue.confirm.appref.view.S2"><!--Scaffolding S2 applied-->
+    <Page id="page" title="{i18n&gt;MASTER_TITLE}">
+        <content>
+            <List growing="false" growingThreshold="5" id="list" items="{path : '/ReportedIssueCollection',                           sorter : {path : 'CreatedAt',   descending : true},            filters: [{path:'Status', operator:'EQ', value1:'New'}]             }" mode="{device&gt;/listMode}" noDataText="{i18n&gt;MASTER_NO_DATA}" select="_handleSelect">
+                <infoToolbar>
+                    <Toolbar visible="{masterModel&gt;/toogleSubmit}">
+                        <content>
+                            <Label id="labelTB" text="{i18n&gt;FILTERED_BY}">
+                            </Label>
+                        </content>
+                    </Toolbar>
+                </infoToolbar>
+                <items>
+                    <ObjectListItem id="MAIN_LIST_ITEM" press="_handleItemPress" title="{Subject}" type="{device&gt;/listItemType}">
+                        <attributes>
+                            <ObjectAttribute id="DEFECT" text="{Defect}"/>
+                            <ObjectAttribute id="DATE" text="{path:'CreatedAt', type:'sap.ca.ui.model.type.Date', formatOptions : { style:'daysAgo'}}"/>
+                        </attributes>
+                        <firstStatus>
+                            <ObjectStatus id="STATUS" state="{path:'Status', formatter: 'i2d.qm.qualityissue.confirm.appref.util.Formatter.StatusState'}" text="{Status}"/>
+                        </firstStatus>
+
+                        <!-- extension added to add Quantity -->
+                        <core:ExtensionPoint name="extQuantity"/>
+
+                    </ObjectListItem>
+                </items>
+            </List>
+        </content>
+    </Page>
+</core:View>

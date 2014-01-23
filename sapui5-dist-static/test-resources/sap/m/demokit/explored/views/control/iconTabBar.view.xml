@@ -1,0 +1,43 @@
+<core:View
+	controllerName="views.control.iconTabBar"
+	xmlns="sap.m"
+	xmlns:l="sap.ui.layout"
+	xmlns:core="sap.ui.core" >
+	<l:VerticalLayout>
+		<l:content>
+			<Text id="description" class="marginAll" />
+
+			<IconTabBar
+				id="idIconTabBar"
+				select="handleIconTabBarSelect">
+				<items>
+					<IconTabFilter
+						showAll="true"
+						count="{/ProductCollectionStats/Counts/Total}"
+						text="Products"
+						keys="All" />
+					<IconTabSeparator />
+					<IconTabFilter
+						icon="sap-icon://begin"
+						iconColor="Positive"
+						count="{/ProductCollectionStats/Counts/Weight/Ok}"
+						text="Ok"
+						key="Ok" />
+					<IconTabFilter
+						icon="sap-icon://compare"
+						iconColor="Critical"
+						count="{/ProductCollectionStats/Counts/Weight/Heavy}"
+						text="Heavy"
+						key="Heavy" />
+					<IconTabFilter
+						icon="sap-icon://inventory"
+						iconColor="Negative"
+						count="{/ProductCollectionStats/Counts/Weight/Overweight}"
+						text="Overweight"
+						key="Overweight" />
+				</items>
+			</IconTabBar>
+
+		</l:content>
+	</l:VerticalLayout>
+</core:View>

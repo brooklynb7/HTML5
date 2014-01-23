@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+<title>Table - Mass Data Test Page - sap.ui.table</title>
+<link rel="shortcut icon" type="image/x-icon" href="../images/controls/sap.ui.table.Table.gif">
+
+<!-- ********************************************************************** -->
+<!-- SAPUI5 Bootstrap:                                                     -->
+<!-- Extend the "libs" property if you like to import additional libraries  -->
+<!-- ********************************************************************** -->
+<script id="sap-ui-bootstrap" 
+	type="text/javascript"
+	data-sap-ui-libs="sap.ui.commons,sap.ui.table"
+	data-sap-ui-theme="sap_goldreflection"
+	src="../../../../../resources/sap-ui-core.js"></script>
+
+<script type="text/javascript">	
+
+	var iRows = 1000;
+	var iCols = 200;
+
+	var aColumns = [];
+	var aData = [];
+	for (var row = 0; row < iRows; row++) {
+		var aRow = {};
+		for (var col = 0; col < iCols; col++) {
+			if (row === 0) {
+				aColumns.push(new sap.ui.table.Column({label: "Column " + col, template: "col" + col, width: "75px", flexible: col === 10}));
+				//var oTemplate = new sap.ui.commons.Label({text: "{col" + col + "}"});
+				//aColumns.push(new sap.ui.table.Column({label: "Column " + col, template: oTemplate, width: "75px", flexible: col === 10}));
+			}
+			aRow["col" + col] = "Cell " + row + "/" + col;
+		}
+		aData.push(aRow);
+	}
+	
+	var oTable = new sap.ui.table.Table({title: "Mass Data", columns: aColumns});
+	oTable.setSelectionMode(sap.ui.table.SelectionMode.Multi);
+	oTable.setToolbar(new sap.ui.commons.Toolbar({items: [ 
+	    new sap.ui.commons.Button({text: "Hello World"}) 
+	]}));
+
+	var oModel = new sap.ui.model.json.JSONModel();
+	if (!oModel.getData) oModel.getData = function() { return oModel.oData; };
+	oModel.setData({data: aData});
+	oTable.setModel(oModel);
+	oTable.bindRows("/data");
+	
+	oTable.placeAt("content");
+	
+</script>
+
+</head>
+
+<body class="sapUiBody" role="application">
+
+<h1>Test Page for <code>sap.ui.table.Table</code></h1>
+<p>
+<div id="content"></div>
+</body>
+</html>

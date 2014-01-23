@@ -1,0 +1,54 @@
+<core:View
+        controllerName="i2d.qm.qualityissue.confirm.appref.view.IssueForm"
+        xmlns="sap.m"
+        xmlns:ui="sap.ca.ui"
+        xmlns:layout="sap.ui.layout"
+        xmlns:form="sap.ui.layout.form"
+        xmlns:core="sap.ui.core">
+    <Page id="page" title="{i18n>CREATION_TITLE}" showNavButton="false">
+        <content>
+
+            <form:SimpleForm id="form"  maxContainerCols="2" layout="ResponsiveGridLayout">
+                <form:content>
+
+                    <Label text="{i18n>PICTURES}" id="attachmentLabel" labelFor="addPicture" />
+                    <ui:AddPicture id="addPicture" buttonPageType="Form" pictures="{picture>/Pictures}"
+                                   pictureAdded="onPictureAdded"
+                                   show="onItemPress" maxPictureNumber="20" maxPictureLimitReached="onLimitReached"
+                                   itemSize="64" compression="low">
+                        <ui:pictures>
+                            <ui:PictureItem source="{picture>source}" name="{picture>name}"/>
+                        </ui:pictures>
+
+                    </ui:AddPicture>
+
+                    <Label text="{i18n>DESCRIPTION}" id="descriptionLabel" required= "true" labelFor="descriptionInput"/>
+                    <Input value="{creationModel>/Description}" maxLength="40" liveChange="onCheckStatusSubmit" id="descriptionInput"/>
+
+                    <Label text="{i18n>DEFECT}" id="defectLabel" required= "true" labelFor="defectInput"/>
+                    <Input value="{creationModel>/SelectedDefect}" change="onCheckStatusSubmit" showValueHelp="true" valueHelpRequest="displayDefect" id="defectInput"/>
+
+                    <Label text="{i18n>REFERENCE}" id="referenceLabel" required= "true" labelFor="ReferenceInput"/>
+                    <Input value="{creationModel>/Reference}" change="onCheckStatusSubmit" id="ReferenceInput"/>
+
+                    <Label text="{i18n>CATEGORY}" id="categoryLabel" required= "true" labelFor="categoryInput"/>
+                    <Input value="{creationModel>/SelectedCategory}" liveChange="onCheckStatusSubmit"
+                           showValueHelp="true" valueHelpRequest="displayCategory" id="categoryInput"/>
+
+                    <Label text="{i18n>DETAILED_DESCRIPTION}" id="detailLabel" labelFor="detailInput"/>
+                    <TextArea value="{creationModel>/DetailedDescription}" width="100%" row="2" maxLength="246" id="detailInput"/>
+
+                </form:content>
+            </form:SimpleForm>
+
+        </content>
+        <footer>
+            <Bar>
+                <contentRight>
+                    <Button text="{i18n>SUBMIT}" press="onSubmit" enabled="{creationModel>/toggleSubmit}" id="Button_submit" type="Emphasized"/>
+                    <Button text="{i18n>CANCEL}" press="onCancel" enabled="true" id="Button_cancel"/>
+                </contentRight>
+            </Bar>
+        </footer>
+    </Page>
+</core:View>

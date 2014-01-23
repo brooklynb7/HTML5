@@ -1,0 +1,37 @@
+<core:View
+        xmlns:core="sap.ui.core"
+        xmlns="sap.m"
+        xmlns:chart="sap.ca.ui.charts"
+        controllerName="sap.ca.ui.sample.views.control.StackedColumn">
+
+    <Page id="page">
+        <content id="chartContainer">
+            <IconTabBar expandable="false" selectedKey="All">
+                <items>
+                    <IconTabFilter icon="sap-icon://vertical-stacked-chart">
+                        <content>
+                            <chart:StackedVerticalColumnChart id="scChart" type="viz/stacked_column"/>
+                        </content>
+                    </IconTabFilter>
+                    <IconTabFilter icon="sap-icon://full-stacked-column-chart">
+                        <content>
+                            <chart:StackedVerticalColumnChart id="sc100Chart" title="Test 100% Stacked Vertical Bar Chart" type = "viz/100_stacked_column" />
+                        </content>
+                    </IconTabFilter>
+                    <IconTabFilter icon="sap-icon://vertical-stacked-chart">
+                        <content>
+                            <chart:StackedVerticalColumnChart id="dscChart" title="Test Dual Stacked Vertical Bar Chart" type = "viz/dual_stacked_column" secondAxisVisible = 'true'/>
+                        </content>
+                    </IconTabFilter>
+                    <IconTabFilter icon="sap-icon://full-stacked-column-chart">
+                        <content>
+                            <chart:StackedVerticalColumnChart id="dsc100Chart" title="Test Dual 100% Stacked Vertical Bar Chart" type = "viz/100_dual_stacked_column" secondAxisVisible = 'true'/>
+                        </content>
+                    </IconTabFilter>
+                </items>
+            </IconTabBar>
+        </content>
+    </Page>
+
+</core:View>
+

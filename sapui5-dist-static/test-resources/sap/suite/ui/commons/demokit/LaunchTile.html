@@ -1,0 +1,77 @@
+<!DOCTYPE HTML>
+<html data-sap-ui-dk-category="Controls/ValueHolders"
+	data-sap-ui-dk-controls="sap.suite.ui.commons.LaunchTile">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="keywords" content="Control LaunchTile" />
+<title>LaunchTile - SAPUI5 Demo Kit</title>
+<link rel="stylesheet" type="text/css"
+	href="../../../../../../theme/default.css"></link>
+<script id="sap-ui-bootstrap" type="text/javascript"
+	src="../../../../../../resources/sap-ui-core.js"
+	data-sap-ui-theme="sap_goldreflection"
+	data-sap-ui-libs="sap.ui.commons,sap.ui.demokit,sap.suite.ui.commons, sap.m">
+    
+</script>
+<script type="text/javascript" src="../../../../../../js/utils.js"></script>
+
+<script id='LaunchTileBasic' type="text/javascript">
+    jQuery.sap.require("sap.ui.core.IconPool");
+
+    // Create a LaunchTile
+    var oLaunchTile = new sap.suite.ui.commons.LaunchTile({
+        title : "Create Sales Order Item",
+        icon : sap.ui.core.IconPool.getIconURI("shortcut"),
+        link : "http://www.sap.com"
+    });
+
+    // Create a container for the LaunchTile with a specified height and width 
+    var oBorderLayout = new sap.ui.commons.layout.BorderLayout({
+        width : "250px",
+        height : "214px"
+    });
+
+    // Add the LaunchTile to the container
+    oBorderLayout.createArea(sap.ui.commons.layout.BorderLayoutAreaTypes.top,
+            oLaunchTile);
+    oBorderLayout.setAreaData(sap.ui.commons.layout.BorderLayoutAreaTypes.top,
+            {
+                size : "100%",
+                visible : true
+            });
+
+    // attach it to some element in the page
+    oBorderLayout.placeAt("basic");
+</script>
+
+</head>
+
+<body class="sapUiDemokitBody" role="application">
+	<h1 color="Blue" icon="images/ctrls/launch_tile-icon.png">LaunchTile</h1>
+
+	<h2>Introduction</h2>
+
+	<p>The LaunchTile control provides a press-able element that can be
+		used to launch a link to an application or another location. The
+		control allows definition of a descriptive title and an icon that can
+		be used to provide a hint the user about the launched application.
+	</p>
+
+	<h2>Examples</h2>
+	<h3>Basic Example</h3>
+	<p>This example shows a basic LaunchTile.</p>
+	<div code-sample="basic" script="LaunchTileBasic"></div>
+
+	!--
+	<h2>Keyboard Support</h2>
+	<p></p>
+	-->
+	<p>
+		See <a class="sapUiDemokitSrcLink"
+			href="../../../../../../docs/api/symbols/sap.suite.ui.commons.LaunchTile.html">API
+			documentation</a>
+	</p>
+
+</body>
+</html>

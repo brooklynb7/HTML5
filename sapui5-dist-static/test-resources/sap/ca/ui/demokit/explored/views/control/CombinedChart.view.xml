@@ -1,0 +1,15 @@
+<core:View xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:chart="sap.ca.ui.charts"
+           controllerName="sap.ca.ui.sample.views.control.CombinedChart">
+	<Page id="page">
+        <content>
+            <chart:CombinedChart id="fioriCombinedChart" chartTitle="Sample Combined Chart" />
+        </content>
+		<footer>
+			<Bar>
+                <contentRight>
+                <Button text="legend" id="switchLegend" press="onChangeLegend"/>
+                </contentRight>
+			</Bar>
+		</footer>
+	</Page>
+</core:View>

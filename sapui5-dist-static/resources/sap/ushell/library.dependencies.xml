@@ -1,0 +1,774 @@
+<?xml version="1.0" ?>
+<library  version="2.0" name="sap.ushell">
+  <module name="sap/ushell/System.js" size="3307" compressedSize="518">
+    <description>global jQuery, sap</description>
+    <requires>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/ushell/User.js" size="3470" compressedSize="527">
+    <description>global jQuery, sap</description>
+    <requires>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/ushell/components/container/ApplicationContainer.js" size="30391" compressedSize="6270">
+    <description>Do not use the variables so that UI5 optimizers recognize this declaration</description>
+    <requires>
+      <module name="sap/ushell/utils.js"/>
+      <module name="sap/ushell/library.js"/>
+      <module name="sap/ui/core/UIComponent.js"/>
+      <module name="sap/m/InstanceManager.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/ushell/components/factsheet/Component.js" size="2545" compressedSize="832">
+    <description>define a root UIComponent which exposes the main view</description>
+    <requires>
+      <module name="sap/ui/core/UIComponent.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/ushell/components/factsheet/annotation/Mapping.js" size="32331" compressedSize="9350">
+    <description>global sap, jQuery, window, XMLHttpRequest, ActiveXObject, XPathResult</description>
+    <requires>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/ushell/components/factsheet/factory/ThingInspector.js" size="106973" compressedSize="36348">
+    <description>global sap, jQuery, $, setTimeout, window, console</description>
+    <requires>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/ushell/components/factsheet/tools/ODataUrlTemplating.js" size="1830" compressedSize="759">
+    <requires>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/ushell/components/factsheet/views/ThingViewer.controller.js" size="187" compressedSize="160" raw="true">
+  </module>
+  <module name="sap/ushell/components/factsheet/views/ThingViewer.view.js" size="2216" compressedSize="808">
+    <requires>
+      <module name="sap/ushell/components/factsheet/tools/ODataUrlTemplating.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/ushell/components/perf/monitor.js" size="7970" compressedSize="2754" raw="true">
+  </module>
+  <module name="sap/ushell/functionBindPrototype.js" size="1161" compressedSize="553">
+    <description>ensure that sap.ushell exists</description>
+    <requires>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/ushell/functionOverrideResizeEvent.js" size="7433" compressedSize="1784">
+    <description>ensure that sap.ushell exists</description>
+    <requires>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/ushell/iconfonts.js" size="8713" compressedSize="4719">
+    <requires>
+      <module name="sap/ui/core/IconPool.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/ushell/library.js" size="6551" compressedSize="2042">
+    <description>Initialization Code and shared classes of library sap.ushell (1.16.4)</description>
+    <requires>
+      <module name="sap/ui/core/Core.js"/>
+      <module name="sap/ui/core/library.js"/>
+      <module name="sap/ui/layout/library.js"/>
+      <module name="sap/m/library.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+    <includes>
+      <module name="sap/ushell/ui/launchpad/DeleteAreaType.js"/>
+      <module name="sap/ushell/ui/tile/State.js"/>
+      <module name="sap/ushell/ui/tile/StateArrow.js"/>
+    </includes>
+  </module>
+  <module name="sap/ushell/override.js" size="6768" compressedSize="2040">
+    <description>ensure that sap.ushell exists</description>
+    <requires>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/ushell/renderers/fiori2/History.js" size="2406" compressedSize="1354">
+    <description>jslint nomen: true</description>
+    <requires>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/ushell/renderers/fiori2/Renderer.js" size="1977" compressedSize="594">
+    <description>global jQuery, sap</description>
+    <requires>
+      <module name="sap/ui/core/UIComponent.js"/>
+      <module name="sap/ushell/resources.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/ushell/renderers/fiori2/Shell.controller.js" size="25229" compressedSize="12033">
+    <requires>
+      <module name="sap/ui/core/IconPool.js"/>
+      <module name="sap/m/MessageToast.js"/>
+      <module name="sap/m/MessageBox.js"/>
+      <module name="sap/m/Shell.js"/>
+      <module name="sap/ushell/components/container/ApplicationContainer.js"/>
+      <module name="sap/ushell/services/Message.js"/>
+      <module name="sap/ushell/services/ShellNavigation.js"/>
+      <module name="sap/ushell/services/AppConfiguration.js"/>
+      <module name="sap/ushell/renderers/fiori2/History.js"/>
+      <module name="sap/ushell/ui/launchpad/LoadingDialog.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/ushell/renderers/fiori2/Shell.view.js" size="14852" compressedSize="6402">
+    <requires>
+      <module name="sap/ushell/renderers/fiori2/launchpad/DashboardManager.js"/>
+      <module name="sap/ushell/touchSupport.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/ushell/renderers/fiori2/launchpad/DashboardManager.js" size="38006" compressedSize="15658">
+    <description>jslint plusplus: true, nomen: true, bitwise: true</description>
+    <requires>
+      <module name="sap/ushell/services/Message.js"/>
+      <module name="sap/ushell/functionOverrideResizeEvent.js"/>
+      <module name="sap/ui/thirdparty/jqueryui/jquery-ui-core.js"/>
+      <module name="sap/ui/thirdparty/jqueryui/jquery-ui-widget.js"/>
+      <module name="sap/ui/thirdparty/jqueryui/jquery-ui-mouse.js"/>
+      <module name="sap/ui/thirdparty/jqueryui/jquery-ui-sortable.js"/>
+      <module name="sap/ui/thirdparty/jqueryui/jquery-ui-draggable.js"/>
+      <module name="sap/ui/thirdparty/jqueryui/jquery-ui-droppable.js"/>
+      <module name="sap/ui/thirdparty/jqueryui/jquery-effects-core.js"/>
+      <module name="sap/ui/thirdparty/jqueryui/jquery-effects-shake.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/ushell/renderers/fiori2/launchpad/catalog/Catalog.controller.js" size="6629" compressedSize="2988" raw="true">
+  </module>
+  <module name="sap/ushell/renderers/fiori2/launchpad/catalog/Catalog.view.js" size="7732" compressedSize="3375">
+    <requires>
+      <module name="sap/ui/core/IconPool.js"/>
+      <module name="sap/ushell/ui/launchpad/Tile.js"/>
+      <module name="sap/ushell/ui/launchpad/TileContainer.js"/>
+      <module name="sap/ushell/ui/launchpad/Panel.js"/>
+      <module name="sap/ushell/ui/launchpad/CatalogListItem.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/ushell/renderers/fiori2/launchpad/dashboard/DashboardContent.controller.js" size="23741" compressedSize="9672">
+    <requires>
+      <module name="sap/ushell/ui/launchpad/TileContainer.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/ushell/renderers/fiori2/launchpad/dashboard/DashboardContent.view.js" size="11201" compressedSize="4743">
+    <requires>
+      <module name="sap/ushell/ui/launchpad/TileContainer.js"/>
+      <module name="sap/ushell/ui/launchpad/Tile.js"/>
+      <module name="sap/ushell/override.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/ushell/renderers/fiori2/launchpad/group_list/GroupList.controller.js" size="23508" compressedSize="9438" raw="true">
+  </module>
+  <module name="sap/ushell/renderers/fiori2/launchpad/group_list/GroupList.view.js" size="10724" compressedSize="4850">
+    <requires>
+      <module name="sap/ushell/ui/launchpad/GroupListItem.js"/>
+      <module name="sap/ui/core/IconPool.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/ushell/renderers/fiori2/search/HistoryScreen.controller.js" size="6326" compressedSize="2916">
+    <requires>
+      <module name="sap/ushell/ui/launchpad/Tile.js"/>
+      <module name="sap/ushell/ui/launchpad/TileContainer.js"/>
+      <module name="sap/ushell/services/LaunchPage.js"/>
+      <module name="sap/ushell/services/Search.js"/>
+      <module name="sap/ushell/services/UserRecents.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/ushell/renderers/fiori2/search/HistoryScreen.view.js" size="3976" compressedSize="1770">
+    <requires>
+      <module name="sap/ushell/ui/launchpad/TileContainer.js"/>
+      <module name="sap/ushell/ui/launchpad/Tile.js"/>
+      <module name="sap/ushell/ui/launchpad/SearchResultApps.js"/>
+      <module name="sap/ushell/ui/launchpad/SearchResultAppItem.js"/>
+      <module name="sap/ushell/renderers/fiori2/search/SearchLayout.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/ushell/renderers/fiori2/search/ResultFilterInfo.controller.js" size="2610" compressedSize="1489" raw="true">
+  </module>
+  <module name="sap/ushell/renderers/fiori2/search/ResultFilterInfo.view.js" size="1870" compressedSize="879" raw="true">
+  </module>
+  <module name="sap/ushell/renderers/fiori2/search/SearchFilter.controller.js" size="2430" compressedSize="1387" raw="true">
+  </module>
+  <module name="sap/ushell/renderers/fiori2/search/SearchFilter.view.js" size="3737" compressedSize="1577" raw="true">
+  </module>
+  <module name="sap/ushell/renderers/fiori2/search/SearchLayout.js" size="7237" compressedSize="3032" raw="true">
+  </module>
+  <module name="sap/ushell/renderers/fiori2/search/SearchModel.js" size="12120" compressedSize="3978" raw="true">
+  </module>
+  <module name="sap/ushell/renderers/fiori2/search/SearchResultListItem.js" size="12334" compressedSize="4838" raw="true">
+  </module>
+  <module name="sap/ushell/renderers/fiori2/search/SearchResultListItemDetail.js" size="6315" compressedSize="2422" raw="true">
+  </module>
+  <module name="sap/ushell/renderers/fiori2/search/SearchResults.controller.js" size="5062" compressedSize="2531">
+    <requires>
+      <module name="sap/ushell/renderers/fiori2/search/SearchModel.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/ushell/renderers/fiori2/search/SearchResults.view.js" size="16215" compressedSize="5618">
+    <requires>
+      <module name="sap/ushell/renderers/fiori2/search/SearchResultListItem.js"/>
+      <module name="sap/ushell/renderers/fiori2/search/SearchLayout.js"/>
+      <module name="sap/ushell/renderers/fiori2/search/SearchResultListItemDetail.js"/>
+      <module name="sap/ushell/ui/launchpad/SearchResultApps.js"/>
+      <module name="sap/ushell/ui/launchpad/SearchResultAppItem.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/ushell/renderers/fiori2/search/SearchSuggestions.controller.js" size="8721" compressedSize="3984" raw="true">
+  </module>
+  <module name="sap/ushell/renderers/fiori2/search/SearchSuggestions.view.js" size="4812" compressedSize="2171">
+    <requires>
+      <module name="sap/ushell/ui/launchpad/SearchSuggestionList.js"/>
+      <module name="sap/ushell/ui/launchpad/SearchSuggestionListItem.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/ushell/resources.js" size="1029" compressedSize="630">
+    <description>ensure that sap.ushell exists</description>
+    <requires>
+      <module name="sap/ui/model/resource/ResourceModel.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/ushell/services/AppConfiguration.js" size="9313" compressedSize="2341">
+    <description>global jQuery, sap</description>
+    <requires>
+      <module name="sap/ushell/ui/footerbar/SettingsButton.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/ushell/services/Bookmark.js" size="2839" compressedSize="317">
+    <description>global jQuery, sap</description>
+    <requires>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/ushell/services/Container.js" size="18876" compressedSize="2874">
+    <description>global jQuery, sap, setTimeout, window</description>
+    <requires>
+      <module name="sap/ushell/utils.js"/>
+      <module name="sap/ushell/System.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/ushell/services/CrossApplicationNavigation.js" size="5477" compressedSize="1124">
+    <description>global jQuery, sap</description>
+    <requires>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/ushell/services/LaunchPage.js" size="22380" compressedSize="2378">
+    <description>global jQuery, sap</description>
+    <requires>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/ushell/services/Message.js" size="5463" compressedSize="888">
+    <description>global jQuery, sap</description>
+    <requires>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/ushell/services/NavTargetResolution.js" size="9650" compressedSize="3643">
+    <description>global jQuery, sap, localStorage, window</description>
+    <requires>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/ushell/services/PageBuilding.js" size="8109" compressedSize="1757">
+    <description>global jQuery, sap</description>
+    <requires>
+      <module name="sap/ui2/srvc/factory.js"/>
+      <module name="sap/ui2/srvc/page.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/ushell/services/Personalization.js" size="6050" compressedSize="887">
+    <description>global jQuery, sap</description>
+    <requires>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/ushell/services/Search.js" size="10641" compressedSize="2711">
+    <description>global jQuery, sap</description>
+    <requires>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/ushell/services/ShellNavigation.js" size="18664" compressedSize="5190">
+    <requires>
+      <module name="sap/ui/thirdparty/signals.js"/>
+      <module name="sap/ui/thirdparty/hasher.js"/>
+      <module name="sap/ui/core/routing/HashChanger.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/ushell/services/URLParsing.js" size="9909" compressedSize="1818">
+    <description>global jQuery, sap</description>
+    <requires>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/ushell/services/UserInfo.js" size="1268" compressedSize="288">
+    <description>global jQuery, sap</description>
+    <requires>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/ushell/services/UserRecents.js" size="8424" compressedSize="2379">
+    <description>global jQuery, sap, console</description>
+    <requires>
+      <module name="sap/ushell/services/Personalization.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/ushell/touchSupport.js" size="3746" compressedSize="1770">
+    <description>ensure that sap.ushell exists</description>
+    <requires>
+      <module name="sap/ui/thirdparty/jqueryui/jquery-ui-core.js"/>
+      <module name="sap/ui/thirdparty/jqueryui/jquery-ui-widget.js"/>
+      <module name="sap/ui/thirdparty/jqueryui/jquery-ui-mouse.js"/>
+      <module name="sap/ui/thirdparty/jqueryui/jquery-ui-draggable.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/ushell/ui/footerbar/AboutButton.js" size="6552" compressedSize="2186">
+    <description>Provides control sap.ushell.ui.footerbar.AboutButton.</description>
+    <requires>
+      <module name="sap/ushell/library.js"/>
+      <module name="sap/m/Button.js"/>
+      <module name="sap/ui/layout/form/SimpleForm.js"/>
+      <module name="sap/m/ObjectHeader.js"/>
+      <module name="sap/m/VBox.js"/>
+      <module name="sap/m/Dialog.js"/>
+      <module name="sap/ushell/resources.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/ushell/ui/footerbar/AboutButtonRenderer.js" size="907" compressedSize="326">
+    <description>global jQuery, sap</description>
+    <requires>
+      <module name="sap/ui/core/Renderer.js"/>
+      <module name="sap/m/ButtonRenderer.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/ushell/ui/footerbar/AddBookmarkButton.js" size="9381" compressedSize="2467">
+    <description>Provides control sap.ushell.ui.footerbar.AddBookmarkButton.</description>
+    <requires>
+      <module name="sap/ushell/library.js"/>
+      <module name="sap/m/Button.js"/>
+      <module name="sap/ui/layout/form/SimpleForm.js"/>
+      <module name="sap/m/Label.js"/>
+      <module name="sap/m/Input.js"/>
+      <module name="sap/m/Dialog.js"/>
+      <module name="sap/ushell/resources.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/ushell/ui/footerbar/AddBookmarkButtonRenderer.js" size="930" compressedSize="338">
+    <description>global jQuery, sap</description>
+    <requires>
+      <module name="sap/ui/core/Renderer.js"/>
+      <module name="sap/m/ButtonRenderer.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/ushell/ui/footerbar/JamDiscussButton.js" size="7239" compressedSize="1623">
+    <description>Provides control sap.ushell.ui.footerbar.JamDiscussButton.</description>
+    <requires>
+      <module name="sap/ushell/library.js"/>
+      <module name="sap/m/Button.js"/>
+      <module name="sap/ushell/resources.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/ushell/ui/footerbar/JamDiscussButtonRenderer.js" size="926" compressedSize="336">
+    <description>global jQuery, sap</description>
+    <requires>
+      <module name="sap/ui/core/Renderer.js"/>
+      <module name="sap/m/ButtonRenderer.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/ushell/ui/footerbar/JamShareButton.js" size="7339" compressedSize="1721">
+    <description>Provides control sap.ushell.ui.footerbar.JamShareButton.</description>
+    <requires>
+      <module name="sap/ushell/library.js"/>
+      <module name="sap/m/Button.js"/>
+      <module name="sap/ushell/resources.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/ushell/ui/footerbar/JamShareButtonRenderer.js" size="918" compressedSize="332">
+    <description>global jQuery, sap</description>
+    <requires>
+      <module name="sap/ui/core/Renderer.js"/>
+      <module name="sap/m/ButtonRenderer.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/ushell/ui/footerbar/LoginDetailsButton.js" size="5589" compressedSize="1818">
+    <description>Provides control sap.ushell.ui.footerbar.LoginDetailsButton.</description>
+    <requires>
+      <module name="sap/ushell/library.js"/>
+      <module name="sap/m/Button.js"/>
+      <module name="sap/ui/layout/form/SimpleForm.js"/>
+      <module name="sap/m/Label.js"/>
+      <module name="sap/m/Text.js"/>
+      <module name="sap/m/Input.js"/>
+      <module name="sap/m/Dialog.js"/>
+      <module name="sap/ushell/resources.js"/>
+      <module name="sap/ushell/services/Container.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/ushell/ui/footerbar/LoginDetailsButtonRenderer.js" size="934" compressedSize="340">
+    <description>global jQuery, sap</description>
+    <requires>
+      <module name="sap/ui/core/Renderer.js"/>
+      <module name="sap/m/ButtonRenderer.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/ushell/ui/footerbar/LogoutButton.js" size="4046" compressedSize="1018">
+    <description>Provides control sap.ushell.ui.footerbar.LogoutButton.</description>
+    <requires>
+      <module name="sap/ushell/library.js"/>
+      <module name="sap/m/Button.js"/>
+      <module name="sap/ushell/resources.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/ushell/ui/footerbar/LogoutButtonRenderer.js" size="910" compressedSize="328">
+    <description>global jQuery, sap</description>
+    <requires>
+      <module name="sap/ui/core/Renderer.js"/>
+      <module name="sap/m/ButtonRenderer.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/ushell/ui/footerbar/SettingsButton.js" size="4858" compressedSize="1504">
+    <description>Provides control sap.ushell.ui.footerbar.SettingsButton.</description>
+    <requires>
+      <module name="sap/ushell/library.js"/>
+      <module name="sap/m/Button.js"/>
+      <module name="sap/ushell/resources.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/ushell/ui/footerbar/SettingsButtonRenderer.js" size="923" compressedSize="332">
+    <description>global jQuery, sap</description>
+    <requires>
+      <module name="sap/ui/core/Renderer.js"/>
+      <module name="sap/m/ButtonRenderer.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/ushell/ui/launchpad/CatalogListItem.js" size="35575" compressedSize="5026">
+    <description>Provides control sap.ushell.ui.launchpad.CatalogListItem.</description>
+    <requires>
+      <module name="sap/ushell/library.js"/>
+      <module name="sap/m/ListItemBase.js"/>
+      <module name="sap/ui/core/EnabledPropagator.js"/>
+      <module name="sap/ui/core/IconPool.js"/>
+      <module name="sap/ui/thirdparty/jqueryui/jquery-ui-core.js"/>
+      <module name="sap/ui/thirdparty/jqueryui/jquery-ui-widget.js"/>
+      <module name="sap/ui/thirdparty/jqueryui/jquery-ui-mouse.js"/>
+      <module name="sap/ui/thirdparty/jqueryui/jquery-ui-droppable.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/ushell/ui/launchpad/CatalogListItemRenderer.js" size="5453" compressedSize="3427">
+    <description>Copyright (c) 2013 SAP AG, All Rights Reserved</description>
+    <requires>
+      <module name="sap/ui/core/Renderer.js"/>
+      <module name="sap/m/ListItemBaseRenderer.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/ushell/ui/launchpad/DashboardGroupsContainer.js" size="9294" compressedSize="908">
+    <description>Provides control sap.ushell.ui.launchpad.DashboardGroupsContainer.</description>
+    <requires>
+      <module name="sap/ushell/library.js"/>
+      <module name="sap/ui/core/Control.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/ushell/ui/launchpad/DashboardGroupsContainerRenderer.js" size="1423" compressedSize="617">
+    <requires>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/ushell/ui/launchpad/DeleteArea.js" size="16919" compressedSize="5141">
+    <description>Provides control sap.ushell.ui.launchpad.DeleteArea.</description>
+    <requires>
+      <module name="sap/ushell/library.js"/>
+      <module name="sap/ui/core/Control.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/ushell/ui/launchpad/DeleteAreaRenderer.js" size="2102" compressedSize="1115">
+    <requires>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/ushell/ui/launchpad/GroupListItem.js" size="33118" compressedSize="5826">
+    <description>Provides control sap.ushell.ui.launchpad.GroupListItem.</description>
+    <requires>
+      <module name="sap/ushell/library.js"/>
+      <module name="sap/m/ListItemBase.js"/>
+      <module name="sap/m/Input.js"/>
+      <module name="sap/ui/thirdparty/jqueryui/jquery-ui-core.js"/>
+      <module name="sap/ui/thirdparty/jqueryui/jquery-ui-widget.js"/>
+      <module name="sap/ui/thirdparty/jqueryui/jquery-ui-mouse.js"/>
+      <module name="sap/ui/thirdparty/jqueryui/jquery-ui-droppable.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/ushell/ui/launchpad/GroupListItemRenderer.js" size="1888" compressedSize="882">
+    <requires>
+      <module name="sap/m/ListItemBaseRenderer.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/ushell/ui/launchpad/HeaderTile.js" size="4898" compressedSize="590">
+    <description>Provides control sap.ushell.ui.launchpad.HeaderTile.</description>
+    <requires>
+      <module name="sap/ushell/library.js"/>
+      <module name="sap/ushell/ui/launchpad/Tile.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/ushell/ui/launchpad/HeaderTileRenderer.js" size="1127" compressedSize="522">
+    <description>@class HeaderTile renderer. @static  @private</description>
+    <requires>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/ushell/ui/launchpad/LoadingDialog.js" size="6284" compressedSize="1902">
+    <description>Provides control sap.ushell.ui.launchpad.LoadingDialog.</description>
+    <requires>
+      <module name="sap/ushell/library.js"/>
+      <module name="sap/m/BusyDialog.js"/>
+      <module name="sap/ui/core/Icon.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/ushell/ui/launchpad/LoadingDialogRenderer.js" size="3656" compressedSize="1820">
+    <description>jslint nomen: true</description>
+    <requires>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/ushell/ui/launchpad/Panel.js" size="7767" compressedSize="737">
+    <description>Provides control sap.ushell.ui.launchpad.Panel.</description>
+    <requires>
+      <module name="sap/ushell/library.js"/>
+      <module name="sap/m/Panel.js"/>
+      <module name="sap/ushell/override.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/ushell/ui/launchpad/PanelRenderer.js" size="2468" compressedSize="1197">
+    <description>Copyright (c) 2013 SAP AG, All Rights Reserved</description>
+    <requires>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/ushell/ui/launchpad/PlusTile.js" size="7132" compressedSize="1052">
+    <description>Provides control sap.ushell.ui.launchpad.PlusTile.</description>
+    <requires>
+      <module name="sap/ushell/library.js"/>
+      <module name="sap/ushell/ui/launchpad/Tile.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/ushell/ui/launchpad/PlusTileRenderer.js" size="1159" compressedSize="421">
+    <requires>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/ushell/ui/launchpad/SearchResultAppItem.js" size="5993" compressedSize="1317">
+    <description>Provides control sap.ushell.ui.launchpad.SearchResultAppItem.</description>
+    <requires>
+      <module name="sap/ushell/library.js"/>
+      <module name="sap/m/Button.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/ushell/ui/launchpad/SearchResultAppItemRenderer.js" size="1385" compressedSize="543">
+    <description>global jQuery, sap, window</description>
+    <requires>
+      <module name="sap/ui/core/Renderer.js"/>
+      <module name="sap/m/ButtonRenderer.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/ushell/ui/launchpad/SearchResultApps.js" size="10979" compressedSize="3403">
+    <description>Provides control sap.ushell.ui.launchpad.SearchResultApps.</description>
+    <requires>
+      <module name="sap/ushell/library.js"/>
+      <module name="sap/m/Table.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/ushell/ui/launchpad/SearchResultAppsRenderer.js" size="680" compressedSize="515">
+    <description>jslint nomen: true</description>
+    <requires>
+      <module name="sap/ui/core/Renderer.js"/>
+      <module name="sap/m/TableRenderer.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/ushell/ui/launchpad/SearchSuggestionList.js" size="13504" compressedSize="3374">
+    <description>Provides control sap.ushell.ui.launchpad.SearchSuggestionList.</description>
+    <requires>
+      <module name="sap/ushell/library.js"/>
+      <module name="sap/m/List.js"/>
+      <module name="sap/ushell/override.js"/>
+      <module name="sap/ui/core/delegate/ItemNavigation.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/ushell/ui/launchpad/SearchSuggestionListItem.js" size="19020" compressedSize="2437">
+    <description>Provides control sap.ushell.ui.launchpad.SearchSuggestionListItem.</description>
+    <requires>
+      <module name="sap/ushell/library.js"/>
+      <module name="sap/m/ListItemBase.js"/>
+      <module name="sap/ushell/override.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/ushell/ui/launchpad/SearchSuggestionListItemRenderer.js" size="4478" compressedSize="3060">
+    <description>global jQuery, sap, window</description>
+    <requires>
+      <module name="sap/ui/core/Renderer.js"/>
+      <module name="sap/m/ListItemBaseRenderer.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/ushell/ui/launchpad/SearchSuggestionListRenderer.js" size="624" compressedSize="478">
+    <description>jslint nomen: true</description>
+    <requires>
+      <module name="sap/ui/core/Renderer.js"/>
+      <module name="sap/m/ListRenderer.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/ushell/ui/launchpad/Tile.js" size="25802" compressedSize="4127">
+    <description>Provides control sap.ushell.ui.launchpad.Tile.</description>
+    <requires>
+      <module name="sap/ushell/library.js"/>
+      <module name="sap/ui/core/Control.js"/>
+      <module name="sap/ui/thirdparty/jqueryui/jquery-ui-core.js"/>
+      <module name="sap/ui/thirdparty/jqueryui/jquery-ui-widget.js"/>
+      <module name="sap/ui/thirdparty/jqueryui/jquery-ui-mouse.js"/>
+      <module name="sap/ui/thirdparty/jqueryui/jquery-ui-draggable.js"/>
+      <module name="sap/ushell/override.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/ushell/ui/launchpad/TileContainer.js" size="28582" compressedSize="4093">
+    <description>Provides control sap.ushell.ui.launchpad.TileContainer.</description>
+    <requires>
+      <module name="sap/ushell/library.js"/>
+      <module name="sap/ui/core/Control.js"/>
+      <module name="sap/ushell/override.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/ushell/ui/launchpad/TileContainerRenderer.js" size="3076" compressedSize="1368">
+    <requires>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/ushell/ui/launchpad/TileRenderer.js" size="2656" compressedSize="1244">
+    <requires>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/ushell/ui/tile/DynamicTile.js" size="8425" compressedSize="898">
+    <description>Provides control sap.ushell.ui.tile.DynamicTile.</description>
+    <requires>
+      <module name="sap/ushell/library.js"/>
+      <module name="sap/ushell/ui/tile/TileBase.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/ushell/ui/tile/DynamicTileRenderer.js" size="3003" compressedSize="1540">
+    <requires>
+      <module name="sap/ushell/ui/tile/TileBaseRenderer.js"/>
+      <module name="sap/ushell/ui/tile/State.js"/>
+      <module name="sap/ui/core/format/NumberFormat.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/ushell/ui/tile/ImageTile.js" size="3990" compressedSize="483">
+    <description>Provides control sap.ushell.ui.tile.ImageTile.</description>
+    <requires>
+      <module name="sap/ushell/library.js"/>
+      <module name="sap/ushell/ui/tile/TileBase.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/ushell/ui/tile/ImageTileRenderer.js" size="1198" compressedSize="514">
+    <requires>
+      <module name="sap/ushell/ui/tile/TileBaseRenderer.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/ushell/ui/tile/StaticTile.js" size="3321" compressedSize="405">
+    <description>Provides control sap.ushell.ui.tile.StaticTile.</description>
+    <requires>
+      <module name="sap/ushell/library.js"/>
+      <module name="sap/ushell/ui/tile/TileBase.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/ushell/ui/tile/StaticTileRenderer.js" size="1164" compressedSize="465">
+    <requires>
+      <module name="sap/ushell/ui/tile/TileBaseRenderer.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/ushell/ui/tile/TileBase.js" size="13895" compressedSize="1119">
+    <description>Provides control sap.ushell.ui.tile.TileBase.</description>
+    <requires>
+      <module name="sap/ushell/library.js"/>
+      <module name="sap/ui/core/Control.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/ushell/ui/tile/TileBaseRenderer.js" size="5200" compressedSize="1901">
+    <requires>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/ushell/utils.js" size="4624" compressedSize="1040">
+    <description>ensure that sap.ushell exists</description>
+    <requires>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+</library>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Detail View_WidgetCompanyFeed</title>
+
+<!-- UI5 Bootstrap -->
+<script id="sap-ui-bootstrap" 
+		type="text/javascript"
+		src="../../../../../../../resources/sap-ui-core.js"
+		data-sap-ui-theme="sap_bluecrystal"
+		data-sap-ui-libs="sap.m"
+		data-sap-ui-language="en">
+</script>
+
+<!-- libraries to be tested ******** LATER SHOULD BE IN THE BOOTSTRAP ******** -->
+
+<!-- QUnit libraries -->
+	<link rel="stylesheet"
+		  href="../../../../../../../resources/sap/ui/thirdparty/qunit.css"
+		  type="text/css" media="screen" />
+	<script src="../../../../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+	<script type="text/javascript" src="../../../../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
+	<script type="text/javascript" src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
+	
+	
+    <!-- The feed widget script is loaded by the component  -->
+	<!-- <script type="text/javascript" src="https://integration3.cubetree.com/assets/feed_widget_v1.js"></script> -->
+    
+    <script>
+    	
+    	//******** Note: testing widget of type 'follows', group and context is the same testing as the company so no need for other tests **********//
+    
+    
+	 	jQuery.sap.require("jquery.sap.resources");
+	 	jQuery.sap.require("sap.collaboration.library");
+		var sLocale = sap.ui.getCore().getConfiguration().getLanguage();
+		var modulePath = jQuery.sap.getModulePath("sap.collaboration.components");
+		var oLangBundle = jQuery.sap.resources({url : modulePath + "/i18n/messagebundle.properties", locale: sLocale});
+		
+		
+		var sPrefixId = "View1";
+		var oDetailView = 
+			sap.ui.view({
+				id: sPrefixId + "detailView", 
+				viewData : {
+					controlId: sPrefixId,
+					appType: sap.collaboration.AppType.widget,
+					jamURL:	"http://jam.sap.com",
+					jamToken: "1234",
+					feedType: sap.collaboration.FeedType.object,
+					groupsId: "",
+					objectId: "sales-order-001",
+					objectType: "topic",
+					langBundle: oLangBundle
+				}, 
+				type: sap.ui.core.mvc.ViewType.JS, 
+				viewName: "sap.collaboration.components.fiori.feed.commons.Detail"
+			});
+			
+			oDetailView.getController().loadFeedWidgetScript = function() {
+			};
+
+			oDetailView.placeAt("content");
+    </script>
+    
+    <script type="text/javascript">
+		//var sPrefixId = "View1";
+		
+		module("Detail View Rendering");
+	
+		test("TestViewRenderedOK", function() {
+		    var sViewId = sPrefixId + "detailView";
+		    notEqual(jQuery.sap.domById(sViewId), null, "Create Detail View outer HTML Element is rendered.");
+		});
+		
+		test("TestPageRenderedOK", function() {
+		    var sViewId = sPrefixId + "feedDetailsPage";
+		    notEqual(jQuery.sap.domById(sViewId), null, "Create Detail Page outer HTML Element is rendered.");
+		});
+		
+		test("TestWidgetContainerRenderedOK", function() {
+		    var sViewId = sPrefixId + "widgetContainer";
+		    notEqual(jQuery.sap.domById(sViewId), null, "Create Widget Container outer HTML Element is rendered.");
+		});
+		
+		module("Detail View Configuration");
+		
+		test("TestViewConfigurationSetOK", function() {
+		    var sViewId = sPrefixId + "detailView";
+		    var oDetailView = sap.ui.getCore().byId(sViewId);
+		    var oDetailController = oDetailView.getController()
+		    
+		    equal(oDetailController.sFeedType, "object", "Feed Type is 'object'");
+		    equal(oDetailController.sJamToken, "1234", "JAM token is ok");
+		    equal(oDetailController.sJamURL, "http://jam.sap.com", "JAM Url is ok");
+		    equal(oDetailController.sPrefixId, sPrefixId, "Prefix Id is ok");
+		    equal(oDetailController.oLangBundle, oLangBundle, "Language bundle is ok");
+		    
+		    equal(oDetailView.oDetailPage.getShowHeader(), false, "Page Header is not visible");
+		    deepEqual(oDetailView.oDetailPage.getEnableScrolling(), false, "Scrolling is off");
+		});
+		
+		
+	</script>
+
+</head>
+<body>
+	<div id="qunit"></div>
+	<div id="content"></div>
+</body>
+</html>

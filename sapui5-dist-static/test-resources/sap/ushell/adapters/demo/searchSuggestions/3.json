@@ -1,0 +1,144 @@
+{
+    "suggestions": [
+        {
+            "dataSource": {
+                "objectName": {
+                    "value": "$$AllDataSources$$",
+                    "label": "$$AllDataSources$$"
+                }
+            },
+            "filter": {
+                "attribute": "$$AllAttributes$$"
+            },
+            "labelRaw": "London",
+            "label": "<b>London</b>",
+            "valueRaw": "6"
+        },
+        {
+            "dataSource": {
+                "objectName": {
+                    "value": "Employees",
+                    "label": "Employees"
+                }
+            },
+            "filter": {
+                "attribute": "$$AllAttributes$$"
+            },
+            "labelRaw": "London",
+            "label": "<b>London</b>",
+            "valueRaw": "1"
+        },
+        {
+            "dataSource": {
+                "objectName": {
+                    "value": "Employees",
+                    "label": "Employees"
+                }
+            },
+            "filter": {
+                "attribute": "LAST_NAME"
+            },
+            "labelRaw": "London",
+            "label": "<b>London</b>",
+            "valueRaw": "1"
+        },
+        {
+            "dataSource": {
+                "objectName": {
+                    "value": "Business Partners",
+                    "label": "Business Partners"
+                }
+            },
+            "filter": {
+                "attribute": "$$AllAttributes$$"
+            },
+            "labelRaw": "London",
+            "label": "<b>London</b>",
+            "valueRaw": "3"
+        },
+        {
+            "dataSource": {
+                "objectName": {
+                    "value": "Business Partners",
+                    "label": "Business Partners"
+                }
+            },
+            "filter": {
+                "attribute": "LAST_NAME"
+            },
+            "labelRaw": "London",
+            "label": "<b>London</b>",
+            "valueRaw": "3"
+        },
+        {
+            "dataSource": {
+                "objectName": {
+                    "value": "Employees",
+                    "label": "Employees"
+                }
+            },
+            "filter": {
+                "attribute": "$$AllAttributes$$"
+            },
+            "labelRaw": "London",
+            "label": "<b>London</b>",
+            "valueRaw": "2"
+        },
+        {
+            "dataSource": {
+                "objectName": {
+                    "value": "Employees",
+                    "label": "Employees"
+                }
+            },
+            "filter": {
+                "attribute": "LAST_NAME"
+            },
+            "labelRaw": "London",
+            "label": "<b>London</b>",
+            "valueRaw": "2"
+        },
+        {
+            "dataSource": {
+                "objectName": {
+                    "value": "$$AllDataSources$$",
+                    "label": "$$AllDataSources$$"
+                }
+            },
+            "filter": {
+                "attribute": "$$AllAttributes$$"
+            },
+            "labelRaw": "Londonderry",
+            "label": "<b>Londonderry</b>",
+            "valueRaw": "1"
+        },
+        {
+            "dataSource": {
+                "objectName": {
+                    "value": "Employees",
+                    "label": "Employees"
+                }
+            },
+            "filter": {
+                "attribute": "$$AllAttributes$$"
+            },
+            "labelRaw": "Londonderry",
+            "label": "<b>Londonderry</b>",
+            "valueRaw": "1"
+        },
+        {
+            "dataSource": {
+                "objectName": {
+                    "value": "Employees",
+                    "label": "Employees"
+                }
+            },
+            "filter": {
+                "attribute": "LAST_NAME"
+            },
+            "labelRaw": "Londonderry",
+            "label": "<b>Londonderry</b>",
+            "valueRaw": "1"
+        }
+    ]
+}

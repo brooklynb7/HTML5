@@ -1,0 +1,52 @@
+				<List		xmlns="sap.m"
+                           id="lineItemList"
+                           class="lineItemList"
+                           headerText="{i18n>TASK_LIST}"
+                           headerDesign="Plain"
+                           items="{path:'/Tasks'}"
+                           >
+                           <columns		xmlns="sap.m">
+                                  <Column		xmlns="sap.m"
+                                         width="12em">
+                                         <header		xmlns="sap.m"><Label 	xmlns="sap.m" text="{i18n>TASK_TEXT}" /></header>
+                                  </Column>
+                                         <Column	xmlns="sap.m"
+                                               
+                                                minScreenWidth="Tablet"
+                                                demandPopin="true"
+                                                hAlign="Center"
+                                                id = "TaskText" >
+                                                <header><Label text="{i18n>TASK_ID}" /></header>
+                                         </Column>
+                                         <Column	xmlns="sap.m"
+                                               
+                                                minScreenWidth="Tablet"
+                                                demandPopin="true"
+                                                hAlign="Center" >
+                                                <header	xmlns="sap.m"><Label	xmlns="sap.m" text="{i18n>TASK_STATUS}" /></header>
+                                         </Column>
+                                  
+                               		    <Column	xmlns="sap.m"
+                                		         
+                                 		        hAlign="Right" >
+                                         		<header		xmlns="sap.m"><Label 	xmlns="sap.m" text="{i18n>RESPONSIBLE}" /></header>
+                                  		</Column>
+                           </columns>
+                           <ColumnListItem 	xmlns="sap.m"  id="columnListItem"
+                                  type="Navigation"
+                                  press="handleTaskItemPress"
+                                  >
+                                  <cells	xmlns="sap.m">
+                                         <ObjectIdentifier		xmlns="sap.m"
+                                                title="{TaskText}"/>
+                                                <Text	xmlns="sap.m"  
+                                                		text="{TaskID}"/>
+                                                <ObjectStatus	xmlns="sap.m"
+                                                       text="{TaskStatus}" 
+                                                       state= "{path:'TaskStatus', formatter: 'i2d.qm.qualityissue.confirm.apprefExt.util.Formatter.StatusState'}"
+                                                       ></ObjectStatus>
+                                                <Text	xmlns="sap.m"
+                                                       text="{Responsible}"/>                                         
+                                  </cells>
+                           </ColumnListItem>
+            </List>

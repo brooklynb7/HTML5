@@ -1,0 +1,434 @@
+{
+	"SAPVB": {
+		"version": "2.0",
+		"xmlns:VB": "VB",
+		"Data": {
+			"Set": {
+				"N": {
+					"name": "Main",
+					"VB:s": "0",
+					"E": [
+						{
+							"VB:ix": "1",
+							"VB:s": "0",
+							"A1": "9.2262199999999996;52.479089999999999;0",
+							"A2": "Simple Route",
+							"A3": "1010",
+							"A4": "CET",
+                     "A5": "0;20;0;0;20.04;0;30;20;0;30;40;0;30.02;40;0;35;45;0;40;60;0;60;55;0;76;55;0;80;45;0;90;47;0;95;49;0;100;45;0;85;40;0;100;35;0;85;30;0;99;25;0;87;20;0;150.1;15.4;0;150;15.3;0;150.1;15.2;0;150;15.1;0;150;15;0",
+							"A6": "RGBA(0,0,255,255)",
+							"A7": "1",
+							"A8": "1"
+						}					
+					]
+				}
+			}
+		},
+		"DataTypes": {
+			"Set": {
+				"N": [
+					{
+						"name": "Main",
+						"key": "VB:ix",
+						"A": [
+							{
+								"name": "GeoPosition",
+								"alias": "A1",
+								"type": "vector"
+							},
+							{
+								"name": "ToolTip",
+								"alias": "A2",
+								"type": "string"
+							},
+							{
+								"name": "Transformation",
+								"alias": "A3",
+								"type": "matrix"
+							},
+							{
+								"name": "Scale",
+								"alias": "A4",
+								"type": "float"
+							},
+							{
+								"name": "PosList",
+								"alias": "A5",
+								"type": "vectorarray"
+							},
+							{
+								"name": "Color",
+								"alias": "A6",
+								"type": "string"
+							},
+							{
+								"name": "ArrowStartPoint",
+								"alias": "A7",
+								"type": "string"
+							},
+							{
+								"name": "ArrowEndPoint",
+								"alias": "A8",
+								"type": "string"
+							}
+						]
+					},
+					{
+						"name": "Single",
+						"ws": "WS1",
+						"key": "VB:ix",
+						"A": [
+							{
+								"name": "GeoPosition",
+								"alias": "A1",
+								"type": "vector"
+							},
+							{
+								"name": "ToolTip",
+								"alias": "A2",
+								"type": "string"
+							},
+							{
+								"name": "Transformation",
+								"alias": "A3",
+								"type": "matrix"
+							},
+							{
+								"name": "Scale",
+								"alias": "A4",
+								"type": "float"
+							}
+						]
+					}
+				]
+			}
+		},
+		"Windows": {
+			"Set": {
+				"Window": {
+					"id": "W1",
+					"caption": "Window1",
+					"type": "geo",
+					"refParent": "",
+					"refScene": "Scene1",
+					"modal": "true"
+				}
+			}
+		},
+		"Scenes": {
+			"Set": {
+				"SceneGeo": {
+					"id": "Scene1",
+					"refMapLayerStack": "layerStackBing",
+					"initialStartPosition": "9.488068;51.322459;0",
+					"initialZoom": "7",
+					"VO": [
+						{
+							"id": "VO2",
+							"type": "{00100000-2012-0004-B001-C46BD7336A1A}",
+							"datasource": "Main",
+							"posarray.bind": "Main.PosList",
+							"scale": "1.0;1.0;1.0",
+							"fxdir": "false",
+							"fxsize": "false",
+							"color.bind": "Main.Color",
+							"start.bind": "Main.ArrowStartPoint",
+							"end.bind": "Main.ArrowEndPoint",
+                     "tooltip.bind": "Main.ToolTip"
+						},
+						{
+							"id": "VO1",
+							"type": "{00100000-2012-0004-B001-64592B8DB964}",
+							"image": "Flag3RightBlue.png",
+							"datasource": "Main",
+							"pos.bind": "Main.GeoPosition",
+							"scale": "1.0;1.0;1.0",
+							"fxdir": "true",
+							"fxsize": "true",
+							"color": "1,2,3"
+						}
+					]
+				}
+			}
+		},
+		"MapProviders": {
+			"Set": {
+				"MapProvider": [
+					{
+						"name": "NAVTEQSAT",
+						"type": "",
+						"description": "",
+						"tileX": "256",
+						"tileY": "256",
+						"maxLOD": "19",
+						"Source": {
+							"id": "server1",
+							"url": "http://maptp47.map24.com/map24/images?sid=1215676239372&v=1&projection=mercator-spheroid&size=256&imgmime=image/png&mid=DEV_SAP_WORLD&quadkey={QUAD}"
+						}
+					},
+					{
+						"name": "NAVTEQROAD",
+						"type": "",
+						"description": "",
+						"tileX": "256",
+						"tileY": "256",
+						"maxLOD": "19",
+						"Source": {
+							"id": "server1",
+							"url": "http://maptp47.map24.com/map24/images?sid=1215676239372&v=1&projection=mercator-spheroid&size=256&imgmime=image/png&mid=DEV_SAP_WORLD&quadkey={QUAD}"
+						}
+					},
+					{
+						"name": "OPENSTREETMAP",
+						"type": "",
+						"description": "",
+						"tileX": "256",
+						"tileY": "256",
+						"maxLOD": "19",
+						"Source": [
+							{
+								"id": "server1",
+								"url": "http://a.tile.openstreetmap.org/{LOD}/{X}/{Y}.png"
+							},
+							{
+								"id": "server2",
+								"url": "http://b.tile.openstreetmap.org/{LOD}/{X}/{Y}.png"
+							},
+							{
+								"id": "server3",
+								"url": "http://c.tile.openstreetmap.org/{LOD}/{X}/{Y}.png"
+							},
+							{
+								"id": "server4",
+								"url": "http://d.tile.openstreetmap.org/{LOD}/{X}/{Y}.png"
+							}
+						]
+					},
+					{
+						"name": "GOOGLEMAP",
+						"type": "",
+						"description": "",
+						"tileX": "256",
+						"tileY": "256",
+						"maxLOD": "19",
+						"Source": [
+							{
+								"id": "server1",
+								"url": "http://mt0.google.com/vt/lyrs=m@1550000&hl=de&x={X}&y={Y}&z={LOD}&s=G"
+							},
+							{
+								"id": "server2",
+								"url": "http://mt1.google.com/vt/lyrs=m@1550000&hl=de&x={X}&y={Y}&z={LOD}&s=G"
+							}
+						]
+					},
+					{
+						"name": "ESRILOCAL",
+						"type": "",
+						"description": "",
+						"tileX": "256",
+						"tileY": "256",
+						"maxLOD": "19",
+						"Source": {
+							"id": "server1",
+							"url": "http://iwdfvm1229:8399/arcgis/rest/services/World_WebMercator2_Tiled/MapServer/tile/{LOD}/{Y}/{X}"
+						}
+					},
+					{
+						"name": "BINGMAP",
+						"type": "",
+						"description": "",
+						"tileX": "256",
+						"tileY": "256",
+						"maxLOD": "19",
+						"minLOD": "0",
+						"copyright": "Copyright Microsoft Corp",
+						"Source": [
+							{
+								"id": "server1",
+								"url": "http://ecn.t0.tiles.virtualearth.net/tiles/r{QUAD}?g=685&mkt=de-de&lbl=l1&stl=h&shading=hill&n=z"
+							},
+							{
+								"id": "server2",
+								"url": "http://ecn.t1.tiles.virtualearth.net/tiles/r{QUAD}?g=685&mkt=de-de&lbl=l1&stl=h&shading=hill&n=z"
+							},
+							{
+								"id": "server3",
+								"url": "http://ecn.t2.tiles.virtualearth.net/tiles/r{QUAD}?g=685&mkt=de-de&lbl=l1&stl=h&shading=hill&n=z"
+							},
+							{
+								"id": "server4",
+								"url": "http://ecn.t3.tiles.virtualearth.net/tiles/r{QUAD}?g=685&mkt=de-de&lbl=l1&stl=h&shading=hill&n=z"
+							}
+						]
+					}
+				]
+			}
+		},
+		"MapLayerStacks": {
+			"Set": {
+				"MapLayerStack": [
+					{
+						"name": "layerStackMixed",
+						"MapLayer": [
+							{
+								"name": "layer1",
+								"refMapProvider": "NAVTEQSAT",
+								"opacity": "1.0"
+							},
+							{
+								"name": "layer2",
+								"refMapProvider": "NAVTEQROAD",
+								"opacity": "0.5"
+							}
+						]
+					},
+					{
+						"name": "layerStackRoad",
+						"MapLayer": {
+							"name": "layer1",
+							"refMapProvider": "NAVTEQROAD",
+							"opacity": "1.0"
+						}
+					},
+					{
+						"name": "layerStackSat",
+						"MapLayer": {
+							"name": "layer1",
+							"refMapProvider": "NAVTEQSAT",
+							"opacity": "1.0"
+						}
+					},
+					{
+						"name": "layerStackOpenStreetMap",
+						"MapLayer": [
+							{
+								"name": "layer2",
+								"refMapProvider": "NAVTEQSAT",
+								"opacity": "1.0"
+							},
+							{
+								"name": "layer1",
+								"refMapProvider": "OPENSTREETMAP",
+								"opacity": "0.5"
+							}
+						]
+					},
+					{
+						"name": "layerStackOpenStreetMap",
+						"MapLayer": [
+							{
+								"name": "layer2",
+								"refMapProvider": "NAVTEQSAT",
+								"opacity": "1.0"
+							},
+							{
+								"name": "layer1",
+								"refMapProvider": "OPENSTREETMAP",
+								"opacity": "0.5"
+							}
+						]
+					},
+					{
+						"name": "layerStackGoogleMap",
+						"MapLayer": {
+							"name": "layer1",
+							"refMapProvider": "GOOGLEMAP",
+							"opacity": "1.0",
+							"colBkgnd": "RGB(255,255,255)"
+						}
+					},
+					{
+						"name": "layerStackGoogleMapWithFotos",
+						"MapLayer": [
+							{
+								"name": "layer1",
+								"refMapProvider": "GOOGLEMAP",
+								"opacity": "1.0"
+							},
+							{
+								"name": "layer2",
+								"refMapProvider": "GOOGLEMAPPHOTO",
+								"opacity": "1.0"
+							}
+						]
+					},
+					{
+						"name": "layerStackNavteqRoadSatWithGoogleFotos",
+						"MapLayer": [
+							{
+								"name": "layer1",
+								"refMapProvider": "NAVTEQSAT",
+								"opacity": "1.0"
+							},
+							{
+								"name": "layer2",
+								"refMapProvider": "NAVTEQROAD",
+								"opacity": "0.5"
+							},
+							{
+								"name": "layer3",
+								"refMapProvider": "GOOGLEMAPPHOTO",
+								"opacity": "1.0"
+							}
+						]
+					},
+					{
+						"name": "layerStackEsriLocal",
+						"MapLayer": {
+							"name": "layer1",
+							"refMapProvider": "ESRILOCAL",
+							"opacity": "1.0"
+						}
+					},
+					{
+						"name": "layerStackEsriLocalWithGoolePhotos",
+						"MapLayer": [
+							{
+								"name": "layer1",
+								"refMapProvider": "ESRILOCAL",
+								"opacity": "1.0",
+								"colBkgnd": "RGB(255,255,255)"
+							},
+							{
+								"name": "layer2",
+								"refMapProvider": "GOOGLEMAPPHOTO",
+								"opacity": "1.0"
+							}
+						]
+					},
+					{
+						"name": "layerStackBing",
+						"MapLayer": {
+							"name": "layer1",
+							"refMapProvider": "BINGMAP",
+							"opacity": "1.0",
+							"colBkgnd": "RGB(255,255,255)"
+						}
+					}
+				],
+				"#": "+\n         "
+			}
+		},
+		"Actions": {
+			"Set": {
+				"Action": [
+					{
+						"id": "1",
+						"name": "OPENPOPUP",
+						"refScene": "Scene1",
+						"refVO": "VO1",
+						"refEvent": "Click"
+					},
+					{
+						"id": "2",
+						"name": "TESTBUTTONCLICK",
+						"refScene": "Scene1",
+						"refVO": "VO2",
+						"refEvent": "Click"
+					}
+				]
+			}
+		}
+	}
+}

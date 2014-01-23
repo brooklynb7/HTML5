@@ -1,0 +1,46 @@
+<core:View
+	controllerName="views.control.listToolbar"
+	xmlns="sap.m"
+	xmlns:l="sap.ui.layout"
+	xmlns:core="sap.ui.core" >
+	<l:VerticalLayout width="100%" >
+		<l:content>
+			<Text id="description" class="marginNoBottom" />
+
+			<List items="{/ProductCollection}" >
+				<items>
+					<StandardListItem
+						title="{Name}"
+						description="{ProductId}"
+						icon="{ProductPicUrl}"
+						iconInset="false" />
+				</items>
+				<headerToolbar>
+					<Toolbar>
+						<Label text="Products" />
+						<ToolbarSpacer />
+						<Button
+							icon="sap-icon://settings"
+							press="handleButtonPress" />
+						<Button
+							icon="sap-icon://person-placeholder"
+							press="handleButtonPress" />
+						<Button
+							icon="sap-icon://drop-down-list"
+							press="handleButtonPress" />
+					</Toolbar>
+				</headerToolbar>
+				<infoToolbar>
+					<Toolbar
+						active="true"
+						press="handleInfobarPress" >
+						<Label text="This is the info bar" />
+						<ToolbarSpacer />
+						<core:Icon src="sap-icon://add-filter" />
+					</Toolbar>
+				</infoToolbar>
+			</List>
+
+		</l:content>
+	</l:VerticalLayout>
+</core:View>

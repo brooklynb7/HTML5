@@ -1,0 +1,38 @@
+[
+    {
+        "__metadata":{
+            "uri":"/sap/opu/odata/sap/Z_I2D_QM_QUALITYISSUE_CONFIRM_SRV/Attachments('1%20')",
+            "type":"Z_I2D_QM_QUALITYISSUE_CONFIRM_SRV.Attachment"
+        },
+        "Type":"image/jpg",
+        "Description":"Photo 1",
+        "Property":"",
+        "Title":"Photo 1",
+        "ReportedIssueID":"3595",
+        "AttachmentID":"1 "
+    },
+    {
+        "__metadata":{
+            "uri":"/sap/opu/odata/sap/Z_I2D_QM_QUALITYISSUE_CONFIRM_SRV/Attachments('2%20')",
+            "type":"Z_I2D_QM_QUALITYISSUE_CONFIRM_SRV.Attachment"
+        },
+        "Type":"image/jpg",
+        "Description":"Photo 2",
+        "Property":"",
+        "Title":"Photo 2",
+        "ReportedIssueID":"3595",
+        "AttachmentID":"2 "
+    },
+    {
+        "__metadata":{
+            "uri":"/sap/opu/odata/sap/Z_I2D_QM_QUALITYISSUE_CONFIRM_SRV/Attachments('3%20')",
+            "type":"Z_I2D_QM_QUALITYISSUE_CONFIRM_SRV.Attachment"
+        },
+        "Type":"image/jpg",
+        "Description":"Photo 3",
+        "Property":"",
+        "Title":"Photo 3",
+        "ReportedIssueID":"3595",
+        "AttachmentID":"3 "
+    }
+]

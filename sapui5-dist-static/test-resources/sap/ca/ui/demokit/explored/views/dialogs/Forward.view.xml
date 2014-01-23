@@ -1,0 +1,14 @@
+<core:View xmlns:core="sap.ui.core" xmlns:html="http://www.w3.org/1999/xhtml"
+           xmlns="sap.m" controllerName="sap.ca.ui.sample.views.dialogs.Forward">
+    <Page id="page" title="Forward Dialog">
+        <content>
+            <Button id="btnForwardwithList" press="onForwardWithList" text="Forward (with List)"/>
+            <Button id="btnForwardwithoutList" press="onForwardWithoutList" text="Forward (without List)"/>
+        </content>
+        <html:h3>Documentation</html:h3>
+        <html:p>
+            More detailed information about this dialog you can find in the wiki page:
+            <html:a href="https://wiki.wdf.sap.corp/wiki/display/FastFioriplanning/Forward+Dialog" target="_blank">Forward Dialog</html:a>
+        </html:p>
+    </Page>
+</core:View>

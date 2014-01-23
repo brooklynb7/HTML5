@@ -1,0 +1,43 @@
+<core:View xmlns:core="sap.ui.core"
+           xmlns="sap.m" controllerName="sap.ca.ui.sample.views.utils.TablePersonalizer">
+    <Page id="page">
+        <content>
+            <Table id="SampleTableMobile" headerText="Table header"
+                   showSeparators="Inner" items="{ path : '/rows' }">
+                <headerToolbar>
+                    <Toolbar>
+                        <Label text="Test Table for Personalization"></Label>
+                        <ToolbarSpacer></ToolbarSpacer>
+                        <Button id="personalize" icon="sap-icon://table-view" />
+                    </Toolbar>
+                </headerToolbar>
+                <columns>
+                    <Column width="100px">
+                        <Label text="Column 1" />
+                    </Column>
+                    <Column width="150px">
+                        <Label text="Column 2" />
+                    </Column>
+                    <Column width="200px">
+                        <Label text="Column 3" />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem>
+                        <cells>
+                            <Text text="{cell1}" />
+                            <Text text="{cell2}" />
+                            <Text text="{cell3}" />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+
+        </content>
+        <footer>
+            <Bar>
+
+            </Bar>
+        </footer>
+    </Page>
+</core:View>

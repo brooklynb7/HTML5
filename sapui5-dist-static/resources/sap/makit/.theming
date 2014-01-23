@@ -1,0 +1,7 @@
+{
+  "sEntity": "Library",
+  "sId": "sap/makit",
+  "sLabel": "MAKit (Mobile Analytics Kit)",
+  "sVendor": "SAP",
+  "oExtends": "UI5.sap/ui/core"
+}

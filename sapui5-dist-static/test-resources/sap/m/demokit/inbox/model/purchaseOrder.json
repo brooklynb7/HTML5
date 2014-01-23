@@ -1,0 +1,113 @@
+{
+	"orders" : [
+		{
+			"id" : "lr1",
+			"supplier" : "C.E.B. Tokyo",
+			"value" : 12951029.00,
+			"currency" : "EUR", 
+			"description" : "4 Items (Headphone, Mouse Pad, Monitor, Optic Mouse)",
+			"agoDays" : 9,
+			"fromDate" : "2012-12-03",
+			"toDate" : "2012-12-16", 
+			"overlaps" : true,
+			"by" : "Albert Manager",
+			"orderNumber" : "PO-0912736-123-X99",
+			"accountAssingment" : "Multiple Assigments",
+			"companyCode":"IDES(1000)",
+			"deliveryDate" : "2012-12-03",
+			"incoTerms" : "CPT To my home address",
+			"paymentTerms" : "14 days 3%, 30/2%, 45 net",
+			"plant":"Werk Hamburg",
+			"attachments": [
+				{
+					"type" : "ppt",
+					"title" : "Execution plan",
+					"description" : "Slide deck for the execution plan",
+					"size" : "23 KB",
+					"date" : "2012-12-16" 
+				},
+				{
+					"type" : "pdf",
+					"title" : "Brochure",
+					"description" : "A brochure of the desired hotel",
+					"size" : "23 KB",
+					"date" : "2012-12-16" 
+				},
+				{
+					"type" : "zip",
+					"title" : "Vacation images",
+					"description" : "Archive of all those images from my vacation that i have taken while being away for a very long time",
+					"size" : "5.3 MB",
+					"date" : "2012-12-18"
+				}
+			],
+			"notes" : [
+				{
+					"img" : "img/people/johannes.jpg",
+					"text" : "Hi Boss,\nmy wife will be on sabbatical in the month of december and we have 5 kids. best Johannes",
+					"date" : "2012-12-03",
+					"sender" : "Johannes Schaffensteiger"
+				},
+				{
+					"img" : "img/people/marietta.jpg",
+					"text" : "Hi Johannes,\nHmmmmmm. I am not so sure yet. You know we have so much work open for the current project. regards Michael",
+					"date" : "2012-12-04",
+					"sender" : "Marietta Johnson"
+				}
+			],
+			"requestorDetails" : {
+				"phoneMobile" : "+1 888 316 4433",
+				"phoneWork" : "+1 945 366 2000",
+				"email" : "Johannes.Schaffensteiger@the-other-company.com",
+				"companyName" : "The Other Company",
+				"companyStreet" : "Island Avenue",
+				"companyCity" : "Palo Alto",
+				"companyZIP" : "94022",
+				"companyState" : "US"
+			},
+			"material" : [{
+				"name" : "Headphone",
+				"text" : "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore",
+				"vendor" : "Sunshine Inc.",
+				"price" : "12.00",
+				"status" : "Sold out",
+				"statusState" : "Error",
+				"attachments" : false,
+				"notes" : false,
+				"people" : true
+			}, {
+				"name" : "Mouse Pad",
+				"text" : "Lorem ipsum dolor sit amet, consetetur sadipscing elitr",
+				"vendor" : "Monster GmbH",
+				"price" : "3.00",
+				"status" : "In Stock",
+				"statusState" : "None",
+				"info" : "10.10.2013",
+				"infoState" : "Success",
+				"attachments" : true,
+				"notes" : true,
+				"people" : true
+			}, {
+				"name" : "Monitor",
+				"text" : "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.",
+				"vendor" : "Sunshine Inc.",
+				"price" : "45.00",
+				"info" : "2 items left",
+				"infoState" : "Warning",
+				"status" : "In Stock",
+				"statusState" : "Success",
+				"attachments" : false,
+				"notes" : false,
+				"people" : false
+			}, {
+				"name" : "Optic Mouse",
+				"text" : "",
+				"vendor" : "A company with a terribly long name that does not fit into a single line.",
+				"price" : "15.00",
+				"attachments" : true,
+				"notes" : false,
+				"people" : true
+			}]
+		}
+	]
+}

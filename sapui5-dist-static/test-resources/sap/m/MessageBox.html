@@ -1,0 +1,72 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<title>MessageBox - sap.m</title>
+		<script src="../../../resources/sap-ui-core.js"
+			type="text/javascript"
+			id="sap-ui-bootstrap"
+			data-sap-ui-libs="sap.m"
+			data-sap-ui-theme="sap_mvi">
+		</script>
+		<script type="text/javascript">
+			jQuery.sap.require("sap.m.MessageBox");
+		
+			var app = new sap.m.App("myApp", {initialPage:"page1"}),
+				sMessage = "MessageBox opened!",
+				sTitle = "MessageBox";
+			
+			var page1 = new sap.m.Page("page1", {
+				title:"sap.m.MessageBox"
+			});
+			
+			var aItems = [];
+			
+			jQuery.map(sap.m.MessageBox.Icon, function(value, key){
+				var item = new sap.ui.core.Item({
+					key: key,
+					text: value
+				});
+				
+				aItems.push(item);
+			});
+			
+			var oSelect = sap.m.Select({
+				items: aItems
+			});
+			
+			jQuery.map(sap.m.MessageBox.Action, function(value, key){
+				page1.addContent(new sap.m.Button({
+					text: value + "(Action)",
+					press: function(){
+						sap.m.MessageBox.show(sMessage, oSelect.getSelectedItem().getProperty("key"), sTitle, key);
+					}
+				}));
+			});
+			
+			page1.addContent(new sap.m.Button({
+				text: "Confirm",
+				press: function(){
+					sap.m.MessageBox.confirm("Confirmation dialog is opened?", function(bConfirmed){
+						jQuery.sap.log.info("Dialog is " + (bConfirmed ? "" : "NOT ") + "confirmed");
+					});
+				}
+			}));
+			
+			page1.addContent(new sap.m.Button({
+				text: "Alert",
+				press: function(){
+					sap.m.MessageBox.alert("Alert some message");
+				}
+			}));
+			
+			page1.addContent(oSelect);
+			
+			app.addPage(page1).placeAt("content");
+		</script>
+
+	</head>
+	<body id="body" class="sapUiBody">
+		<div id="content"></div>
+	</body>
+</html>

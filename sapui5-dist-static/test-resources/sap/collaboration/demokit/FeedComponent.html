@@ -1,0 +1,76 @@
+<!DOCTYPE HTML>
+<html data-sap-ui-dk-category="Components/Collaboration" data-sap-ui-dk-controls="sap.collaboration.components.fiori.feed.component">
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta charset="UTF-8"/>
+		<title>Feed Component - SAPUI5 Demo Kit</title>
+		<link rel="stylesheet" type="text/css" href="../../../../theme/default.css"></link>
+		<script id="sap-ui-bootstrap"
+				src="../../../../resources/sap-ui-core.js"
+				data-sap-ui-theme="sap_goldreflection"
+				data-sap-ui-libs="sap.m,sap.ui.commons,sap.ui.demokit"
+				>
+		</script>
+		<script src="../../../../js/utils.js"></script>
+		
+		<script id='FeedComponent'>
+			jQuery.sap.getObject("sap.ui.demokit", 0)._supportedThemes = ["sap_bluecrystal"];
+			
+			var proxy = "/proxy/https";
+			var contextPath = "/" + window.location.pathname.split("/")[1];
+			// if contexPath does not begin with /uilib-sample, use /uilib-sample
+			if (contextPath.toLowerCase().indexOf("/uilib-sample") != 0)
+				contextPath = "/uilib-sample";
+	   		var hostUrl = window.location.protocol + "//" + window.location.host + contextPath + proxy;
+			var oDataServicePath =
+				"/vmw3911.wdf.sap.corp:44335/sap/opu/odata/sap/SM_INTEGRATION_SRV"; 
+	
+			var oDataServiceUrl = hostUrl + oDataServicePath;
+
+			var feedCollaborationComponent = sap.ui.getCore().createComponent({
+		 		name: "sap.collaboration.components.fiori.feed",
+		 		id: "feedComponent1",
+		 		settings: {	
+	        		oDataServiceUrl: oDataServiceUrl,
+					feedType: "follows" 
+		 		}
+		 	});
+		 	
+		 	var componentContainer = new sap.ui.core.ComponentContainer("componentContainer", {
+		 		component: feedCollaborationComponent
+		 	});
+		 	
+		 	componentContainer.placeAt("sample1");
+		</script>
+		
+</head>
+	
+	<body class="sapUiDemokitBody" role="application">
+		<h1 color="Blue" icon="images/comps/feed-component.png">Feed Component</h1>
+		
+		<h2>Introduction</h2>
+		
+		<p>
+			A Feed Component is a ui5 component that applications can use to render a sap.m.App that embeds the JAM Feed Widget.
+		</p>
+		<p>
+			Depending on the settings provided to this component, it renders different types of Jam Feed. Below are the supported types:
+			<ul>
+				<li>follows</li>
+				<li>company</li>
+				<li>group</li>
+				<li>objectGroup</li>
+				<li>object</li>
+			</ul> 
+		</p>
+
+		<h2>Example</h2>
+		
+		<div code-sample="sample1" script="FeedComponent"></div>
+		
+		<br/>
+		
+		<p>See <a class="sapUiDemokitSrcLink" href="../../../../docs/api/symbols/sap.collaboration.components.fiori.feed.Component.html" >API documentation</a></p>  
+						
+	</body>
+</html>

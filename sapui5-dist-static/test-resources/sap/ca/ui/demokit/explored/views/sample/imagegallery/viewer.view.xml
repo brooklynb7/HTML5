@@ -1,0 +1,36 @@
+<core:View
+	controllerName="views.sample.imagegallery.viewer"
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+    xmlns:ui="sap.ca.ui"
+    >
+	<Page
+        id="viewerPage"
+        onBeforeShow="onBeforeShow"
+        enableScrolling="false"
+        showHeader="true"
+        showFooter="false"
+        >
+        <customHeader>
+            <Bar>
+                <contentMiddle>
+                    <Label text="Sample Image Gallery"></Label>
+                </contentMiddle>
+
+                <contentRight>
+
+                    <Label id="modeLabel" text="false" />
+                    <Button id="switchButton" text="Can Delete" press="onSwitch"/>
+                    <Label id="confirmLabel" text="false" />
+                    <Button id="switchConfirmButton" text="Need Confirmation" press="onConfirmSwitch"/>
+                    <Button id="setConfirmText" text="Add ConfirmText" press="setConfirmText"/>
+                </contentRight>
+            </Bar>
+
+        </customHeader>
+        <content>
+            <ui:PictureViewer id="pictureViewer" pictureDeleted="onRemove" removable="false" editable="false" />
+        </content>
+
+    </Page>
+</core:View>

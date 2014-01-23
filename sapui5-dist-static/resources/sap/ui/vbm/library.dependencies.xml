@@ -1,0 +1,30 @@
+<?xml version="1.0" ?>
+<library  version="2.0" name="sap.ui.vbm">
+  <module name="sap/ui/vbm/VBI.js" size="26133" compressedSize="4625">
+    <description>Provides control sap.ui.vbm.VBI.</description>
+    <requires>
+      <module name="sap/ui/vbm/library.js"/>
+      <module name="sap/ui/core/Control.js"/>
+      <module name="sap/ui/vbm/lib/sapvbi.js"/>
+      <module name="sap/ui/thirdparty/jqueryui/jquery-ui-core.js"/>
+      <module name="sap/ui/thirdparty/jqueryui/jquery-ui-widget.js"/>
+      <module name="sap/ui/thirdparty/jqueryui/jquery-ui-mouse.js"/>
+      <module name="sap/ui/thirdparty/jqueryui/jquery-ui-draggable.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/ui/vbm/VBIRenderer.js" size="2684" compressedSize="1186">
+    <description>! SAP UI development toolkit for HTML5 (SAPUI5) (c) Copyright 2009-2012 SAP AG. All rights reserved</description>
+    <requires>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/ui/vbm/library.js" size="1039" compressedSize="391">
+    <description>Initialization Code and shared classes of library sap.ui.vbm (1.16.4)</description>
+    <requires>
+      <module name="sap/ui/core/Core.js"/>
+      <module name="sap/ui/core/library.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+</library>

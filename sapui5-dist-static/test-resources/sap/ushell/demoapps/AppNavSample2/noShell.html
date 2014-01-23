@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+	<!--
+		Current path references are for local testing with start URL
+		http://localhost:8080/ushell/staging/demoapps/AppNavSample/index.html
+	  
+	  	When running on the server, different bootstrap configuration has to be specified
+	-->
+	
+<!--  Bootstrap the unified shell in the sandbox -->
+<script src="../../bootstrap/sandbox.js"></script>
+
+<!--  Bootstrap the UI5 core library -->
+<script src="../../../../../resources/sap-ui-core.js" id="sap-ui-bootstrap"
+  data-sap-ui-libs="sap.m" data-sap-ui-theme="sap_bluecrystal"
+  data-sap-ui-xx-bindingSyntax="complex"
+  data-sap-ui-resourceroots='{"AppNavSample2": "./"}'>
+</script>
+
+<script>
+
+
+/* *StartupParameters* (2) 
+* fill startup url parameters into component (for standalone testing) 
+*/ 
+
+function extractComponentData(sUrl) {
+    var iIndex = sUrl.indexOf("?");
+    var oComponentData = {}; 
+    if (iIndex >= 0) {
+      // pass GET parameters of URL via component data
+      var sParams = sUrl.slice(iIndex); 
+      var oStartupParameters = sParams ? jQuery.sap.getUriParameters(sParams).mParams : {}; 
+      oComponentData = { startupParameters: oStartupParameters };
+      sUrl = sUrl.slice(0, iIndex);
+    }
+    return oComponentData;
+}
+
+
+var oComponentData = extractComponentData(window.location.toString()); 
+
+var oComponent = sap.ui.getCore().createComponent({
+  id: sap.ui.core.UIComponent.getMetadata().uid(),
+  name: "AppNavSample2",
+  settings: {
+    componentData: oComponentData
+  }
+});
+
+new sap.ui.core.ComponentContainer({
+component: oComponent
+}).placeAt("content");
+
+</script>
+</head>
+
+<!-- UI Content -->
+<body class="sapUiBody" role="application">
+	<div id="content"></div>
+</body>
+</html>

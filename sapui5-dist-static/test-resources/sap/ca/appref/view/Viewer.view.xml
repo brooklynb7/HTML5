@@ -1,0 +1,26 @@
+<core:View
+        controllerName="i2d.qm.qualityissue.confirm.appref.view.Viewer"
+        xmlns="sap.m"
+        xmlns:core="sap.ui.core"
+        xmlns:ui="sap.ca.ui"
+        >
+
+    <Page id="viewerPage" title="{i18n>GALLERY_TITLE}" enableScrolling="false" showFooter="false">
+
+        <content>
+            <ui:PictureViewer id="pictureViewer" pictureDeleted="onRemove" tiles="{picture>/Pictures}" removable="{edit>/editable}">
+                <ui:tiles>
+                    <ui:PictureTile>
+                        <ui:content>
+                            <Image src="{picture>source}" />
+                        </ui:content>
+                    </ui:PictureTile>
+
+                </ui:tiles>
+
+            </ui:PictureViewer>
+
+        </content>
+    </Page>
+
+</core:View>

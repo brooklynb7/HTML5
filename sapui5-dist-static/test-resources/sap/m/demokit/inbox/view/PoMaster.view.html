@@ -1,0 +1,70 @@
+<template data-controller-name="view.PoMaster">
+	<div data-sap-ui-type="sap.m.Page">
+		<div data-sap-ui-aggregation="content">
+			<div data-sap-ui-type="sap.m.PullToRefresh" data-description="Last Update: 2 Days Ago" data-refresh="refresh">
+			</div>
+			<div data-sap-ui-type="sap.m.List" id="poItems" data-inset="false" data-items="{po>/orders}" data-mode="SingleSelectMaster" data-select="listSelect">
+				<div data-sap-ui-aggregation="items">
+					<div data-sap-ui-type="sap.m.ObjectListItem"
+						data-type="Active" 
+						data-title="{po>supplier}"
+						data-number="{path:'po>value', formatter:'util.Formatter.currency'}"
+						data-number-unit="{po>currency}">
+						<div data-sap-ui-aggregation="attributes">
+							<div data-sap-ui-type="sap.m.ObjectAttribute" data-text="{po>description}">
+							</div>
+							<div data-sap-ui-type="sap.m.ObjectAttribute" data-text="{path:'po>by', formatter:'util.Formatter.by'}">
+							</div>
+						</div>
+						<div data-sap-ui-aggregation="firstStatus">
+							<div data-sap-ui-type="sap.m.ObjectStatus" data-text="{path:'po>agoDays', formatter:'util.Formatter.agoDays'}">
+							</div>
+						</div>
+						<div data-sap-ui-aggregation="secondStatus">
+							<div data-sap-ui-type="sap.m.ObjectStatus" data-text="Second Status goes here">
+							</div>
+						</div>
+					</div>
+				</div>
+				<div data-sap-ui-aggregation="swipeContent">
+					<div data-sap-ui-type="sap.m.Button" data-text="Approve" data-type="Accept" data-press="approve">
+					</div>
+				</div>
+			</div>
+		</div>
+		<div data-sap-ui-aggregation="customHeader">
+			<div data-sap-ui-type="sap.m.Bar">
+				<div data-sap-ui-aggregation="contentLeft">
+					<div data-sap-ui-type="sap.m.Button" data-icon="sap-icon://home" data-press="tapHomeButton">
+					</div>
+				</div>
+				<div data-sap-ui-aggregation="contentMiddle">
+					<div data-sap-ui-type="sap.ui.core.Icon" data-src="sap-icon://physical-activity">
+					</div>
+					<div data-sap-ui-type="sap.m.Label" data-text="{number>/po/number}">
+					</div>
+				</div>
+			</div>
+		</div>
+		<div data-sap-ui-aggregation="subHeader">
+			<div data-sap-ui-type="sap.m.Bar" data-enable-flex-box="true">
+				<div data-sap-ui-aggregation="contentMiddle">
+					<div data-sap-ui-type="sap.m.SearchField" data-live-change="search">
+						<div data-sap-ui-aggregation="layoutData">
+							<div data-sap-ui-type="sap.m.FlexItemData" data-grow-factor="1">
+							</div>
+						</div> 
+					</div>
+				</div>
+			</div>
+		</div>
+		<div data-sap-ui-aggregation="footer">
+			<div data-sap-ui-type="sap.m.Bar" data-translucent="true">
+				<div data-sap-ui-aggregation="contentRight">
+					<div data-sap-ui-type="sap.m.Button" data-text="Filter" data-press="filter">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</template>

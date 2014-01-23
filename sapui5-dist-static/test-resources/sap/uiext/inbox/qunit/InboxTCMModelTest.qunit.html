@@ -1,0 +1,39 @@
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		
+		<title>Test Page for sap.uiext.inbox.tcm.TCMModel</title>
+		<script id="sap-ui-bootstrap"
+				data-sap-ui-theme="sap_goldreflection"
+				data-sap-ui-language="en-US"
+				data-sap-ui-noConflict="true"
+				data-sap-ui-libs="sap.uiext.inbox"
+				type="text/javascript"
+				src="../../../../../resources/sap-ui-core.js">
+		</script>
+		
+		<link rel="stylesheet" href="../../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
+		<script type="text/javascript" src="../../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+		<script type="text/javascript" src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
+		<script type="text/javascript" src="../../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
+		<script type="text/javascript">
+			// redirect any resource loading for "sap.uiext.inbox.qunit.mockServer" to the local folder "mockServer/" 
+			jQuery.sap.registerModulePath("sap.uiext.inbox.qunit.tcm", "tcm/");
+		
+			// now load and activate the mock server
+			jQuery.sap.require("sap.uiext.inbox.qunit.tcm.InboxTCMModelQUnit");
+			jQuery.sap.require("sap.uiext.inbox.qunit.tcm.InboxTCMFunctionImportMockServerQUnit");
+		 	
+
+		</script>
+		</head>
+		<body>
+			<h1 id="qunit-header">qUnit sap.uiext.inbox.tcm.TCMModel</h1>
+			<h2 id="qunit-banner"></h2>
+			<h2 id="qunit-userAgent"></h2>
+			<ol id="qunit-tests"></ol>
+			<div id="uiArea1"></div>
+		</body>
+	</html>
+
+		 	

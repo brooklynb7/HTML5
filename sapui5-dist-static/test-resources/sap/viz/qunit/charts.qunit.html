@@ -1,0 +1,537 @@
+<!DOCTYPE HTML>
+<!-- 
+  Tested control/class: sap.viz.ui5.Bar
+  Author: i071838
+-->
+
+<html lang='en'>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<script id="sap-ui-bootstrap" type="text/javascript"
+  src="../../../../resources/sap-ui-core.js"
+  data-sap-ui-libs="sap.ui.core,sap.ui.commons,sap.viz">
+  
+</script>
+<link rel="stylesheet" href="../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
+<script type="text/javascript" src="../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+<script type="text/javascript" src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
+<script type="text/javascript" src="../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
+<script type="text/javascript" src="./js/data.js"></script>
+
+<!-- Control initialization -->
+<script language="javascript">
+		var sPath = jQuery.sap.getModulePath("sap.viz.resources.templates", "/");
+		sap.viz.TemplateManager.loadPath = [sPath];
+		jQuery.sap.log.info("VIZ: load path for templates set to " + sPath);
+
+    var timer = 20, oChart;
+    
+    module("Bar charts");
+    
+    test("a1m1 Bar", function(){
+      ok(true, "a1m1 Bar chart.");
+      sap.viz.TemplateManager.apply('flashy', function(){
+        var oDataset = new sap.viz.ui5.data.FlattenedDataset(a1m1Data);
+        var oModel = new sap.ui.model.json.JSONModel(a1a2m1Model);
+        oDataset.setModel(oModel);
+        oChart = new sap.viz.ui5.Bar({
+          width : "600px",
+          height : "100%",
+          dataset: oDataset
+        });
+        oChart.placeAt("content");
+      });
+    });
+    
+    asyncTest("a1a1a2a2m1m2 Bar", function(){
+      ok(true, "a1a1a2a2m1m2 Bar chart.");
+      setTimeout(function(){
+        cleanChart();
+        start();
+        
+        var oDataset = new sap.viz.ui5.data.FlattenedDataset(a1a1a2a2m1m2Data);
+        var oModel = new sap.ui.model.json.JSONModel(a1a1a2a2m1m2Model);
+        oDataset.setModel(oModel);
+        oChart = new sap.viz.ui5.Bar({
+          dataset: oDataset
+        });
+        oChart.placeAt("content");
+      }, timer);  
+    });  
+    
+    module('line');
+    asyncTest("a1a1a2a2m1m2 Line with triangle marker", function(){
+      ok(true, "a1a1a2a2m1m2 Line chart.");
+      setTimeout(function(){
+        cleanChart();
+        start();
+        
+        var oDataset = new sap.viz.ui5.data.FlattenedDataset(a1a1a2a2m1m2Data);
+        var oModel = new sap.ui.model.json.JSONModel(a1a1a2a2m1m2Model);
+        oDataset.setModel(oModel);
+        oChart = new sap.viz.ui5.Line({
+          dataset: oDataset,
+          plotArea: {
+            marker : {
+              shape: "triangleUp",
+              size: 5,
+              visible: true
+            }
+          }
+        });
+        oChart.placeAt("content");
+      }, timer);  
+    });  
+    
+    module("Bubble Charts");
+    asyncTest("a1a2m1m2m3 Bubble", function(){
+      ok(true, "a1a2m1m2m3 Bubble Chart");
+      setTimeout(function(){
+	      cleanChart();
+	      start();
+	      var oDataset = new sap.viz.ui5.data.FlattenedDataset(a1a2m1m2m3Data);
+	      var oModel = new sap.ui.model.json.JSONModel(a1a2m1m2m3Model);
+	      oDataset.setModel(oModel);
+	      oChart = new sap.viz.ui5.Bubble({
+	        dataset: oDataset
+	      });
+	      oChart.placeAt("content");
+      }, timer);
+    });  
+    
+    module("Dual Line Charts");
+    asyncTest("a1a1a2a2m1m1m2 dual line", function(){
+      ok(true, "a1a1a2a2m1m1m2 Dual Line Chart");
+      setTimeout(function(){
+        cleanChart();
+        start();
+        var oDataset = new sap.viz.ui5.data.FlattenedDataset(a1a2m1m1m2Data);
+        var oModel = new sap.ui.model.json.JSONModel(a1a2m1m2m3Model);
+        oDataset.setModel(oModel);
+        oChart = new sap.viz.ui5.DualLine({
+          dataset: oDataset
+        });
+        oChart.placeAt("content");
+      }, timer);
+    });
+    
+    module("Dual Bar Charts");
+    asyncTest("a1a1a2a2m1m1m2 dual Bar", function(){
+      ok(true, "a1a1a2a2m1m1m2 Dual Bar Chart");
+      setTimeout(function(){
+        cleanChart();
+        start();
+        var oDataset = new sap.viz.ui5.data.FlattenedDataset(a1a2m1m1m2Data);
+        var oModel = new sap.ui.model.json.JSONModel(a1a2m1m2m3Model);
+        oDataset.setModel(oModel);
+        oChart = new sap.viz.ui5.DualBar({
+          dataset: oDataset
+        });
+        oChart.placeAt("content");
+      }, timer);
+    });
+    
+    module("Dual Column Charts");
+    asyncTest("a1a1a2a2m1m1m2 dual column", function(){
+      ok(true, "a1a1a2a2m1m1m2 Dual Column Chart");
+      setTimeout(function(){
+        cleanChart();
+        start();
+        var oDataset = new sap.viz.ui5.data.FlattenedDataset(a1a2m1m1m2Data);
+        var oModel = new sap.ui.model.json.JSONModel(a1a2m1m2m3Model);
+        oDataset.setModel(oModel);
+        oChart = new sap.viz.ui5.DualColumn({
+          dataset: oDataset
+        });
+        oChart.placeAt("content");
+      }, timer);
+    });
+    
+    module("Dual Combination Charts");
+    asyncTest("a1a1a2a2m1m1m2 dual combination", function(){
+      ok(true, "a1a1a2a2m1m1m2 Dual Combination Chart");
+      setTimeout(function(){
+        cleanChart();
+        start();
+        var oDataset = new sap.viz.ui5.data.FlattenedDataset(a1a2m1m1m2Data);
+        var oModel = new sap.ui.model.json.JSONModel(a1a2m1m2m3Model);
+        oDataset.setModel(oModel);
+        oChart = new sap.viz.ui5.DualCombination({
+          dataset: oDataset
+        });
+        oChart.placeAt("content");
+      }, timer);
+    });
+    
+    module("Dual Stacked Column Charts");
+    asyncTest("a1a1a2a2m1m1m2 dual stacked column chart", function(){
+      ok(true, "a1a1a2a2m1m1m2 Dual Stacked Column Chart");
+      setTimeout(function(){
+        cleanChart();
+        start();
+        var oDataset = new sap.viz.ui5.data.FlattenedDataset(a1a2m1m1m2Data);
+        var oModel = new sap.ui.model.json.JSONModel(a1a2m1m2m3Model);
+        oDataset.setModel(oModel);
+        oChart = new sap.viz.ui5.DualStackedColumn({
+          dataset: oDataset
+        });
+        oChart.placeAt("content");
+      }, timer);
+    });
+    
+    module("Dual Stacked Bar Charts");
+    asyncTest("a1a1a2a2m1m1m2 dual stacked bar chart", function(){
+      ok(true, "a1a1a2a2m1m1m2 Dual Stacked Bar Chart");
+      setTimeout(function(){
+        cleanChart();
+        start();
+        var oDataset = new sap.viz.ui5.data.FlattenedDataset(a1a2m1m1m2Data);
+        var oModel = new sap.ui.model.json.JSONModel(a1a2m1m2m3Model);
+        oDataset.setModel(oModel);
+        oChart = new sap.viz.ui5.DualStackedColumn100({
+          dataset: oDataset
+        });
+        oChart.placeAt("content");
+      }, timer);
+    });
+    
+    module("Map Charts");
+    asyncTest("a1m1Data heatmap chart", function(){
+      ok(true, "a1m1Data Heatmap Chart");
+      setTimeout(function(){
+        cleanChart();
+        start();
+        var oDataset = new sap.viz.ui5.data.FlattenedDataset(a1m1Data);
+        var oModel = new sap.ui.model.json.JSONModel(a1m1Model);
+        oDataset.setModel(oModel);
+        oChart = new sap.viz.ui5.Heatmap({
+          dataset: oDataset
+        });
+        oChart.placeAt("content");
+      }, timer);
+    });
+    
+    asyncTest("a1a1a2a2m1m1m2 treemap chart", function(){
+      ok(true, "a1a1a2a2m1m1m2 Treemap Chart");
+      setTimeout(function(){
+        cleanChart();
+        start();
+        var oDataset = new sap.viz.ui5.data.FlattenedDataset(a1a2m1m2Data);
+        var oModel = new sap.ui.model.json.JSONModel(a1a2m1m2Model);
+        oDataset.setModel(oModel);
+        oChart = new sap.viz.ui5.Treemap({
+          dataset: oDataset
+        });
+        oChart.placeAt("content");
+      }, timer);
+    });
+    
+    module("Area Charts");
+    asyncTest("a1a1a2a2m1m1m2 area chart", function(){
+      ok(true, "a1a1a2a2m1m1m2 Area Chart");
+      setTimeout(function(){
+        cleanChart();
+        start();
+        var oDataset = new sap.viz.ui5.data.FlattenedDataset(a1a2m1m1m2Data);
+        var oModel = new sap.ui.model.json.JSONModel(a1a2m1m2m3Model);
+        oDataset.setModel(oModel);
+        oChart = new sap.viz.ui5.Area({
+          dataset: oDataset
+        });
+        oChart.placeAt("content");
+      }, timer);
+    });
+    
+    asyncTest("a1a1a2a2m1m1m2 Horizontal Area chart", function(){
+      ok(true, "a1a1a2a2m1m1m2 Horizontal Area Chart");
+      setTimeout(function(){
+        cleanChart();
+        start();
+        var oDataset = new sap.viz.ui5.data.FlattenedDataset(a1a2m1m1m2Data);
+        var oModel = new sap.ui.model.json.JSONModel(a1a2m1m2m3Model);
+        oDataset.setModel(oModel);
+        oChart = new sap.viz.ui5.HorizontalArea({
+          dataset: oDataset
+        });
+        oChart.placeAt("content");
+      }, timer);
+    });
+    
+    asyncTest("a1a1a2a2m1m1m2 area chart", function(){
+      ok(true, "a1a1a2a2m1m1m2 Area Chart");
+      setTimeout(function(){
+        cleanChart();
+        start();
+        var oDataset = new sap.viz.ui5.data.FlattenedDataset(a1a2m1m1m2Data);
+        var oModel = new sap.ui.model.json.JSONModel(a1a2m1m2m3Model);
+        oDataset.setModel(oModel);
+        oChart = new sap.viz.ui5.Area100({
+          dataset: oDataset
+        });
+        oChart.placeAt("content");
+      }, timer);
+    });
+    
+    asyncTest("a1a1a2a2m1m1m2 Horizontal Area chart", function(){
+      ok(true, "a1a1a2a2m1m1m2 Horizontal Area Chart");
+      setTimeout(function(){
+        cleanChart();
+        start();
+        var oDataset = new sap.viz.ui5.data.FlattenedDataset(a1a2m1m1m2Data);
+        var oModel = new sap.ui.model.json.JSONModel(a1a2m1m2m3Model);
+        oDataset.setModel(oModel);
+        oChart = new sap.viz.ui5.HorizontalArea100({
+          dataset: oDataset
+        });
+        oChart.placeAt("content");
+      }, timer);
+    });
+    
+/*     module("Waterfall Charts");
+    asyncTest("a1m1Data waterfall chart", function(){
+      ok(true, "a1m1Data waterfall Chart");
+      setTimeout(function(){
+        cleanChart();
+        start();
+        var oDataset = new sap.viz.ui5.data.FlattenedDataset(a1m1Data);
+        var oModel = new sap.ui.model.json.JSONModel(a1m1Model);
+        oDataset.setModel(oModel);
+        oChart = new sap.viz.ui5.Waterfall({
+          dataset: oDataset
+        });
+        oChart.placeAt("content");
+      }, timer);
+    });
+    
+    asyncTest("a1m1Data Horizontal Waterfall chart", function(){
+      ok(true, "a1m1Data Horizontal Waterfall Chart");
+      setTimeout(function(){
+        cleanChart();
+        start();
+        var oDataset = new sap.viz.ui5.data.FlattenedDataset(a1m1Data);
+        var oModel = new sap.ui.model.json.JSONModel(a1m1Model);
+        oDataset.setModel(oModel);
+        oChart = new sap.viz.ui5.HorizontalWaterfall({
+          dataset: oDataset
+        });
+        oChart.placeAt("content");
+      }, timer);
+    });
+    
+    asyncTest("a1a1a2a2m1m1m2 stacked waterfall chart", function(){
+      ok(true, "a1a1a2a2m1m1m2 Stacked Waterfall Chart");
+      setTimeout(function(){
+        cleanChart();
+        start();
+        var oDataset = new sap.viz.ui5.data.FlattenedDataset(a1a2m1m1m2Data);
+        var oModel = new sap.ui.model.json.JSONModel(a1a2m1m2m3Model);
+        oDataset.setModel(oModel);
+        oChart = new sap.viz.ui5.StackedWaterfall({
+          dataset: oDataset
+        });
+        oChart.placeAt("content");
+      }, timer);
+    });
+    
+    asyncTest("a1a1a2a2m1m1m2 Horizontal Stacked Waterfall chart", function(){
+      ok(true, "a1a1a2a2m1m1m2 Horizontal Stacked Waterfall Chart");
+      setTimeout(function(){
+        cleanChart();
+        start();
+        var oDataset = new sap.viz.ui5.data.FlattenedDataset(a1a2m1m1m2Data);
+        var oModel = new sap.ui.model.json.JSONModel(a1a2m1m2m3Model);
+        oDataset.setModel(oModel);
+        oChart = new sap.viz.ui5.HorizontalStackedWaterfall({
+          dataset: oDataset
+        });
+        oChart.placeAt("content");
+      }, timer);
+    }); */
+    
+    module("CSS");
+    asyncTest("Check CSS style", function(){
+      ok(true, "a1a2m1Model Bar chart.");
+      setTimeout(function(){
+        cleanChart();
+        start();
+        var css = '.v-background-body{  fill: #ffdead; }';
+        var oDataset = new sap.viz.ui5.data.FlattenedDataset(a1a2m1Data);
+        var oModel = new sap.ui.model.json.JSONModel(a1a2m1Model);
+        oDataset.setModel(oModel);
+        oChart = new sap.viz.ui5.Bar({
+          dataset : oDataset,
+          css : css,
+          selectData : function(oEvent){
+            console.log( oEvent.getParameter("data"));
+          }
+        });
+        oChart.placeAt("content");
+      }, timer); 
+    });
+    
+    module("Language");
+    asyncTest("check language", function(){
+      ok(true, "a1a2m1Model Bar chart.");
+      setTimeout(function(){
+        cleanChart();
+        start();
+        var oDataset = new sap.viz.ui5.data.FlattenedDataset(a1a2m1Data);
+        var oModel = new sap.ui.model.json.JSONModel(a1a2m1Model);
+        oDataset.setModel(oModel);
+        oChart = new sap.viz.ui5.Bar({
+          title : {
+            visible : true,
+          },
+          dataset : oDataset
+        });
+        oChart.placeAt("content");
+      }, timer); 
+    });
+    
+    module("Selection");
+    asyncTest("Select By chart's API", function(){
+      ok(true, "a1a2m1Model Bar chart.");
+      setTimeout(function(){
+        cleanChart();
+        start();
+        
+        var oDataset = new sap.viz.ui5.data.FlattenedDataset(a1a2m1Data);
+        var oModel = new sap.ui.model.json.JSONModel(a1a2m1Model);
+        oDataset.setModel(oModel);
+        oChart = new sap.viz.ui5.Bar({
+          dataset: oDataset
+        });
+        oChart.placeAt("content");
+        setTimeout(function(){
+          oChart.setDefaultSelection([{
+            Color:"Red", 
+            Product:"Car",
+            'Measure': 'Revenue'
+          }]);
+        }, timer);
+      }, timer);  
+    });  
+    
+    asyncTest("Select By Dataset API", function(){
+      ok(true, "a1a2m1Model Bar chart.");
+      setTimeout(function(){
+        cleanChart();
+        start();
+        
+        var oDataset = new sap.viz.ui5.data.FlattenedDataset(a1a2m1Data);
+        var oModel = new sap.ui.model.json.JSONModel(a1a2m1Model);
+        oDataset.setModel(oModel);
+        oDataset.setDefaultSelection([{
+          Color:"Red", 
+          Product:"Car",
+          'Measure': 'Revenue'
+        }]);
+        oChart = new sap.viz.ui5.Bar({
+          dataset: oDataset
+        });
+        oChart.placeAt("content");
+      }, timer);  
+    });
+      
+		asyncTest("Check selected data value", function(){
+		   ok(true, "a1a2m1Model Bar chart.");
+		   setTimeout(function(){
+		     cleanChart();
+		     start();
+		     
+		     var oDataset = new sap.viz.ui5.data.FlattenedDataset(a1a2m1Data);
+		     var oModel = new sap.ui.model.json.JSONModel(a1a2m1Model);
+		     oDataset.setModel(oModel);
+		     oDataset.setDefaultSelection([{
+		       Color:"Red", 
+		       Product:"Car",
+		       'Measure': 'Revenue'
+		     }]);
+		     oChart = new sap.viz.ui5.Bar({
+		       dataset: oDataset,
+		       selectData : function(oEvent){
+		         // console.log( oEvent.getParameter("data"));
+		       }
+		     });
+		     oChart.placeAt("content");
+		   }, timer); 
+		});  
+      
+		module("Dataset");
+		
+		asyncTest("Update dataset", function() {
+		  setTimeout(function(){
+        cleanChart();
+        start();
+			  oChart = new sap.viz.ui5.Bar({
+			    dataset : getDataset('a1m1')
+			  });
+			  oChart.placeAt("content");
+			  oChart.setDataset(getDataset("a1m1m2"));
+			  equal(JSON.stringify(oChart.getDataset().getVIZDataset().data()), JSON.stringify(a1m1m2VizDataset), "Dataset should be updated.");
+		  }, timer);
+		});
+		
+		asyncTest("Destroy dataset", function() {
+		  setTimeout(function(){
+        cleanChart();
+        start();
+			  oChart = new sap.viz.ui5.Bar({
+			    dataset : getDataset('a1m1')
+			  });
+			  oChart.placeAt("content");
+			  oChart.destroyDataset();
+			  equal(oChart.getDataset(), null, "Dataset should be destroyed.");
+		  }, timer);
+		});
+		
+		asyncTest("Update dataset after new chart with no dataset", function() {
+		  setTimeout(function(){
+        cleanChart();
+        start();
+			  oChart = new sap.viz.ui5.Bar();
+			  oChart.placeAt("content");
+			  oChart.setDataset(getDataset("a1m1m2"));
+			  equal(JSON.stringify(oChart.getDataset().getVIZDataset().data()), JSON.stringify(a1m1m2VizDataset), "Dataset should be updated.");
+		  }, timer);
+		});
+    /*
+    module("Heatmap Charts.");
+    asyncTest("a1a2m1 Heatmap", function(){
+      ok(true, "a1a2m1 Heatmap Chart");
+      setTimeout(function(){
+        cleanChart();
+        start();
+        var oDataset = new sap.viz.ui5.data.FlattenedDataset(a1a2m1Data);
+        var oModel = new sap.ui.model.json.JSONModel(a1a2m1Model);
+        oDataset.setModel(oModel);
+        oChart = new sap.viz.ui5.Heatmap({
+          dataset: oDataset
+        });
+        oChart.placeAt("content");
+      }, timer)
+    });
+    */
+    
+    var cleanChart = function(){
+      if(oChart){
+        oChart.destroy();        
+      }
+    };
+</script>
+
+<title>qunit Test for Display Charts</title>
+
+</head>
+<body class="sapUiBody">
+  <h1 id="qunit-header">QUnit tests: display charts</h1>
+  <h2 id="qunit-banner"></h2>
+  <h2 id="qunit-userAgent"></h2>
+  <div id='content' style="width: 800px; height: 400px;"></div>
+  <div id="qunit-testrunner-toolbar"></div>
+  <ol id="qunit-tests"></ol>
+
+</body>
+</html>

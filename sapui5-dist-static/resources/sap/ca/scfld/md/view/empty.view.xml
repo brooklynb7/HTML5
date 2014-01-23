@@ -1,0 +1,18 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m" controllerName="sap.ca.scfld.md.view.empty">
+	<Page id="sap.ca.scfld.md.view.empty"
+		showNavButton="false" showHeader="true">
+		<content>
+			<VBox id="flowerBox" class="flowercontainer">
+				<items>
+					<Image id = "flower" class="flowerclass"></Image>
+				</items>
+			</VBox>
+			<VBox id="textBox" class="textcontainer">
+				<items>
+					<Text id="emptyLabel" maxLines="2" width="13rem" class="textclass"></Text>
+				</items>
+			</VBox>				
+		</content>
+	</Page>
+</core:View>

@@ -1,0 +1,5 @@
+/*!
+ * SAP UI development toolkit for HTML5 (SAPUI5) (c) Copyright 2009-2012 SAP AG. All rights reserved
+ */
+jQuery.sap.declare("sap.suite.ui.commons.KpiTileRenderer");sap.suite.ui.commons.KpiTileRenderer={};
+sap.suite.ui.commons.KpiTileRenderer.render=function(r,c){r.write("<div");r.writeControlData(c);r.addClass("sapSuiteKTile");r.writeClasses();r.write(">");r.write("<div");r.addClass("sapSuiteKTileValue");r.addClass("sapSuiteKTileStatus"+c.getValueStatus());if(c.getDoubleFontSize()){r.addClass("sapSuiteKTileValueLargeText")}else{r.addClass("sapSuiteKTileValueSmallText")}r.writeClasses();r.write(">");r.writeEscaped(c.getValue());if(c.getValueScale()){r.write("<span");r.addClass("sapSuiteKTileScale");r.writeClasses();r.write(">");r.writeEscaped(c.getValueScale());r.write("</span>")}r.write("</div>");r.write("<div");r.addClass("sapSuiteKTileDesc");r.writeClasses();r.writeAttributeEscaped("title",c.getDescription());r.write(">");if(c.getValueUnit()){r.writeEscaped(c.getValueUnit()).write(", ")}r.writeEscaped(c.getDescription());r.write("</div>");r.write("</div>")};

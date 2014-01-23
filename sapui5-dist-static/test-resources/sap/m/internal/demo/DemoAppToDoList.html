@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ToDoList</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<script src="../../../../../resources/sap-ui-core.js"
+	data-sap-ui-libs="sap.m" data-sap-ui-theme="sap_mvi">
+</script>
+
+<script>
+
+	// global variables
+	var gRoot = "todolist-resources/",
+		gCore = sap.ui.getCore(),
+		gApp = new sap.m.App("app"),
+		gI18nModel = new sap.ui.model.resource.ResourceModel({
+			bundleUrl : gRoot + "i18n/i18n.properties",
+			locale : gCore.getConfiguration().getLanguage()
+		}),
+		gBundle = gI18nModel.getResourceBundle();
+
+	// rejister modules and inject sources
+	$.sap.registerModulePath("todolist", gRoot + "todolist");
+	$.sap.registerModulePath("my", gRoot + "my");
+	$.sap.require("my.storage");
+	$("<link>", {
+		rel : "stylesheet",
+		type : "text/css",
+		href : gRoot + "css/main.css"
+	}).appendTo("head");
+
+	// set language texts
+	gCore.setModel(gI18nModel, "i18n");
+
+	// get view and show at body
+	gApp.addPage(sap.ui.jsview("todolist.notes")).placeAt("body");
+
+</script>
+</head>
+
+<body class="sapUiBody" id="body">
+</body>
+
+</html>

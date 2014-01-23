@@ -1,0 +1,63 @@
+<core:View
+	controllerName="views.code"
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core" >
+	<Page
+		id="page"
+		title="{/title}"
+		icon="img/144_iPad_Retina_Web_Clip.png" >
+		<headerContent>
+			<Button
+				type="Emphasized"
+				icon="sap-icon://paper-plane"
+				press="handleNavBack" />
+		</headerContent>
+		<IconTabBar
+			expandable="false"
+			selectedKey="{/selectedTab}" >
+			<items>
+				<IconTabFilter
+					key="view"
+					text="View"
+					visible="{/showView}" >
+					<content>
+						<core:HTML content="{/viewCode}" />
+					</content>
+				</IconTabFilter>
+				<IconTabFilter
+					key="view"
+					text="Fragments"
+					visible="{/showFragments}" >
+					<content>
+						<core:HTML content="{/fragmentsCode}" />
+					</content>
+				</IconTabFilter>
+				<IconTabFilter
+					key="controller"
+					text="Controller"
+					visible="{/showController}" >
+					<content>
+						<core:HTML content="{/controllerCode}" />
+					</content>
+				</IconTabFilter>
+				<IconTabFilter
+					key="js"
+					text="Standalone JS"
+					visible="{/showJs}" >
+					<content>
+						<core:HTML content="{/jsCode}" />
+					</content>
+				</IconTabFilter>
+				<IconTabFilter
+					key="download"
+					text="Download" >
+					<content>
+						<Button
+							text="Download Code As ZIP Archive"
+							press="handleDownload" />
+					</content>
+				</IconTabFilter>
+			</items>
+		</IconTabBar>
+	</Page>
+</core:View>

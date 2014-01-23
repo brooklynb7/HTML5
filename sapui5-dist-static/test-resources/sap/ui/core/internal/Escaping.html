@@ -1,0 +1,131 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Console Feature Test</title>
+</head>
+	<body class="sapUiBody">
+		<h1>XSS Escaping - Implementation Variants</h1>
+		<h2>Performance Comparison</h2>
+		<script type="text/javascript" >
+
+			var iCount = 10000;
+			var sEmpty = '';
+			var sTestNoReplacements = 'Console Feature Test script';
+			var sTest = '<h1>Console <' + '/script>';
+			var sTestNoReplacementsLong = 'Console Feature Test script type=text/javascriptfunction identity(s) { return s;} function encodeV1(s) {return ( + s).split(!!).join(lt;!).split(!!).join(!gt;!).split(!).join(!#34;!).split(!).join(!#39!);}';
+			var sTestLong = '<h1>Console Feature Test</h1><script type="text/javascript"function identity(s) { return s;} function encodeV1(s) {return ("" + s).split("<").join("&lt;").split(">").join("&gt;").split(\'"\').join("&#34;").split("\'").join("&#39");}';
+			var aTests = [sEmpty, sTestNoReplacements, sTest, sTestNoReplacementsLong, sTestLong];
+		  			
+		
+			function identity(s) {
+			 return s;			
+			}
+
+			/**
+			 * Encoding Variant 0
+			 */ 
+			function encodeV0(s) {
+				 return s.replace(/</g, "&lt;").replace(/>/g,"&gt;").replace(/"/g,"&#34;").replace(/'/g,"&#39");			
+			}
+
+			/**
+			 * Encoding Variant 1: successive split & join operations for each special char + replacement
+			 */ 
+			function encodeV1(s) {
+				 return s.split("<").join("&lt;").split(">").join("&gt;").split('"').join("&#34;").split("'").join("&#39");			
+			}
+
+			var r = /[<>"']/g;
+			var replacement = {
+					'<' : '&lt;',
+					'>' : '&gt;',
+					'"' : '&#34;',
+					"'" : '&#39;'
+			};
+
+			function transform(m) {
+				return replacement[m];
+			};
+			 
+			/**
+			 * Encoding Variant 2: reg expresssion with a static (not nested) function
+			 * Fastest variant on IE, SF, slowest in FF
+			 */ 
+			function encodeV2(s) {
+				return s.replace(r, transform);
+			}
+
+			/**
+			 * Encoding Variant 3: reg expression with a nested function
+			 * Nowhere the slowest, but on FF faster than 2 (very strange)
+			 */
+			function encodeV3(s) {
+				return s.replace(r, function transform(m) {
+					return replacement[m];
+				});
+			}
+
+			function encodeV4(s) {
+				var result=[];
+				var match,from = 0;
+				
+				// As the PATTERN uses the g(lobal) suffix, we can loop over all matches (JavaScript RegExp magic :-). 
+				while (match = r.exec(s)) {
+
+					// handle any preceding text
+					if ( match.index > from ) {
+						result.push(s.slice(from, match.index));
+					};
+
+					result.push(replacement[match[0]]);
+					from = match.index + match[0].length;
+				}
+				if ( from < s.length ) {
+					result.push(s.slice(from));
+				}
+				return result.join("");
+			}
+			
+			function testrun(sTitle, fnVariant) {
+				document.write("<tr><td>" + sTitle + "</td>");
+				//if ( sExpectedResult && sExpectedResult != fnVariant(sTestString) )
+				//	document.write("<td class='error'>" + "implementation failed" + "</td>");
+				//else
+				//	document.write("<td class='info'></td>");
+
+				document.write("<td class='info'>" + iCount + "</td>");
+				
+				// now run the test
+				for(var t=0; t<aTests.length; t++) { 
+					var sTestString = aTests[t];
+					var t0 = new Date().getTime();
+					for(var i=0; i<iCount; i++) {
+						var sResult = fnVariant(sTestString);
+					}					
+					var t1 = new Date().getTime();
+					document.write("<td class='info'>" + (t1-t0) + "</td>");
+				}
+				document.write("</tr>\n");
+			}
+
+			document.write("<table><tr>\n");
+			document.write("<th>Variant</th>");
+			//document.write("<th>Correctness</th>");
+			document.write("<th>Runs</th>");
+			document.write("<th>t(Empty)</th>");
+			document.write("<th>t(0 matches, short)</th>");
+			document.write("<th>t(0 matches, long)</th>");
+			document.write("<th>t(short)</th>");
+			document.write("<th>t(long)</th>");
+			document.write("</tr>\n");
+			testrun("Identity", identity);
+			testrun("Replace", encodeV0);
+			testrun("Split & Join", encodeV1);
+			testrun("RegExp 1", encodeV2);
+			testrun("RegExp 2", encodeV3);
+			testrun("RegExp 3", encodeV4);
+			document.write("</table>\n");
+			 
+		</script>
+	</body>
+</html>

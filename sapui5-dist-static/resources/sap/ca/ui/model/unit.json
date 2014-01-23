@@ -1,0 +1,62 @@
+[
+    {
+        "Code": "AD1",
+        "ISOCode":"",
+        "Decimals": 1
+    },
+    {
+        "Code": "AD2",
+        "ISOCode":"",
+        "Decimals": 4
+    },
+    {
+        "Code": "C36",
+        "ISOCode":"C36",
+        "Decimals": 3
+    },
+    {
+        "Code": "C38",
+        "ISOCode":"C38",
+        "Decimals": 3
+    },
+    {
+        "Code": "D10",
+        "ISOCode":"D10",
+        "Decimals": 3
+    },
+    {
+        "Code": "DEG",
+        "ISOCode":"DD",
+        "Decimals": 1
+    },
+    {
+        "Code": "PCT",
+        "ISOCode":"",
+        "Decimals": 8
+    },
+    {
+        "Code": "PMR",
+        "ISOCode":"",
+        "Decimals": 3
+    },
+    {
+        "Code": "PRM",
+        "ISOCode":"",
+        "Decimals": 3
+    },
+    {
+        "Code": "STD",
+        "ISOCode":"HUR",
+        "Decimals": 1
+    },
+    {
+        "Code": "V01",
+        "ISOCode":"",
+        "Decimals": 3
+    },
+    {
+        "Code": "V02",
+        "ISOCode":"C36",
+        "Decimals": 3
+    }
+]

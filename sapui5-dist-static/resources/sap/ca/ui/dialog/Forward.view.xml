@@ -1,0 +1,25 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
+			controllerName="sap.ca.ui.dialog.Forward" xmlns:html="http://www.w3.org/1999/xhtml"
+			resourceBundleName="sap.ca.ui.i18n.i18n" resourceBundleAlias="ca_i18n">
+
+	<Dialog id="DLG_FORWARD" title="{ca_i18n>forward.title}" contentWidth="480px" contentHeight="440px" beforeOpen="onBeforeOpenDialog">
+		<subHeader>
+			<Bar>
+				<contentMiddle>
+					<SearchField id="SFD_FORWARD" search="onStartSearch" placeholder="{ca_i18n>hsd.searchTextField}"></SearchField>
+				</contentMiddle>
+			</Bar>
+		</subHeader>
+		<content>
+			<List id="LST_AGENTS" mode="SingleSelectMaster" selectionChange="onSelectAgent" items="{/agents}" 
+				showNoData="false" noDataText="{ca_i18n>forward.noRecipients}">
+				<StandardListItem id="ITM_AGENT" title="{FullName}" description="{Department}" 
+						icon="" iconDensityAware="false">
+				</StandardListItem>
+			</List>
+		</content>
+		<endButton>
+			<Button id="BTN_CANCEL" press="onCancelDialog" text="{ca_i18n>dialog.cancel}"/>
+		</endButton>
+	</Dialog>
+</core:View>

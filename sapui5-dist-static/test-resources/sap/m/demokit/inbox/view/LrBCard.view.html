@@ -1,0 +1,30 @@
+<template data-controller-name="view.LrBCard">
+	<div data-sap-ui-type="sap.m.Page">
+		<div data-sap-ui-aggregation="content">
+			<div data-sap-ui-type="sap.ui.core.mvc.HTMLView" data-view-name="view.LrBCardOnly">
+			</div>
+		</div>
+		<div data-sap-ui-aggregation="customHeader">
+			<div data-sap-ui-type="sap.m.Bar">
+				<div data-sap-ui-aggregation="contentLeft">
+					<div data-sap-ui-type="sap.m.Button" data-type="Back" data-press="back">
+					</div>
+				</div>
+				<div data-sap-ui-aggregation="contentMiddle">
+					<div data-sap-ui-type="sap.m.Label" data-text="Business Card">
+					</div>
+				</div>
+			</div>
+		</div>
+		<div data-sap-ui-aggregation="footer">
+			<div data-sap-ui-type="sap.m.Bar">
+				<div data-sap-ui-aggregation="contentLeft">
+					<div data-sap-ui-type="sap.m.Button" data-text="Send Message" data-press="sendMessage">
+					</div>
+					<div data-sap-ui-type="sap.m.Button" data-text="Add to Contacts" data-press="addToContacts">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</template>

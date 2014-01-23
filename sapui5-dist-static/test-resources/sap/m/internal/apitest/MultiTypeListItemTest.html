@@ -1,0 +1,1051 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+<title>Attachment List Item - sap.m</title>
+
+<script src="../../../../../resources/sap-ui-core.js" type="text/javascript"
+	id="sap-ui-bootstrap" data-sap-ui-libs="sap.m"
+	data-sap-ui-theme="sap_bluecrystal">    
+</script>
+
+
+<script type="text/javascript">
+    //jQuery.sap.require("sap.ui.core.IconPool");
+
+    function getRandomIntWithRange (min, max) {
+	    return Math.round(Math.random() * (max - min) + min);
+	}
+    function getRandomBool() {
+	    return Boolean(getRandomIntWithRange(0,1));
+	}
+    
+    var listTypes = {
+    		0 : "Standard List",
+    		1 : "Header & Footer",
+    		2 : "Insets",
+    		3 : "Single",
+    		4 : "SingleLeft",
+    		5 : "SingleMaster",
+    		6 : "Multi",
+    		7 : "Deletion",
+    		8 : "Unread",
+    		9 : "Swipe Gestures",
+    		10 : "Counter",
+    };
+    
+    var listItemTypes = {
+    		0 : "StandardListItem",
+    		1 : "AttachmentListItem <deleted>",
+    		2 : "ObjectListItem",
+    		3 : "GroupHeaderListItem",
+    		4 : "FeedListItem",
+    		5 : "ComlumnListItem"
+    };
+    
+    var selectedListType = 0;
+    var selectedListItemType = 1;
+    
+    // example controls for select list
+    var listSelectOptions = [ new sap.m.Select({
+		maxWidth: "240px",
+		items: [
+			new sap.ui.core.Item({key: sap.m.ListMode.None,text: "None"}),
+			new sap.ui.core.Item({key: sap.m.ListMode.SingleSelect, text: "Single"}),
+			new sap.ui.core.Item({key: sap.m.ListMode.SingleSelectMaster, text: "Single (Master)"}),
+			new sap.ui.core.Item({key: sap.m.ListMode.MultiSelect, text: "Multi"}),
+		],
+		change: function(evt) {
+			var mode = evt.getParameter("selectedItem").getKey();
+			list.setMode(mode);
+		}
+	}), new sap.m.CheckBox({
+		selected: false,
+		select: function(evt) {
+			var includeItem = evt.getParameter("selected");
+			list.setIncludeItemInSelection(includeItem);
+		}
+	})];
+    
+    function createList(type) { // creates the list based on the selection
+    	var list;
+    	switch(type) {
+    	case 1:
+    		list = new sap.m.List({
+				inset: false,
+				headerText: 'This Is The Header Of The List',
+				footerText: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat'
+    		});
+    		break;
+    	case 2:
+    		list = new sap.m.List({
+				inset: true,
+    		});
+    		break;
+    	case 3: 
+    		list = new sap.m.List({
+    			mode: sap.m.ListMode.SingleSelect,
+    		});
+    		break;  
+    	case 4: 
+    		list = new sap.m.List({
+    			mode: sap.m.ListMode.SingleSelectLeft,
+    		});
+    		break;  
+    	case 5: 
+    		list = new sap.m.List({
+    			mode: sap.m.ListMode.SingleSelectMaster,
+    		});
+    		break;  
+    	case 6: 
+    		list = new sap.m.List({
+				mode: sap.m.ListMode.MultiSelect,
+    		});
+    		
+    		break;
+    	case 7: 
+    		list = new sap.m.List({
+				inset: false,
+				mode: sap.m.ListMode.Delete,
+    		});
+    		break;
+    	case 8: 
+    		list = new sap.m.List({
+				inset: false,
+				showUnread: true,
+    		});
+    		break;
+    		
+    	case 9:
+    		var list = new sap.m.List({
+    			swipeContent : new sap.m.Button({
+    				text : "Delete Item",
+    				type : "Reject",
+    				press : function() {
+    					alert("you swiped it!");
+    				}
+    			})
+    		});
+    		break;
+    	case 10: // handled below
+    	case 0:
+    	default:
+	    	list = new sap.m.List({
+				mode: sap.m.ListMode.None,
+			});
+    		break;   			
+    	}
+        
+    	list = createListItems(list, type);
+    	return list;
+    }
+    
+    function createListItems(list, type) { // creates the list item entries based on the selection
+    	var randomId = jQuery.sap.uid();
+    	var listItemId = "item_" + randomId + "_";
+
+    	switch (selectedListItemType) {
+    		
+    	case 2: // ObjectListItem
+    		var worstCaseAttrs = new Array();
+    		worstCaseAttrs.push(new sap.m.ObjectAttribute({value: "attribute text 1"}));
+    		worstCaseAttrs.push(new sap.m.ObjectAttribute({value: "attribute text 2"}));
+    		worstCaseAttrs.push(new sap.m.ObjectAttribute({value: "attribute text 3"}));
+
+    		var worstCase = new sap.m.ObjectListItem({
+    			type: "Active",
+    			intro: "On behalf of John Smith, Ñagçyfox",
+    			title: "Worst case item with all fields, large number, Ñagçyfox",
+    			number: "9999999999",
+    			numberUnit: "eur",
+    			attributes: worstCaseAttrs,
+    			info: "Positive Ñagçyfox",
+    			infoState: "Success",
+    			secondaryInfo: "Negative Ñagçyfox",
+    			secondaryInfoState: "Error",
+    			primaryAttribute: "Primary attribute Ñagçyfox",
+    			secondaryAttribute: "Secondary attribute Ñagçyfox",
+    		});
+            if(type===10) {
+            	worstCase.setCounter(getRandomIntWithRange(1,100));
+            }
+            if(type===8) {
+            	worstCase.setUnread(getRandomBool());
+            }
+            worstCase.setSelected(getRandomBool());
+    		list.addItem(worstCase);
+    		
+    		var bestCase = new sap.m.ObjectListItem({
+    			type: "Active",
+    			intro: "On behalf of John Smith",
+    			title: "Best case item with minimal fields, medium number",
+    			number: "3.62449"
+    		});	
+            if(type===10) {
+            	bestCase.setCounter(getRandomIntWithRange(1,100));
+            }
+            if(type===8) {
+            	bestCase.setUnread(getRandomBool());
+            }
+            bestCase.setSelected(getRandomBool());
+    		list.addItem(bestCase);
+    		
+
+    		var bestVariation1 = new sap.m.ObjectListItem({
+    			type: "Active",
+    			intro: "On behalf of John Smith",
+    			title: "Best case item with number unit, small number",
+    			number: "-900,000,000.01",
+    			numberUnit: "eur"
+    		});	
+    		if(type===10) {
+    			bestVariation1.setCounter(getRandomIntWithRange(1,100));
+            }
+            if(type===8) {
+            	bestVariation1.setUnread(getRandomBool());
+            }
+            bestVariation1.setSelected(getRandomBool());
+    		list.addItem(bestVariation1);
+    		
+    		var bestVariation2 = new sap.m.ObjectListItem({
+    			type: "Active",
+    			intro: "On behalf of John Smith",
+    			title: "Best case item adding number unit",
+    			number: "3.6244",
+    			numberUnit: "eur"
+    		});	
+    		if(type===10) {
+    			bestVariation2.setCounter(getRandomIntWithRange(1,100));
+            }
+            if(type===8) {
+            	bestVariation2.setUnread(getRandomBool());
+            }
+            bestVariation2.setSelected(getRandomBool());
+    		list.addItem(bestVariation2);	
+    		
+    		
+    		var bestVariation3Attrs = new Array();
+    		bestVariation3Attrs.push(new sap.m.ObjectAttribute({value: "attribute text 1"}));
+    		bestVariation3Attrs.push(new sap.m.ObjectAttribute({value: "attribute text 2"}));
+    		bestVariation3Attrs.push(new sap.m.ObjectAttribute({value: "attribute text 3"}));	
+    		var bestVariation3 = new sap.m.ObjectListItem({
+    			type: "Active",
+    			intro: "On behalf of John Smith",
+    			title: "Best case item adding attributes only",
+    			number: "3.6244",
+    			numberUnit: "eur",
+    			attributes: bestVariation3Attrs
+    		});	
+    		if(type===10) {
+    			bestVariation3.setCounter(getRandomIntWithRange(1,100));
+            }
+            if(type===8) {
+            	bestVariation3.setUnread(getRandomBool());
+            }
+            bestVariation3.setSelected(getRandomBool());
+    		list.addItem(bestVariation3);	
+    		
+    		var bestVariation4 = new sap.m.ObjectListItem({
+    			type: "Active",
+    			intro: "On behalf of John Smith",
+    			title: "Best case item adding info (both) only",
+    			number: "3.6244",
+    			numberUnit: "eur",
+    			info: "Info state warning",
+    			infoState: "Warning",
+    			secondaryInfo: "Info state none",
+    			secondaryInfoState: "None"
+    		});	
+    		if(type===10) {
+    			bestVariation4.setCounter(getRandomIntWithRange(1,100));
+            }
+            if(type===8) {
+            	bestVariation4.setUnread(getRandomBool());
+            }
+            bestVariation4.setSelected(getRandomBool());
+    		list.addItem(bestVariation4);	
+    		
+    		var bestVariation5 = new sap.m.ObjectListItem({
+    			type: "Active",
+    			intro: "On behalf of John Smith",
+    			title: "Best case item adding secondary info only",
+    			number: "3.6244",
+    			numberUnit: "eur",
+    			secondaryInfo: "Status info two"
+    		});	
+    		if(type===10) {
+    			bestVariation5.setCounter(getRandomIntWithRange(1,100));
+            }
+            if(type===8) {
+            	bestVariation5.setUnread(getRandomBool());
+            }
+            bestVariation5.setSelected(getRandomBool());
+    		list.addItem(bestVariation5);	
+    		
+    		var moreThanThreeAttrs = new Array();
+    		moreThanThreeAttrs.push(new sap.m.ObjectAttribute({value: "attribute text 1"}));
+    		moreThanThreeAttrs.push(new sap.m.ObjectAttribute({value: "attribute text 2"}));
+    		moreThanThreeAttrs.push(new sap.m.ObjectAttribute({value: "attribute text 3"}));
+    		moreThanThreeAttrs.push(new sap.m.ObjectAttribute({value: "attribute text 4"}));
+    		moreThanThreeAttrs.push(new sap.m.ObjectAttribute({value: "attribute text 5"}));
+
+    		
+    		function handlePress(oEvent) {
+    			if(!bestVariation6.getInfo()) {
+    				bestVariation6.setInfo("I am impressed.");
+    			} else {
+    				bestVariation6.setInfo(undefined);
+    			}
+    		}
+    		
+    		var bestVariation6 = new sap.m.ObjectListItem({
+    			type: "Active",
+    			intro: "On behalf of John Smith",
+    			title: "More than three attributes & press",
+    			number: "3.6244",
+    			numberUnit: "eur",
+    			attributes: moreThanThreeAttrs,
+    			press: handlePress
+    		});	
+    		if(type===10) {
+    			bestVariation6.setCounter(getRandomIntWithRange(1,100));
+            }
+            if(type===8) {
+            	bestVariation6.setUnread(getRandomBool());
+            }
+            bestVariation6.setSelected(getRandomBool());
+    		list.addItem(bestVariation6);	
+    		
+    		var numSize = "2rem";
+    		var bestVariation7 = new sap.m.ObjectListItem({
+    			type: "Active",
+    			intro: "On behalf of John Smith",
+    			title: 'Custom number size "' + numSize + '"',
+    			number: "3.62",
+    			numberUnit: "eur",
+    			numberSize: numSize
+    		});	
+    		if(type===10) {
+    			bestVariation7.setCounter(getRandomIntWithRange(1,100));
+            }
+            if(type===8) {
+            	bestVariation7.setUnread(getRandomBool());
+            }
+            bestVariation7.setSelected(getRandomBool());
+    		list.addItem(bestVariation7);	
+            break;
+
+    	case 3: // GroupHeaderListItem
+			jQuery.sap.require("sap.ui.model.json.JSONModel");
+			
+			// JSON sample data
+			var data = {
+				teamMembers:[
+					{firstName:"John", lastName:"Doe",birthDate:"1986-05-11",gender:"Male"},
+					{firstName:"Harry", lastName:"Potter",birthDate:"1976-05-19",gender:"Male"},
+					{firstName:"Heinz", lastName:"Piper",birthDate:"1989-08-08",gender:"Male"},
+					{firstName:"Indiana", lastName:"Jones",birthDate:"1991-12-03",gender:"Male"},
+					{firstName:"Darth", lastName:"Vader",birthDate:"1977-02-24",gender:"Male"},
+					{firstName:"Barbara", lastName:"Dreher",birthDate:"1999-08-31",gender:"Female"},
+					{firstName:"Dante", lastName:"Alighieri",birthDate:"1982-04-22",gender:"Male"},
+					{firstName:"Mark", lastName:"Anson",birthDate:"1984-05-24",gender:"Male"},
+					{firstName:"Jane", lastName:"Doe",birthDate:"1976-07-17",gender:"Female"},
+					{firstName:"Sean", lastName:"Penn",birthDate:"1977-09-15",gender:"Male"},
+					{firstName:"Terry", lastName:"Jones",birthDate:"1988-06-07",gender:"Male"},
+					{firstName:"Leia", lastName:"Vader",birthDate:"1991-11-09",gender:"Female"},
+					{firstName:"Karla", lastName:"Damon",birthDate:"1981-12-08",gender:"Female"},
+					{firstName:"Andante", lastName:"Allegro",birthDate:"1985-07-02",gender:"Male"},
+					{firstName:"John", lastName:"Dufke",birthDate:"1979-08-17",gender:"Male"},
+					{firstName:"Hermione", lastName:"Potter",birthDate:"1971-06-15",gender:"Female"},
+					{firstName:"Dante", lastName:"Alioli",birthDate:"1987-05-11",gender:"Male"},
+					{firstName:"Heinz", lastName:"Pepper",birthDate:"1995-10-21",gender:"Male"},
+					{firstName:"John", lastName:"Johnson",birthDate:"1981-10-26",gender:"Male"},
+					{firstName:"Luke", lastName:"Vader",birthDate:"1972-06-06",gender:"Male"},
+					{firstName:"Petra", lastName:"Delorean",birthDate:"1988-04-24",gender:"Female"},
+					{firstName:"Venus", lastName:"Botticelli",birthDate:"1976-09-08",gender:"Female"}
+				]};
+			
+			// create JSON model instance
+			var oModel = new sap.ui.model.json.JSONModel();
+			
+			// set the data for the model
+			oModel.setData(data);
+			
+			// set the model to the core
+			sap.ui.getCore().setModel(oModel);
+			
+			// define the list item template
+			var oItemTemplate = new sap.m.StandardListItem({
+				title: "{lastName}",
+				description: "{firstName}",
+				info: "{birthDate}",
+				icon: {
+					path:"gender",
+					formatter:function(sGender){
+						return (sGender === "Male" ? "sap-icon://wrench" : "sap-icon://show"); // no gender icons available, I hope this choice is politically correct... no discrimination intended
+					}
+				},
+				tooltip: "Gender icon chosen because no better suitable icon is available... no discrimination of any gender intended"
+			});
+			if(type===10) {
+				oItemTemplate.setCounter(getRandomIntWithRange(1,100));
+            }
+            if(type===8) {
+            	oItemTemplate.setUnread(getRandomBool());
+            }
+            oItemTemplate.setSelected(getRandomBool());
+			
+			// create a Sorter with very simple grouping by the gender attribute 
+			var oGenderSorter = new sap.ui.model.Sorter("gender", false, true);
+		
+			// create a Sorter with grouping function
+			var oLastNameSorter = new sap.ui.model.Sorter("lastName", false, function(oContext){
+				var sKey = oContext.getProperty("lastName").charAt(0);
+				return {
+					key: sKey, // group by first letter of last name
+					text: "First letter: " + sKey
+				}
+			});
+			
+			// another Sorter with grouping function
+			var oFirstNameSorter = new sap.ui.model.Sorter("firstName", false, function(oContext){
+				return {
+					key: oContext.getProperty("firstName").charAt(0), // group by first letter of first name
+					sorter_sorted_by: "FirstName"  // this information is only meant for the factory function!
+				}
+			});
+			
+			// another Sorter with grouping function
+			var oDateSorter = new sap.ui.model.Sorter("birthDate", false, function(oContext){
+				var year = parseInt(oContext.getProperty("birthDate").split("-")[0], 10);
+				var key, text;
+				
+				if (year < 1980) {
+					key = "70s";
+					text = "Seventies";
+				} else if (year < 1990) {
+					key = "80s";
+					text = "Eighties";
+				} else {
+					key = "90s";
+					text = "Nineties";
+				}
+				
+				return {
+					key: key,
+					text: text
+				}
+			});
+			
+			
+			
+			// bind the aggregation and initially sort (and group) by last name
+			list.bindAggregation("items", {
+				path: "/teamMembers", 
+				template: oItemTemplate, 
+				sorter: oLastNameSorter,
+				groupHeaderFactory: function(oGroup) { // will be called by any sorter!
+					if (oGroup.sorter_sorted_by == "FirstName") { // factory only returns a custom header if sorted and grouped by FirstName!
+						return new sap.m.GroupHeaderListItem({title:"First name starts with: " + oGroup.key});
+					}
+				}
+			});
+            list.addItem(listItem);  
+            break;
+       
+    	case 4: // FeedListItem
+    		var oList2 = new sap.m.List({
+    			inset : true
+    		});
+    		
+    		var data = {
+    			navigation : [ {
+    				title : "Travel Expend",
+    				description : "Access the travel expend workflow",
+    				icon : "../../images/travel_expend.png",
+    				iconInset : false,
+    				type : "Navigation",
+    				press : 'detailPage'
+    			}, {
+    				title : "Travel and expense report",
+    				description : "Access travel and expense reports",
+    				icon : "../../images/travel_expense_report.png",
+    				iconInset : false,
+    				type : "Navigation",
+    				press : 'detailPage'
+    			}, {
+    				title : "Travel Request",
+    				description : "Access the travel request workflow",
+    				icon : "../../images/travel_request.png",
+    				iconInset : false,
+    				type : "Navigation",
+    				press : 'detailPage'
+    			}, {
+    				title : "Work Accidents",
+    				description : "Report your work accidents",
+    				icon : "../../images/wounds_doc.png",
+    				iconInset : false,
+    				type : "Navigation",
+    				press : 'detailPage'
+    			}, {
+    				title : "Travel Settings",
+    				description : "Change your travel worflow settings",
+    				icon : "../../images/settings.png",
+    				iconInset : false,
+    				type : "Navigation",
+    				press : 'detailPage'
+    			} ]
+    		};
+    		
+    		var oItemTemplate1 = new sap.m.StandardListItem({
+    			title : "{title}",
+    			description : "{description}",
+    			icon : "{icon}",
+    			iconInset : "{iconInset}",
+    			type : "{type}"
+    		});
+    		if(type===10) {
+    			oItemTemplate1.setCounter(getRandomIntWithRange(1,100));
+            }
+            if(type===8) {
+            	oItemTemplate1.setUnread(getRandomBool());
+            }
+            oItemTemplate1.setSelected(getRandomBool());
+    		
+    		function bindListData(data, itemTemplate, list)
+    		{
+    			var oModel = new sap.ui.model.json.JSONModel();
+    			// set the data for the model
+    			oModel.setData(data);
+    			// set the model to the list
+    			list.setModel(oModel);
+
+    			// bind Aggregation
+    			list.bindAggregation("items", "/navigation", itemTemplate);
+    		}
+    		
+    		bindListData(data, oItemTemplate1, oList2);
+    		
+    		var oLeftButton = new sap.m.Button({
+    			text: "Modal",
+    			type: sap.m.ButtonType.Reject,
+    			press: function(){
+    				oPopover.setModal(!oPopover.getModal());
+    			}
+    		});
+    		
+    		var oRightButton = new sap.m.Button({
+    			text: "Close",
+    			type: sap.m.ButtonType.Accept,
+    			press: function(){
+    				oPopover.close();
+    			}
+    		});
+    		
+    		var footer = new sap.m.Bar({ 
+    			contentLeft: [],	
+    			contentMiddle: [new sap.m.Button({icon: "../../../../../test-resources/sap/m/images/favorite@2x.png"}),
+    			                new sap.m.Button({icon: "../../../../../test-resources/sap/m/images/feed@2x.png"}),
+    			                new sap.m.Button({icon: "../../../../../test-resources/sap/m/images/flag@2x.png"})],
+    			contentRight: []
+    		});
+    		
+    		
+    		var oPopover = new sap.m.Popover({
+    			placement: sap.m.PlacementType.Bottom,
+    			title: "Popover",
+    			showHeader: true,
+    			leftButton: oLeftButton,
+    			rightButton: oRightButton,
+    			beforeOpen: function(oEvent){
+    				jQuery.sap.log.info("before popover opens!!!");
+    			},
+    			afterOpen: function(oEvent){
+    				jQuery.sap.log.info("popover is opened finally!!!");
+    			},
+    			beforeClose: function(oEvent){
+    				jQuery.sap.log.info("before popover closes!!!");
+    			},
+    			afterClose: function(oEvent){
+    				jQuery.sap.log.info("popover is closed properly!!!");
+    			},
+    			footer: footer,
+    			content: [
+    				oList2
+    			]
+    		});
+    		  		
+    		
+    		var fnOpenPopup = function(oControlEvent) {
+    			oPopover.openBy(oControlEvent.getParameters().domRef);
+    		};
+    		
+    		
+    		var oFeedListItemTemplate = new sap.m.FeedListItem({
+    			type: sap.m.ListType.Active,
+    			icon : "{icon}",
+    			text : "{text}",
+    			sender : "{sender}",
+    			senderActive: "{senderActive}",
+    			iconActive: "{iconActive}",
+    			info: "{info}",
+    			timestamp : "{timestamp}",
+    			senderPress : fnOpenPopup,
+    			iconPress : fnOpenPopup,
+    		});
+    		if(type===10) {
+    			oFeedListItemTemplate.setCounter(getRandomIntWithRange(1,100));
+            }
+            if(type===8) {
+            	oFeedListItemTemplate.setUnread(getRandomBool());
+            }
+            oFeedListItemTemplate.setSelected(getRandomBool());
+    		
+    		function bindFeedListData(data, itemTemplate, list)
+    		{
+    			var oModel = new sap.ui.model.json.JSONModel();
+    			// set the data for the model
+    			oModel.setData(data);
+    			// set the model to the list
+    			list.setModel(oModel);
+
+    			// bind Aggregation
+    			list.bindAggregation("items", "/chunks", itemTemplate);
+    		}
+    		
+    		jQuery.sap.require("sap.ui.core.IconPool");
+    		var sURI = sap.ui.core.IconPool.getIconURI("personnel-view");
+    		
+    		var feedData = {
+    				chunks : [ {
+    					icon: "../../../../../test-resources/sap/m/images/male.jpg",
+    					text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque risus nulla, interdum eget posuere non, tincidunt eu felis. In hac habitasse platea dictumst. Quisque ut ipsum est. Duis ipsum orci, interdum eget sollicitudin ac, blandit a ante. Cras congue posuere metus sed tempus. Mauris euismod, dui sit amet molestie volutpat, ipsum est viverra velit, id ultricies ante dolor et ligula. Pellentesque tincidunt fermentum lectus, eu luctus mi ultrices quis. Sed luctus nulla sit amet sapien consequat quis pretium eros tincidunt. Nullam quam erat, ultricies in malesuada non, tincidunt at nibh. Curabitur nec lectus et justo auctor tincidunt. In rhoncus risus vitae turpis suscipit eget porta metus facilisis. Vestibulum bibendum vehicula velit eu porta. Donec tincidunt rutrum lacus at egestas.",
+    					sender: "Jeremy Dash",
+    					senderActive: true,
+    					iconActive: true,
+    					timestamp: "March 03, 2013",
+    					info: "Approved",
+    				}, {
+    					icon: sURI,
+    					text: "This FeedListItem displays an ImagePool image. Cras congue posuere metus sed tempus. Mauris euismod, dui sit amet molestie volutpat, ipsum est viverra velit, id ultricies ante dolor et ligula. ",
+    					sender: "Christopher Kent",
+    					senderActive: true,
+    					iconActive: true,
+    					timestamp: "Dec 04, 2012",
+    					info: "Rejected",
+    				}, {
+    					icon: "../../../../../test-resources/sap/m/images/female.jpg",
+    					text: "This FeedListItem comes with senderActive = false and iconActive = false. In hac habitasse platea dictumst. Quisque ut ipsum est. Duis ipsum orci, interdum eget sollicitudin ac, blandit a ante.",
+    					sender: "Claire Jones",
+    					senderActive: false,
+    					iconActive: false,
+    					timestamp: "Dec 02, 2012",
+    					info: "Waiting for Approval",
+    				}, {
+    					text: "This FeedListItem comes without an image and has a very long info text",
+    					sender: "Christine Noah",
+    					senderActive: true,
+    					iconActive: true,
+    					timestamp: "Nov 23, 2012",
+    					info: "Waiting for Approval and waiting and waiting and waiting and waiting and waiting and waiting and waiting and waiting and waiting and waiting and waiting and waiting and waiting and waiting and waiting and waiting and waiting and waiting and waiting and waiting",
+    				}, {
+    					text: "This one has no date",
+    					sender: "Frank Black",
+    					senderActive: true,
+    					iconActive: true,
+    					info: "New",
+    				}, {
+    					text: "And this one does without info",
+    					sender: "Kurt Nistroy",
+    					senderActive: true,
+    					iconActive: true,
+    					timestamp: "Nov 01, 2012",
+    				}, {
+    					text: "This one has no sender",
+    					senderActive: true,
+    					iconActive: true,
+    					timestamp: "Nov 01, 2012",
+    				}]
+    			};
+    		
+    		bindFeedListData(feedData, oFeedListItemTemplate, list);
+    		break;
+    		
+    	case 5: // ColumnListItem
+    		list.addColumn(
+					new sap.m.Column({
+						width : "1em"
+					})
+    		);
+			
+    		list.addColumn(
+    				new sap.m.Column({
+						header : new sap.m.Label({
+							text : "First Name"
+						})
+					})
+    		);
+			
+    		list.addColumn(
+					new sap.m.Column({
+						header : new sap.m.Label({
+							text : "Last Name"
+						})
+					})
+    		);
+			
+    		list.addColumn(
+					new sap.m.Column({
+						hAlign : "Right",
+						minScreenWidth : "Phone",
+						demandPopin : true,
+						header : new sap.m.Label({
+							text : "Birth Date"
+						})
+					})
+    		);
+			
+    		list.addColumn(
+					new sap.m.Column({
+						hAlign : "Right",
+						demandPopin : true,
+						minScreenWidth : "Tablet",
+						header : new sap.m.Label({
+							text : "Gender"
+						})
+					})
+			);
+
+			jQuery.sap.require("sap.ui.model.json.JSONModel");
+
+			// JSON sample data
+			var data = {
+				teamMembers:[
+					{firstName:"John", lastName:"Doe",birthDate:"1986-05-11",gender:"Male"},
+					{firstName:"Harry", lastName:"Potter",birthDate:"1976-05-19",gender:"Male"},
+					{firstName:"Heinz", lastName:"Piper",birthDate:"1989-08-08",gender:"Male"},
+					{firstName:"Indiana", lastName:"Jones",birthDate:"1991-12-03",gender:"Male"},
+					{firstName:"Darth", lastName:"Vader",birthDate:"1977-02-24",gender:"Male"},
+					{firstName:"Barbara", lastName:"Dreher",birthDate:"1999-08-31",gender:"Female"},
+					{firstName:"Dante", lastName:"Alighieri",birthDate:"1982-04-22",gender:"Male"},
+					{firstName:"Mark", lastName:"Anson",birthDate:"1984-05-24",gender:"Male"},
+					{firstName:"Jane", lastName:"Doe",birthDate:"1976-07-17",gender:"Female"},
+					{firstName:"Sean", lastName:"Penn",birthDate:"1977-09-15",gender:"Male"},
+					{firstName:"Terry", lastName:"Jones",birthDate:"1988-06-07",gender:"Male"},
+					{firstName:"Leia", lastName:"Vader",birthDate:"1991-11-09",gender:"Female"},
+					{firstName:"Karla", lastName:"Damon",birthDate:"1981-12-08",gender:"Female"},
+					{firstName:"Andante", lastName:"Allegro",birthDate:"1985-07-02",gender:"Male"},
+					{firstName:"John", lastName:"Dufke",birthDate:"1979-08-17",gender:"Male"},
+					{firstName:"Hermione", lastName:"Potter",birthDate:"1971-06-15",gender:"Female"},
+					{firstName:"Dante", lastName:"Alioli",birthDate:"1987-05-11",gender:"Male"},
+					{firstName:"Heinz", lastName:"Pepper",birthDate:"1995-10-21",gender:"Male"},
+					{firstName:"John", lastName:"Johnson",birthDate:"1981-10-26",gender:"Male"},
+					{firstName:"Luke", lastName:"Vader",birthDate:"1972-06-06",gender:"Male"},
+					{firstName:"Petra", lastName:"Delorean",birthDate:"1988-04-24",gender:"Female"},
+					{firstName:"Venus", lastName:"Botticelli",birthDate:"1976-09-08",gender:"Female"}
+				]};
+
+			// create JSON model instance
+			var oModel = new sap.ui.model.json.JSONModel();
+
+			// set the data for the model
+			oModel.setData(data);
+
+			// set the model to the core
+			sap.ui.getCore().setModel(oModel);
+
+			// define the list item template
+			var oItemTemplate = new sap.m.ColumnListItem({
+				tooltip: "Gender icon chosen because no better suitable icon is available... no discrimination of any gender intended",
+				cells : [
+					new sap.ui.core.Icon({
+						src : {
+							path: "gender",
+							formatter: function(sGender) {
+								return (sGender === "Male" ? "sap-icon://wrench" : "sap-icon://show");
+							}
+						}
+					}),
+					new sap.m.Label({
+						text : "{firstName}"
+					}),
+					new sap.m.Label({
+						text: "{lastName}"
+					}),
+					new sap.m.Label({
+						text: "{birthDate}"
+					}),
+					new sap.m.Label({
+						text: "{gender}"
+					})
+				]
+			});
+		 	if(type===10) {
+			 oItemTemplate.setCounter(getRandomIntWithRange(1,100));
+            }
+            if(type===8) {
+            	oItemTemplate.setUnread(getRandomBool());
+            }
+            oItemTemplate.setSelected(getRandomBool());
+
+			// create a Sorter with very simple grouping by the gender attribute
+			var oGenderSorter = new sap.ui.model.Sorter("gender", false, true);
+
+			// create a Sorter with grouping function
+			var oLastNameSorter = new sap.ui.model.Sorter("lastName", false, function(oContext){
+				var sKey = oContext.getProperty("lastName").charAt(0);
+				return {
+					key: sKey, // group by first letter of last name
+					text: "First letter: " + sKey
+				}
+			});
+
+			// another Sorter with grouping function
+			var oFirstNameSorter = new sap.ui.model.Sorter("firstName", false, function(oContext){
+				return {
+					key: oContext.getProperty("firstName").charAt(0), // group by first letter of first name
+					sorter_sorted_by: "FirstName"  // this information is only meant for the factory function!
+				}
+			});
+
+			// another Sorter with grouping function
+			var oDateSorter = new sap.ui.model.Sorter("birthDate", false, function(oContext){
+				var year = parseInt(oContext.getProperty("birthDate").split("-")[0], 10);
+				var key, text;
+
+				if (year < 1980) {
+					key = "70s";
+					text = "Seventies";
+				} else if (year < 1990) {
+					key = "80s";
+					text = "Eighties";
+				} else {
+					key = "90s";
+					text = "Nineties";
+				}
+
+				return {
+					key: key,
+					text: text
+				}
+			});
+
+			// bind the aggregation and initially sort (and group) by last name
+			list.bindAggregation("items", {
+				path: "/teamMembers",
+				template: oItemTemplate,
+				sorter: oLastNameSorter,
+				groupHeaderFactory: function(oGroup) { // will be called by any sorter!
+					if (oGroup.sorter_sorted_by == "FirstName") { // factory only returns a custom header if sorted and grouped by FirstName!
+						return new sap.m.GroupHeaderListItem({title:"First name starts with: " + oGroup.key});
+					}
+				}
+			});
+			break;
+			
+    	case 0: // StandardListItem
+    	default:
+    		var listItem = new sap.m.StandardListItem({
+						title: "Item A",
+						type: sap.m.ListType.Inactive,
+			});
+            if(type===10) {
+            	listItem.setCounter(getRandomIntWithRange(1,100));
+            }
+            if(type===8) {
+            	listItem.setUnread(getRandomBool());
+            }
+            listItem.setSelected(getRandomBool());
+            list.addItem(listItem); 
+    		
+    		listItem = new sap.m.StandardListItem({
+						title: "Item B",
+						description: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr",
+						type: sap.m.ListType.Inactive,
+					});
+    		
+            if(type===10) {
+            	listItem.setCounter(getRandomIntWithRange(1,100));
+            }
+            if(type===8) {
+            	listItem.setUnread(getRandomBool());
+            }
+            listItem.setSelected(getRandomBool());
+            list.addItem(listItem); 
+    		
+			listItem = new sap.m.StandardListItem({
+						title: "Item C",
+						description: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr",
+						icon: "../../images/iconCompetitors.png",
+						type: sap.m.ListType.Inactive,
+					});
+
+            if(type===10) {
+            	listItem.setCounter(getRandomIntWithRange(1,100));
+            }
+            if(type===8) {
+            	listItem.setUnread(getRandomBool());
+            }
+            listItem.setSelected(getRandomBool());
+            list.addItem(listItem); 
+    		
+			listItem = new sap.m.StandardListItem({
+						title: "Item D",
+						description: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr",
+						icon: "../../images/iconCompetitors.png",
+						type: sap.m.ListType.Inactive,
+						info: "Cancelled",
+						infoState: sap.ui.core.ValueState.Error
+					});
+
+            if(type===10) {
+            	listItem.setCounter(getRandomIntWithRange(1,100));
+            }
+            if(type===8) {
+            	listItem.setUnread(getRandomBool());
+            }
+            listItem.setSelected(getRandomBool());
+            list.addItem(listItem); 
+      		
+			listItem = new sap.m.StandardListItem({
+						title: "Item E",
+						description: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr",
+						icon: "../../images/iconCompetitors.png",
+						type: sap.m.ListType.Inactive,
+						info: "Confirmed",
+						infoState: sap.ui.core.ValueState.Success
+					});
+
+            if(type===10) {
+            	listItem.setCounter(getRandomIntWithRange(1,100));
+            }
+            if(type===8) {
+            	listItem.setUnread(getRandomBool());
+            }
+            listItem.setSelected(getRandomBool());
+            list.addItem(listItem); 
+    		
+			listItem = new sap.m.StandardListItem({
+						title: "Item F",
+						description: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr",
+						icon: "../../images/iconCompetitors.png",
+						iconInset: false,
+						type: sap.m.ListType.Inactive,
+					});
+
+            if(type===10) {
+            	listItem.setCounter(getRandomIntWithRange(1,100));
+            }
+            if(type===8) {
+            	listItem.setUnread(getRandomBool());
+            }
+            listItem.setSelected(getRandomBool());
+            list.addItem(listItem); 
+    		
+			listItem = new sap.m.StandardListItem({
+						title: "Item G",
+						description: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr",
+						icon: "../../images/iconCompetitors.png",
+						type: sap.m.ListType.Navigation,
+					});
+
+            if(type===10) {
+            	listItem.setCounter(getRandomIntWithRange(1,100));
+            }
+            if(type===8) {
+            	listItem.setUnread(getRandomBool());
+            }
+            listItem.setSelected(getRandomBool());
+            list.addItem(listItem); 
+    		
+			listItem = new sap.m.StandardListItem({
+						title: "Item H",
+						description: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr",
+						icon: "../../images/iconCompetitors.png",
+						type: sap.m.ListType.Detail,
+					});
+
+            if(type===10) {
+            	listItem.setCounter(getRandomIntWithRange(1,100));
+            }
+            if(type===8) {
+            	listItem.setUnread(getRandomBool());
+            }
+            listItem.setSelected(getRandomBool());
+            list.addItem(listItem); 
+    	}
+        
+        return list;
+    }
+    
+    function switchList(type) {
+    	if (type===undefined) {
+    		type = selectedListType;
+    	}
+    	selectedListType = type;
+    	list = createList(type);
+    	page.destroyContent();
+    	page.setTitle("Selected list type: "+listTypes[type]+", Selected list item type: "+listItemTypes[selectedListItemType]);
+    	page.addContent(list);
+    }
+
+    function switchListItemType(type) {
+    	selectedListItemType = parseInt(type);
+    	switchList();
+    }
+    
+    listTypesLength = Object.keys(listTypes).length;
+    var buttonListTypes = new Array(listTypesLength); // 2 more slots, one empty one ListItemType selection
+    for(i=0; i<listTypesLength; i++) {
+	    buttonListTypes[i] = new sap.m.Button( {
+			"text": listTypes[i],
+			 "press" : function(i) {
+				 return function() {
+				 switchList(i);   // normal list
+		      }}(i)
+		} );
+    }
+    
+    selectListItemTypesLength = Object.keys(listItemTypes).length;
+    selectListItemTypes = new Array(selectListItemTypesLength);
+    for(i=0; i<selectListItemTypesLength; i++) {
+    	selectListItemTypes[i] = new sap.ui.core.Item( {
+    		"key": i,
+    		"text": listItemTypes[i],
+    	});
+    }
+    //buttonListTypes[listTypesLength] = new sap.m.Button({ "enabled": false});
+   var select = new sap.m.Select({
+    	maxWidth: "240px",
+		items: selectListItemTypes,
+		selectedKey: selectedListItemType,
+		change: function(evt) {
+			var mode = evt.getParameter("selectedItem").getKey();
+			switchListItemType(mode);
+		}
+    });
+       
+    var app = new sap.m.App();
+    var page = new sap.m.Page("ListItemTest",{
+		title : "ListItem used in different list types",
+		footer : new sap.m.Bar({
+			enableFlexBox : true,
+			contentMiddle : buttonListTypes,
+			contentLeft: [ new sap.m.Label( { "text" : "Select ListItem type:"}), select ]
+		})
+	});
+    page.setEnableScrolling(false);
+    app.addPage(page);
+    page.addContent(switchList());
+    page.setEnableScrolling(true);
+    app.placeAt('body');
+    
+    // some formatting
+    $("#__select1").css("font-weight","bold");
+</script>
+
+</head>
+<body id="body" class="sapUiBody">
+</body>
+</html>

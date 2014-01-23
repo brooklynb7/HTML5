@@ -1,0 +1,152 @@
+
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>Bar - sap.m</title>
+		<script src="../../../resources/sap-ui-core.js"
+			type="text/javascript" 
+			id="sap-ui-bootstrap"
+			data-sap-ui-libs="sap.m"
+			data-sap-ui-theme="sap_bluecrystal">
+		</script>
+		<script type="text/javascript">
+			jQuery.sap.initMobile();
+			
+			var page = new sap.m.Page("page");
+			
+			if (jQuery.os.ios){
+				var Bar = new sap.m.Bar({ 
+					contentLeft: [new sap.m.Button('Button', {text: "Back", type:sap.m.ButtonType.Back})],	
+					contentMiddle: [new sap.m.Label("myLabel2", {text: "this is the title of header with a very very very very very very very very long text to test the ellipsis effect in the middle"})],
+					contentRight: [new sap.m.Button('Button1', {text: "Edit"})]
+				});
+				page.setCustomHeader(Bar);
+			} else {
+				var Bar1 = new sap.m.Bar({ 
+					contentLeft: [new sap.m.Button('ButtonDefault', {icon:"images/favorite@2x.png", type:sap.m.ButtonType.Up}),	
+								  new sap.m.Label("myLabelDefault", {text: "this is the title of header with a very long text to test the ellipsis effect"})],
+					contentMiddle: [],
+					contentRight: [new sap.m.Label({text:"123"}), new sap.m.Button('headerButtonDefault', {text: "Edit"})]
+				});
+				page.setCustomHeader(Bar1);
+			}
+			
+			
+			var Bar2 = new sap.m.Bar({ 
+				contentLeft: [new sap.m.Image('myAppIcon', {src: "images/favorite_grey_24.png"}),
+							  new sap.m.Label("leftContentLabel", {text: "left content area with with a very very very very very very very very long text to test the ellipsis effect"})],	
+				contentMiddle: [],
+				contentRight: []
+			});
+			page.setSubHeader(Bar2);
+			
+			var Bar3 = new sap.m.Bar({ 
+				contentLeft: [],	
+				contentMiddle: [new sap.m.Label("middleContentLabel", {text: "middle content area with with a very very very very very very very very long text to test the ellipsis effect"})],
+				contentRight: []
+			});
+			page.addContent(Bar3);
+			
+			var Bar4 = new sap.m.Bar({ 
+				contentLeft: [],	
+				contentMiddle: [],
+				contentRight: [new sap.m.Label("rightContentLabel", {text: "right content area with with a very very very very very very very very long text to test the ellipsis effect"})]
+			});
+			page.addContent(Bar4);
+			
+			var Bar5 = new sap.m.Bar({ 
+				contentLeft: [new sap.m.Label({text: "label with a long text"})],	
+				contentMiddle: [new sap.m.Label({text: "label with a long text"})],
+				contentRight: [new sap.m.Label({text: "label with a long text"})]
+			});
+			page.addContent(Bar5);
+			
+			var Bar6 = new sap.m.Bar({ 
+				enableFlexBox: true,
+				contentLeft: [new sap.m.Button({icon: "images/favorite_grey_24.png"})],	
+				contentMiddle: [new sap.m.SearchField("SFB1", {placeholder: "search for...", layoutData: new sap.m.FlexItemData({growFactor: 1})})],
+				contentRight: [new sap.m.Button({icon: "images/favorite_grey_24.png"})]
+			});
+			page.addContent(Bar6);
+			
+			var button1 = new sap.m.Button('button1', {
+				type: sap.m.ButtonType.Default,
+				text: "Label",
+				width: "100%",
+				enabled: true,
+				layoutData: new sap.m.FlexItemData({growFactor: 1})
+			});
+			var button2 = new sap.m.Button('button2', {
+				type: sap.m.ButtonType.Default,
+				text: "Label",
+				width: "100%",
+				enabled: true,
+				layoutData: new sap.m.FlexItemData({growFactor: 1})
+			});
+			var button3 = new sap.m.Button('button3', {
+				type: sap.m.ButtonType.Default,
+				text: "Label",
+				width: "100%",
+				enabled: true,
+				layoutData: new sap.m.FlexItemData({growFactor: 1})
+			});
+			var button4 = new sap.m.Button('button4', {
+				type: sap.m.ButtonType.Default,
+				text: "Label",
+				width: "100%",
+				enabled: true,
+			});
+			var button5 = new sap.m.Button('button5', {
+				type: sap.m.ButtonType.Default,
+				text: "Label",
+				width: "100%",
+				enabled: true,
+			});
+			var button6 = new sap.m.Button('button6', {
+				type: sap.m.ButtonType.Default,
+				text: "Label",
+				width: "100%",
+				enabled: true,
+			});
+			
+			var Bar7 = new sap.m.Bar({ 
+				enableFlexBox: true,
+				contentLeft: [new sap.m.Button({icon: "images/favorite_grey_24.png"})],	
+				contentMiddle: [button1, button2],
+				contentRight: [new sap.m.Button({icon: "images/favorite_grey_24.png"})]
+			});
+			page.addContent(Bar7);
+			
+			Bar7.addContentMiddle(button3);
+			
+			var Bar8 = new sap.m.Bar({ 
+				enableFlexBox: true,
+				contentLeft: [new sap.m.Button({icon: "images/favorite_grey_24.png"})],	
+				contentMiddle: [new sap.m.SegmentedButton('SegmentedBar', {
+									buttons: [button4, button5, button6], 
+									selectedButton: button5,
+									visible: true, 
+									layoutData: new sap.m.FlexItemData({growFactor: 1})
+								})],
+				contentRight: [new sap.m.Button({icon: "images/favorite_grey_24.png"})]
+			});
+			page.addContent(Bar8);
+
+			var footer = new sap.m.Bar({ 
+				contentLeft: [],	
+				contentMiddle: [new sap.m.Button({icon: "images/feed@2x.png"}),
+				                new sap.m.Button({icon: "images/favorite@2x.png"}),
+				                new sap.m.Button({icon: "images/flag@2x.png"})],
+				contentRight: []
+			});
+
+			page.setFooter(footer);
+			page.placeAt("body");
+			
+		</script>
+		
+	</head>
+	<body id="body" class="sapUiBody">
+	</body>
+</html>

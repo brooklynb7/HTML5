@@ -1,0 +1,2 @@
+// Copyright (c) 2013 SAP AG, All Rights Reserved
+(function(){"use strict";jQuery.sap.declare("sap.ushell.ui.launchpad.PlusTileRenderer");sap.ushell.ui.launchpad.PlusTileRenderer={};sap.ushell.ui.launchpad.PlusTileRenderer.render=function(r,c){r.write("<div");r.writeControlData(c);r.addClass("sapUshellTile");r.addClass("sapUshellPlusTile");r.writeClasses();r.write(">");r.renderControl(c.oIcon);r.write("</div>")}}());

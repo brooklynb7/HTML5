@@ -1,0 +1,292 @@
+{
+	"SAPVB": {
+		"version": "2.0",
+		"xmlns:VB": "VB",
+		"Data": {
+			"Set": {
+				"N": [
+					{
+						"name": "Spots",
+						"E": [
+							{
+								"A": "0",
+								"B": "13.210649999999999;50.645949999999999;0",
+								"C": "LTL000421",
+								"D": "0"
+							},
+							{
+								"A": "1",
+								"B": "7.9491199999999997;47.552570000000003;0",
+								"C": "LTL000522",
+								"D": "0"
+							},
+							{
+								"A": "2",
+								"B": "9.1930999999999994;53.967039999999997;0",
+								"C": "LTL000422",
+								"D": "0"
+							}
+						]
+					},
+					{
+						"name": "Links"
+					}
+				]
+			}
+		},
+		"DataTypes": {
+			"Set": {
+				"N": [
+					{
+						"name": "Spots",
+						"key": "Key",
+						"A": [
+							{
+								"name": "Key",
+								"alias": "A",
+								"type": "string"
+							},
+							{
+								"name": "GeoPosition",
+								"alias": "B",
+								"type": "vector"
+							},
+							{
+								"name": "Name",
+								"alias": "C",
+								"type": "string"
+							},
+							{
+								"name": "Selected",
+								"alias": "D",
+								"type": "boolean"
+							}
+						]
+					},
+					{
+						"name": "Links",
+						"ws": "WS1",
+						"key": "Key",
+						"A": [
+							{
+								"name": "GeoPosition",
+								"alias": "A1",
+								"type": "vector"
+							},
+							{
+								"name": "ToolTip",
+								"alias": "A2",
+								"type": "string"
+							},
+							{
+								"name": "Transformation",
+								"alias": "A3",
+								"type": "matrix"
+							},
+							{
+								"name": "Scale",
+								"alias": "A4",
+								"type": "float"
+							},
+							{
+								"name": "Shape",
+								"alias": "A5",
+								"type": "string"
+							},
+							{
+								"name": "Icon",
+								"alias": "A6",
+								"type": "string"
+							}
+						]
+					}
+				]
+			}
+		},
+		"Windows": {
+			"Set": {
+				"Window": {
+					"id": "W1",
+					"caption": "Window1",
+					"type": "geo",
+					"refParent": "",
+					"modal": "true",
+					"refScene": "Scene1"
+				}
+			},
+			"Remove": {
+			}
+		},
+		"Scenes": {
+			"Set": {
+				"SceneGeo": {
+					"id": "Scene1",
+					"refMapLayerStack": "layerStackBing",
+					"initialStartPosition": "6;30;0",
+					"initialZoom": "3",
+					"VO": {
+						"id": "VO1",
+						"type": "{00100000-2012-0004-B001-64592B8DB964}",
+						"datasource": "Spots",
+						"pos.bind": "Spots.GeoPosition",
+						"scale": "1.0;1.0;1.0",
+						"fxdir": "true",
+						"fxsize": "true",
+						"image": "pin_gray.png",
+						"icon": "AA"
+					}
+				}
+			}
+		},
+		"MapProviders": {
+			"Set": {
+				"MapProvider": [
+					{
+						"name": "NAVTEQSAT",
+						"type": "",
+						"description": "",
+						"tileX": "256",
+						"tileY": "256",
+						"maxLOD": "19",
+						"Source": {
+							"id": "server1",
+							"url": "http://maptp47.map24.com/map24/images?sid=1215676239372&v=1&projection=mercator-spheroid&size=256&imgmime=image/png&mid=DEV_SAP_WORLD&quadkey={QUAD}"
+						}
+					},
+					{
+						"name": "NAVTEQROAD",
+						"type": "",
+						"description": "",
+						"tileX": "256",
+						"tileY": "256",
+						"maxLOD": "19",
+						"Source": {
+							"id": "server1",
+							"url": "http://maptp47.map24.com/map24/images?sid=1215676239372&v=1&projection=mercator-spheroid&size=256&imgmime=image/png&mid=DEV_SAP_WORLD&quadkey={QUAD}"
+						}
+					},
+					{
+						"name": "OPENSTREETMAP",
+						"type": "",
+						"description": "",
+						"tileX": "256",
+						"tileY": "256",
+						"maxLOD": "19",
+						"Source": [
+							{
+								"id": "server1",
+								"url": "http://a.tile.openstreetmap.org/{LOD}/{X}/{Y}.png"
+							},
+							{
+								"id": "server2",
+								"url": "http://b.tile.openstreetmap.org/{LOD}/{X}/{Y}.png"
+							},
+							{
+								"id": "server3",
+								"url": "http://c.tile.openstreetmap.org/{LOD}/{X}/{Y}.png"
+							},
+							{
+								"id": "server4",
+								"url": "http://d.tile.openstreetmap.org/{LOD}/{X}/{Y}.png"
+							}
+						]
+					},
+					{
+						"name": "GOOGLEMAPPHOTO",
+						"type": "",
+						"description": "",
+						"tileX": "256",
+						"tileY": "256",
+						"maxLOD": "19",
+						"Source": [
+							{
+								"id": "server1",
+								"url": "http://mt0.google.com/mapslt?lyrs=com.panoramio.all|pv:2|tag:piles&x={X}&y={Y}&z={LOD}&w=256&h=256&gl=de&hl=de"
+							},
+							{
+								"id": "server2",
+								"url": "http://mt1.google.com/mapslt?lyrs=com.panoramio.all|pv:2|tag:piles&x={X}&y={Y}&z={LOD}&w=256&h=256&gl=de&hl=de"
+							},
+							{
+								"id": "server3",
+								"url": "http://mt2.google.com/mapslt?lyrs=com.panoramio.all|pv:2|tag:piles&x={X}&y={Y}&z={LOD}&w=256&h=256&gl=de&hl=de"
+							},
+							{
+								"id": "server4",
+								"url": "http://mt3.google.com/mapslt?lyrs=com.panoramio.all|pv:2|tag:piles&x={X}&y={Y}&z={LOD}&w=256&h=256&gl=de&hl=de"
+							}
+						]
+					},
+					{
+						"name": "GOOGLEMAP",
+						"type": "",
+						"description": "",
+						"tileX": "256",
+						"tileY": "256",
+						"maxLOD": "19",
+						"Source": [
+							{
+								"id": "server1",
+								"url": "http://mt0.google.com/vt/lyrs=m@1550000&hl=de&x={X}&y={Y}&z={LOD}&s=G"
+							},
+							{
+								"id": "server2",
+								"url": "http://mt1.google.com/vt/lyrs=m@1550000&hl=de&x={X}&y={Y}&z={LOD}&s=G"
+							}
+						]
+					},
+					{
+						"name": "BINGMAP",
+						"type": "",
+						"description": "",
+						"tileX": "256",
+						"tileY": "256",
+						"maxLOD": "19",
+						"Source": [
+							{
+								"id": "server1",
+								"url": "http://ecn.t0.tiles.virtualearth.net/tiles/r{QUAD}?g=685&mkt=de-de&lbl=l1&stl=h&shading=hill&n=z"
+							},
+							{
+								"id": "server2",
+								"url": "http://ecn.t1.tiles.virtualearth.net/tiles/r{QUAD}?g=685&mkt=de-de&lbl=l1&stl=h&shading=hill&n=z"
+							},
+							{
+								"id": "server3",
+								"url": "http://ecn.t2.tiles.virtualearth.net/tiles/r{QUAD}?g=685&mkt=de-de&lbl=l1&stl=h&shading=hill&n=z"
+							},
+							{
+								"id": "server4",
+								"url": "http://ecn.t3.tiles.virtualearth.net/tiles/r{QUAD}?g=685&mkt=de-de&lbl=l1&stl=h&shading=hill&n=z"
+							}
+						]
+					}
+				]
+			}
+		},
+		"MapLayerStacks": {
+			"Set": {
+				"MapLayerStack": {
+					"name": "layerStackBing",
+					"MapLayer": {
+						"name": "layer1",
+						"refMapProvider": "GOOGLEMAP",
+						"opacity": "1.0",
+						"colBkgnd": "RGB(255,255,255)"
+					}
+				}
+			}
+		},
+		"Actions": {
+			"Set": {
+            
+			}
+		},
+		"Automation": {
+		},
+		"Script": {
+			"Set": {
+			}
+		}
+	}
+}

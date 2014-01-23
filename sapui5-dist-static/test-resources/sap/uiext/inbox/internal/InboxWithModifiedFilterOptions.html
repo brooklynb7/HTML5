@@ -1,0 +1,660 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+<title>Inbox (with Page With Configuration) - sap.uiext.inbox</title>
+
+<!-- ********************************************************************** -->
+<!-- SAPUI5 Bootstrap:                                                     -->
+<!-- Extend the "libs" property if you like to import additional libraries  -->
+<!-- ********************************************************************** -->
+<script src="../../../../../resources/sap-ui-core.js"
+			type="text/javascript" 
+			id="sap-ui-bootstrap"
+			data-sap-ui-libs="sap.uiext.inbox"
+			data-sap-ui-theme="sap_goldreflection"
+			data-sap-ui-modules="sap.ui.core.plugin.DeclarativeSupport">
+		</script>
+<script type="text/javascript">	
+
+jQuery.sap.require("sap.ui.model.odata.ODataListBinding");
+
+$(function(){
+	//Create the Accordion control
+	var oAccordion1 = new sap.ui.commons.Accordion("accordion1"); 
+	var oAccordion2 = new sap.ui.commons.Accordion("accordion2"); 
+	var oAccordion3 = new sap.ui.commons.Accordion("accordion3");
+	var oAccordion4 = new sap.ui.commons.Accordion("accordion4"); 
+				
+				
+	//Building Section Priority
+	var oSection2 = new sap.ui.commons.AccordionSection("Priority");
+	oSection2.setTitle("Priority");		
+	oSection2.setMaxHeight("100px");
+		  
+	var oCheckBoxLow = new sap.ui.commons.CheckBox("chk1");
+	oCheckBoxLow.setText("Low");
+	//oCheckBoxLow.setName("chk_box");
+	oSection2.addContent(oCheckBoxLow);
+
+	var oCheckBoxMedium = new sap.ui.commons.CheckBox("chk2");
+	oCheckBoxMedium.setText("Medium");
+	//oCheckBoxMedium.setName("chk_box");
+	oSection2.addContent(oCheckBoxMedium);
+
+	var oCheckBoxHigh = new sap.ui.commons.CheckBox("chk3");
+	oCheckBoxHigh.setText("High");
+	//oCheckBoxHigh.setName("chk_box");
+	oSection2.addContent(oCheckBoxHigh);
+
+	var oCheckBoxVryHigh = new sap.ui.commons.CheckBox("chk4");
+	oCheckBoxVryHigh.setText("Very High");
+	//oCheckBoxVryHigh.setName("chk_box");
+	oSection2.addContent(oCheckBoxVryHigh);
+
+	oAccordion1.addSection( oSection2 );		
+				
+	//Building Section 3
+	var oSection3 = new sap.ui.commons.AccordionSection("Status");		
+	oSection3.setTitle("Status");
+	oSection3.setMaxHeight("100px");
+
+	var oCheckBoxRed = new sap.ui.commons.CheckBox("chk5");
+	oCheckBoxRed.setText("Ready");
+	//oCheckBoxRed.setName("chk_box");
+	oSection3.addContent( oCheckBoxRed);
+		
+
+	var oCheckBoxRes = new sap.ui.commons.CheckBox("chk6");
+	oCheckBoxRes.setText("Reserved");
+	//oCheckBoxRes.setName("chk_box");
+	oSection3.addContent( oCheckBoxRes);
+
+
+	var oCheckBoxInProgress = new sap.ui.commons.CheckBox("chk7");
+	oCheckBoxInProgress.setText("In Progress");
+	//oCheckBoxInProgress.setName("chk_box");
+	oSection3.addContent(oCheckBoxInProgress);
+
+	oAccordion2.addSection(oSection3);	
+				
+	//Building Section 4
+	var oSection4 = new sap.ui.commons.AccordionSection("CreationDate");
+	oSection4.setTitle("CreationDate");	
+	oSection4.setMaxHeight("100px");
+
+	var oCheckBoxTdy = new sap.ui.commons.CheckBox("chk8");	
+	oCheckBoxTdy.setText("Today");
+	//oCheckBoxTdy.setName("chk_box");
+	oSection4.addContent(oCheckBoxTdy);
+
+	var oCheckBoxLst7 = new sap.ui.commons.CheckBox("chk9");
+	oCheckBoxLst7.setText("Last 7 Days");
+	//oCheckBoxLst7.setName("chk_box");
+	oSection4.addContent(oCheckBoxLst7);
+
+	var oCheckBoxlst15 = new sap.ui.commons.CheckBox("chk10");	
+	oCheckBoxlst15.setText("Last 15 Days");
+	//oCheckBoxlst15.setName("chk_box");
+	oSection4.addContent(oCheckBoxlst15);
+
+	var oCheckBoxlst30 = new sap.ui.commons.CheckBox("chk11");		
+	oCheckBoxlst30.setText("Last 30 Days");
+	//oCheckBoxlst30.setName("chk_box");
+	oSection4.addContent(oCheckBoxlst30);
+				
+
+	oAccordion3.addSection( oSection4 );		
+
+	//Building Section Duedate
+	var oSection5 = new sap.ui.commons.AccordionSection("DueDate");
+	oSection5.setTitle("DueDate");	
+	oSection5.setMaxHeight("100px");
+
+	var oCheckBoxdueTdy = new sap.ui.commons.CheckBox("chk12");	
+	oCheckBoxdueTdy.setText("Today");
+	//oCheckBoxdueTdy.setName("chk_box");
+	oSection5.addContent(oCheckBoxdueTdy);
+
+	var oCheckBoxdueNst7 = new sap.ui.commons.CheckBox("chk13");
+	oCheckBoxdueNst7.setText("Next 7 Days");
+	//oCheckBoxdueNst7.setName("chk_box");
+	oSection5.addContent(oCheckBoxdueNst7);
+
+	var oCheckBoxdueNxt15 = new sap.ui.commons.CheckBox("chk14");	
+	oCheckBoxdueNxt15.setText("Next 15 Days");
+	//oCheckBoxdueNxt15.setName("chk_box");
+	oSection5.addContent(oCheckBoxdueNxt15);
+
+	var oCheckBoxdueNxt30 = new sap.ui.commons.CheckBox("chk15");		
+	oCheckBoxdueNxt30.setText("Next 30 Days");
+	//oCheckBoxdueNxt30.setName("chk_box");
+	oSection5.addContent(oCheckBoxdueNxt30);
+				
+
+	oAccordion4.addSection( oSection5 );		
+	//Accordion properties settings
+
+	//oAccordion1.setWidth("200px");
+	oAccordion1.setWidth("200px");
+	oAccordion2.setWidth("200px");
+	oAccordion3.setWidth("200px");
+	oAccordion4.setWidth("200px");
+
+	//Combo Boxes
+
+
+
+	var oLabel_combobox2 = new sap.ui.commons.Label("label_combobox2"); 
+	oLabel_combobox2.setText("Primary Filters :"); 
+
+	var oLabel_secfilters = new sap.ui.commons.Label("label_secfilters"); 
+	oLabel_secfilters.setText("Secondary Filters :"); 
+
+	var oLabel_TaskType = new sap.ui.commons.Label("label_taskType"); 
+	oLabel_TaskType.setText("Task Type : ");
+	
+	
+	jQuery.sap.declare("sap.uiext.inbox.InboxPrimaryFilterEnum");
+	var oModel2 = new sap.ui.model.json.JSONModel();
+	oModel2.setData({
+		options:[
+			{idD:"open",type:"Open Tasks", filter:sap.uiext.inbox.InboxPrimaryFilterEnum.OPEN},
+			{idD:"completed",type:"Completed Tasks", filter:sap.uiext.inbox.InboxPrimaryFilterEnum.COMPLETED},
+			{idD:"overdue",type:"Overdue Tasks", filter:sap.uiext.inbox.InboxPrimaryFilterEnum.OVERDUE},
+			{idD:"escalated",type:"Escalated Tasks", filter:sap.uiext.inbox.InboxPrimaryFilterEnum.ESCALATED}
+			],
+		 });
+	
+	var oComboBox2 = new sap.ui.commons.ComboBox("ComboBox2");
+	
+	oComboBox2.setModel(oModel2);
+	oLabel_combobox2.setLabelFor("ComboBox2");
+	
+	var oItemTemplate2 = new sap.ui.core.ListItem();
+	oItemTemplate2.bindProperty("text", "type");
+	
+	
+	
+	var oPrimaryFilter ; 
+	
+	oComboBox2.bindItems("/options", oItemTemplate2);
+	oComboBox2.attachChange(function(){
+		var s= oComboBox2.getSelectedItemId();
+		
+		var c= s.charAt(s.length-1);
+		switch(c){
+		case '0':resetSecFilters();break;
+		case '1':resetSecFilters();oSection3.setEnabled(false);oSection4.setEnabled(false);oSection5.setEnabled(false); break;
+		case '2':resetSecFilters();oSection4.setEnabled(false);oSection5.setEnabled(false);break;
+		case '3':resetSecFilters();oSection4.setEnabled(false);oSection5.setEnabled(false);break;
+		}
+		disableChkBoxes();
+		
+		var oItem = sap.ui.getCore().byId(s);
+		oPrimaryFilter = mFilterValues[oItem.getText().replace(" ","")];
+		
+	});
+	var oInputTaskType = new sap.ui.commons.TextField('TaskType');
+	oInputTaskType.setTooltip("Enter Task Type");
+	oInputTaskType.setWidth('400px');
+	oLabel_TaskType.setLabelFor('TaskType');
+	/* var oHLayout = new sap.ui.commons.layout.MatrixLayout("LayoutH", {
+		content: [oLabel_secfilters,oAccordion1, oAccordion2,oAccordion3,oAccordion4]
+	});
+	var oHLayoutTaskType = new sap.ui.commons.layout.MatrixLayout("LayoutTaskType", {
+		content: [oLabel_TaskType,oInputTaskType]
+	});
+	var oHLayoutPrimaryFilters = new sap.ui.commons.layout.MatrixLayout("LayoutPrimaryFilter", {
+		content: [oLabel_combobox2,oComboBox2]
+	}); */
+	oLabel_secfilters.setLabelFor("LayoutH");
+
+	/* var oVLayout = new sap.ui.commons.layout.VerticalLayout("LayoutV", {
+		content: [oHLayoutTaskType,oHLayoutPrimaryFilters,oHLayout]
+	}); */
+
+	var oMlayout= new sap.ui.commons.layout.MatrixLayout();
+
+	//Service URL
+
+
+	var oServiceLabel = new sap.ui.commons.Label("label_serviceUrl"); 
+	oServiceLabel.setText("Service URL: "); 
+
+	var oInputServiceURL = new sap.ui.commons.TextField('txtServiceUrl');
+	oInputServiceURL.setTooltip("Enter Service URL: ");
+	oInputServiceURL.setWidth('400px');
+	oServiceLabel.setLabelFor('txtServiceUrl');
+
+	var oServiceLabelCell= new sap.ui.commons.layout.MatrixLayoutCell();
+	oServiceLabelCell.addContent(oServiceLabel);
+
+	var oCellTaskTypeFieldCell= new sap.ui.commons.layout.MatrixLayoutCell();
+	oCellTaskTypeFieldCell.addContent(oInputTaskType);
+
+	oMlayout.createRow(oServiceLabel,oInputServiceURL);
+
+	//End
+
+
+	//Collection text Field
+	var oCollectionLabel = new sap.ui.commons.Label("label_collection"); 
+	oCollectionLabel.setText("Collection: "); 
+
+	var oInputCollection = new sap.ui.commons.TextField('txtCollection');
+	oInputCollection.setTooltip("Enter Collection Name: ");
+	oInputCollection.setWidth('200px');
+	oCollectionLabel.setLabelFor('txtCollection');
+
+	var oCollectionLabelCell= new sap.ui.commons.layout.MatrixLayoutCell();
+	oCollectionLabelCell.addContent(oCollectionLabel);
+
+	var oCellCollectionFieldCell= new sap.ui.commons.layout.MatrixLayoutCell();
+	oCellCollectionFieldCell.addContent(oInputCollection);
+
+	oMlayout.createRow(oCollectionLabelCell,oCellCollectionFieldCell);
+
+	//End
+
+
+	//UserName
+	var oUserNameLabel = new sap.ui.commons.Label("label_username"); 
+	oUserNameLabel.setText("UserName: "); 
+
+	var oInputUserName = new sap.ui.commons.TextField('txtUser');
+	oInputUserName.setTooltip("Enter User Name: ");
+	oInputUserName.setWidth('200px');
+	oUserNameLabel.setLabelFor('txtUser');
+
+	var oUserNameLabelCell= new sap.ui.commons.layout.MatrixLayoutCell();
+	oUserNameLabelCell.addContent(oUserNameLabel);
+
+	var oCellUserNameFieldCell= new sap.ui.commons.layout.MatrixLayoutCell();
+	oCellUserNameFieldCell.addContent(oInputUserName);
+
+	oMlayout.createRow(oUserNameLabel,oCellUserNameFieldCell);
+	//End
+
+	//Password
+	var oPasswordLabel = new sap.ui.commons.Label("label_password"); 
+	oPasswordLabel.setText("Password: "); 
+
+	var oInputPassword = new sap.ui.commons.PasswordField('txtPassword');
+	oInputPassword.setTooltip("Enter Password: ");
+	oInputPassword.setWidth('200px');
+	oPasswordLabel.setLabelFor('txtPassword');
+
+	var oPasswordLabelCell= new sap.ui.commons.layout.MatrixLayoutCell();
+	oPasswordLabelCell.addContent(oPasswordLabel);
+
+	var oCellPasswordFieldCell= new sap.ui.commons.layout.MatrixLayoutCell();
+	oCellPasswordFieldCell.addContent(oInputPassword);
+
+	oMlayout.createRow(oPasswordLabelCell,oCellPasswordFieldCell);
+
+	//End
+	var oCellTaskTypeLabelCell= new sap.ui.commons.layout.MatrixLayoutCell();
+	oCellTaskTypeLabelCell.addContent(oLabel_TaskType);
+
+	var oCellTaskTypeFieldCell= new sap.ui.commons.layout.MatrixLayoutCell();
+	oCellTaskTypeFieldCell.addContent(oInputTaskType);
+
+	oMlayout.createRow(oCellTaskTypeLabelCell,oCellTaskTypeFieldCell);
+
+	var oCellComboboxLabelCell= new sap.ui.commons.layout.MatrixLayoutCell();
+	oCellComboboxLabelCell.addContent(oLabel_combobox2);
+
+	var oCellComboboxFieldCell= new sap.ui.commons.layout.MatrixLayoutCell();
+	oCellComboboxFieldCell.addContent(oComboBox2);
+
+	oMlayout.createRow(oCellComboboxLabelCell,oCellComboboxFieldCell);
+
+
+	var oCellacc2 = new sap.ui.commons.layout.MatrixLayoutCell();
+	oCellacc2.addContent(oAccordion1);
+
+	var oCellacc3 = new sap.ui.commons.layout.MatrixLayoutCell();
+	oCellacc3.addContent(oAccordion2);
+
+	var oCellacc4 = new sap.ui.commons.layout.MatrixLayoutCell();
+	oCellacc4.addContent(oAccordion3);
+
+	var oCellacc5 = new sap.ui.commons.layout.MatrixLayoutCell();
+	oCellacc5.addContent(oAccordion4);
+
+	var oCellSecFilterLabel = new sap.ui.commons.layout.MatrixLayoutCell();
+	oCellSecFilterLabel.addContent(oLabel_secfilters);
+
+
+	oMlayout.createRow(oCellSecFilterLabel,oCellacc2,oCellacc3,oCellacc4,oCellacc5);
+
+	//Is GwService
+	var oGwLabel = new sap.ui.commons.Label("label_isGwService"); 
+	oGwLabel.setText("Is Gateway Service: "); 
+
+	var oInputGwChkBox = new sap.ui.commons.CheckBox('chkIsGWService');
+	oGwLabel.setLabelFor('chkIsGWService');
+
+	var oGwChkBoxLabelCell= new sap.ui.commons.layout.MatrixLayoutCell();
+	oGwChkBoxLabelCell.addContent(oGwLabel);
+
+	var oGwChkBoxCell= new sap.ui.commons.layout.MatrixLayoutCell();
+	oGwChkBoxCell.addContent(oInputGwChkBox);
+
+	oMlayout.createRow(oGwChkBoxLabelCell,oGwChkBoxCell);
+	//End
+
+	//Enable Substitution
+	var oSubsLabel = new sap.ui.commons.Label("label_EnableSubstitution"); 
+	oSubsLabel.setText("Enable Substitution : "); 
+
+	var oInputESubsChkBox = new sap.ui.commons.CheckBox('chkIsSubstitutionEnabled');
+	oSubsLabel.setLabelFor('chkIsSubstitutionEnabled');
+
+	var oESubsChkBoxLabelCell= new sap.ui.commons.layout.MatrixLayoutCell();
+	oESubsChkBoxLabelCell.addContent(oSubsLabel);
+
+	var oESubsChkBoxCell= new sap.ui.commons.layout.MatrixLayoutCell();
+	oESubsChkBoxCell.addContent(oInputESubsChkBox);
+
+	oMlayout.createRow(oESubsChkBoxLabelCell,oESubsChkBoxCell);
+
+	//End
+	var oButtonLoadData = new sap.ui.commons.Button({
+	text : "LoadData",
+	press : function() {
+		loadData();
+		
+	}
+})
+
+var oCellLoadButtonCell = new sap.ui.commons.layout.MatrixLayoutCell();
+oCellLoadButtonCell.addContent(oButtonLoadData);
+
+oMlayout.createRow(oCellLoadButtonCell);
+
+oMlayout.placeAt("matrixLayout");
+			
+setInitialValues();
+//End code for new Filters
+
+}); 
+
+//Code For new Filters
+
+var resetSecFilters= function(){
+	//oSection1.setEnabled(true);
+	sap.ui.getCore().byId('Priority').setEnabled(true);
+	sap.ui.getCore().byId('Status').setEnabled(true);
+	sap.ui.getCore().byId('CreationDate').setEnabled(true);
+	sap.ui.getCore().byId('DueDate').setEnabled(true);
+	for(var i=1;i<=15;i++){
+		sap.ui.getCore().byId('chk'+i).setEnabled(true);
+	}
+	
+	
+}
+				
+
+
+
+
+
+
+//oComboBox2.placeAt("sample2"); 
+
+var disableChkBoxes= function(){
+	for(var i=1;i<=15;i++){
+		if(!sap.ui.getCore().byId('chk'+i).getParent().getEnabled()){
+		sap.ui.getCore().byId('chk'+i).setEnabled(false);
+		}
+	}
+	
+}
+
+
+
+function loadData() {
+	
+	// fetch the relevant properties
+	var sServiceUrl = sap.ui.getCore().byId("txtServiceUrl").getValue();
+	var sCollection = sap.ui.getCore().byId("txtCollection").getValue();
+	var bUseIsGWService = sap.ui.getCore().byId("chkIsGWService").getChecked();
+
+	var sUser = sap.ui.getCore().byId("txtUser").getValue();
+	var sPassword = sap.ui.getCore().byId("txtPassword").getValue();
+
+	sUser = sUser && sUser.length > 0 ? sUser : null;
+	sPassword = sPassword && sPassword.length > 0 ? sPassword : null;
+	
+	
+	// modify the service url when using a proxy
+	var sTargetUrl = "../../../../../proxy/" + sServiceUrl.replace("://", "/");
+	
+	var inx = sap.ui.getCore().byId("bpminbox");
+	inx.setSubstitutionEnabled(true);
+	//inx.initialize();
+	inx.setHandleBindings(true);
+		
+	var oModel;
+	if(bUseIsGWService){
+		 oModel = new sap.ui.model.odata.ODataModel(sTargetUrl,true,sUser,sPassword);
+	}else {
+		oModel = new sap.ui.model.odata.ODataModel(sTargetUrl,true);
+		oModel.setCountSupported(true);
+	}
+		
+	inx.setModel(oModel);
+	
+	//create filters
+	var core = sap.ui.getCore();
+	
+	var mFilterValues = {OpenTasks: sap.uiext.inbox.InboxPrimaryFilterEnum.OPEN,
+			CompletedTasks: sap.uiext.inbox.InboxPrimaryFilterEnum.COMPLETED,
+			OverdueTasks : sap.uiext.inbox.InboxPrimaryFilterEnum.OVERDUE,
+			EscalatedTasks : sap.uiext.inbox.InboxPrimaryFilterEnum.ESCALATED
+			};
+	
+	
+	var oComboBox2 = core.byId("ComboBox2")
+	var s= oComboBox2.getSelectedItemId();
+	
+	var oItem = sap.ui.getCore().byId(s);
+	oPrimaryFilter = oItem ? mFilterValues[oItem.getText().replace(" ","")] : undefined;
+	
+	//create Secondary Filters
+	var filters= {TaskTypeFilters:[],SecondaryFilters:{Status:[],Priority:[],CreationDate:[],DueDate:[]}};
+	var str="";
+	var id="";
+	var s="";
+	
+	var mPrioSecondaryFilters = {
+			Low : sap.uiext.inbox.InboxSecondaryFilterValuesEnum.Priority.LOW,
+			Medium : sap.uiext.inbox.InboxSecondaryFilterValuesEnum.Priority.MEDIUM,
+			High : sap.uiext.inbox.InboxSecondaryFilterValuesEnum.Priority.HIGH,
+			VeryHigh : sap.uiext.inbox.InboxSecondaryFilterValuesEnum.Priority.VERYHIGH
+	};
+	
+	var mStatusSecondaryFilters = {
+			Ready : sap.uiext.inbox.InboxSecondaryFilterValuesEnum.Status.READY,
+			Reserved : sap.uiext.inbox.InboxSecondaryFilterValuesEnum.Status.RESERVED,
+			InProgress : sap.uiext.inbox.InboxSecondaryFilterValuesEnum.Status.INPROGRESS
+	};
+	
+	var mDueDateSecondaryFilters = {
+			Today : sap.uiext.inbox.InboxSecondaryFilterValuesEnum.DueDate.TODAY,
+			Next7Days : sap.uiext.inbox.InboxSecondaryFilterValuesEnum.DueDate.NEXT7DAYS,
+			Next15Days : sap.uiext.inbox.InboxSecondaryFilterValuesEnum.DueDate.NEXT15DAYS,
+			Next30Days : sap.uiext.inbox.InboxSecondaryFilterValuesEnum.DueDate.NEXT30DAYS
+	};
+	
+	var mStartDateSecondaryFilters = {
+			Today : sap.uiext.inbox.InboxSecondaryFilterValuesEnum.StartDate.TODAY,
+			Last7Days : sap.uiext.inbox.InboxSecondaryFilterValuesEnum.StartDate.LAST7DAYS,
+			Last15Days : sap.uiext.inbox.InboxSecondaryFilterValuesEnum.StartDate.LAST15DAYS,
+			Last30Days : sap.uiext.inbox.InboxSecondaryFilterValuesEnum.StartDate.LAST30DAYS
+	};
+	
+	
+	
+	for(var i=1;i<=15;i++){
+		if(sap.ui.getCore().byId('chk'+i).getParent().getEnabled()&&sap.ui.getCore().byId('chk'+i).getChecked()){
+			id=sap.ui.getCore().byId('chk'+i).getParent().getId();
+			switch(id){
+			case 'Status' : filters.SecondaryFilters.Status.push(sap.ui.getCore().byId('chk'+i).getText()); break;
+			case 'Priority': filters.SecondaryFilters.Priority.push(sap.ui.getCore().byId('chk'+i).getText()); break;
+			case 'CreationDate':filters.SecondaryFilters.CreationDate.push(sap.ui.getCore().byId('chk'+i).getText()); break;
+			case 'DueDate':filters.SecondaryFilters.DueDate.push(sap.ui.getCore().byId('chk'+i).getText()); break;
+			}
+		//s+=sap.ui.getCore().byId('chk'+i).getParent().getId()+sap.ui.getCore().byId('chk'+i).getText();
+		//filters.push(sap.ui.getCore().byId('chk'+i).getText());
+		}
+	}
+	var sPrimaryFilters = sap.ui.getCore().byId('TaskType').getValue();
+	if( sPrimaryFilters !== undefined && sPrimaryFilters !== "")
+	{
+		var str= sPrimaryFilters.split(',');	
+		jQuery.each(str,function(index, st){
+		filters.TaskTypeFilters.push(st);
+		});
+	}
+	
+	var aFilterObjects = [], values = [];
+	
+	var taskTypeFilters = filters.TaskTypeFilters ;
+	var iLength = taskTypeFilters.length;
+	
+	if(iLength > 0){
+		var taskTypeFilterObj = {sPath: sap.uiext.inbox.InboxSecondaryFilterPathEnum.TASKTYPE, values: taskTypeFilters};
+		aFilterObjects.push(taskTypeFilterObj);
+	}
+	
+	//TODO: make a map and improve this implementation
+	
+	var statusFilters = filters.SecondaryFilters.Status ;
+	iLength = statusFilters.length;
+	
+	
+	if(iLength > 0){
+		
+		for(var i=0; i < iLength; i++){
+			values.push(mStatusSecondaryFilters[statusFilters[i].replace(/\s/g, '')]);
+		}
+		
+		var statusFilterObj = {sPath: sap.uiext.inbox.InboxSecondaryFilterPathEnum.STATUS, values: values};
+		aFilterObjects.push(statusFilterObj);
+	}
+	
+	var prioFilters = filters.SecondaryFilters.Priority ;
+	iLength = prioFilters.length;
+	
+	
+	if(iLength > 0){
+		values = [];
+		for(var i=0; i < iLength; i++){
+			values.push(mPrioSecondaryFilters[prioFilters[i].replace(/\s/g, '')]);
+		}
+		
+		var prioFilterObj = {sPath: sap.uiext.inbox.InboxSecondaryFilterPathEnum.PRIORITY, values: values};
+		aFilterObjects.push(prioFilterObj);
+	}
+	
+	
+	var dueDateFilters = filters.SecondaryFilters.DueDate ;
+	iLength = dueDateFilters.length;
+	
+	
+	if(iLength > 0){
+		values = [];
+		for(var i=0; i < iLength; i++){
+			values.push(mDueDateSecondaryFilters[dueDateFilters[i].replace(/\s/g, '')]);
+		}
+		
+		var dueDateFilterObj = {sPath: sap.uiext.inbox.InboxSecondaryFilterPathEnum.DUEDATE, values: values};
+		aFilterObjects.push(dueDateFilterObj);
+	}
+	
+	var startDateFilters = filters.SecondaryFilters.CreationDate ;
+	iLength = startDateFilters.length;
+	
+	
+	if(iLength > 0){
+		values = [];
+		for(var i=0; i < iLength; i++){
+			values.push(mStartDateSecondaryFilters[startDateFilters[i].replace(/\s/g, '')]);
+		}
+		
+		var startDateFilterObj = {sPath: sap.uiext.inbox.InboxSecondaryFilterPathEnum.STARTDATE, values: values};
+		aFilterObjects.push(startDateFilterObj);
+	}
+	
+	
+	
+	var oFilterCriteria = new sap.uiext.inbox.InboxFilters();  
+	if(oPrimaryFilter){
+		var oPrimaryFilterObj = new sap.uiext.inbox.InboxPrimaryFilters();
+		oPrimaryFilterObj.setFilter(oPrimaryFilter);
+		oFilterCriteria.setPrimaryFilter(oPrimaryFilterObj);
+	}
+	
+	if(aFilterObjects.length > 0){
+		var oSecondaryFilterObj = new sap.uiext.inbox.InboxSecondaryFilters();
+		oSecondaryFilterObj.setStandardFilters(aFilterObjects);
+		oFilterCriteria.setSecondaryFilter(oSecondaryFilterObj);
+	}
+	
+	inx.bindTasks("/" + sCollection, oFilterCriteria);
+	inx.isCustomAttributesEnabled = true;
+	
+	$(document).ajaxSend(function(e, xhr, settings){
+		 if(settings.url.search(sServiceUrl) != -1){
+			 xhr.setRequestHeader("x-csrf-token", that.oModel.oHeaders["x-csrf-token"]);
+		 }
+	});
+} // fn: loadData
+
+function setSubstitution(oControlEvent) {
+	var inx1 = sap.ui.getCore().byId("bpminbox");
+	if(oControlEvent.mParameters.checked) {
+		inx1.setSubstitutionEnabled(true);
+	} else {
+		inx1.setSubstitutionEnabled(false);
+	}
+}
+
+
+var setInitialValues= function(){
+	var sServiceUrl = "http://localhost:8080/mockodata/BPMTasks.svc/";
+	var sCollection = "TaskCollection";
+	var sInitialStatusFilter = "READY";
+	var sInitialPriorityFilter = "LOW,MEDIUM";
+	var sUser = "Administrator";
+	var sPassword = "abcd1234";
+	var bUseIsGWService = false;
+	
+	sap.ui.getCore().byId("txtServiceUrl").setValue(sServiceUrl);
+	sap.ui.getCore().byId("txtCollection").setValue(sCollection);
+	/* sap.ui.getCore().byId("statusFilter").setValue(sInitialStatusFilter);
+	sap.ui.getCore().byId("priorityFilter").setValue(sInitialPriorityFilter); */
+	sap.ui.getCore().byId("txtUser").setValue(sUser);
+	sap.ui.getCore().byId("txtPassword").setValue(sPassword);
+	sap.ui.getCore().byId("chkIsGWService").setChecked(bUseIsGWService);
+	sap.ui.getCore().byId("chkIsSubstitutionEnabled").setChecked(true);
+	
+}
+
+</script>
+
+</head>
+
+<body class="sapUiBody" role="application">
+
+	<h1>Test Page for sap.uiext.inbox.Inbox</h1>
+
+	<div id="matrixLayout"></div>
+	<div data-sap-ui-type="sap.uiext.inbox.Inbox" id="bpminbox" ></div>
+	</body>
+</html>

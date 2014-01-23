@@ -1,0 +1,153 @@
+<!DOCTYPE HTML>
+<html data-sap-ui-dk-category="Controls/ValueHolders"
+	data-sap-ui-dk-controls="sap.suite.ui.commons.DateRangeScroller">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="keywords" content="Control DateRangeScroller" />
+<title>DateRangeScroller - SAPUI5 Demo Kit</title>
+<link rel="stylesheet" type="text/css" href="../../../../../../theme/default.css"></link>
+<script id="sap-ui-bootstrap" type="text/javascript"
+	src="../../../../../../resources/sap-ui-core.js"
+	data-sap-ui-theme="sap_goldreflection"
+	data-sap-ui-libs="sap.ui.commons,sap.ui.demokit,sap.suite.ui.commons">
+    
+</script>
+<script type="text/javascript" src="../../../../../../js/utils.js"></script>
+
+<script id='DateRangeScrollerBasic' type="text/javascript">
+    // Create a simple date range scroller with a change handler 
+    var oDateRangeScroller = new sap.suite.ui.commons.DateRangeScroller();
+    oDateRangeScroller.attachChange(function(oEvent) {
+
+        var oDateRange = oEvent.getParameter('dateRange');
+        alert('Start Date:' + oDateRange.startDate + '   End Date:' + oDateRange.endDate);
+    });
+    oDateRangeScroller.placeAt("basic");
+</script>
+
+<script id='DateRangeScrollerWeek' type="text/javascript">
+    // Create a date range scroller that scrolls by week 
+    var oDateRangeScroller = new sap.suite.ui.commons.DateRangeScroller();
+    oDateRangeScroller.setDateRangeWeek(new Date("January 8, 2013"));
+    oDateRangeScroller.placeAt("week");
+</script>
+
+<script id='DateRangeScrollerWeekSpecial' type="text/javascript">
+    // Create a date range scroller that scrolls by week with a duration of 6 days and Tuesday as the first day of the week
+    var oDateRangeScroller = new sap.suite.ui.commons.DateRangeScroller();
+    var oSpecialWeek = { duration: 6, firstDayOfWeek:2};
+    oDateRangeScroller.setDateRangeWeek(new Date("January 10, 2013"),oSpecialWeek );    
+    oDateRangeScroller.placeAt("week_special");
+</script>
+
+<script id='DateRangeScrollerMonth' type="text/javascript">
+    // Create a date range scroller that scrolls by month 
+    var oDateRangeScroller = new sap.suite.ui.commons.DateRangeScroller();
+    oDateRangeScroller.setDateRangeMonth(new Date("January 1, 2013"));
+    oDateRangeScroller.placeAt("month");
+</script>
+
+<script id='DateRangeScrollerCustom' type="text/javascript">
+    // Create a date range scroller that scrolls by a custom duration of twelve days
+    var oDateRangeScroller = new sap.suite.ui.commons.DateRangeScroller();
+    oDateRangeScroller.setDateRangeCustom(new Date("January 1, 2013"), 12);
+    oDateRangeScroller.placeAt("custom");
+</script>
+
+<script id='DateRangeScrollerDateFormatApi' type="text/javascript">
+    // Create a date range scroller that overrides control's date formatting 
+    // to dafault DateFormat for German language by api call
+    var oLocale = new sap.ui.core.Locale("de");
+    var oDateRangeScroller = new sap.suite.ui.commons.DateRangeScroller();
+    oDateRangeScroller.setDateRangeWeek(new Date("January 8, 2013"));
+    oDateRangeScroller.setDateFormat(sap.ui.core.format.DateFormat.getDateInstance(oLocale));
+    oDateRangeScroller.placeAt("dateformatApi");
+</script>
+
+
+</head>
+
+<body class="sapUiDemokitBody" role="application">
+	<h1 color="Blue" icon="images/ctrls/date_range_scroller.png">DateRangeScroller</h1>
+
+	<h2>Introduction</h2>
+
+	<p>The DateRangeScroller provides a method to scroll through a
+		series of time periods, each of which is represented by a starting
+		date and an ending date, known as the date range. The user may scroll
+		to the previous or next date range. Several predefined ranges are
+		supported such as day, week, month, year, and custom. The user may
+		also set Date Format (to override the control's default formatting) by
+		an API call.</p>
+
+	<p>The DateRangeScroller provides screen reader support for users
+		with special accessibility needs. When user’s screen reader is active
+		and user tabs into the DateRangeScroller, the "DateRangeScroller" will
+		be announced and the current date range will be announced.</p>
+
+	<h2>Examples</h2>
+	<h3>Basic Example</h3>
+	<p>This example shows a basic DateRangeScroller using the default
+		date range of day. When the range is incremented or decremented a
+		change event is fired that displays the raw start and ending dates of
+		the range.</p>
+	<div code-sample="basic" script="DateRangeScrollerBasic"></div>
+
+
+	<h3>Week</h3>
+	<p>This example shows how to create a DateRangeScroller that
+		scrolls by calendar week, starting on Mondays and ending on Fridays.</p>
+
+	<div code-sample="week" script="DateRangeScrollerWeek"></div>
+
+	<h3>Specialized Week</h3>
+	<p>This example shows how to create a DateRangeScroller that
+		scrolls by special week, starting on Tuesdays and ending on Sundays.
+	</p>
+
+	<div code-sample="week_special" script="DateRangeScrollerWeekSpecial"></div>
+
+
+	<h3>Month</h3>
+	<p>This example shows how to create a DateRangeScroller that
+		scrolls by calendar month.</p>
+
+	<div code-sample="month" script="DateRangeScrollerMonth"></div>
+
+	<h3>Custom</h3>
+	<p>This example shows how to create a DateRangeScroller that
+		scrolls by a custom range of 12 days.</p>
+
+	<div code-sample="custom" script="DateRangeScrollerCustom"></div>
+
+	<h3>Locale Specific Date Formatting</h3>
+	<p>This example shows how to override the default date format with
+		your own locale specific formatting.</p>
+
+	<div code-sample="dateformatApi"
+		script="DateRangeScrollerDateFormatApi"></div>
+
+	<h2>Keyboard Support</h2>
+	<p>
+		When the input focus is set to the control, it is possible to navigate
+		to previous or next date range using the
+		<code>arrow left</code>
+		/
+		<code>arrow down</code>
+		and
+		<code>arrow right</code>
+		/
+		<code>arrow up</code>
+		keys.
+	</p>
+
+	<p>
+		See <a class="sapUiDemokitSrcLink"
+			href="../../../../../../docs/api/symbols/sap.suite.ui.commons.DateRangeScroller.html">API
+			documentation</a>
+	</p>
+
+
+</body>
+</html>

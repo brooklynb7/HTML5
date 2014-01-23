@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (c) 2012 SAP AG, All Rights Reserved -->
+<chip xmlns="http://schemas.sap.com/sapui2/services/Chip/1">
+	<implementation>
+		<sapui5>
+			<viewName>launchtile.LaunchMain.view.js</viewName>
+		</sapui5>
+	</implementation>
+	<appearance>
+		<title>Launch Tile</title>
+	</appearance>
+	<contracts>
+		<consume id="configuration">
+			<parameters>
+				<parameter name="semantic-dropdown"></parameter>
+				<parameter name="tile-title"></parameter>
+				<parameter name="tile-icon"></parameter>
+				<parameter name="row">1</parameter>
+				<parameter name="col">1</parameter>
+			</parameters>
+		</consume>
+		<consume id="writeConfiguration" />
+		<consume id="navigation"/>
+		<consume id="url"/>
+	</contracts>
+</chip>

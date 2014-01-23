@@ -1,0 +1,24 @@
+<core:View xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:charts="sap.ca.ui.charts"
+           controllerName="views.sample.chart.objectHeaderAndChart">
+    <Page id="page">
+        <content>
+            <Panel>
+                <content>
+                    <charts:ChartToolBar
+                            id="fioriSampleBarCHartWithObjectHeader"
+                            showFullScreen="true"
+                            showPersonalization="true"
+                            personalizationPressed="onPersonalizationPressed"
+                            chartTitle="Full Size Chart"
+                            >
+                        <charts:charts>
+                            <charts:Chart id="fioriSampleCombinedCHartWithObjectHeader" showTitle="false" chartType="Combination"/>
+                        </charts:charts>
+                    </charts:ChartToolBar>
+                </content>
+            </Panel>
+        </content>
+        <footer>
+        </footer>
+    </Page>
+</core:View>

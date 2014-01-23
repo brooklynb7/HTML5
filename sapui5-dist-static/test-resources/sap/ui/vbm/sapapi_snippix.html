@@ -1,0 +1,70 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <link href="style/sapvbistyle.css" type="text/css" rel="stylesheet" />
+
+        <script src="../../../../resources/sap-ui-core.js"
+            id="Script1"
+            data-sap-ui-libs="sap.ui.vbm"
+            data-sap-ui-theme="sap_goldreflection" >
+        </script>
+
+        <script>
+            // creation of visual business...............................//
+            sap.ui.localResources("vbitestapp");
+
+            function onSubmit( e )
+            {
+                if( evtoutput.innerText !== undefined )
+                   evtoutput.innerText = e.getParameter( "data" );
+                else
+				if( evtoutput.textContent !== undefined )
+                   evtoutput.textContent = e.getParameter( "data" );	// due to ff
+            };
+
+            var oVBI1 = new sap.ui.vbm.VBI( 'vbiWrap2',
+            {
+                width : 600,
+                height: 620,
+                submit: onSubmit,
+            });
+            oVBI1.placeAt("content");
+
+            // load the json and set the default text area text
+            var dat = $.getJSON("media/vbtm/main.json", function( dat ) 
+            {
+                var txt = JSON.stringify( dat, null, '  ' );
+                
+                if( srcinput.innerText !== undefined )
+                   srcinput.innerText = txt;
+                else
+				if( srcinput.textContent !== undefined )
+                   srcinput.textContent = txt;
+            });
+
+            function onBtnTest()
+            {
+                var dat = JSON.parse( srcinput.value );
+                oVBI1.load( dat );
+            };
+
+
+        </script>
+       </head>
+    
+       <body class="sapUiBody" >
+        <h1>Visual Business UI5: VBI Snippix</h1>
+        <table>
+            <tr>
+                <td><div id="content"></div></td>
+                <td><button id="btnTest" onClick="onBtnTest()">&lt;&lt;</button></td>
+                <td><textarea id="srcinput" rows="40" cols="100"></textarea></td>
+            </tr>
+            <tr>
+					
+                <td colspan="3" ><h6>Event:</h6><br><textarea style="width:100%;box-sizing:border-box" id="evtoutput" rows="8" ></textarea></td>
+            </tr>
+        </table>
+       </body>
+</html>

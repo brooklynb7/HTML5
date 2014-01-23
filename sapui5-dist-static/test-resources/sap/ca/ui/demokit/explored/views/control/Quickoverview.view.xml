@@ -1,0 +1,12 @@
+<core:View xmlns:core="sap.ui.core"
+           xmlns="sap.m" controllerName="sap.ca.ui.sample.views.control.Quickoverview">
+    <Page id="page">
+        <content>
+            <Button id="theButton" press="onPress" text="Show Quickoverview from Button"/>
+        </content>
+        <footer>
+            <Bar>
+            </Bar>
+        </footer>
+    </Page>
+</core:View>

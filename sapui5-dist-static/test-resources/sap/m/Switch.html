@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta charset="UTF-8">
+		<title>Switch - sap.m</title>
+		<style type="text/css">
+			.sapMSwtCont {
+				margin-left: 0.3125em;
+			}
+		</style>
+		<script id="sap-ui-bootstrap"
+				src="../../../resources/sap-ui-core.js"
+				data-sap-ui-libs="sap.m"
+				data-sap-ui-theme="sap_bluecrystal">
+		</script>
+		<script>
+			var oApp = new sap.m.App("myApp", {initialPage:"page1"}),
+
+				oSwitch0 = new sap.m.Switch({	// switch On
+					name: "switch-1",
+					state: true,
+					change : function(oControlEvent) {
+						jQuery.sap.log.info("Event fired: 'change' state property to " + oControlEvent.getParameter("state") + " on " + this);
+					}
+				}),
+
+				oSwitch1 = new sap.m.Switch({	// switch On
+					change : function(oControlEvent) {
+						jQuery.sap.log.info("Event fired: 'change' state property to " + oControlEvent.getParameter("state") + " on " + this);
+					}
+				}),
+
+				oSwitch2 = new sap.m.Switch({	// switch Disabled
+					enabled: false
+				}),
+
+				oSwitch3 = new sap.m.Switch({	// switch custom text
+					customTextOn: "I",
+					customTextOff: "O"
+				}),
+
+				oSwitch4 = new sap.m.Switch({	// switch custom text
+					customTextOn: "I",
+					customTextOff: "O",
+					state: true
+				}),
+
+				oSwitch5 = new sap.m.Switch({	// switch type "AcceptReject"
+					state: true,
+					type: sap.m.SwitchType.AcceptReject	// enum
+				}),
+
+				oPage1 = new sap.m.Page("page1", {
+					title:"Mobile Switch Control",
+					content : [oSwitch0, oSwitch1, oSwitch2, oSwitch3, oSwitch4, oSwitch5]
+				});
+
+			oApp.addPage(oPage1);
+
+			oApp.placeAt("body");
+		</script>
+	</head>
+	<body id="body" class="sapUiBody">
+	</body>
+</html>

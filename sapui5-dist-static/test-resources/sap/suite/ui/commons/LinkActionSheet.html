@@ -1,0 +1,215 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		
+		<title>LinkActionSheet - sap.suite.ui.commons</title>
+		<style type="text/css">
+ 			body{
+ 				overflow: hidden;
+ 			}
+ 			
+ 			.newButton.sapMBtn{
+ 				margin-right: 1em;
+ 			}
+		</style>
+		
+		<script src="../../../../../resources/sap-ui-core.js"
+			type="text/javascript"
+			id="sap-ui-bootstrap"
+			data-sap-ui-libs="sap.ui.commons,sap.suite.ui.commons,sap.m"
+			data-sap-ui-theme="sap_bluecrystal">
+		</script>
+		<script type="text/javascript">
+		
+			var app = new sap.m.App("myApp", {initialPage:"page1"});
+			
+			var oList2 = new sap.m.List({
+				inset : true
+			});
+			
+			var data = {
+				navigation : [ {
+					title : "Travel Expend",
+					description : "Access the travel expend workflow",
+					icon : "sap-icon://travel-itinerary",
+					iconInset : false,
+					type : "Navigation",
+					press : 'detailPage'
+				}, {
+					title : "Travel and expense report",
+					description : "Access travel and expense reports",
+					icon : "sap-icon://travel-expense-report",
+					iconInset : false,
+					type : "Navigation",
+					press : 'detailPage'
+				}, {
+					title : "Travel Request",
+					description : "Access the travel request workflow",
+					icon : "sap-icon://travel-request",
+					iconInset : false,
+					type : "Navigation",
+					press : 'detailPage'
+				}, {
+					title : "Work Accidents",
+					description : "Report your work accidents",
+					icon : "sap-icon://accidental-leave",
+					iconInset : false,
+					type : "Navigation",
+					press : 'detailPage'
+				}, {
+					title : "Travel Settings",
+					description : "Change your travel worflow settings",
+					icon : "sap-icon://settings",
+					iconInset : false,
+					type : "Navigation",
+					press : 'detailPage'
+				} ]
+			};
+			
+			var oItemTemplate1 = new sap.m.StandardListItem({
+				title : "{title}",
+				description : "{description}",
+				icon : "{icon}",
+				iconInset : "{iconInset}",
+				type : "{type}"
+			});
+			
+			function bindListData(data, itemTemplate, list)
+			{
+				var oModel = new sap.ui.model.json.JSONModel();
+				// set the data for the model
+				oModel.setData(data);
+				// set the model to the list
+				list.setModel(oModel);
+
+				// bind Aggregation
+				list.bindAggregation("items", "/navigation", itemTemplate);
+			}
+			
+			bindListData(data, oItemTemplate1, oList2)
+			
+			var oLinkActionSheet1 = new sap.suite.ui.commons.LinkActionSheet("linkActionSheet1", {
+				showCancelButton: false,
+				items: [
+					new sap.m.Button({
+						text: "Accept Action"
+					}),
+					new sap.m.Button({
+						text: "Reject Action"
+					}),
+					new sap.m.Button({
+						text: "Default Action"
+					})
+				],
+				placement: sap.m.PlacementType.Bottom
+			});
+
+			var oLinkActionSheet2 = new sap.suite.ui.commons.LinkActionSheet("linkActionSheet2", {
+				showCancelButton: false,
+				items: [
+					new sap.ui.commons.Link({
+						text: "SAP (new window)",
+						href: "http://www.sap.com",
+						target: "_blank"
+					}),
+					new sap.ui.commons.Link({
+						text: "SAP",
+						href: "http://www.sap.com"
+					})
+				],
+				placement: sap.m.PlacementType.Bottom
+			});
+
+			var oLinkActionSheet3 = new sap.suite.ui.commons.LinkActionSheet("linkActionSheet3", {
+				showCancelButton: false,
+				items: [
+					new sap.m.Button({
+						text: "Accept Action"
+					}),
+					new sap.m.Button({
+						text: "Reject Action"
+					}),
+					new sap.ui.commons.Link({
+						text: "SAP (new window)",
+						href: "http://www.sap.com",
+						target: "_blank"
+					}),
+					new sap.ui.commons.Link({
+						text: "SAP",
+						href: "http://www.sap.com"
+					}),
+					new sap.m.Button({
+						text: "Default Action"
+					})
+				],
+				placement: sap.m.PlacementType.Bottom
+			});
+
+			var oLinkActionSheet4 = new sap.suite.ui.commons.LinkActionSheet("linkActionSheet4", {
+				showCancelButton: false,
+				items: [
+					new sap.m.Button({
+						icon: "sap-icon://accept",
+						text: "Accept Action"
+					}),
+					new sap.m.Button({
+						icon: "sap-icon://decline",
+						text: "Reject Action"
+					}),
+					new sap.ui.commons.Link({
+						text: "SAP (new window)",
+						href: "http://www.sap.com",
+						target: "_blank"
+					}),
+					new sap.ui.commons.Link({
+						text: "SAP",
+						href: "http://www.sap.com"
+					}),
+					new sap.m.Button({
+						text: "Default Action"
+					})
+				],
+				placement: sap.m.PlacementType.Bottom
+			});
+
+			
+			var page1 = new sap.m.Page("page1", {
+				title:"LinkActionSheet Control",
+				content:[
+					new sap.m.Button({
+						text: "Only Buttons",
+						press : function() {
+							oLinkActionSheet1.openBy(this);
+						}
+					}).addStyleClass("newButton"),
+					new sap.m.Button({
+						text: "Only Links",
+						press: function(){
+							oLinkActionSheet2.openBy(this);
+						}
+					}).addStyleClass("newButton"),
+					new sap.m.Button({
+						text: "Links and Buttons",
+						press: function(){
+							oLinkActionSheet3.openBy(this);
+						}
+					}).addStyleClass("newButton"),
+					new sap.m.Button({
+						text: "Links and Mixed Buttons",
+						press: function(){
+							oLinkActionSheet4.openBy(this);
+						}
+					}).addStyleClass("newButton"),
+					oList2
+				]
+			});
+			
+			app.addPage(page1).placeAt("content");
+		</script>
+
+	</head>
+	<body id="body" class="sapUiBody">
+		<div id="content"></div>
+	</body>
+</html>

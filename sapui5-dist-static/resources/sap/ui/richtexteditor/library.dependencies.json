@@ -1,0 +1,28 @@
+{
+  "modules" : [
+    {
+      "name" : "sap/ui/richtexteditor/RichTextEditor.js",
+      "description" : "Provides control sap.ui.richtexteditor.RichTextEditor.",
+      "size" : 43692,
+      "compressedSize" : 16251,
+      "required" : ["sap/ui/richtexteditor/library.js", "sap/ui/core/Control.js", "jquery.sap.global.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ui/richtexteditor/RichTextEditorRenderer.js",
+      "description" : "Provides default renderer for control sap.ui.richtexteditor.RichTextEditor",
+      "size" : 3567,
+      "compressedSize" : 1655,
+      "required" : ["sap/ui/core/Renderer.js", "jquery.sap.global.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ui/richtexteditor/library.js",
+      "description" : "Initialization Code and shared classes of library sap.ui.richtexteditor (1.16.4)",
+      "size" : 1186,
+      "compressedSize" : 442,
+      "required" : ["sap/ui/core/Core.js", "sap/ui/core/library.js", "jquery.sap.global.js"],
+      "includes" : []
+    }
+  ]
+}

@@ -1,0 +1,116 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset='UTF-8'/>
+    <title>Qunit</title>
+
+    <!-- UI5 Bootstrap -->
+    <script id='sap-ui-bootstrap'
+            type='text/javascript'
+            src='../../../../../../resources/sap-ui-core.js'
+            data-sap-ui-theme='sap_goldreflection'
+            data-sap-ui-libs='sap.ui.commons,sap.portal.ui5'></script>
+
+    <!-- QUnit libraries -->
+    <link rel='stylesheet'
+          href='../../../../../../resources/sap/ui/thirdparty/qunit.css'
+          type='text/css' media='screen'/>
+    <script src='../../../../../../resources/sap/ui/thirdparty/qunit.js'></script>
+    <script type='text/javascript' src='/jsunit-testrunner/qunit/qunit-jsunit.js'></script>
+    <script type='text/javascript' src='../../../../../../resources/sap/ui/qunit/QUnitUtils.js'></script>
+    <script>
+
+        module('ObjectMetadata tests - sap.portal.ui5.core.ObjectMetadata');
+
+        test('Make a subclass', function () {
+
+            sap.ui.base.ManagedObject.extend('sap.portal.ui5.core.tests.TestClass', {
+
+                metadata: {
+                    'abstract': true,
+                    publicMethods: [],
+                    library: 'sap.portal.ui5.core',
+                    properties: {},
+                    aggregations: {},
+                    associations: {},
+                    events: {}
+                }
+
+            }, sap.portal.ui5.core.ObjectMetadata);
+
+            ok(sap.portal.ui5.core.tests.TestClass instanceof Function, 'Class is created');
+
+            var instance1 = new sap.portal.ui5.core.tests.TestClass;
+
+            ok(instance1.getMetadata() instanceof sap.portal.ui5.core.ObjectMetadata, 'Instance inherits metadata');
+
+        });
+
+        test('Make a subclass of subclass (metadata should be inherited)', function () {
+
+            sap.portal.ui5.core.tests.TestClass.extend('sap.portal.ui5.core.tests.TestClass2', {
+            });
+
+            var instance1 = sap.portal.ui5.core.tests.TestClass2;
+            ok(instance1.getMetadata() instanceof sap.portal.ui5.core.ObjectMetadata, 'Subclass inherits metadata from its parent');
+
+        });
+
+        test('Call super method', function () {
+
+            var calledA = false,
+                calledB = false,
+                calledC = false,
+                calledD = false;
+
+            sap.ui.base.ManagedObject.extend('sap.portal.ui5.core.tests.TestClass', {
+
+               testMethod1: function() {
+
+                    calledA = true;
+
+               },
+
+               testMethod2: function() {
+
+                    calledC = true;
+
+               }
+
+            }, sap.portal.ui5.core.ObjectMetadata);
+
+            sap.portal.ui5.core.tests.TestClass.extend('sap.portal.ui5.core.tests.TestClass2', {
+
+               testMethod1: function() {
+
+                    this._super();
+                    calledB = true;
+
+               },
+
+               testMethod2: function() {
+
+                    calledD = true;
+
+               }
+
+            });
+
+            var instance1 = new sap.portal.ui5.core.tests.TestClass2;
+            instance1.testMethod1();
+            ok(calledA, 'Both method and its super method called');
+            ok(calledB, 'Both method and its super method called');
+            instance1.testMethod2();
+            ok(!calledC, 'Super method not called');
+            ok(calledD, 'But method is called');
+
+        });
+
+    </script>
+</head>
+
+<body class='sapUiBody'>
+<div id='qunit'></div>
+<div id='uiArea0'></div>
+</body>
+</html>

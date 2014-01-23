@@ -1,0 +1,11 @@
+<template>
+	<div data-sap-ui-type="sap.m.List"  id="lrAttachments" data-items="{lr>attachments}" data-show-separators="None">
+		<div data-sap-ui-type="sap.m.StandardListItem"
+			data-icon="{path:'lr>type', formatter:'util.Formatter.attachmentIcon'}" 
+			data-title="{lr>title}, {lr>size}"
+			data-description="{lr>description}"
+			data-icon-inset="false"
+			data-info="{lr>date}" >
+		</div>
+	</div>
+</template>

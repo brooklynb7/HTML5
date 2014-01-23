@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		
+		<title>Tile Container Stand Alone Sample</title>
+		<script src="../../../../resources/sap-ui-core.js"
+			type="text/javascript" 
+			id="sap-ui-bootstrap"
+			data-sap-ui-libs="sap.ui.commons,sap.m"
+			data-sap-ui-theme="sap_bluecrystal">
+		</script>
+		
+		<script type="text/javascript">
+		jQuery.sap.require("sap.ui.core.IconPool");
+		
+		function handlePress(oEvent) {
+		    //alert('tile ' + oEvent.oSource.getTitle() + ' tapped');
+		}
+
+	    function getTiles(n, start) {
+
+	        var tiles = new Array();
+	        var sURI;
+
+	        for ( var i = start; i < (n + start); i++) {
+	            var tile = new sap.m.StandardTile("tile" + i, {
+	                icon : sap.ui.core.IconPool.getIconURI("inbox"),
+	                number : 1+ Math.pow(10,i) + ",",
+	                numberUnit : "EUR",
+	                title : "Ñagçyfox Lorem ipsum Title Ñagçyfox text Lorem ipsum Ñagçyfox",
+	                info : "1 day ago",
+	                infoState : "Success",
+	                press : handlePress
+	            });
+	            tiles.push(tile);
+	        }
+	        return tiles;
+	    }
+
+	    var tc = new sap.m.TileContainer("tc",{
+	        tiles : getTiles(20, 0)        
+	    });
+	    tc.placeAt('container');
+		</script>
+	</head>
+	<body id="body" class="sapUiBody">
+		<div style="position:relative;margin:50px;width:80%;height:600px;box-sizing:border-box" id="container">
+		</div>
+	</body>
+</html>

@@ -1,0 +1,29 @@
+
+<html>
+ <head>
+  <title>Test suite for Fiori sap.ca controls</title>
+  <script language="javascript" src="/jsunit-testrunner/app/jsUnitCore.js"></script>
+ </head>
+ <body>
+  <script language="javascript">
+
+  /**
+   * Add test pages to this test suite function.
+   * Please order alphabetically
+   */
+  function suite() {
+    var suite = new top.jsUnitTestSuite();
+    var contextPath = "/" + window.location.pathname.split("/")[1];
+    
+    // charts
+    suite.addTestPage(contextPath + "/test-resources/sap/ca/ui/qunit/lineChart.qunit.html");
+    suite.addTestPage(contextPath + "/test-resources/sap/ca/ui/qunit/BubbleChart.qunit.html");
+    //suite.addTestPage(contextPath + "/test-resources/sap/ca/ui/qunit/charts/verticalBarChart.qunit.html");
+    return suite;
+  }
+
+  redirectToTestrunnerIfRequired();
+
+  </script>
+ </body>
+</html>

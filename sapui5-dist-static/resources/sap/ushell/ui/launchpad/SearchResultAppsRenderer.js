@@ -1,0 +1,2 @@
+// Copyright (c) 2013 SAP AG, All Rights Reserved
+(function(){"use strict";jQuery.sap.declare("sap.ushell.ui.launchpad.SearchResultAppsRenderer");jQuery.sap.require("sap.ui.core.Renderer");jQuery.sap.require("sap.m.TableRenderer");sap.ushell.ui.launchpad.SearchResultAppsRenderer=sap.ui.core.Renderer.extend(sap.m.TableRenderer);sap.ushell.ui.launchpad.SearchResultAppsRenderer.renderContainerAttributes=function(r,c){sap.m.TableRenderer.renderContainerAttributes(r,c);r.addClass("sapUshellSearchResultApps")}}());

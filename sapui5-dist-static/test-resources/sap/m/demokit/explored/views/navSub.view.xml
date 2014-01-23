@@ -1,0 +1,31 @@
+<core:View
+	controllerName="views.navSub"
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core" >
+	<Page
+		id="page"
+		showNavButton="true"
+		navButtonPress="handleNavBack"
+		icon="img/144_iPad_Retina_Web_Clip.png">
+		<List
+			id="list"
+			mode="{device>/listMode}"
+			selectionChange="listSelect"
+			items="{
+				path:'nav>/items',
+				sorter: {
+					path: 'nav>name',
+					descending: false
+				}
+			}" >
+			<items>
+				<StandardListItem
+					title="{nav>name}"
+					icon="{path: 'nav>type', formatter: 'util.Formatter.navIcon'}"
+					type="{device>/listItemType}"
+					counter="{nav>count}"
+					press="itemPress" />
+			</items>
+		</List>
+	</Page>
+</core:View>

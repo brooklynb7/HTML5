@@ -1,0 +1,221 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<title>qUnit Page for sap.m.TablePersoDialog</title>
+
+		<script id="sap-ui-bootstrap" 
+			type="text/javascript"
+			src="../../../../resources/sap-ui-core.js"
+			data-sap-ui-theme="sap_bluecrystal"
+			data-sap-ui-noConflict="true"
+			data-sap-ui-compatVersion="1.16"
+			data-sap-ui-libs="sap.m">
+		</script>
+
+		<link rel="stylesheet" href="../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
+		<script type="text/javascript" src="../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+		<script type="text/javascript" src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
+		<script type="text/javascript" src="../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
+
+		<script>
+
+		jQuery.sap.require("sap.m.TablePersoDialog");
+
+
+		/**
+		* Set up a test data environment. Need a table for the perso dialog
+		*/
+		var oData = {
+			items: [
+				{ name: "Michelle", color: "orange", number: 3.14 },
+				{ name: "Joseph", color: "blue", number: 1.618 },
+				{ name: "David", color: "green", number: 0 },
+			],
+			cols: ["Name", "Color", "Number"]
+		};
+
+		var oTable = new sap.m.Table("idRandomDataTable", {
+			inset: true,
+			headerText: "Random Data",
+			headerContent: [
+				new sap.m.Button("idPersonalizationButton", {
+					icon: "sap-icon://table-view"
+				})
+			],
+			columns: oData.cols.map(function (colname) {
+				return new sap.m.Column({ header: new sap.m.Label({ text: colname })})
+			})
+		});
+
+		oTable.setModel(new sap.ui.model.json.JSONModel(oData));
+		oTable.bindAggregation("items", "/items", new sap.m.ColumnListItem({
+			cells: oData.cols.map(function (colname) {
+				return new sap.m.Label({ text: "{" + colname.toLowerCase() + "}" })
+			})
+		}));
+
+
+		var oTablePersoDialog = new sap.m.TablePersoDialog({persoDialogFor: oTable});
+		oTablePersoDialog.attachConfirm(function() {
+			var oPersoData = oTablePersoDialog.retrievePersonalizations();
+			for (var c = 0, cl = oPersoData.aColumns.length; c < cl; c++) {
+				var oCol = oPersoData.aColumns[c];
+				jQuery.sap.log.info("Column '" + oCol.text + "', order " + oCol.order + ", visible: " + oCol.visible);
+			}
+		});
+
+
+		var oHtml = new sap.ui.core.HTML({
+			content : '<div id="contentHolder"></div><h1 id="qunit-header">qUnit Page for sap.m.TablePersoDialog</h1><h2 id="qunit-banner"></h2><h2 id="qunit-userAgent"></h2><ol id="qunit-tests"></ol>',
+			afterRendering: function(){
+ 				oTable.placeAt("contentHolder");
+			}
+		});
+
+
+		var page = new sap.m.Page("myFirstPage", {
+			title : "TablePersoDialog Test",
+			content : oHtml
+		});
+
+		var app = new sap.m.App("myApp", {
+			initPage: "myFirstPage"
+		});
+
+		app.addPage(page).placeAt("content");
+
+
+		module("Initial Check");
+
+		test("Initialization", function() {
+			ok(!jQuery.sap.domById("__dialog0"), "TablePersoDialog is not rendered before it's ever opened.");
+			ok(oTablePersoDialog.getPersoDialogFor(), "TablePersoDialog is linked to a table");
+			strictEqual(oTablePersoDialog.getPersoDialogFor(), "idRandomDataTable", "TablePersoDialog is linked to the correct table");
+			var oPersData = oTablePersoDialog.retrievePersonalizations();
+			strictEqual(oPersData.aColumns, undefined, "No personalization data until dialog opened");
+			ok(sap.ui.getCore().byId("__dialog1"), "Columns dialog does not yet exist");
+		});
+
+
+		module("Open");
+
+		test("Open Dialog", function() {
+			oTablePersoDialog.open();
+			ok(sap.ui.getCore().byId("__dialog1"), "Columns dialog exists after open() called");
+			ok(jQuery.sap.domById("__dialog1-title"), "Columns dialog has a title rendered");
+			strictEqual(sap.ui.getCore().byId("__dialog1").getTitle(), "Columns", "Columns dialog title is 'Columns'");
+		});
+
+
+		module("Personalizations");
+
+		test("Initial Column Info", function() {
+			var oPersData = oTablePersoDialog.retrievePersonalizations();
+			ok(oPersData.aColumns, "Column personalization information available");
+			strictEqual(oPersData.aColumns.length, 3, "Column personalization information for 3 columns");
+			strictEqual(oPersData.aColumns[0].id, "__column0", "Column 0 ID is correct");
+			strictEqual(oPersData.aColumns[1].id, "__column1", "Column 1 ID is correct");
+			strictEqual(oPersData.aColumns[2].id, "__column2", "Column 2 ID is correct");
+			strictEqual(oPersData.aColumns[0].order, 0, "Column 0 order is correct");
+			strictEqual(oPersData.aColumns[1].order, 1, "Column 1 order is correct");
+			strictEqual(oPersData.aColumns[2].order, 2, "Column 2 order is correct");
+			strictEqual(oPersData.aColumns[0].text, "Name", "Column 0 text is correct");
+			strictEqual(oPersData.aColumns[1].text, "Color", "Column 1 text is correct");
+			strictEqual(oPersData.aColumns[2].text, "Number", "Column 2 text is correct");
+			strictEqual(oPersData.aColumns[0].visible, true, "column 0 visibility is correct");
+			strictEqual(oPersData.aColumns[1].visible, true, "Column 1 visibility is correct");
+			strictEqual(oPersData.aColumns[2].visible, true, "Column 2 visibility is correct");
+		});
+
+		test("After Personalization but Cancel pressed", function() {
+			// Set the 1st column to invisible and switch the last two around
+			var oButtonUp = sap.ui.getCore().byId("__button0");
+			var oButtonDown = sap.ui.getCore().byId("__button1");
+			var oButtonReset = sap.ui.getCore().byId("__button2");
+			var oButtonOk = sap.ui.getCore().byId("__button3");
+			var oButtonCancel = sap.ui.getCore().byId("__button4");
+
+			// 1st column invisible
+			sap.ui.getCore().byId("__switch0-__list0-0").setState(false);
+
+			// Switch last two around
+			sap.ui.getCore().byId("__item1-__list0-1").setSelected(true);
+			oButtonDown.firePress();
+
+			// Press Cancel
+			oButtonCancel.firePress();
+
+			var oPersData = oTablePersoDialog.retrievePersonalizations();
+
+			strictEqual(oPersData.aColumns[0].order, 0, "Column 0 order is correct");
+			strictEqual(oPersData.aColumns[1].order, 1, "Column 1 order is correct");
+			strictEqual(oPersData.aColumns[2].order, 2, "Column 2 order is correct");
+			strictEqual(oPersData.aColumns[0].text, "Name", "Column 0 text is correct");
+			strictEqual(oPersData.aColumns[1].text, "Color", "Column 1 text is correct");
+			strictEqual(oPersData.aColumns[2].text, "Number", "Column 2 text is correct");
+			strictEqual(oPersData.aColumns[0].visible, true, "column 0 visibility is correct");
+			strictEqual(oPersData.aColumns[1].visible, true, "Column 1 visibility is correct");
+			strictEqual(oPersData.aColumns[2].visible, true, "Column 2 visibility is correct");
+		});
+
+		test("After Personalization but OK pressed", function() {
+
+			// Re open dialog
+			oTablePersoDialog.open();
+
+			// Set the 1st column to invisible and switch the last two around
+			var oButtonUp = sap.ui.getCore().byId("__button0");
+			var oButtonDown = sap.ui.getCore().byId("__button1");
+			var oButtonReset = sap.ui.getCore().byId("__button2");
+			var oButtonOk = sap.ui.getCore().byId("__button3");
+			var oButtonCancel = sap.ui.getCore().byId("__button4");
+
+			// 1st column invisible
+			sap.ui.getCore().byId("__switch0-__list0-0").setState(false);
+
+			// Switch last two around
+			sap.ui.getCore().byId("__item1-__list0-1").setSelected(true);
+			oButtonDown.firePress();
+
+			// Press OK
+			oButtonOk.firePress();
+
+			var oPersData = oTablePersoDialog.retrievePersonalizations();
+
+			strictEqual(oPersData.aColumns[0].visible, false, "column 0 visibility is now false");
+			strictEqual(oPersData.aColumns[1].order, 2, "Column 1 (Color) order is now 2");
+			strictEqual(oPersData.aColumns[2].order, 1, "Column 2 (Number) is now 1");
+		});
+
+
+		module("Dialog Size");
+
+		test("ContentWidth - default", function() {
+			var oTablePersoDialog = new sap.m.TablePersoDialog({
+				persoDialogFor: oTable
+			});
+			oTablePersoDialog.open();
+			strictEqual(oTablePersoDialog._oDialog.getContentWidth(), "", "Inner dialog has normal (i.e. empty) contentWidth value");
+			var oButtonCancel = sap.ui.getCore().byId(oTablePersoDialog._oDialog.getRightButton());
+			oButtonCancel.firePress();
+		});
+
+		test("ContentWidth - 600px", function() {
+			var oTablePersoDialog = new sap.m.TablePersoDialog({
+				persoDialogFor: oTable,
+				contentWidth: "600px"
+			});
+			oTablePersoDialog.open();
+			strictEqual(oTablePersoDialog._oDialog.getContentWidth(), "600px", "Inner dialog has 600px contentWidth value");
+			var oButtonCancel = sap.ui.getCore().byId(oTablePersoDialog._oDialog.getRightButton());
+			oButtonCancel.firePress();
+		});
+
+		</script>
+	</head>
+	<body id="body" class="sapUiBody">
+		<div id="qunit-fixture"></div>
+		<div id="content"></div>
+	</body>
+</html>

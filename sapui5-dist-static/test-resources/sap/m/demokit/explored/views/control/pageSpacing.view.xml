@@ -1,0 +1,77 @@
+<core:View
+	controllerName="views.control.pageSpacing"
+	xmlns="sap.m"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core" >
+
+	<Page
+		id="idPage"
+		title=" Product"
+		class="sapUiFioriObjectPage" >
+		<!-- this CSS class add a standard spacing to all the page content -->
+		
+		<content>
+			<Text id="description" class="marginNoBottom"/>
+			<ObjectHeader
+				title="{Name}"
+				number="{Price}"
+				numberUnit="{CurrencyCode}" >
+				<attributes>
+					<ObjectAttribute text="{WeightMeasure} {WeightUnit}" />
+					<ObjectAttribute text="{Width} x {Depth} X {Height} {DimUnit}" />
+				</attributes>
+				<statuses>
+					<ObjectStatus text="Overweight" state="Error" />
+					<ObjectStatus text="In Stock" state="Success" />
+				</statuses>
+			</ObjectHeader>
+			<IconTabBar
+				expanded="{device>/isNoPhone}">
+				<items>
+					<IconTabFilter
+						icon="sap-icon://hint"
+						text="Info">
+						<f:SimpleForm
+							minWidth="1024"
+							maxContainerCols="2"
+							layout="ResponsiveGridLayout" >
+							<f:title>
+								<core:Title text="A Form" />
+							</f:title>
+							<Label text="Label"/>
+							<Text text="Value"/>
+						</f:SimpleForm>
+					</IconTabFilter>
+					<IconTabFilter
+						icon="sap-icon://attachment"
+						text="Attachments">
+						<List headerText="A List" >
+						</List>
+					</IconTabFilter>
+					<IconTabFilter
+						icon="sap-icon://notes"
+						text="Notes">
+						<Table headerText="A Table">
+						</Table>
+					</IconTabFilter>
+				</items>
+			</IconTabBar>
+			<f:SimpleForm
+				minWidth="1024"
+				maxContainerCols="2" >
+				<f:title>
+					<core:Title text="A Form" />
+				</f:title>
+				<Label text="Label"/>
+				<Text text="Value"/>
+			</f:SimpleForm>
+			<List headerText="A List" >
+			</List>
+			<Table headerText="A Table">
+			</Table>
+			<Panel headerText="A Panel">
+			</Panel>
+		</content>
+	</Page>
+
+</core:View>

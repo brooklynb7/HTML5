@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+	<title>Test Page for UI5Factory</title>
+
+   	<script src="../../../../../../resources/sap-ui-core.js"
+            id="sap-ui-bootstrap"
+            data-sap-ui-libs="sap.ui.commons"
+            data-sap-ui-theme="sap_goldreflection" >
+    </script>
+
+   	<script>
+
+   	new sap.ui.core.Control("id-of-control");
+
+	sap.ui.core.Control.extend("my.own.custom.Control", {});
+	new my.own.custom.Control("id-of-custom-control");
+
+	new sap.ui.core.mvc.View("id-of-mvc-view", {});
+
+   	</script>
+
+</head>
+<body class="sapUiBody" role="application"></body>
+</html>

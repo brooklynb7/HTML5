@@ -1,0 +1,84 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		
+		<title>Scrolling test - sap.m</title>
+		
+		<script src="../../../../resources/sap-ui-core.js"
+			type="text/javascript" 
+			id="sap-ui-bootstrap"
+			data-sap-ui-libs="sap.m"
+			data-sap-ui-theme="sap_mvi">
+		</script>
+		
+		<script type="text/javascript">
+			var app = new sap.m.App("myApp", {initialPage:"page1"});
+			
+			var longHtml = [];
+			longHtml.push("<ol><li><input/></li>");
+			for (var i = 0; i < 70; i++) {
+				longHtml.push("<li style='width:300px'>List item " + Math.random() + "</li>");
+			}
+			longHtml.push("</ol>");
+			
+			var p1content = new sap.ui.core.HTML({content:longHtml});
+
+			var oBar = new sap.m.Bar({contentLeft: new sap.m.Text({text:"Outer Scroll container"})});
+			var oFooter = new sap.m.Bar({contentLeft: new sap.m.Text({text:"Outer Scroll container: Footer"})});
+
+			var p2content = new sap.m.ScrollContainer("scrollContainerOutside",{
+				horizontal: true,
+				vertical: true,
+				height: "500px",
+				width: "300px",
+				content: [ oBar, new sap.m.Text({text:" Some very very very very very wide text", width: "400px"})]
+			});
+			var insideContainer = new sap.m.ScrollContainer("scrollContainerInside", {
+				horizontal: true,
+				vertical: true,
+				height: "800px",
+				width: "200px",
+				content: [new sap.ui.core.HTML({content:longHtml})]
+			});
+			p2content.addAggregation("content", insideContainer);
+			p2content.addAggregation("content", oFooter);
+
+			var page1 = new sap.m.Page("page1", {
+				title:"Page 1",
+				enableScrolling: true,
+				content : [ new sap.m.Button({
+					text : "To Page 2",
+					press : function() {
+						app.to("page2");
+					}
+				}),
+				p1content
+				]
+			});
+			
+			var page2 = new sap.m.Page("page2", {
+				title:"Page 2",
+				enableScrolling: true,
+				showBackButton: true,
+				content : [ new sap.m.Button({
+					text : "Back to Page 1",
+					press : function() {
+						app.back();
+					}
+				}),
+				p2content
+				]
+			});
+
+			app.addPage(page1).addPage(page2);
+
+			app.placeAt("body");
+
+		</script>
+
+		
+	</head>
+	<body id="body" class="sapUiBody">
+	</body>
+</html>

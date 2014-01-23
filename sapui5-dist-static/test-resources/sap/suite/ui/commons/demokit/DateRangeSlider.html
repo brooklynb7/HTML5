@@ -1,0 +1,191 @@
+<!DOCTYPE HTML>
+<html data-sap-ui-dk-category="Controls/ValueHolders" data-sap-ui-dk-controls="sap.suite.ui.commons.DateRangeSlider">
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="keywords" content="Control DateRangeSlider"/>
+		
+		<title>DateRangeSlider - SAPUI5 Demo Kit</title>
+		<link rel="stylesheet" type="text/css" href="../../../../../../theme/default.css"></link>
+		
+		<script id="sap-ui-bootstrap"
+				type="text/javascript"
+				src="../../../../../../resources/sap-ui-core.js"
+				data-sap-ui-theme="sap_goldreflection"
+				data-sap-ui-libs="sap.ui.commons,sap.ui.demokit,sap.suite.ui.commons"></script>
+		<script type="text/javascript" src="../../../../../../js/utils.js"></script>
+
+		<script id='BasicControl' type="text/javascript">	
+			var oBasicSlider = new sap.suite.ui.commons.DateRangeSlider();
+			oBasicSlider.placeAt('basic_control');		
+		</script>
+		
+		
+		<script id='NoBubbles' type="text/javascript">	
+			var oBasicSlider = new sap.suite.ui.commons.DateRangeSlider({showBubbles : false});			
+			oBasicSlider.placeAt('no_bubbles');		
+		</script>
+		
+		<script id='CustomScale' type="text/javascript">	
+		
+			var oDateRangeSlider = new sap.suite.ui.commons.DateRangeSlider();		
+		
+			// Set a new range to Jan 1, 2015 to December 31, 2019.
+			oDateRangeSlider.setMax(new Date(2019, 11, 31)); 
+			oDateRangeSlider.setMin(new Date(2015, 0, 1));
+			
+			// Reposition grips to the new max and min dates.
+			oDateRangeSlider.setValue(new Date(2015, 0, 1));
+			oDateRangeSlider.setValue2(new Date(2019, 11, 31)); 
+			
+			oDateRangeSlider.placeAt('custom_scale');				
+
+		</script>
+		
+		<script id='CustomLabels' type="text/javascript">	
+					
+			// Create a slider and configure it to display step labels.
+			var oDateRangeSlider = new sap.suite.ui.commons.DateRangeSlider({stepLabels: true});	
+			
+			// Reset max an min values to the start and end of 2013 and reposition the right grip
+			// to the end of the year.
+			var dEndOfYear = new Date(2013, 11, 31);
+			oDateRangeSlider.setMax(dEndOfYear);
+			oDateRangeSlider.setMin(new Date(2013, 0, 1));
+			oDateRangeSlider.setValue2(dEndOfYear);
+			
+			// Add Quarter labels
+			oDateRangeSlider.setLabels(['Q1','Q2','Q3','Q4', 'Q1']);
+			
+			oDateRangeSlider.placeAt('custom_labels');				
+
+		</script>	
+		
+		<script id='MonthGranularity' type="text/javascript">	
+			var oDateRangeSliderMonth = new sap.suite.ui.commons.DateRangeSlider();
+			oDateRangeSliderMonth.setMonthGranularity();
+			oDateRangeSliderMonth.placeAt('month_granularity');
+		</script>
+		
+		<script id='DateFormatAPI' type="text/javascript">
+		    // Create a date range slider that overrides control's date formatting 
+		    // to dafault DateFormat for German language by api call
+		    var oLocale = new sap.ui.core.Locale("de");
+		    var oDateRangeSliderFormatApi = new sap.suite.ui.commons.DateRangeSlider();
+		    oDateRangeSliderFormatApi.setDateFormat(sap.ui.core.format.DateFormat.getDateInstance(oLocale));
+		    oDateRangeSliderFormatApi.placeAt("dateformatApi");
+		</script>
+		
+		<script id='PinGrip' type="text/javascript">
+		    // Pin Grip of DateRangeSlider by setting pinGrip property to true
+		    var oDateRangeSliderPinGrip = new sap.suite.ui.commons.DateRangeSlider("pinGripSlider", {pinGrip: true});
+		    oDateRangeSliderPinGrip.placeAt("pin_grip");
+		</script>
+				
+	</head>
+	
+	<body class="sapUiDemokitBody" role="application">
+		<h1 color="Blue" icon="images/ctrls/date_range_slider.png">DateRangeSlider</h1>
+		
+		<h2>Introduction</h2>
+				
+		<p>
+			<p>
+				The Date Range Slider provides the user with a slider control for selecting a range of dates.
+			</p>
+			<p>
+				The overall slider range is bounded by <code>min</code> and <code>max</code> date values. In addition, each grip is bounded by the other, meaning
+				that one grip cannot be moved over and then beyond the other grip.
+			<p>
+			<p>
+				The slider bar is divided into equal parts depending on the values of <code>max</code>, <code>min</code>, and <code>totalUnits</code>. Each part is known as a unit
+				and represents the amount of time between two dates. Each date value may be visually marked with a tick (small vertical line on the bar) and a label that displays
+				the date value. You may also show a bubble over each grip that displays grip date value. Overall display of labels is controlled by the <code>stepLabels</code> property.
+				It is also possible to supply your own custom labels using the <code>labels</code> property.
+			</p>
+			<p>
+				The slider supports both day (default) and month granularity. This sets the minimum duration for a single unit to either day or month.  For example, when month
+				granularity is used there is one month between adjacent dates.
+			</p>
+			<p>
+				By default date values are formatted according to <code>sap.ui.core.format.DateFormat</code> medium format. You may use the <code>setDateFormat()</code> method to specify
+				a custom format. When month granularity is used then only month and year are displayed.
+			</p>
+			<p>
+				The slider can be controlled via mouse or keyboard. The <code>liveChange</code> event is fired as the user slides the grip along the bar.
+				The <code>change</code> event is fired when a grip is set to its final value (mouse button released). 
+			</p>
+		
+		<h2>Examples</h2>
+	
+		<h3 style="margin-bottom: 30px">Basic DateRangeSlider</h3>
+		<div code-sample="basic_control" script="BasicControl"></div>
+				
+		
+		<h3>DateRangeSlider without Bubbles</h3>
+		<p style="margin-bottom: 30px">
+		    You can make the date range slider bubbles not display using the <code>showBubbles</code> property.
+	    </p>
+		<div code-sample="no_bubbles" script="NoBubbles"></div>
+		
+		<h3>DateRangeSlider with Custom Range and Grip Positions</h3>
+		<p style="margin-bottom: 30px">
+		    You can set the maximum and minimum values for the slider using the <code>setMin()</code> and <code>setMax()</code> functions. By
+		    default the slider uses a range of 365 days, where the minimum date is one year before the current date. This can be changed to
+		    increase or decrease the range of dates by setting the desired minimum and maximum values.
+		    
+		    You can also change the position of the slider grips using <code>setValue()</code> and <code>setValue2()</code>.
+	    </p>
+	    <div code-sample="custom_scale" script="CustomScale"></div>
+	    			
+		
+		<h3>DateRangeSlider with Custom Labels</h3>
+		<p style="margin-bottom: 30px">
+		    You can create your own labels and display values other than dates.  Here is a slider that displays labels for year quarters.		   
+	    </p>		
+	    <div code-sample="custom_labels" script="CustomLabels"></div>
+	    
+	    <h3>DateRangeSlider with Month Granularity</h3>
+		<p style="margin-bottom: 30px">
+		    The default granularity for DateRangeSlider is DAY. You can change the Granularity to MONTH using the <code>setMonthGranularity()</code> function.
+		    It can again be switch to DAY using the <code>setDayGranularity()</code> function. 
+	    </p>		
+	    <div code-sample="month_granularity" script="MonthGranularity"></div>		
+		
+		<h3>Locale Specific Date Formatting</h3>
+		<p>This example shows how to override the default date format with your own locale specific formatting.
+		   This reformats labels, bubble text labels and tool tips for the control.
+		</p>
+		<div code-sample="dateformatApi" script="DateFormatAPI"></div>
+		
+		<h3>DateRangeSlider with Pinned Grip</h3>
+		<p>This example shows how to pin a grip to a specific date such that it cannot be adjusted. Here the left grip is pinned while the right grip can still
+		be adjusted. Once a grip is pinned it cannot be moved by dragging, clicking the slider bar, or using the keyboard arrow keys.
+		</p>
+
+		<div code-sample="pin_grip" script="PinGrip"></div>
+		
+		<h2>Keyboard Support</h2>
+		<p>
+			It is possible to move the slider grips using the arrow keys. <code>Arrow left</code> and <code>Arrow down</code> will decrease the grip value.
+			<code>Arrow right</code> and <code>Arrow up</code> will increase the grip value.
+		</p>
+		
+		<h2>ARIA Support</h2>
+		<p>
+			The DateRangeSlider control implements the following properties from the ARIA role <code>slider</code>:
+			<ul>
+				<li><code>aria-valuemax</code>
+				<li><code>aria-valuemin</code>
+				<li><code>aria-valuenow</code>
+			</ul> 
+		</p>
+		<p>
+		See <a class="sapUiDemokitSrcLink"
+			href="../../../../../../docs/api/symbols/sap.suite.ui.commons.DateRangeSlider.html">API
+			documentation</a>
+		</p>
+		
+		  
+	</body>
+</html>

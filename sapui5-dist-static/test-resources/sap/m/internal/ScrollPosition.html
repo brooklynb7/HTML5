@@ -1,0 +1,139 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		
+		<title>Test of scroll positions</title>
+		
+		<script src="../../../../resources/sap-ui-core.js"
+			type="text/javascript"
+			id="sap-ui-bootstrap"
+			data-sap-ui-libs="sap.m"
+			data-sap-ui-theme="sap_bluecrystal">
+		</script>
+		
+		<script type="text/javascript">
+			
+			
+			var app = new sap.m.App("myApp");
+			
+			var page1 = new sap.m.Page("page1", {
+				title : "Test Page",
+				footer : new sap.m.Bar({
+					contentMiddle : []
+				})
+			});
+			
+			var page2 = new sap.m.Page("page2", {
+				title : "Test Page 2",
+				showNavButton: true,
+				navButtonPress: function(){
+					app.back();
+				}
+			});
+			
+			var page3 = new sap.m.Page("page3", {
+				title : "Test Page 3",
+				showNavButton: true,
+				navButtonPress: function(){
+					app.back();
+				}
+			});
+			
+			
+			var nav = new Array();
+			for ( var i = 0; i < 100; i++) {
+				nav[i] = new Array();
+				nav[i].title = "List Item No: " + i;
+				nav[i].description = Math.round(Math.random()*9) + " Description Text";
+				nav[i].type = sap.m.ListType.Navigation;
+			}
+			
+			var dataOverview = {
+				navigation : nav
+			}
+				
+				
+			var oItemTemplate = new sap.m.StandardListItem({
+				title : "{title}",
+				description : "{description}",
+				icon : "../images/travel_expend.png",
+				activeIcon : "../images/travel_expend_grey.png",
+				type : "{type}",
+				press: function(){
+					app.to("page2");
+				}
+			});
+			
+			var oItemTemplate2 = new sap.m.StandardListItem({
+				title : "{title}",
+				description : "{description}",
+				icon : "../images/travel_expend.png",
+				activeIcon : "../images/travel_expend_grey.png",
+				type : "{type}",
+				press: function(){
+					app.to("page3");
+				}
+			});
+
+			var oList1 = new sap.m.List({
+				growing : true,
+				growingThreshold : 10,
+				growingScrollToLoad: false
+			});
+			
+			
+			var oList2 = new sap.m.List();
+			
+			function bindListData(data, itemTemplate, list) {
+				jQuery.sap.require("sap.ui.model.json.JSONModel");
+				var oModel = new sap.ui.model.json.JSONModel();
+				oModel.setData(data);
+				// set the model to the list
+				list.setModel(oModel);
+				
+				// bind Aggregation
+				list.bindAggregation("items", "/navigation", itemTemplate);
+			}
+			
+			
+			
+			var oRerenderPageButton = new sap.m.Button({
+				text:"Rerender Page 1",
+				press: function() {
+					page1.rerender();
+				}
+			});
+			var oRemovePageButton = new sap.m.Button({
+				text:"Remove Page 1",
+				press: function() {
+					page1.$().remove();
+				}
+			});
+			var oRerenderAppButton = new sap.m.Button({
+				text:"Rerender App",
+				press: function() {
+					app.rerender();
+				}
+			});
+			
+			bindListData(dataOverview, oItemTemplate, oList1);
+			bindListData(dataOverview, oItemTemplate2, oList2);
+			page1.addContent(oList1);
+			page2.addContent(oRerenderPageButton)
+				.addContent(oRemovePageButton)
+				.addContent(oRerenderAppButton)
+				.addContent(oList2);
+			app.addPage(page1).addPage(page2).addPage(page3);
+				
+			app.placeAt("body");
+			
+			window.setInterval(function(){
+				jQuery.sap.log.info("page1 scrollTop: " + jQuery.sap.domById("page1-cont").scrollTop + "; page1 scroller thinks: " + page1.getScrollDelegate()._scrollY);
+			}, 4000);
+		</script>
+		
+	</head>
+	<body id="body" class="sapUiBody">
+	</body>
+</html>

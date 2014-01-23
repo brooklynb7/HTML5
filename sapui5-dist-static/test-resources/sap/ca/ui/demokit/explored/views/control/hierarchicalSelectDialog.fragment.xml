@@ -1,0 +1,23 @@
+<ui:HierarchicalSelectDialog
+        xmlns="sap.m" xmlns:ui="sap.ca.ui"
+        title="Hierarchical Select Dialog"
+        width="300px"
+        height="300px"
+        select="onItemSelected"
+        cancel="onCancel">
+    <ui:HierarchicalSelectDialogItem title="Work Items" entityName="json>/WorkItems">
+        <ui:listItemTemplate>
+            <StandardListItem title='{json>name}' description='{json>description}' icon="sap-icon://lab"/>
+        </ui:listItemTemplate>
+    </ui:HierarchicalSelectDialogItem>
+    <ui:HierarchicalSelectDialogItem title="Page 2" entityName="json>ItemDetails">
+        <ui:listItemTemplate>
+            <StandardListItem title='{json>name}' description='{json>description}' icon="sap-icon://lab"/>
+        </ui:listItemTemplate>
+    </ui:HierarchicalSelectDialogItem>
+    <ui:HierarchicalSelectDialogItem title="Page 3" entityName="json>ItemSubDetails">
+        <ui:listItemTemplate>
+            <StandardListItem title='{json>name}' description='{json>description}' icon="sap-icon://lab"/>
+        </ui:listItemTemplate>
+    </ui:HierarchicalSelectDialogItem>
+</ui:HierarchicalSelectDialog>

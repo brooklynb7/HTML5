@@ -1,0 +1,30 @@
+<core:View xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form"
+	xmlns="sap.m" controllerName="sap.ca.ui.quickoverview.Employee" 
+	resourceBundleName="sap.ca.ui.i18n.i18n" resourceBundleAlias="ca_i18n">
+
+	<!-- Contact I nformation -->
+	<form:SimpleForm id="bcContactContainer" minWidth="1024" class="bcUpperContainer" maxContainerCols="2">
+		<form:content>
+			<core:Title id="bcTitleContact" text="{ca_i18n>Quickoverview.employee.contacttitle}" />
+			<Label text="{ca_i18n>Quickoverview.employee.mobile}"></Label>
+			<Link id="qvContactMobile" text="{/contactmobile}" press="onTapPhone" />
+ 			<core:Icon id="qvContactSMS" src="sap-icon://iphone-2" color="#666666" press="onTapSMS"/> 
+			<Label text="{ca_i18n>Quickoverview.employee.phone}" />
+			<Link text="{/contactphone}" press="onTapPhone" />
+			<Label text="{ca_i18n>Quickoverview.employee.email}" />
+			<Link text="{/contactemail}" press="onTapEmail" />
+		</form:content>
+	</form:SimpleForm>
+	
+	<!-- Company -->
+	<form:SimpleForm id="bcCompanyContainer" minWidth="1024" class="bcLowerContainer" maxContainerCols="2">
+		<form:content>
+			<core:Title id="bcTitleCompany" text="{ca_i18n>Quickoverview.employee.companytitle}" />
+			<Label text="{ca_i18n>Quickoverview.employee.name}"></Label>
+			<Link id="qvCompLink" text="{/companyname}" press="onCompanyPress"/>
+			<Label text="{ca_i18n>Quickoverview.employee.address}" />
+			<Text text="{/companyaddress}" />
+		</form:content>
+	</form:SimpleForm>	
+
+</core:View>

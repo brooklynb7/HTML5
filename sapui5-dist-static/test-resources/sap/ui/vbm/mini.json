@@ -1,0 +1,55 @@
+{
+	"SAPVB": {
+		"version": "2.0",
+		"xmlns:VB": "VB",
+		"Windows": {
+			"Set": {
+				"Window": {
+					"id": "W1",
+					"type": "geo",
+					"refScene": "S1"
+				}
+			}
+		},
+		"Scenes": {
+			"Set": {
+				"SceneGeo": {
+					"id": "S1",
+					"refMapLayerStack": "OSM",
+					"initialStartPosition": "6;30;0",
+					"initialZoom": "3"
+				}
+			}
+		},
+		"MapProviders": {
+			"Set": {
+				"MapProvider":  {
+						"name": "OPENSTREETMAP",
+						"tileX": "256",
+						"tileY": "256",
+						"maxLOD": "19",
+						"Source": 
+                  [
+							{
+								"id": "SV1",
+								"url": "http://a.tile.openstreetmap.org/{LOD}/{X}/{Y}.png"
+							}
+						]
+					}
+            }
+		},
+		"MapLayerStacks": {
+			"Set": {
+				"MapLayerStack": {
+					"name": "OSM",
+					"MapLayer": {
+						"name": "L1",
+						"refMapProvider": "OPENSTREETMAP",
+						"opacity": "1.0",
+						"colBkgnd": "RGB(255,255,255)"
+					}
+				}
+			}
+		}
+	}
+}

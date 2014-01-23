@@ -1,0 +1,21 @@
+<core:View
+	controllerName="views.sample"
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core" >
+	<Page
+		id="page"
+		showNavButton="{device>/isPhone}"
+		navButtonPress="handleNavBack" >
+		<headerContent>
+			<Button
+				type="Emphasized"
+				visible="{device>/isNoPhone}"
+				icon="sap-icon://lightbulb"
+				press="handleNavToCode" />
+			<Button
+				visible="{device>/isPhone}"
+				icon="sap-icon://hint"
+				press="handleShowDescription" />
+		</headerContent>
+	</Page>
+</core:View>

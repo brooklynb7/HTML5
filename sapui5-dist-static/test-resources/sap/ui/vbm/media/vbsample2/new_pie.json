@@ -1,0 +1,36 @@
+{
+	"SAPVB": {
+		"version": "2.0",
+		"xmlns:VB": "VB",
+		"Data": {
+			"Set": {
+				"type": "N",
+				"name": "Pies",
+				"N": {
+					"name": "Pies",
+					"E": {
+						"pos": "-30.0;0.0;0.0",
+						"scale": "1.0;1.0;1.0",
+						"N": {
+							"name": "Series",
+							"E": [
+								{
+									"name": "Apple",
+									"val": "10"
+								},
+								{
+									"name": "Microsoft",
+									"val": "30"
+								},
+								{
+									"name": "Google",
+									"val": "60"
+								}
+							]
+						}
+					}
+				}
+			}
+		}
+	}
+}

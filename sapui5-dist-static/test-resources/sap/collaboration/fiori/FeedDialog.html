@@ -1,0 +1,121 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+  	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Feed Dialog</title>
+	  <script src="../../../../resources/sap-ui-core.js"
+              id="sap-ui-bootstrap"
+              data-sap-ui-libs="sap.m, sap.ui.layout, sap.collaboration"
+              data-sap-ui-theme="sap_bluecrystal" >
+       </script>
+       <!-- only load the mobile lib "sap.m" and the "sap_mvi" theme -->
+		<!--<script type="text/javascript" src="https://integration3.sapjam.com/assets/feed_widget_v1.js"></script>-->
+		<!--<<script type="text/javascript" src="https://jam4.sapjam.com/assets/feed_widget_v1.js"></script>-->
+	  	<script>
+	  		jQuery.sap.getObject("sap.ui.demokit", 0)._supportedThemes = ["sap_bluecrystal"];
+	  		//@bsp:registerModulePath
+	  		//@bsp:includeLibraryCollaboration
+			jQuery.sap.require("sap.collaboration.library"); // Add constants (Types)
+			jQuery.sap.require("sap.collaboration.components.utils.JamUtil");
+			
+			var oJamUtil = new sap.collaboration.components.utils.JamUtil();
+	
+			var proxy = "/proxy/https";
+			var contextPath = "/" + window.location.pathname.split("/")[1];
+			// if contexPath does not begin with /uilib-sample, use /uilib-sample
+			if (contextPath.toLowerCase().indexOf("/uilib-sample") != 0)
+				contextPath = "/uilib-sample";
+	   		var hostUrl = window.location.protocol + "//" + window.location.host + contextPath + proxy;
+	   		// create model
+	   		
+   			var oDataServicePath =
+   				//"/vmw3814.wdf.sap.corp:44320/sap/opu/odata/sap/sm_integration_srv_u31_000";
+				"/vmw3911.wdf.sap.corp:44335/sap/opu/odata/sap/SM_INTEGRATION_SRV";
+   				//"/vmw3815.wdf.sap.corp:44309/sap/opu/odata/sap/SM_INTEGRATION_SRV"; 
+
+   			var oDataServiceUrl = hostUrl + oDataServicePath;
+   			//@bsp:odataServiceUrl
+  		
+			var businessObject = {
+				  id: "http://services.odata.org/Northwind/Northwind.svc/Products(1)", 
+				  name: "Aniseed Syrup",
+				  type: "http://services.odata.org/Northwind/Northwind.svc/$metadata#Products",
+				  annotation_url: "https://dl.dropboxusercontent.com/u/5005669/MarkupNorthWind-V4.xml",
+				  metadata_url: "http://services.odata.org/Northwind/Northwind.svc/$metadata#Products",
+				  odata_url: "http://services.odata.org/Northwind/Northwind.svc/Products(2)",
+				  ui_url: "http://services.odata.org/Northwind/Northwind.svc/Products(3)"
+	  		};
+			
+   			//Passing settings for backward compatibility
+			var oFeedDialogComponent = sap.ui.getCore().createComponent({
+				name: "sap.collaboration.components.fiori.feed.dialog",
+				id: "feedDialogComponent",
+				settings: {	
+		         		oDataServiceUrl: oDataServiceUrl,
+		         		feedType: sap.collaboration.FeedType.object,
+		        		object: businessObject
+				}
+			});
+
+			var openFeedDialogButton = new sap.m.Button({
+				text: "Open Feed Dialog",
+				//type: sap.m.ButtonType.Accept,
+				press : function() {
+					oFeedDialogComponent.open();
+				}
+			});
+			
+			openFeedDialogButton.placeAt("content");
+			
+			
+			//Re-render component with new settings 
+			//Testing setSettings			
+			var oChangeSettingsButton = new sap.m.Button({
+		 		text: "Rerender Component",
+		 		press: function(){
+		 			businessObject.id = "http://services.odata.org/Northwind/Northwind.svc/Products(2)";
+					businessObject.name = "sales order";
+					
+		 			var oSettings = {
+	 					oDataServiceUrl: oDataServiceUrl,
+		         		feedType: sap.collaboration.FeedType.object,
+		        		object: businessObject 					
+		 			};
+		 			
+		 			oFeedDialogComponent.setSettings(oSettings);
+		 			oFeedDialogComponent.open();
+		 		}
+		 	});
+		 	
+			oChangeSettingsButton.placeAt("content");
+			
+			
+			//Re-render component with empty settings 
+			//Testing setSettings			
+			var oEmptySettingsButton = new sap.m.Button({
+		 		text: "Empty Settings",
+		 		press: function(){
+		 			businessObject.id = "http://services.odata.org/Northwind/Northwind.svc/Products(2)";
+					businessObject.name = "sales order";
+					
+		 			var oSettings = {
+	 					oDataServiceUrl: oDataServiceUrl,
+		         		//feedType: "",
+		         		//groupIds: "",
+		        		//object: businessObject 					
+		 			};
+		 			
+		 			oFeedDialogComponent.setSettings(oSettings);
+		 			oFeedDialogComponent.open();
+		 		}
+		 	});
+		 	
+			oEmptySettingsButton.placeAt("content");
+
+	  </script>
+
+  </head>
+  <body class="sapUiBody" role="application">
+         <div id="content"></div>
+  </body>
+</html>

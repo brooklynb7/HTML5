@@ -1,0 +1,172 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>View Repeater - sap.suite.ui.commons</title>
+
+<!-- UI5 Bootstrap -->
+<script id="sap-ui-bootstrap" 
+		type="text/javascript"
+		src="../../../../../../resources/sap-ui-core.js"
+		data-sap-ui-theme="sap_goldreflection"
+		data-sap-ui-libs="sap.ui.commons,sap.suite.ui.commons,sap.ui.ux3"
+		data-sap-ui-language="en">
+</script>
+
+<!-- QUnit libraries -->
+<link rel="stylesheet"
+	href="../../../../../../resources/sap/ui/thirdparty/qunit.css"
+	type="text/css" media="screen" />
+	<script src="../../../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+	<script type="text/javascript" src="../../../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
+    <script type="text/javascript" src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
+<script>
+	var dataObject = { data : [
+	    {lastName: "Platte"},
+	    {lastName: "Dwyer"},
+	    {lastName: "Wallace"},
+	    {lastName: "Wang"}
+	]};
+
+    // create JSON model
+    var oModel = new sap.ui.model.json.JSONModel();
+    oModel.setData(dataObject);
+    sap.ui.getCore().setModel(oModel);
+    
+  	//create the first view
+    var oRowTemplate1 = new sap.ui.commons.layout.MatrixLayout("theMatrix1");
+    oRowTemplate1.addStyleClass("matrix");
+    oRowTemplate1.setWidths(["50px","40px","110px"]);
+    
+    var  matrixRow, matrixCell, control;
+    // main row
+    matrixRow = new sap.ui.commons.layout.MatrixLayoutRow();
+    control = new sap.ui.commons.Label();
+    control.bindProperty("text","lastName");
+    matrixCell = new sap.ui.commons.layout.MatrixLayoutCell();
+    matrixCell.addContent(control);
+    matrixRow.addCell(matrixCell);
+    oRowTemplate1.addRow(matrixRow);
+    
+	var oViewRepeaterRendered = new sap.suite.ui.commons.ViewRepeater("VRR", {height:"100px"});
+	oViewRepeaterRendered.addView(new sap.suite.ui.commons.RepeaterViewConfiguration("viewRendered0", {
+        responsive: true,
+        itemHeight: 40,
+        itemMinWidth: 250,
+        numberOfTiles: 2,
+        path: "/data",
+        template: oRowTemplate1
+	}));
+	
+	var vl = new sap.ui.commons.layout.VerticalLayout();
+	vl.addContent(oViewRepeaterRendered);
+	vl.setWidth("500px");
+	vl.placeAt("uiArea1");
+	
+	module("General Tests - sap.suite.ui.commons.ViewRepeater", {
+	    setup: function() {
+	    	this.oViewRepeater = new sap.suite.ui.commons.ViewRepeater("VR");
+		},
+		
+	   	teardown: function() {
+	   		this.oViewRepeater.destroy();
+	   	}
+	});
+
+    test("ViewRepeater initial set up", function() {
+        ok(this.oViewRepeater._oSegBtn, "Tab panel was created");
+        ok(this.oViewRepeater._oSearchField, "Search Field was created");
+    });
+
+    test("setDefaultViewIndex", function() {
+    	this.oViewRepeater.addView(new sap.suite.ui.commons.RepeaterViewConfiguration("view0"));
+    	this.oViewRepeater.addView(new sap.suite.ui.commons.RepeaterViewConfiguration("view1"));
+    	
+    	this.oViewRepeater.setDefaultViewIndex(1);
+    	equal(this.oViewRepeater._oSegBtn.getSelectedButton(), "VR-view1-triggerBtn", "The second view is selected");
+    });
+    
+    test("addView", function() {
+    	this.oViewRepeater.addView(new sap.suite.ui.commons.RepeaterViewConfiguration("view0"));
+    	
+    	equal(this.oViewRepeater._oSegBtn.getButtons().length, 1, "Only one view");
+    	equal(this.oViewRepeater._oSegBtn.getButtons()[0].getId(), "VR-view0-triggerBtn", "The id of the first view is correct");
+    });
+    
+    test("selectView", function() {
+    	this.oViewRepeater.addView(new sap.suite.ui.commons.RepeaterViewConfiguration("view0", {
+            responsive: true,
+            itemMinWidth: 210,
+            numberOfTiles: 12,
+    	}));
+    	
+    	this.oViewRepeater.selectView(0);
+    	
+    	equal(this.oViewRepeater.getResponsive(), true, "responsive property was set from the view");
+    	equal(this.oViewRepeater.getItemMinWidth(), 210, "itemMinWidth property was set from the view");
+    	equal(this.oViewRepeater.getNumberOfRows(), 12, "numberOfTiles property was set from the view");
+    	
+    	this.oViewRepeater.selectView(1);
+    	
+    	equal(this.oViewRepeater.getResponsive(), true, "not existing view didn't change responsive property");
+    	equal(this.oViewRepeater.getItemMinWidth(), 210, "not existing view didn't change itemMinWidth property");
+    	equal(this.oViewRepeater.getNumberOfRows(), 12, "not existing view didn't change numberOfRows property"); 
+    	
+    	var notExistingViewConfiguration = new sap.suite.ui.commons.RepeaterViewConfiguration("view1", {
+            responsive: false,
+            itemMinWidth: 0,
+            numberOfTiles: 0,
+    	})
+    	this.oViewRepeater.selectView(notExistingViewConfiguration);
+    	
+    	equal(this.oViewRepeater.getResponsive(), true, "not existing view didn't change responsive property");
+    	equal(this.oViewRepeater.getItemMinWidth(), 210, "not existing view didn't change itemMinWidth property");
+    	equal(this.oViewRepeater.getNumberOfRows(), 12, "not existing view didn't change numberOfRows property");   	
+    });
+
+    test("_applyFilter", function() {
+    	this.oViewRepeater.addFilter(new sap.ui.commons.RowRepeaterFilter("second_filter", {filters:[new sap.ui.model.Filter("country","EQ", "DE")]}));
+    	
+    	this.oViewRepeater._applyFilter("second_filter", {filter: function(aFilters) {
+    		equal(aFilters.length, 1, "One filter applied");
+    		equal(aFilters[0].sPath, "country", "Correct filter was applied");
+    	}});
+    });
+    
+    test("_applySorter", function() {
+    	this.oViewRepeater.addSorter(new sap.ui.commons.RowRepeaterSorter("third_sorter", {sorter:new sap.ui.model.Sorter("country", true)}));
+
+    	this.oViewRepeater._applySorter("third_sorter", {sort: function(oSorter) {
+    		equal(oSorter.sPath, "country", "Correct sorter was applied");
+    	}});
+    });
+    
+    module("Tests for rendered control - sap.suite.ui.commons.ViewRepeater");
+    
+    test("_computeWidths", function() {
+    	oViewRepeaterRendered._computeWidths(true);
+    	
+    	equal(oViewRepeaterRendered._itemsPerRow, 2, "Correct number of items per row");
+    });
+    
+    asyncTest("startPagingAnimation", function() {
+    	oViewRepeaterRendered.iPreviousPage = 1;
+    	oViewRepeaterRendered.setCurrentPage(2);
+    	
+    	oViewRepeaterRendered.startPagingAnimation();
+    	
+    	setTimeout(function() {
+        	equal(jQuery.sap.byId("VRR-page_1").text(), "", "The first page is not displayed");
+        	equal(jQuery.sap.byId("VRR-page_2").text(), "WallaceWang", "The second page data is displayed");
+        	start();
+    	}, 1500);
+
+    });
+</script>
+</head>
+
+<body class="sapUiBody">
+	<div id="qunit"></div>
+    <div id="uiArea1"></div>
+</body>
+</html>

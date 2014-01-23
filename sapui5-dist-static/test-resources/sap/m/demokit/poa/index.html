@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta charset="UTF-8">
+	
+	<title>Purchase Order Approval</title>
+	
+	<script id="sap-ui-bootstrap" 
+		src="../../../../../resources/sap-ui-core.js"
+		data-sap-ui-theme="sap_bluecrystal"
+		data-sap-ui-xx-bindingSyntax="complex"
+		data-sap-ui-libs="sap.m, sap.me, sap.ui.layout">
+	</script>
+	
+	<script>
+	
+		// Tell UI5 where to find app content
+		sap.ui.localResources("view");
+		sap.ui.localResources("util");
+		sap.ui.localResources("model");
+		jQuery.sap.registerModulePath('Application', 'Application');
+
+		// instantiate app and let UI be rendered into 'content' html tag
+		jQuery.sap.require("Application");
+		var oApp = new Application({root : "content"});
+		
+	</script>
+</head>
+<body class="sapUiBody" id="content">
+</body>
+</html>

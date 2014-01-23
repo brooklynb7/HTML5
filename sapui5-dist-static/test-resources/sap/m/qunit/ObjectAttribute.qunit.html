@@ -1,0 +1,100 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta charset="UTF-8" />
+<title>ObjectAttribute - sap.m</title>
+
+<link rel="stylesheet" href="../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
+
+<!-- UI5 Bootstrap -->
+<script id="sap-ui-bootstrap" type="text/javascript" src="../../../../resources/sap-ui-core.js" data-sap-ui-theme="sap_bluecrystal" data-sap-ui-libs="sap.m"></script>
+
+<!-- QUnit libraries -->
+
+<script src="../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+<script type="text/javascript" src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
+<script type="text/javascript" src="../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
+
+<script type="text/javascript">
+
+	var domRef = null;
+	var eventHandler = function (oEvent) {
+		domRef = oEvent.getParameters().domRef;		
+	}
+
+	var oa1 = new sap.m.ObjectAttribute("oa1",{
+		text : "Contract #D1234567890",
+		active : true
+		});
+	
+	var oa2 = new sap.m.ObjectAttribute("oa2",{
+		text : "Created by John Doe",
+		active : true
+		});
+	
+	var oa3 = new sap.m.ObjectAttribute("oa3",{
+		text : "Update by Mary Smith",
+		active : true,
+		press : eventHandler
+		});
+	
+	oa1.placeAt("objectAttributes");
+	oa2.placeAt("objectAttributes");
+	oa3.placeAt("objectAttributes");
+	
+	module("Rendering All Fields");
+
+	test("AttributesRendered", function() {
+
+		notEqual(jQuery.sap.domById("oa1"), null, "Object attribute #1 should be rendered.");
+		notEqual(jQuery.sap.domById("oa2"), null, "Object attribute #2 should be rendered.");
+		notEqual(jQuery.sap.domById("oa3"), null, "Object attribute #3 should be rendered.");
+	});
+
+	/******************************************************************/
+
+	module("Internal API");
+	
+	var oa4 = new sap.m.ObjectAttribute("oa4",{text : ""});
+	
+	var oa5 = new sap.m.ObjectAttribute("oa5");
+	var oa6 = new sap.m.ObjectAttribute("oa6",{ text: "    \n \n \t\n \t   "});
+	
+	test ("TestIsEmpty", function() {
+		
+		ok(!oa1._isEmpty(), "Object attribute #1 is not empty");
+		ok(!oa2._isEmpty(), "Object attribute #2 is not empty");
+		ok(!oa3._isEmpty(), "Object attribute #3 is not empty");
+		ok(oa4._isEmpty(), "Object attribute #4 is empty");
+		ok(oa5._isEmpty(), "Object attribute #5 is empty");
+		ok(oa6._isEmpty(), "Object attribute #6 is empty");
+	});
+	
+	/******************************************************************/
+
+	module("Events");
+	
+	test("TestTap", function() {
+
+		qutils.triggerEvent("tap", "oa1");
+		ok(domRef===null, "Object attribute #1 should be clickable");
+		domRef = null;
+
+		qutils.triggerEvent("tap", "oa2");
+		ok(domRef===null, "Object attribute #2 should be clickable");
+		domRef = null;
+		
+		qutils.triggerEvent("tap", "oa3");
+		ok(domRef, "domRef is set");
+		equal(domRef.id, "oa3", "Object attribute #3  should be clickable");
+		domRef = null;
+	});	
+</script>
+</head>
+
+<body class="sapUiBody">
+	<div id="qunit"></div>
+	<div id="objectAttributes"></div>
+</body>
+</html>

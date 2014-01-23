@@ -1,0 +1,1155 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>DateRangeSliderInternal - sap.suite.ui.commons</title>
+
+<!-- UI5 Bootstrap -->
+<script id="sap-ui-bootstrap" type="text/javascript"
+	src="../../../../../../resources/sap-ui-core.js"
+	data-sap-ui-theme="sap_goldreflection"
+	data-sap-ui-libs="sap.ui.commons,sap.suite.ui.commons"></script>
+
+<!-- QUnit libraries -->
+<link rel="stylesheet"
+	href="../../../../../../resources/sap/ui/thirdparty/qunit.css"
+	type="text/css" media="screen" />
+<script src="../../../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+<script type="text/javascript"
+	src="../../../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
+<script type="text/javascript"
+	src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
+
+
+
+<script>
+    qutils.delayTestStart();
+
+    var sModuleSuffix = " - sap.suite.ui.commons.DateRangeSliderInternal";
+    var iIndex = 10;
+    function next() {
+
+        return iIndex++;
+    }
+
+    var sDrsId = "testSliderRendering";
+
+    var oDrs = new sap.suite.ui.commons.DateRangeSliderInternal(sDrsId);
+    oDrs.placeAt("uiArea1");
+
+    /******************************************************************/
+    module("Rendering Tests" + sModuleSuffix);
+
+    test("TestRenderedOK", function() {
+
+        notEqual(jQuery.sap.domById(sDrsId), null, "DateRangeSlider outer HTML Element should be rendered.");
+        notEqual(jQuery.sap.domById(sDrsId + "-bar"), null, "DateRangeSlider inner slider control should be rendered.");
+        notEqual(jQuery.sap.domById(sDrsId + "-grip"), null, "DateRangeSlider inner slider control grip should be rendered.");
+        notEqual(jQuery.sap.domById(sDrsId + "-grip2"), null, "DateRangeSlider inner slider control grip2 should be rendered.");
+        notEqual(jQuery.sap.domById(sDrsId + "-bubble"), null, "DateRangeSlider left bubble should be rendered.");
+        notEqual(jQuery.sap.domById(sDrsId + "-bubble2"), null, "DateRangeSlider right bubble should be rendered.");
+        notEqual(jQuery.sap.domById(sDrsId + "-bubbleTxt"), null, "DateRangeSlider left bubble text should be rendered.");
+        notEqual(jQuery.sap.domById(sDrsId + "-bubbleTxt2"), null, "DateRangeSlider right bubble text should be rendered.");
+    });
+
+    /******************************************************************/
+    var oGrip = null, oGrip2 = null;
+    var sTxtBefore = null, sTxtAftEvt = "Event caught", iClicks = 0;
+    var dValueDate = null, dValue2Date = null;
+
+    function handleChange(oEvent) {
+
+        sTxtBefore = sTxtAftEvt;
+        dValueDate = oEvent.getParameter("value");
+        dValue2Date = oEvent.getParameter("value2");
+    }
+
+    function handleLiveChange(oEvent) {
+
+        iClicks++;
+    }
+
+    var sDrsEvtId = "testSliderEvent";
+    var oDrsEvt = new sap.suite.ui.commons.DateRangeSliderInternal(sDrsEvtId);
+    oDrsEvt.attachChange(handleChange);
+    oDrsEvt.attachLiveChange(handleLiveChange);
+    oDrsEvt.placeAt("uiArea2");
+
+    module("Change/Live Change event tests" + sModuleSuffix, {
+        setup : function() {
+
+            oGrip = jQuery.sap.domById(sDrsEvtId + "-grip");
+            oGrip2 = jQuery.sap.domById(sDrsEvtId + "-grip2");
+        },
+        teardown : function() {
+
+            sTxtBefore = null;
+            dValueDate = null;
+            dValue2Date = null;
+            iClicks = 0;
+        }
+    });
+
+    test("TestChangeEventOnLeftGrip", function() {
+
+        jQuery("#" + sDrsEvtId).focus();
+        qutils.triggerMouseEvent(sDrsEvtId + "-grip", "mousedown", 1, 1);
+        qutils.triggerKeyboardEvent(sDrsEvtId + "-grip", "ARROW_RIGHT");
+        equal(sTxtBefore, sTxtAftEvt, "Change event should modify text after moving left grip");
+        ok(dValueDate instanceof Date, "Event should have start date as Date Object");
+        ok(dValue2Date instanceof Date, "Event should have end date as Date Object");
+    });
+
+    test("TestChangeEventOnRightGrip", function() {
+
+        jQuery("#" + sDrsEvtId).focus();
+        qutils.triggerMouseEvent(sDrsEvtId + "-grip2", "mousedown", 1, 1);
+        qutils.triggerKeyboardEvent(sDrsEvtId + "-grip2", "ARROW_LEFT");
+        equal(sTxtBefore, sTxtAftEvt, "Change event should modify text after moving right grip");
+    });
+
+    test("TestLiveChangeEventOnLeftGrip", function() {
+
+        jQuery("#" + sDrsEvtId).focus();
+        qutils.triggerMouseEvent(sDrsEvtId + "-grip", "mousedown", 1, 1);
+        qutils.triggerKeyboardEvent(sDrsEvtId + "-grip", "ARROW_RIGHT");
+        qutils.triggerKeyboardEvent(sDrsEvtId + "-grip", "ARROW_RIGHT");
+        qutils.triggerKeyboardEvent(sDrsEvtId + "-grip", "ARROW_RIGHT");
+        equal(iClicks, 3, "3 Live Change events should increment var clicks 3 times after moving left grip");
+    });
+
+    test("TestLiveChangeEventOnRightGrip", function() {
+
+        jQuery("#" + sDrsEvtId).focus();
+        qutils.triggerMouseEvent(sDrsEvtId + "-grip2", "mousedown", 1, 1);
+        qutils.triggerKeyboardEvent(sDrsEvtId + "-grip2", "ARROW_LEFT");
+        qutils.triggerKeyboardEvent(sDrsEvtId + "-grip2", "ARROW_LEFT");
+        equal(iClicks, 2, "2 Live Change events should increment var clicks 2 times after moving left grip");
+    });
+
+    test("TestChangeEventOnLeftGripChangingDatesCorrectly", function() {
+
+        var dValueDate1 = oDrsEvt.getDateRange().valueDate;
+        var dExpectedEndDate = new Date(dValueDate1.getTime());
+        dExpectedEndDate.setDate(dExpectedEndDate.getDate() + 2);
+
+        jQuery("#" + sDrsEvtId).focus();
+        qutils.triggerMouseEvent(sDrsEvtId + "-grip", "mousedown", 1, 1);
+        qutils.triggerKeyboardEvent(sDrsEvtId + "-grip", "ARROW_RIGHT");
+        qutils.triggerKeyboardEvent(sDrsEvtId + "-grip", "ARROW_RIGHT");
+        var dValueDate2 = oDrsEvt.getDateRange().valueDate;
+        equal(dValueDate2.getTime(), dExpectedEndDate.getTime(), "Start Date moved 2 days ahead");
+        qutils.triggerMouseEvent(sDrsEvtId + "-grip", "mousedown", 1, 1);
+        qutils.triggerKeyboardEvent(sDrsEvtId + "-grip", "ARROW_LEFT");
+        qutils.triggerKeyboardEvent(sDrsEvtId + "-grip", "ARROW_LEFT");
+        dValueDate2 = oDrsEvt.getDateRange().valueDate;
+        equal(dValueDate2.getTime(), dValueDate1.getTime(), "Start Date moved 2 days back");
+    });
+
+    test("TestChangeEventOnRightGripChangingDatesCorrectly", function() {
+
+        var dValue2Date1 = oDrsEvt.getDateRange().value2Date;
+        var dExpectedEndDate = new Date(dValue2Date1.getTime());
+        dExpectedEndDate.setDate(dExpectedEndDate.getDate() - 2);
+
+        jQuery("#" + sDrsEvtId).focus();
+        qutils.triggerMouseEvent(sDrsEvtId + "-grip2", "mousedown", 1, 1);
+        qutils.triggerKeyboardEvent(sDrsEvtId + "-grip2", "ARROW_LEFT");
+        qutils.triggerKeyboardEvent(sDrsEvtId + "-grip2", "ARROW_LEFT");
+        
+        var dValue2Date2 = oDrsEvt.getDateRange().value2Date;
+        equal(dValue2Date2.getTime(), (dExpectedEndDate.getTime()), "End Date moved 2 days back");
+        qutils.triggerMouseEvent(sDrsEvtId + "-grip2", "mousedown", 1, 1);
+        qutils.triggerKeyboardEvent(sDrsEvtId + "-grip2", "ARROW_RIGHT");
+        qutils.triggerKeyboardEvent(sDrsEvtId + "-grip2", "ARROW_RIGHT");
+        dValue2Date2 = oDrsEvt.getDateRange().value2Date;
+        equal(dValue2Date2.getTime(), dValue2Date1.getTime(), "End Date moved 2 days ahead");
+    });
+
+ 
+    /******************************************************************/
+    var sDrsBubId = "testDrsBubble";
+    var oDrsBub = new sap.suite.ui.commons.DateRangeSliderInternal(sDrsBubId);
+    oDrsBub.placeAt("uiArea3");
+
+    module("DateRangeSlider Bubble tests" + sModuleSuffix, {
+        setup : function() {
+
+        },
+        teardown : function() {
+
+        }
+    });
+
+    test("TestBubbleShowHide", function() {
+
+        oDrsBub.setShowBubbles(false);
+        oDrsBub.rerender();
+        equal(jQuery.sap.domById(sDrsBubId + "-bubble"), null, "DateRangeSlider left bubble should not be rendered.");
+        equal(jQuery.sap.domById(sDrsBubId + "-bubble2"), null, "DateRangeSlider right bubble should not be rendered.");
+        equal(jQuery.sap.domById(sDrsBubId + "-bubbleTxt"), null, "DateRangeSlider left bubble text should not be rendered.");
+        equal(jQuery.sap.domById(sDrsBubId + "-bubbleTxt2"), null, "DateRangeSlider right bubble text should not be rendered.");
+
+        oDrsBub.setShowBubbles(true);
+        oDrsBub.rerender();
+        notEqual(jQuery.sap.domById(sDrsBubId + "-bubble"), null, "DateRangeSlider left bubble should be rendered.");
+        notEqual(jQuery.sap.domById(sDrsBubId + "-bubble2"), null, "DateRangeSlider right bubble should be rendered.");
+        notEqual(jQuery.sap.domById(sDrsBubId + "-bubbleTxt"), null, "DateRangeSlider left bubble text should be rendered.");
+        notEqual(jQuery.sap.domById(sDrsBubId + "-bubbleTxt2"), null, "DateRangeSlider right bubble text should be rendered.");
+    });
+
+    test("TestBubblesShowCorrectDatesOnInit", function() {
+
+        var oDateRange = oDrsBub.getDateRange();
+        var dValueDate = oDateRange.valueDate;
+        var dValue2Date = oDateRange.value2Date;
+        
+        var sValueDateLbl = formatDate(dValueDate);
+        var sValueDateBubTxt = oDrsBub._oBubble.getText();
+
+        var sValue2DateLbl = formatDate(dValue2Date);
+        var sValue2DateBubTxt = oDrsBub._oBubble2.getText();
+
+        equal(sValueDateBubTxt, sValueDateLbl, "Value date label and api value should be same.");
+        equal(sValue2DateBubTxt, sValue2DateLbl, "Value2 date label and api value should be same.");
+    });
+
+    test("TestLeftBubbleShowsCorrectDateOnLeftGripMove", function() {
+
+        var sDateBubTxtBefore = oDrsBub._oBubble.getText();
+        jQuery("#" + sDrsBubId).focus();
+        qutils.triggerMouseEvent(sDrsBubId + "-grip", "mousedown", 1, 1);
+        qutils.triggerKeyboardEvent(sDrsBubId + "-grip", "ARROW_RIGHT");
+        var dDateAfter = oDrsBub.getDateRange().valueDate;
+        var sDateBubTxtAfter = oDrsBub._oBubble.getText();
+        notEqual(sDateBubTxtAfter, sDateBubTxtBefore, "Start dates label before and after left grip move should not be same.");
+        equal(sDateBubTxtAfter, formatDate(dDateAfter), "Start dates label and api value after left grip move should be same.");
+    });
+
+    test("TestRightBubbleShowsCorrectDateOnRightGripMove", function() {
+
+        var sDateBubTxtBefore = oDrsBub._oBubble2.getText();
+        jQuery("#" + sDrsBubId).focus();
+        qutils.triggerMouseEvent(sDrsBubId + "-grip2", "mousedown", 1, 1);
+        qutils.triggerKeyboardEvent(sDrsBubId + "-grip2", "ARROW_LEFT");
+        var dDateAfter = oDrsBub.getDateRange().value2Date;
+        var sDateBubTxtAfter = oDrsBub._oBubble2.getText();
+
+        notEqual(sDateBubTxtAfter, sDateBubTxtBefore, "End dates label before and after right grip move should not be same.");
+        equal(sDateBubTxtAfter, formatDate(dDateAfter), "End dates label and api value after right grip move should be same.");
+    });
+
+    test("TestLeftGripPositionWithMouseMove", function() {
+
+        var sDateBubTxtBefore = oDrsBub._oBubble.getText();
+        jQuery("#" + sDrsBubId).focus();
+        var oLeftBubble = jQuery.sap.domById(sDrsBubId + "-bubble");
+        var oLeftGrip = jQuery.sap.domById(sDrsBubId + "-grip");
+        var iGripLeftpx = parseInt(oLeftGrip.style.left, 10);
+        var iBubbleLeftpx = parseInt(oLeftBubble.style.left, 10);
+        var iLeftDiff = iGripLeftpx - iBubbleLeftpx;
+
+        qutils.triggerMouseEvent(sDrsBubId + "-grip", "mousedown", 1, 1, 100, 100);
+        qutils.triggerMouseEvent(sDrsBubId, "mousemove", 1, 1, 105, 100);
+        qutils.triggerMouseEvent(sDrsBubId, "mousemove", 1, 1, 110, 100);
+        qutils.triggerMouseEvent(sDrsBubId + "-grip", "mouseup", 1, 1);
+
+        var sDateBubTxtAfter = oDrsBub._oBubble.getText();
+        notEqual(sDateBubTxtAfter, sDateBubTxtBefore, "End dates label before and after left grip move should not be same.");
+
+        var iGripLeftpxAfter = parseInt(oLeftGrip.style.left, 10);
+        var iBubbleLeftpxAfter = parseInt(oLeftBubble.style.left, 10);
+        var iLeftDiffAfter = iGripLeftpx - iBubbleLeftpx;
+
+        notEqual(iGripLeftpxAfter, iGripLeftpx, "Grip left position should not be the same");
+        notEqual(iBubbleLeftpxAfter, iBubbleLeftpx, "Bubble left position should not be the same");
+        equal(iLeftDiffAfter, iLeftDiff, "The distance between left grip and left bubble should be the same.");
+    });
+
+    test("TestRightGripPositionWithMouseMove", function() {
+
+        var sDateBub2TxtBefore = oDrsBub._oBubble2.getText();
+        jQuery("#" + sDrsBubId).focus();
+        var oRightBubble = jQuery.sap.domById(sDrsBubId + "-bubble2");
+        var oRightGrip = jQuery.sap.domById(sDrsBubId + "-grip2");
+        var iGripRightpx = parseInt(oRightGrip.style.left, 10);
+        var iBubbleRightpx = parseInt(oRightBubble.style.left, 10);
+        var iRightDiff = iGripRightpx - iBubbleRightpx;
+
+        qutils.triggerMouseEvent(sDrsBubId + "-grip2", "mousedown", 1, 1, 100, 100);
+        qutils.triggerMouseEvent(sDrsBubId, "mousemove", 1, 1, 95, 100);
+        qutils.triggerMouseEvent(sDrsBubId, "mousemove", 1, 1, 90, 100);
+        qutils.triggerMouseEvent(sDrsBubId + "-grip2", "mouseup", 1, 1);
+
+        var sDateBub2TxtAfter = oDrsBub._oBubble2.getText();
+        notEqual(sDateBub2TxtAfter, sDateBub2TxtBefore, "End dates label before and after right grip move should not be same.");
+
+        var iGripRightpxAfter = parseInt(oRightGrip.style.left, 10);
+        var iBubbleRightpxAfter = parseInt(oRightBubble.style.left, 10);
+        var iRightDiffAfter = iGripRightpx - iBubbleRightpx;
+
+        notEqual(iGripRightpxAfter, iGripRightpx, "Grip2 left position should not be the same");
+        notEqual(iBubbleRightpxAfter, iBubbleRightpx, "Bubble2 left position should not be the same");
+        equal(iRightDiffAfter, iRightDiff, "The distance between right grip and right bubble should be the same.");
+    });
+
+    test("TestResizeWindow", function() {
+
+        oDrsBub.onresize();
+
+        ok(true, "Resize triggered successfully");
+    });
+
+    /******************************************************************/
+    var sDrsCodeCoverageTestsId = "drsCodeCoverageTests";
+    var oDrsCodeCoverageTests = new sap.suite.ui.commons.DateRangeSliderInternal(sDrsCodeCoverageTestsId);
+    oDrsCodeCoverageTests.setTooltip("DateRangeSlider test tooltip for rendering");
+    oDrsCodeCoverageTests.setStepLabels(true);
+    oDrsCodeCoverageTests.setEditable(false);
+    oDrsCodeCoverageTests.placeAt("uiArea4");
+
+    module("Code coverage tests" + sModuleSuffix, {
+        setup : function() {
+
+        },
+        teardown : function() {
+
+        }
+    });
+
+    test("SettingVerticalAndHeight", function() {
+
+        var sHeight = oDrsCodeCoverageTests.getHeight();
+        var bVertical = oDrsCodeCoverageTests.getVertical();
+        oDrsCodeCoverageTests.setVertical(true);
+        oDrsCodeCoverageTests.setHeight("200px");
+        ok(sHeight === oDrsCodeCoverageTests.getHeight(), "Height is not updated");
+        ok(bVertical === oDrsCodeCoverageTests.getVertical(), "Vertical is not updated");
+    });
+
+    test("EnableDisableSlider", function() {
+
+        ok(oDrsCodeCoverageTests.getEnabled(), "DateRangeSlider is enabled by default");
+        oDrsCodeCoverageTests.setEnabled(false);
+        oDrsCodeCoverageTests.setEditable(true);
+        oDrsCodeCoverageTests.rerender();
+        ok(!oDrsCodeCoverageTests.getEnabled(), "DateRangeSlider is disabled");
+
+        var dValue2DateBefore = oDrsCodeCoverageTests.getDateRange().value2Date;
+        jQuery("#" + sDrsCodeCoverageTestsId).focus();
+        qutils.triggerMouseEvent(sDrsCodeCoverageTestsId + "-grip2", "mousedown", 1, 1);
+        qutils.triggerKeyboardEvent(sDrsCodeCoverageTestsId + "-grip2", "ARROW_LEFT");
+        qutils.triggerKeyboardEvent(sDrsCodeCoverageTestsId + "-grip2", "ARROW_LEFT");
+        var dValue2DateAfter = oDrsCodeCoverageTests.getDateRange().value2Date;
+        equal(dValue2DateAfter.getTime(), dValue2DateBefore.getTime(), "Value2 Date should not have changed since control is disabled");
+    });
+
+    test("SettingInvisible", function() {
+
+        ok(oDrsCodeCoverageTests.getVisible(), "DateRangeSlider is visible by default");
+        oDrsCodeCoverageTests.setVisible(false);
+        oDrsCodeCoverageTests.rerender();
+        ok(!oDrsCodeCoverageTests.getVisible(), "DateRangeSlider is invisible");
+        equal(jQuery.sap.domById(sDrsCodeCoverageTestsId + "-grip"), null, "DateRangeSlider left grip should not be rendered.");
+    });
+
+    /******************************************************************/
+    var sTestLabelsAndTextId = "testLabelsAndText";
+    var oDrsLabelsAndTextTests = new sap.suite.ui.commons.DateRangeSliderInternal(sTestLabelsAndTextId);
+    oDrsLabelsAndTextTests.setStepLabels(false);
+
+    oDrsLabelsAndTextTests.placeAt("uiArea5");
+
+    module("DateRangeSlider Label Tests" + sModuleSuffix, {
+        setup : function() {
+
+        },
+        teardown : function() {
+
+        }
+    });
+
+    test("TestLabelsNotDisplayed", function() {
+
+        var oText = null;
+        for ( var i = 0; i < 12; i++) {
+            oText = jQuery.sap.domById(sTestLabelsAndTextId + '-text' + i);
+            equal(jQuery(oText).text(), "", "Rail label should not be displayed.");
+        }
+    });
+
+    test("TestDefaultLabelsDisplayed", function() {
+
+        oDrsLabelsAndTextTests.setStepLabels(true);
+        oDrsLabelsAndTextTests.rerender();
+
+        var oText = null;
+        for ( var i = 0; i <= 12; i++) {
+            oText = jQuery.sap.domById(sTestLabelsAndTextId + '-text' + i);
+            notEqual(jQuery(oText).text(), "", "Default rail label should be displayed");
+        }
+    });
+
+    test("TestUpdatedDefaultLabelsDisplayed", function() {
+
+        var dExpectedMinDate = new Date(2013, 0, 1, 0, 0, 0, 0);
+        var dExpectedMaxDate = new Date(2013, 0, 12, 0, 0, 0, 0);
+
+        oDrsLabelsAndTextTests.setMinDate(dExpectedMinDate);
+        oDrsLabelsAndTextTests.setMaxDate(dExpectedMaxDate);
+
+        oDrsLabelsAndTextTests.rerender();
+
+        var oText = jQuery.sap.domById(sTestLabelsAndTextId + '-text' + 0);
+        var oFormatter = sap.ui.core.format.DateFormat.getDateInstance({
+            style : "medium"
+        });
+        var sFormattedMinDate = oFormatter.format(dExpectedMinDate);
+
+        equal(jQuery(oText).text(), sFormattedMinDate, "Specific rail label should be displayed.");
+    });
+
+    test("TestSpecificLabelsDisplayed", function() {
+
+        oDrsLabelsAndTextTests.setLabels([ "Small", "Medium", "Large" ]);
+        oDrsLabelsAndTextTests.rerender();
+
+        var oText = jQuery.sap.domById(sTestLabelsAndTextId + '-text' + 0);
+        equal(jQuery(oText).text(), "Small", "Rail label Small should be displayed.");
+        oText = jQuery.sap.domById(sTestLabelsAndTextId + '-text' + 1);
+        equal(jQuery(oText).text(), "Medium", "Rail label Medium should be displayed.");
+        oText = jQuery.sap.domById(sTestLabelsAndTextId + '-text' + 2);
+        equal(jQuery(oText).text(), "Large", "Rail label Large should be displayed");
+    });
+
+    test("TestDefaultLabelsDisplayedWhenLabelsEmpty", function() {
+
+        oDrsLabelsAndTextTests.setLabels([]);
+        oDrsLabelsAndTextTests.rerender();
+
+        var oText = null;
+        for ( var i = 0; i <= 12; i++) {
+            oText = jQuery.sap.domById(sTestLabelsAndTextId + '-text' + i);
+            notEqual(jQuery(oText).text(), "", "Default rail label should be displayed.");
+        }
+    });
+
+    test("TestDefaultLablesWithTotalUnitsDisplayed", function() {
+
+        oDrsLabelsAndTextTests.setStepLabels(true);
+        oDrsLabelsAndTextTests.setTotalUnits(3);
+        oDrsLabelsAndTextTests.rerender();
+
+        var oText = jQuery.sap.domById(sTestLabelsAndTextId + '-text' + 4);
+        equal(oText, null, "Too many labels displayed.");
+    });
+
+    test("TestDefaultLablesWithTotalUnitsDisplayed", function() {
+
+        oDrsLabelsAndTextTests.setStepLabels(true);
+        oDrsLabelsAndTextTests.setTotalUnits(3);
+        oDrsLabelsAndTextTests.rerender();
+
+        var oText = jQuery.sap.domById(sTestLabelsAndTextId + '-text' + 4);
+        equal(oText, null, "Too many labels displayed.");
+    });
+
+    /******************************************************************/
+    var sTestMinMaxDateId = "testMinMaxDate";
+    var oDrsMinMaxDateTests = new sap.suite.ui.commons.DateRangeSliderInternal(sTestMinMaxDateId);
+    oDrsMinMaxDateTests.placeAt("uiArea6");
+
+    module("DateRangeSlider Min And Max Dates Tests" + sModuleSuffix, {
+        setup : function() {
+
+        },
+        teardown : function() {
+
+        }
+    });
+
+    test("TestSetAndGetMaxDate", function() {
+
+        var iValue2Old = oDrsMinMaxDateTests.getValue2();
+        var dMaxOld = oDrsMinMaxDateTests.getMaxDate();
+        var dMaxNew = new Date(dMaxOld.getTime());
+        dMaxNew.setFullYear(dMaxOld.getFullYear() + 1);
+        oDrsMinMaxDateTests.setMaxDate(dMaxNew);
+        deepEqual(dMaxNew, oDrsMinMaxDateTests.getMaxDate(), "Max date moved one year ahead.");
+        equal(iValue2Old, oDrsMinMaxDateTests.getValue2(), "Position of grip2 did not change.");
+        var dMaxNewer = new Date(dMaxOld.getTime());
+        dMaxNewer.setMonth(dMaxNewer.getMonth() - 3);
+        oDrsMinMaxDateTests.setMaxDate(dMaxNewer);
+        notEqual(iValue2Old, oDrsMinMaxDateTests.getValue2(), "Position of grip2 did change.");
+        equal(oDrsMinMaxDateTests.getMax(), oDrsMinMaxDateTests.getValue2(), "Value2 changed to max.");
+
+        //change the granularity to month
+
+        var dMaxDateMonth = oDrsMinMaxDateTests.getMaxDate();
+        sap.suite.ui.commons.util.DateUtils.resetDateToEndOfMonth(dMaxDateMonth);
+        oDrsMinMaxDateTests.setMonthGranularity();
+        deepEqual(dMaxDateMonth, oDrsMinMaxDateTests.getMaxDate(), "Max date changed to end of the month.");
+        dMaxDateMonth.setDate(dMaxDateMonth.getDate() + 12);
+        dMaxDateMonth.setMonth(dMaxDateMonth.getMonth() + 2);
+        oDrsMinMaxDateTests.setMaxDate(dMaxDateMonth);
+        sap.suite.ui.commons.util.DateUtils.resetDateToEndOfMonth(dMaxDateMonth);
+        deepEqual(dMaxDateMonth, oDrsMinMaxDateTests.getMaxDate(), "Max date changed to end of the month of the supplied date.");
+
+    });
+
+    test("TestSetAndGetMinDate", function() {
+
+        //change the granularity to Day
+
+        oDrsMinMaxDateTests.setDayGranularity();
+
+        var iValueOld = oDrsMinMaxDateTests.getValue();
+        var dMinOld = oDrsMinMaxDateTests.getMinDate();
+        var dMinNew = new Date(dMinOld.getTime());
+        dMinNew.setFullYear(dMinOld.getFullYear() - 1);
+        oDrsMinMaxDateTests.setMinDate(dMinNew);
+        deepEqual(dMinNew, oDrsMinMaxDateTests.getMinDate(), "Min date moved one year back.");
+        notEqual(iValueOld, oDrsMinMaxDateTests.getValue(), "Position of grip did change.");
+        var dMinNewer = new Date(dMinOld.getTime());
+        dMinNewer.setMonth(dMinNewer.getMonth() + 3);
+        oDrsMinMaxDateTests.setMinDate(dMinNewer);
+        equal(iValueOld, oDrsMinMaxDateTests.getValue(), "Position of grip did not change.");
+        equal(oDrsMinMaxDateTests.getMin(), oDrsMinMaxDateTests.getValue(), "Value changed to min.");
+
+        //change the granularity to Month
+
+        var dMinDateMonth = oDrsMinMaxDateTests.getMinDate();
+        sap.suite.ui.commons.util.DateUtils.resetDateToStartOfMonth(dMinDateMonth);
+        oDrsMinMaxDateTests.setMonthGranularity();
+        deepEqual(dMinDateMonth, oDrsMinMaxDateTests.getMinDate(), "Min date changed to start of the month.");
+        dMinDateMonth.setDate(dMinDateMonth.getDate() - 12);
+        dMinDateMonth.setMonth(dMinDateMonth.getMonth() - 2);
+        oDrsMinMaxDateTests.setMinDate(dMinDateMonth);
+        sap.suite.ui.commons.util.DateUtils.resetDateToStartOfMonth(dMinDateMonth);
+        deepEqual(dMinDateMonth, oDrsMinMaxDateTests.getMinDate(), "Min date changed to start of the month of the supplied date.");
+    });
+
+    /******************************************************************/
+
+    var sTestValueValue2DateId = "testValueValue2Date";
+    var oDrsValueValue2DateTests = new sap.suite.ui.commons.DateRangeSliderInternal(sTestValueValue2DateId);
+    oDrsValueValue2DateTests.placeAt("uiArea7");
+
+    module("DateRangeSlider value And value2 Dates Tests" + sModuleSuffix, {
+        setup : function() {
+
+        },
+        teardown : function() {
+
+        }
+    });
+
+    test("TestSetAndGetValueDate", function() {
+
+        var iValueOld = oDrsValueValue2DateTests.getValue();
+        var iValueNew = iValueOld + 10;
+        var dValueOld = oDrsValueValue2DateTests.getValueDate();
+        var dValueNew = new Date(dValueOld.getTime());
+        dValueNew.setDate(dValueOld.getDate() + 10);
+        oDrsValueValue2DateTests.setValueDate(dValueNew);
+
+        deepEqual(oDrsValueValue2DateTests.getValueDate(), dValueNew, "value date moved 10 days after.");
+        equal(oDrsValueValue2DateTests.getValue(), iValueNew, "value increased by 10 units.");
+
+        //change the granularity to Month
+
+        oDrsValueValue2DateTests.setMonthGranularity();
+        var iValueMonth = oDrsValueValue2DateTests.getValue();
+        var dValueDateMonth = oDrsValueValue2DateTests.getValueDate();
+        dValueDateMonth.setDate(dValueDateMonth.getDate() + 10);
+        dValueDateMonth.setMonth(dValueDateMonth.getMonth() + 1);
+        oDrsValueValue2DateTests.setValueDate(dValueDateMonth);
+        sap.suite.ui.commons.util.DateUtils.resetDateToStartOfMonth(dValueDateMonth);
+        deepEqual(dValueDateMonth, oDrsValueValue2DateTests.getValueDate(), "Value date changed to start of the month of the supplied date.");
+        equal(iValueMonth + 1, oDrsValueValue2DateTests.getValue(), "Value increased by 1 unit.");
+    });
+
+    test("TestSetAndGetValue2Date", function() {
+
+        //change the granularity to Day
+
+        oDrsValueValue2DateTests.setDayGranularity();
+
+        var iValue2Old = oDrsValueValue2DateTests.getValue2();
+        var iValue2New = iValue2Old - 10;
+
+        var dValue2Old = oDrsValueValue2DateTests.getValue2Date();
+
+        var dValue2New = new Date(dValue2Old.getTime());
+        dValue2New.setDate(dValue2Old.getDate() - 10);
+        oDrsValueValue2DateTests.setValue2Date(dValue2New);
+
+        sap.suite.ui.commons.util.DateUtils.resetDateToEndOfDay(dValue2New);
+        deepEqual(oDrsValueValue2DateTests.getValue2Date(), dValue2New, "value2 date moved 10 days before.");
+        equal(oDrsValueValue2DateTests.getValue2(), iValue2New, "value2 reduced by 10 units.");
+
+        //change the granularity to Month
+
+        oDrsValueValue2DateTests.setMonthGranularity();
+        var iValue2Month = oDrsValueValue2DateTests.getValue2();
+        var dValue2DateMonth = oDrsValueValue2DateTests.getValue2Date();
+        dValue2DateMonth.setDate(dValue2DateMonth.getDate() - 10);
+        dValue2DateMonth.setMonth(dValue2DateMonth.getMonth() - 1);
+        oDrsValueValue2DateTests.setValue2Date(dValue2DateMonth);
+        sap.suite.ui.commons.util.DateUtils.resetDateToEndOfMonth(dValue2DateMonth);
+        deepEqual(dValue2DateMonth, oDrsValueValue2DateTests.getValue2Date(), "Value2 date changed to end of the month of the supplied date.");
+        equal(iValue2Month - 1, oDrsValueValue2DateTests.getValue2(), "Value2 decreased by 1 unit.");
+    });
+
+    test("TestSetValueDateToSameValue2Date", function() {
+
+        //change the granularity to Day
+
+        oDrsValueValue2DateTests.setDayGranularity();
+        var dValueDateNew = new Date(oDrsValueValue2DateTests.getValue2Date());
+        sap.suite.ui.commons.util.DateUtils.resetDateToStartOfDay(dValueDateNew);
+
+        oDrsValueValue2DateTests.setValueDate(dValueDateNew);
+
+        deepEqual(oDrsValueValue2DateTests.getValueDate(), dValueDateNew, "value date moved to the same date as value2 date.");
+    });
+
+    /******************************************************************/
+
+    var sTestPropertiesId = "testProperties";
+    var oDrsPropertiesTests = new sap.suite.ui.commons.DateRangeSliderInternal(sTestPropertiesId);
+
+    module("Property Tests" + sModuleSuffix, {
+        setup : function() {
+
+        },
+        teardown : function() {
+
+        }
+    });
+
+    test("TestIntegerValueSmallStepWidth", function() {
+
+        fSmallStepWidth = 1.5;
+        iExpectedSmallStepWidth = Math.round(fSmallStepWidth);
+
+        oDrsPropertiesTests.setSmallStepWidth(fSmallStepWidth);
+
+        equal(oDrsPropertiesTests.getSmallStepWidth(), iExpectedSmallStepWidth, "Unexpected smallStepWidth.")
+    });
+
+    /******************************************************************/
+
+    var sTestGranularityId = "testGranularity";
+    var oDrsGranularityTests = new sap.suite.ui.commons.DateRangeSliderInternal(sTestGranularityId, {
+        stepLabels : true
+    });
+    oDrsGranularityTests.placeAt("uiArea8");
+
+    module("DateRangeSlider Granularity Tests" + sModuleSuffix, {
+        setup : function() {
+
+        },
+        teardown : function() {
+
+        }
+    });
+
+    test("TestMonthGranularity", function() {
+
+        var dMinDate = oDrsGranularityTests.getMinDate();
+        var dValueDate = oDrsGranularityTests.getValueDate();
+        var dValue2Date = oDrsGranularityTests.getValue2Date();
+        var dMaxDate = oDrsGranularityTests.getMaxDate();
+
+        oDrsGranularityTests.setMonthGranularity();
+
+        sap.suite.ui.commons.util.DateUtils.resetDateToStartOfMonth(dMinDate);
+        sap.suite.ui.commons.util.DateUtils.resetDateToStartOfMonth(dValueDate);
+        sap.suite.ui.commons.util.DateUtils.resetDateToEndOfMonth(dValue2Date);
+        sap.suite.ui.commons.util.DateUtils.resetDateToEndOfMonth(dMaxDate);
+
+        deepEqual(oDrsGranularityTests.getMinDate(), dMinDate, "min date moved to start of the month.");
+        deepEqual(oDrsGranularityTests.getValueDate(), dValueDate, "value date moved to start of the month.");
+
+        deepEqual(oDrsGranularityTests.getValue2Date(), dValue2Date, "value2 date moved to end of the current month.");
+        deepEqual(oDrsGranularityTests.getMaxDate(), dMaxDate, "max date moved to end of the current month.");
+
+        // move grip to right by 2 units
+        jQuery("#" + sTestGranularityId).focus();
+        qutils.triggerMouseEvent(sTestGranularityId + "-grip", "mousedown", 1, 1);
+        qutils.triggerKeyboardEvent(sTestGranularityId + "-grip", "ARROW_RIGHT");
+        qutils.triggerKeyboardEvent(sTestGranularityId + "-grip", "ARROW_RIGHT");
+
+        dValueDate.setMonth(dValueDate.getMonth() + 2);
+        deepEqual(oDrsGranularityTests.getValueDate(), dValueDate, "value date moved to 2 months forward.");
+
+        // move grip2 to left by 2 units
+        qutils.triggerMouseEvent(sTestGranularityId + "-grip2", "mousedown", 1, 1);
+        qutils.triggerKeyboardEvent(sTestGranularityId + "-grip2", "ARROW_LEFT");
+        qutils.triggerKeyboardEvent(sTestGranularityId + "-grip2", "ARROW_LEFT");
+
+        sap.suite.ui.commons.util.DateUtils.resetDateToStartOfMonth(dValue2Date);
+        dValue2Date.setMonth(dValue2Date.getMonth() - 2);
+        sap.suite.ui.commons.util.DateUtils.resetDateToEndOfMonth(dValue2Date);
+        deepEqual(oDrsGranularityTests.getValue2Date(), dValue2Date, "value2 date moved to 2 months backwards.");
+
+    });
+
+    test("TestDayGranularity", function() {
+
+        var dMinDate = oDrsGranularityTests.getMinDate();
+        var dValueDate = oDrsGranularityTests.getValueDate();
+        var dValue2Date = oDrsGranularityTests.getValue2Date();
+        var dMaxDate = oDrsGranularityTests.getMaxDate();
+
+        oDrsGranularityTests.setDayGranularity();
+
+        deepEqual(oDrsGranularityTests.getMinDate(), dMinDate, "min date should remain same.");
+        deepEqual(oDrsGranularityTests.getValueDate(), dValueDate, "value date should remain same.");
+
+        deepEqual(oDrsGranularityTests.getValue2Date(), dValue2Date, "value2 date should remain same.");
+        deepEqual(oDrsGranularityTests.getMaxDate(), dMaxDate, "max date should remain same.");
+
+        // move grip to right by 2 units
+        jQuery("#" + sTestGranularityId).focus();
+        qutils.triggerMouseEvent(sTestGranularityId + "-grip", "mousedown", 1, 1);
+        qutils.triggerKeyboardEvent(sTestGranularityId + "-grip", "ARROW_RIGHT");
+        qutils.triggerKeyboardEvent(sTestGranularityId + "-grip", "ARROW_RIGHT");
+
+        dValueDate.setDate(dValueDate.getDate() + 2);
+        deepEqual(oDrsGranularityTests.getValueDate(), dValueDate, "value date moved to 2 days forward.");
+
+        // move grip2 to left by 2 units
+        qutils.triggerMouseEvent(sTestGranularityId + "-grip2", "mousedown", 1, 1);
+        qutils.triggerKeyboardEvent(sTestGranularityId + "-grip2", "ARROW_LEFT");
+        qutils.triggerKeyboardEvent(sTestGranularityId + "-grip2", "ARROW_LEFT");
+
+        dValue2Date.setDate(dValue2Date.getDate() - 2);
+        deepEqual(oDrsGranularityTests.getValue2Date(), dValue2Date, "value2 date moved to 2 days backwards.");
+    });
+    
+    /*******************************************************************************************************************/
+	var sTestSetDateFormatId = "testSetDateFormat";
+    var oDrsSetDateFormatTests = new sap.suite.ui.commons.DateRangeSliderInternal(sTestSetDateFormatId, {
+        stepLabels : true
+    });
+    
+    oDrsSetDateFormatTests.placeAt("uiArea9");
+    
+    module("Test setDateFormat API" + sModuleSuffix, {
+        setup : function() {            
+        }
+    });
+
+    test("TestDateFormatIsNotSetInitially", function() {
+
+        equal(oDrsSetDateFormatTests.getDateFormat(), null, "Date format of the control should not be set initially.");
+    });
+
+    test("TestDateFormatIsSetCorrectly", function() {
+
+        var oLocale = new sap.ui.core.Locale("de");
+        oDrsSetDateFormatTests.setDateFormat(sap.ui.core.format.DateFormat.getDateInstance(oLocale));
+        notEqual(oDrsSetDateFormatTests.getDateFormat(), null, "Date format of the control should be set to supplied date format.");
+        oDrsSetDateFormatTests.setDateFormat(null);
+        equal(oDrsSetDateFormatTests.getDateFormat(), null, "Date format of the control should not be set if null is passed.");
+        oDrsSetDateFormatTests.setDateFormat(sap.ui.core.format.DateFormat.getDateInstance(oLocale));        
+        notEqual(oDrsSetDateFormatTests.getDateFormat(), null, "Date format of the control should be set to supplied date format.");
+        oDrsSetDateFormatTests.setDateFormat(new Boolean(true));
+        equal(oDrsSetDateFormatTests.getDateFormat(), null, "Date format of the control should not be set if invalid obj is passed.");
+    });
+
+    test("TestDateFormatSetToPattern", function() {
+               
+        var oDateFormat = sap.ui.core.format.DateFormat.getDateInstance({
+            pattern : "YYYY-MM-dd"
+        }); 
+        var sExpectedPattern = "YYYY-MM-dd";
+        
+        oDrsSetDateFormatTests.setDateFormat(oDateFormat);	
+        var oUpdatedDateFomat = oDrsSetDateFormatTests.getDateFormat();
+        equal(oUpdatedDateFomat.oFormatOptions.pattern, sExpectedPattern, "Date format of the control should be set to YYYY-MM-dd.");          
+        
+    });
+    
+    test("TestDateFormatSetToStyle", function() {
+               
+        var oDateFormat = sap.ui.core.format.DateFormat.getDateInstance({
+            style : "short"
+        }); 
+        var sExpectedStyle = "short";        
+        
+        oDrsSetDateFormatTests.setDateFormat(oDateFormat);	
+        var oUpdatedDateFomat = oDrsSetDateFormatTests.getDateFormat();
+        equal(oUpdatedDateFomat.oFormatOptions.style, sExpectedStyle, "Date format of the control should be set to Style short.");        
+        
+    });
+    
+	/*******************************************************************************************************************/
+    	
+	var sDrsPinGripGrip2Id = "testPinGripPinGrip2";
+    var oDrsPinGripGrip2Slider = new sap.suite.ui.commons.DateRangeSliderInternal(sDrsPinGripGrip2Id);
+    oDrsPinGripGrip2Slider.placeAt("uiArea10");
+    
+    module("Test pinGrip/pinGrip2 Properties" + sModuleSuffix, {
+        setup : function() {
+        
+        },
+        teardown : function() {
+
+        }
+    });
+    
+    
+    test("TestPinGripAndPinGrip2AreFalseInitially", function() {
+
+        equal(oDrsPinGripGrip2Slider.getPinGrip(), false, "PinGrip property is set to false initially.");
+        equal(oDrsPinGripGrip2Slider.getPinGrip2(), false, "PinGrip2 property is set to false initially.");
+    });
+    
+    test("TestPinGripAndPinGrip2AreSettingCorrectly", function() {
+
+        oDrsPinGripGrip2Slider.setPinGrip(true);
+        oDrsPinGripGrip2Slider.setPinGrip2(true);
+        equal(oDrsPinGripGrip2Slider.getPinGrip(), true, "PinGrip property is set to true.");
+        equal(oDrsPinGripGrip2Slider.getPinGrip2(), true, "PinGrip2 property is set to true.");
+        
+        oDrsPinGripGrip2Slider.setPinGrip(false);
+        oDrsPinGripGrip2Slider.setPinGrip2(false);
+        equal(oDrsPinGripGrip2Slider.getPinGrip(), false, "PinGrip property is set again to false.");
+        equal(oDrsPinGripGrip2Slider.getPinGrip2(), false, "PinGrip2 property is set again to false.");
+    });
+    
+    test("TestPinGripStopMove", function() {
+        var iValue= oDrsPinGripGrip2Slider.getValue();
+	    oDrsPinGripGrip2Slider.setPinGrip(true);
+	    qutils.triggerMouseEvent(sDrsPinGripGrip2Id+"-grip", "mousedown", 1, 1, 0, 0 );
+	    qutils.triggerMouseEvent(sDrsPinGripGrip2Id, "mousemove", 1, 1, 5, 0 );	   
+	    qutils.triggerMouseEvent(sDrsPinGripGrip2Id+"-grip", "mouseup", 1, 1 );	    
+	    equal(oDrsPinGripGrip2Slider.getValue(), iValue, "PinGrip is true and grip is not moved.");
+    });
+    
+    test("TestPinGripMoveAgain", function() {
+        var iValue= oDrsPinGripGrip2Slider.getValue();
+	    oDrsPinGripGrip2Slider.setPinGrip(false);
+	    qutils.triggerMouseEvent(sDrsPinGripGrip2Id+"-grip", "mousedown", 1, 1, 0, 0 );
+	    qutils.triggerMouseEvent(sDrsPinGripGrip2Id, "mousemove", 1, 1, 5, 0 );	   
+	    qutils.triggerMouseEvent(sDrsPinGripGrip2Id+"-grip", "mouseup", 1, 1 );	    
+	    notEqual(oDrsPinGripGrip2Slider.getValue(), iValue, "PinGrip is false and grip is moved.");
+    });
+    
+    test("TestPinGrip2StopMove", function() {
+        var iValue2= oDrsPinGripGrip2Slider.getValue2();
+        oDrsPinGripGrip2Slider.setValue2(iValue2 -10);
+        iValue2= oDrsPinGripGrip2Slider.getValue2();
+        
+	    oDrsPinGripGrip2Slider.setPinGrip2(true);
+	    qutils.triggerMouseEvent(sDrsPinGripGrip2Id+"-grip2", "mousedown", 1, 1, 0, 0 );
+	    qutils.triggerMouseEvent(sDrsPinGripGrip2Id, "mousemove", 1, 1, 5, 0 );	   
+	    qutils.triggerMouseEvent(sDrsPinGripGrip2Id+"-grip2", "mouseup", 1, 1 );	    
+	    equal(oDrsPinGripGrip2Slider.getValue2(), iValue2, "PinGrip2 is true and grip2 is not moved.");
+    });
+    
+    test("TestPinGrip2MoveAgain", function() {
+        var iValue2= oDrsPinGripGrip2Slider.getValue2();
+        
+	    oDrsPinGripGrip2Slider.setPinGrip2(false);
+	    qutils.triggerMouseEvent(sDrsPinGripGrip2Id+"-grip2", "mousedown", 1, 1, 355, 0 );
+	    qutils.triggerMouseEvent(sDrsPinGripGrip2Id, "mousemove", 1, 1, 360, 0 );	   
+	    qutils.triggerMouseEvent(sDrsPinGripGrip2Id+"-grip2", "mouseup", 1, 1 );	    
+	    notEqual(oDrsPinGripGrip2Slider.getValue2(), iValue2, "PinGrip2 is false and grip2 is moved.");
+    });
+
+	test("TestKeyboardPinGrip", function() {
+	   
+	    oDrsPinGripGrip2Slider.setPinGrip(true);
+	    
+		oDrsPinGripGrip2Slider.setValue(100); 
+		qutils.triggerKeyboardEvent(sDrsPinGripGrip2Id, "HOME");
+		
+		equal(oDrsPinGripGrip2Slider.getValue(), 100, "Value not changed after keyboard home on pinGrip.");
+		
+		qutils.triggerKeyboardEvent(sDrsPinGripGrip2Id, "END");
+		equal(oDrsPinGripGrip2Slider.getValue(), 100, "Value not changed after keyboard end on pinGrip.");
+	   		
+		qutils.triggerKeyboardEvent(sDrsPinGripGrip2Id, "ARROW_RIGHT");		
+		equal(oDrsPinGripGrip2Slider.getValue(), 100, "Value not changed after keyboard right Arrow on pinGrip.");	
+		
+		qutils.triggerKeyboardEvent(sDrsPinGripGrip2Id, "ARROW_LEFT");
+		equal(oDrsPinGripGrip2Slider.getValue(), 100, "Value not changed after keyboard left Arrow on pinGrip.");	
+		
+		qutils.triggerKeyboardEvent(sDrsPinGripGrip2Id, "ARROW_UP");
+		equal(oDrsPinGripGrip2Slider.getValue(), 100, "Value not changed after keyboard up Arrow on pinGrip.");	
+		
+		qutils.triggerKeyboardEvent(sDrsPinGripGrip2Id, "ARROW_DOWN");
+		equal(oDrsPinGripGrip2Slider.getValue(), 100, "Value not changed after keyboard down Arrow on pinGrip.");
+		
+		qutils.triggerKeyboardEvent(sDrsPinGripGrip2Id, "NUMPAD_PLUS");
+		equal(oDrsPinGripGrip2Slider.getValue(), 100, "Value not changed after keyboard '+' on pinGrip.");	
+		
+		qutils.triggerKeyboardEvent(sDrsPinGripGrip2Id, "NUMPAD_MINUS");
+		equal(oDrsPinGripGrip2Slider.getValue(), 100, "Value not changed after keyboard '-' on pinGrip.");
+
+	});
+	
+	test("TestKeyboardPinGrip2", function() {
+		   
+	    oDrsPinGripGrip2Slider.setPinGrip2(true);
+	    
+		oDrsPinGripGrip2Slider.setValue2(200); 
+		qutils.triggerKeyboardEvent(sDrsPinGripGrip2Id, "HOME");		
+		equal(oDrsPinGripGrip2Slider.getValue2(), 200, "Value2 not changed after keyboard home on pinGrip2.");
+		
+		qutils.triggerKeyboardEvent(sDrsPinGripGrip2Id, "END");
+		equal(oDrsPinGripGrip2Slider.getValue2(), 200, "Value2 not changed after keyboard end on pinGrip2.");
+		
+		qutils.triggerKeyboardEvent(sDrsPinGripGrip2Id, "ARROW_RIGHT");		
+		equal(oDrsPinGripGrip2Slider.getValue2(), 200, "Value2 not changed after keyboard right Arrow on pinGrip2.");	
+		
+		qutils.triggerKeyboardEvent(sDrsPinGripGrip2Id, "ARROW_LEFT");
+		equal(oDrsPinGripGrip2Slider.getValue2(), 200, "Value2 not changed after keyboard left Arrow on pinGrip2.");	
+		
+		qutils.triggerKeyboardEvent(sDrsPinGripGrip2Id, "ARROW_UP");
+		equal(oDrsPinGripGrip2Slider.getValue2(), 200, "Value2 not changed after keyboard up Arrow on pinGrip2.");	
+		
+		qutils.triggerKeyboardEvent(sDrsPinGripGrip2Id, "ARROW_DOWN");
+		equal(oDrsPinGripGrip2Slider.getValue2(), 200, "Value2 not changed after keyboard down Arrow on pinGrip2.");
+		
+		qutils.triggerKeyboardEvent(sDrsPinGripGrip2Id, "NUMPAD_PLUS");
+		equal(oDrsPinGripGrip2Slider.getValue2(), 200, "Value2 not changed after keyboard '+' on pinGrip2.");	
+		
+		qutils.triggerKeyboardEvent(sDrsPinGripGrip2Id, "NUMPAD_MINUS");
+		equal(oDrsPinGripGrip2Slider.getValue2(), 200, "Value2 not changed after keyboard '-' on pinGrip2.");
+	});
+	
+	test("TestKeyboardUnPinGrip2", function() { 
+	    
+	    oDrsPinGripGrip2Slider.setPinGrip2(false);
+	    oDrsPinGripGrip2Slider.setMin(0);
+	    oDrsPinGripGrip2Slider.setMax(365);
+	    oDrsPinGripGrip2Slider.setValue(0);
+		oDrsPinGripGrip2Slider.setValue2(200); 
+		
+		jQuery("#" + sDrsPinGripGrip2Id+"-grip2").focus();
+		qutils.triggerKeyboardEvent(sDrsPinGripGrip2Id+"-grip2", "HOME");
+		equal(oDrsPinGripGrip2Slider.getValue2(), 0, "Value2 is 0 after keyboard home action on pinGrip2.");
+		
+		oDrsPinGripGrip2Slider.setValue2(300);
+		jQuery("#" + sDrsPinGripGrip2Id+"-grip2").focus();		 		
+		qutils.triggerKeyboardEvent(sDrsPinGripGrip2Id+"-grip2", "END");
+		equal(oDrsPinGripGrip2Slider.getValue2(), 365, "Value2 is 365 after keyboard end action on pinGrip2.");
+		
+		oDrsPinGripGrip2Slider.setValue2(300);
+		jQuery("#" + sDrsPinGripGrip2Id+"-grip2").focus();
+		qutils.triggerKeyboardEvent(sDrsPinGripGrip2Id+"-grip2", "ARROW_RIGHT");		
+		notEqual(oDrsPinGripGrip2Slider.getValue(), 300, "Value changed after keyboard right Arrow when un-pinGrip.");	
+		
+		oDrsPinGripGrip2Slider.setValue2(300);
+		jQuery("#" + sDrsPinGripGrip2Id+"-grip2").focus();
+		qutils.triggerKeyboardEvent(sDrsPinGripGrip2Id+"-grip2", "ARROW_LEFT");
+		notEqual(oDrsPinGripGrip2Slider.getValue(), 300, "Value changed after keyboard left Arrow when un-pinGrip.");	
+		
+		oDrsPinGripGrip2Slider.setValue2(300);
+		jQuery("#" + sDrsPinGripGrip2Id+"-grip2").focus();
+		qutils.triggerKeyboardEvent(sDrsPinGripGrip2Id+"-grip2", "ARROW_UP");
+		notEqual(oDrsPinGripGrip2Slider.getValue(), 300, "Value changed after keyboard up Arrow when un-pinGrip.");	
+		
+		oDrsPinGripGrip2Slider.setValue2(300);
+		jQuery("#" + sDrsPinGripGrip2Id+"-grip2").focus();
+		qutils.triggerKeyboardEvent(sDrsPinGripGrip2Id+"-grip2", "ARROW_DOWN");
+		notEqual(oDrsPinGripGrip2Slider.getValue(), 300, "Value changed after keyboard down Arrow when un-pinGrip.");
+		
+		oDrsPinGripGrip2Slider.setValue2(300);
+		jQuery("#" + sDrsPinGripGrip2Id+"-grip2").focus();
+		qutils.triggerKeyboardEvent(sDrsPinGripGrip2Id+"-grip2", "NUMPAD_PLUS");
+		notEqual(oDrsPinGripGrip2Slider.getValue(), 300, "Value changed after keyboard '+' when un-pinGrip.");	
+		
+		oDrsPinGripGrip2Slider.setValue2(300);
+		jQuery("#" + sDrsPinGripGrip2Id+"-grip2").focus();
+		qutils.triggerKeyboardEvent(sDrsPinGripGrip2Id+"-grip2", "NUMPAD_MINUS");
+		notEqual(oDrsPinGripGrip2Slider.getValue(), 300, "Value changed after keyboard '-' when un-pinGrip.");
+		
+	});
+	
+	test("TestKeyboardUnPinGrip", function() {    
+	    
+	    oDrsPinGripGrip2Slider.setPinGrip(false);
+	    oDrsPinGripGrip2Slider.setMin(0);
+	    oDrsPinGripGrip2Slider.setMax(365);
+	    oDrsPinGripGrip2Slider.setValue(100);
+		oDrsPinGripGrip2Slider.setValue2(365); 		
+		
+		jQuery("#" + sDrsPinGripGrip2Id+"-grip").focus();
+		qutils.triggerKeyboardEvent(sDrsPinGripGrip2Id+"-grip", "HOME");
+		equal(oDrsPinGripGrip2Slider.getValue(), 0, "Value is 0 after keyboard home action on Grip.");		 
+		
+		jQuery("#" + sDrsPinGripGrip2Id+"-grip").focus();
+		qutils.triggerKeyboardEvent(sDrsPinGripGrip2Id+"-grip", "END");		
+		equal(oDrsPinGripGrip2Slider.getValue(), 365, "Value is 365 after keyboard end action on Grip.");		
+		
+		oDrsPinGripGrip2Slider.setValue(100);
+		jQuery("#" + sDrsPinGripGrip2Id+"-grip").focus();
+		qutils.triggerKeyboardEvent(sDrsPinGripGrip2Id+"-grip", "ARROW_RIGHT");		
+		notEqual(oDrsPinGripGrip2Slider.getValue(), 100, "Value changed after keyboard right Arrow when un-pinGrip.");	
+		
+		oDrsPinGripGrip2Slider.setValue(100);
+		jQuery("#" + sDrsPinGripGrip2Id+"-grip").focus();
+		qutils.triggerKeyboardEvent(sDrsPinGripGrip2Id+"-grip", "ARROW_LEFT");
+		notEqual(oDrsPinGripGrip2Slider.getValue(), 100, "Value changed after keyboard left Arrow when un-pinGrip.");	
+		
+		oDrsPinGripGrip2Slider.setValue(100);
+		jQuery("#" + sDrsPinGripGrip2Id+"-grip").focus();
+		qutils.triggerKeyboardEvent(sDrsPinGripGrip2Id+"-grip", "ARROW_UP");
+		notEqual(oDrsPinGripGrip2Slider.getValue(), 100, "Value changed after keyboard up Arrow when un-pinGrip.");	
+		
+		oDrsPinGripGrip2Slider.setValue(100);
+		jQuery("#" + sDrsPinGripGrip2Id+"-grip").focus();
+		qutils.triggerKeyboardEvent(sDrsPinGripGrip2Id+"-grip", "ARROW_DOWN");
+		notEqual(oDrsPinGripGrip2Slider.getValue(), 100, "Value changed after keyboard down Arrow when un-pinGrip.");
+		
+		oDrsPinGripGrip2Slider.setValue(100);
+		jQuery("#" + sDrsPinGripGrip2Id+"-grip").focus();
+		qutils.triggerKeyboardEvent(sDrsPinGripGrip2Id+"-grip", "NUMPAD_PLUS");
+		notEqual(oDrsPinGripGrip2Slider.getValue(), 100, "Value changed after keyboard '+' when un-pinGrip.");	
+		
+		oDrsPinGripGrip2Slider.setValue(100);
+		jQuery("#" + sDrsPinGripGrip2Id+"-grip").focus();
+		qutils.triggerKeyboardEvent(sDrsPinGripGrip2Id+"-grip", "NUMPAD_MINUS");
+		notEqual(oDrsPinGripGrip2Slider.getValue(), 100, "Value changed after keyboard '-' when un-pinGrip.");
+	});
+	
+	test("TestOnClickNotMoveAfterPinGrip", function() {
+	    oDrsPinGripGrip2Slider.setValue(100); 
+	    jQuery("#" + sDrsPinGripGrip2Id).focus(); 
+	    oDrsPinGripGrip2Slider.setPinGrip(true);		
+			 
+		qutils.triggerMouseEvent(sDrsPinGripGrip2Id, "click", 117, 1 );
+		equals(oDrsPinGripGrip2Slider.getValue(), 100, "Value after click on control not changed.");
+
+		qutils.triggerMouseEvent(sDrsPinGripGrip2Id + "-bar", "click", 55, 2 );
+		equals(oDrsPinGripGrip2Slider.getValue(), 100, "Value after click on bar not changed.");
+
+		qutils.triggerMouseEvent(sDrsPinGripGrip2Id + "-left", "click", 1, 1 );
+		equals(oDrsPinGripGrip2Slider.getValue(), 100, "Value after click on left end not changed.");
+
+		qutils.triggerMouseEvent(sDrsPinGripGrip2Id + "-right", "click", 505, 2 );
+		equals(oDrsPinGripGrip2Slider.getValue(), 100, "Value after click on right end not changed.");
+
+		qutils.triggerMouseEvent(sDrsPinGripGrip2Id + "-tick6", "click", 1, 2 );
+		equals(oDrsPinGripGrip2Slider.getValue(), 100, "Value after click on tick6 not changed.");
+		
+	});
+	
+	test("TestOnClickNotMoveAfterPinGrip2", function() {
+	    jQuery("#" + sDrsPinGripGrip2Id).focus(); 
+	    oDrsPinGripGrip2Slider.setPinGrip2(true);
+		
+		var fValueChange = -1;
+		oDrsPinGripGrip2Slider.attachChange(function(oEvent){fValueChange = oEvent.getParameter("value2");});
+		oDrsPinGripGrip2Slider.setValue2(200); 
+		qutils.triggerMouseEvent(sDrsPinGripGrip2Id, "click", 117, 1 );
+		equals(oDrsPinGripGrip2Slider.getValue2(), 200, "Value2 after click on control not changed.");
+		equals(fValueChange, -1, "Change event value2 after click on control not changed.");
+
+		qutils.triggerMouseEvent(sDrsPinGripGrip2Id + "-bar", "click", 55, 2 );
+		equals(oDrsPinGripGrip2Slider.getValue2(), 200, "Value2 after click on bar not changed.");
+
+		qutils.triggerMouseEvent(sDrsPinGripGrip2Id + "-left", "click", 1, 1 );
+		equals(oDrsPinGripGrip2Slider.getValue2(), 200, "Value2 after click on left end not changed.");
+
+		qutils.triggerMouseEvent(sDrsPinGripGrip2Id + "-right", "click", 505, 2 );
+		equals(oDrsPinGripGrip2Slider.getValue2(), 200, "Value2 after click on right end not changed.");
+
+		qutils.triggerMouseEvent(sDrsPinGripGrip2Id + "-tick6", "click", 1, 2 );
+		equals(oDrsPinGripGrip2Slider.getValue2(), 200, "Value2 after click on tick6 not changed.");
+		
+		oDrsPinGripGrip2Slider.detachChange();
+	});
+	
+	test("TestOnClickMoveAfterUnPinGrip", function() {
+	    jQuery("#" + sDrsPinGripGrip2Id).focus(); 
+	    oDrsPinGripGrip2Slider.setPinGrip(false); 
+		
+		var fValueChange = -1;
+		oDrsPinGripGrip2Slider.attachChange(function(oEvent){fValueChange = oEvent.getParameter("value");});
+		oDrsPinGripGrip2Slider.setValue(100); 
+		qutils.triggerMouseEvent(sDrsPinGripGrip2Id, "click", 117, 1 );
+		notEqual(oDrsPinGripGrip2Slider.getValue(), 100, "Value after click on control changed.");
+		notEqual(fValueChange, -1, "Change event value after click on control changed.");
+
+		qutils.triggerMouseEvent(sDrsPinGripGrip2Id + "-bar", "click", 55, 2 );
+		notEqual(oDrsPinGripGrip2Slider.getValue(), 100, "Value after click on bar changed.");
+
+		qutils.triggerMouseEvent(sDrsPinGripGrip2Id + "-left", "click", 1, 1 );
+		notEqual(oDrsPinGripGrip2Slider.getValue(), 100, "Value after click on left end changed.");
+
+		qutils.triggerMouseEvent(sDrsPinGripGrip2Id + "-right", "click", 505, 2 );
+		notEqual(oDrsPinGripGrip2Slider.getValue(), 100, "Value after click on right end changed.");
+
+		qutils.triggerMouseEvent(sDrsPinGripGrip2Id + "-tick6", "click", 1, 2 );
+		notEqual(oDrsPinGripGrip2Slider.getValue(), 100, "Value after click on tick6 changed.");
+		
+		oDrsPinGripGrip2Slider.detachChange();
+	});
+	
+	test("TestOnClickMoveAfterUnPinGrip2", function() {
+	    jQuery("#" + sDrsPinGripGrip2Id).focus(); 
+	    oDrsPinGripGrip2Slider.setPinGrip2(false);	    
+		
+		var fValueChange = -1;
+		oDrsPinGripGrip2Slider.attachChange(function(oEvent){fValueChange = oEvent.getParameter("value2");});
+		oDrsPinGripGrip2Slider.setValue(0); 
+		oDrsPinGripGrip2Slider.setValue2(250); 		
+		
+		qutils.triggerMouseEvent(sDrsPinGripGrip2Id, "click", 300, 0 );		
+		notEqual(fValueChange, -1, "Change event value2 after click on control changed.");	
+
+		qutils.triggerMouseEvent(sDrsPinGripGrip2Id + "-right", "click", 260, 2 );
+		notEqual(oDrsPinGripGrip2Slider.getValue2(), 250, "Value2 after click on right end changed.");
+
+		qutils.triggerMouseEvent(sDrsPinGripGrip2Id + "-tick6", "click", 261, 2 );
+		notEqual(oDrsPinGripGrip2Slider.getValue2(), 250, "Value2 after click on tick6 not changed.");
+		
+		oDrsPinGripGrip2Slider.detachChange();
+	});
+
+
+
+    
+
+    /*******************************************************************************************/
+    function formatDate(dDate) {
+
+        var oFormatter = sap.ui.core.format.DateFormat.getDateInstance({
+            style : "medium"
+        });
+        return oFormatter.format(dDate);
+    }
+
+    /*******************************************************************************************/
+</script>
+</head>
+
+<body class="sapUiBody">
+	<div id="qunit"></div>
+	<div id="uiArea1"></div>
+	<br>
+	<div id="uiArea2"></div>
+	<br>
+	<div id="uiArea3"></div>
+	<div id="uiArea4"></div>
+	<br>
+	<div id="uiArea5"></div>
+	<br>
+	<div id="uiArea6"></div>
+	<br>
+	<div id="uiArea7"></div>
+	<br>
+	<div id="uiArea8"></div>
+	<br>
+	<div id="uiArea9"></div>
+	<br>
+	<div id="uiArea10"></div>
+</body>
+</html>

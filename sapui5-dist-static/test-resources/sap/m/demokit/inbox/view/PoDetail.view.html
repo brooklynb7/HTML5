@@ -1,0 +1,137 @@
+<template data-controller-name="view.PoDetail">
+	<div id="page" data-sap-ui-type="sap.m.Page" data-title="Purchase Order" data-nav-button-press="back" data-show-nav-button="true">
+		<div data-sap-ui-aggregation="content">
+			<div data-sap-ui-type="sap.m.ObjectHeader" 
+				data-title="{po>supplier}"
+				data-number="{path:'po>value', formatter:'util.Formatter.currency'}"
+				data-number-unit="{po>currency}">
+				<div data-sap-ui-aggregation="attributes">
+					<div data-sap-ui-type="sap.m.ObjectAttribute" data-text="{path:'po>by', formatter:'util.Formatter.by'}" 
+							data-active="{path:'po>requestorDetails/email', formatter:'util.Formatter.isNotEmpty'}" data-press="sendEmail">
+						<div data-sap-ui-aggregation="customData">
+							<div data-sap-ui-type="sap.ui.core.CustomData" data-key="email" data-value="{po>requestorDetails/email}">
+							</div>
+							<div data-sap-ui-type="sap.ui.core.CustomData" data-key="name" data-value="{po>by}">
+							</div>
+						</div>
+					</div>
+				</div>
+				<div data-sap-ui-aggregation="firstStatus">
+					<div data-sap-ui-type="sap.m.ObjectStatus" data-text="{path:'po>agoDays', formatter:'util.Formatter.agoDays'}">
+					</div>
+				</div>
+			</div>
+			<div data-sap-ui-type="sap.me.TabContainer">
+				<div data-sap-ui-aggregation="contentInfo">
+					<div data-sap-ui-type="sap.ui.core.mvc.HTMLView" data-view-name="view.PoDetailInfo">
+					</div>
+				</div>
+				<div data-sap-ui-aggregation="contentNotes">
+					<div data-sap-ui-type="sap.ui.core.mvc.HTMLView" data-view-name="view.PoDetailNotes">
+					</div>
+				</div>
+				<div data-sap-ui-aggregation="contentAttachments">
+					<div data-sap-ui-type="sap.ui.core.mvc.HTMLView" data-view-name="view.PoDetailAttachment">
+					</div>
+				</div>
+			</div>
+			<div data-sap-ui-type="sap.m.Table" id="MaterialList" class="detailTable" data-items="{po>material}" data-header-text="Items (5)">
+				<div data-sap-ui-aggregation="columns">
+					<div data-sap-ui-type="sap.m.Column"
+						data-h-align="Center"
+						data-width="80px" >
+						<div data-sap-ui-aggregation="header">
+							<div data-sap-ui-type="sap.m.Label" data-text="">
+							</div>
+						</div>
+					</div>
+					<div data-sap-ui-type="sap.m.Column" 
+						data-h-align="Left">
+						<div data-sap-ui-aggregation="header">
+							<div data-sap-ui-type="sap.m.Label" data-text="Material"></div>
+						</div>
+					</div>
+					<div data-sap-ui-type="sap.m.Column"
+						data-h-align="Left"
+						data-width="6em" 
+						data-min-screen-width="Tablet" 
+						data-demand-popin="true" >
+						<div data-sap-ui-aggregation="header">
+							<div data-sap-ui-type="sap.m.Label" data-text="Vendor">
+							</div>
+						</div>
+					</div>
+					<div data-sap-ui-type="sap.m.Column"
+						data-h-align="Right"
+						data-width="7em"
+						data-demand-popin="true"
+						data-min-screen-width="Large" >
+						<div data-sap-ui-aggregation="header">
+							<div data-sap-ui-type="sap.m.Label" data-text="Status">
+							</div>
+						</div>
+					</div>
+					<div data-sap-ui-type="sap.m.Column"
+						data-h-align="Right"
+						data-width="6em"
+						data-demand-popin="true"
+						data-min-screen-width="Medium">
+						<div data-sap-ui-aggregation="header">
+							<div data-sap-ui-type="sap.m.Label" data-text="Price">
+							</div>
+						</div>
+					</div>
+				</div>
+				<div data-sap-ui-aggregation="items">
+					<div data-sap-ui-type="sap.m.ColumnListItem"
+						data-type="Active"
+						data-unread="true">
+						<div data-sap-ui-aggregation="cells">
+							<div data-sap-ui-type="sap.m.Switch" data-type="AcceptReject" data-change="switchChange">
+							</div>
+							<div data-sap-ui-type="sap.m.ObjectIdentifier"
+								data-title="{po>name}" 
+								data-text="{po>text}"
+								data-badge-notes="{po>notes}"
+								data-badge-people="{po>people}" 
+								data-badge-attachments="{po>attachments}" >
+							</div>
+							<div data-sap-ui-type="sap.m.Text" data-text="{po>vendor}">
+							</div>
+							<div data-sap-ui-type="sap.m.VBox">
+								<div data-sap-ui-aggregation="items">
+									<div class='top-padding' data-sap-ui-type="sap.m.ObjectStatus" data-text="{po>status}" data-state="{po>statusState}">
+									</div>
+									<div class='attr-padding' data-sap-ui-type="sap.m.ObjectStatus" data-text="{po>info}" data-state="{po>infoState}">
+									</div>
+								</div>
+							</div>
+							<div data-sap-ui-type="sap.m.ObjectNumber" data-number="{po>price}" data-number-unit="EUR">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div data-sap-ui-aggregation="footer">
+			<div data-sap-ui-type="sap.m.Bar" data-translucent="true">
+				<div data-sap-ui-aggregation="contentRight">
+					<!-- this UI pattern is not recommended by UX anymore 
+					<div data-sap-ui-type="sap.ui.core.Icon" data-src="sap-icon://accept">
+					</div>
+					<div data-sap-ui-type="sap.m.Label" id="PoDetailLabelApprove" data-text="(?)">
+					</div>
+					<div data-sap-ui-type="sap.ui.core.Icon" data-src="sap-icon://decline">
+					</div>
+					<div data-sap-ui-type="sap.m.Label" id="PoDetailLabelReject" data-text="(?)">
+					</div>
+					-->
+					<div data-sap-ui-type="sap.m.Button" data-text="Send" data-press="send">
+					</div>
+					<div data-sap-ui-type="sap.m.Button"  data-icon="sap-icon://action" data-press="showActionSheet">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</template>

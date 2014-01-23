@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><core:View xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:form="sap.ui.layout.form" xmlns:ui="sap.ca.ui" controllerName="i2d.qm.qualityissue.confirm.appref.view.S3"><!--Scaffolding S3 applied-->
+    <Page navButtonPress="navBack" showNavButton="{device&gt;/isPhone}" title="{i18n&gt;DETAIL_TITLE}">
+        <content>
+            <ObjectHeader title="{Subject}">
+                <attributes>
+                    <ObjectAttribute id="DEFECT" text="{Defect}"/>
+                    <ObjectAttribute id="DATE" text="{path:'CreatedAt', type:'sap.ca.ui.model.type.Date', formatOptions : { style:'daysAgo'}}"/>
+                </attributes>
+                <statuses>
+                    <ObjectStatus id="STATUS" state="{        path:'Status',        formatter:'i2d.qm.qualityissue.confirm.appref.util.Formatter.StatusState'       }" text="{Status}"/>
+                </statuses>
+            </ObjectHeader>
+            <IconTabBar expanded="{device&gt;/isNoPhone}" id="TAB_CONTAINER">
+                <items>
+                    <IconTabFilter icon="sap-icon://hint" key="Info">
+                        <form:SimpleForm id="INFO_FORM" maxContainerCols="2" minWidth="1024">
+                            <form:content>
+                                <Label text="{i18n&gt;NOTIFICATION}"/>
+                                <Text text="{ReportedIssueID}"/>
+                                <Label text="{i18n&gt;PRIORITY}"/>
+                                <Text text="{Priority}"/>
+                                <Label text="{i18n&gt;ASSIGNED_TO}"/>
+                                <Link id="lkAssignedTo" press="openBusinessCard" text="{Name}"/>
+                                <Label text="{i18n&gt;DETAILED_DESCRIPTION}"/>
+                                <Text text="{Description}"/>
+                                <Label text="{i18n&gt;CATEGORY}"/>
+                                <Text text="{Category}"/>
+                                <Label text="{i18n&gt;REFERENCE}"/>
+                                <Text text="{Reference}"/>
+                                <Label text="{i18n&gt;REPORTED_ON}"/>
+                                <Text text="{path:'CreatedAt',  type:'sap.ca.ui.model.type.Date', formatOptions : { style:'medium'}}"/>
+
+                                <core:ExtensionPoint name="extMoreInfo"/>
+
+                            </form:content>
+                        </form:SimpleForm>
+                    </IconTabFilter>
+                    <IconTabFilter count="{AttachmentsCount}" icon="sap-icon://attachment" key="Attachments">
+                        <ui:AddPicture id="addPicture" pictures="{picture>/Pictures}" show="onItemPress" editable="false"
+                                       itemSize="100" >
+                            <ui:pictures>
+                                <ui:PictureItem source="{picture>source}"/>
+                            </ui:pictures>
+                        </ui:AddPicture>
+                    </IconTabFilter>
+
+                    <core:ExtensionPoint name="extTabQuantities"/>
+                </items>
+            </IconTabBar>
+
+            <core:ExtensionPoint name="extTaskList"/>
+
+        </content>
+        <footer>
+            <Bar>
+                <contentRight>
+                    <core:ExtensionPoint name="extFooter"/>
+                </contentRight>
+            </Bar>
+        </footer>
+     </Page>
+</core:View>

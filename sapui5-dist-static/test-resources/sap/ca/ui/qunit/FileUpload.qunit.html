@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+<title>Fiori Wave 2: Test Page for File Upload</title>
+
+<script src="../../../../../resources/sap-ui-core.js" id="sap-ui-bootstrap"
+    data-sap-ui-libs="sap.m" data-sap-ui-theme="sap_bluecrystal"
+    data-sap-ui-xx-bindingSyntax="complex" data-sap-ui-noConflict="true">
+</script>
+
+<link rel="stylesheet"
+    href="../../../../../resources/sap/ui/thirdparty/qunit.css"
+    type="text/css" media="screen" />
+<script type="text/javascript"
+    src="../../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+
+<script type="text/javascript"
+    src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
+<script type="text/javascript"
+    src="../../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
+
+<script type="text/javascript" src="utils/qunithelper.js"></script>
+
+<script type="text/javascript" src="FileUploadTest.js"></script>
+
+<script type="text/javascript">
+    QUnit.config.autostart = false;
+    jQuery(document).ready(function() {
+        QUnit.start();
+    });
+
+</script>
+
+</head>
+<body id="body" class="sapUiBody">
+    <div id="content"></div>
+</body>
+</html>

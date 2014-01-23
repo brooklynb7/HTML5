@@ -1,0 +1,140 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<title>MenuButton in ToolBar in Overflow-mode - sap.ui.commons</title>
+<script id="sap-ui-bootstrap" data-sap-ui-theme="sap_goldreflection"
+	type="text/javascript" data-sap-ui-libs="sap.ui.commons"
+	src="../../../../../resources/sap-ui-core.js">
+	
+</script>
+
+<script>
+	// create a standalone toolbar
+	var oToolbar = new sap.ui.commons.Toolbar("tb2");
+	// set standalone false, flat design and fixed width
+	oToolbar.setStandalone(false);
+	oToolbar.setDesign(sap.ui.commons.ToolbarDesign.Flat);
+	oToolbar.setWidth("200px");
+	//Create a MenuButton Control
+	var oMenuButton = new sap.ui.commons.MenuButton({
+		text : "File",
+		tooltip : "File related actions"
+	});
+
+	//Create the menu
+	var oMenu1 = new sap.ui.commons.Menu("menu1", {
+		ariaDescription : "File Menu",
+		tooltip : "Menu containing file related actions"
+	});
+	//Create the items and add them to the menu
+	var oMenuItem1 = new sap.ui.commons.MenuItem("item1-1", {
+		text : "New"
+	}); //Icon must be not larger than 16x16 px
+	oMenu1.addItem(oMenuItem1);
+	var oMenuItem2 = new sap.ui.commons.MenuItem("item1-2", {
+		text : "Delete"
+	});
+	oMenu1.addItem(oMenuItem2);
+	var oMenuItem3 = new sap.ui.commons.MenuItem("item1-3", {
+		text : "Properties",
+		enabled : false
+	});
+	oMenu1.addItem(oMenuItem3);
+
+	//Create a sub menu for item 1
+	var oMenu2 = new sap.ui.commons.Menu("menu2", {
+		ariaDescription : "New File Menu"
+	});
+	oMenuItem1.setSubmenu(oMenu2);
+	//Create the items and add them to the sub menu
+	var oMenuItem4 = new sap.ui.commons.MenuItem("item2-1", {
+		text : "New TXT file",
+		tooltip : "Creates a new TXT file."
+	});
+	oMenu2.addItem(oMenuItem4);
+	var oMenuItem5 = new sap.ui.commons.MenuItem("item2-2", {
+		text : "New RAR file",
+		tooltip : "Creates a new RAR file."
+	});
+	oMenu2.addItem(oMenuItem5);
+
+	//Attach the Menu to the MenuButton
+	oMenuButton.setMenu(oMenu1);
+
+	//Attach an event to raise an alert when an item is selected.
+	oMenuButton.attachItemSelected(function(oEvent) {
+		alert("Items \"" + oEvent.getParameter("itemId") + "\" was selected.");
+	});
+
+	//Attach the MenuButton to the page
+
+	// create button and add it as a toolbar item. The Button control has the ToolbarItem interface included
+	var oButton1 = new sap.ui.commons.Button("b21", {
+		text : "test",
+		tooltip : "myToolTip1",
+		press : onPress
+	});
+	//oButton1.setIcon("images/new.gif");
+	oToolbar.addItem(oButton1);
+
+	// add a second item
+	var oButton2 = new sap.ui.commons.Button("b22", {
+		text : "22222",
+		tooltip : "myToolTip2",
+		press : onPress
+	});
+	//oButton2.setIcon("images/open.gif");
+	oToolbar.addItem(oButton2);
+
+	// add toolbar separator
+	oToolbar.addItem(new sap.ui.commons.ToolbarSeparator());
+
+	// add a third item
+	var oButton3 = new sap.ui.commons.Button("b23", {
+		text : "item3",
+		tooltip : "myToolTip3",
+		press : onPress
+	});
+	//oButton3.setIcon("images/save.gif");
+	oToolbar.addItem(oButton3);
+
+	// add toolbar separator
+	oToolbar.addItem(new sap.ui.commons.ToolbarSeparator());
+
+	// add a combobox as fourth item
+	var oComboBox = new sap.ui.commons.ComboBox("cmb21", {
+		items : [ new sap.ui.core.ListItem({
+			text : "#1"
+		}), new sap.ui.core.ListItem({
+			text : "Do it!"
+		}), new sap.ui.core.ListItem({
+			text : "Hello world!"
+		}), new sap.ui.core.ListItem({
+			text : "Yet another stupid button text"
+		}) ]
+	});
+	oToolbar.addItem(oComboBox);
+
+	// add fifth item
+	var oTextField1 = new sap.ui.commons.TextField("tf21", {
+		value : "suuuuuper loooooooooooooong valueeeeee",
+		width : "200px"
+	});
+	oToolbar.addItem(oMenuButton);
+
+	// what should happen if you press a toolbar item
+	function onPress(oEvent) {
+		var oButton = oEvent.getSource();
+		alert("You pressed button '" + oButton.getId() + "' with label: '" + oButton.getText() + "'");
+	}
+
+	// attach toolbar to the page
+	oToolbar.placeAt("content");
+</script>
+
+</head>
+<body class='sapUiBody'>
+	<div id='content'></div>
+</body>
+</html>

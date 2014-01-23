@@ -1,0 +1,245 @@
+<!DOCTYPE HTML>
+<html>
+
+<!-- 
+           Tested classes: sap.ui.core.navigation.History
+         -->
+
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<title>qUnit Page for sap.ui.core.navigation.History</title>
+
+<script id="sap-ui-bootstrap" type="text/javascript"
+	src="../../../../../resources/sap-ui-core.js"
+	data-sap-ui-theme="sap_bluecrystal" data-sap-ui-noConflict="true"
+	data-sap-ui-libs="sap.ui.commons">
+	
+</script>
+
+<link rel="stylesheet"
+	href="../../../../../resources/sap/ui/thirdparty/qunit.css"
+	type="text/css" media="screen" />
+<script type="text/javascript"
+	src="../../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+<script type="text/javascript"
+	src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
+<script type="text/javascript"
+	src="../../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
+<script src="../../../../../resources/sap/ui/thirdparty/sinon.js"></script>
+<script src="../../../../../resources/sap/ui/thirdparty/sinon-qunit.js"></script>
+
+<script>
+	//signals does a ducktype to determine if node.js is running. We have to set module to undefined when we include signals 
+	var original = module;
+	module = undefined;
+	jQuery.sap.require("sap.ui.core.routing.History");
+	
+	module = original;
+
+	sap.ui.core.routing.HashChanger.getInstance().init();
+	
+	module("history management");
+	
+	test("Should record a hash change", function() {
+		//System under Test
+		var sut = new sap.ui.core.routing.History();
+		
+		//Act
+		sut._hashChangedByApp("foo", false); // get rid of the unknown state
+		sut._hashChange("foo", undefined);
+		sut._hashChange("bar", "foo");
+		
+		//Assert
+		strictEqual(sut._aHistory.length, 2, "should have 2 entries in the history");
+		strictEqual(sut._aHistory[0], "foo");
+		strictEqual(sut._aHistory[1], "bar");
+	});
+	
+	test("Should not record a hash replace", function() {
+		//System under Test
+		var sut = new sap.ui.core.routing.History();
+		
+		//Act
+		sut._hashChangedByApp("foo", false); // get rid of the unknown state
+		sut._hashChange("foo", undefined);
+		sut._hashChangedByApp("bar", true); // simulate hash replace
+		sut._hashChange("bar", "foo");
+		
+		//Assert
+		strictEqual(sut._aHistory.length, 1, "should have 1 entries in the history");
+		strictEqual(sut._aHistory[0], "foo");
+	});
+
+	
+	test("Should use the hashChanger in the singleton",	function() {
+		//System under Test
+		var sut = sap.ui.core.routing.History.getInstance(),
+			oHashChanged = this.spy(sut, "_hashChangedByApp"),
+			oHashChanger = sap.ui.core.routing.HashChanger.getInstance(),
+			lengthBefore = sut._aHistory.length;
+		
+		
+		
+		//Act
+		oHashChanger.init();
+		oHashChanger.setHash("foo");
+		oHashChanger.replaceHash("bar");
+		
+		//Assert
+		strictEqual(sut, sap.ui.core.routing.History.getInstance(), "Should be a singleton");
+		
+		ok(oHashChanged.firstCall.calledWithExactly("foo", false), "Should register to setHash");
+		ok(oHashChanged.secondCall.calledWithExactly("bar", true), "Should register to replaceHash");
+
+		strictEqual(sut._aHistory.length, lengthBefore + 1, "should have 1 entries in the history");
+		strictEqual(sut._aHistory[lengthBefore], "foo");
+
+	});
+	
+	
+	test("Should return newPage if a page was added to the history", function() {
+		//System under Test
+		var sut = sap.ui.core.routing.History.getInstance();
+
+		//Act
+		sut._hashChange(jQuery.sap.uid());
+
+		//Assert
+		strictEqual(sut.getDirection(), sap.ui.core.routing.HistoryDirection.NewEntry, "should be a new entry");
+	});
+	
+	
+	test("Should return Unknown if the navigation direction is still unknown", function() {
+		//System under Test
+		var sut = new sap.ui.core.routing.History();
+
+		//Act + Assert
+		
+		strictEqual(sut.getDirection("biz"), undefined); //since we did not navigate yet
+		sut._hashChange("foo");
+		strictEqual(sut.getDirection(), sap.ui.core.routing.HistoryDirection.Unknown);
+		sut._hashChange("bar");
+		strictEqual(sut.getDirection(), sap.ui.core.routing.HistoryDirection.Unknown);
+		sut._hashChange("foo");
+		strictEqual(sut.getDirection(), sap.ui.core.routing.HistoryDirection.Unknown);
+		strictEqual(sut.getDirection("foo"), sap.ui.core.routing.HistoryDirection.Unknown);
+	});
+	
+	
+	test("Should return Forward if the navigation direction is still unknown but hashChanger triggered it", function() {
+		//System under Test
+		var sut = new sap.ui.core.routing.History();
+
+		sut._hashChangedByApp("foo", false); // get rid of the unknown state
+		
+		//Act + Assert
+		sut._hashChange("foo");
+		strictEqual(sut.getDirection(), sap.ui.core.routing.HistoryDirection.NewEntry, "should be a new entry");
+	
+	});
+	
+	test("Should detect a backward navigation", function() {
+		//System under Test
+		var sut = new sap.ui.core.routing.History()
+
+		sut._hashChangedByApp("foo", false); // get rid of the unknown state
+		
+		//Act
+		sut._hashChange("foo", undefined);
+		sut._hashChange("bar", "foo");
+		sut._hashChange("foo", "bar");
+
+		//Assert
+		strictEqual(sut.getDirection(), sap.ui.core.routing.HistoryDirection.Backwards, "should be a forwards navigation");
+	});
+
+	test("Should detect a forward navigation", function() {
+		//System under Test
+		var sut = new sap.ui.core.routing.History()
+
+		sut._hashChangedByApp("foo", false); // get rid of the unknown state
+		
+		//Act
+		sut._hashChange("foo", undefined);
+		sut._hashChange("bar", "foo");
+		sut._hashChange("foo", "bar");
+		sut._hashChange("bar", "foo");
+		
+		//Assert
+		strictEqual(sut.getDirection(), sap.ui.core.routing.HistoryDirection.Forwards, "should be a forwards navigation");
+	});
+	
+	test("Should detect unknown navigation after initialization", function() {
+		//System under Test
+		var sut = new sap.ui.core.routing.History()
+
+		sut._hashChangedByApp("foo", false); // get rid of the unknown state
+		
+		//Act
+		sut._hashChange("foo", undefined);
+		sut._hashChange("bar", "foo");
+		sut._hashChangedByApp("foo", false); //explicity tell the app that foo is added again
+		sut._hashChange("foo", "bar");
+		
+		//now we have a history that looks like this : foo - bar(current position) - foo
+		sut._hashChange("bar", "foo");
+		
+		//now we navigate to fee and we don't know wich direction we took...
+		sut._hashChange("foo", "bar");
+		
+		//Assert
+		strictEqual(sut.getDirection(), sap.ui.core.routing.HistoryDirection.Unknown, "should be an unknown navigation");
+		strictEqual(sut._aHistory.length, 0, "history should be cleaned after unknown occured");
+		
+		
+		//since the app did not navigate again its still unknown
+		sut._hashChange("any", "foo");
+		
+		strictEqual(sut.getDirection(), sap.ui.core.routing.HistoryDirection.Unknown, "should be an unknown navigation");
+
+
+		sut._hashChangedByApp("thing", false); // get rid of the unknown state
+		sut._hashChange("thing", "any");
+		strictEqual(sut.getDirection(), sap.ui.core.routing.HistoryDirection.NewEntry, "should add a newpage again");
+
+		strictEqual(sut._aHistory.length, 1, "should have 1 entries in the history");
+		strictEqual(sut._aHistory[0], "thing");
+	});
+	
+
+	test("Should clean up the history",	function() {
+		//System under Test
+		var sut = new sap.ui.core.routing.History();
+		
+		sut._hashChangedByApp("foo", false); // get rid of the unknown state
+
+		//Act
+		sut._hashChange("foo", undefined);
+		sut._hashChange("bar", "foo");
+		sut._hashChange("foo", "bar");
+		sut._hashChange("biz", "foo");
+
+		//Assert
+		strictEqual(sut._iHistoryPosition, 1, "should be at entry one of the history");
+		strictEqual(sut._aHistory.length, 2, "should have 2 entries in the history");
+
+		sut._hashChange("foo", "biz");
+		
+		strictEqual(sut.getDirection(), sap.ui.core.routing.HistoryDirection.Backwards, "should be a forwards navigation");
+		strictEqual(sut._iHistoryPosition, 0, "should be at entry one of the history");
+		strictEqual(sut._aHistory.length, 2, "should have 2 entries in the history");
+
+	});
+	
+	
+</script>
+</head>
+<body>
+	<h1 id="qunit-header">qUnit Page for
+		sap.ui.core.navigation.History</h1>
+	<h2 id="qunit-banner"></h2>
+	<h2 id="qunit-userAgent"></h2>
+	<ol id="qunit-tests"></ol>
+
+</body>
+</html>

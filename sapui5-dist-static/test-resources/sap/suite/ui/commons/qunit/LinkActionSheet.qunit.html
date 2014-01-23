@@ -1,0 +1,300 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<title>qUnit Page for sap.suite.ui.commons.LinkActionSheet</title>
+
+		<script id="sap-ui-bootstrap" 
+			type="text/javascript"
+			src="../../../../../../resources/sap-ui-core.js"
+			data-sap-ui-theme="sap_bluecrystal"
+			data-sap-ui-libs="sap.m,sap.ui.commons,sap.suite.ui.commons">
+		</script>
+
+ 		<link rel="stylesheet" href="../../../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" /> 
+		<script type="text/javascript" src="../../../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+		<script type="text/javascript" src="../../../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
+	    <script type="text/javascript" src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
+
+		<script>
+		QUnit.config.autostart = false;
+		jQuery(document).ready(function() {
+			QUnit.start();
+		});
+
+		var oLinkActionSheet1 = new sap.suite.ui.commons.LinkActionSheet("linkActionSheet1", {
+			showCancelButton: false,
+			items: [
+				new sap.m.Button({
+					icon: "sap-icon://accept",
+					text: "Accept Action"
+				}),
+				new sap.m.Button({
+					icon: "sap-icon://decline",
+					text: "Reject Action"
+				}),
+				new sap.m.Button({
+					text: "Default Action"
+				})
+			],
+			placement: sap.m.PlacementType.Bottom
+		});
+
+		var oLinkActionSheet2 = new sap.suite.ui.commons.LinkActionSheet("linkActionSheet2", {
+			showCancelButton: false,
+			items: [
+				new sap.ui.commons.Link({
+					text: "SAP (new window)",
+					href: "http://www.sap.com",
+					target: "_blank"
+				}),
+				new sap.ui.commons.Link({
+					text: "SAP",
+					href: "http://www.sap.com"
+				})
+			],
+			placement: sap.m.PlacementType.Bottom
+		});
+		
+		var oLinkActionSheet3 = new sap.suite.ui.commons.LinkActionSheet("linkActionSheet3", {
+			showCancelButton: false,
+			items: [
+				new sap.m.Button({
+					icon: "sap-icon://accept",
+					text: "Accept Action"
+				}),
+				new sap.m.Button({
+					icon: "sap-icon://decline",
+					text: "Reject Action"
+				}),
+				new sap.ui.commons.Link({
+					text: "SAP (new window)",
+					href: "http://www.sap.com",
+					target: "_blank"
+				}),
+				new sap.ui.commons.Link({
+					text: "SAP",
+					href: "http://www.sap.com"
+				}),
+				new sap.m.Button({
+					text: "Default Action"
+				})
+			],
+			placement: sap.m.PlacementType.Bottom
+		});
+
+		var oLinkActionSheet4 = new sap.suite.ui.commons.LinkActionSheet("linkActionSheet4", {
+			showCancelButton: true,
+			title: "Title 1",
+			items: [
+				new sap.m.Button({
+					text: "Accept Action"
+				}),
+				new sap.m.Button({
+					text: "Reject Action"
+				}),
+				new sap.ui.commons.Link({
+					text: "SAP (new window)",
+					href: "http://www.sap.com",
+					target: "_blank"
+				}),
+				new sap.ui.commons.Link({
+					text: "SAP",
+					href: "http://www.sap.com"
+				}),
+				new sap.m.Button({
+					text: "Default Action"
+				})
+			],
+			placement: sap.m.PlacementType.Bottom
+		});
+		
+		var oLinkActionSheet5 = new sap.suite.ui.commons.LinkActionSheet("linkActionSheet5", {
+			showCancelButton: false,
+			items: [
+				new sap.m.Button({
+					text: "Accept Action"
+				}),
+				new sap.m.Button({
+					text: "Reject Action"
+				}),
+				new sap.ui.commons.Link({
+					text: "SAP (new window)",
+					href: "http://www.sap.com",
+					target: "_blank"
+				}),
+				new sap.ui.commons.Link({
+					text: "SAP",
+					href: "http://www.sap.com"
+				}),
+				new sap.m.Button({
+					text: "Default Action"
+				})
+			],
+			placement: sap.m.PlacementType.Bottom
+		});
+
+		var oButton = new sap.m.Button({
+			text : "Open LinkActionSheet"
+		});
+
+		oButton.placeAt("content");
+
+		var bMSIE8 = (jQuery.browser.msie && jQuery.browser.version >= 8.0 && jQuery.browser.version < 9.0);
+		
+		if (!bMSIE8) {
+		
+			module("Initial Check");
+
+			asyncTest("Initialization", function(){
+			    setTimeout(function(){
+					ok(!jQuery.sap.domById("linkActionSheet1"), "LinkActionSheet is not rendered before it's ever opened.");
+					start();
+				}, 1000);
+			});	
+
+			module("Open and Close - with Buttons only");
+
+			asyncTest("Open LinkActionSheet - - with buttons only", function(){
+			    oButton.attachEventOnce("press", function() {
+					oLinkActionSheet1.openBy(this);
+		    	});
+				oButton.firePress();
+				ok(oLinkActionSheet1.isOpen(), "LinkActionSheet is already open");
+				setTimeout(function(){
+					var $linkActionSheet = jQuery.sap.byId("linkActionSheet1"),
+						$parentControl = jQuery.device.is.iphone ? $linkActionSheet.closest(".sapMActionSheetDialog") : $linkActionSheet.closest(".sapMActionSheetPopover");
+					ok(jQuery.sap.domById("linkActionSheet1"), "LinkActionSheet is rendered after it's opened.");
+					ok($linkActionSheet.closest("#sap-ui-static")[0], "LinkActionSheet should be rendered inside the static uiArea.");
+					ok($parentControl[0], "LinkActionSheet is wrapped either in Popover or Dialog");
+					start();
+				}, 1000);
+			});	
+
+			asyncTest("Close LinkActionSheet", function() {
+				oLinkActionSheet1.close();
+			
+				setTimeout(function() {
+					equal(oLinkActionSheet1.isOpen(), false, "LinkActionSheet should be closed after closing");
+					start();
+				}, 1000);
+			});
+
+			module("Open and Close - with Links only");
+
+			asyncTest("Open LinkActionSheet - - with links only", function(){
+			    oButton.attachEventOnce("press", function() {
+					oLinkActionSheet2.openBy(this);
+			    });
+				oButton.firePress();
+				ok(oLinkActionSheet2.isOpen(), "LinkActionSheet is already open");
+				setTimeout(function(){
+					var $linkActionSheet = jQuery.sap.byId("linkActionSheet2"),
+						$parentControl = jQuery.device.is.iphone ? $linkActionSheet.closest(".sapMActionSheetDialog") : $linkActionSheet.closest(".sapMActionSheetPopover");
+					ok(jQuery.sap.domById("linkActionSheet2"), "LinkActionSheet is rendered after it's opened.");
+					ok($linkActionSheet.closest("#sap-ui-static")[0], "LinkActionSheet should be rendered inside the static uiArea.");
+					ok($parentControl[0], "LinkActionSheet is wrapped either in Popover or Dialog");
+					start();
+				}, 1000);
+			});	
+
+			asyncTest("Close LinkActionSheet", function() {
+				oLinkActionSheet2.close();
+		
+				setTimeout(function() {
+					equal(oLinkActionSheet2.isOpen(), false, "LinkActionSheet should be closed after closing");
+					start();
+				}, 1000);
+			});
+
+			module("Open and Close - with Buttons and Links");
+
+			asyncTest("Open LinkActionSheet - - with Buttons and Links", function(){
+			    oButton.attachEventOnce("press", function() {
+					oLinkActionSheet3.openBy(this);
+		    	});
+				oButton.firePress();
+				ok(oLinkActionSheet3.isOpen(), "LinkActionSheet is already open");
+				setTimeout(function(){
+					var $linkActionSheet = jQuery.sap.byId("linkActionSheet3"),
+						$parentControl = jQuery.device.is.iphone ? $linkActionSheet.closest(".sapMActionSheetDialog") : $linkActionSheet.closest(".sapMActionSheetPopover");
+					ok(jQuery.sap.domById("linkActionSheet3"), "LinkActionSheet is rendered after it's opened.");
+					ok($linkActionSheet.closest("#sap-ui-static")[0], "LinkActionSheet should be rendered inside the static uiArea.");
+					ok($parentControl[0], "LinkActionSheet is wrapped either in Popover or Dialog");
+					start();
+				}, 1000);
+			});
+
+			asyncTest("Close LinkActionSheet", function() {
+				oLinkActionSheet3.close();
+		
+				setTimeout(function() {
+					equal(oLinkActionSheet3.isOpen(), false, "LinkActionSheet should be closed after closing");
+					start();
+				}, 1000);
+			});
+
+			module("Open and Close - with Iconless Buttons and Links");
+
+			asyncTest("Open LinkActionSheet - - with Iconless Buttons and Links", function(){
+		    	oButton.attachEventOnce("press", function() {
+					oLinkActionSheet4.openBy(this);
+		   		});
+				oButton.firePress();
+				ok(oLinkActionSheet4.isOpen(), "LinkActionSheet is already open");
+				setTimeout(function(){
+					var $linkActionSheet = jQuery.sap.byId("linkActionSheet4"),
+						$parentControl = jQuery.device.is.iphone ? $linkActionSheet.closest(".sapMActionSheetDialog") : $linkActionSheet.closest(".sapMActionSheetPopover"),
+						$links = $linkActionSheet.children(".sapUILinkActionSheetLink"); 
+						ok($links[0], "The 1st link was rendered");
+						ok($links[1], "The 2nd link was rendered");
+					
+					ok(jQuery.sap.domById("linkActionSheet4"), "LinkActionSheet is rendered after it's opened.");
+					ok($linkActionSheet.closest("#sap-ui-static")[0], "LinkActionSheet should be rendered inside the static uiArea.");
+					ok($parentControl[0], "LinkActionSheet is wrapped either in Popover or Dialog");
+					start();
+				}, 1000);
+			});
+		
+			asyncTest("Close LinkActionSheet", function() {
+				oLinkActionSheet4.close();
+		
+				setTimeout(function() {
+					equal(oLinkActionSheet4.isOpen(), false, "LinkActionSheet should be closed after closing");
+					start();
+				}, 1000);
+			});
+
+			module("Functional tests");
+
+			test("Functional tests", function(){
+		    	oButton.attachEventOnce("press", function() {
+					oLinkActionSheet4.openBy(this);
+		   		});
+				oButton.firePress();
+				ok(oLinkActionSheet4.isOpen(), "LinkActionSheet is already open");
+				var oLinkActionSheet5 = oLinkActionSheet4.clone(); 
+				var item1 = oLinkActionSheet5.getItems()[1];
+				equals(item1.getText(), "Reject Action", "LinkActionSheet should be cloned successfully");
+				oLinkActionSheet5.removeItem(item1);
+				notEqual(oLinkActionSheet5.getItems()[1].getText(), "Reject Action", "The second item should no longer be Reject Action");
+				oLinkActionSheet5.insertItem(item1,0);
+				equals(oLinkActionSheet5.getItems()[0].getText(), "Reject Action", "The first item should be Reject Action now");
+				oLinkActionSheet5.removeAllItems();
+				equals(oLinkActionSheet5.getItems().length, 0, "There should be no items in list now");
+				oLinkActionSheet4.close();
+			});
+		
+		}
+		</script>
+	</head>
+	<body id="body" class="sapUiBody">
+	<div id="content">
+   	</div>
+ 		<h1 id="qunit-header">qUnit Page for sap.suite.ui.commons.LinkActionSheet</h1>
+		<h2 id="qunit-banner"></h2>
+		<h2 id="qunit-userAgent"></h2>
+		<ol id="qunit-tests"></ol>
+		<div id="qunit-fixture">test markup, will be hidden</div>
+	</body>
+</html>

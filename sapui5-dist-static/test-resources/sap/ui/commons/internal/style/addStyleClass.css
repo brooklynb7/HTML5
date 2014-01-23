@@ -1,0 +1,236 @@
+
+/* PLATINUM */
+
+
+/* "next" button */
+.sapUiTheme-sap_platinum .sapUiBtnNext.sapUiBtn {
+	padding-right: 18px;
+	background-position: right top, right center, center;
+	background-repeat: no-repeat, no-repeat, repeat-x;	
+	background-size: auto, 17px 100%, auto 100%; 
+	-moz-background-size: auto, 17px 100%, auto 100%; 
+	-webkit-background-size: auto, 17px 100%, auto 100%; 
+}
+
+.sapUiTheme-sap_platinum .sapUiBtnNext.sapUiBtnStd{
+	background-image: url(button/sap_platinum/btn_next_std.png), url('button/sap_platinum/btn_std_dark.png'), url('button/sap_platinum/btn_std.png');
+	background-image: url(button/sap_platinum/btn_next_std.png), -moz-linear-gradient(center 0px, #BDC8DA, #CDD4E1 5.3%, #E1E4EB 10.6%, #C5CDDC 47.7%, #C5CDDC 84.8%, #BAC3D6 90%, #B8C7DA), -moz-linear-gradient(center 0px, #D0DBE9, #E5EAF2 5.3%, white 10.6%, #DBE1EC 47.7%, #DBE1EC 84.8%, #CDD5E4 90%, #CAD9E9);
+	background-image: url(button/sap_platinum/btn_next_std.png), -webkit-gradient(linear, left top, left bottom, from(#BDC8DA), color-stop(0.053, #CDD4E1), color-stop(0.106, #E1E4EB), color-stop(0.477, #C5CDDC), color-stop(0.848, #C5CDDC), color-stop(0.9, #BAC3D6), to(#B8C7DA)), -webkit-gradient(linear, left top, left bottom, from(#D0DBE9), color-stop(0.053, #E5EAF2), color-stop(0.106, white), color-stop(0.477, #DBE1EC), color-stop(0.848, #DBE1EC), color-stop(0.9, #CDD5E4), to(#CAD9E9));
+	-moz-box-shadow: inset 1px 0px 0px 0px #CAD9E9, inset 2px 0px 0px 0px white, inset -1px 0px 0px 0px #B8C7DA, inset -2px 0px 0px 0px #E1E4EB;
+	-webkit-box-shadow: inset 1px 0px 0px 0px #CAD9E9, inset 2px 0px 0px 0px white, inset -1px 0px 0px 0px #B8C7DA, inset -2px 0px 0px 0px #E1E4EB;
+	box-shadow: inset 1px 0px 0px 0px #CAD9E9, inset 2px 0px 0px 0px white, inset -1px 0px 0px 0px #B8C7DA, inset -2px 0px 0px 0px #E1E4EB;
+}
+
+html[data-sap-ui-browser="ie8"].sapUiTheme-sap_platinum .sapUiBtnNext.sapUiBtnStd{
+	background-image: url(button/sap_platinum/btn_ie8_next_std.png);
+	background-position: right center;
+}
+
+.sapUiTheme-sap_platinum  .sapUiBtnNext.sapUiBtnDsbl{
+	background-image: url(button/sap_platinum/btn_next_dis.png), url('button/sap_platinum/btn_dis_dark.png'), url('button/sap_platinum/btn_dis.png');
+	background-image: url(button/sap_platinum/btn_next_dis.png), -moz-linear-gradient(center 0px, #D6DFEA, #E4E8F0 5.3%, #F5F6F8 10.6%, #DDE2EC 47.7%, #DDE2EC 84.8%, #D4DBE7 90%, #D3DDEA), -moz-linear-gradient(center 0px, #DEE6F0, #EDF0F6 5.3%, white 10.6%, #E5E9F2 47.7%, #E5E9F2 84.8%, #DCE2EC 90%, #DAE4F0);
+	background-image: url(button/sap_platinum/btn_next_dis.png), -webkit-gradient(linear, left top, left bottom, from(#D6DFEA), color-stop(0.053, #E4E8F0), color-stop(0.106, #F5F6F8), color-stop(0.477, #DDE2EC), color-stop(0.848, #DDE2EC), color-stop(0.9, #D4DBE7), to(#D3DDEA)), -webkit-gradient(linear, left top, left bottom, from(#DEE6F0), color-stop(0.053, #EDF0F6), color-stop(0.106, white), color-stop(0.477, #E5E9F2), color-stop(0.848, #E5E9F2), color-stop(0.9, #DCE2EC), to(#DAE4F0));
+	-moz-box-shadow: inset 1px 0px 0px 0px #DAE4F0, inset 2px 0px 0px 0px white, inset -1px 0px 0px 0px #D3DDEA, inset -2px 0px 0px 0px #F5F6F8;	
+	-webkit-box-shadow: inset 1px 0px 0px 0px #DAE4F0, inset 2px 0px 0px 0px white, inset -1px 0px 0px 0px #D3DDEA, inset -2px 0px 0px 0px #F5F6F8;	
+	box-shadow: inset 1px 0px 0px 0px #DAE4F0, inset 2px 0px 0px 0px white, inset -1px 0px 0px 0px #D3DDEA, inset -2px 0px 0px 0px #F5F6F8;	
+}
+
+html[data-sap-ui-browser="ie8"].sapUiTheme-sap_platinum .sapUiBtnNext.sapUiBtnDsbl{
+	background-image: url(button/sap_platinum/btn_ie8_next_dis.png);
+	background-position: right center;
+}
+
+.sapUiTheme-sap_platinum .sapUiBtnNext.sapUiBtnStd:focus{
+	background-image: url(button/sap_platinum/btn_next_std.png), url('button/sap_platinum/btn_foc_dark.png'), url('button/sap_platinum/btn_foc.png');
+	background-image: url(button/sap_platinum/btn_next_std.png), -moz-linear-gradient(center 0px, #8EC2DB, #A9C6D8 5.3%, #E4E7EE 10.6%, #CBD2E0 47.7%, #CBD2E0 84.8%, #A0BED2 90%, #82BED9), -moz-linear-gradient(center 0px, #93CFE6, #B4D4E3 5.3%, white 10.6%, #DBE1EC 47.7%, #DBE1EC 84.8%, #A9CADC 90%, #85CAE4);
+	background-image: url(button/sap_platinum/btn_next_std.png), -webkit-gradient(linear, left top, left bottom, from(#8EC2DB), color-stop(0.053, #A9C6D8), color-stop(0.106, #E4E7EE), color-stop(0.477, #CBD2E0), color-stop(0.848, #CBD2E0), color-stop(0.9, #A0BED2), to(#82BED9)), -webkit-gradient(linear, left top, left bottom, from(#93CFE6), color-stop(0.053, #B4D4E3), color-stop(0.106, white), color-stop(0.477, #DBE1EC), color-stop(0.848, #DBE1EC), color-stop(0.9, #A9CADC), to(#85CAE4));
+	-moz-box-shadow: inset 1px 0px 0px 0px #85CAE4, inset 2px 0px 0px 0px #B8E0F1, inset -1px 0px 0px 0px #7AC0DB, inset -2px 0px 0px 0px #AAD1E5;	
+	-webkit-box-shadow: inset 1px 0px 0px 0px #85CAE4, inset 2px 0px 0px 0px #B8E0F1, inset -1px 0px 0px 0px #7AC0DB, inset -2px 0px 0px 0px #AAD1E5;	
+	box-shadow: inset 1px 0px 0px 0px #85CAE4, inset 2px 0px 0px 0px #B8E0F1, inset -1px 0px 0px 0px #7AC0DB, inset -2px 0px 0px 0px #AAD1E5;	
+}
+
+html[data-sap-ui-browser="ie8"].sapUiTheme-sap_platinum .sapUiBtnNext.sapUiBtnStd:focus{
+	background-image: url(button/sap_platinum/btn_ie8_next_foc.png);
+	background-position: right center;
+}
+
+.sapUiTheme-sap_platinum .sapUiBtnNext.sapUiBtnStd:hover{
+	background-image: url(button/sap_platinum/btn_next_std.png), url('button/sap_platinum/btn_hov_dark.png'), url('button/sap_platinum/btn_hov.png');
+	background-image: url(button/sap_platinum/btn_next_std.png), -moz-linear-gradient(center 0px, #CCDCE6, #E9EAF1 5.3%, #CEE4EC 47.7%, #B9D0E4 90%, #ABC9DA), -moz-linear-gradient(center 0px, #DAEAF1, white 5.3%, #E0F4F9 47.7%, #C5DCEE 90%, #B3D3E7);
+	background-image: url(button/sap_platinum/btn_next_std.png), -webkit-gradient(linear, left top, left bottom, from(#CCDCE6), color-stop(0.053, #E9EAF1), color-stop(0.477, #CEE4EC), color-stop(0.9, #B9D0E4), to(#ABC9DA)), -webkit-gradient(linear, left top, left bottom, from(#DAEAF1), color-stop(0.053, white), color-stop(0.477, #E0F4F9), color-stop(0.9, #C5DCEE), to(#B3D3E7));
+	-moz-box-shadow: inset 1px 0px 0px 0px #C9E5EF, inset -1px 0px 0px 0px #BBD6E3;	
+	-webkit-box-shadow: inset 1px 0px 0px 0px #C9E5EF, inset -1px 0px 0px 0px #BBD6E3;	
+	box-shadow: inset 1px 0px 0px 0px #C9E5EF, inset -1px 0px 0px 0px #BBD6E3;	
+}
+
+html[data-sap-ui-browser="ie8"].sapUiTheme-sap_platinum .sapUiBtnNext.sapUiBtnStd:hover{
+	background-image: url(button/sap_platinum/btn_ie8_next_hov.png);
+	background-position: right center;
+}
+
+.sapUiTheme-sap_platinum .sapUiBtnNext.sapUiBtnAct{
+	background-image: url(button/sap_platinum/btn_next_std.png), url('button/sap_platinum/btn_act_dark.png'), url('button/sap_platinum/btn_act.png');
+	background-image: url(button/sap_platinum/btn_next_std.png), -moz-linear-gradient(center 0px, #9CB8CC, #B8CFE3 5.3%, #D0E4EC 47.7%, #E7EAF0 90%, #B9CEDD), -moz-linear-gradient(center 0px, #A3C1D3, #C6DEEF 5.3%, #E0F5F9 47.7%, white 90%, #C7DCE7);
+	background-image: url(button/sap_platinum/btn_next_std.png), -webkit-gradient(linear, left top, left bottom, from(#9CB8CC), color-stop(0.053, #B8CFE3), color-stop(0.477, #D0E4EC), color-stop(0.9, #E7EAF0), to(#B9CEDD)), -webkit-gradient(linear, left top, left bottom, from(#A3C1D3), color-stop(0.053, #C6DEEF), color-stop(0.477, #E0F5F9), color-stop(0.9, white), to(#C7DCE7));
+	-moz-box-shadow: inset 1px 0px 0px 0px #BAD7E4, inset -1px 0px 0px 0px #B0CBDB;	
+	-webkit-box-shadow: inset 1px 0px 0px 0px #BAD7E4, inset -1px 0px 0px 0px #B0CBDB;	
+	box-shadow: inset 1px 0px 0px 0px #BAD7E4, inset -1px 0px 0px 0px #B0CBDB;	
+}
+
+html[data-sap-ui-browser="ie8"].sapUiTheme-sap_platinum .sapUiBtnNext.sapUiBtnAct{
+	background-image: url(button/sap_platinum/btn_ie8_next_act.png);
+	background-position: right 1px;
+}
+
+
+
+
+/* SAP_UX theme */
+
+/* "next" button */
+.sapUiTheme-sap_ux .sapUiBtnNext.sapUiBtn {
+	padding-right: 18px;
+	background-position: right center, left top, left top, right top, right top, right top, center;
+	background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, repeat-x;	
+	background-size: auto, 1px 100%, 2px 100%, 1px 100%, 2px 100%, 14px 100%, auto; 	
+	-moz-background-size: auto, 1px 100%, 2px 100%, 1px 100%, 2px 100%, 14px 100%, auto; 	
+	-webkit-background-size: auto, 1px 100%, 2px 100%, 1px 100%, 2px 100%, 14px 100%, auto; 	
+}
+
+.sapUiTheme-sap_ux .sapUiBtnNext.sapUiBtnStd{
+	background-image: url(button/sap_ux/btn_next_std.png),
+										-moz-linear-gradient(center top, #E9DEA1, #CFC184), 
+										-moz-linear-gradient(center top, #FFFAE2, #FFFDF4 6.25%, #F5E8A7 87.5%, #D0C181), 
+										-moz-linear-gradient(center top, #EDC56A, #D3B15B), 
+										-moz-linear-gradient(center top, #F9D68B, #FCEFD3 6.25%, #F1BD53 87.5%, #C8A754), 
+										-moz-linear-gradient(center top, #F9D68B, #FCE8BE 6.25%, #F9D282 12.5%, #F5B534 81.25%, #EDAF32 87.5%, #C99F40 93.75%),
+										-moz-linear-gradient(center top, #FFFAE2, #FFFDF4 6.25%, #FFF5C3 12.5%, #FFEE9E 81.25%, #F8E89A 87.5%, #D7C984 93.75%);
+	
+	background-image: url(button/sap_ux/btn_next_std.png), 
+										-webkit-gradient(linear, left top, left bottom, from(#E9DEA1), to(#CFC184)), 
+										-webkit-gradient(linear, left top, left bottom, from(#FFFAE2), color-stop(6.25%, #FFFDF4), color-stop(87.5%, #F5E8A7), to(#D0C181)), 
+										-webkit-gradient(linear, left top, left bottom, from(#EDC56A), to(#D3B15B)), 
+										-webkit-gradient(linear, left top, left bottom, from(#F9D68B), color-stop(6.25%, #FCEFD3), color-stop(87.5%, #F1BD53), to(#C8A754)), 
+										-webkit-gradient(linear, left top, left bottom, from(#F9D68B), color-stop(6.25%, #FCE8BE), color-stop(12.5%, #F9D282), color-stop(81.25%, #F5B534), color-stop(87.5%, #EDAF32), to(#C99F40)),
+										-webkit-gradient(linear, left top, left bottom, from(#FFFAE2), color-stop(6.25%, #FFFDF4), color-stop(12.5%, #FFF5C3), color-stop(81.25%, #FFEE9E), color-stop(87.5%, #F8E89A), to(#D7C984));
+}
+
+html[data-sap-ui-browser="ie9"].sapUiTheme-sap_ux .sapUiBtnNext.sapUiBtnStd{
+	background-position: right center, right top, center;
+	background-size: auto, 14px 100%, auto 100%; 	
+	background-repeat: no-repeat, no-repeat, repeat-x;	
+	background-image: url(button/sap_ux/btn_next_std.png), url('button/sap_ux/btn_std_dark.png'), url('button/sap_ux/btn_std.png');
+	box-shadow: inset 1px 0px 0px 0px #E8DB9E, inset 2px 0px 0px 0px #FEF9D9, inset -1px 0px 0px 0px #E8B954, inset -2px 0px 0px 0px #F8D588;
+}
+
+html[data-sap-ui-browser="ie8"].sapUiTheme-sap_ux .sapUiBtnNext.sapUiBtnStd{
+	background-image: url(button/sap_ux/btn_ie8_next_std.png);
+	background-position: right center;
+}
+
+.sapUiTheme-sap_ux .sapUiBtnNext.sapUiBtnDsbl{
+	background-image: url(button/sap_ux/btn_next_dis.png),
+										-moz-linear-gradient(center top, #EFE3A7, #DBCF92), 
+										-moz-linear-gradient(center top, #FFFAE2, #FEFCF1 6.25%, #FDF5CB 87.5%, #D7C984), 
+										-moz-linear-gradient(center top, #F8D67A, #E3C36B), 
+										-moz-linear-gradient(center top, #FCE1A4, #FEEED2 6.25%, #FADC7B 87.5%, #E2BF66), 
+										-moz-linear-gradient(center top, #FCE1A4, #FEF3DC 6.25%, #FCE7B6 12.5%, #FAD864 87.5%, #E0B654 93.75%),
+										-moz-linear-gradient(center top, #FFFAE2, #FFFEF8 6.25%, #FFF9D9 12.5%, #FFF4C2 81.25%, #FBF1BF 87.5%, #D7C984 93.75%);
+	
+	background-image: url(button/sap_ux/btn_next_dis.png), 
+										-webkit-gradient(linear, left top, left bottom, from(#EFE3A7), to(#DBCF92)), 
+										-webkit-gradient(linear, left top, left bottom, from(#FFFAE2), color-stop(6.25%,#FEFCF1), color-stop(87.5%, #FDF5CB), to(#D7C984)), 
+										-webkit-gradient(linear, left top, left bottom, from(#F8D67A), to(#E3C36B)), 
+										-webkit-gradient(linear, left top, left bottom, from(#FCE1A4), color-stop(6.25%, #FEEED2), color-stop(87.5%, #FADC7B), to(#E2BF66)), 
+										-webkit-gradient(linear, left top, left bottom, from(#FCE1A4), color-stop(6.25%, #FEF3DC), color-stop(12.5%, #FCE7B6), color-stop(87.5%, #FAD864), to(#E0B654)),
+										-webkit-gradient(linear, left top, left bottom, from(#FFFAE2), color-stop(6.25%, #FFFEF8), color-stop(12.5%, #FFF9D9), color-stop(81.25%, #FFF4C2), color-stop(87.5%, #FBF1BF), to(#D7C984));
+}
+
+html[data-sap-ui-browser="ie9"].sapUiTheme-sap_ux .sapUiBtnNext.sapUiBtnDsbl{
+	background-position: right center, right top, center;
+	background-size: auto, 14px 100%, auto 100%; 	
+	background-repeat: no-repeat, no-repeat, repeat-x;	
+	background-image: url(button/sap_ux/btn_next_dis.png), url('button/sap_ux/btn_dis_dark.png'), url('button/sap_ux/btn_dis.png');
+	box-shadow: inset 1px 0px 0px 0px #EDE1A5, inset 2px 0px 0px 0px #FEFBE7, inset -1px 0px 0px 0px #F5CD68, inset -2px 0px 0px 0px #FCE8B0;
+}
+
+html[data-sap-ui-browser="ie8"].sapUiTheme-sap_ux .sapUiBtnNext.sapUiBtnDsbl{
+	background-image: url(button/sap_ux/btn_ie8_next_dis.png);
+	background-position: right center;
+}
+
+.sapUiTheme-sap_ux .sapUiBtnNext.sapUiBtnStd:hover,
+.sapUiTheme-sap_ux .sapUiBtnNext.sapUiBtnStd:focus{
+	background-image: url(button/sap_ux/btn_next_std.png),
+										-moz-linear-gradient(center top, #EACF79, #CFB464), 
+										-moz-linear-gradient(center top, #FFF5D4, #FFFCF2 6.25%, #F5D679 87.5%, #D0B460), 
+										-moz-linear-gradient(center top, #EFB43B, #D19F34), 
+										-moz-linear-gradient(center top, #FCD488, #FEEED2 6.25%, #F0A92C 87.5%, #CC9A31), 
+										-moz-linear-gradient(center top, #FCD488, #FEECCE 6.25%, #FCD692 12.5%, #F8A004 81.25%, #F19B04 87.5%, #D39824 93.75%),
+										-moz-linear-gradient(center top, #FFF5D4, #FFFCF2 6.25%, #FFEEBC 12.5%, #FFD964 81.25%, #F8D361 87.5%, #D7B960 93.75%);
+	
+	background-image: url(button/sap_ux/btn_next_std.png), 
+										-webkit-gradient(linear, left top, left bottom, from(#EACF79), to(#CFB464)), 
+										-webkit-gradient(linear, left top, left bottom, from(#FFF5D4), color-stop(6.25%,#FFFCF2), color-stop(87.5%, #F5D679), to(#D0B460)), 
+										-webkit-gradient(linear, left top, left bottom, from(#EFB43B), to(#D19F34)), 
+										-webkit-gradient(linear, left top, left bottom, from(#FCD488), color-stop(6.25%, #FEEED2), color-stop(87.5%, #F0A92C), to(#CC9A31)), 
+										-webkit-gradient(linear, left top, left bottom, from(#FCD488), color-stop(6.25%, #FEECCE), color-stop(12.5%, #FCD692), color-stop(81.25%, #F8A004), color-stop(87.5%, #F19B04), to(#D39824)),
+										-webkit-gradient(linear, left top, left bottom, from(#FFF5D4), color-stop(6.25%, #FFFCF2), color-stop(12.5%, #FFEEBC), color-stop(81.25%, #FFD964), color-stop(87.5%, #F8D361), to(#D7B960));
+}
+
+html[data-sap-ui-browser="ie9"].sapUiTheme-sap_ux .sapUiBtnNext.sapUiBtnStd:hover,
+html[data-sap-ui-browser="ie9"].sapUiTheme-sap_ux .sapUiBtnNext.sapUiBtnStd:focus{
+	background-position: right center, right top, center;
+	background-size: auto, 14px 100%, auto 100%; 	
+	background-image: url(button/sap_ux/btn_next_std.png), url('button/sap_ux/btn_hov_dark.png'), url('button/sap_ux/btn_hov.png');
+	box-shadow: inset 1px 0px 0px 0px #E8CD76, inset 2px 0px 0px 0px #FEF2CB, inset -1px 0px 0px 0px #F0AC2E, inset -2px 0px 0px 0px #FACE7C;
+}
+
+html[data-sap-ui-browser="ie8"].sapUiTheme-sap_ux .sapUiBtnNext.sapUiBtnStd:hover,
+html[data-sap-ui-browser="ie8"].sapUiTheme-sap_ux .sapUiBtnNext.sapUiBtnStd:focus{
+	background-image: url(button/sap_ux/btn_ie8_next_hov.png);
+	background-position: right center;
+}
+
+.sapUiTheme-sap_ux .sapUiBtnNext.sapUiBtnAct:hover{
+	background-image: url(button/sap_ux/btn_next_act.png),
+										-moz-linear-gradient(center top, #CEB66F, #E7C970),
+	 									-moz-linear-gradient(center top, #C8B16C, #F7D261 6.25%, #FFF3CF 87.5%, #FDF1CE),
+										-moz-linear-gradient(center top, #D4AC5B, #F0C25D), 
+										-moz-linear-gradient(center top, #D1AE59, #F6BE51 6.25%, #FAD68B 87.5%, #FDEBC3), 
+										-moz-linear-gradient(center top, #C8A053, #EFB133 6.25%, #F5B534 12.5%, #F5B534 81.25%, #FCE8BF 87.5%, #FBE1AA 93.75%),
+	 									-moz-linear-gradient(center top, #C8B16C, #F7D261 6.25%, #FFD964 12.5%, #FFD964 81.25%, #FFF3CF 87.5%, #FFEFBE 93.75%);
+	
+	background-image: url(button/sap_ux/btn_next_act.png), 
+										-webkit-gradient(linear, left top, left bottom, from(#CEB66F), to(#E7C970)), 
+										-webkit-gradient(linear, left top, left bottom, from(#C8B16C), color-stop(6.25%, #F7D261), color-stop(87.5%, #FFF3CF), to(#FDF1CE)), 
+										-webkit-gradient(linear, left top, left bottom, from(#D4AC5B), to(#F0C25D)), 
+										-webkit-gradient(linear, left top, left bottom, from(#D1AE59), color-stop(6.25%, #F6BE51), color-stop(87.5%, #FAD68B), to(#FDEBC3)), 
+										-webkit-gradient(linear, left top, left bottom, from(#C8A053), color-stop(6.25%, #EFB133), color-stop(12.5%, #F5B534), color-stop(81.25%, #F5B534), color-stop(87.5%, #FCE8BF), to(#FBE1AA)),
+										-webkit-gradient(linear, left top, left bottom, from(#C8B16C), color-stop(6.25%, #F7D261), color-stop(12.5%, #FFD964), color-stop(81.25%, #FFD964), color-stop(87.5%, #FFF3CF), to(#FFEFBE));
+}
+
+html[data-sap-ui-browser="ie9"].sapUiTheme-sap_ux .sapUiBtnNext.sapUiBtnAct:hover{
+	background-position: right center, right top, center;
+	background-size: auto, 14px 100%, auto 100%; 	
+	background-repeat: no-repeat, no-repeat, repeat-x;	
+	background-image: url(button/sap_ux/btn_next_act.png), url('button/sap_ux/btn_act_dark.png'), url('button/sap_ux/btn_act.png');
+	box-shadow: inset 1px 0px 0px 0px #DABF74, inset 2px 0px 0px 0px #FEEBAE, inset -1px 0px 0px 0px #E0B45C, inset -2px 0px 0px 0px #F9D995;
+}
+
+html[data-sap-ui-browser="ie8"].sapUiTheme-sap_ux .sapUiBtnNext.sapUiBtnAct:hover{
+	/* IE moves the button content 1px to the lower right while the button is clicked */
+	background-image: url(button/sap_ux/btn_ie8_next_act.png);
+}
+
+html[data-sap-ui-browser^="ie"].sapUiTheme-sap_ux .sapUiBtnNext:active{
+	/* IE moves the button content 1px to the lower right while the button is clicked */
+	padding-bottom: 2px;
+	padding-left: 4px;
+	padding-right: 19px;
+}
+
+html[data-sap-ui-browser="ie8"].sapUiTheme-sap_ux .sapUiBtnNext:active{
+	/* IE moves the button content 1px to the lower right while the button is clicked */
+	background-position: right 1px;
+}

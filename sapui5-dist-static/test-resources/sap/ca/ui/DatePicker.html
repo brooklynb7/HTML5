@@ -1,0 +1,438 @@
+<!--<!DOCTYPE html>-->
+<!--<html>-->
+<!--<head>-->
+<!--<meta charset="UTF-8">-->
+<!--<title>DatePicker - sap.ca.ui</title>-->
+
+<!--&lt;!&ndash; UI5 Bootstrap &ndash;&gt;-->
+<!--<script src="../../../../resources/sap-ui-core.js"-->
+    <!--type="text/javascript" id="sap-ui-bootstrap"-->
+    <!--data-sap-ui-libs="sap.m,sap.ui.commons,sap.ca.ui"-->
+    <!--data-sap-ui-theme="sap_bluecrystal"></script>-->
+    <!---->
+<!--<script type="text/javascript">-->
+    <!--$(document)-->
+            <!--.ready(-->
+                    <!--function() {-->
+
+                        <!--// require dialog module-->
+                        <!--jQuery.sap.require("sap.ca.ui.DatePicker");-->
+                        <!--jQuery.sap.require("sap.ca.ui.model.type.Date");-->
+
+                        <!--var oHtml = new sap.ui.core.HTML(-->
+                                <!--{-->
+                                    <!--content : $("#testContent").html(),-->
+                                    <!--afterRendering : function() {-->
+
+                                        <!--var oCore = sap.ui.getCore();-->
+                                        <!--var iEvents = 0;-->
+
+                                        <!--oFirstDayOffsetInput = new sap.m.Input(-->
+                                                <!--"offset", {-->
+                                                    <!--type : sap.m.InputType.Number,-->
+                                                    <!--maxLength : 1,-->
+                                                    <!--width : "3em",-->
+                                                    <!--liveChange : function(oEvent) {-->
+                                                        <!--var sValue = oEvent.mParameters.newValue;-->
+                                                        <!--oPicker.setFirstDayOffset(parseInt(sValue,0));-->
+                                                    <!--}-->
+                                                <!--});-->
+
+                                        <!--oLabel2 = new sap.ui.commons.Label(-->
+                                                <!--"Label2", {-->
+                                                    <!--text : "Set first day offset:",-->
+                                                    <!--labelFor : oFirstDayOffsetInput-->
+                                                <!--});-->
+
+
+                                        <!--var oParameters = new sap.m.VBox({-->
+                                            <!--items : [ oLabel2, oFirstDayOffsetInput ]-->
+                                        <!--});-->
+
+                                        <!--oParameters.placeAt("parameters");-->
+
+                                        <!--//Event handler for DatePicker change-->
+                                        <!--function handleChange(oEvent) {-->
+                                            <!--var oText = oCore-->
+                                                    <!--.getControl("TextView1");-->
+
+                                            <!--if (oEvent-->
+                                                    <!--.getParameter("invalidValue")) {-->
+                                                <!--oEvent.oSource-->
+                                                        <!--.setValueState(sap.ui.core.ValueState.Error);-->
+                                                <!--oText-->
+                                                        <!--.setSemanticColor(sap.ui.commons.TextViewColor.Negative);-->
+                                            <!--} else {-->
+                                                <!--oEvent.oSource-->
+                                                        <!--.setValueState(sap.ui.core.ValueState.None);-->
+                                                <!--oText-->
+                                                        <!--.setSemanticColor(sap.ui.commons.TextViewColor.Positive);-->
+                                            <!--}-->
+                                            <!--iEvents++;-->
+                                            <!--oText-->
+                                                    <!--.setText("Eventcounter: "-->
+                                                            <!--+ iEvents-->
+                                                            <!--+ ". New value: "-->
+                                                            <!--+ oEvent-->
+                                                                    <!--.getParameter("newValue"));-->
+                                        <!--}-->
+
+                                        <!--// Instantiating a datePicker with an ID and "value" attribute:-->
+                                        <!--var oPicker = new sap.ca.ui.DatePicker(-->
+                                                <!--"myDatePicker",-->
+                                                <!--{-->
+                                                    <!--dateValue : "Dec 25, 2010",-->
+                                                    <!--tooltip : "tooltip",-->
+                                                    <!--change : handleChange-->
+                                                <!--});-->
+
+                                        <!--oLabel = new sap.ui.commons.Label(-->
+                                                <!--"Label_DatePicker", {-->
+                                                    <!--text : "UI5 DatePicker:",-->
+                                                    <!--labelFor : oPicker-->
+                                                <!--});-->
+
+                                        <!--oLabel.placeAt("sandbox");-->
+                                        <!--oPicker.placeAt("sandbox");-->
+
+                                        <!--/* Button to display the current DatePicker attributes: */-->
+                                        <!--var oButton = new sap.ui.commons.Button(-->
+                                                <!--"revealAttributes");-->
+                                        <!--oButton-->
+                                                <!--.setText("Display current attributes");-->
+                                        <!--oButton-->
+                                                <!--.attachPress(function(-->
+                                                        <!--oControlEvent) {-->
+                                                    <!--var oControl = sap.ui-->
+                                                            <!--.getCore()-->
+                                                            <!--.getControl(-->
+                                                                    <!--"myDatePicker");-->
+                                                    <!--var msg = " value=\"" + oControl.getValue() + "\" " + -->
+                                                              <!--"inputFormat=\"" + oControl.getInputFormat() + "\" " +-->
+                                                              <!--"firstDayOffset=\"" + oControl.getFirstDayOffset() + "\" " + -->
+                                                              <!--"dateValue=\"" + oControl.getDateValue() + "\" " + -->
+                                                              <!--"dateYYYYMMDD=\"" + oControl.getDateYYYYMMDD() + "\" ";-->
+                                                    <!--var report = jQuery.sap-->
+                                                            <!--.domById("reportMsg");-->
+                                                    <!--report.innerHTML = msg;-->
+                                                <!--});-->
+                                        <!--oButton.placeAt("reportButton");-->
+
+                                        <!--var oDate = new Date();-->
+                                        <!--var sToday = oDate.toString();-->
+                                        <!--var oDisabled = new sap.ca.ui.DatePicker(-->
+                                                <!--"DP-Disabled", {-->
+                                                    <!--value : {-->
+                                                        <!--path : "/modelDateValue",-->
+                                                        <!--type : new sap.ca.ui.model.type.Date({-->
+                                                            <!--style : "short"-->
+                                                        <!--})-->
+                                                    <!--},-->
+                                                    <!--enabled : false,-->
+                                                    <!--width : "10em",-->
+                                                    <!--change : handleChange-->
+                                                <!--});-->
+                                        <!--oDisabled.placeAt("disabled");-->
+
+                                        <!--var oReadOnly = new sap.ca.ui.DatePicker(-->
+                                                <!--"DP-ReadOnly", {-->
+                                                    <!--value : {-->
+                                                        <!--path : "/modelDateValue",-->
+                                                        <!--type : new sap.ca.ui.model.type.Date({-->
+                                                            <!--pattern : "dd.MM.yyyy"-->
+                                                        <!--})-->
+                                                    <!--},-->
+                                                    <!--editable : false,-->
+                                                    <!--width : "10em",-->
+                                                    <!--change : handleChange-->
+                                                <!--});-->
+                                        <!--oReadOnly.placeAt("readonly");-->
+
+                                        <!--// Datepicker in Popup-->
+                                        <!--var oLyt = new sap.ui.commons.layout.MatrixLayout();-->
+                                        <!--oLyt-->
+                                                <!--.createRow(new sap.ca.ui.DatePicker(-->
+                                                        <!--"DP_Popup"));-->
+                                        <!--oLyt-->
+                                                <!--.createRow(new sap.ui.commons.ComboBox(-->
+                                                        <!--"CP_Popup",-->
+                                                        <!--{-->
+                                                            <!--items : [-->
+                                                                    <!--new sap.ui.core.ListItem(-->
+                                                                            <!--"fi",-->
+                                                                            <!--{-->
+                                                                                <!--text : "first item",-->
+                                                                                <!--additionalText : "(1)"-->
+                                                                            <!--}),-->
+                                                                    <!--new sap.ui.core.ListItem(-->
+                                                                            <!--"si",-->
+                                                                            <!--{-->
+                                                                                <!--text : "second item",-->
+                                                                                <!--additionalText : "(2)"-->
+                                                                            <!--}),-->
+                                                                    <!--new sap.ui.core.ListItem(-->
+                                                                            <!--"ti",-->
+                                                                            <!--{-->
+                                                                                <!--text : "third item",-->
+                                                                                <!--additionalText : "(3)"-->
+                                                                            <!--}) ]-->
+                                                        <!--}));-->
+
+                                        <!--var oDialog = new sap.ui.commons.Dialog(-->
+                                                <!--"myDialog",-->
+                                                <!--{-->
+                                                    <!--modal : true,-->
+                                                    <!--title : "Test DatePicker",-->
+                                                    <!--height : "200px",-->
+                                                    <!--width : "200px",-->
+                                                    <!--contentBorderDesign : sap.ui.commons.enums.BorderDesign.Box,-->
+                                                    <!--content : [ oLyt ],-->
+                                                    <!--buttons : [ new sap.ui.commons.Button(-->
+                                                            <!--"myDialog_Cancel",-->
+                                                            <!--{-->
+                                                                <!--text : "Cancel",-->
+                                                                <!--press : function(-->
+                                                                        <!--oEvent) {-->
+                                                                    <!--oDialog-->
+                                                                            <!--.close();-->
+                                                                <!--}-->
+                                                            <!--}) ]-->
+                                                <!--});-->
+                                        <!--var oButton = new sap.ui.commons.Button(-->
+                                                <!--"btn-popup",-->
+                                                <!--{-->
+                                                    <!--text : "Open Sample Dialog",-->
+                                                    <!--press : function(oEvent) {-->
+                                                        <!--oDialog.open();-->
+                                                    <!--}-->
+                                                <!--}).placeAt("popup");-->
+
+                                        <!--var oFixed = new sap.ca.ui.DatePicker(-->
+                                                <!--"DP-Fixed", {-->
+                                                    <!--value : {-->
+                                                        <!--path : "/modelDateValue",-->
+                                                        <!--type : new sap.ca.ui.model.type.Date({-->
+                                                            <!--style : "long"-->
+                                                        <!--})-->
+                                                    <!--},-->
+                                                    <!--editable : true,-->
+                                                    <!--width : "15em",-->
+                                                    <!--change : handleChange-->
+                                                <!--});-->
+                                        <!--oFixed.placeAt("fixed");-->
+
+                                        <!--// Datepicker with different patterns using Databinding-->
+                                        <!--var oModel = new sap.ui.model.json.JSONModel();-->
+                                        <!--oModel.setData({-->
+                                            <!--modelDateValue : new Date(1330470000000)-->
+                                        <!--});-->
+                                        <!--sap.ui.getCore().setModel(oModel);-->
+
+                                        <!--(new sap.ca.ui.DatePicker(-->
+                                                <!--{-->
+                                                    <!--width : "5em",-->
+                                                    <!--inputFormat: "DDdotMMdotYYYY",-->
+                                                    <!--value : {-->
+                                                        <!--path : "/modelDateValue",-->
+                                                        <!--type : new sap.ca.ui.model.type.Date({-->
+                                                            <!--pattern : "dd.MM.yyyy"-->
+                                                        <!--})-->
+                                                    <!--},-->
+                                                    <!--tooltip : "tooltip",-->
+                                                    <!--change : handleChange-->
+                                                <!--})).placeAt("databinding");-->
+
+                                        <!--(new sap.ca.ui.DatePicker(-->
+                                                <!--{-->
+                                                    <!--width : "10em",-->
+                                                    <!--value : {-->
+                                                        <!--path : "/modelDateValue",-->
+                                                        <!--type : new sap.ca.ui.model.type.Date(-->
+                                                                <!--{-->
+                                                                    <!--pattern : "dd-MMM-yyyy"-->
+                                                                <!--})-->
+                                                    <!--},-->
+                                                    <!--change : handleChange-->
+                                                <!--})).placeAt("databinding");-->
+
+                                        <!--(new sap.ca.ui.DatePicker(-->
+                                                <!--{-->
+                                                    <!--width : "15em",-->
+                                                    <!--value : {-->
+                                                        <!--path : "/modelDateValue",-->
+                                                        <!--type : new sap.ca.ui.model.type.Date(-->
+                                                                <!--{-->
+                                                                    <!--style : "medium"-->
+                                                                <!--})-->
+                                                    <!--},-->
+                                                    <!--firstDayOffset: 6,-->
+                                                    <!--change : handleChange-->
+                                                <!--})).placeAt("databinding");-->
+
+                                        <!--sap.ui-->
+                                                <!--.getCore()-->
+                                                <!--.attachParseError(-->
+                                                        <!--function(oEvent) {-->
+                                                            <!--var oElement = oEvent-->
+                                                                    <!--.getParameter("element");-->
+                                                            <!--var sProperty = oEvent-->
+                                                                    <!--.getParameter('property');-->
+                                                            <!--var oValue = oEvent-->
+                                                                    <!--.getParameter('newValue');-->
+                                                            <!--var oType = oEvent-->
+                                                                    <!--.getParameter('type');-->
+                                                            <!--var oOldValue = oEvent-->
+                                                                    <!--.getParameter('oldValue');-->
+
+                                                            <!--var oText = oCore-->
+                                                                    <!--.getControl("BindingTextView");-->
+                                                            <!--oText-->
+                                                                    <!--.setText("ParseError: Entered value: "-->
+                                                                            <!--+ oValue);-->
+                                                            <!--oText-->
+                                                                    <!--.setSemanticColor(sap.ui.commons.TextViewColor.Negative);-->
+
+                                                            <!--if (oElement.setValueState) {-->
+                                                                <!--oElement-->
+                                                                        <!--.setValueState(sap.ui.core.ValueState.Error);-->
+                                                            <!--}-->
+                                                        <!--});-->
+
+                                        <!--sap.ui-->
+                                                <!--.getCore()-->
+                                                <!--.attachValidationSuccess(-->
+                                                        <!--function(oEvent) {-->
+                                                            <!--var oElement = oEvent-->
+                                                                    <!--.getParameter("element");-->
+                                                            <!--var sProperty = oEvent-->
+                                                                    <!--.getParameter('property');-->
+                                                            <!--var oValue = oEvent-->
+                                                                    <!--.getParameter('newValue');-->
+                                                            <!--var oType = oEvent-->
+                                                                    <!--.getParameter('type');-->
+                                                            <!--var oOldValue = oEvent-->
+                                                                    <!--.getParameter('oldValue');-->
+
+                                                            <!--var oText = oCore-->
+                                                                    <!--.getControl("BindingTextView");-->
+                                                            <!--oText-->
+                                                                    <!--.setText("ValidationSuccess: Entered value: "-->
+                                                                            <!--+ oValue);-->
+                                                            <!--oText-->
+                                                                    <!--.setSemanticColor(sap.ui.commons.TextViewColor.Positive);-->
+
+                                                            <!--if (oElement.setValueState) {-->
+                                                                <!--oElement-->
+                                                                        <!--.setValueState(sap.ui.core.ValueState.Success);-->
+                                                            <!--}-->
+                                                        <!--});-->
+
+                                        <!--var oTextView1 = new sap.ui.commons.TextView(-->
+                                                <!--"TextView1",-->
+                                                <!--{-->
+                                                    <!--text : "initial",-->
+                                                    <!--tooltip : "Result of the Change event",-->
+                                                    <!--semanticColor : sap.ui.commons.TextViewColor.Positive,-->
+                                                    <!--design : sap.ui.commons.TextViewDesign.Bold-->
+                                                <!--});-->
+                                        <!--oLabel6 = new sap.ui.commons.Label(-->
+                                                <!--"Label6",-->
+                                                <!--{-->
+                                                    <!--text : "Change event content: ",-->
+                                                    <!--labelFor : oTextView1-->
+                                                <!--});-->
+                                        <!--oLabel6.placeAt("event1");-->
+                                        <!--oTextView1.placeAt("event1");-->
+
+                                    <!---->
+                                        <!--var oBindingTextView = new sap.ui.commons.TextView(-->
+                                                <!--"BindingTextView",-->
+                                                <!--{-->
+                                                    <!--text : "initial",-->
+                                                    <!--tooltip : "Result of the Binding event",-->
+                                                    <!--semanticColor : sap.ui.commons.TextViewColor.Positive,-->
+                                                    <!--design : sap.ui.commons.TextViewDesign.Bold-->
+                                                <!--});-->
+                                        <!--oLabel7 = new sap.ui.commons.Label(-->
+                                                <!--"Label7",-->
+                                                <!--{-->
+                                                    <!--text : "Binding event content: ",-->
+                                                    <!--labelFor : oBindingTextView-->
+                                                <!--});-->
+                                        <!--oLabel7.placeAt("event2");-->
+                                        <!--oBindingTextView.placeAt("event2");-->
+<!--}-->
+                                <!--});-->
+
+                        <!--var page = new sap.m.Page("myFirstPage", {-->
+                            <!--title : "Fiori - DatePicker Test",-->
+                            <!--enableScrolling : true,-->
+                            <!--content : oHtml-->
+                        <!--});-->
+
+                        <!--var app = new sap.m.App("myApp", {-->
+                            <!--initPage : "myFirstPage"-->
+                        <!--});-->
+
+                        <!--app.addPage(page).placeAt("content");-->
+                    <!--})-->
+<!--</script>-->
+
+<!--</head>-->
+<!--<body>-->
+    <!--<div class="sapUiBody" id="content" role="application"></div>-->
+    <!--<div id="testContent" style="display: none;">-->
+        <!--<h1>-->
+            <!--Test Page for-->
+            <!--<code>sap.ca.ui.DatePicker</code>-->
+        <!--</h1>-->
+        <!--<p>Use the following control(s) to interact with the FIORI-->
+            <!--DatePicker:</p>-->
+        <!--<br>Note: <br>This control defualt user local settings-->
+        <!--defined by GateWay settings <br>Otherwise the application-->
+        <!--one (on the URL ?sap-language=DE) will be used if supplied and-->
+        <!--supported. <br>A locale is supported if translations exist-->
+        <!--for its "language+COUNTRY" or its "language-only". <br>Otherwise-->
+        <!--the default SAP "en" texts are used. <br> -->
+        <!---->
+        <!--<br> <span-->
+            <!--id="parameters"></span><br><span-->
+            <!--id="sandbox"></span> <span id="reportButton"></span><span-->
+            <!--id="reportMsg" style="color: blue;"></span> <br> <br>-->
+        <!--<br>-->
+        <!--<div id="event1"></div>-->
+        <!--<div id="event2"></div>-->
+        <!--<br>-->
+        <!--<table>-->
+            <!--<tbody>-->
+                <!--<tr>-->
+                    <!--<td><label for="DP-Disabled-input">Disabled-->
+                            <!--DatePicker</label></td>-->
+                    <!--<td id="disabled"></td>-->
+                <!--</tr>-->
+                <!--<tr>-->
+                    <!--<td><label for="DP-ReadOnly-input">Readonly-->
+                            <!--DatePicker</label></td>-->
+                    <!--<td id="readonly"></td>-->
+                <!--</tr>-->
+            <!--</tbody>-->
+        <!--</table>-->
+        <!--<br> This are some DatePickers with DataBinding and-->
+        <!--different patterns using DataBinding-->
+        <!--<div id="databinding"></div>-->
+        <!--<br>-->
+        <!--<div id="popup"></div>-->
+        <!--<br> If the DatePicker is somewhere in a-->
+        <!--<code>fixed</code>-->
+        <!--area and the screen is scrolled. To test the workaround just-->
+        <!--make the browser window small and scroll to the bottom. Then-->
+        <!--open the DatePicker in the blue box. It should open above.-->
+        <!--&lt;!&ndash; fixed DIV near bottom to check if datepicker opens inside the screen &ndash;&gt;-->
+        <!--<div-->
+            <!--style="position: fixed; left: 500px; bottom: 25px; border: 3px solid blue; padding: 5px; z-index: 1; background-color: lightBlue;">-->
+            <!--<label for="DP-Fixed-input">DatePicker in fixed area</label>-->
+            <!--<div id="fixed"></div>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</body>-->
+<!--</html>-->

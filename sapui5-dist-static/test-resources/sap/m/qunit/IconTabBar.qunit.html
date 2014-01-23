@@ -1,0 +1,333 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<title>qUnit Page for sap.m.IconTabBar</title>
+
+		<script id="sap-ui-bootstrap"
+			type="text/javascript"
+			src="../../../../resources/sap-ui-core.js"
+			data-sap-ui-theme="sap_bluecrystal"
+			data-sap-ui-noConflict="true"
+			data-sap-ui-libs="sap.m">
+		</script>
+
+		<link rel="stylesheet" href="../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
+		<script type="text/javascript" src="../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+		<script type="text/javascript" src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
+		<script type="text/javascript" src="../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
+
+	<script>
+
+			// create model
+			var model = new sap.ui.model.json.JSONModel({
+				items: [
+					{id: 5163, name:"Lorem Ipsum", amount: 1, status: "Open"},
+					{id: 6342, name:"Dolor Sit Amet", amount: 1, status: "In Process"},
+					{id: 1634, name:"Consectetur Adipisicing", amount: 1, status: "Shipped"},
+					{id: 7856, name:"Elit Sed Do", amount: 3, status: "Shipped"},
+					{id: 7245, name:"Eiusmod Tempor", amount: 1, status: "In Process"},
+					{id: 8342, name:"Incididunt Ut", amount: 1, status: "Open"},
+					{id: 3462, name:"Labore Et Dolore", amount: 1, status: "In Process"},
+					{id: 4572, name:"Magna Aliqua", amount: 5, status: "Open"},
+					{id: 2634, name:"Ut Enim Ad", amount: 1, status: "In Process"}
+				]
+			});
+			sap.ui.getCore().setModel(model);
+
+			// create model2
+			var oModel2 = new sap.ui.model.json.JSONModel({
+				items: [
+					{id: 5163, name:"Lorem Ipsum", amount: 1, status: "Open"},
+				]
+			});
+
+			//create content
+			var oITFShipped = new sap.m.IconTabFilter({
+					icon: "sap-icon://shipping-status",
+					iconColor: sap.ui.core.IconColor.Positive,
+					count: "2",
+					text: "Shipped",
+					key: "Shipped"
+				}),
+				oITB1 = new sap.m.IconTabBar("iconTabBar", {
+						items: [
+							new sap.m.IconTabFilter("iconTabFilter1", {
+								showAll: true,
+								count: "9",
+								text: "Orders",
+								key: "All"
+							}),
+							new sap.m.IconTabSeparator("iconTabSeparator"),
+							new sap.m.IconTabFilter({
+								icon: "sap-icon://task",
+								iconColor: sap.ui.core.IconColor.Critical,
+								count: "3",
+								text: "Open",
+								key: "Open"
+							}),
+							new sap.m.IconTabFilter("iconTabFilter2", {
+								icon: "sap-icon://instance",
+								iconColor: sap.ui.core.IconColor.Negative,
+								count: "4",
+								text: "In Process",
+								key: "In Process"
+							}),
+							oITFShipped
+						],
+						select: function(oEvent) {
+							ok(true, "selectEvent was fired");
+							var oBinding = this.getContent()[0].getBinding("items"),
+								sKey = oEvent.getParameter("key"),
+								oFilter;
+							if (sKey == "All") {
+								oBinding.filter([]);
+							}
+							else {
+								oFilter = new sap.ui.model.Filter("status", "EQ", sKey);
+								oBinding.filter([oFilter]);
+							}
+						},
+						content: new sap.m.Table("list", {
+							columns: [
+								new sap.m.Column({
+									width: "2em",
+									header: new sap.m.Label({text: "ID"})
+								}),
+								new sap.m.Column({
+									width: "7em",
+									header: new sap.m.Label({text: "Name"})
+								}),
+								new sap.m.Column({
+									width: "3em",
+									header: new sap.m.Label({text: "Status"})
+								}),
+								new sap.m.Column({
+									width: "2em",
+									minScreenWidth: "Tablet",
+									hAlign: "Right",
+									header: new sap.m.Label({text: "Amount"})
+								})
+							],
+							items: {
+								path: "/items",
+								template: new sap.m.ColumnListItem({
+									cells: [
+										new sap.m.Text({text: "{id}"}),
+										new sap.m.Text({text: "{name}"}),
+										new sap.m.ObjectStatus({
+											text: "{status}",
+											state: {
+												path: "status",
+												formatter: function(value) {
+													switch(value) {
+														case "Open": return "Warning";
+														case "In Process": return "Error";
+														case "Shipped": return "Success";
+													}
+												}
+											}
+										}),
+										new sap.m.Text({text: "{amount}"}),
+									]
+								})
+							}
+						})
+					});
+
+			//icontabbar2 with some content (some icontabfilter are empty)
+			var oITB2 = new sap.m.IconTabBar("iconTabBar2", {
+				items: [
+					new sap.m.IconTabFilter("iconTabFilter3", {
+						showAll: true,
+						count: "1",
+						text: "Orders",
+						key: "All"
+					}),
+					new sap.m.IconTabSeparator(),
+					new sap.m.IconTabFilter({
+						icon: "sap-icon://task",
+						iconColor: sap.ui.core.IconColor.Critical,
+						count: "1",
+						text: "Open",
+						key: "Open"
+					}),
+					new sap.m.IconTabSeparator(),
+					new sap.m.IconTabFilter("iconTabFilter4", {
+						icon: "sap-icon://instance",
+						iconColor: sap.ui.core.IconColor.Negative,
+						count: "0",
+						text: "In Process",
+						key: "In Process"
+					}),
+					new sap.m.IconTabSeparator(),
+					new sap.m.IconTabFilter({
+						icon: "sap-icon://shipping-status",
+						iconColor: sap.ui.core.IconColor.Positive,
+						count: "0",
+						text: "Shipped",
+						key: "Shipped"
+					})
+				],
+				select: function(oEvent) {
+					ok(true, "selectEvent was fired");
+					var oBinding = this.getContent()[0].getBinding("items"),
+						sKey = oEvent.getParameter("key"),
+						oFilter;
+					if (sKey == "All") {
+						oBinding.filter([]);
+					}
+					else {
+						oFilter = new sap.ui.model.Filter("status", "EQ", sKey);
+						oBinding.filter([oFilter]);
+					}
+				},
+				content: new sap.m.Table("list2", {
+					columns: [
+						new sap.m.Column({
+							width: "2em",
+							header: new sap.m.Label({text: "ID"})
+						}),
+						new sap.m.Column({
+							width: "7em",
+							header: new sap.m.Label({text: "Name"})
+						}),
+						new sap.m.Column({
+							width: "3em",
+							header: new sap.m.Label({text: "Status"})
+						}),
+						new sap.m.Column({
+							width: "2em",
+							minScreenWidth: "Tablet",
+							hAlign: "Right",
+							header: new sap.m.Label({text: "Amount"})
+						})
+					],
+					items: {
+						path: "/items",
+						template: new sap.m.ColumnListItem({
+							cells: [
+								new sap.m.Text({text: "{id}"}),
+								new sap.m.Text({text: "{name}"}),
+								new sap.m.ObjectStatus({
+									text: "{status}",
+									state: {
+										path: "status",
+										formatter: function(value) {
+											switch(value) {
+												case "Open": return "Warning";
+												case "In Process": return "Error";
+												case "Shipped": return "Success";
+											}
+										}
+									}
+								}),
+								new sap.m.Text({text: "{amount}"}),
+							]
+						})
+					}
+				})
+			});
+			oITB2.setModel(oModel2);
+
+			//icontabbar3 without content
+			var oITB3 = new sap.m.IconTabBar("iconTabBar3", {
+				items: [
+					new sap.m.IconTabFilter({
+						showAll: true,
+						count: "0",
+						text: "Orders",
+						key: "All"
+					}),
+					new sap.m.IconTabSeparator(),
+					new sap.m.IconTabFilter("iconTabFilter6", {
+						icon: "sap-icon://task",
+						iconColor: sap.ui.core.IconColor.Critical,
+						count: "0",
+						text: "Open",
+						key: "Open"
+					}),
+					new sap.m.IconTabSeparator(),
+					new sap.m.IconTabFilter({
+						icon: "sap-icon://instance",
+						iconColor: sap.ui.core.IconColor.Negative,
+						count: "0",
+						text: "In Process",
+						key: "In Process"
+					}),
+					new sap.m.IconTabSeparator(),
+					new sap.m.IconTabFilter({
+						icon: "sap-icon://shipping-status",
+						iconColor: sap.ui.core.IconColor.Positive,
+						count: "0",
+						text: "Shipped",
+						key: "Shipped"
+					})
+				],
+			});
+
+			// create and add a page with one icon tab bar with content and one without content
+			var page = new sap.m.Page("tabBarPage", {
+				title:"IconTabBar",
+				content : [
+					oITB1,
+					oITB2,
+					oITB3
+				]
+			});
+
+			// create and add app
+			var app = new sap.m.App("myApp", {initialPage:"tabBarPage"});
+			app.placeAt("content");
+			app.addPage(page);
+
+			//testing
+			test("basic rendering", function() {
+				ok(jQuery.sap.domById("iconTabBar"), "IconTabBar should be rendered");
+				ok(jQuery.sap.domById("iconTabFilter1"), "First IconTabBarFilter should be rendered");
+				equal(sap.ui.getCore().byId("iconTabFilter1").getText(), "Orders", "Text of first IconTabBarFilter should be 'Orders'");
+				ok(jQuery.sap.domById("iconTabSeparator"), "IconTabSeparator should be rendered");
+			});
+
+			test("selection/filter", function() {
+				filter = sap.ui.getCore().byId("iconTabFilter2");
+				oITB1.setSelectedItem(filter);
+				var oItems = sap.ui.getCore().byId("list").getItems();
+				for (var i = 0; i < oItems.length; i++) {
+					var sText = oItems[i].getCells()[2].getText();
+					equal(sText, "In Process", "Status of element should be In Process");
+				}
+			});
+
+			test("content arrow/ no content no arrow", function() {
+				ok(jQuery.sap.domById("iconTabBar-contentArrow"), "Arrow should be rendered");
+				ok(jQuery.sap.domById("iconTabBar3"), "IconTabBar should be rendered");
+				//equal(jQuery.sap.domById("iconTabBar3-arrow"), null, "Arrow should not be rendered");
+				ok(jQuery.sap.domById("iconTabBar2-contentArrow"), "Arrow should be rendered");
+				sap.ui.getCore().byId("iconTabBar2").removeAllAggregation("content", false);
+				sap.ui.getCore().applyChanges();
+				//equal(jQuery.sap.domById("iconTabBar2-arrow"), null, "Arrow should not be rendered")
+			});
+
+			test("icon color", function() {
+				equal(jQuery.sap.domById("iconTabFilter2").firstChild.firstChild.className.indexOf("sapMITBFilterNegative") != -1, true, "iconColor should be negative");
+				equal(jQuery.sap.domById("iconTabFilter2").firstChild.firstChild.className.indexOf("sapMITBFilterPositive") != -1, false, "iconColor should be positive");
+				equal(jQuery.sap.domById("iconTabFilter6").firstChild.firstChild.className.indexOf("sapMITBFilterCritical") != -1, true, "iconColor should be critical");
+				//now change the icon color for one IconTabFilter after it was rendered
+				oITFShipped.setIconColor(sap.ui.core.IconColor.Negative);
+				sap.ui.getCore().applyChanges();
+				equal(oITFShipped.$()[0].firstChild.firstChild.className.indexOf("sapMITBFilterNegative") != -1, true, "iconColor should be negative");
+				equal(oITFShipped.$()[0].firstChild.firstChild.className.indexOf("sapMITBFilterPositive") === -1, true, "css class for positive color should be removed");
+			});
+		</script>
+
+
+	</head>
+	<body id="body" class="sapUiBody">
+		<h1 id="qunit-header">qUnit Page for sap.m.IconTabBar</h1>
+		<h2 id="qunit-banner"></h2>
+		<h2 id="qunit-userAgent"></h2>
+		<ol id="qunit-tests"></ol>
+		<div id="content"></div>
+	</body>
+</html>

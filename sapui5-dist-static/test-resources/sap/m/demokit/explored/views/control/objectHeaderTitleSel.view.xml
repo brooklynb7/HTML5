@@ -1,0 +1,27 @@
+<core:View
+	controllerName="views.control.objectHeaderTitleSel"
+	xmlns="sap.m"
+	xmlns:l="sap.ui.layout"
+	xmlns:core="sap.ui.core" >
+	<l:VerticalLayout
+		width="100%">
+		<l:content>
+			<Text id="description" class="marginAll" />
+
+			<ObjectHeader
+				id="idObjectHeader"
+				title="{Name}"
+				showTitleSelector="true"
+				titleSelectorPress="handleTitleSelectorPress"
+				number="{Price}"
+				numberUnit="{CurrencyCode}">
+				<attributes>
+					<ObjectAttribute text="{Description}" />
+					<ObjectAttribute text="{WeightMeasure} {WeightUnit}" />
+					<ObjectAttribute text="{Width} x {Depth} x {Height} {DimUnit}" />
+				</attributes>
+			</ObjectHeader>
+
+		</l:content>
+	</l:VerticalLayout>
+</core:View>

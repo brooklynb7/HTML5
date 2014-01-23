@@ -1,0 +1,1 @@
+jQuery.sap.declare('sap.portal.ui5.externals.es5shims.arrayprototypelastindexof');if(!Array.prototype.lastIndexOf){Array.prototype.lastIndexOf=function lastIndexOf(f,s){var l=this.length;var a=l-1;if(typeof(s)==='undefined'){s=a}if(s<0){s+=l}if(s>a){s=a}var i;for(i=s;i>0;i--){if(typeof(this[i])!=='undefined'&&this[i]===f){return i}}return-1}}

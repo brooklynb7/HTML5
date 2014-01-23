@@ -1,0 +1,36 @@
+<core:View
+	xmlns="sap.m"
+	xmlns:l="sap.ui.layout"
+	xmlns:core="sap.ui.core" >
+	<l:VerticalLayout
+		width="100%" >
+		<l:content>
+			<Text id="description" class="marginAll" />
+
+			<Panel>
+				<headerToolbar>
+					<Toolbar>
+						<Label text="Header" />
+						<ToolbarSpacer />
+						<Button icon="sap-icon://settings" />
+						<Button icon="sap-icon://drop-down-list" />
+					</Toolbar>
+				</headerToolbar>
+				<infoToolbar>
+					<Toolbar>
+						<Label text="Info" />
+						<ToolbarSpacer />
+						<core:Icon src="sap-icon://add-filter" />
+					</Toolbar>
+				</infoToolbar>
+
+					<l:HorizontalLayout>
+						<Image src="img/product/large_HT-6100.jpg" width="10em" />
+					</l:HorizontalLayout>
+					<Text text="{/Text}" />
+
+			</Panel>
+
+		</l:content>
+	</l:VerticalLayout>
+</core:View>

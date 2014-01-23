@@ -1,0 +1,29 @@
+<html>
+	<head>
+		<title>TestSuite for sap.ui.core: GTP testcase CORE/TYPES</title>
+		<script language="javascript" src="/jsunit-testrunner/app/jsUnitCore.js"></script>
+	</head>
+	<body>
+		<script language="javascript">
+
+		/**
+		 * Add test pages to this test suite function.
+		 * Please order alphabetically
+		 */
+		function suite() {
+			var suite = new top.jsUnitTestSuite();
+			var contextPath = "/" + window.location.pathname.split("/")[1];
+			suite.addTestPage(contextPath + "/test-resources/sap/ui/core/qunit/AlternativeTypes.qunit.html");
+			suite.addTestPage(contextPath + "/test-resources/sap/ui/core/qunit/DataType.qunit.html");
+			suite.addTestPage(contextPath + "/test-resources/sap/ui/core/qunit/DateFormat.qunit.html");
+			suite.addTestPage(contextPath + "/test-resources/sap/ui/core/qunit/NumberFormat.qunit.html");
+			suite.addTestPage(contextPath + "/test-resources/sap/ui/core/qunit/Types.qunit.html");
+			suite.addTestPage(contextPath + "/test-resources/sap/ui/core/qunit/ValidationHooks.qunit.html");
+			return suite;
+		}
+		  
+		redirectToTestrunnerIfRequired();
+
+		</script>
+	</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE HTML>
+<html>
+       <head>
+              <meta http-equiv="X-UA-Compatible" content="IE=edge">
+			  <title>Feed</title>
+   			  <script src="../../../../resources/sap-ui-core.js"
+                      id="sap-ui-bootstrap"
+                      data-sap-ui-libs="sap.m, sap.collaboration"
+                      data-sap-ui-theme="sap_bluecrystal" >
+              </script>
+              <!-- only load the mobile lib "sap.m" and the "sap_mvi" theme -->
+			  <!--<script type="text/javascript" src="https://integration3.sapjam.com/assets/feed_widget_v1.js"></script>-->
+			  <!--<<script type="text/javascript" src="https://jam4.sapjam.com/assets/feed_widget_v1.js"></script>-->
+   			  <script>
+   					jQuery.sap.getObject("sap.ui.demokit", 0)._supportedThemes = ["sap_bluecrystal"];
+   					//@bsp:registerModulePath
+   					//@bsp:includeLibraryCollaboration
+   					
+   					var proxy = "/proxy/https";
+   					var contextPath = "/" + window.location.pathname.split("/")[1];
+   					// if contexPath does not begin with /uilib-sample, use /uilib-sample
+   					if (contextPath.toLowerCase().indexOf("/uilib-sample") != 0)
+   						contextPath = "/uilib-sample";
+   					
+			   		var hostUrl = window.location.protocol + "//" + window.location.host + contextPath + proxy;
+			   		// create model
+			   		
+		   			var oDataServicePath =
+		   				//"/vmw3814.wdf.sap.corp:44320/sap/opu/odata/sap/sm_integration_srv_u31_000";
+						"/vmw3911.wdf.sap.corp:44335/sap/opu/odata/sap/SM_INTEGRATION_SRV";
+		   				//"/vmw3815.wdf.sap.corp:44309/sap/opu/odata/sap/SM_INTEGRATION_SRV"; 
+		
+		   			var oDataServiceUrl = hostUrl + oDataServicePath;
+		   			//@bsp:odataServiceUrl
+   					
+					var feedCollaborationComponent = sap.ui.getCore().createComponent({
+				 		name: "sap.collaboration.components.fiori.feed",
+				 		id: "feedComponent1",
+				 		settings: {	
+		            		oDataServiceUrl: oDataServiceUrl,
+
+		            		//mode: "split",
+		            		mode: "widget",
+							feedType: "group", 
+							//groupIds: "6422,8231,17854"
+							//feedType: "group"
+							//feedType: "objectGroup"
+							//feedType: "objectGroup", 
+							//groupIds: "6422,8231,17854"//,18241
+							//feedType: "follows"
+							//feedType: "company"
+
+			            	/*object:{
+		            			id: "SO 54776",
+		            			data: [ "Sales order ID: 54776"]
+		            		}*/
+				 		}
+				 	});
+				 	
+				 	var componentContainer = new sap.ui.core.ComponentContainer("componentContainer", {
+				 		component: feedCollaborationComponent
+				 	});
+				 	
+				 	componentContainer.placeAt("content");
+				 	
+				 	var oButton = new sap.m.Button({
+				 		text: "Rerender Component",
+				 		press: function(){
+				 			var oSettings = {	
+				 					oDataServiceUrl: oDataServiceUrl,
+
+				 					//mode: "split",
+				            		mode: "widget",
+									groupIds: "6422,8231,17854",
+									//feedType: sap.collaboration.FeedType.group,
+									//feedType: "objectGroup",
+									//feedType: "objectGroup", 
+									//groupIds: "6422,8231,17854"//,18241
+									feedType: sap.collaboration.FeedType.follows,
+									//feedType: sap.collaboration.FeedType.company,
+									//feedType: sap.collaboration.FeedType.object,
+
+					            	object:{
+					  				  id: "http://services.odata.org/Northwind/Northwind.svc/Products(1)", 
+									  name: "Aniseed Syrup",
+									  type: "http://services.odata.org/Northwind/Northwind.svc/$metadata#Products",
+									  annotation_url: "https://dl.dropboxusercontent.com/u/5005669/MarkupNorthWind-V4.xml",
+									  metadata_url: "http://services.odata.org/Northwind/Northwind.svc/$metadata#Products",
+									  odata_url: "http://services.odata.org/Northwind/Northwind.svc/Products(2)",
+									  ui_url: "http://services.odata.org/Northwind/Northwind.svc/Products(3)"
+						  		}
+                       		};
+	                       		
+				 			feedCollaborationComponent.setSettings(oSettings);
+				 			componentContainer.rerender();
+				 		}
+				 	});
+				 	
+				 	oButton.placeAt("content");
+				 	
+				 	
+				 	/*$(document).ready(function() {
+				 		sap.ui.getCore().byId("componentContainer").$().height("100%");
+						$("#componentContainer-uiarea").height("100%");
+				 	});*/
+
+   			  </script>
+
+       </head>
+       <body class="sapUiBody" role="application">
+              <div id="content"></div>
+       </body>
+</html>

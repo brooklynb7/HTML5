@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>FeedChunk - sap.ui.ux3</title>
+ 	<link rel="shortcut icon" type="image/x-icon" href="images/controls/sap.ui.ux3.FeedChunk.gif">
+
+  <script
+				src="../../../../../resources/sap-ui-core.js"
+        type="text/javascript"
+        id="sap-ui-bootstrap"
+        data-sap-ui-libs="sap.ui.core,sap.ui.ux3,sap.ui.commons"
+				data-sap-ui-theme="sap_goldreflection"
+				data-sap-ui-areas="target1" >
+  </script>
+
+ 	<script src="../../../../../resources/sap-ui-debug.js"></script>
+
+	<script type="text/javascript">
+
+		function handleDeleted(oEvent){
+			alert("Chunk "+ oEvent.oSource.getId() + " deleted");
+		}
+
+		function handleSenderClicked(oEvent){
+			alert("Chunk "+ oEvent.oSource.getId() + ": click on sender");
+		}
+
+		function handleReferenceClicked(oEvent){
+			alert("Reference "+ oEvent.getParameter('text') + " clicked");
+		}
+
+		function handleCommentAdded(oEvent){
+			var oComment = oEvent.getParameter('comment');
+			alert("Comment --"+ oComment.getText() + "-- added");
+			oComment.attachDeleted(handleDeleted);
+			oComment.attachSenderClicked(handleSenderClicked);
+			oComment.attachReferenceClicked(handleReferenceClicked);
+		}
+
+		function handleToggleFlagged(oEvent){
+			alert("Flagged : "+ oEvent.getParameter('flagged'));
+		}
+
+		function handleToggleFavorite(oEvent){
+			alert("Favorite : "+ oEvent.getParameter('favorite'));
+		}
+
+		function handleInspect(oEvent){
+			alert('Inspect button pressed');
+		}
+
+		function handleToggleShared(oEvent){
+			alert("Shared : "+ oEvent.getParameter('shared'));
+		}
+
+		function handleActionItemSelected(oEvent){
+			alert("Tools item "+ oEvent.getParameter('itemId') + ' selected!');
+		}
+
+		function createHCMMenu(sID){
+			var oMenu = new sap.ui.commons.Menu(sID,{
+				items: [ new sap.ui.commons.MenuItem(sID+'-Item1',{
+						text: 'Item1'
+					}),
+					new sap.ui.commons.MenuItem(sID+'Item2',{
+						text: 'Item2'
+					})]
+				});
+			return oMenu;
+		}
+
+		function handleHCMMenuItemSelected(oEvent){
+			alert("You have selected item "+oEvent.getParameter('itemId'));
+		}
+
+		// with comments
+		var oChunk = new sap.ui.ux3.FeedChunk("Chunk", {
+			thumbnailSrc: "../images/feeder/m_01.png",
+		  sender: "HCM Man",
+	    text: "Hi People! \nThis is a HCM FeedChunk. \nYou can find here an action menu button beside the name. It is against the UI specification but in HCM allowed.",
+			timestamp: "some days ago",
+			feederThumbnailSrc: "../images/feeder/w_01.png",
+			feederSender: 'HCM Woman',
+			flagged: true,
+			favorite: true,
+			shared: true,
+			deletionAllowed: false,
+			deleted: handleDeleted,
+			senderClicked: handleSenderClicked,
+			referenceClicked: handleReferenceClicked,
+			commentAdded: handleCommentAdded,
+			toggleFlagged: handleToggleFlagged,
+			toggleFavorite: handleToggleFavorite,
+			inspect: handleInspect,
+			toggleShared: handleToggleShared,
+			actionItemSelected: handleActionItemSelected
+		}).placeAt("target1");
+
+		oChunk.attachEvent("HCMMenuItemSelected",handleHCMMenuItemSelected);
+		oChunk.setHCMMenu(createHCMMenu("HCMmenu1"));
+
+		var oComment = new sap.ui.ux3.FeedChunk("commentChunk1", {
+			sender: "Nobody",
+		  text: "I see this action MenuButton.",
+		  timestamp: "yesterday",
+		  deleted: handleDeleted,
+			senderClicked: handleSenderClicked,
+			referenceClicked: handleReferenceClicked,
+			commentAdded: handleCommentAdded
+			});
+		oComment.attachEvent("HCMMenuItemSelected",handleHCMMenuItemSelected);
+		oComment.setHCMMenu(createHCMMenu("HCMmenu2"));
+		oChunk.addComment(oComment);
+
+	  oComment = new sap.ui.ux3.FeedChunk("commentChunk2", {
+		  sender: "Ñagçyfox",
+			thumbnailSrc: "../images/feeder/m_03.png",
+	    text: "Ñagçyfox",
+	    timestamp: "5",
+	    deletionAllowed: true,
+	    deleted: handleDeleted,
+			senderClicked: handleSenderClicked,
+			referenceClicked: handleReferenceClicked,
+			commentAdded: handleCommentAdded
+	  	});
+		oComment.attachEvent("HCMMenuItemSelected",handleHCMMenuItemSelected);
+		oComment.setHCMMenu(createHCMMenu("HCMmenu3"));
+		oChunk.addComment(oComment);
+
+	</script>
+</head>
+
+<body class="sapUiBody" role="application">
+	<h1>Test Page for sap.ui.ux3.FeedChunk for HCM application</h1>
+
+	<div id="target1" style="width:80%;"> </div>
+</body>
+
+</html>

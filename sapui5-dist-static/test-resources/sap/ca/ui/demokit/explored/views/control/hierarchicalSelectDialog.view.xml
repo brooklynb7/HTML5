@@ -1,0 +1,12 @@
+<core:View xmlns:core="sap.ui.core"
+           xmlns="sap.m" xmlns:ui="sap.ca.ui" controllerName="sap.ca.ui.sample.views.control.HierarchicalSelectDialog">
+    <Page id="page">
+        <content>
+            <Button text="Open select dialog !" press="openHierarchicalSelectDialog"/>
+        </content>
+        <footer>
+            <Bar>
+            </Bar>
+        </footer>
+    </Page>
+</core:View>

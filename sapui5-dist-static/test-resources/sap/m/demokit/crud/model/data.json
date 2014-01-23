@@ -1,0 +1,65 @@
+{
+	"fruits": [
+		{
+			"name" : "Apple",
+			"country" : "NL",
+			"vendor" : "Amsterdam Markets",
+			"price" : "2.29",
+			"bestBefore": "2012-03-13",
+			"imgS" : "img/fruit/appleS.png",
+			"imgL" : "img/fruit/appleL.png",
+			"state" : "Clean",
+			"id" : "id_1"
+		}, {
+			"name" : "Lime",
+			"country" : "GR",
+			"vendor" : "Papadopoulous Inc.",
+			"price" : "2.99",
+			"bestBefore" : "2012-04-23",
+			"imgS" :"img/fruit/limeS.png",
+			"imgL" :"img/fruit/limeL.png",
+			"state" : "Clean",
+			"id" : "id_2"
+		}, {
+			"name" : "Grapefruit",
+			"country" : "NZ",
+			"vendor" : "Pacific United",
+			"price" : "4.19",
+			"bestBefore" : "2012-09-02",
+			"imgS" :"img/fruit/grapefruitS.png",
+			"imgL" :"img/fruit/grapefruitL.png",
+			"state" : "Clean",
+			"id" : "id_3"
+		}, {
+			"name" : "Plum",
+			"country" : "GR",
+			"vendor" : "Kostadinovs",
+			"price" : "2.79",
+			"bestBefore" : "2012-11-22",
+			"imgS" :"img/fruit/plumS.png",
+			"imgL" :"img/fruit/plumL.png",
+			"state" : "Dirty",
+			"id" : "id_4"
+		}, {
+			"name" : "Lemon",
+			"country" : "NZ",
+			"vendor" : "Pacific United",
+			"price" : "5.49",
+			"bestBefore" : "2012-08-10",
+			"imgS" : "img/fruit/lemonS.png",
+			"imgL" : "img/fruit/lemonL.png",
+			"state" : "Dirty",
+			"id" : "id_5"
+		}, {
+			"name" : "Pear",
+			"country" :"NO",
+			"vendor" : "Easton Corp.",
+			"price" : "7.29",
+			"bestBefore" : "2012-07-07",
+			"imgS" :"img/fruit/pearS.png",
+			"imgL" :"img/fruit/pearL.png",
+			"state" : "Clean",
+			"id" : "id_6"
+		}
+	]
+}

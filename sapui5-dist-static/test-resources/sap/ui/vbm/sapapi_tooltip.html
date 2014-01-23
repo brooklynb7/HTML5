@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <link href="style/sapvbistyle.css" type="text/css" rel="stylesheet" />
+
+      <script src="../../../../resources/sap-ui-core.js"
+         id="Script1"
+         data-sap-ui-libs="sap.ui.vbm"
+         data-sap-ui-theme="sap_goldreflection" >
+      </script>
+
+      <script>
+         // creation of visual business......................................//
+         sap.ui.localResources("vbitestapp");
+                
+            var oVBI1 = new sap.ui.vbm.VBI('vbiWrap',{
+            width : 800,
+            height: 500
+            });
+            oVBI1.placeAt("content");
+
+         // load the project file............................................//
+         var dat = $.getJSON("media/vbtooltip/main.json", function( dat ) 
+         {
+               oVBI1.load( dat );
+         });
+      </script>
+   </head>
+
+   <body class="sapUiBody">
+      <h1>Visual Business UI5: ToolTip Test</h1>
+      <div id="content"></div>
+   </body>
+</html>

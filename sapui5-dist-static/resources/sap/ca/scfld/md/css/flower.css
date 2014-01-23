@@ -1,0 +1,51 @@
+.flowercontainer,
+.flowercontainer > .sapMFlexItem  
+{
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  overflow:hidden;
+}  
+  
+.flowerclass{
+  display:block;
+  position:absolute;
+  left:0;
+  right:-65%;
+  top:0;
+  bottom:-80%;
+  margin: auto;
+  height:auto; 
+  width:95%; 
+  max-width:800px; 
+  max-height:800px; 
+}
+
+      
+.textcontainer{
+  position: absolute;
+  left: 34%;
+  right: 25%;
+  top: 38%;   
+  margin:auto;  
+  overflow:visible;
+}
+
+.sap-phone .textcontainer{
+  left: 18%;
+  right: 18%;	
+	}
+
+.textcontainer > .sapMFlexItem{  
+  display:block;
+  width:auto;
+  margin:auto;  
+}
+
+.textclass{
+  text-align:center!important;
+  font-size:1.5rem; 
+  color:#666666;    
+}

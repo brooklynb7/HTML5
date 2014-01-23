@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>RssAggregatorSpike - sap.suite.ui.commons</title>
+
+<!-- UI5 Bootstrap -->
+<script src="../../../../../../../resources/sap-ui-core.js"
+	type="text/javascript" id="sap-ui-bootstrap"
+	data-sap-ui-libs="sap.ui.commons, sap.suite.ui.commons"
+	data-sap-ui-theme="sap_goldreflection"></script>
+
+<script type="text/javascript">
+    {
+
+        var sDivider = "------------------------";
+        var sTitle = "";
+        var sPubDate = "";
+        var sLink = "";
+        var sDescription = "";
+        var sData = "";
+        
+        function handleShowFeedPress(oUrl, oTextView) {
+
+            $.get(oUrl, function (data) {
+                sData = "";
+                
+                $(data).find("item").each(function () { // or "item" or whatever suits your feed
+                    var el = $(this);
+        
+                console.log(sDivider);
+                    sTitle = el.find("title").text();
+                    console.log("title      : " + sTitle);
+                    sPubDate = el.find("pubDate").text();
+                    console.log("pubDate      : " + sPubDate);
+                    sLink = el.find("link").text();
+                    console.log("link      : " + sLink);
+                    sDescription = el.find("description").text();
+                    console.log("description: " + sDescription);
+                    
+                    sData += (sDivider + "\nTitle:\t\t" + sTitle + 
+                            "\nPub Date:\t" +  sPubDate  +
+                            "\nLink:\t\t" +  sLink +
+                            "\nDescription:\t" +  sDescription + "\n\n");
+                });
+                oTextView.setValue(sData);
+            });
+        }
+        
+        function handleClearFeedPress(oTextView) {
+
+                oTextView.setValue("");
+        }
+
+        /***************** SAP internal feed ******************/       
+        var oSapInternalUrl = "InternalRss.rss";
+        // create a label forinternalUrl feed.
+        var oSapInternalUrlLabel = new sap.ui.commons.Label({
+        	text : oSapInternalUrl
+        });
+        // attach it to some element in the page
+        oSapInternalUrlLabel.placeAt("sapInternalUrlLabel");
+        // create a button to call internalUrl feed.
+        var oSapInternalUrlButton = new sap.ui.commons.Button({
+        	text : "Show Feed",
+        	press : function() {
+                    handleShowFeedPress(oSapInternalUrl, oSapInternalTextArea);
+                }
+        });
+        // attach it to some element in the page
+        oSapInternalUrlButton.placeAt("sapInternalShowButton");        
+        // create a button to clear internalUrl feed.
+        var oSapInternalUrlClearButton = new sap.ui.commons.Button({
+        	text : "Clear Feed",
+        	press : function() {
+                    handleClearFeedPress(oSapInternalTextArea);
+                }
+        });
+        // attach it to some element in the page
+        oSapInternalUrlClearButton.placeAt("sapInternalClearButton");        
+        // create a simple Input field without automatic wrapping
+        var oSapInternalTextArea = new sap.ui.commons.TextArea({
+        	cols : 130,
+        	rows : 6,
+        	wrapping : sap.ui.core.Wrapping.Off,
+        	editable: false
+        	});
+        // attach it to some element in the page
+        oSapInternalTextArea.placeAt("sapInternalTextArea"); 
+        
+        /***************** External CORS compliant feed ******************/       
+        var oExternalCorsUrl = "http://www.npr.org/rss/rss.php?id=1001";
+        // create a label for oExternalCorsUrl feed.
+        var oExternalCorsUrlLabel = new sap.ui.commons.Label({
+        	text : oExternalCorsUrl
+        });
+        // attach it to some element in the page
+        oExternalCorsUrlLabel.placeAt("externalCorsUrlLabel");
+        // create a button to show oExternalCorsUrl feed.
+        var oExternalCorsUrlButton = new sap.ui.commons.Button({
+        	text : "Show Feed",
+        	press : function() {
+                    handleShowFeedPress(oExternalCorsUrl, oExternalCorsTextArea);
+                }
+        });
+        // attach it to some element in the page
+        oExternalCorsUrlButton.placeAt("externalCorsShowButton");        
+        // create a button to clear oExternalCorsUrl feed.
+        var oExternalCorsUrlClearButton = new sap.ui.commons.Button({
+        	text : "Clear Feed",
+        	press : function() {
+                    handleClearFeedPress(oExternalCorsTextArea);
+                }
+        });
+        // attach it to some element in the page
+        oExternalCorsUrlClearButton.placeAt("externalCorsClearButton");        
+        // create a simple Input field without automatic wrapping
+        var oExternalCorsTextArea = new sap.ui.commons.TextArea({
+        	cols : 130,
+        	rows : 6,
+        	wrapping : sap.ui.core.Wrapping.Off,
+        	editable: false
+        	});
+        // attach it to some element in the page
+        oExternalCorsTextArea.placeAt("externalCorsTextArea");
+        
+        /***************** External Non-CORS compliant feed ******************/       
+        var oExternalNonCorsUrl = "http://rss.cnn.com/rss/cnn_topstories.rss";
+        // create a label for oExternalCorsUrl feed.
+        var oExternalNonCorsUrlLabel = new sap.ui.commons.Label({
+        	text : oExternalNonCorsUrl
+        });
+        // attach it to some element in the page
+        oExternalNonCorsUrlLabel.placeAt("externalNonCorsUrlLabel");
+        // create a button to show oExternalCorsUrl feed.
+        var oExternalNonCorsUrlButton = new sap.ui.commons.Button({
+        	text : "Show Feed",
+        	press : function() {
+                    handleShowFeedPress(oExternalNonCorsUrl, oExternalNonCorsTextArea);
+                }
+        });
+        // attach it to some element in the page
+        oExternalNonCorsUrlButton.placeAt("externalNonCorsShowButton");        
+        // create a button to clear oExternalCorsUrl feed.
+        var oExternalNonCorsUrlClearButton = new sap.ui.commons.Button({
+        	text : "Clear Feed",
+        	press : function() {
+                    handleClearFeedPress(oExternalNonCorsTextArea);
+                }
+        });
+        // attach it to some element in the page
+        oExternalNonCorsUrlClearButton.placeAt("externalNonCorsClearButton");        
+        // create a simple Input field without automatic wrapping
+        var oExternalNonCorsTextArea = new sap.ui.commons.TextArea({
+        	cols : 130,
+        	rows : 6,
+        	wrapping : sap.ui.core.Wrapping.Off,
+        	editable: false
+        	});
+        // attach it to some element in the page
+        oExternalNonCorsTextArea.placeAt("externalNonCorsTextArea");
+        
+        /***************** External Non-CORS compliant feed thrugh ProxyServlet *****************/       
+        var oExternalNonCorsProxyUrl = "http://localhost:8080/uilib-sample/proxy/http/rss.cnn.com/rss/cnn_topstories.rss";
+        // create a label for oExternalCorsUrl feed.
+        var oExternalNonCorsProxyUrlLabel = new sap.ui.commons.Label({
+        	text : oExternalNonCorsProxyUrl
+        });
+        // attach it to some element in the page
+        oExternalNonCorsProxyUrlLabel.placeAt("externalNonCorsProxyUrlLabel");
+        // create a button to show oExternalCorsUrl feed.
+        var oExternalNonCorsProxyUrlButton = new sap.ui.commons.Button({
+        	text : "Show Feed",
+        	press : function() {
+                    handleShowFeedPress(oExternalNonCorsProxyUrl, oExternalNonCorsProxyTextArea);
+                }
+        });
+        // attach it to some element in the page
+        oExternalNonCorsProxyUrlButton.placeAt("externalNonCorsProxyShowButton");        
+        // create a button to clear oExternalCorsUrl feed.
+        var oExternalNonCorsProxyUrlClearButton = new sap.ui.commons.Button({
+        	text : "Clear Feed",
+        	press : function() {
+                    handleClearFeedPress(oExternalNonCorsProxyTextArea);
+                }
+        });
+        // attach it to some element in the page
+        oExternalNonCorsProxyUrlClearButton.placeAt("externalNonCorsProxyClearButton");        
+        // create a simple Input field without automatic wrapping
+        var oExternalNonCorsProxyTextArea = new sap.ui.commons.TextArea({
+        	cols : 130,
+        	rows : 6,
+        	wrapping : sap.ui.core.Wrapping.Off,
+        	editable: false
+        	});
+        // attach it to some element in the page
+        oExternalNonCorsProxyTextArea.placeAt("externalNonCorsProxyTextArea");
+        
+        
+        /***************** Multiple feeds with aggregator ******************/       
+        jQuery.sap.require("sap.suite.ui.commons.util.FeedAggregator");
+        var feedsModel = null;
+        
+        var multiFeedsLabel = new sap.ui.commons.Label({
+        	text : "Multiple feeds with aggregator"
+        });
+        // attach it to some element in the page
+        multiFeedsLabel.placeAt("multiFeedsLabel");
+        // create a button to show oExternalCorsUrl feed.
+        var multiFeedsButton = new sap.ui.commons.Button({
+        	text : "Show Feed",
+        	press : function() {
+				feedsModel = sap.suite.ui.commons.util.FeedAggregator.getFeeds([oExternalCorsUrl, oSapInternalUrl], fnSuccess);
+            }
+        });
+        
+        var fnSuccess = function(){
+        	multiFeedsTextArea.setValue(jQuery.sap.serializeXML(feedsModel.getData()));
+        } 
+        
+        // attach it to some element in the page
+        multiFeedsButton.placeAt("multiFeedsShowButton");        
+        // create a button to clear oExternalCorsUrl feed.
+        var multiFeedsClearButton = new sap.ui.commons.Button({
+        	text : "Clear Feed",
+        	press : function() {
+                    handleClearFeedPress(multiFeedsTextArea);
+                }
+        });
+        // attach it to some element in the page
+        multiFeedsClearButton.placeAt("multiFeedsClearButton");        
+        // create a simple Input field without automatic wrapping
+        var multiFeedsTextArea = new sap.ui.commons.TextArea({
+        	cols : 130,
+        	rows : 6,
+        	wrapping : sap.ui.core.Wrapping.Off,
+        	editable: false
+        	});
+        // attach it to some element in the page
+        multiFeedsTextArea.placeAt("multiFeedsTextArea");
+    }
+</script>
+</head>
+
+<body class="sapUiBody" role="application">
+	<h1>Test Page for sap.suite.ui.commons.RssAggregatorSpike</h1>
+    <h3>Internal Feed - Same Protocol, Host, & Port</h3>
+	<div id="sapInternalUrlLabel"></div>
+    <div id="sapInternalShowButton" style="display:inline;"></div>
+    <div id="sapInternalClearButton" style="display:inline;"></div>
+	<div id="sapInternalTextArea"></div>
+	<p>
+	<h3>External CORS Compliant Feed</h3>
+	<div id="externalCorsUrlLabel"></div>
+    <div id="externalCorsShowButton" style="display:inline;"></div>
+    <div id="externalCorsClearButton" style="display:inline;"></div>
+	<div id="externalCorsTextArea"></div>
+	<p>
+	<h3>External Non-CORS Compliant Feed</h3>
+	<div id="externalNonCorsUrlLabel"></div>
+    <div id="externalNonCorsShowButton" style="display:inline;"></div>
+    <div id="externalNonCorsClearButton" style="display:inline;"></div>
+	<div id="externalNonCorsTextArea"></div>
+	<p>
+	<h3>External Non-CORS Compliant Feed Trough UI5 Proxy Servlet</h3>
+	<div id="externalNonCorsProxyUrlLabel"></div>
+    <div id="externalNonCorsProxyShowButton" style="display:inline;"></div>
+    <div id="externalNonCorsProxyClearButton" style="display:inline;"></div>
+    <div id="externalNonCorsProxyTextArea"></div>	
+	<p>
+	<h3>Multiple feeds with aggregator</h3>
+	<div id="multiFeedsLabel"></div>
+    <div id="multiFeedsShowButton" style="display:inline;"></div>
+    <div id="multiFeedsClearButton" style="display:inline;"></div>
+	<div id="multiFeedsTextArea"></div>	
+	
+</body>
+</html>

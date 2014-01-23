@@ -1,0 +1,182 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+
+    <title>Fiori Wave 2: Test Page for Bubble Chart</title>
+
+    <script src="../../../../../resources/sap-ui-core.js" id="sap-ui-bootstrap"
+            data-sap-ui-libs="sap.m" data-sap-ui-theme="sap_bluecrystal"
+            data-sap-ui-xx-bindingSyntax="complex" data-sap-ui-noConflict="true"
+            data-sap-ui-compatVersion="1.16" type="text/javascript">
+    </script>
+
+    <link rel="stylesheet"
+          href="../../../../../resources/sap/ui/thirdparty/qunit.css"
+          type="text/css" media="screen"/>
+    <script type="text/javascript"
+            src="../../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+
+    <script type="text/javascript"
+            src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
+    <script type="text/javascript"
+            src="../../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
+
+    <script type="text/javascript" src="utils/qunithelper.js"></script>
+
+
+    <script type="text/javascript" src="BubbleChartTest.js"></script>
+
+    <script type="text/javascript">
+        QUnit.config.autostart = false;
+        jQuery(document).ready(function () {
+            QUnit.start();
+        });
+
+        // require dialog module
+        jQuery.sap.require("sap.ca.ui.charts.BubbleChart");
+
+        var bFirstRenderingHappened = false;
+        var oHtml = new sap.ui.core.HTML({
+            content:'<div id="contentHolder"></div><h1 id="qunit-header">Fiori Wave 2: Test Page for BubbleChart</h1><h2 id="qunit-banner"></h2><h2 id="qunit-userAgent"></h2><ol id="qunit-tests"></ol>',
+            afterRendering:function () {
+                if (!bFirstRenderingHappened) {
+                    var oBubbleChart = new sap.ca.ui.charts.BubbleChart({id:"BUBBLECHART"});
+
+                    var oData = {
+                        businessData:[
+                            {
+                                Country:"Canada",
+                                revenue:1410.87,
+                                profit:-141.25,
+                                date:1379421492000,
+                                label:"Canada Label"
+                            },
+                            {
+                                Country:"China",
+                                revenue:3338.29,
+                                profit:133.82,
+                                date:1379422492000,
+                                label:"China Label"
+                            },
+                            {
+                                Country:"France",
+                                revenue:987.66,
+                                profit:348.76,
+                                date:1387422592000,
+                                label:"France Label"
+                            },
+                            {
+                                Country:"Germany",
+                                revenue:2170.23,
+                                profit:417.29,
+                                date:1369422492000,
+                                label:"Germany Label"
+                            },
+                            {
+                                Country:"India",
+                                revenue:6170.93,
+                                profit:517.00,
+                                date:1379422492000,
+                                label:"India Label"
+                            },
+                            {
+                                Country:"United States",
+                                revenue:1005.08,
+                                profit:609.16,
+                                date:1377422492000,
+                                label:"States label"
+                            },
+                            {
+                                Country:"US",
+                                revenue:490.87,
+                                profit:-141.25,
+                                date:1373422492000,
+                                label:"US Label"
+                            },
+                            {
+                                Country:"UK",
+                                revenue:1038.29,
+                                profit:133.82,
+                                date:1379482492000,
+                                label:"UK Label"
+                            },
+                            {
+                                Country:"IReland",
+                                revenue:887.66,
+                                profit:318.76,
+                                date:1369422492000,
+                                label:"Ireland Label"
+                            },
+                            {
+                                Country:"Spain",
+                                revenue:4705.23,
+                                profit:217.29,
+                                date:1375422492000,
+                                label:"Spain Label"
+                            },
+                            {
+                                Country:"IR",
+                                revenue:1370.93,
+                                profit:167.00,
+                                date:1373422492000,
+                                label:"IR LAbel"
+                            },
+                            {
+                                Country:"IN",
+                                revenue:905.08,
+                                profit:659.16,
+                                date:1374422492000,
+                                label:"IN Label"
+                            }
+                        ]
+                    };
+
+                    oBubbleChart._oModel = new sap.ui.model.json.JSONModel();
+                    oBubbleChart._oModel.setData(oData);
+                    oBubbleChart.setModel(oBubbleChart._oModel);
+                    oBubbleChart.oDataset = new sap.viz.ui5.data.FlattenedDataset({
+                        dimensions:[
+                            { axis:1, name:'Country', value:"{Country}" }
+                        ],
+                        measures:[
+                            { group:1, name:'Date',
+                                value:{
+                                    path:'date', formatter:function ($) {
+                                        return (new Date(parseInt($)).getTime() - Date.now()) / 1000 / 3600 / 24;
+                                    }
+                                }
+                            },
+                            { group:2, name:'Profit', value:'{profit}' },
+                            { group:3, name:'Revenue', value:'{revenue}' }
+                        ],
+                        data:{ path:"/businessData" }
+                    });
+
+                    oBubbleChart.setTitle("Test Bubble Chart");
+                    oBubbleChart.placeAt("contentHolder");
+                }
+                bFirstRenderingHappened = true;
+            }
+        });
+
+        var page = new sap.m.Page("myFirstPage", {
+            title:"Fiori - BubbleChart Test",
+            showNavButton:true,
+            enableScrolling:true,
+            content:oHtml
+        });
+
+        var app = new sap.m.App("myApp", {
+            initPage:"myFirstPage"
+        });
+
+        app.addPage(page).placeAt("content");
+
+    </script>
+
+</head>
+<body id="body" class="sapUiBody">
+<div id="content"></div>
+</body>
+</html>

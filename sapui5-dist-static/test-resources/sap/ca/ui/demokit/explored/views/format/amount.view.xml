@@ -1,0 +1,85 @@
+<core:View xmlns:core="sap.ui.core"
+           xmlns="sap.m"
+           xmlns:ui="sap.ca.ui"
+           xmlns:html="http://www.w3.org/1999/xhtml"
+           controllerName="sap.ca.ui.sample.views.format.Amount"
+        >
+
+    <Page id="page">
+        <content>
+            <html:h1>Demo page to demonstrate Amount formatting</html:h1>
+            <html:p>Number of Decimal according to currency</html:p>
+            <html:ul>
+                <html:li>NetWeaver default is applied for this number of decimals</html:li>
+                <html:li>Can be overridden with "decimals" formatOption - This is the preferred way when OData service returns the number of decimal to use.</html:li>
+                <html:li>The default "decimals" value is 2 when no currency specified</html:li>
+                <html:li>Based upon the NumberFormat and support short option</html:li>
+            </html:ul>
+
+            <html:h5>Use of convenience methods .FormatAmountShort and FormatAmountStandard</html:h5>
+            <List items="{/Parts}" headerDesign="Plain">
+                <columns>
+                    <Column>
+                        <Label text="Raw value"/>
+                    </Column>
+                    <Column>
+                        <Label text="Currency"/>
+                    </Column>
+                    <Column>
+                        <Label text="Decimals"/>
+                    </Column>
+                    <Column>
+                        <Label text="FormatAmountStandard"/>
+                    </Column>
+                    <Column>
+                        <Label text="FormatAmountShort"/>
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem>
+                        <Label text="{Amount}"/>
+                        <Label text="{currencyDec}"/>
+                        <Label text="{decimals}"/>
+                        <Label text="{parts:[{path : 'Amount'},{path : 'Currency'}, {path:'decimals'}], formatter:'sap.ca.ui.model.format.AmountFormat.FormatAmountStandard'}"/>
+                        <Label text="{parts:[{path : 'Amount'},{path : 'Currency'}, {path:'decimals'}], formatter:'sap.ca.ui.model.format.AmountFormat.FormatAmountShort'}"/>
+                    </ColumnListItem>
+                </items>
+            </List>
+
+            <html:h5>Use of convenience methods .FormatAmountShortWithCurrency and FormatAmountStandardWithCurrency</html:h5>
+            <List items="{/Parts2}" headerDesign="Plain">
+                <columns>
+                    <Column>
+                        <Label text="Raw value"/>
+                    </Column>
+                    <Column>
+                        <Label text="Currency"/>
+                    </Column>
+                    <Column>
+                        <Label text="FormatAmountStandardWithCurrency"/>
+                    </Column>
+                    <Column>
+                        <Label text="FormatAmountShortWithCurrency"/>
+                    </Column>
+                    <Column>
+                        <Label text="FormatAmountStandardWithCurrency (en_US)"/>
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem>
+                        <Label text="{Amount}"/>
+                        <Label text="{Currency}"/>
+                        <Label text="{parts:[{path : 'Amount'},{path : 'Currency'}, {path:'decimals'}], formatter:'sap.ca.ui.model.format.AmountFormat.FormatAmountStandardWithCurrency'}"/>
+                        <Label text="{parts:[{path : 'Amount'},{path : 'Currency'}, {path:'decimals'}], formatter:'sap.ca.ui.model.format.AmountFormat.FormatAmountShortWithCurrency'}"/>
+                        <Label text="{parts:[{path : 'Amount'},{path : 'Currency'}, {path:'decimals'}], formatter:'.formatAmountStandard'}"/>
+                    </ColumnListItem>
+                </items>
+            </List>
+
+        </content>
+        <footer>
+            <Bar>
+            </Bar>
+        </footer>
+    </Page>
+</core:View>

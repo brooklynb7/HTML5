@@ -1,0 +1,149 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset='UTF-8'/>
+    <title>Qunit</title>
+
+    <!-- UI5 Bootstrap -->
+    <script id='sap-ui-bootstrap'
+            type='text/javascript'
+            src='../../../../../../resources/sap-ui-core.js'
+            data-sap-ui-theme='sap_goldreflection'
+            data-sap-ui-libs='sap.ui.commons,sap.portal.ui5'></script>
+
+    <!-- QUnit libraries -->
+    <link rel='stylesheet'
+          href='../../../../../../resources/sap/ui/thirdparty/qunit.css'
+          type='text/css' media='screen'/>
+    <script src='../../../../../../resources/sap/ui/thirdparty/qunit.js'></script>
+    <script type='text/javascript' src='/jsunit-testrunner/qunit/qunit-jsunit.js'></script>
+    <script type='text/javascript' src='../../../../../../resources/sap/ui/qunit/QUnitUtils.js'></script>
+    <script>
+
+        module('DynamicView');
+
+        jQuery.sap.require('sap.portal.ui5.core.View');
+
+        test('Make an instance', function () {
+
+            sap.portal.ui5.core.View.extend('mockView', {});
+
+            var oDynamicView = new sap.portal.ui5.core.DynamicView({
+                defaultView: {
+                    uctype: 'mockView'
+                }
+            });
+
+            ok(oDynamicView);
+
+        });
+
+        test('Check forwarding instance', function () {
+
+            sap.portal.ui5.core.View.extend('mockView', {});
+
+            var defaultView = new mockView;
+
+            var oCmp = new sap.portal.ui5.core.Component({
+                placeAt: 'body',
+                componentModel: {},
+                view: {
+                    uctype: 'sap.portal.ui5.core.DynamicView',
+                    defaultView: defaultView
+                }
+            });
+
+            var oDynamicView = oCmp.getView();
+
+            ok(oDynamicView.getViewApi());
+            equal(oDynamicView.getController(), oDynamicView.getViewApi().getController());
+            equal(oDynamicView.getComponentModel(), oDynamicView.getViewApi().getComponentModel());
+            equal(oDynamicView.getPlaceAt(), oDynamicView.getViewApi().getPlaceAt());
+
+        });
+
+        test('check detecting view', function() {
+
+            sap.portal.ui5.core.View.extend('mockView', {});
+
+            var defaultView = new mockView;
+            var desktopView  = new mockView;
+            var tabletView  = new mockView;
+            var mobileView  = new mockView;
+            var phoneView   = new mockView;
+
+
+            var oDynamicView = new sap.portal.ui5.core.DynamicView({
+                defaultView: defaultView,
+                desktopView: desktopView,
+                tabletView: tabletView,
+                mobileView: mobileView,
+                phoneView: phoneView,
+                detectedDevices: {
+                }
+            });
+
+            equal(oDynamicView.getViewApi(), defaultView);
+
+            var oDynamicView = new sap.portal.ui5.core.DynamicView({
+                defaultView: defaultView,
+                desktopView: desktopView,
+                tabletView: tabletView,
+                mobileView: mobileView,
+                phoneView: phoneView,
+                detectedDevices: {
+                    desktop: true
+                }
+            });
+
+            equal(oDynamicView.getViewApi(), desktopView);
+
+            var oDynamicView = new sap.portal.ui5.core.DynamicView({
+                defaultView: defaultView,
+                desktopView: desktopView,
+                tabletView: tabletView,
+                mobileView: mobileView,
+                phoneView: phoneView,
+                detectedDevices: {
+                    mobile: true
+                }
+            });
+
+            equal(oDynamicView.getViewApi(), mobileView);
+
+            var oDynamicView = new sap.portal.ui5.core.DynamicView({
+                defaultView: defaultView,
+                desktopView: desktopView,
+                tabletView: tabletView,
+                mobileView: mobileView,
+                phoneView: phoneView,
+                detectedDevices: {
+                    tablet: true
+                }
+            });
+
+            equal(oDynamicView.getViewApi(), tabletView);
+
+            var oDynamicView = new sap.portal.ui5.core.DynamicView({
+                defaultView: defaultView,
+                desktopView: desktopView,
+                tabletView: tabletView,
+                mobileView: mobileView,
+                phoneView: phoneView,
+                detectedDevices: {
+                    phone: true
+                }
+            });
+
+            equal(oDynamicView.getViewApi(), phoneView);
+
+        });
+
+    </script>
+</head>
+
+<body class='sapUiBody'>
+<div id='qunit'></div>
+<div id='uiArea0'></div>
+</body>
+</html>

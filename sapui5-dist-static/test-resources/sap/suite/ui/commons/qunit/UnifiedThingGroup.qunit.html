@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<title>qUnit Page for sap.suite.ui.commons.UnifiedThingGroup</title>
+
+		<script id="sap-ui-bootstrap" 
+			type="text/javascript"
+			src="../../../../../../resources/sap-ui-core.js"
+			data-sap-ui-theme="sap_bluecrystal"
+			data-sap-ui-libs="sap.ui.commons,sap.suite.ui.commons">
+		</script>
+
+ 		<link rel="stylesheet" href="../../../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" /> 
+		<script type="text/javascript" src="../../../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+		<script type="text/javascript" src="../../../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
+	    <script type="text/javascript" src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
+
+		<script>
+            QUnit.config.autostart = false;
+            jQuery(document).ready(function() {
+                QUnit.start();
+            });
+
+            jQuery.sap.initMobile();
+
+            var oUTG = new sap.suite.ui.commons.UnifiedThingGroup("unified1", {
+                title : "Title 1",
+                description : "Description 1",
+                content : new sap.ui.commons.TextView("content1", { text: "Content 1" })
+            });
+
+            oUTG.placeAt("content");
+
+            module("Render Tests - sap.suite.ui.commons.UnifiedThingGroup");
+
+            test("control rendering tests", function() {
+                ok(jQuery.sap.domById("unified1"), "control was rendered");
+                equals(jQuery.sap.domById("unified1-thing-group-title").innerText, "Title 1", "Title should appear in control");
+                equals(jQuery.sap.domById("unified1-thing-group-desc").innerText, "Description 1", "Description should appear in control");
+                equals(jQuery.sap.domById("content1").innerText, "Content 1", "Content should appear in control");
+            });
+
+            asyncTest("design change", function() {
+                var uiUTG = sap.ui.getCore().byId("unified1");
+                equals(uiUTG.getDesign(), sap.suite.ui.commons.ThingGroupDesign.ZeroIndent, "ZeroIndent is a default design");
+                equals(jQuery(".sapSuiteUtgContentTopIndent").length, 0, "indentation style not applied");
+                uiUTG.addEventDelegate({
+                    onAfterRendering: function() {
+                        equals(jQuery(".sapSuiteUtgContentTopIndent").length, 1, "new style applied on design change");
+                        start();
+                    }
+                });
+                uiUTG.setDesign(sap.suite.ui.commons.ThingGroupDesign.TopIndent);
+            });
+		</script>
+	</head>
+	<body id="body" class="sapUiBody">
+	<div id="content" style="width: 100%; height: 30%;">
+   	</div>
+ 		<h1 id="qunit-header">qUnit Page for sap.suite.ui.commons.UnifiedThingGroup</h1>
+		<h2 id="qunit-banner"></h2>
+		<h2 id="qunit-userAgent"></h2>
+		<ol id="qunit-tests"></ol>
+		<div id="qunit-fixture">test markup, will be hidden</div>
+	</body>
+</html>

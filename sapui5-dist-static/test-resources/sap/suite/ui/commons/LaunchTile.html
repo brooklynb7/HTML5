@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta charset="UTF-8">
+    <title>LaunchTile - sap.suite.ui.commons</title>
+
+	<style type="text/css">
+		.testTile {
+		
+			height: 190px;
+			width: 220px;
+		}
+	</style>
+	
+    <!-- UI5 Bootstrap -->
+    <script src="../../../../../resources/sap-ui-core.js"
+            type="text/javascript"
+            id="sap-ui-bootstrap"
+            data-sap-ui-libs="sap.ui.commons, sap.suite.ui.commons, sap.m"
+            data-sap-ui-theme="sap_bluecrystal">
+    </script>
+
+    <script type="text/javascript">
+   
+        jQuery.sap.require("sap.ui.core.IconPool");
+
+		function handlePress(oEvent) {
+
+		}
+	 
+		
+        var launchTile = new sap.suite.ui.commons.LaunchTile({
+            title: "Worst Case Title Ñagçyfox Ñagçyfox Ñagçyfox Ñagçyfox Ñagçyfox Ñagçyfox Ñagçyfox",
+            icon: sap.ui.core.IconPool.getIconURI("shortcut"),
+            link: "http://www.sap.com",
+        	press: handlePress
+        });
+        
+  
+        launchTile.placeAt("launchTile");
+
+    </script>
+</head>
+
+<body class="sapUiBody" role="application">
+    <h1>Test Page for sap.suite.ui.commons.LaunchTile</h1>
+    <h2>Main Tile Test</h2>
+    <p style="margin-bottom: 5px">
+    This tile demonstrates a basic launch tile:
+    </p> 
+    <div id="launchTile" class="testTile"></div>
+</body>
+</html>

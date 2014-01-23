@@ -1,0 +1,31 @@
+<core:View xmlns="sap.m" xmlns:ca="sap.ca.ui" xmlns:layout="sap.ui.layout"
+	xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form"
+	controllerName="i2d.qm.qualityissue.confirm.apprefExt.view.newView">
+	<Page id="page" showNavButton="true" title="{i18n>CREATION_TITLE}"
+		navButtonPress="goToDetailPage">
+
+		<content>
+			<form:SimpleForm id="TASK_DETAILS_FORM" minWidth="1024"
+				maxContainerCols="2">
+				<form:content>
+					<Label text="{i18n>TASK_ID}" />
+					<Text text="{TaskID}" />
+					<Label text="{i18n>CODE_GROUP}" />
+					<Text text="{TaskDetails/CodeGroup}" />
+					<Label text="{i18n>TASK_CODE}" />
+					<Text text="{TaskDetails/TaskCode}"></Text>
+					<Label text="{i18n>TASK_TEXT}" />
+					<Text text="{TaskText}" />
+					<Label text="{i18n>RESPONSIBLE}" />
+					<Text text="{Responsible}" />
+					<Label text="{i18n>PLANNED_START}" />
+					<Text text="{path:'TaskDetails/PlannedStart', type:'sap.ca.ui.model.type.Date', formatOptions : {style:'medium'} }" />
+					<Label text="{i18n>PLANNED_FINISH}" />
+					<Text text="{path:'TaskDetails/PlannedFinish', type:'sap.ca.ui.model.type.Date', formatOptions : {style:'medium'} }" />
+					<Label text="{i18n>COMPLETED_ON}" />
+					<Text text="{path:'TaskDetails/CompletedOn', type:'sap.ca.ui.model.type.Date', formatOptions : {style:'medium'} }" />
+				</form:content>
+			</form:SimpleForm>
+		</content>
+	</Page>
+</core:View>

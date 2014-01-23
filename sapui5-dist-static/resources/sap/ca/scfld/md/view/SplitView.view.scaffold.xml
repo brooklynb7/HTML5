@@ -1,0 +1,10 @@
+<core:View xmlns:core="sap.ui.core"
+           xmlns="sap.m">
+
+    <SplitContainer>
+        <masterPages>
+        </masterPages>
+        <detailPages>
+        </detailPages>
+    </SplitContainer>
+</core:View>

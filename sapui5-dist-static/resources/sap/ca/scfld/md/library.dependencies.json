@@ -1,0 +1,164 @@
+{
+  "modules" : [
+    {
+      "name" : "sap/ca/scfld/md/ApplicationFacade.js",
+      "size" : 2898,
+      "compressedSize" : 608,
+      "required" : ["jquery.sap.global.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ca/scfld/md/ComponentBase.js",
+      "description" : "define a root UIComponent which exposes the main view",
+      "size" : 6336,
+      "compressedSize" : 3330,
+      "required" : ["sap/ui/core/UIComponent.js", "sap/ca/scfld/md/ConfigurationBase.js", "sap/ui/core/routing/Router.js", "sap/ui/core/routing/History.js", "sap/m/routing/RouteMatchedHandler.js", "jquery.sap.global.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ca/scfld/md/ConfigurationBase.js",
+      "size" : 2344,
+      "compressedSize" : 815,
+      "required" : ["sap/ca/scfld/md/ApplicationFacade.js", "sap/ca/scfld/md/app/ConnectionManager.js", "sap/ca/scfld/md/app/ApplicationImplementation.js", "sap/ca/scfld/md/app/Application.js", "jquery.sap.global.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ca/scfld/md/Startup.js",
+      "size" : 1143,
+      "compressedSize" : 680,
+      "required" : ["jquery.sap.global.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ca/scfld/md/app/Application.js",
+      "size" : 2727,
+      "compressedSize" : 1533,
+      "required" : ["sap/ca/scfld/md/ApplicationFacade.js", "sap/ca/scfld/md/app/ApplicationImplementation.js", "sap/ui/app/Application.js", "sap/m/MessageToast.js", "jquery.sap.global.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ca/scfld/md/app/ApplicationImplementation.js",
+      "size" : 9645,
+      "compressedSize" : 5409,
+      "required" : ["sap/ca/scfld/md/app/ConnectionManager.js", "sap/ca/scfld/md/app/MasterHeaderFooterHelper.js", "sap/ca/scfld/md/app/DetailHeaderFooterHelper.js", "sap/ca/scfld/md/app/FullScreenHeaderFooterHelper.js", "jquery.sap.global.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ca/scfld/md/app/ButtonListHelper.js",
+      "size" : 9331,
+      "compressedSize" : 5312,
+      "required" : ["sap/ca/ui/dialog/Dialog.js", "jquery.sap.global.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ca/scfld/md/app/CommonHeaderFooterHelper.js",
+      "size" : 21453,
+      "compressedSize" : 12516,
+      "required" : ["sap/ushell/ui/footerbar/JamShareButton.js", "sap/ushell/ui/footerbar/JamDiscussButton.js", "sap/ushell/ui/footerbar/AddBookmarkButton.js", "sap/ca/scfld/md/app/ButtonListHelper.js", "sap/ushell/services/AppConfiguration.js", "jquery.sap.global.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ca/scfld/md/app/ConnectionManager.js",
+      "size" : 10310,
+      "compressedSize" : 4505,
+      "required" : ["sap/ui/core/util/MockServer.js", "sap/ca/ui/message/message.js", "sap/ca/ui/utils/busydialog.js", "jquery.sap.global.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ca/scfld/md/app/DetailHeaderFooterHelper.js",
+      "size" : 6588,
+      "compressedSize" : 3709,
+      "required" : ["sap/ca/scfld/md/app/CommonHeaderFooterHelper.js", "jquery.sap.global.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ca/scfld/md/app/FullScreenHeaderFooterHelper.js",
+      "size" : 7129,
+      "compressedSize" : 4311,
+      "required" : ["sap/ushell/ui/footerbar/JamShareButton.js", "sap/ushell/ui/footerbar/JamDiscussButton.js", "sap/ushell/ui/footerbar/AddBookmarkButton.js", "sap/ca/scfld/md/app/ButtonListHelper.js", "sap/ca/scfld/md/app/CommonHeaderFooterHelper.js", "jquery.sap.global.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ca/scfld/md/app/MasterHeaderFooterHelper.js",
+      "size" : 14858,
+      "compressedSize" : 8330,
+      "required" : ["jquery.sap.global.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ca/scfld/md/controller/BaseDetailController.js",
+      "size" : 3920,
+      "compressedSize" : 1897,
+      "required" : ["sap/ui/core/mvc/Controller.js", "sap/ca/scfld/md/app/CommonHeaderFooterHelper.js", "jquery.sap.global.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ca/scfld/md/controller/BaseFullscreenController.js",
+      "size" : 3632,
+      "compressedSize" : 1979,
+      "required" : ["sap/ui/core/mvc/Controller.js", "sap/ca/scfld/md/app/FullScreenHeaderFooterHelper.js", "sap/ca/scfld/md/app/CommonHeaderFooterHelper.js", "sap/ca/scfld/md/app/Application.js", "jquery.sap.global.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ca/scfld/md/controller/BaseMasterController.js",
+      "size" : 16452,
+      "compressedSize" : 6014,
+      "required" : ["sap/ui/core/mvc/Controller.js", "sap/ca/scfld/md/app/CommonHeaderFooterHelper.js", "jquery.sap.global.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ca/scfld/md/controller/ScfldMasterController.js",
+      "size" : 18689,
+      "compressedSize" : 7794,
+      "required" : ["sap/ui/core/mvc/Controller.js", "sap/ca/scfld/md/app/CommonHeaderFooterHelper.js", "jquery.sap.global.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ca/scfld/md/library.js",
+      "description" : "Initialization Code and shared classes of library sap.ca.scfld.md (1.16.4)",
+      "size" : 1282,
+      "compressedSize" : 557,
+      "required" : ["sap/ui/core/Core.js", "sap/ui/core/library.js", "sap/viz/library.js", "sap/m/library.js", "sap/ca/ui/library.js", "jquery.sap.global.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ca/scfld/md/view/App.controller.js",
+      "size" : 108,
+      "compressedSize" : 90,
+      "required" : [],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ca/scfld/md/view/App.view.xml",
+      "size" : 203,
+      "required" : [],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ca/scfld/md/view/MainSplitContainer.controller.js",
+      "size" : 190,
+      "compressedSize" : 177,
+      "required" : [],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ca/scfld/md/view/MainSplitContainer.view.xml",
+      "size" : 303,
+      "required" : [],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ca/scfld/md/view/empty.controller.js",
+      "size" : 1964,
+      "compressedSize" : 1438,
+      "required" : ["sap/ca/scfld/md/controller/BaseDetailController.js", "sap/ca/ui/images/images.js", "jquery.sap.global.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ca/scfld/md/view/empty.view.xml",
+      "size" : 557,
+      "required" : [],
+      "includes" : []
+    }
+  ]
+}

@@ -1,0 +1,148 @@
+<!DOCTYPE HTML>
+<html style="height: 100%">
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+		<title>Tree - sap.ui.commons</title>
+
+		<script id="sap-ui-bootstrap"
+				type="text/javascript"
+				src="../../../../resources/sap-ui-core.js"
+				data-sap-ui-theme="sap_goldreflection"
+				data-sap-ui-libs="sap.ui.commons"
+				>
+		</script>
+
+		<script>
+
+		function addSubNodes(oEvent){
+			alert("subNodes!");
+
+		}
+		var ocNode15;
+
+		var oTree1 = new sap.ui.commons.Tree("tree1", {title:"Tree with Header", width:"90%",height:"300px",showHearderIcons:true, showHorizontalScrollbar:false, minWidth:"100px"});		
+
+		var oNode11 = new sap.ui.commons.TreeNode("node11", {text:"Root 1",icon:"images/tree/library.gif", expanded: true});
+
+		var oNode13 = new sap.ui.commons.TreeNode("node13", {text:"Node 1.1 with preventDefault", expanded:true})
+
+		var oNode15 = new sap.ui.commons.TreeNode("node15", {text:"Not selectable node", hasExpander:true, selectable:false, expanded:false});
+		oNode15.attachToggleOpenState(function addSubNodes(oEvent){
+
+			if(!ocNode15){
+				ocNode15 = new sap.ui.commons.TreeNode("cnode15", {text:"Dyna Node"});
+				oNode15.addNode(ocNode15);
+				jQuery.sap.log.warning("New dyna node");
+			}
+
+		});
+		oNode13.addNode(oNode15);
+
+		oNode11.addNode(oNode13);
+
+		var oNode14 = new sap.ui.commons.TreeNode("node14", {text:"Node 1.2",icon:"images/tree/Image.gif",expanded: true});
+
+		var oNode16 = new sap.ui.commons.TreeNode("node16", {text:"Node 1.2.1", isSelected: true});
+
+		var oNode17 = new sap.ui.commons.TreeNode("node17", {text:"Really long text for Node 1.2.1.1"});
+		oNode16.addNode(oNode17);
+
+		oNode14.addNode(oNode16);
+
+		oNode11.addNode(oNode14);
+
+		oTree1.addNode(oNode11);
+
+		var oNode12 = new sap.ui.commons.TreeNode("node12", {text:"Root 2"});
+		oTree1.addNode(oNode12);
+
+		oTree1.attachSelect(function(oEvent) {
+			if (oEvent.getParameter("node").getId() == "node13") {
+				oEvent.preventDefault();
+			}
+		});
+
+
+		//oNode13.attachToggleOpenState(function (oEvent){alert("Node was toggled. Expanded: " + oEvent.mParameters.opened)});
+		//oNode13.attachSelected(function (oEvent){alert("Node selected")});
+
+		oTree1.placeAt( "uiTree" );
+
+
+		////Second Tree
+
+		var oTree2 = new sap.ui.commons.Tree("tree2", {title:"Tree with Header", width:"200px",height:"300px", showHorizontalScrollbar:false, showHeader:false});		
+
+		var oNode21 = new sap.ui.commons.TreeNode("node21", {text:"Root 1"});
+
+		var oNode23 = new sap.ui.commons.TreeNode("node23", {text:"Node 1.1", expanded:false});
+
+		var oNode25 = new sap.ui.commons.TreeNode("node25", {text:"Node 1.1.1"});
+		oNode23.addNode(oNode25);
+
+		oNode21.addNode(oNode23);
+
+		var oNode24 = new sap.ui.commons.TreeNode("node24", {text:"Node 1.2"});
+
+		var oNode26 = new sap.ui.commons.TreeNode("node26", {text:"Node 1.2.1"});
+
+		var oNode27 = new sap.ui.commons.TreeNode("node27", {text:"Really long text for Node 1.2.1.1"});
+		oNode26.addNode(oNode27);
+
+		oNode24.addNode(oNode26);
+
+		oNode21.addNode(oNode24);
+
+		oTree2.addNode(oNode21);
+
+		var oNode22 = new sap.ui.commons.TreeNode("node22", {text:"Root 2"});
+		oTree2.addNode(oNode22);
+
+		oTree2.placeAt( "uiTreeTransparent" );
+
+		/*function test(oEvent){
+			var oTree = oTree1;
+			var oNode = oNode13;
+
+			if(oTree.getSelection()){
+				jQuery.sap.log.warning("Node initially selected: " + oTree.getSelection().getId());
+			}
+
+			//oNode.setSelectable(true);
+			//oNode.setSelectable(false);
+
+			oNode.setIsSelected(true);
+			//oNode.setIsSelected(false);
+
+			jQuery.sap.log.warning("Node is selectable: " + oNode.getSelectable());
+			jQuery.sap.log.warning("Node is selected: " + oNode.getIsSelected());
+
+			if(oTree.getSelection()){
+				jQuery.sap.log.warning("Node finally selected: " + oTree.getSelection().getId());
+			}
+		}
+
+		var oButton1 = new sap.ui.commons.Button("button1", {text:"test"});
+		oButton1.attachPress(test);
+		oButton1.placeAt( "uiButton" );*/
+
+		jQuery(function() {
+			if (sap.ui.getCore().getConfiguration().getTheme() != "sap_bluecrystal") {
+				jQuery("body").css("background-color", "grey");
+			}
+		});
+
+		</script>
+	</head>
+	<body class="sapUiBody" role="application">
+
+		<h1 id="header">Test Page for <code>sap.ui.commons.Tree</code></h1>	
+
+		<div id="uiTree"></div>
+		<br/>
+		<div id="uiButton"></div>
+		<br/>
+		<div id="uiTreeTransparent"></div>
+	</body>
+</html>

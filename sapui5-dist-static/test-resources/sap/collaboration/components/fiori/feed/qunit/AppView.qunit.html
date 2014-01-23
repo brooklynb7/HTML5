@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>App View Unit Test</title>
+
+<!-- UI5 Bootstrap -->
+<script id="sap-ui-bootstrap" 
+		type="text/javascript"
+		src="../../../../../../../resources/sap-ui-core.js"
+		data-sap-ui-theme="sap_bluecrystal"
+		data-sap-ui-libs="sap.m"
+		data-sap-ui-language="en">
+</script>
+
+<!-- libraries to be tested ******** LATER SHOULD BE IN THE BOOTSTRAP ******** -->
+
+<!-- QUnit libraries -->
+	<link rel="stylesheet"
+		  href="../../../../../../../resources/sap/ui/thirdparty/qunit.css"
+		  type="text/css" media="screen" />
+	<script src="../../../../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+	<script type="text/javascript" src="../../../../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
+	<script type="text/javascript" src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
+	
+	
+    <!-- The feed widget script is loaded by the component  -->
+	<!-- <script type="text/javascript" src="https://integration3.cubetree.com/assets/feed_widget_v1.js"></script> -->
+    
+    <script>
+    
+  		//************************************ BEGIN OF A FIX FOR IE8 FOR THE INDEXOF USED IN OUR CODE *******************************************//
+  
+	    if (!Array.prototype.indexOf) {
+	    	  Array.prototype.indexOf = function (searchElement /*, fromIndex */ ) {
+	    	    'use strict';
+	    	    if (this == null) {
+	    	      throw new TypeError();
+	    	    }
+	    	    var n, k, t = Object(this),
+	    	        len = t.length >>> 0;
+	
+	    	    if (len === 0) {
+	    	      return -1;
+	    	    }
+	    	    n = 0;
+	    	    if (arguments.length > 1) {
+	    	      n = Number(arguments[1]);
+	    	      if (n != n) { // shortcut for verifying if it's NaN
+	    	        n = 0;
+	    	      } else if (n != 0 && n != Infinity && n != -Infinity) {
+	    	        n = (n > 0 || -1) * Math.floor(Math.abs(n));
+	    	      }
+	    	    }
+	    	    if (n >= len) {
+	    	      return -1;
+	    	    }
+	    	    for (k = n >= 0 ? n : Math.max(len - Math.abs(n), 0); k < len; k++) {
+	    	      if (k in t && t[k] === searchElement) {
+	    	        return k;
+	    	      }
+	    	    }
+	    	    return -1;
+	    	  };
+	    	}
+  		
+	  //************************************ END OF A FIX FOR IE8 FOR THE INDEXOF USED IN OUR CODE *******************************************//
+    	
+	 	jQuery.sap.require("jquery.sap.resources");
+	 	jQuery.sap.require("sap.collaboration.library");
+		var sLocale = sap.ui.getCore().getConfiguration().getLanguage();
+		var modulePath = jQuery.sap.getModulePath("sap.collaboration.components");
+		var oLangBundle = jQuery.sap.resources({url : modulePath + "/i18n/messagebundle.properties", locale: sLocale});
+		
+		var oBusinessObject = {
+			id: "SO 54776",
+			data: [ "Sales order ID: 54776"]
+		};
+		
+		var sPrefixId = "View1";
+		var oAppView = sap.ui.view({
+			id: sPrefixId + "appView",
+			viewData : {
+				controlId: sPrefixId,
+				odataModel:  "datamodel",
+				appType: sap.collaboration.AppType.widget,	
+				feedType: sap.collaboration.FeedType.follows,
+				groupIds: "1,3,67,505,9",
+				object: oBusinessObject,
+				langBundle: oLangBundle
+			}, 
+			type:sap.ui.core.mvc.ViewType.JS, 
+			viewName:"sap.collaboration.components.fiori.feed.app.App"
+		});
+			
+		oAppView.getController().createDetailPage = function() {
+			var oPage = new sap.m.Page(sPrefixId + "appPage");
+			this.oApp.addPage(oPage); 
+			this.oApp.setInitialPage(oPage); 
+		};
+			
+		oAppView.getController().getGroupsID = function() {
+		};
+		
+		oAppView.getController().initializeUtils = function() {
+		};
+		
+
+		oAppView.placeAt("content");
+    </script>
+    
+    <script type="text/javascript">
+		//var sPrefixId = "View1";
+		
+		module("App View Rendering");
+	
+		test("TestViewRenderedOK", function() {
+		    var sViewId = sPrefixId + "appView";
+		    notEqual(jQuery.sap.domById(sViewId), null, "Create App View outer HTML Element is rendered.");
+		});
+		
+		test("TestAppRenderedOK", function() {
+		    var sViewId = sPrefixId + "app";
+		    notEqual(jQuery.sap.domById(sViewId), null, "Create App View outer HTML Element is rendered.");
+		});
+		
+		test("TestViewConfigurationSetOK", function() {
+		    var sViewId = sPrefixId + "appView";
+		    var oAppView = sap.ui.getCore().byId(sViewId);
+		    var oAppViewController = oAppView.getController();
+		    
+		    equal(oAppViewController.sAppType, sap.collaboration.AppType.widget, "App Type is ok");
+		    equal(oAppViewController.sPrefixId, sPrefixId, "Prefix Id is ok");
+		    deepEqual(oAppViewController.oBusinessObject, oBusinessObject, "Business Object is ok");
+		    equal(oAppViewController.sFeedType, sap.collaboration.FeedType.follows, "Feed Type is ok");
+		    equal(oAppViewController.oLangBundle, oLangBundle, "Language Bundle is ok");
+		    
+		    equal(oAppView.sPrefixId, sPrefixId, "Prefix Id is ok");
+		});
+		
+		module("App View Context Groups");
+		
+		test("TestAppRenderedOK", function() {
+		    var sViewId = sPrefixId + "spliApp";
+		    
+		    var sViewId = sPrefixId + "appView";
+		    var oAppView = sap.ui.getCore().byId(sViewId);
+		    var oAppViewController = oAppView.getController();
+		    
+		    var sFilteredGroupIds = oAppView.getController().filterGroupIds("1,2,3,4");
+		    var sExpectedGroupIds = "1,3";
+		    
+		    equal(sFilteredGroupIds, sExpectedGroupIds, "Group filter is ok");
+		    
+		});
+		
+	</script>
+
+</head>
+<body>
+	<div id="qunit"></div>
+	<div id="content"></div>
+</body>
+</html>

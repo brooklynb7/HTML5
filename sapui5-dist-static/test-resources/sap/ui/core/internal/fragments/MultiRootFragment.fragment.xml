@@ -1,0 +1,7 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<Label text="These controls are within one multi-root Fragment:" />
+
+	<Input width="5em"/>
+
+	<Button text="Still in the same Fragment" />
+</core:FragmentDefinition>

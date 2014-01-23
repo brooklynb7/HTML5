@@ -1,0 +1,207 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+	<title>Fiori Wave 2: Test Page for HierarchicalSelectDialog</title>
+
+	<script src="../../../../../resources/sap-ui-core.js"
+			id="sap-ui-bootstrap"
+			data-sap-ui-libs="sap.m"
+			data-sap-ui-theme="sap_bluecrystal"
+			data-sap-ui-xx-bindingSyntax="complex"
+			data-sap-ui-noConflict="true">
+	</script>
+	
+	<link rel="stylesheet" href="../../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
+	<script type="text/javascript" src="../../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+	<script type="text/javascript" src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
+	<script type="text/javascript" src="../../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
+
+	<script type="text/javascript" src="utils/qunithelper.js"></script>
+	<script type="text/javascript" src="HierarchicalSelectDialogTest.js"></script>
+	
+	<script type="text/javascript">
+		QUnit.config.autostart = false;
+		jQuery(document).ready(function() {
+			QUnit.start();
+		});
+
+		// require dialog module
+		jQuery.sap.require("sap.ca.ui.HierarchicalSelectDialog");
+
+        // set global models
+        var mJSON = new sap.ui.model.json.JSONModel({
+            "WorkItems" : [
+                {
+                    name:"WorkItem_1",
+                    description:"My_WorkItem1",
+                    ItemDetails : [
+                        {
+                            name:"WI-1-Item-1",
+                            description:"First subitem",
+                            ItemSubDetails:[
+                                {
+                                    name:"WI-1-I-1-Sub-1",
+                                    description:"Sub item detail 1"
+                                },
+                                {
+                                    name:"WI-1-I-1-Sub-2",
+                                    description:"Sub item detail 2"
+                                }
+                            ]
+                        },
+                        {
+                            name:"WI-1-Item-2",
+                            description:"Other subitem",
+                            ItemSubDetails:[
+                                {
+                                    name:"WI-1-I-2-Sub-1",
+                                    description:"Sub item detail 1"
+                                },
+                                {
+                                    name:"WI-1-I-2-Sub-2",
+                                    description:"Sub item detail 2"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    name:"WorkItem_2",
+                    description:"My other workitem",
+                    ItemDetails : [
+                        {
+                            name:"WI-2-Item-1",
+                            description:"First subitem",
+                            ItemSubDetails:[
+                                {
+                                    name:"WI-2-I-1-Sub-1",
+                                    description:"Sub item detail 1"
+                                },
+                                {
+                                    name:"WI-2-I-1-Sub-2",
+                                    description:"Sub item detail 2"
+                                }
+                            ]
+                        },
+                        {
+                            name:"WI-2-Item-2",
+                            description:"Other subitem",
+                            ItemSubDetails:[
+                                {
+                                    name:"WI-2-I-2-Sub-1",
+                                    description:"Sub item detail 1"
+                                },
+                                {
+                                    name:"WI-2-I-2-Sub-2",
+                                    description:"Sub item detail 2"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    name:"WorkItem_3",
+                    description:"My third workitem",
+                    ItemDetails : [
+                        {
+                            name:"WI-3-Item-1",
+                            description:"First subitem",
+                            ItemSubDetails:[
+                                {
+                                    name:"WI-3-I-1-Sub-1",
+                                    description:"Sub item detail 1"
+                                },
+                                {
+                                    name:"WI-3-I-1-Sub-2",
+                                    description:"Sub item detail 2"
+                                }
+                            ]
+                        },
+                        {
+                            name:"WI-1-Item-2",
+                            description:"Other subitem",
+                            ItemSubDetails:[
+                                {
+                                    name:"WI-3-I-2-Sub-1",
+                                    description:"Sub item detail 1"
+                                },
+                                {
+                                    name:"WI-3-I-2-Sub-2",
+                                    description:"Sub item detail 2"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        });
+
+        var xml = '<ui:HierarchicalSelectDialog' +
+        ' xmlns="sap.m" xmlns:ui="sap.ca.ui"'+
+        ' title="Hierarchical Select Dialog"  '+
+        ' width="300px"                       '+
+        ' height="300px"                      '+
+        ' select="onItemSelected"             '+
+        ' cancel="onCancel">                  '+
+        '        <ui:HierarchicalSelectDialogItem title="Work Items" entityName="json>/WorkItems">'+
+        '        <ui:listItemTemplate>                                                             '+
+        '<StandardListItem title="{json>name}" description="{json>description}" icon="sap-icon://lab"/>'+
+        '        </ui:listItemTemplate>                                                                 '+
+        '        </ui:HierarchicalSelectDialogItem>                                                     '+
+        '        <ui:HierarchicalSelectDialogItem title="Page 2" entityName="json>ItemDetails">         '+
+        '        <ui:listItemTemplate>                                                                  '+
+        '<StandardListItem title="{json>name}" description="{json>description}" icon="sap-icon://lab"/> '+
+        '        </ui:listItemTemplate>                                                                 '+
+        '        </ui:HierarchicalSelectDialogItem>                                                     '+
+        '        <ui:HierarchicalSelectDialogItem title="Page 3" entityName="json>ItemSubDetails">      '+
+        '        <ui:listItemTemplate>                                                                  '+
+        '<StandardListItem title="{json>name}" description="{json>description}" icon="sap-icon://lab"/> '+
+        '        </ui:listItemTemplate>                                                                 '+
+        '        </ui:HierarchicalSelectDialogItem>                                                     '+
+        '        </ui:HierarchicalSelectDialog>                                                         ';
+
+       oHierchicalSelectDialog = sap.ui.xmlfragment({id : HIERARCHY_SELECT_DIALOG_ID, fragmentContent:xml}, this);
+
+       oHierchicalSelectDialog.setModel(mJSON, "json");
+
+        var oButton = new sap.m.Button({
+            id : "ButtonId",
+            tap: function () {oHierchicalSelectDialog.open()},
+            text: "Open Dialog"
+        });
+
+        var oHtml = new sap.ui.core.HTML({
+            content : '<h1 id="qunit-header">Fiori Wave 2: Test Page for Hierarchical Select Dialog</h1>' +
+                      '<h2 id="qunit-banner"></h2>' +
+                      '<h2 id="qunit-userAgent"></h2>' +
+                      '<ol id="qunit-tests"></ol>' +
+                      '<h4></h4>' +
+                      '<h5>Button to display Hierarchical Select Dialog Box</h5>' +
+                      '<div id="contentHolder"></div>'
+                      ,
+            afterRendering: function(){
+                oButton.placeAt("contentHolder");
+            }
+        });
+
+		var app = new sap.m.App("myApp", {
+			initPage: "myFirstPage"
+		});
+
+        var page = new sap.m.Page("myFirstPage", {
+            title : "Fiori - Hierarchical Select Dialog",
+            showNavButton : true,
+            enableScrolling : true,
+            content : oHtml
+        });
+		app.addPage(page).placeAt("content");
+
+	</script>
+
+</head>
+<body id="body" class="sapUiBody">
+<div id="content"></div>
+</body>
+</html>

@@ -1,0 +1,177 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<title>Segmented - sap.m - qUnit test</title>
+
+	<script id="sap-ui-bootstrap"
+			type="text/javascript"
+			src="../../../../resources/sap-ui-core.js"
+			data-sap-ui-theme="sap_mvi"
+			data-sap-ui-noConflict="true"
+			data-sap-ui-libs="sap.m" >
+		</script>
+
+		<link rel="stylesheet" href="../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
+		<script type="text/javascript" src="../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+		<script type="text/javascript" src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
+		<script type="text/javascript" src="../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
+
+		<script>
+
+		jQuery.sap.require("sap.ui.thirdparty.jquery-mobile-custom");
+		var btn1_press = false;
+		var btn2_press = false;
+		var s4_select = false;
+		var sSrc = "../images/settings_64.png",
+			sLabel1 = "Label1",
+			sLabel2 = "Label2",
+			sLabel3 = "Label3",
+			sLabel4 = "Label4",
+			sLabel5 = "Label5",
+			sLabel6 = "Label6",
+			oButton1 = new sap.m.Button('button1', {
+				type: sap.m.ButtonType.Default,
+				text: sLabel1,
+				enabled: true,
+				press: function(){btn1_press = true}
+			}),
+			oButton2 = new sap.m.Button('button2', {
+				type: sap.m.ButtonType.Default,
+				text: sLabel2,
+				enabled: true,
+				press: function(){btn2_press = true}
+			}),
+			oButton3 = new sap.m.Button('button3', {
+				type: sap.m.ButtonType.Default,
+				icon: sSrc,
+				enabled: true,
+				press: function(){return 'f';}
+			});
+
+		function handleEvent() {
+			test("click", function(){
+				ok(true);
+			});
+		}
+		function handleSelectEvent() {
+			test("selected", function(){
+				ok(true);
+			});
+		}
+
+		var s1 = new sap.m.SegmentedButton('s1', {
+			width: '450px'
+
+		});
+		s1.addButton(oButton1);
+		s1.addButton(oButton2);
+		s1.addButton(oButton3);
+		s1.setSelectedButton(oButton1);
+
+		var s2 = new sap.m.SegmentedButton('s2', {
+		});
+		s2.setWidth('100%');
+		var s2Btn1 = s2.createButton(sLabel3, null, true);
+		var s2Btn2 = s2.createButton(sLabel4, null, true);
+		s2.setSelectedButton(s2Btn2);
+
+		var s3 = new sap.m.SegmentedButton('s3', {
+		});
+		s3.setWidth('300px');
+		s3.setVisible(false);
+		s3.createButton(sLabel5, null, true);
+		s3.createButton(sLabel6, null, true);
+		
+		var s4 = new sap.m.SegmentedButton('s4', {
+			select: function(){s4_select = true}
+		});
+		s4.setVisible(true);
+		var s4Btn1 = s4.createButton(sLabel5, null, true);
+		var s4Btn2 = s4.createButton(sLabel6, null, true);
+		s4.setSelectedButton(s4Btn1);
+		s1.placeAt("uiArea1");
+		s2.placeAt("uiArea2");
+		s3.placeAt("uiArea3");
+		s4.placeAt("uiArea4");
+		/* tests */
+
+		test("Initial Check", function() {
+			s1 = sap.ui.getCore().byId("s1");
+			s2 = sap.ui.getCore().byId("s2");
+			s4 = sap.ui.getCore().byId("s4");
+			ok((s1 !== undefined) && (s1 != null), "s1 should not be null");
+			ok((s2 !== undefined) && (s2 != null), "s2 should not be null");
+			ok((s4 !== undefined) && (s4 != null), "s4 should not be null");
+		});
+
+		test("Buttons rendered", function(){
+			ok(jQuery.sap.domById("s1"), "Segmented should be rendered");
+			ok(jQuery.sap.domById("s2"), "Segmented should be rendered");
+			ok(!jQuery.sap.domById("s3"), "Segmented 3 should not be rendered");
+			ok(jQuery.sap.domById("s4"), "Segmented 4 should be rendered");
+			ok(jQuery.sap.domById("button1"), "Segmented Button should be rendered");
+			ok(jQuery.sap.domById("button2"), "Segmented Button should be rendered");
+			ok(jQuery.sap.domById("button3"), "Segmented Button should be rendered");
+			ok(jQuery.sap.domById("__button0"), "Segmented Button should be rendered");
+			ok(jQuery.sap.domById("__button1"), "Segmented Button should be rendered");
+			ok(jQuery.sap.domById("__button4"), "Segmented Button should be rendered");
+			ok(jQuery.sap.domById("__button5"), "Segmented Button should be rendered");
+		});
+
+		test("Segmented Button style", function(){
+			ok(jQuery.sap.byId("button1").hasClass("sapMSegBBtnSel"), "Segmented Button should have class 'selected'");
+			ok(jQuery.sap.byId("__button1").hasClass("sapMSegBBtnSel"), "Segmented Button should have class 'selected'");
+			ok(jQuery.sap.byId("__button4").hasClass("sapMSegBBtnSel"), "Segmented Button should have class 'selected'");
+		});
+		
+		test("Press Events", function(){
+			oButton2.firePress();
+			oButton1.firePress();
+			ok(btn1_press, 'fire press should be fired');
+			ok(btn2_press, 'fire press should be fired');
+			s4Btn1.firePress();
+			ok(!s4_select, 'select event should not be fired');
+			s4Btn2.firePress();
+			ok(s4_select, 'select event should be fired');			
+		});
+
+		test("Visibility", function() {
+			equal(jQuery("#s1").outerWidth(true), 450, "Width of control");
+			equal(jQuery("#s2").outerWidth(true), 150, "Width of control");
+			// Commented out due to differing results on iPhone (158) and iPad (250)
+			// TODO This test probably doesn't make sense anymore
+			/*if(jQuery.os.ios) {
+				equal(jQuery("#s4").outerWidth(true), 156, "Width of control");
+			} else {
+				equal(jQuery("#s4").outerWidth(true), 161, "Width of control");
+			}*/
+
+			equal(jQuery('#s1 > li').size(), 3, "Number of Buttons should be 3");
+			equal(jQuery('#button3 > img').get(0).tagName, 'IMG', "Button should have Image element");
+			equal(jQuery('#button3').text(), '', "Button should have no Label");
+			equal(jQuery('#button1').text(), sLabel1, "Button should have Label");
+			equal(jQuery('#button2').text(), sLabel2, "Button should have Label");
+			equal(jQuery('#__button0').text(), sLabel3, "Button should have Label");
+			equal(jQuery('#__button1').text(), sLabel4, "Button should have Label");
+			equal(jQuery('#__button4').text(), sLabel5, "Button should have Label");
+			equal(jQuery('#__button5').text(), sLabel6, "Button should have Label");
+		});
+
+		</script>
+	</head>
+	<body>
+
+		<h1 id="qunit-header">qUnit Page for sap.m.Segmented</h1>
+		<h2 id="qunit-banner"></h2>
+		<h2 id="qunit-userAgent"></h2>
+		<ol id="qunit-tests"></ol>
+		<div id="qunit-fixture">test markup, will be hidden</div>
+
+		<div id="uiArea1"></div>
+		<div id="uiArea2" style="width:150px"></div>
+		<div id="uiArea3"></div>
+		<div id="uiArea4" style="width:250px"></div>
+
+	</body>
+</html>

@@ -1,0 +1,305 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+		<title>All 'sap.m' Controls In One Page</title>
+
+		<script src="../../../../resources/sap-ui-core.js"
+			type="text/javascript"
+			id="sap-ui-bootstrap"
+			data-sap-ui-libs="sap.m"
+			data-sap-ui-theme="sap_mvi">
+		</script>
+
+		<script>
+
+		function createAList(inset, id) {
+			var oList = new sap.m.List(id, {
+				subHeaderText : "The quick brown fox jumps over the lazy dog",
+				inset : inset
+			});
+
+			var data = {
+				navigation : [ {
+					title : "Travel Expend",
+					description : "Access the travel expend workflow",
+					icon : "../images/travel_expend.png",
+					iconInset : false,
+					type : "Navigation",
+					press : 'detailPage'
+				}, {
+					title : "Travel and expense report",
+					description : "Access travel and expense reports",
+					icon : "../images/travel_expense_report.png",
+					iconInset : false,
+					type : "Navigation",
+					press : 'detailPage'
+				}, {
+					title : "Travel Request",
+					description : "Access the travel request workflow",
+					icon : "../images/travel_request.png",
+					iconInset : false,
+					type : "Navigation",
+					press : 'detailPage'
+				}, {
+					title : "Work Accidents",
+					description : "Report your work accidents",
+					icon : "../images/wounds_doc.png",
+					iconInset : false,
+					type : "Navigation",
+					press : 'detailPage'
+				}, {
+					title : "Travel Settings",
+					description : "Change your travel worflow settings",
+					icon : "../images/settings.png",
+					iconInset : false,
+					type : "Navigation",
+					press : 'detailPage'
+				} ]
+			};
+
+			var oItemTemplate1 = new sap.m.StandardListItem({
+				title : "{title}",
+				description : "{description}",
+				icon : "{icon}",
+				iconInset : "{iconInset}",
+				type : "{type}"
+			});
+
+			function bindListData(data, itemTemplate, list) {
+				var oModel = new sap.ui.model.json.JSONModel();
+				// set the data for the model
+				oModel.setData(data);
+				// set the model to the list
+				list.setModel(oModel);
+
+				// bind Aggregation
+				list.bindAggregation("items", "/navigation", itemTemplate);
+			}
+
+			bindListData(data, oItemTemplate1, oList);
+
+			return oList;
+		}
+
+		var oDialog1;
+		function openDialog() {
+			oDialog1 = oDialog1 || new sap.m.Dialog("dialog1", {
+				title : "World Domination",
+				content : [ new sap.ui.core.HTML({
+					content : "<p>Do you want to start a new world domination campaign?</p>"
+				}), ],
+				leftButton : new sap.m.Button({
+					text : "Reject",
+					type : sap.m.ButtonType.Reject,
+					press : function() {
+						oDialog1.close();
+					}
+				}),
+				rightButton : new sap.m.Button({
+					text : "Accept",
+					type : sap.m.ButtonType.Accept,
+					press : function() {
+						oDialog1.close();
+					}
+				})
+			});
+
+			oDialog1.open();
+		}
+
+		var oPopover;
+		function openPopover() {
+			if (!oPopover) {
+				var oList = createAList(true, "l1");
+
+				var oScrollContainer = new sap.m.ScrollContainer({
+					horizontal : false,
+					vertical : true,
+					content : oList
+				});
+
+				var footer = new sap.m.Bar({
+					contentMiddle : [ new sap.m.Button({
+						icon : "../images/SAPUI5.png"
+					}), new sap.m.Button({
+						icon : "../images/SAPUI5.png"
+					}), new sap.m.Button({
+						icon : "../images/SAPUI5.png"
+					}) ]
+				});
+
+				oPopover = new sap.m.Popover({
+					placement : sap.m.PlacementType.Bottom,
+					title : "Popover",
+					showHeader : true,
+					leftButton : new sap.m.Button({
+						text : "Left"
+					}),
+					rightButton : new sap.m.Button({
+						text : "Right"
+					}),
+					footer : footer,
+					content : [ oScrollContainer ]
+				});
+			}
+			oPopover.openBy(sap.ui.getCore().byId("pob"));
+		}
+
+		function getAllControls() {
+			var aControls = [ new sap.m.Text({
+				text : "This page features (almost) all UI5 Mobile Controls with visible UI parts at one glance. (This is a sap.m.Text control.)"
+			}),
+
+			new sap.m.Button("pob", {
+				text : "This is a Button. Press to OPEN POPOVER",
+				press : openPopover
+			}),
+
+			new sap.m.Slider({
+				min : 0,
+				max : 100,
+				value : 50
+			}),
+
+			new sap.m.HBox({
+				items : [ new sap.m.Label({
+					text : "This is a Switch:"
+				}), new sap.m.Switch({
+					state : true
+				}), new sap.m.CheckBox({
+					text : "And this is a CheckBox",
+					selected : true
+				}) ]
+			}),
+
+			new sap.m.HBox({
+				items : [ new sap.m.Label({
+					text : "This is a Label, describing RadioButtons:"
+				}), new sap.m.RadioButton({
+					selected : true
+				}), new sap.m.RadioButton({
+					selected : false
+				}), new sap.m.RadioButton({
+					selected : false
+				}) ]
+			}),
+
+			new sap.m.HBox({
+				items : [ new sap.m.Input({
+					placeholder : "Type here..."
+				}), new sap.m.Input({
+					type : sap.m.InputType.Number,
+					value : 42
+				}), ]
+			}),
+
+			new sap.m.HBox({
+				items : [ new sap.m.Input({
+					type : sap.m.InputType.Date
+				}), new sap.m.Select({
+					width : "10em",
+					items : [ new sap.ui.core.Item({
+						key : "1",
+						text : "first item"
+					}), new sap.ui.core.Item({
+						key : "2",
+						text : "second item"
+					}), new sap.ui.core.Item({
+						key : "3",
+						text : "third item"
+					}), new sap.ui.core.Item({
+						key : "4",
+						text : "fourth item"
+					}) ]
+				}) ]
+			}),
+
+			new sap.m.SearchField({
+				placeholder : "Search for...",
+				showMagnifier : true
+			}),
+
+			new sap.m.SegmentedButton({
+				buttons : [ new sap.m.Button("sbi1", {
+					text : "Seg-"
+				}), new sap.m.Button({
+					text : "-men-"
+				}), new sap.m.Button({
+					text : "-ted"
+				}) ],
+				selectedButton : "sbi1"
+			}),
+
+			createAList(true, "lins").setHeaderText("This is an inset List").setFooterText("This was an inset List"),
+
+			new sap.ui.core.HTML({
+				content : "<div class='headerHtml'>This is a core.HTML control with plain HTML content.</div>"
+			}),
+
+			createAList(false, "lnonins").setHeaderText("This is a non-inset List").setFooterText("This was a non-inset List") ];
+			return aControls;
+		}
+
+		var app = new sap.m.App("myApp", {
+			initialPage : "page1"
+		});
+
+		var page1 = new sap.m.Page("page1", {
+			title : "All Controls",
+
+			showNavButton: true,
+
+			headerContent : new sap.m.Button({
+				text : "Open Dialog",
+				press : openDialog
+			}),
+
+			content : new sap.m.VBox("vbox", {
+				items : getAllControls()
+			}),
+
+			footer : new sap.m.Bar({
+				contentMiddle : new sap.m.SegmentedButton('SegmentedBar', {
+					buttons : [ new sap.m.Button("sb1", {
+						text : "Seg-"
+					}), new sap.m.Button({
+						text : "-men-"
+					}), new sap.m.Button({
+						text : "-ted"
+					}) ],
+					selectedButton : "sb1"
+				})
+			})
+		});
+
+		app.addPage(page1).placeAt("body");
+
+		</script>
+
+		<style>
+			.headerHtml {
+				margin:12px;
+				padding: 6px;
+				border: 1px solid #999;
+				-webkit-border-radius: 8px;
+				border-radius: 8px;
+			}
+
+			.sapMPageScroll {
+				padding: 8px 8px 0 8px;
+			}
+
+			#vbox > * {
+				display: block;
+				margin: 12px 0;
+			}
+
+			#lnonins {
+				margin: 10px -8px 0px;
+			}
+		</style>
+	</head>
+	<body id="body" class="sapUiBody"></body>
+</html>

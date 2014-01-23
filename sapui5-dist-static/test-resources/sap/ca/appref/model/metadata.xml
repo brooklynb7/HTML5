@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+           xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" Version="1.0">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" xmlns:sap="http://www.sap.com/Protocols/SAPData"
+                Namespace="model">
+            <EntityType Name="ReportedIssue">
+                <Key>
+                    <PropertyRef Name="ReportedIssueID"/>
+                </Key>
+                <Property Name="ReportedIssueID" Nullable="false" Type="Edm.Int64"/>
+                <Property MaxLength="50" Name="Subject" Type="Edm.String"/>
+                <Property MaxLength="50" Name="Defect" Type="Edm.String"/>
+                <Property Name="Status" Type="Edm.String"/>
+                <Property Name="ChangedAt" Type="Edm.DateTime"/>
+                <Property Name="Type" Type="Edm.String"/>
+                <Property Name="CreatedAt" Type="Edm.DateTime"/>
+                <Property Name="Priority" Type="Edm.String"/>
+                <Property Name="Category" Type="Edm.String"/>
+                <Property Name="Notification" Type="Edm.String"/>
+                <Property Name="Description" Type="Edm.String"/>
+                <Property Name="Reference" Type="Edm.String"/>
+                <Property Name="Material" Type="Edm.String"/>
+                <Property Name="Name" Type="Edm.String"/>
+                <Property Name="Department" Type="Edm.String"/>
+                <Property Name="MobilePhone" Type="Edm.String"/>
+                <Property Name="OfficePhone" Type="Edm.String"/>
+                <Property Name="EMail" Type="Edm.String"/>
+                <Property Name="CompanyName" Type="Edm.String"/>
+                <Property Name="CompanyAddress" Type="Edm.String"/>
+                <Property Name="AttachmentsCount" Type="Edm.Int32"/>
+                <NavigationProperty FromRole="From_ReportedIssue" Name="Attachments"
+                                    Relationship="model.ReportedIssueAttachment" ToRole="To_Attachment"/>
+            </EntityType>
+            <EntityType Name="Attachment">
+                <Key>
+                    <PropertyRef Name="AttachmentID"/>
+                </Key>
+                <Property Name="AttachmentID" Nullable="false" Type="Edm.String"/>
+                <Property Name="Title" Type="Edm.String"/>
+                <Property Name="Property" Type="Edm.String"/>
+                <Property Name="Description" Type="Edm.String"/>
+                <Property Name="Type" Type="Edm.String"/>
+                <Property Name="ReportedIssueID" Type="Edm.Int64"/>
+            </EntityType>
+            <EntityType Name="IssueCode">
+                <Key>
+                    <PropertyRef Name="Key"/>
+                </Key>
+                <Property Name="Key" Nullable="false" Type="Edm.String"/>
+                <Property Name="Value" Type="Edm.String"/>
+                <Property Name="Group" Type="Edm.String"/>
+            </EntityType>
+            <EntityType Name="CategoryCode">
+                <Key>
+                    <PropertyRef Name="Key"/>
+                </Key>
+                <Property Name="Key" Nullable="false" Type="Edm.String"/>
+                <Property Name="Value" Type="Edm.String"/>
+                <Property Name="Group" Type="Edm.String"/>
+            </EntityType>
+            <Association Name="ReportedIssueAttachment">
+                <End Multiplicity="1" Role="From_ReportedIssue" Type="model.ReportedIssue"/>
+                <End Multiplicity="*" Role="To_Attachment" Type="model.Attachment"/>
+                <ReferentialConstraint>
+                    <Principal Role="From_ReportedIssue">
+                        <PropertyRef Name="ReportedIssueID"/>
+                    </Principal>
+                    <Dependent Role="To_Attachment">
+                        <PropertyRef Name="ReportedIssueID"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <EntityContainer Name="default" m:IsDefaultEntityContainer="true">
+                <EntitySet EntityType="model.ReportedIssue" Name="ReportedIssueCollection"/>
+                <EntitySet EntityType="model.Attachment" Name="Attachments"/>
+                <EntitySet EntityType="model.IssueCode" Name="IssueCodeCollection"/>
+                <EntitySet EntityType="model.CategoryCode" Name="CategoryCodeCollection"/>
+                <AssociationSet Association="model.ReportedIssueAttachment" Name="ReportedIssueAttachmentSet">
+                    <End EntitySet="ReportedIssueCollection" Role="From_ReportedIssue"/>
+                    <End EntitySet="Attachments" Role="To_Attachment"/>
+                </AssociationSet>
+            </EntityContainer>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

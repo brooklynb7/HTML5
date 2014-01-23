@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+	<title>Test Page for Resource Bundle</title>
+
+	<script src="../../../../../../resources/sap-ui-core.js"
+			id="sap-ui-bootstrap"
+			data-sap-ui-libs="sap.m"
+			data-sap-ui-theme="sap_bluecrystal"
+			data-sap-ui-xx-bindingSyntax="complex"
+			data-sap-ui-noConflict="true">
+	</script>
+	
+	<link rel="stylesheet" href="../../../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
+	<script type="text/javascript" src="../../../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+	<script type="text/javascript" src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
+	<script type="text/javascript" src="../../../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
+
+	<script type="text/javascript">
+		QUnit.config.autostart = false;
+		jQuery(document).ready(function() {
+			QUnit.start();
+		});
+
+		// require dialog module
+		jQuery.sap.require("sap.ca.ui.utils.resourcebundle");
+
+		var oHtml = new sap.ui.core.HTML({
+			content : '<div id="contentHolder"></div><h1 id="qunit-header">Fiori Wave 2: Test Page for Resource Bundle</h1><h2 id="qunit-banner"></h2><h2 id="qunit-userAgent"></h2><ol id="qunit-tests"></ol>'
+		});
+
+		var page = new sap.m.Page("myFirstPage", {
+			title : "Fiori - sap.ca.ui Resource Bundle Test",
+			showNavButton : true,
+			enableScrolling : true,
+			content : oHtml
+		});
+
+		var app = new sap.m.App("myApp", {
+			initPage: "myFirstPage"
+		});
+
+		app.addPage(page).placeAt("content");
+
+		module("Check resource Text: OK");
+	
+		var sOK = sap.ca.ui.utils.resourcebundle.getText("dialog.ok");
+		
+		test("getText dialog.ok", function() {
+			ok(sOK=== "OK", "Get the text OK from the resource bundle: " + sOK);
+		});	
+
+	</script>
+</head>
+<body id="body" class="sapUiBody">
+<div id="content"></div>
+</body>
+</html>

@@ -1,0 +1,6 @@
+/*!
+ * SAP UI development toolkit for HTML5 (SAPUI5)
+ *
+ * (c) Copyright 2009-2013 SAP AG. All rights reserved
+ */
+ .sapMeCalendar{position:relative;margin:auto}.sapMeCalendar>.sapMeCalendarPrevious{position:absolute;left:0;z-index:1}.sapMeCalendar>.sapMeCalendarNext{position:absolute;right:0;z-index:1}.sapMeCalendar>.sapMeCalendarMonth{display:inline-block;overflow:hidden;position:relative;vertical-align:top}.sapMeCalendar>.sapMeCalendarMonth>div.sapMeCalendarMonthName{text-align:center;font-size:1em;line-height:1.2em;padding:0.7em 0 0.4em 0;font-weight:700;height:44px}.sapMeCalendar>.sapMeCalendarMonth>div>.sapMeCalendarMonthDay{text-align:center;display:inline-block;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box}.sapMeCalendar>.sapMeCalendarMonth>div.sapMeCalendarMonthDays>.sapMeCalendarMonthDay{padding:15px 0}.sapMeCalendar>.sapMeCalendarMonth>div.sapMeCalendarMonthDays>.sapMeCalendarMonthDay>*{pointer-events:none}.sapMeOverlapCalendarDay{text-align:center;display:inline-block;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;padding:15px 0;border:1px solid gray}

@@ -1,0 +1,22 @@
+<core:View
+	controllerName="views.code"
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core" >
+	<Page
+		title="{
+			path: '/title',
+			formatter: '.formatTitle'
+		}"
+		showNavButton="true"
+		navButtonPress="navBack"
+		enableScrolling="false"
+		icon="images/144_iPad_Retina_Web_Clip.png" >
+		<ScrollContainer
+			height="100%"
+			width="100%"
+			horizontal="true"
+			vertical="true">
+			<core:HTML content="{/code}" />
+		</ScrollContainer>
+	</Page>
+</core:View>

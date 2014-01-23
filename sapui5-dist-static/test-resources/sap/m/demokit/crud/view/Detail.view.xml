@@ -1,0 +1,56 @@
+<core:View controllerName="view.Detail" xmlns="sap.m"
+	xmlns:core="sap.ui.core" xmlns:h="http://www.w3.org/1999/xhtml">
+	<Page
+		title="{name}"
+		navButtonText="Fruits"
+		navButtonPress="navButtonPress"
+		showNavButton="true"
+		icon="{img>/icon/ui5}">
+		<content>
+			<List>
+				<items>
+					<DisplayListItem
+						label="Country"
+						value="{path:'country', formatter:'util.Formatter.country'}" />
+					<DisplayListItem
+						label="Vendor"
+						value="{vendor}" />
+					<DisplayListItem
+						label="Price"
+						value="{path:'price', formatter:'util.Formatter.price'}" />
+					<DisplayListItem
+						label="Best Before"
+						value="{path:'bestBefore', formatter:'util.Formatter.bestBefore'}" />
+					<DisplayListItem
+						label="Status"
+						value="{state}" />
+				</items>
+			</List>
+			<VBox alignItems="Center">
+				<Image
+					src="{imgL}"
+					decorative="true"
+					densityAware="false" />
+			</VBox>
+		</content>
+		<footer>
+			<Bar>
+				<contentLeft>
+					<Button
+						icon="sap-icon://delete"
+						press="deleteButtonPress" />
+					<Button
+						icon="sap-icon://edit"
+						press="updateButtonPress" />
+				</contentLeft>
+				<contentRight>
+					<Button
+						icon="sap-icon://washing-machine"
+						text="Wash"
+						press="washButtonPress"
+						enabled="true" />
+				</contentRight>
+			</Bar>
+		</footer>
+	</Page>
+</core:View>

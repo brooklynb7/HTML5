@@ -1,0 +1,244 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>NoteTakerFeeder - sap.suite.ui.commons</title>
+
+<!-- UI5 Bootstrap -->
+<script id="sap-ui-bootstrap" type="text/javascript"
+	src="../../../../../../resources/sap-ui-core.js"
+	data-sap-ui-theme="sap_goldreflection"
+	data-sap-ui-libs="sap.ui.commons,sap.suite.ui.commons"
+	data-sap-ui-language="en">
+</script>
+
+<!-- QUnit libraries -->
+<link rel="stylesheet"
+	href="../../../../../../resources/sap/ui/thirdparty/qunit.css"
+	type="text/css" media="screen" />
+	<script src="../../../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+	<script type="text/javascript" src="../../../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
+    <script type="text/javascript" src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
+<script>
+    module("Control Test - sap.suite.ui.commons.NoteTakerFeeder", {
+        setup: function() {
+            var that = this;
+            this.feeder = new sap.suite.ui.commons.NoteTakerFeeder({
+                id: "NTF",
+                addNote: function(e) {
+                	that.addNoteEvent = {
+                	    title: e.getParameter("title"),
+                	    body:  e.getParameter("body"),
+                	    timestamp: e.getParameter("timestamp"),
+                	    thumbUp: e.getParameter("thumbUp"),
+                	    thumbDown: e.getParameter("thumbDown")
+                	};
+                }
+             });
+            this.feeder.placeAt("NTFeeder");
+    	},
+    	
+	   	teardown: function() {
+	   	    this.feeder.destroy();
+	   	}
+    });
+    
+    test("Set title", function() {
+        var sTitle = "Title";
+        this.feeder.setTitle(sTitle);
+        equal(this.feeder._oTitle.getValue(), sTitle, "Title was set");
+    });
+    
+    test("Get title", function() {
+		var sTitle = "New title";
+		this.feeder._oTitle.setValue(sTitle);
+		equal(this.feeder.getTitle(), sTitle, "The title was successfully retrieved");
+    });
+    
+
+    test("Set text in the body", function() {
+        var sBodyText = "Text in the body";
+        this.feeder.setBody(sBodyText);
+        equal(this.feeder._oBody.getValue(), sBodyText,
+                "Text was entered in the body");
+    });
+
+    test("Get text in the body", function() {
+        var sBodyText = "Text in the body";
+        this.feeder._oBody.setValue(sBodyText);
+        equal(this.feeder.getBody(), sBodyText,
+                "The text was successfully retrieved");
+    });
+
+    test("calculateAddButtonEnabled", function() {
+        this.feeder._setAddButtonEnabled("Some text");
+        equal(this.feeder._oAddButton.getEnabled(), true,
+                "Add Note button is enabled when there is some text in body");
+
+        this.feeder._setAddButtonEnabled("");
+        equal(this.feeder._oAddButton.getEnabled(), false,
+                "Add Note button is disabled when there is no text in body");
+
+        this.feeder._setAddButtonEnabled(null);
+        equal(this.feeder._oAddButton.getEnabled(), false,
+                "Add Note button is disabled when there is no text in body");
+
+        this.feeder._setAddButtonEnabled("   ");
+        equal(this.feeder._oAddButton.getEnabled(), false,
+                "Add Note button is disabled when there is only spaces in body");
+    });
+    
+    test("HandleAdd", function() {
+        var sTitle = "Test for title";
+        var sBody = "Test for the body text";
+    	this.feeder.setTitle(sTitle)
+    	this.feeder.setBody(sBody);
+    	this.feeder.setThumbUp(true)
+    	
+    	this.feeder._handleAdd();
+    	
+    	equal(this.addNoteEvent.title, sTitle, "Title in event was taken from title field");
+    	equal(this.addNoteEvent.body, sBody, "Body test in event was taken from body area");
+    	ok(this.addNoteEvent.timestamp, "Timestamp in event is set and not null");
+    	ok(this.addNoteEvent.thumbUp, "ThumbUp was set");
+    	
+    	equal(this.feeder.getTitle(), "", "Title was cleared");
+    	equal(this.feeder.getBody(), "", "Body was cleared");
+    	ok(!this.feeder.getThumbUp(), "ThumbUp button was unselect");
+    	ok(!this.feeder.getThumbDown(), "ThumbDown button was unselect");
+   	});
+    	
+    test("HandleAdd card with an empty body", function() {
+        this.feeder._handleAdd();
+        ok(!this.addNoteEvent, "AddNote event isn't fired when the body is empty");
+    });
+    
+    test("Test add tags to listbox", function(){
+		this.feeder._addTagsToListBox(["PRM", "OneOnOne"]);
+		equal(this.feeder._oTagList.getItems()[0].getText(), "PRM");
+		equal(this.feeder._oTagList.getItems()[1].getText(), "OneOnOne");
+    });
+   
+    test("Test enter tag", function(){
+        this.feeder._addTagsToListBox(["PRM", "OneOnOne","DKOM","DKOM2", "FKOM"]);
+        this.feeder.setTags(["PRM", "OneOnOne","DKOM","DKOM2", "FKOM"]);
+        var eData = new Object();
+        eData.liveValue = "PRM DK";
+        var oEvent = new sap.ui.base.Event(null, null, eData);
+        this.feeder._handleTagInputLive(oEvent);
+        equals(this.feeder._oTagList.getItems().length , 2, "Taglist was filtered");
+    });
+
+    test("Test handleAddTag", function(){
+        this.feeder._addTagsToListBox(["PRM", "OneOnOne","DKOM", "FKOM"]);
+        this.feeder.setTags(["PRM", "OneOnOne","DKOM", "FKOM"]);
+        this.feeder._handleAddTag("PRM OneOnOne OneOnOne");
+        equals(this.feeder._selectedTags.length, 2, "added only unique tags");
+    });
+    
+    test("Test adding tags", function() {
+        this.feeder._handleAddTag(" PRM   1on1    2on1", []);
+        equal(this.feeder._selectedTags.join(" "), "PRM 1on1 2on1", "Tags were correctly parsed");
+        equal(this.feeder._oTagButton.getTooltip(), "Selected tags: PRM 1on1 2on1", "Tooltip shows selected tags");
+        ok(this.feeder._oTagButton.hasStyleClass("sapSuiteUiCommonsNoteTakerFeederButtonSelected"), "Tag button changes color");
+    });
+    
+    test("Test adding empty tags", function() {
+        this.feeder._handleAddTag("", []);
+        ok(!this.feeder._selectedTags.length, "No selected tags");
+        equal(this.feeder._oTagButton.getTooltip(), "Choose to define tags for this note", "Default tooltip is shown");
+        ok(!this.feeder._oTagButton.hasStyleClass("sapSuiteUiCommonsNoteTakerFeederButtonSelected"), "Tag button wasn't changed");
+    });
+    
+    test("Test Tag button toggles view", function() {
+        this.feeder._selectedTags = [];
+        this.feeder._adjustTagButton();
+        equal(this.feeder._oTagButton.getTooltip(), "Choose to define tags for this note", "Default tooltip is shown");
+        ok(!this.feeder._oTagButton.hasStyleClass("sapSuiteUiCommonsNoteTakerFeederButtonSelected"), "Tag button wasn't changed");
+        
+        this.feeder._selectedTags = ["PRM"];
+        this.feeder._adjustTagButton();
+        equal(this.feeder._oTagButton.getTooltip(), "Selected tags: PRM", "Tooltip shows selected tags");
+        ok(this.feeder._oTagButton.hasStyleClass("sapSuiteUiCommonsNoteTakerFeederButtonSelected"), "Tag button changes color");        
+    });
+    
+    test("Test thumb buttons default view", function() {
+        this.feeder._setThumbButtonsView();
+        
+        ok(this.feeder._oThumbUpButton.hasStyleClass("sapSuiteUiCommonsNoteTakerFeederThumbUpButton"), "Thumb Up button is color by default");
+        ok(!this.feeder._oThumbUpButton.hasStyleClass("sapSuiteUiCommonsNoteTakerFilterButtonSelected"), "Thumb Up button is not active by default");
+        
+        ok(this.feeder._oThumbDownButton.hasStyleClass("sapSuiteUiCommonsNoteTakerFeederThumbDownButton"), "Thumb Down button is color by default");
+        ok(!this.feeder._oThumbUpButton.hasStyleClass("sapSuiteUiCommonsNoteTakerFilterButtonSelected"), "Thumb Down button is not active by default");
+    });
+    
+    test("Test ThumbUp button checked", function() {
+        this.feeder.setThumbUp(true);
+        this.feeder._setThumbButtonsView();
+        
+        ok(this.feeder._oThumbUpButton.hasStyleClass("sapSuiteUiCommonsNoteTakerFeederThumbUpButton"), "Thumb Up button is active");
+        ok(!this.feeder._oThumbUpButton.hasStyleClass("sapSuiteUiCommonsNoteTakerFeederThumbUpGreyButton"), "Thumb Up button is not grey");        
+    });
+    
+    test("Test ThumbDown button checked", function() {
+        this.feeder.setThumbDown(true);
+        this.feeder._setThumbButtonsView();
+        
+        ok(this.feeder._oThumbDownButton.hasStyleClass("sapSuiteUiCommonsNoteTakerFeederThumbDownButton"), "Thumb Down button is active");
+        ok(!this.feeder._oThumbDownButton.hasStyleClass("sapSuiteUiCommonsNoteTakerFeederThumbDownGreyButton"), "Thumb Down button is not grey");        
+    });
+    
+    test("Test ThumbUp button press", function() {
+        this.feeder.setThumbDown(true);
+        
+        this.feeder._handleThumbUpButtonPress();
+        ok(this.feeder.getThumbUp(), "ThumbUp button is selected");
+        ok(!this.feeder.getThumbDown(), "ThumbDown button is unselected");
+        
+        this.feeder._handleThumbUpButtonPress();
+        ok(!this.feeder.getThumbUp(), "ThumbUp button is unselected");
+        ok(!this.feeder.getThumbDown(), "ThumbDown button is unselected");
+        
+        this.feeder._handleThumbUpButtonPress();
+        ok(this.feeder.getThumbUp(), "ThumbUp button is selected");
+        ok(!this.feeder.getThumbDown(), "ThumbDown button is unselected");
+    });
+    
+    test("Test ThumbDown button press", function() {
+        this.feeder.setThumbUp(true);
+        
+        this.feeder._handleThumbDownButtonPress();
+        ok(this.feeder.getThumbDown(), "ThumbDown button is selected");
+        ok(!this.feeder.getThumbUp(), "ThumbUp button is unselected");
+        
+        this.feeder._handleThumbDownButtonPress();
+        ok(!this.feeder.getThumbDown(), "ThumbDown button is unselected");
+        ok(!this.feeder.getThumbUp(), "ThumbUp button is unselected");
+        
+        this.feeder._handleThumbDownButtonPress();
+        ok(this.feeder.getThumbDown(), "ThumbDown button is selected");
+        ok(!this.feeder.getThumbUp(), "ThumbUp button is unselected");
+    });
+    
+    test("Test AddAttach button disabled", function() {
+    	this.feeder._disableAddAttachBtn();
+    	ok(!this.feeder._oAddAttachButton.getEnabled(), "The button is disabled");
+    	ok(this.feeder._oAddAttachButton.hasStyleClass("sapSuiteUiCommonsNtDsblAttachIcon"), "The button has disable color icon");
+    	ok(this.feeder._oAddAttachButton.getTooltip() == null, "No tooltip");
+    });
+    
+    test("Test AddAttach button enabled", function() {
+    	this.feeder._enableAddAttachBtn();
+    	ok(this.feeder._oAddAttachButton.getEnabled(), "The button is enabled");
+    	ok(this.feeder._oAddAttachButton.hasStyleClass("sapSuiteUiCommonsNtAttachIcon"), "The button has color icon");
+    	ok(this.feeder._oAddAttachButton.getTooltip() != null, "Has tooltip");
+    });
+</script>
+
+</head>
+
+<body>
+	<div id="qunit"></div>
+	<div id="NTFeeder"></div>
+</body>
+</html>

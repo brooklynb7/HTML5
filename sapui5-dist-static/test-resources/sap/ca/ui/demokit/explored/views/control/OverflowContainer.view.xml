@@ -1,0 +1,54 @@
+<core:View xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form" xmlns:ui="sap.ca.ui"
+	xmlns="sap.m" xmlns:chart="sap.ca.ui.charts" controllerName="sap.ca.ui.sample.views.control.OverflowContainer">
+	<Page id="page">
+		<content>
+            <IconTabBar>
+        		<items>
+                        <IconTabFilter key="key1" count="1" text="Business" icon="sap-icon://task" >
+                            <content>
+                                <ui:OverflowContainer overflowHeight="200px">
+                                    <ui:content>
+                                        <form:SimpleForm maxContainerCols="2">
+                                                <Label text="Name"></Label>
+                                                <Text text="SAP Germany"></Text>
+                                                <Label text="Street"></Label>
+                                                <Text text="Dietmar-Hopp-Allee 16"></Text>
+                                                <Label text="City"></Label>
+                                                <Text text="69190 Walldorf"></Text>
+                                                <Label text="Country"></Label>
+                                                <Text text="Germany"></Text>
+                                        </form:SimpleForm>
+                                    </ui:content>
+                                </ui:OverflowContainer>
+                            </content>
+                        </IconTabFilter>
+
+                        <IconTabFilter key="key2" text="List" icon="sap-icon://task" >
+                            <content>
+                                <ui:OverflowContainer overflowHeight="200px">
+                                    <ui:content>
+                                        <List>
+                                            <items>
+                                                <FeedListItem sender="Giselle Ashante-Ramirez" info= "Request" timestamp= "March 03, 2013" text= "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat. At vero eos et accusam et justo duo dolores et ea rebum.">
+                                                </FeedListItem>
+                                                <FeedListItem sender="johannes Schaffensteiger" info= "Reply" timestamp= "March 04, 2013" text= "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore">
+                                                </FeedListItem>
+                                                <FeedListItem sender="Giselle Ashante-Ramirez" info= "Request" timestamp= "March 04, 2013" text= "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat">
+                                                </FeedListItem>
+                                                <FeedListItem sender="johannes Schaffensteiger" info= "Rejection" timestamp= "March 07, 2013" text= "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.">
+                                                </FeedListItem>
+                                            </items>
+                                        </List>
+                                    </ui:content>
+                                </ui:OverflowContainer>
+                            </content>
+                        </IconTabFilter>
+        		</items>
+        	</IconTabBar>
+		</content>
+		<footer>
+			<Bar>
+			</Bar>
+		</footer>
+	</Page>
+</core:View>

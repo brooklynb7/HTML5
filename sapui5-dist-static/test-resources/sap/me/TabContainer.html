@@ -1,0 +1,197 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>TabContainer - sap.me</title>
+<style type="text/css">
+body {
+	overflow: auto;
+}
+</style>
+
+<script src="../../../resources/sap-ui-core.js" type="text/javascript"
+	id="sap-ui-bootstrap" data-sap-ui-libs="sap.m,sap.me"
+	data-sap-ui-theme="sap_bluecrystal">
+	
+</script>
+<script type="text/javascript">
+
+	jQuery.sap.require("sap.ui.core.format.NumberFormat");
+	var oFloat = sap.ui.core.format.NumberFormat.getFloatInstance({minFractionDigits: 2, maxFractionDigits: 2});
+	
+	// create model
+	var model = new sap.ui.model.json.JSONModel({
+		items: [
+			{id: 5163, name:"Lorem Ipsum", amount: 1, price: 23.45, status: "Open"},
+			{id: 6342, name:"Dolor Sit Amet", amount: 1, price: 233.22, status: "In Process"},
+			{id: 1634, name:"Consectetur Adipisicing", amount: 1, price: 23.45, status: "Shipped"},
+			{id: 7856, name:"Elit Sed Do", amount: 3, price: 23.45, status: "Shipped"},
+			{id: 7245, name:"Eiusmod Tempor", amount: 1, price: 23.45, status: "Shipped"},
+			{id: 8342, name:"Incididunt Ut", amount: 1, price: 23.45, status: "Open"},
+			{id: 3462, name:"Labore Et Dolore", amount: 1, price: 23.45, status: "In Process"},
+			{id: 4572, name:"Magna Aliqua", amount: 5, price: 23.45, status: "Open"},
+			{id: 2634, name:"Ut Enim Ad", amount: 1, price: 23.45, status: "In Process"},
+			{id: 8365, name:"Minim Veniam", amount: 1, price: 23.45, status: "Open"},
+			{id: 1247, name:"Quis Nostrud", amount: 1, price: 11.5, status: "In Process"},
+			{id: 4562, name:"Exercitation Ullamco", amount: 1, price: 23.45, status: "Shipped"},
+			{id: 7356, name:"Laboris Nisi", amount: 2, price: 23.45, status: "Shipped"},
+			{id: 8753, name:"Ut Aliquip Ex", amount: 1, price: 23.44, status: "In Process"},
+			{id: 4567, name:"Ea Commodo", amount: 1, price: 234.56, status: "In Process"},
+			{id: 6353, name:"Consequat Duis", amount: 7, price: 23.45, status: "Open"},
+			{id: 1653, name:"Aute Irure Dolor", amount: 2, price: 23.45, status: "Open"},
+			{id: 7453, name:"In Reprehenderit", amount: 1, price: 88.45, status: "In Process"},
+			{id: 3462, name:"In Voluptate", amount: 1, price: 11.33, status: "Open"},
+			{id: 7467, name:"Velit Esse", amount: 1, price: 23.45, status: "Open"},
+			{id: 6342, name:"Cillum Dolore", amount: 1, price: 23.45, status: "Open"},
+			{id: 3452, name:"Eu Fugiat Nulla", amount: 1, price: 23.45, status: "Open"}
+		],
+		badgeInfo : 2,
+		badgeNotes : 4567
+	});
+	sap.ui.getCore().setModel(model);
+
+	var app = new sap.m.App();
+	
+	var page = new sap.m.Page({
+		showHeader : false
+	});
+	
+	var tc = new sap.me.TabContainer(
+			"tc",
+			{
+				contentInfo : new sap.m.List("list", {
+					columns: [
+								new sap.m.Column({
+									width: "2em",
+									header: new sap.m.Label({text: "ID"})
+								}),
+								new sap.m.Column({
+									width: "7em",
+									header: new sap.m.Label({text: "Name"})
+								}),
+								new sap.m.Column({
+									width: "3em",
+									header: new sap.m.Label({text: "Status"})
+								}),
+								new sap.m.Column({
+									width: "2em",
+									minScreenWidth: "Tablet",
+									hAlign: "Right",
+									header: new sap.m.Label({text: "Amount"})
+								}),
+								new sap.m.Column({
+									width: "3em",
+									hAlign: "Right",
+									minScreenWidth: "Tablet",
+									header: new sap.m.Label({text: "Price"})
+								})
+							],
+							items: {
+								path: "/items",
+								template: new sap.m.ColumnListItem({
+									cells: [
+										new sap.m.Text({text: "{id}"}),
+										new sap.m.Text({text: "{name}"}),
+										new sap.m.ObjectStatus({
+											text: "{status}",
+											state: {
+												path: "status",
+												formatter: function(value) {
+													switch(value) {
+														case "Open": return "Warning";
+														case "In Process": return "Error";
+														case "Shipped": return "Success";
+													}
+												}
+											}
+										}),
+										new sap.m.Text({text: "{amount}"}),
+										new sap.m.Text({text: {
+											path: "price",
+											formatter: function(value) {
+												if (value !== undefined) {
+													return "$ " + oFloat.format(value);
+												}
+											}
+										}})
+									]
+								})
+							}
+						}),
+
+				contentAttachments : new sap.m.Text({
+					text : "Tab attachment\nPetit texte"
+				}),
+				contentNotes : new sap.m.Text(
+						{
+							text : "Tab Notes\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque risus nulla, interdum eget posuere non, tincidunt eu felis. In hac habitasse platea  dictumst. Quisque ut ipsum est. Duis ipsum orci, interdum eget sollicitudin ac, blandit a ante. Cras congue posuere metus sed tempus. Mauris euismod, dui sit amet molestie volutpat, ipsum est viverra velit, id ultricies ante dolor et ligula. Pellentesque tincidunt fermentum lectus, eu luctus mi ultrices quis. Sed luctus nulla sit amet sapien consequat quis pretium eros tincidunt. Nullam quam erat, ultricies in malesuada non, tincidunt at nibh. Curabitur nec lectus et justo auctor tincidunt. In rhoncus risus vitae turpis suscipit eget porta metus facilisis. Vestibulum bibendum vehicula velit eu porta. Donec tincidunt rutrum lacus at egestas. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Pellentesque eu velit non quam facilisis ullamcorper.\rUt faucibus, dolor eu congue fringilla, libero leo dignissim eros, dignissim porta eros augue id orci. Phasellus in enim sed orci hendrerit accumsan. Vestibulum nibh libero, viverra sit amet pulvinar quis, molestie placerat velit. Suspendisse fringilla venenatis eleifend. Etiam in eros augue. Donec elit leo, aliquet nec vestibulum eu, blandit a lacus. Quisque ullamcorper consectetur lectus, cursus aliquam dolor consequat eu.\rProin orci turpis, rhoncus et egestas vitae, gravida nec diam. Pellentesque ante nisl, interdum id dictum ut, scelerisque at neque. Morbi egestas lobortis vestibulum. Nunc metus purus, facilisis id interdum at, rutrum at ante. Etiam euismod ultrices magna, sit amet hendrerit enim tempor sed. Quisque lacinia tempus risus, in feugiat leo dictum sit amet. Vestibulum non erat massa, ut placerat velit. In quis neque est, sed eleifend orci. Nulla ullamcorper porttitor cursus. Sed a massa tortor. Curabitur auctor, turpis et congue viverra, turpis sem eleifend justo, ut pellentesque nisl orci non leo. Ut vitae nibh eu ligula feugiat mollis vel a erat. Vivamus vel turpis auctor lorem fringilla blandit sit amet sit amet nulla. Fusce tempus lacus sit amet felis auctor fermentum."
+						}),
+				badgeInfo : "{/badgeInfo}",
+				badgeNotes : "{/badgeNotes}",
+				expandable : false
+
+			});
+	
+	var switchCollapseExpand = function(oControlEvent) {
+		tc.setExpandable(oControlEvent.getParameters().state);
+	}
+	var btnAddTab = new sap.m.Button({
+		text : "Add People Tab",
+		press : function(oEvent) {
+			tc.setContentPeople(new sap.m.Text({
+				text : "Tab people\nHello People"
+			}));
+		}
+	});
+	var bFiltered = false;
+	var btnFilter = new sap.m.Button({
+		text : "Filter list",
+		press : function(oEvent) {
+			aFilters = bFiltered ? [] : [new sap.ui.model.Filter("status", "EQ", "Shipped")]; 
+			bFiltered = !bFiltered;
+			sap.ui.getCore().byId("list").getBinding("items").filter(aFilters);
+		}
+	});
+	var switchExpandLbl = new sap.m.Label({
+		text : "Expandable : "
+	});
+	var switchExpand = new sap.m.Switch({
+		change : switchCollapseExpand
+	});
+	switchExpandLbl.setLabelFor(switchExpand);
+
+	var switchVisible = new sap.m.Switch({
+		state : true,
+		change :function(oControlEvent) {
+			tc.setVisible(oControlEvent.getParameters().state);
+		}
+	});
+	var switchVisibleLbl = new sap.m.Label({text : "Visible : "}).setLabelFor(switchVisible);
+	
+	var inputBadgeNoteValue = new sap.m.InputBase({value:"{/badgeNotes}" });
+	var inputBageNoteLbl = new sap.m.Label({text : " Notevalue: "}).setLabelFor(inputBadgeNoteValue);
+	
+	
+	
+	var hbox = new sap.m.HBox({
+		items : [ btnAddTab, btnFilter, switchExpandLbl, switchExpand, switchVisibleLbl, switchVisible , inputBageNoteLbl ,  inputBadgeNoteValue],
+		alignItems : sap.m.FlexAlignItems.Center,
+		justifyContent :  sap.m.FlexJustifyContent.SpaceBetween
+		
+	})
+	
+
+	
+	app.setInitialPage(page.getId());
+	page.setEnableScrolling(true);
+	page.setShowHeader(false);
+	app.addPage(page);
+	page.addContent(hbox);
+	page.addContent(tc);
+	app.placeAt('body');
+</script>
+
+</head>
+<body id="body" class="sapUiBody">
+
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html><head>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge' />
+    <meta http-equiv='Content-Type' content='text/html;charset=UTF-8'/>
+
+    <title>Favicon Test</title>
+    
+    <script src="../../../../resources/sap-ui-core.js"
+			type="text/javascript" 
+			id="sap-ui-bootstrap"
+			data-sap-ui-libs="sap.m"
+			data-sap-ui-theme="sap_bluecrystal">
+		</script>
+    
+    <script>
+		jQuery.sap.setIcons({
+			favicon: "../images/favicon.ico"
+		});
+		jQuery.sap.setIcons({
+			favicon: "favicon_A.ico"
+		});
+		
+		$(function() {
+			jQuery.sap.setIcons({
+				favicon: "../images/favicon_B.ico"
+			});
+		});
+		
+		
+		window.setTimeout(function(){
+			jQuery.sap.setIcons({
+				favicon: "../images/favicon_C.ico"
+			});
+		}, 5000);
+        
+        /*** DEFINE RE-USE COMPONENTS - NORMALLY DONE IN SEPARATE FILES ***/
+        
+        // define a new (simple) Controller type
+        sap.ui.controller("my.own.controller", {
+            
+            // implement an event handler in the Controller
+            doSomething: function() {
+                alert("Hello World!");
+            }
+        });
+        
+        
+        // define a new (simple) View type as an HTMLView
+        // - using data binding for the Button text
+        // - binding a controller method to the Button's "press" event
+        // - also mixing in some plain HTML
+        // note: typically this would be a standalone file
+        var html = '<template data-controller-name="my.own.controller">'
+            + '<div data-sap-ui-type="sap.m.Shell" data-title="Favicon Test" id="myShell">'
+            + '</div>'
+            + '</template>';
+        
+        
+        
+        /*** THIS IS THE "APPLICATION" CODE ***/
+        
+        // create some dummy JSON data
+        var data = {
+            actionName: "Say Hello"
+        };
+        
+        // instantiate the View
+        var myView = sap.ui.htmlview({viewContent:html});
+        
+        // create a Model and assign it to the View
+        var oModel = new sap.ui.model.json.JSONModel();
+        oModel.setData(data);
+        myView.setModel(oModel);
+        
+        // put the View onto the screen
+        myView.placeAt('content');
+        
+        
+    </script>
+    
+    </head>
+    <body class='sapUiBody'>
+        <div id='content'></div>
+    </body>
+</html>

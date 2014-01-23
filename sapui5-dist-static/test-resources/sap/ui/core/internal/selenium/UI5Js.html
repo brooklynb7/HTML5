@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+	<title>Test Page for UI5JavaScript</title>
+
+    <style type="text/css">
+
+    #animation-test {
+        width: 50px;
+        height: 50px;
+        background-color: #000;
+        -webkit-border-radius: 25px;
+        -moz-border-radius: 25px;
+        border-radius: 25px;
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+
+    </style>
+
+   	<script src="../../../../../../resources/sap-ui-core.js"
+            id="sap-ui-bootstrap"
+            data-sap-ui-libs="sap.ui.commons"
+            data-sap-ui-theme="sap_goldreflection" >
+    </script>
+
+   	<script>
+
+   	new sap.ui.core.Control("test1");
+
+   	function testReturn(value) {
+   		return value;
+   	}
+
+   	jQuery(function($) {
+
+        $('#animation-test').click(function() {
+            $(this).animate({ left: "100px", top: "100px" }, 500);
+        });
+
+    });
+
+   	</script>
+
+</head>
+<body class="sapUiBody" role="application">
+    <div id="animation-test"></div>
+</body>
+</html>

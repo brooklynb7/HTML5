@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<!-- Copyright (c) 2013 SAP AG, All Rights Reserved -->
+<html class="sapUShellFullHeight">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <script src="../../bootstrap/demo.js"></script>
+        <link id="icon-fonts-Fiori2" rel="stylesheet" type="text/css" href="../../../../../resources/sap/ushell/themes/base/IconFonts.css"/>
+        <link id="Fiori2-loading" rel="stylesheet" type="text/css" href="../../../../../resources/sap/ushell/themes/base/flower-standalone.css"/>
+        <script id="sap-ui-bootstrap"
+            src="../../../../../resources/sap-ui-core.js"
+            data-sap-ui-evt-oninit="main();"
+            data-sap-ui-libs="sap.ui.core, sap.ui.unified, sap.m"
+            data-sap-ui-theme="sap_bluecrystal"
+            data-sap-ui-xx-bindingSyntax="complex"
+            data-sap-ui-compatVersion="1.16"
+            data-sap-ui-logLevel=ERROR>
+        </script>
+        <script type="text/javascript">
+            /**
+             * Main method to be executed once SAPUI5 has been initialized.
+             */
+            function main() {
+                "use strict";
+                // load and register Fiori2 icon font
+                jQuery.sap.require("sap.ushell.iconfonts");
+                sap.ushell.iconfonts.registerFiori2IconFont();
+
+                /*global sap, document */
+                jQuery.sap.require("sap.ushell.functionBindPrototype");
+
+                // clean fiori loading screen markup before placing main content
+                var oContent = sap.ushell.Container.createRenderer("fiori2");
+                jQuery("#canvas").empty();
+                oContent.placeAt("canvas");
+
+                jQuery(document).keydown(function (e) {
+                    //CTRL + ALT +  G keydown combo
+                    if (e.ctrlKey && e.altKey && e.keyCode === 71) {
+                        jQuery("#dbg_grid_overlay").toggle();
+                    }
+                });
+            }
+        </script>
+    </head>
+
+    <body class="sapUiBody sapUShellFullHeight" role="application">
+        <div id="canvas" class="sapUShellFullHeight">
+            <!--  the Fiori2 loading screen for different browsers (as SAPUI5 is not loaded yet, will be replaced by Launchpad):
+                * in pure HTML with CSS animation for modern browsers
+                * animated gif image for <=IE9 (IE10+ doesn't support conditional comments)
+            -->
+            <!--[if IE]>
+                <div id="fiori2-startup-flower" class="demo">
+                    <img src="../../../../../resources/sap/ushell/themes/base/img/flower_anim.gif" />
+                </div>
+            <![endif]-->
+            <!--[if !IE]> -->
+            <div id="fiori2-startup-flower" class="demo">
+                <div class="fiori2-blossom">
+                    <div class="fiori2-leafContainer fiori2-leafContainer1">
+                        <div class="fiori2-leaf fiori2-leaf1"></div>
+                    </div>
+                    <div class="fiori2-leafContainer fiori2-leafContainer2">
+                        <div class="fiori2-leaf fiori2-leaf2"></div>
+                    </div>
+                    <div class="fiori2-leafContainer fiori2-leafContainer3">
+                        <div class="fiori2-leaf fiori2-leaf3"></div>
+                    </div>
+                    <div class="fiori2-leafContainer fiori2-leafContainer4">
+                        <div class="fiori2-leaf fiori2-leaf4"></div>
+                    </div>
+                    <div class="fiori2-leafContainer fiori2-leafContainer5">
+                        <div class="fiori2-leaf fiori2-leaf5"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- <![endif] -->
+        </div>
+        <div id="dbg_grid_overlay" style="position: absolute;z-index: 1000;background-image: url('/ushell/resources/sap/ushell/themes/sap_bluecrystal/img/grid.png');
+            width: 100%;height: 100%;opacity: 0.1;top: 0;left: 0;display:none;">
+            
+        </div>
+    </body>
+</html>

@@ -1,0 +1,47 @@
+
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>CheckBox - sap.m</title>
+		<script src="../../../resources/sap-ui-core.js"
+			type="text/javascript" 
+			id="sap-ui-bootstrap"
+			data-sap-ui-libs="sap.m"
+			data-sap-ui-theme="sap_mvi">
+		</script>
+		<script type="text/javascript">
+			jQuery.sap.initMobile();
+			
+			var checkBox = new sap.m.CheckBox({selected:true, visible: true, enabled: true});
+			checkBox.placeAt("c0");
+			var checkBox1 = new sap.m.CheckBox({selected:false, visible: true, enabled: true});
+			checkBox1.placeAt("c1");
+			var checkBox2 = new sap.m.CheckBox({selected:true, visible: true, enabled: false});
+			checkBox2.placeAt("c2");
+			var checkBox3 = new sap.m.CheckBox({selected:false, visible: true, enabled: false});
+			checkBox3.placeAt("c3");
+			var checkBox4 = new sap.m.CheckBox({selected:true, visible:true, enabled: true, text: "123"});
+			checkBox4.placeAt("c4");
+			var checkBox5 = new sap.m.CheckBox({selected:true, visible:true, enabled: true, text: "text length test", width:"100px"});
+			checkBox5.placeAt("c5");
+			var checkBox6 = new sap.m.CheckBox({activeHandling:false , selected:true, visible:true, enabled: true, text: "RTL", width:"100px", textDirection:"RTL"});
+			checkBox6.placeAt("c6");
+		</script>
+		<style type="text/css">
+			.holder{
+				height: 50px;
+				width: 100%;
+			}
+		</style>
+	</head>
+	<body id="body" class="sapUiBody" style="background-color:white;">
+	<div id="c0" class="holder"></div>
+	<div id="c1" class="holder"></div>
+	<div id="c2" class="holder"></div>
+	<div id="c3" class="holder"></div>
+	<div id="c4" class="holder"></div>
+	<div id="c5" class="holder"></div>
+	<div id="c6" class="holder"></div>
+	</body>
+</html>

@@ -1,0 +1,25 @@
+<template>
+ 
+	<div data-sap-ui-type="sap.m.ObjectHeader" data-title="{lr>requestor}" data-icon="{lr>requestorDetails/img}">
+		<div data-sap-ui-aggregation="attributes">
+			<div data-sap-ui-type="sap.m.ObjectAttribute" 
+				data-text="{path:'lr>requestorDetails/companyHouseNum'} {path:'lr>requestorDetails/companyStreet'}"></div>
+			<div data-sap-ui-type="sap.m.ObjectAttribute" 
+				data-text="{path:'lr>requestorDetails/companyCity'}, {path:'lr>requestorDetails/companyState'} {path:'lr>requestorDetails/companyZIP'}"></div>			
+			<div data-sap-ui-type="sap.m.ObjectAttribute" data-text="{path:'lr>requestorDetails/companyCountry'}"></div>
+		</div>
+	</div>
+	<div data-sap-ui-type="sap.ui.commons.form.SimpleForm" id="LrBCardForm" data-min-width="1024" data-max-container-cols="2">
+		<div data-sap-ui-aggregation="content">
+			
+			<div data-sap-ui-type="sap.ui.core.Title" data-text="Contact Information"></div>
+			<div data-sap-ui-type="sap.m.Label" data-text="Mobile"></div>
+			<div data-sap-ui-type="sap.m.Text" data-text="{lr>requestorDetails/phoneMobile}"></div>
+			<div data-sap-ui-type="sap.m.Label" data-text="Work"></div>
+			<div data-sap-ui-type="sap.m.Text" data-text="{lr>requestorDetails/phoneWork}"></div>
+			<div data-sap-ui-type="sap.m.Label" data-text="Website"></div>
+			<div data-sap-ui-type="sap.m.Link" data-text="{lr>requestorDetails/companyName}" data-href="{lr>requestorDetails/website}"></div>
+		</div>
+	</div>
+
+</template>

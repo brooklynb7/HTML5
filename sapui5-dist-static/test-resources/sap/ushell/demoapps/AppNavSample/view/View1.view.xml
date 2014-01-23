@@ -1,0 +1,10 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m" controllerName="AppNavSample.view.View1" xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page title="View1">
+		<content>
+			<Button text="toView2" press="handleBtn1Press"></Button>
+			<Link href="{/toView2_href}" text="to View 2 (via link)"
+				tooltip="to View 2 (via link, note the href generation)"></Link>
+		</content>
+	</Page>
+</core:View>

@@ -1,0 +1,39 @@
+<core:View
+	controllerName="views.control.objectHeader"
+	xmlns="sap.m"
+	xmlns:l="sap.ui.layout"
+	xmlns:core="sap.ui.core" >
+	<l:VerticalLayout
+		width="100%">
+		<l:content>
+			<Text id="description" class="marginAll" />
+
+			<ObjectHeader
+				title="{Name}"
+				number="{Price}"
+				numberUnit="{CurrencyCode}"
+				markFavorite="true"
+				markFlagged="true"
+				showMarkers="true">
+				<statuses>
+					<ObjectStatus
+						text="Some Damaged"
+						state="Error" />
+					<ObjectStatus
+						text="In Stock"
+						state="Success" />
+				</statuses>
+				<attributes>
+					<ObjectAttribute text="{Description}" />
+					<ObjectAttribute text="{WeightMeasure} {WeightUnit}" />
+					<ObjectAttribute text="{Width} x {Depth} x {Height} {DimUnit}" />
+					<ObjectAttribute
+						text="www.sap.com"
+						active="true"
+						press="handleLinkObjectAttributePress" />
+				</attributes>
+			</ObjectHeader>
+
+		</l:content>
+	</l:VerticalLayout>
+</core:View>

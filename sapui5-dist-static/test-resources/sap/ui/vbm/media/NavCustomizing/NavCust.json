@@ -1,0 +1,227 @@
+{
+	"SAPVB": {
+		"version": "2.0",
+		"xmlns:VB": "VB",
+		"Data": {
+			"Set": {
+			}
+		},
+		"DataTypes": {
+			"Set": {
+			}
+		},
+		"Windows": {
+			"Set": {
+				"Window": {
+					"id": "W1",
+					"caption": "Window1",
+					"type": "geo",
+					"refParent": "",
+					"refScene": "Scene1",
+					"modal": "true"
+				}
+			}
+		},
+		"Scenes": {
+			"Set": {
+				"SceneGeo": {
+					"id": "Scene1",
+					"refMapLayerStack": "layerStackOvi",
+					"SuppressedNavControlVisibility": {
+						"pitch": "false",
+						"yaw": "false",
+						"move": "false",
+						"zoom": "false",
+						"fade": "true"
+					},
+					"NavigationDisablement": {
+						"pitch": "false",
+						"yaw": "false",
+						"move": "false",
+						"zoom": "false"
+					},
+					"initialStartPosition": "-61.056004;13.856747;0",
+					"initialZoom": "7"
+				}
+			}
+		},
+		"MapProviders": {
+			"Set": {
+				"MapProvider": [
+					{
+						"name": "NAVTEQSAT",
+						"type": "",
+						"description": "",
+						"tileX": "256",
+						"tileY": "256",
+						"maxLOD": "19",
+						"Source": {
+							"id": "server1",
+							"url": "http://maptp47.map24.com/map24/images?sid=1215676239372&v=1&projection=mercator-spheroid&size=256&imgmime=image/png&mid=DEV_SAP_WORLD&quadkey={QUAD}"
+						}
+					},
+					{
+						"name": "NAVTEQROAD",
+						"type": "",
+						"description": "",
+						"tileX": "256",
+						"tileY": "256",
+						"maxLOD": "19",
+						"Source": {
+							"id": "server1",
+							"url": "http://maptp47.map24.com/map24/images?sid=1215676239372&v=1&projection=mercator-spheroid&size=256&imgmime=image/png&mid=DEV_SAP_WORLD&quadkey={QUAD}"
+						}
+					},
+					{
+						"name": "OPENSTREETMAP",
+						"type": "",
+						"description": "",
+						"tileX": "256",
+						"tileY": "256",
+						"maxLOD": "19",
+						"Source": [
+							{
+								"id": "server1",
+								"url": "http://a.tile.openstreetmap.org/{LOD}/{X}/{Y}.png"
+							},
+							{
+								"id": "server2",
+								"url": "http://b.tile.openstreetmap.org/{LOD}/{X}/{Y}.png"
+							},
+							{
+								"id": "server3",
+								"url": "http://c.tile.openstreetmap.org/{LOD}/{X}/{Y}.png"
+							},
+							{
+								"id": "server4",
+								"url": "http://d.tile.openstreetmap.org/{LOD}/{X}/{Y}.png"
+							}
+						]
+					},
+					{
+						"name": "GOOGLEMAPPHOTO",
+						"type": "",
+						"description": "",
+						"tileX": "256",
+						"tileY": "256",
+						"maxLOD": "19",
+						"Source": [
+							{
+								"id": "server1",
+								"url": "http://mt0.google.com/mapslt?lyrs=com.panoramio.all|pv:2|tag:piles&x={X}&y={Y}&z={LOD}&w=256&h=256&gl=de&hl=de"
+							},
+							{
+								"id": "server2",
+								"url": "http://mt1.google.com/mapslt?lyrs=com.panoramio.all|pv:2|tag:piles&x={X}&y={Y}&z={LOD}&w=256&h=256&gl=de&hl=de"
+							},
+							{
+								"id": "server3",
+								"url": "http://mt2.google.com/mapslt?lyrs=com.panoramio.all|pv:2|tag:piles&x={X}&y={Y}&z={LOD}&w=256&h=256&gl=de&hl=de"
+							},
+							{
+								"id": "server4",
+								"url": "http://mt3.google.com/mapslt?lyrs=com.panoramio.all|pv:2|tag:piles&x={X}&y={Y}&z={LOD}&w=256&h=256&gl=de&hl=de"
+							}
+						]
+					},
+					{
+						"name": "GOOGLEMAP",
+						"type": "",
+						"description": "",
+						"tileX": "256",
+						"tileY": "256",
+						"maxLOD": "19",
+						"Source": [
+							{
+								"id": "server1",
+								"url": "http://mt0.google.com/vt/lyrs=m@1550000&hl=de&x={X}&y={Y}&z={LOD}&s=G"
+							},
+							{
+								"id": "server2",
+								"url": "http://mt1.google.com/vt/lyrs=m@1550000&hl=de&x={X}&y={Y}&z={LOD}&s=G"
+							}
+						]
+					},
+					{
+						"name": "ESRILOCAL",
+						"type": "",
+						"description": "",
+						"tileX": "256",
+						"tileY": "256",
+						"maxLOD": "19",
+						"Source": {
+							"id": "server1",
+							"url": "http://iwdfvm1229:8399/arcgis/rest/services/World_WebMercator2_Tiled/MapServer/tile/{LOD}/{Y}/{X}"
+						}
+					},
+					{
+						"name": "BINGMAP",
+						"type": "",
+						"description": "",
+						"tileX": "256",
+						"tileY": "256",
+						"maxLOD": "19",
+						"Source": [
+							{
+								"id": "server1",
+								"url": "http://ecn.t0.tiles.virtualearth.net/tiles/r{QUAD}?g=685&mkt=de-de&lbl=l1&stl=h&shading=hill&n=z"
+							},
+							{
+								"id": "server2",
+								"url": "http://ecn.t1.tiles.virtualearth.net/tiles/r{QUAD}?g=685&mkt=de-de&lbl=l1&stl=h&shading=hill&n=z"
+							},
+							{
+								"id": "server3",
+								"url": "http://ecn.t2.tiles.virtualearth.net/tiles/r{QUAD}?g=685&mkt=de-de&lbl=l1&stl=h&shading=hill&n=z"
+							},
+							{
+								"id": "server4",
+								"url": "http://ecn.t3.tiles.virtualearth.net/tiles/r{QUAD}?g=685&mkt=de-de&lbl=l1&stl=h&shading=hill&n=z"
+							}
+						]
+					},
+					{
+						"name": "OVITERRAIN",
+						"type": "",
+						"description": "",
+						"tileX": "256",
+						"tileY": "256",
+						"maxLOD": "19",
+						"Source": {
+							"id": "server1",
+							"url": "http://st.lbs.ovi.com/maptiler/V2/maptile/newest/terrain.day/{LOD}/{X}/{Y}/256/png?token=OvJJVLXUQZGWHmYf1HZCFg&app_id=TSCNwGZFblBU5DnJLAH8"
+						}
+					}
+				]
+			}
+		},
+		"MapLayerStacks": {
+			"Set": {
+				"MapLayerStack": [
+					{
+						"name": "layerStackOvi",
+						"MapLayer": {
+							"name": "layer1",
+							"refMapProvider": "OVITERRAIN",
+							"opacity": "1.0",
+							"colBkgnd": "RGB(255,255,255)"
+						}
+					},
+					{
+						"name": "layerStackBing",
+						"MapLayer": {
+							"name": "layer1",
+							"refMapProvider": "BINGMAP",
+							"opacity": "1.0",
+							"colBkgnd": "RGB(255,255,255)"
+						}
+					}
+				]
+			}
+		},
+		"Actions": {
+			"Set": {
+			}
+		}
+	}
+}

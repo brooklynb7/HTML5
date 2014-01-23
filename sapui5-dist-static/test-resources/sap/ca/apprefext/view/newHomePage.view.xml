@@ -1,0 +1,155 @@
+<core:View
+        controllerName="i2d.qm.qualityissue.confirm.apprefExt.view.newHomePage"
+        xmlns="sap.m"
+        xmlns:ui="sap.ca.ui"
+        xmlns:layout="sap.ui.layout"
+        xmlns:core="sap.ui.core">
+    <Page id="page" title="{i18n>CREATION_TITLE}" showNavButton="false">
+        <content>
+
+            <layout:Grid hSpacing="1" vSpacing="1">
+                <layout:content>
+                    <Label text="{i18n>PICTURES}" id="attachmentLabel" textAlign="Right" width="100%">
+                        <layoutData>
+                            <layout:GridData span="L4 M4 S12">
+                            </layout:GridData>
+                        </layoutData>
+                    </Label>
+
+                    <ui:AddPicture id="addPicture" buttonPageType="Form" pictures="{picture>/Pictures}"
+                                   pictureAdded="onPictureAdded"
+                                   show="onItemPress" maxPictureNumber="20" maxPictureLimitReached="onLimitReached"
+                                   itemSize="64" compression="low">
+                        <ui:pictures>
+                            <ui:PictureItem source="{picture>source}" name="{picture>name}"/>
+                        </ui:pictures>
+                        <ui:layoutData>
+                            <layout:GridData span="L5 M6 S12">
+                            </layout:GridData>
+                        </ui:layoutData>
+
+                    </ui:AddPicture>
+                </layout:content>
+
+            </layout:Grid>
+
+            <layout:Grid hSpacing="1" vSpacing="1">
+                <layout:content>
+                    <Label text="{i18n>DESCRIPTION}" id="descriptionLabel" required="true" textAlign="Right" width="100%">
+                        <layoutData>
+                            <layout:GridData span="L4 M4 S12">
+                            </layout:GridData>
+                        </layoutData>
+                    </Label>
+                    <Input value="{creationModel>/Description}" maxLength="40" liveChange="onCheckStatusSubmit" id="descriptionInput">
+                        <layoutData>
+                            <layout:GridData span="L5 M6 S12">
+                            </layout:GridData>
+                        </layoutData>
+                    </Input>
+                </layout:content>
+            </layout:Grid>
+            
+                        
+            <layout:Grid hSpacing="1" vSpacing="1">
+                <layout:content>
+                    <Label text="{i18n>DATE}" id="datelabel" textAlign="Right" width="100%">
+                        <layoutData>
+                            <layout:GridData span="L4 M4 S12">
+                            </layout:GridData>
+                        </layoutData>
+                    </Label>
+                    <DateTimeInput type="DateTime" placeholder="{i18n>ENTER_DATE}" width="100%" row="2" maxLength="246" id="dateTimeInput">
+                        <layoutData>
+                            <layout:GridData span="L5 M6 S12">
+                            </layout:GridData>
+                        </layoutData>
+                    </DateTimeInput>
+                </layout:content>
+            </layout:Grid>
+
+            <layout:Grid hSpacing="1" vSpacing="1">
+                <layout:content>
+                    <Label text="{i18n>DEFECT}" id="defectLabel" required="true" textAlign="Right" width="100%" padding-top="12px">
+                        <layoutData>
+                            <layout:GridData span="L4 M4 S12">
+                            </layout:GridData>
+                        </layoutData>
+                    </Label>
+                    <Input value="{creationModel>/SelectedDefect}" liveChange="onCheckStatusSubmit" showValueHelp="true" valueHelpRequest="displayDefect"
+                           id="defectInput">
+                        <layoutData>
+                            <layout:GridData span="L5 M6 S12">
+                            </layout:GridData>
+                        </layoutData>
+                    </Input>
+                </layout:content>
+            </layout:Grid>
+
+            <layout:Grid hSpacing="1" vSpacing="1">
+                <layout:content>
+                    <Label text="{i18n>REFERENCE}" id="referenceLabel" required="true" textAlign="Right" width="100%">
+                        <layoutData>
+                            <layout:GridData span="L4 M4 S12">
+                            </layout:GridData>
+                        </layoutData>
+                    </Label>
+                    <Input value="{creationModel>/Reference}"  liveChange="onCheckStatusSubmit" id="ReferenceInput">
+                        <layoutData>
+                            <layout:GridData span="L5 M6 S12">
+                            </layout:GridData>
+                        </layoutData>
+                    </Input>
+                </layout:content>
+            </layout:Grid>
+
+            <layout:Grid hSpacing="1" vSpacing="1">
+                <layout:content>
+                    <Label text="{i18n>CATEGORY}" id="categoryLabel" required="true" textAlign="Right" width="100%">
+                        <layoutData>
+                            <layout:GridData span="L4 M4 S12">
+                            </layout:GridData>
+                        </layoutData>
+                    </Label>
+                    <Input value="{creationModel>/SelectedCategory}" liveChange="onCheckStatusSubmit"
+                           showValueHelp="true" valueHelpRequest="displayCategory" id="categoryInput">
+                        <layoutData>
+                            <layout:GridData span="L5 M6 S12">
+                            </layout:GridData>
+                        </layoutData>
+                    </Input>
+                </layout:content>
+            </layout:Grid>
+
+<!--             <layout:Grid hSpacing="1" vSpacing="1"> -->
+<!--                 <layout:content> -->
+<!--                     <Label text="{i18n>DETAILED_DESCRIPTION}" id="detailLabel" textAlign="Right" width="100%"> -->
+<!--                         <layoutData> -->
+<!--                             <layout:GridData span="L4 M4 S12"> -->
+<!--                             </layout:GridData> -->
+<!--                         </layoutData> -->
+<!--                     </Label> -->
+<!--                     <TextArea value="{creationModel>/DetailedDescription}" width="100%" row="2" maxLength="246" id="detailInput"> -->
+<!--                         <layoutData> -->
+<!--                             <layout:GridData span="L5 M6 S12"> -->
+<!--                             </layout:GridData> -->
+<!--                         </layoutData> -->
+<!--                     </TextArea> -->
+<!--                 </layout:content> -->
+<!--             </layout:Grid> -->
+            
+            
+
+            
+            
+        </content>
+        <footer>
+            <Bar>
+                <contentRight>
+                    <Button text="{i18n>SUBMIT}" press="onSubmit" enabled="{creationModel>/toggleSubmit}" id="Button_submit"/>
+                    <Button text="{i18n>CANCEL}" press="onCancel" enabled="true" id="Button_cancel"/>
+                </contentRight>
+            </Bar>
+        </footer>
+    </Page>
+</core:View>

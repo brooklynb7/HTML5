@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta charset="UTF-8">
+<title>SAPUI5 News Application ABAP</title>
+
+<script id="sap-ui-bootstrap" type="text/javascript" src="../../../../../../../resources/sap-ui-core.js" data-sap-ui-theme="sap_bluecrystal" data-sap-ui-xx-bindingSyntax="complex"
+	data-sap-ui-libs="sap.m, sap.suite.ui.commons">
+	
+</script>
+<!-- add sap.ui.table,sap.ui.ux3 and/or other libraries to 'data-sap-ui-libs' if required -->
+
+<script>
+	// tell UI5 where to find stuff
+	sap.ui.localResources("view");
+	sap.ui.localResources("launchtile");
+	sap.ui.localResources("newstile");
+	jQuery.sap.registerModulePath('Application', 'Application');
+
+	// launch application
+	jQuery.sap.require("Application");
+	var oApp = new Application({
+		root : "content"
+	});
+</script>
+
+<style type="text/css">
+.newsTileStyle {
+	height: 214px;
+	width: 499px;
+}
+
+</style>
+<style type="text/css">
+.launchAppStyle {
+	height: 214px;
+	width: 240px;
+}
+</style>
+
+</head>
+<body class="sapUiBody" id="content" />
+</html>

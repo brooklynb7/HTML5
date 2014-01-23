@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta charset="UTF-8">
+<title>FeedItemHeader - sap.suite.ui.commons</title>
+
+<!-- UI5 Bootstrap -->
+<script src="../../../../../resources/sap-ui-core.js"
+	type="text/javascript" id="sap-ui-bootstrap"
+	data-sap-ui-libs="sap.ui.commons, sap.suite.ui.commons, sap.m"
+	data-sap-ui-theme="sap_bluecrystal">
+    
+</script>
+
+<script type="text/javascript">
+    function handlePress(oEvent) {
+		window.open(oEvent.getSource().getLink(), "_blank");
+    }
+    
+    var listItems = new Array();
+
+    var oFeedItemHeader1 = new sap.suite.ui.commons.FeedItemHeader(
+            {
+                title : "Worst case tile Ñagçyfox Ñagçyfox Ñagçyfox Ñagçyfox Ñagçyfox Ñagçyfox Ñagçyfox",
+                description : "Worst case description Ñagçyfox Ñagçyfox Ñagçyfox Ñagçyfox Ñagçyfox Ñagçyfox Ñagçyfox Ñagçyfox Ñagçyfox Ñagçyfox Ñagçyfox Ñagçyfox Ñagçyfox Ñagçyfox Ñagçyfox Ñagçyfox Ñagçyfox Ñagçyfox Ñagçyfox Ñagçyfox Ñagçyfox Ñagçyfox Ñagçyfox Ñagçyfox Ñagçyfox Ñagçyfox Ñagçyfox Ñagçyfox Ñagçyfox Ñagçyfox Ñagçyfox Ñagçyfox Ñagçyfox Ñagçyfox Ñagçyfox Ñagçyfox Ñagçyfox Ñagçyfox Ñagçyfox Ñagçyfox Ñagçyfox Ñagçyfox Ñagçyfox Ñagçyfox Ñagçyfox Ñagçyfox Ñagçyfox Ñagçyfox Ñagçyfox",
+                image : "images/balloons.jpg",
+                link : "http://www.sap.com/corporate-en/press-and-media/newsroom/press.epx?PressID=20769",
+                source : "Some really long source text to test ellipsis",
+                publicationDate : new Date(),
+                press : handlePress
+            });
+	listItems.push(oFeedItemHeader1);
+    
+    var oFeedItemHeader2 = new sap.suite.ui.commons.FeedItemHeader(
+            {
+                title : "I am good looking title",
+                description : "SAP is winning big with its HANA & Analytics",
+                image : "images/grass.jpg",
+                link : "http://www.sap.com/corporate-en/press-and-media/newsroom/press.epx?PressID=20769",
+                source : "SAP News",
+                publicationDate : new Date(),
+                press : handlePress
+            });
+    listItems.push(oFeedItemHeader2);
+    
+    var oFeedItemHeader3 = new sap.suite.ui.commons.FeedItemHeader(
+            {
+                title : "Google Rocks",
+                description : "Google Inc. (Google) is a global technology company focused on improving the ways people connect with information. The Company generates revenue primarily by delivering online advertising. As of December 31, 2011, the Company’s business was focused on areas, such as search, advertising, operating systems and platforms, and enterprise.",
+                image : "images/grass.jpg",
+                link : "http://www.google.com",
+                source : "Google News",
+                publicationDate : new Date(),
+                press : handlePress
+            });
+
+    listItems.push(oFeedItemHeader3);
+    
+    var oFeedItemHeader4 = new sap.suite.ui.commons.FeedItemHeader(
+            {
+                title : "Worst case tile Ñagçyfox Ñagçyfox Ñagçyfox Ñagçyfox Ñagçyfox Ñagçyfox Ñagçyfox",
+                description : "Worst case description Ñagçyfox Ñagçyfox Ñagçyfox Ñagçyfox Ñagçyfox Ñagçyfox Ñagçyfox Ñagçyfox Ñagçyfox Ñagçyfox Ñagçyfox Ñagçyfox Ñagçyfox Ñagçyfox Ñagçyfox Ñagçyfox Ñagçyfox Ñagçyfox Ñagçyfox Ñagçyfox Ñagçyfox Ñagçyfox Ñagçyfox Ñagçyfox Ñagçyfox Ñagçyfox Ñagçyfox Ñagçyfox Ñagçyfox Ñagçyfox Ñagçyfox Ñagçyfox Ñagçyfox Ñagçyfox Ñagçyfox Ñagçyfox Ñagçyfox Ñagçyfox Ñagçyfox Ñagçyfox Ñagçyfox Ñagçyfox Ñagçyfox Ñagçyfox Ñagçyfox Ñagçyfox Ñagçyfox Ñagçyfox Ñagçyfox",
+                image : "images/grass.jpg",
+                link : "http://www.sap.com/corporate-en/press-and-media/newsroom/press.epx?PressID=20769",
+                source : "Some really long source text to test ellipsis",
+                publicationDate : new Date(),
+                press : handlePress
+            });
+
+    listItems.push(oFeedItemHeader4);
+    
+    var oFeedItemHeader5 = new sap.suite.ui.commons.FeedItemHeader({
+    	title: "This FeedItemHeader has a description that contains HTML content.",
+    	image : "images/balloons.jpg",
+    	description: 'Link <a href="http://www.yahoo.com">Yahoo</a> <div onclick="$(this).text(\'HTML is active!\')"><i>I am malicious script, click me!</i></div>',
+   		publicationDate : new Date(),
+   		source: "Malicious Source"
+    });
+    
+    listItems.push(oFeedItemHeader5);
+    
+    var oList = new sap.m.List({
+    	mode: sap.m.ListMode.SingleSelectMaster,
+    	items: listItems
+    });
+    oList.placeAt("list");
+</script>
+
+<style type="text/css">
+	.testFeedItemHeader {
+		width: 100%;
+		margin-top: 10px;
+	}
+</style>
+</head>
+
+<body class="sapUiBody" role="application">
+	<h1>Test Page for sap.suite.ui.commons.FeedItemHeader</h1>
+	<h2>Main FeedItemHeader Test</h2>
+	<div id="list"></div>
+</body>
+</html>

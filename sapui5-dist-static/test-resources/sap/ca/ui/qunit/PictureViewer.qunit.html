@@ -1,0 +1,76 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <title>Fiori Wave 2: Test Page for PictureViewer</title>
+
+    <script src="../../../../../resources/sap-ui-core.js"
+            id="sap-ui-bootstrap"
+            data-sap-ui-libs="sap.m, sap.ui.commons"
+            data-sap-ui-theme="sap_bluecrystal"
+            data-sap-ui-xx-bindingSyntax="complex"
+            data-sap-ui-noConflict="true">
+    </script>
+
+    <link rel="stylesheet" href="../../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
+    <script type="text/javascript" src="../../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+    <script type="text/javascript" src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
+    <script type="text/javascript" src="../../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
+
+    <script type="text/javascript" src="utils/qunithelper.js"></script>
+    <script type="text/javascript" src="PictureViewerTest.js"></script>
+
+    <script type="text/javascript">
+        QUnit.config.autostart = false;
+        jQuery(document).ready(function() {
+            QUnit.start();
+        });
+
+        // require dialog module
+        jQuery.sap.require("sap.ca.ui.PictureViewer");
+
+        // first test, picture with uri
+        var oPictureViewer = new sap.ca.ui.PictureViewer({
+            id : PICTURE_VIEWER_ITEM_ID + '1'
+        });
+
+
+        var oPictureViewer2 = new sap.ca.ui.PictureViewer({
+            id : PICTURE_VIEWER_ITEM_ID + '2'
+        });
+
+        var oPictureViewerItem;
+        for(var i=2;i<9;i++){
+            oPictureViewerItem = new sap.ca.ui.PictureViewerItem({
+                src: myURIBase + '2'
+            });
+            oPictureViewer2.addItem(oPictureViewerItem);
+        }
+
+        var oHtml = new sap.ui.core.HTML({
+            content : '<div id="contentHolder"></div><h1 id="qunit-header">Fiori Wave 2: Test Page for PictureViewer</h1><h2 id="qunit-banner"></h2><h2 id="qunit-userAgent"></h2><ol id="qunit-tests"></ol>',
+            afterRendering: function(){
+                oPictureViewer.placeAt("contentHolder");
+            }
+        });
+
+        var app = new sap.m.App("myApp", {
+            initPage: "myFirstPage"
+        });
+
+        var page = new sap.m.Page("myFirstPage", {
+            title : "Fiori - PictureViewer Test",
+            showNavButton : true,
+            enableScrolling : true,
+            content : oHtml
+        });
+        app.addPage(page).placeAt("content");
+
+    </script>
+
+</head>
+<body id="body" class="sapUiBody">
+<div id="content"></div>
+</body>
+</html>

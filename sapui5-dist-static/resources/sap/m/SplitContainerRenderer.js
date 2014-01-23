@@ -1,0 +1,7 @@
+/*!
+ * SAP UI development toolkit for HTML5 (SAPUI5)
+ * 
+ * (c) Copyright 2009-2013 SAP AG. All rights reserved
+ */
+jQuery.sap.declare("sap.m.SplitContainerRenderer");sap.m.SplitContainerRenderer={};
+sap.m.SplitContainerRenderer.render=function(r,c){r.write("<div");r.writeControlData(c);r.addClass("sapMSplitContainer");if(this.renderAttributes){this.renderAttributes(r,c)}if(!jQuery.device.is.phone){if(jQuery.device.is.portrait){r.addClass("sapMSplitContainerPortrait")}switch(c.getMode()){case"ShowHideMode":r.addClass("sapMSplitContainerShowHide");break;case"StretchCompress":r.addClass("sapMSplitContainerStretchCompress");break;case"PopoverMode":r.addClass("sapMSplitContainerPopover");break;case"HideMode":r.addClass("sapMSplitContainerHideMode")}}r.writeClasses();r.writeStyles();var t=c.getTooltip_AsString();if(t){r.writeAttributeEscaped("title",t)}r.write(">");if(this.renderBeforeContent){this.renderBeforeContent(r,c)}if(!jQuery.device.is.phone){if(c.getMode()==="PopoverMode"&&jQuery.device.is.portrait){c._oDetailNav.addStyleClass("sapMSplitContainerDetail");r.renderControl(c._oDetailNav);if(c._oPopOver.getContent().length===0){c._oPopOver.addAggregation("content",c._oMasterNav,true)}}else{c._oMasterNav.addStyleClass("sapMSplitContainerMaster");r.renderControl(c._oMasterNav);c._oDetailNav.addStyleClass("sapMSplitContainerDetail");r.renderControl(c._oDetailNav)}}else{c._oMasterNav.addStyleClass("sapMSplitContainerMobile");r.renderControl(c._oMasterNav)}r.write("</div>")};

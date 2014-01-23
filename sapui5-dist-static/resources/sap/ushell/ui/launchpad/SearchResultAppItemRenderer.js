@@ -1,0 +1,2 @@
+// Copyright (c) 2013 SAP AG, All Rights Reserved
+(function(){"use strict";jQuery.sap.declare("sap.ushell.ui.launchpad.SearchResultAppItemRenderer");jQuery.sap.require("sap.ui.core.Renderer");jQuery.sap.require("sap.m.ButtonRenderer");sap.ushell.ui.launchpad.SearchResultAppItemRenderer=sap.ui.core.Renderer.extend(sap.m.ButtonRenderer);sap.ushell.ui.launchpad.SearchResultAppItemRenderer.highlight=function(h,t){var r;if(h){r=new RegExp("("+h.replace(/([.*+?\^=!:${}()|\[\]\/\\])/g,"\\$1")+")","gi");t=t.replace(r,"<b>$1</b>")}return t}}());

@@ -1,0 +1,30 @@
+#detailsPage textarea {
+	margin-bottom: 20px;
+}
+
+#detailsPage li:first-child label:before {
+	content: "* ";
+	color: red;
+}
+
+.sapMLIBSelected {
+	text-decoration: line-through !important;
+}
+
+.sapMListInsetBG {
+	background-color: transparent !important;
+}
+
+.overdue {
+	-webkit-animation: anim-overdue 2000ms;
+}
+
+.overdue p.sapMSLIDescription{
+	color: red;
+}
+
+@-webkit-keyframes anim-overdue {
+	50%  {
+		background-color: red;
+	}
+}

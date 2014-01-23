@@ -1,0 +1,67 @@
+<div data-sap-ui-type="sap.m.Table" id="items" data-items="{lr>material}">
+	<div data-sap-ui-aggregation="columns">
+		<div data-sap-ui-type="sap.m.Column" 
+			data-h-align="Left">
+			<div data-sap-ui-aggregation="header">
+				<div data-sap-ui-type="sap.m.Label" data-text="Material"></div>
+			</div>
+		</div>
+		<div data-sap-ui-type="sap.m.Column"
+			data-h-align="Left"
+			data-width="6em" 
+			data-min-screen-width="Medium"
+			data-demand-popin="true" >
+			<div data-sap-ui-aggregation="header">
+				<div data-sap-ui-type="sap.m.Label" data-text="Vendor">
+				</div>
+			</div>
+		</div>
+		<div data-sap-ui-type="sap.m.Column"
+			data-h-align="Right"
+			data-width="7em"
+			data-min-screen-width="Large"
+			data-demand-popin="true" >
+			<div data-sap-ui-aggregation="header">
+				<div data-sap-ui-type="sap.m.Label" data-text="Status">
+				</div>
+			</div>
+		</div>
+		<div data-sap-ui-type="sap.m.Column"
+			data-h-align="Right"
+			data-width="6em"
+			data-min-screen-width="Small"
+			data-demand-popin="true">
+			<div data-sap-ui-aggregation="header">
+				<div data-sap-ui-type="sap.m.Label" data-text="Price">
+				</div>
+			</div>
+		</div>
+	</div>
+	<div data-sap-ui-aggregation="items">
+		<div data-sap-ui-type="sap.m.ColumnListItem"
+			data-type="Inactive"
+			data-unread="true">
+			<div data-sap-ui-aggregation="cells">
+				<div data-sap-ui-type="sap.m.ObjectIdentifier"
+					data-title="{lr>name}" 
+					data-text="{lr>text}"
+					data-badge-notes="{lr>notes}"
+					data-badge-people="{lr>people}" 
+					data-badge-attachments="{lr>attachments}" >
+				</div>
+				<div data-sap-ui-type="sap.m.Text" data-text="{lr>vendor}">
+				</div>
+				<div data-sap-ui-type="sap.m.VBox">
+					<div data-sap-ui-aggregation="items">
+						<div class='top-padding' data-sap-ui-type="sap.m.ObjectStatus" data-text="{lr>status}" data-state="{lr>statusState}">
+						</div>
+						<div class='attr-padding' data-sap-ui-type="sap.m.ObjectStatus" data-text="{lr>info}" data-state="{lr>infoState}">
+						</div>
+					</div>
+				</div>
+				<div data-sap-ui-type="sap.m.ObjectNumber" data-number="{lr>price}" data-number-unit="EUR">
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

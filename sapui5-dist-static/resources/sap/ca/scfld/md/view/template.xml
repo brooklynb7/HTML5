@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<scfld:template id="sap.ca.scfld.md" xmlns:scfld="http://xml.sap.com/2013/08/sap/ca/scaffolding">
+    <name>Master/Detail application</name>
+</scfld:template>

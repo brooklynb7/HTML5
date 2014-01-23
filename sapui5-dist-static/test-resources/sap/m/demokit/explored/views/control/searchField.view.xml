@@ -1,0 +1,22 @@
+<core:View
+	xmlns="sap.m"
+	xmlns:l="sap.ui.layout"
+	xmlns:core="sap.ui.core" >
+	<Page showHeader="false" class="marginBoxContent">
+		<subHeader>
+			<Bar>
+				<contentRight>
+					<SearchField
+						placeholder="Search"
+						width="100%" />
+				</contentRight>
+			</Bar>
+		</subHeader>
+		<content>
+			<VBox>
+				<SearchField placeholder="Search" />
+				<Text id="description" />
+			</VBox>
+		</content>
+	</Page>
+</core:View>

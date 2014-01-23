@@ -1,0 +1,5 @@
+<VBox xmlns="sap.m">
+	<Label text="My Label inside an XML fragment" />
+	<Button id="btnInFragment" text="Try me and I will call the base View's controller" press="onTry"/>
+	<Button text="{/someText}" />
+</VBox>

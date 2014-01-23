@@ -1,0 +1,191 @@
+<!DOCTYPE HTML>
+<!-- Tests for InboxTaskComments (based on FeedChunk) -->
+
+<html>
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<script id="sap-ui-bootstrap" 
+		type="text/javascript"
+		src="../../../../../resources/sap-ui-core.js"
+		data-sap-ui-theme="sap_goldreflection"
+		data-sap-ui-noConflict="true"
+		data-sap-ui-libs="sap.uiext.inbox">
+	</script>
+	<link rel="stylesheet" href="../../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
+	<script type="text/javascript" src="../../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+	<script type="text/javascript" src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
+	<script type="text/javascript" src="../../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
+
+	<!-- Control initialization -->
+	<script language="javascript">
+
+	var sSender = "Sender";
+	var sChunkSender = "Chunk Sender";
+	var sTimestamp = "date/time";
+	var sEventSourceId = "";
+	var sEvent = "";
+	var sEventParameter = "";
+
+	function handleCommentSubmit(oEvent){
+		sEventSourceId = oEvent.oSource.getId();
+		sEvent = "CommentSubmit";
+		sEventParameter = oEvent.getParameter('text');
+		oInbxTComm2.addComment(new sap.uiext.inbox.composite.InboxComment({
+	        sender: sChunkSender+"3",
+	        text: "Comment Text 3",
+	        thumbnailSrc: "../images/feeder/m_01.png",
+	        timestamp:  sTimestamp
+	    }));
+	}
+	
+	var oInbxTComm1 = new sap.uiext.inbox.composite.InboxTaskComments("Chunk1",{
+		feederThumbnailSrc: "../images/feeder/w_01.png",
+		feederSender: "Sender"
+	}).placeAt("uiArea1");
+	oInbxTComm1.attachCommentSubmit(handleCommentSubmit);
+
+	var oInbxTComm2 = new sap.uiext.inbox.composite.InboxTaskComments("Chunk2",{
+			feederThumbnailSrc: "../images/feeder/w_01.png",
+			feederSender: "Sender"
+	}).placeAt("uiArea2");
+	oInbxTComm2.attachCommentSubmit(handleCommentSubmit);
+	
+
+	oInbxTComm2.addComment(new sap.uiext.inbox.composite.InboxComment({
+        sender: sChunkSender+"1",
+        text: "Comment Text",
+        thumbnailSrc: "../images/feeder/m_01.png",
+        timestamp:  sTimestamp
+    }));
+
+	oInbxTComm2.addComment(new sap.uiext.inbox.composite.InboxComment({
+        sender: sChunkSender+"2",
+        text: "Comment Text 2",
+        thumbnailSrc: "../images/feeder/m_01.png",
+        timestamp:  sTimestamp
+    }));
+	
+	oInbxTComm2.addComment(new sap.uiext.inbox.composite.InboxComment({
+        sender: sChunkSender+"3",
+        text: "Comment Text 3",
+        thumbnailSrc: "../images/feeder/m_01.png",
+        timestamp:  sTimestamp
+    }));
+
+  	var rb = sap.ui.getCore().getLibraryResourceBundle("sap.uiext.inbox");
+
+		module("Appearance");
+
+		test("FeedChunk styles", function() {
+			//without comments
+			//ok(!jQuery.sap.byId("Chunk1").children("section").get(0), "No comment section found for Chunk without comments");
+
+			// default comment feeder visible even if comments are not added
+			ok(!jQuery.sap.byId("Chunk1").find("#Chunk1-CommentFeeder").get(0), "Defaut comment feeder visible for task Commenter without comments");
+
+			//with comments
+			ok(jQuery.sap.byId("Chunk2").children("section").get(0), "Comment section found for Chunk with comments");
+
+			// default comment feeder if comments
+			ok(jQuery.sap.byId("Chunk2").find("#Chunk2-InboxTaskCommentFeeder").get(0), "Defaut visible comment feeder for Task Commenter with comments");
+			equal(sap.ui.getCore().getControl("Chunk2-InboxTaskCommentFeeder").getThumbnailSrc(), "../images/feeder/w_01.png", "comment feeder thumbnail source");
+
+			//comment
+			//ok(!jQuery.sap.byId("commentChunk1").children("section").get(0), "No comment section found for comment-Chunk");
+
+		});
+
+		test("Output of Attribute", function() {
+			// Feeder sender thumb for task commenter without comments
+			equal(jQuery.sap.byId("Chunk1-InboxTaskCommentFeeder-thumb").attr("src"), "../images/feeder/w_01.png", "Feeder Sender image rendered for task commenter without comments");
+			
+			equal(jQuery.sap.byId("__comment2-thumb").attr("src"), "../images/feeder/m_01.png", "Sender image rendered for comment chunk");
+			// date/time 
+			equal(jQuery.sap.byId("__comment2").children(".sapuiextInboxCommentChunkByline").text(), sTimestamp, "Timestamp rendered for comment");
+
+			// number of comments
+			equal(jQuery.sap.byId("Chunk2").find(".sapuiextInboxTaskComments").text().slice(0,1), "3", "Number of comments displayed");
+
+			// all comments link
+			ok(jQuery.sap.byId("Chunk2-all").get(0), "Link to show all comments displayed");
+
+			// comments displayed, by default only 2
+			ok(!jQuery.sap.byId("__comment0").get(0) && jQuery.sap.byId("__comment1").get(0) && jQuery.sap.byId("__comment2").get(0), "Only last 2 comments displayed by default");
+
+		});
+
+		module("Behaviour");
+
+		asyncTest("Add comment", function() {
+
+			jQuery.sap.domById("Chunk2-InboxTaskCommentFeeder-input").focus();
+			jQuery.sap.byId("Chunk2-InboxTaskCommentFeeder-input").text("Test");
+			qutils.triggerKeyup("Chunk2-InboxTaskCommentFeeder-input", jQuery.sap.KeyCodes.T, false, false, false);
+			qutils.triggerMouseEvent("Chunk2-InboxTaskCommentFeeder-send", "click");
+			equal(sEvent, "CommentSubmit", "event fired on adding a new comment");
+			equal(sEventSourceId, "Chunk2", "Event on right ID");
+			var aComments = oInbxTComm2.getComments();
+			/* var iLastComment = aComments.length-1;
+			equal(sEventParameter, aComments[iLastComment].getText(), "comment text returned from event must be the same as the last one in aggregation");
+			equal(aComments[iLastComment].getText(), "Test","Text of the comment");
+			equal(aComments[iLastComment].getSender(), "Sender","Sender of the comment");
+			equal(aComments[iLastComment].getThumbnailSrc(), "../images/feeder/w_01.png","Thunmbnail source of the comment"); */
+			sEvent = "";
+			sEventSourceId = "";
+			sEventParameter = "";
+
+			var delayedCall = function() {
+				// new comment must be displayed at last one
+				aComments = jQuery.sap.byId("Chunk2").children("section").children("article");
+				/* iLastComment = aComments.length-1;
+				equal(aComments.get(iLastComment).id, "Chunk2-new-3", "New comment must be the first one"); */
+
+				// comment counter must be increased
+				equal(jQuery.sap.byId("Chunk2").find(".sapuiextInboxTaskComments").text().slice(0,1), "4", "Number of comments correct");
+
+				start();
+			};
+			setTimeout(delayedCall, 0);
+		});
+
+		asyncTest("show all comments", function() {
+
+			qutils.triggerMouseEvent("Chunk2-all", "click");
+
+			var delayedCall = function() {
+				ok(jQuery.sap.byId("__comment3").get(0) && jQuery.sap.byId("__comment0").get(0) && jQuery.sap.byId("__comment1").get(0) && jQuery.sap.byId("__comment2").get(0), "All comments displayed");
+				equal(jQuery.sap.byId("Chunk2-all").text(), rb.getText('INBOX_TASK_MAX_COMMENTS'), "Link to show only max. number of comments if all comments are shown");
+				start();
+			};
+			setTimeout(delayedCall, 0);
+		});
+
+		asyncTest("show max comments", function() {
+
+			qutils.triggerMouseEvent("Chunk2-all", "click");
+
+			var delayedCall = function() {
+				ok(jQuery.sap.byId("__comment3").get(0) && !jQuery.sap.byId("__comment0").get(0) && !jQuery.sap.byId("__comment1").get(0) && jQuery.sap.byId("__comment2").get(0), "Only Max. number of comments displayed");
+				equal(jQuery.sap.byId("Chunk2-all").text(), rb.getText('INBOX_TASK_ALL_COMMENTS'), "Link to show only max. number of comments if all comments are shown");
+				start();
+			};
+			setTimeout(delayedCall, 0);
+		});
+
+	</script>
+
+	<title>qunit Test for InboxTaskComments</title>
+
+</head>
+<body class="sapUiBody">
+	<h1 id="qunit-header">QUnit tests: sap.uiext.inbox.composite.InboxTaskComments</h1>
+	<h2 id="qunit-banner"></h2>
+ 	<h2 id="qunit-userAgent"></h2>
+	<div id="qunit-testrunner-toolbar"></div>
+	<ol id="qunit-tests"></ol>
+	<br>
+	<div id="uiArea1" style="width:80%;"></div>
+	<br>
+	<div id="uiArea2" style="width:80%;"></div>
+</body>
+</html>

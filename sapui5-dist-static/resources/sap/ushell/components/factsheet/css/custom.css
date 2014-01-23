@@ -1,0 +1,100 @@
+@CHARSET "UTF-8";
+
+.ThingViewer {
+	/*	min-height:800px; */
+	position: relative;
+}
+
+.ThingInspector {
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+}
+
+.sapFactsheetUtiTilePadding td {
+	padding: 0.3rem;
+}
+
+.sapFactsheetUtiLabel,.sapMListTbl .sapMLabel {
+	color: #666666;
+}
+
+.sapFactsheetUtiPanel .sapMList,.sapFactsheetUtiPanel.sapMList {
+	padding: 1rem 0;
+	background-color: rgba(255, 255, 255, 0.8);
+}
+
+.sapFactsheetUtiPaddingTop {
+	padding-top: 0.5rem;
+}
+
+.sapFactsheetUtiSeparatorPadding.sapMText {
+	padding: 0 0.35rem;
+}
+
+.sapFactsheetUtiSeparatorPaddingForDecimal.sapMText {
+	padding: 0 0.35rem 0 0;
+}
+
+.sapFactsheetUtiRelIcon {
+	color: #666666;
+}
+
+.sapFactsheetUtiLabelMargin {
+	margin-right: 16px;
+}
+
+.sapFactsheetUtiHLayoutLabelValue {
+	margin-bottom: 10px;
+	margin-left: 16px;
+}
+
+.sapFactsheetUtiHLayoutLabelValue .sapMText {
+	position: relative;
+	top: -2px;
+}
+
+.sapFactsheetUtiAnnotationFormLayout .sapMListTblCell {
+	padding: .5rem .5rem;
+}
+
+.sapFactsheetUtiDataField {
+	max-width: 420px;
+}
+
+.sapFactsheetUtiGeneralInformationUtg .sapSuiteUtgContent {
+	background-color: rgba(255, 255, 255, 0.8);
+	padding-top: 1rem;
+}
+
+.sapFactsheetUtiGeneralInformationUtgContent .sapSuiteUtgContent {
+	background: none;
+	padding: 0;
+}
+
+.sapFactsheetUtiGeneralInformationUtgContent.sapSuiteUtg {
+	padding: 5px;
+}
+
+.sapFactsheetUtiGeneralInformationUtgContent .sapSuiteUtgHeader {
+	border: 0;
+}
+
+.sapFactsheetUtiGeneralInformationUtgContent .sapSuiteUtgTitle {
+	margin-bottom: 0;
+	font-size: 1.125rem;
+	line-height: 1em;
+}
+
+.sapFactsheetUtiGeneralInformationUtgContent .sapFactsheetUtiPanel,.sapFactsheetUtiGeneralInformationUtgContent .sapFactsheetUtiPanel .sapMList
+	{
+	background: none;
+	padding: 0;
+}
+/* If you'd like to have a more transparent background for empty tiles uncomment the following rule
+.sapFactsheetUtiEmptyTile.sapSuiteFov {
+	background-color: rgba(255, 255, 255, 0.4);
+}
+*/

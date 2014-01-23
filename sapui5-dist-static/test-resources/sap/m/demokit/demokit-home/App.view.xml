@@ -1,0 +1,14 @@
+<core:View
+	controllerName="App"
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core" >
+	<TileContainer
+		id="home"
+		tiles="{/apps}">
+		<StandardTile
+			press="press"
+			title="{name}"
+			info="{info}"
+			icon="sap-icon://{icon}" />
+	</TileContainer>
+</core:View>

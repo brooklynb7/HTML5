@@ -1,0 +1,157 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		
+		<title>NavContainer - Navigation Events</title>
+		
+		<script src="../../../../resources/sap-ui-core.js"
+			type="text/javascript" 
+			id="sap-ui-bootstrap"
+			data-sap-ui-libs="sap.m"
+			data-sap-ui-debug="true"
+			data-sap-ui-theme="sap_mvi">
+		</script>
+		
+		<script type="text/javascript">
+			jQuery.sap.log.setLevel(jQuery.sap.log.Level.WARNING);
+
+			function createDelegate(pageId) {
+				var oDelegate = {
+					onBeforeFirstShow: function(evt) {
+						jQuery.sap.log.warning(pageId + ": beforeFirstShow  (direction: " + evt.direction + ", data: " + (evt.data.payload ? evt.data.payload : "n/a") + "   backData: " + (evt.backData.payload ? evt.backData.payload : "n/a") + ")");
+					},
+					onBeforeShow: function(evt) {
+						jQuery.sap.log.warning(pageId + ": beforeShow  (direction: " + evt.direction + ", data: " + (evt.data.payload ? evt.data.payload : "n/a") + "   backData: " + (evt.backData.payload ? evt.backData.payload : "n/a") + ")");
+					},
+					onAfterShow: function(evt) {
+						jQuery.sap.log.warning(pageId + ": afterShow  (direction: " + evt.direction + ", data: " + (evt.data.payload ? evt.data.payload : "n/a") + "   backData: " + (evt.backData.payload ? evt.backData.payload : "n/a") + ")");
+					},
+					onBeforeHide: function(evt) {
+						jQuery.sap.log.warning(pageId + ": beforeHide  (direction: " + evt.direction + ")");
+					},
+					onAfterHide: function(evt) {
+						jQuery.sap.log.warning(pageId + ": afterHide  (direction: " + evt.direction + ")");
+					}
+				}
+				return oDelegate;
+			};
+
+			var app = new sap.m.App("myApp", {
+				initialPage:"page1",
+				navigate:function(evt) { // log navigation event info
+					var info = "Navigating from " + evt.getParameter("fromId") + " to " + evt.getParameter("toId");
+					if (evt.getParameter("firstTime")) {
+						info += " (" + evt.getParameter("toId") + " is visited for the first time!)";
+					}
+					jQuery.sap.log.warning(info);
+				},
+				afterNavigate:function(evt) {
+					var info = "Navigation from " + evt.getParameter("fromId") + " to " + evt.getParameter("toId") + " is COMPLETE.";
+					jQuery.sap.log.warning(info);
+				}
+			});
+			
+			var page1 = new sap.m.Page("page1", {
+				title:"Page 1",
+				content : [ new sap.m.Button({
+					text : "SLIDE to Page 2",
+					press : function() {
+						app.to("page2", "slide");
+					}
+				}), 
+				new sap.m.Button({
+					text : "FADE to Page 2",
+					press : function() {
+						app.to("page2", "fade");
+					}
+				}), 
+				new sap.m.Button({
+					text : "SHOW to Page 2",
+					press : function() {
+						app.to("page2", "show");
+					}
+				}), 
+				new sap.m.Button({
+					text : "Slide to Page 2 AND transfer the value of the following Input field",
+					press : function() {
+						var value = sap.ui.getCore().byId("p1input").getValue();
+						app.to("page2", {payload:value});
+					}
+				}),
+				new sap.m.Input("p1input")
+				]			
+			}).addEventDelegate(createDelegate("page1"));
+			
+			
+			var page2 = new sap.m.Page("page2", {
+				title:"Page 2",
+				showNavButton: true,
+				navButtonText: "Page 1",
+				navButtonPress: function(){ app.back(); },
+				icon: "../images/SAPUI5.jpg",
+				enableScrolling: false,
+				content : [ new sap.m.Button({
+						text : "SLIDE to Page 3",
+						press : function() {
+							app.to("page3", "slide");
+						}
+					}), 
+					new sap.m.Button({
+						text : "FADE to Page 3",
+						press : function() {
+							app.to("page3", "fade");
+						}
+					}), 
+					new sap.m.Button({
+						text : "SHOW to Page 3",
+						press : function() {
+							app.to("page3", "show");
+						}
+					}), 
+					new sap.m.Label({
+						text : "The following field shows the data passed from page 1:"
+					}), 
+					new sap.m.Input("p2input", {
+						value : null,
+						width: "100%"
+					}), 
+					new sap.ui.core.HTML({content:"<div>This page does not scroll.</div>"}) 
+				]
+			}).addEventDelegate({
+				onBeforeShow: function(evt) {
+					var textToDisplay = "From page 1: " + (evt.data.payload ? evt.data.payload : "n/a");
+					if (evt.isBack) {
+						textToDisplay += ", from page 3: " + (evt.backData.payload ? evt.backData.payload : "n/a");
+					}
+					sap.ui.getCore().byId("p2input").setValue(textToDisplay);
+				}
+			}).addEventDelegate(createDelegate("page2"));
+
+			var page3 = new sap.m.Page("page3", {
+				title:"Page 3",
+				showNavButton: true,
+				navButtonText: "Home",
+				navButtonPress: function(){ app.backToTop(); },
+				icon: "../images/SAPUI5.jpg",
+				content : [ 
+					new sap.m.Button({text : "Back to Page 2", press:function(){
+						app.back({payload:sap.ui.getCore().byId("p3input").getValue()});
+					}}), 
+					new sap.m.Input("p3input", {
+						value : null
+					}),
+					new sap.ui.core.HTML({content:"<div>The 'Back' button directly navigates back to the initial page!</div>"}) 
+				]
+			}).addEventDelegate(createDelegate("page3"));
+			
+			app.addPage(page1).addPage(page2).addPage(page3);
+
+			app.placeAt("body");
+		</script>
+
+		
+	</head>
+	<body id="body" class="sapUiBody">
+	</body>
+</html>

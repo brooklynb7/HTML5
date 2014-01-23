@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		
+		<title>Precomposed Home Icon Test</title>
+		
+		<script src="../../../../resources/sap-ui-core.js"
+			type="text/javascript" 
+			id="sap-ui-bootstrap"
+			data-sap-ui-libs="sap.m"
+			data-sap-ui-theme="sap_bluecrystal">
+		</script>
+		
+		<script type="text/javascript">
+		
+			var app = new sap.m.App("myApp", {
+				initialPage:"page1", 
+				pages:[
+					new sap.m.Page("page1", {
+						title:"Precomposed Home Icons",
+						content : [ new sap.m.Text({
+							text : "Nothing to see here... add this app to your home screen and you should see one of the following images/icons being used. iOS should not modify them in any way (like applying glow effects or cutting corners). This page does not have a favicon, so bookmarking it should not give an icon.",
+						}),
+						new sap.m.Image({
+							src: "../images/home_57-precomposed.png"
+						}),
+						new sap.m.Image({
+							src: "../images/home_114-precomposed.png"
+						}),
+						new sap.m.Image({
+							src: "../images/home_72-precomposed.png"
+						}),
+						new sap.m.Image({
+							src: "../images/home_144-precomposed.png"
+						})
+						]
+					})
+			    ],
+			    homeIcon: {
+			   	    'phone':'../images/home_57-precomposed.png',
+			   	    'phone@2':'../images/home_114-precomposed.png',
+			   	    'tablet':'../images/home_72-precomposed.png',
+			   	    'tablet@2':'../images/home_144-precomposed.png',
+			   	    'icon':'../images/favicon.ico'
+			   	},
+			   	homeIconPrecomposed: true
+		    }).placeAt("body");
+
+		</script>
+
+		
+	</head>
+	<body id="body" class="sapUiBody">
+	</body>
+</html>

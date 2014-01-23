@@ -1,0 +1,129 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+
+    <title>Fiori Wave 2: Test Page for CombinedChart</title>
+
+    <script src="../../../../../../resources/sap-ui-core.js" id="sap-ui-bootstrap"
+            data-sap-ui-libs="sap.m" data-sap-ui-theme="sap_bluecrystal"
+            data-sap-ui-xx-bindingSyntax="complex" data-sap-ui-noConflict="true">
+    </script>
+
+    <link rel="stylesheet"
+          href="../../../../../../resources/sap/ui/thirdparty/qunit.css"
+          type="text/css" media="screen"/>
+    <script type="text/javascript"
+            src="../../../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+
+    <script type="text/javascript"
+            src="../../../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
+
+    <script type="text/javascript" src="../utils/qunithelper.js"></script>
+
+
+    <script type="text/javascript" src="CombinedChartTest.js"></script>
+
+</head>
+<body id="body" class="sapUiBody">
+<div id="content"></div>
+<script type="text/javascript">
+    QUnit.config.autostart = false;
+    jQuery(document).ready(function () {
+        QUnit.start();
+
+    });
+
+    // require dialog module
+    jQuery.sap.require("sap.ca.ui.charts.CombinedChart");
+
+    var oCombined;
+
+    function createChart() {
+        oCombined = new sap.ca.ui.charts.CombinedChart({
+            id:CHART_ID,
+            chartTitle:"Test Combined Chart"
+        });
+        var oBusinessData = [];
+
+        var _randomInt = function (iMaxValue) {
+            return Math.floor(Math.random() * iMaxValue);
+        };
+
+        var _randomNumber = function (iMaxValue) {
+            return Math.random() * iMaxValue;
+        };
+
+        while (oBusinessData.length < 100) {
+            var element = {
+                Country:"Country " + _randomInt(1000),
+                revenue:_randomNumber(1000),
+                profit:_randomNumber(200),
+                population:_randomInt(1000000)
+            };
+            oBusinessData.push(element);
+        }
+        var oModel = new sap.ui.model.json.JSONModel();
+        oModel.setData({
+            businessData:oBusinessData
+        });
+        var oDataset1 = new sap.viz.ui5.data.FlattenedDataset({
+            dimensions:[
+                {
+                    axis:1,
+                    name:'Country',
+                    value:"{Country}"
+                }
+            ],
+            measures:[
+                {
+                    name:'Profit',
+                    value:'{profit}'
+                },
+                {
+                    name:'Revenue',
+                    value:'{revenue}'
+                }
+            ],
+            data:{
+                path:"/businessData"
+            }
+        });
+        oDataset1.setModel(oModel);
+        oCombined.setModel(oModel);
+        oCombined.setDataset(oDataset1);
+    }
+
+    var bFirstRenderingHappened = false;
+    var app = new sap.m.App("myApp", {
+        initPage:"myFirstPage"
+    });
+    var page = new sap.m.Page("myFirstPage", {
+        title:"Fiori - Hierarchy Test",
+        showNavButton:true,
+        enableScrolling:true
+    });
+
+    app.addPage(page).placeAt("content");
+
+    var oHtml = new sap.ui.core.HTML(
+            {
+                content:'<div id="contentHolder"></div><h1 id="qunit-header">Fiori Wave 2: Test Page for Hierarchy</h1><h2 id="qunit-banner"></h2><h2 id="qunit-userAgent"></h2><ol id="qunit-tests"></ol>',
+                afterRendering:function () {
+                    oHorizontal.placeAt("contentHolder");
+                    if (!bFirstRenderingHappened) {
+                        createChart();
+                    }
+                    bFirstRenderingHappened = true;
+                }
+            });
+
+    var oHorizontal = new sap.m.HBox({
+        items:[ oCombined ]
+    });
+
+    page.addContent(oHtml);
+
+</script>
+</body>
+</html>

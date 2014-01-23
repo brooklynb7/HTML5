@@ -1,0 +1,21 @@
+<core:View
+	controllerName="views.control.form354"
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core" >
+	<Page
+		id="idFormContainer"
+		showHeader="false" >
+		<content>
+			<Text id="description" class="marginNoTop" />
+		</content>
+		<footer>
+			<Bar>
+				<contentRight>
+					<Button id="idButtonEdit" text="Edit" press="handleFooterBarButtonPress" />
+					<Button id="idButtonSave" text="Save" type="Emphasized" visible="false" press="handleFooterBarButtonPress" />
+					<Button id="idButtonCancel" text="Cancel" visible="false" press="handleFooterBarButtonPress" />
+				</contentRight>
+			</Bar>
+		</footer>
+	</Page>
+</core:View>

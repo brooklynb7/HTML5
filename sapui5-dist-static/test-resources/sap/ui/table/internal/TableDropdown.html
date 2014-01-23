@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html><head>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge' />
+
+<title>sap.ui.table.Table Test Page - Dropdowns in Table</title>
+<link rel="shortcut icon" type="image/x-icon" href="../images/controls/sap.ui.table.Table.gif">
+    
+	<script id="sap-ui-bootstrap" 
+		type="text/javascript"
+		data-sap-ui-libs="sap.ui.commons,sap.ui.table"
+		data-sap-ui-theme="sap_goldreflection"
+	    src="../../../../../resources/sap-ui-core.js"></script>
+    
+    <script>
+        
+		var testForm = new sap.ui.commons.layout.MatrixLayout({
+			id : 'testForm',
+			layoutFixed : true,
+			width : '960px',
+			columns : 1
+		});
+        
+        var productData = [ {
+            "MATNR" : "1"
+        }, {
+            "MATNR" : "2"
+        }]; // remove the trailing comma (would cause issues in IE)
+        
+        var oProductModel = new sap.ui.model.json.JSONModel();
+        oProductModel.setData({
+            modelData : productData
+        });
+        
+        var oItemTable = new sap.ui.table.Table();
+        oItemTable.setTitle("Item Table");
+        oItemTable.setVisibleRowCount(10);
+        oItemTable.setFirstVisibleRow(10);
+        oItemTable.setSelectionMode(sap.ui.table.SelectionMode.Multi);
+        oItemTable.setEditable(true);
+        
+        var oDeviceModel = new sap.ui.model.json.JSONModel();
+        oDeviceModel.setData({
+            hardware : [ {
+                "device" : "PC",
+                "enabled" : true
+            }, {
+                
+                "device" : "Camera",
+                "enabled" : true
+            } ]
+        });
+        
+        // Create a DropdownBox
+        var oDropdownBox3 = new sap.ui.commons.DropdownBox("DropdownBox3Test");
+        var oItemTemplate1 = new sap.ui.core.ListItem();
+        oItemTemplate1.bindProperty("text", "device");
+        oItemTemplate1.bindProperty("enabled", "enabled");
+        oDropdownBox3.bindItems("/hardware", oItemTemplate1);
+        oDropdownBox3.setModel(oDeviceModel);
+        
+        var oControl = new sap.ui.commons.TextField().bindProperty("value", "MATNR");
+        oItemTable.addColumn(new sap.ui.table.Column({
+            label : "Selected",
+            template : oControl
+        }));
+        
+        oItemTable.addColumn(new sap.ui.table.Column({
+            label : "Material Code",
+            template : oDropdownBox3,
+        }));
+        
+        oItemTable.bindRows("/modelData");
+        oItemTable.setModel(oProductModel);
+        
+        testForm.createRow(oItemTable);
+        
+        testForm.placeAt("content");
+        
+    </script>
+    
+    </head>
+    <body class='sapUiBody'>
+        <div id='content'></div>
+    </body>
+</html>
+<!-- user:d039071 --><!-- description:Databinding Issue: Table & DropDown -->

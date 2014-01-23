@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (c) 2012 SAP AG, All Rights Reserved -->
+<chip xmlns="http://schemas.sap.com/sapui2/services/Chip/1">
+	<implementation>
+		<sapui5>
+			<basePath>../</basePath>
+			<viewName>WebContent.newstile.NewsTile.view.js</viewName>
+		</sapui5>
+	</implementation>
+	<appearance>
+		<title>News Tile</title>
+	</appearance>
+	<contracts>
+		<consume id="configuration">
+			<parameters>
+				<parameter name="defaultImage"></parameter>
+				<parameter name="useDefaultImage"></parameter>
+				<parameter name="cycleInterval">5</parameter>
+				<parameter name="refreshInterval"></parameter>
+				<parameter name="feed1"></parameter>
+				<parameter name="feed2"></parameter>
+				<parameter name="feed3"></parameter>
+				<parameter name="feed4"></parameter>
+				<parameter name="feed5"></parameter>
+				<parameter name="feed6"></parameter>
+				<parameter name="feed7"></parameter>
+				<parameter name="feed8"></parameter>
+				<parameter name="feed9"></parameter>
+				<parameter name="feed10"></parameter>
+				<parameter name="iFilter1"></parameter>
+				<parameter name="iFilter2"></parameter>
+				<parameter name="iFilter3"></parameter>
+				<parameter name="iFilter4"></parameter>
+				<parameter name="iFilter5"></parameter>
+				<parameter name="eFilter1"></parameter>
+				<parameter name="eFilter2"></parameter>
+				<parameter name="eFilter3"></parameter>
+				<parameter name="eFilter4"></parameter>
+				<parameter name="eFilter5"></parameter>
+				<parameter name="row">1</parameter>
+				<parameter name="col">2</parameter>
+			</parameters>
+		</consume>
+		<consume id="writeConfiguration" />
+		<consume id="configurationUi" />
+		<consume id="navigation"/>
+		<consume id="refresh"/>
+		<consume id="preview"/>
+		<consume id="url"/>
+	</contracts>
+</chip>

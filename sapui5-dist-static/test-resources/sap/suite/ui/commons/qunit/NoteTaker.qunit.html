@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>NoteTaker - sap.suite.ui.commons</title>
+
+    <!-- UI5 Bootstrap -->
+    <script id="sap-ui-bootstrap"
+            type="text/javascript"
+            src="../../../../../../resources/sap-ui-core.js"
+            data-sap-ui-theme="sap_goldreflection"
+            data-sap-ui-libs="sap.ui.commons,sap.suite.ui.commons"></script>
+
+    <!-- QUnit libraries -->
+    <link rel="stylesheet"
+          href="../../../../../../resources/sap/ui/thirdparty/qunit.css"
+          type="text/css" media="screen" />
+    <script src="../../../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+    <script type="text/javascript" src="../../../../../../resources/sap/ui/qunit/QUnitUtils.js"></script> 
+          <script type="text/javascript" src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
+
+    <script>
+        // first NoteTaker to be rendered in first UI area
+        var sNoteTakerId1 = "NT1";
+        var noteTaker1 = new sap.suite.ui.commons.NoteTaker({
+            id: sNoteTakerId1
+        });
+        noteTaker1.placeAt("uiArea1");
+
+        // second NoteTaker to be rendered in second UI area
+        var noteTaker2 = new sap.suite.ui.commons.NoteTaker({
+            id: "NT2"
+        });
+        noteTaker2.placeAt("uiArea2");
+        
+        var noteTaker2Feeder = sap.ui.getCore().byId("NT2-feeder");
+        noteTaker2Feeder.setBody("Text");
+    </script>
+</head>
+
+<body class="sapUiBody">
+    <div id="qunit"></div>
+    <div id="uiArea1"></div>
+    <div id="uiArea2"></div>
+    <div id="uiArea3"></div>
+    <div id="uiArea4"></div>
+    <div id="uiArea5"></div>
+
+    <script src="NoteTaker.qunit.js"></script>
+</body>
+</html>

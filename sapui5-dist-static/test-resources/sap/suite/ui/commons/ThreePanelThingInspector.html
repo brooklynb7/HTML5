@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Test Page for sap.suite.ui.commons.ThreePanelThingInspector</title>
+
+    <!-- UI5 Bootstrap -->
+    <script src="../../../../../resources/sap-ui-core.js"
+            type="text/javascript"
+            id="sap-ui-bootstrap"
+            data-sap-ui-libs="sap.ui.commons, sap.suite.ui.commons"
+            data-sap-ui-theme="sap_goldreflection"></script>
+
+<script type="text/javascript">
+    var oNavBarData = [{
+        key : "overview",
+        text : "Overview"
+    }, {
+        key : "contacts",
+        text : "Contacts Lorem Ipsum Dolores",
+        quantity: 25543
+    }, {
+        key : "items",
+        text : "Items",
+        quantity: 3,
+        tooltip: "Custom tooltip for Items"
+    }, {
+        key : "related_documents",
+        text : "Related Documents",
+        quantity: 0
+    }, {
+        key : "addresses",
+        text : "Addresses",
+        quantity: 0
+    }, {
+        key : "activities",
+        text : "Activities",
+        quantity: 0
+    }, {
+        key : "Leads",
+        text : "Leads",
+        quantity: 0
+    }, {
+        key : "bank_details",
+        text : "Bank Details",
+        quantity: 0
+    }, {
+        key : "analytics",
+        text : "Analytics",
+        quantity: 0
+    }];
+
+    var oNavBarItemTemplate = new sap.suite.ui.commons.CountingNavigationItem({
+        key: "{key}",
+        text: "{text}",
+        quantity: "{quantity}",
+        tooltip: "{tooltip}"
+    });
+
+/*****************************************************************************************************************/
+    var oMenuData = [{
+        text: "1st Transaction Lorem Ipsum Dolor Sit Amet Lorem Ipsum",
+        href: "http://www.sap.com"
+    }, {
+        text: "2nd Transaction Dolor Sit Amet Tempor",
+        href: "http://www.sap.com"
+    }, {
+        text: "3rd Transaction Takimata Nonumy Duo Elitr",
+        href: "#"
+    }, {
+        text: "4th Transaction Sanctus Invidunt Nonumy",
+        href: "#"
+    }, {
+        text: "5th Transaction Labore Magna Accusam At",
+        href: "#"
+    }, {
+        text: "6th Transaction Vero Conseteur Duo Justo",
+        href: "#"
+    }, {
+        text: "7th Transaction Nagsy Nonumy Duo Elitr",
+        href: "#"
+    }, {
+        text: "8th Transaction Sanctus Invidunt Nagsy",
+        href: "#"
+    }, {
+        text: "9th Transaction Labore Magna Nagsy",
+        href: "#"
+    }, {
+        text: "10th Transaction Vero Conseteur Nagsy",
+        href: "#"
+    }];
+
+    var oMenuTemplate = new sap.ui.commons.Link({
+        text : "{text}",
+        href : "{href}"
+    });
+
+/*****************************************************************************************************************/
+    var oHeaderData = [{
+        title : "General Information",
+        content : [{
+            label : "Delivery Status",
+            text : "Ordered"
+        }, {
+            label : "Invoice Status",
+            text : "Partially Invoiced"
+        }, {
+            label : "Total Value",
+            text : "91.680,00 USD"
+        }, {
+            label : "Sales",
+            text : "Global Sales"
+        }, {
+            label : "Organization",
+            text : "Consumer Industries"
+        }, {
+            label : "Lorem",
+            text : "Ipsum"
+        }, {
+            label : "Dolor",
+            text : "Sit Amet"
+        }, {
+            label : "Tempor",
+            text : "Labore"
+        }]
+    }, {
+        title : "Sub-Header",
+        content : [{
+            label : "Customer",
+            text : "Bortelli Corp"
+        }, {
+            label : "Recipient",
+            text : "John Bradford"
+        }, {
+            label : "Ordered On",
+            text : "Nov. 11, 2012"
+        }, {
+            label : "Last Changed On",
+            text : "Jan. 1, 2013"
+        }, {
+            label : "Created By",
+            text : "Steven Tyler"
+        }, {
+            label : "Lorem",
+            text : "Ipsum"
+        }, {
+            label : "Nonumy",
+            text : "Takimata"
+        }, {
+            label : "Justo",
+            text : "Duo Elitr"
+        }, {
+            label : "Labore",
+            text : "Sanctus"
+        }]
+    }, {
+        title : "Lorem Ipsum",
+        content : [{
+            label : "Lorem",
+            text : "Rebum"
+        }, {
+            label : "Ipsum",
+            text : "Tempor"
+        }, {
+            label : "At Vero",
+            text : "Invidunt"
+        }, {
+            label : "Voluptua",
+            text : "Nonumy"
+        }]
+    }];
+
+    var oHeaderTemplate = new sap.ui.ux3.ThingGroup({
+        title : "{title}",
+        content : new sap.ui.commons.layout.MatrixLayout({
+            rows : {
+                path : "content",
+                template : new sap.ui.commons.layout.MatrixLayoutRow({
+                    cells : [
+                        new sap.ui.commons.layout.MatrixLayoutCell({
+                            hAlign : sap.ui.commons.layout.HAlign.End,
+                            vAlign : sap.ui.commons.layout.VAlign.Top,
+                            content : new sap.ui.commons.Label({
+                                text : {
+                                    path : "label",
+                                    formatter : function(fValue) {
+                                        return fValue + ":"
+                                    }
+                                }
+                            })
+                        }),
+                        new sap.ui.commons.layout.MatrixLayoutCell({
+                            hAlign : sap.ui.commons.layout.HAlign.Begin,
+                            vAlign : sap.ui.commons.layout.VAlign.Top,
+                            content : new sap.ui.commons.TextView({
+                                text : "{text}"
+                            })
+                        })
+                    ]
+                })
+            }
+        })
+    });
+
+/*****************************************************************************************************************/
+    var oTiData = {
+        showHeader: true,
+        sidebarWidth: "260px",
+        type: "Sales Order",
+        firstTitle: "440000126411117000112345004318",
+        secondTitle: "Sales Title Nestle Lorem Ipsum Dolor Sit Amet",
+        icon: "images/gen_bo_img.png",
+        logo : "images/img_key_company.png",
+        facets: oNavBarData,
+        menuContent: oMenuData,
+        headerContent: oHeaderData
+    };
+
+    var oThingInspector;
+    var index = 1;
+
+    function setContent() {
+        var oFacetContent = new sap.ui.ux3.ThingGroup({
+            title: "Facet Title " + (index++),
+            colspan: true
+        });
+        oThingInspector.addFacetContent(oFacetContent);
+    }
+
+    var oTiModel = new sap.ui.model.json.JSONModel();
+    oTiModel.setData(oTiData);
+
+    var oInspectButton = new sap.ui.commons.Button({ text: "Open ThreePanelThingInspector" });
+    oInspectButton.attachPress(function() {
+
+        oThingInspector = new sap.suite.ui.commons.ThreePanelThingInspector({
+            id: "thingInspector",
+            showHeader: "{/showHeader}",
+            sidebarWidth: "{/sidebarWidth}",
+            type: "{/type}",
+            firstTitle: "{/firstTitle}",
+            secondTitle: "{/secondTitle}",
+            icon: "{/icon}",
+            logo : "{/logo}",
+            facets: {
+                path : "/facets",
+                template : oNavBarItemTemplate
+            },
+            menuContent: {
+                path : "/menuContent",
+                template : oMenuTemplate
+            },
+            headerContent : {
+                path : "/headerContent",
+                template : oHeaderTemplate
+            },
+            facetSelected : function(oEvent) {
+                var sFacetKey = oEvent.getParameters().key;
+                this.setShowHeader("overview" == sFacetKey);
+                setContent();
+            }
+        });
+
+        oThingInspector.setModel(oTiModel);
+        oThingInspector.open();
+    });
+
+    oInspectButton.placeAt("contentArea1");
+</script>
+</head>
+
+<body class="sapUiBody" role="application">
+<h1>ThreePanelThingInspector - sap.suite.ui.commons</h1>
+<div id="contentArea1"></div>
+</body>
+</html>

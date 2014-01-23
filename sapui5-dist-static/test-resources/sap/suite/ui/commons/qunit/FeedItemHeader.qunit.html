@@ -1,0 +1,141 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta charset="UTF-8" />
+<title>FeedItemHeader - sap.suite.ui.commons</title>
+
+<!-- UI5 Bootstrap -->
+<script id="sap-ui-bootstrap" type="text/javascript"
+	src="../../../../../../resources/sap-ui-core.js"
+	data-sap-ui-theme="sap_bluecrystal"
+	data-sap-ui-libs="sap.ui.commons,sap.suite.ui.commons,sap.m"></script>
+
+<!-- QUnit libraries -->
+<link rel="stylesheet"
+	href="../../../../../../resources/sap/ui/thirdparty/qunit.css"
+	type="text/css" media="screen" />
+<script src="../../../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+<script type="text/javascript"
+	src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
+<script type="text/javascript"
+	src="../../../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
+
+<script>
+    var oPressedLink = null;
+    //var listItems = new Array();
+    
+    function handlePress(oEvent) {
+
+        oPressedLink = oEvent.getParameter("link");
+    }
+
+    var sId1 = "id1";
+    var oLink = "http://www.sap.com/corporate-en/press-and-media/newsroom/press.epx?PressID=20769";
+    var oFeedItemHeader = new sap.suite.ui.commons.FeedItemHeader({
+        id : sId1,
+        title : "My Test FeedItemHeader",
+        description : "This is a description of my feed item...",
+        image : "../images/balloons.jpg",
+        link : oLink,
+        source : "SAP News",
+        publicationDate : new Date(),
+        press : handlePress
+    });
+
+    //listItems.push(oFeedItemHeader);
+    oFeedItemHeader.placeAt("list");
+</script>
+<script>
+    module("Control Rendering Test");
+
+    test("TestRenderedOK", function() {
+
+        notEqual(jQuery.sap.domById(sId1), null,
+                "FeedItemHeader outer HTML Element should be rendered.");
+        notEqual(jQuery.sap.domById(sId1 + "-feedItemHeaderImage"), null,
+                "FeedItemHeader Image should be rendered.");
+        notEqual(jQuery.sap.domById(sId1 + "-feedItemHeaderTitle"), null,
+                "FeedItemHeader Title should be rendered.");
+        notEqual(jQuery.sap.domById(sId1 + "-feedItemHeaderDescription"), null,
+                "FeedItemHeader Description should be rendered.");
+        notEqual(jQuery.sap.domById(sId1 + "-feedItemHeaderSource"), null,
+                "FeedItemHeader Source should be rendered.");
+        notEqual(jQuery.sap.domById(sId1 + "-feedItemHeaderAge"), null,
+                "FeedItemHeader Age should be rendered.")
+    });
+
+    /************************************************************************************************/
+    module("Events");
+    test(
+            "TestPressEvent",
+            function() {
+
+                qutils.triggerEvent("click", sId1);
+                equal(oPressedLink, oLink,
+                        "The pressed event is fired and the link is passed in the event.");
+            });
+    /************************************************************************************************/
+
+    module("Test Invalid URIs");
+
+    var invalidLinkFeedItemHeader = new sap.suite.ui.commons.FeedItemHeader({
+        title : "I am used to test Invalid Links",
+        image : "I am a goofy URL with malicious script content",
+        link : "I am a goofy URL with malicious script content",
+        source : "SAP News",
+        publicationDate : new Date()
+    });
+
+    //listItems.push(invalidLinkFeedItemHeader);
+    invalidLinkFeedItemHeader.placeAt("list");
+
+    test("Test invalid uri",
+            function() {
+
+                equal(invalidLinkFeedItemHeader.getImage(), "",
+                        "image should not be set");
+                equal(invalidLinkFeedItemHeader.getLink(), "",
+                        "link should not be set");
+            });
+
+    /*************************************************************************************************/
+    
+    module("Test Header Description Containing HTML");
+    
+    var headerWithHtmlDesc = new sap.suite.ui.commons.FeedItemHeader({
+    	id: "htmlDesc",
+    	title: "This FeedItemHeader has a description that contains HTML content.",
+    	image : "../images/grass.jpg",
+    	description: 'Link <a href="http://www.yahoo.com">Yahoo</a>',
+   		publicationDate : new Date(),
+   		source: "Malicious Source"
+    });
+    
+    //listItems.push(headerWithHtmlDesc);
+    headerWithHtmlDesc.placeAt("list");
+    
+    test("Test HTML Content Present", function(){
+    	
+    	var $link = $("#htmlDesc-feedItemHeaderDescription a");
+    	equal($link[0].href, "http://www.yahoo.com/", "Description should contain link to Yahoo");
+    });
+    
+         
+    /*
+    var oList = new sap.m.List({
+    	mode: sap.m.ListMode.SingleSelectMaster,
+    	items: listItems
+    });    
+    oList.placeAt("list");
+    */
+    
+    
+    </script>
+</head>
+
+<body class="sapUiBody">
+	<div id="qunit"></div>
+	<div id="list"></div>
+</body>
+</html>

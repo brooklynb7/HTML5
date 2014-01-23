@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html data-sap-ui-dk-category="Controls/Complex" data-sap-ui-dk-controls="sap.suite.ui.commons.NoteTaker">
+	<head>
+	<meta charset="UTF-8">
+	<title>NoteTaker - sap.suite.ui.commons</title>
+	
+	
+	<script id="sap-ui-bootstrap" type="text/javascript"
+		src="../../../../../../resources/sap-ui-core.js"
+		data-sap-ui-theme="sap_goldreflection"
+		data-sap-ui-libs="sap.ui.commons,sap.ui.demokit,sap.suite.ui.commons">
+	    
+	</script>
+	<script type="text/javascript" src="../../../../../../js/utils.js"></script>
+	<script id='NoteTakerControlBasic' type='text/javascript'>
+var noteTaker1 = new sap.suite.ui.commons.NoteTaker({
+    id: "NT1",
+    visibleNotes : 3,
+    attachmentUploadUrl: "../../../../../upload",
+    attachmentSelect : function(e) {
+    	jQuery.sap.log.info("NTF: Attachment was selected - " + e.getParameter("filename"));
+    	this.setNextCardUid("Card-" + Math.floor((Math.random()*1000)+1));
+    	this.uploadAttachment();
+    },
+    attachmentUploadComplete : function(e) {
+    	jQuery.sap.log.info("NTF: Attachment was uploaded - " + e.getParameter("response") + " UId " + e.getParameter("uid"));
+    },
+    attachmentDelete : function(e) {
+        alert("Attachhment deleted. Attchment: " + e.getParameter("filename") + " Card UID : " + e.getParameter("uid"));
+    },
+    attachmentClick : function(e) {
+        alert("Attachhment click. Attchment: " + e.getParameter("filename") + " Card UID : " + e.getParameter("uid"));
+    }
+});
+
+var card = new sap.suite.ui.commons.NoteTakerCard({
+    id: "NT1_NTC1",
+    uid : Math.floor((Math.random()*1000)+1),
+    header: "New contract signed!",
+    body: "Bob has signed a new 1b contract! Please check at www.sap.com  If you have any questions, please mail to sap@sap.com",
+    thumbUp: true,
+    tags : ["new_contract", "1on1 ", "Bob"]
+});
+noteTaker1.addCard(card);
+
+card = new sap.suite.ui.commons.NoteTakerCard({
+    id: "NT1_NTC2",
+    uid : Math.floor((Math.random()*1000)+1),
+    header: "Bob is not happy with his PRM",
+    body: "On PRM meeting today, Bob said he expected to get exceeds expectations rather than meets expectations. He was very frustrated and may be thinking of leaving the company. The following signs look also disturbing: 1 Short-terms actions and short-term talk He stops talking about the long-term and disengages from planning discussions or anything to do with the future 2 Customers give feedback that the level of service has diminished Internal customers noticing that they are no longer getting the care or attention they are accustomed to 3 Disengaging socially with the business and not going on nights out after work 4 Stops volunteering for things Does not offer his help with tasks outside his remit. This no longer serves a purpose for someone who is planning to leave the company. 5 Don’t care attitude Earlier he was very passionate about his job and often enjoyed heated discussions about decisions. Now he simply stops arguing his point and become subservient6. Productivity could decrease or they could start missing deadlines 6 Excessive complaining Bob is getting annoyed about things that he would usually not be bothered by. 7 Other people mention that he is discontent with things 8 Takes more sick days Earlier he did not take too many sick days but since may he is taking quite a few sporadic days. It might be a sign he is looking for another job. 9 Half days/whole days off Takes days or half days off and instead of talking openly about what he is up to in his holiday time (as he used to do) says very little. 10 Dresses differently He is dressing smarter, probably to go on interviews I should talk to him urgently and plan my activities. Most companies have a review structure whereby line managers get face-time with their employees to discuss any issues they have and how their performance is progressing. These are important to get clarity on what people are thinking. If these reviews do not offer more information, it might be an idea to schedule a chat. “You need to make a decision about whether you want to address it. A simple ‘I’ve noticed your attitude has changed, would you like to talk about it?’ can help you to meet the issues head-on,” advises Ely. It can often be the case that the reasons for somebody proactively seeking another job is an emotional reaction",
+    thumbDown: true,
+    tags : ["PRM", "Bob"],
+    attachmentFilename : "attachment.pdf"
+    
+});
+noteTaker1.addCard(card);
+
+card = new sap.suite.ui.commons.NoteTakerCard({
+    id: "NT1_NTC3",
+    header: "Sam is needed on a new project",
+    body: "Peter has requested Sam’s assistance to IMS team. Need to discuss his availability.",
+    thumbDown: true,
+    tags : ["Sam ", "1on1"]
+    
+});
+noteTaker1.addCard(card);
+
+noteTaker1.placeAt("basic");
+			
+	</script>
+	
+	<script id="NoteTakerControl1VisibleCard" type="text/javascript">
+var noteTaker2 = new sap.suite.ui.commons.NoteTaker({
+    id: "NT2",
+    visibleNotes : 1
+});
+
+noteTaker2.placeAt("visibleCard");
+	</script>
+	</head>
+	<body class="sapUiDemokitBody" role="application">
+	<h1 color="Blue" icon="images/ctrls/notetaker-icon.png">NoteTaker</h1>
+	<h2>Introduction</h2>
+	<p>This control allows you to create and store your notes for further reference. 
+	It consists of a feeder control (<code>sap.suite.ui.commons.NoteTakerFeeder</code>) that is used to enter a quick note and any number of card controls (<code>sap.suite.ui.commons.NoteTakerCard</code>). 
+	You can quickly display the feeder to add a new note by choosing the <i>Home</i> button. 
+	Each note card contains a header section including a date/time stamp and a scrollable body text area. 
+	</p>
+	<p>All the cards including the feeder are placed in the <a class="sapUiDemokitSrcLink" href="../../../../../../docs/api/symbols/sap.ui.commons.Carousel.html">Carousel</a> control sorted by the date/time stamp. 
+	Number of cards simultaneously displayed depends on the <code>visibleNotes</code> parameter setting. 
+	This setting value number does not include the feeder card.
+	</p>
+	<br/>
+	
+	<h2>URL Links</h2>
+	<p>You can add the URL links to the body text of the note card. 
+	As soon as the note is saved the URL links are displayed and behave like the basic HTML links.
+	</p>
+	<br/>
+	<h2>Large Notes in the Overlay</h2>
+	<p>You can view large notes in the <a class="sapUiDemokitSrcLink" href="../../../../../../docs/api/symbols/sap.ui.ux3.OverlayContainer.html">OverlayContainer</a> control by choosing the <i>View All</i> link in the note card. 
+	It appears at the bottom of a note card if the body text length exceeds a value set for the <code>cardViewAllTrigger</code> or <code>ViewAllTrigger</code> parameters. 
+	By default it is set to 1800 characters.
+	</p>
+	<br/>
+	<h2>Editing or Deleting Note Cards </h2>
+	<p>You can edit or delete existing note cards in the overlay by choosing the <i>Edit</i> button 
+	or the <i>View All</i> link in the note card. You can also delete existing note cards by choosing the <i>Delete</i> button in the note card. 
+	Note that you cannot edit or delete files attached to the note cards.</p>
+	<br/>
+	<h2>Tags</h2>
+	<p>You can categorize your notes by adding tags to the notes. To add tags to the note you need to choose the <i>Tag</i> icon 
+	on the <i>Add Note</i> card and then select one or more existing tags or enter a new tag and then choose <i>Apply</i>. 
+	The tags are saved for the note once the note is saved and they are displayed in the note card and overlay. 
+	You can filter your note cards by tags using the <i>Tags</i> button in the filter bar. 
+	You can reset the filter to display all the available note cards by choosing the <i>All</i> button. You can edit tags for the notes in the overlay.
+	</p>
+	<br/>
+	<h2>Positive or Negative Indication</h2>
+	<p>You can categorize your notes by adding positive or negative information indication to the note cards. 
+	This indication is saved for the note once the note is saved and it is displayed in the note card and overlay.
+	Note cards containing positive information are displayed with a green top border. Note cards containing negative information are displayed with a red top border. 
+	You can filter your note cards by positive or negative indication using the corresponding button in the filter bar. 
+	You can edit positive or negative information indication for the notes in the overlay.
+	</p>
+	<h2>Search</h2>
+	<p>You can search for the notes containing specific text in the title or body. The <a class="sapUiDemokitSrcLink" href="../../../../../../docs/api/symbols/sap.ui.commons.SearchField.html">SearchField</a> control is used for this purpose. 
+	If the search text is entered, choosing the search icon displays all the notes that contain this text and satisfy the current filter criteria. 
+	You can use a space character to separate multiple search entries in the search field. If you have entered several words in the <i>Search</i> field, the control displays all notes that match any of these search entries. 
+	If the <i>Search</i> field is empty, choosing the <i>Search</i> icon displays all the available note cards that satisfy the current filter criteria. 
+	If the <code>NoteTaker</code> control is configured to display only one card at a time, the <i>Search</i> field is displayed in a popup when you choose the <i>Search</i> button. 
+	To hide the popup field, choose the <i>Search</i> button again. When you reopen the popup <i>Search</i> field it still contains the current search criteria if any.</p>
+	<br/>
+	<h2>Attachment</h2>
+	<p>You can attach a file to a note only when you create this note. 
+	The attachment icon appears on the <i>Add Note</i> card only if the <code>attachmentUploadURL</code> parameter is set. 
+	After the note is added, the attachment is associated with this note and the corresponding icon appears in the note card and overlay. 
+	The following methods are exposed from the <a class="sapUiDemokitSrcLink" href="../../../../../../docs/api/symbols/sap.ui.commons.FileUploader.html">FileUploader</a> control to the <code>NoteTaker</code> contol: <code>uploadAttachment</code> and <code>setAttachmentData</code>.</p>
+	<br/>
+	<h2>Keyboard Support</h2>
+	<p>
+	You can create new notes, scroll them, and edit the existing notes using a keyboard. When the focus is on carousel,
+	you can scroll the note cards to the left using <code>UP ARROW</code> or <code>LEFT ARROW</code>. To scroll the note cards to the right, 
+	use <code>DOWN ARROW</code> or <code>RIGHT ARROW</code>. To navigate through the focusable controls, use <code>TAB</code> or <code>SHIFT</code> + <code>TAB</code>. 
+	Note that to choose a file for upload with a keyboard in Microsoft Internet Explorer you need to use <code>SPACEBAR</code>.
+	</p>
+	
+	<h2>Examples</h2>
+	<br/>
+	<p>The following example shows <code>NoteTaker</code> with three visible cards and an inline <i>Search</i> field. The <i>View All</i> link is displayed for body text containing more than 1800 characters. 
+	It has several predefined cards. Users can manually create new notes and edit or delete the existing ones. 
+	Users can also filter notes by tags and positive or negative markup as well as search for the notes containing specific text in body and title.
+	</p>
+	<div code-sample="basic" script="NoteTakerControlBasic"></div>
+	<br/>
+	<p>
+	The following example shows <code>NoteTaker</code> with one visible card and a <i>Search</i> field that is displayed in a popup. It has no predefined cards. 
+	</p>
+	<div code-sample="visibleCard" script="NoteTakerControl1VisibleCard"></div>
+	<p>
+
+	<a class="sapUiDemokitSrcLink" href="../../../../../../docs/api/symbols/sap.suite.ui.commons.NoteTaker.html">NoteTaker API documentation</a><br/>
+	<a class="sapUiDemokitSrcLink" href="../../../../../../docs/api/symbols/sap.suite.ui.commons.NoteTakerFeeder.html">NoteTakerFeeder API documentation</a><br/>
+	<a class="sapUiDemokitSrcLink" href="../../../../../../docs/api/symbols/sap.suite.ui.commons.NoteTakerCard.html">NoteTakerCard API documentation</a>	
+	</p>
+	<br/>
+</body>
+</html>

@@ -1,0 +1,11 @@
+<template data-controller-name="view.PoDetailAttachment">
+	<div data-sap-ui-type="sap.m.List"  id="lrAttachments" data-items="{po>attachments}" data-show-separators="None">
+		<div data-sap-ui-type="sap.m.StandardListItem"
+			data-icon="{path:'po>type', formatter:'util.Formatter.attachmentIcon'}" 
+			data-title="{po>title}, {po>size}"
+			data-description="{po>description}"
+			data-icon-inset="false"
+			data-info="{po>date}" >
+		</div>
+	</div>
+</template>

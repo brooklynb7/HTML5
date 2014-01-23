@@ -1,0 +1,70 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta charset="UTF-8" />
+<title>LaunchTile - sap.suite.ui.commons</title>
+
+<!-- UI5 Bootstrap -->
+<script id="sap-ui-bootstrap" type="text/javascript" src="../../../../../../resources/sap-ui-core.js" data-sap-ui-theme="sap_bluecrystal"
+	data-sap-ui-libs="sap.ui.commons,sap.suite.ui.commons, sap.m"></script>
+
+<!-- QUnit libraries -->
+<link rel="stylesheet" href="../../../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
+<script src="../../../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+<script type="text/javascript" src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
+<script type="text/javascript" src="../../../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
+
+<script>
+	jQuery.sap.require("sap.ui.core.IconPool");
+
+	function handlePress(oEvent) {
+
+		pressedTitle = oEvent.getParameter("title");
+		pressedLink = oEvent.getParameter("link");
+	}
+
+	var sId1 = "id1";
+	var sTitle = "Test Launch Tile";
+	var oLink = "http://www.sap.com"
+	var oLaunchTile = new sap.suite.ui.commons.LaunchTile({
+		id : sId1,
+		press : handlePress,
+		title : sTitle,
+		icon : sap.ui.core.IconPool.getIconURI("shortcut"),
+		tooltip : "Test Launch Tile Tooltip",
+		link : oLink
+	});
+
+	oLaunchTile.placeAt("uiArea1");
+</script>
+<script>
+	module("Control Rendering Test");
+
+	test("TestRenderedOK", function() {
+
+		var oDomNode = jQuery.sap.domById(sId1);
+		notEqual(oDomNode, null, "LaunchTile outer HTML Element should be rendered.");
+		notEqual(oDomNode.getAttribute("title"), null, "LaunchTile Tooltip should be rendered.");
+		notEqual(jQuery("#" + sId1 + " -launchTileText"), null, "LaunchTile Title should be rendered.");
+		notEqual(jQuery("#" + sId1 + " -launchTileIcon"), null, "LaunchTile Icon should be rendered.");
+	});
+
+	/************************************************************************************************/
+	module("Events");
+	test("TestPressEvent", function() {
+
+		qutils.triggerEvent("click", sId1);
+		equal(pressedTitle, sTitle, "The pressed event is fired and the title is passed in the event.");
+		equal(pressedLink, oLink, "The pressed event is fired and the link is passed in the event.");
+	});
+
+	/************************************************************************************************/
+</script>
+</head>
+
+<body class="sapUiBody">
+	<div id="qunit"></div>
+	<div id="uiArea1"></div>
+</body>
+</html>

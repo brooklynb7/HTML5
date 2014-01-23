@@ -1,0 +1,14 @@
+{
+	"SAPVB": {
+		"version": "2.0",
+		"xmlns:VB": "VB",
+		"Data": {
+			"Remove": [
+				{
+					"type": "N",
+					"name": "Flags"
+				}
+			]
+		}
+	}
+}

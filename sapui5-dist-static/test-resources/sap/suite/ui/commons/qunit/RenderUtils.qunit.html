@@ -1,0 +1,138 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8"/>
+	<title>RenderUtils - sap.suite.ui.commons.util</title>
+
+    <!-- UI5 Bootstrap -->
+    <script id="sap-ui-bootstrap"
+            type="text/javascript"
+            src="../../../../../../resources/sap-ui-core.js"
+            data-sap-ui-theme="sap_goldreflection"
+            data-sap-ui-libs="sap.ui.commons,sap.suite.ui.commons"></script>
+
+    <!-- QUnit libraries -->
+    <link rel="stylesheet"
+          href="../../../../../../resources/sap/ui/thirdparty/qunit.css"
+          type="text/css" media="screen" />
+    <script src="../../../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+    <script type="text/javascript" src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
+    <script type="text/javascript" src="../../../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>    
+
+	<script>    
+		jQuery.sap.require("sap.suite.ui.commons.util.RenderUtils");
+
+        module("RenderingHelper", {
+            setup: function() {
+                this.rm = sap.ui.getCore().createRenderManager();
+                this.rh = new sap.suite.ui.commons.util.RenderingHelper(this.rm);
+                this.sBrowser = jQuery("html").attr("data-sap-ui-browser");
+                this.domNode = jQuery.sap.domById("content");
+            },
+            teardown: function() {
+                this.rm.destroy();
+            }
+        });
+
+        test("helper created", function() {
+            var rh = this.rh;
+            ok(rh, "helper exists");
+            ok(rh._getRenderManager(), "render manager defined for "+this.sBrowser);
+        });
+
+        test("rendering works", function() {
+            var rm = this.rm;
+            var sTestHtml = "<span>text</span>";
+
+            rm.write(sTestHtml);
+
+            rm.flush(this.domNode);
+            equal(this.domNode.innerHTML.toLowerCase(), sTestHtml.toLowerCase());
+        });
+
+        test("empty opening tag", function() {
+            this.rh.writeOpeningTag("div");
+
+            this.rm.flush(this.domNode);
+            //TODO: find out how to access render manager's aBuffer, to avoid auto-completion
+            //equal(this.rm.aBuffer.join(""), "<div>");
+            equal(this.domNode.innerHTML.toLowerCase(), "<div></div>".toLowerCase());
+        });
+
+        test("opening tag with classes", function() {
+            this.rh.writeOpeningTag("div", {
+                classes: ["bigButton", "leftPanel"]
+            });
+
+            this.rm.flush(this.domNode);
+            equal(this.domNode.innerHTML.toLowerCase(), '<div class="bigButton leftPanel"></div>'.toLowerCase());
+        });
+
+        test("opening tag with attributes", function() {
+            this.rh.writeOpeningTag("div", {
+                attributes: {id: "testDiv",
+                             "data-id": "NTC1",
+                             "data-title": "Choose to edit"}
+            });
+
+            this.rm.flush(this.domNode);
+            var testDiv = jQuery("#testDiv");
+            equal(testDiv.attr("data-id"), 'NTC1');
+            equal(testDiv.attr("data-title"), "Choose to edit");
+        });
+
+        test("opening tag with XSS in not escaped attributes", function() {
+            this.rh.writeOpeningTag("div", {
+                attributes: {id: "testDiv",
+                             width: "300px",
+                             idNotEsc: 'NTC1"><script id="malicious">$("#testDiv").attr("width", "200px")<\/script><div id="inner'}
+            });
+
+            this.rm.flush(this.domNode);
+            var testDiv = jQuery("#testDiv");
+            equal(testDiv.attr("idNotEsc"), 'NTC1', "attribute is cropped by malicious code");
+            equal(testDiv.attr("width"), "200px", "malicious code executed");
+            ok(jQuery("#inner").length, "fake tag detected");
+        });
+
+        test("opening tag with XSS in escaped attributes", function() {
+            this.rh.writeOpeningTag("div", {
+                attributes: {id: "testDiv",
+                             width: "300px"
+                },
+                escapedAttributes: {idEsc: 'NTC2"><script id="malicious">$("#testDiv").attr("width", "200px")<\/script><div id="inner'}
+            });
+
+            this.rm.flush(this.domNode);
+            var testDiv = jQuery("#testDiv");
+            equal(testDiv.attr("idEsc"), 'NTC2"><script id="malicious">$("#testDiv").attr("width", "200px")<\/script><div id="inner', "full text in attribute");
+            equal(testDiv.attr("width"), "300px", "malicious code not executed");
+            equal(jQuery("#inner").length, 0, "fake tag not detected");
+        });
+
+        test("no closing tag - nested order", function() {
+            this.rh.writeOpeningTag("div");
+            this.rh.writeOpeningTag("p");
+
+            this.rm.flush(this.domNode);
+            equal(this.domNode.innerHTML.toLowerCase().replace(/\s+/g,""), '<div><p></p></div>'.toLowerCase());
+        });
+
+        test("closing tag - sequential order", function() {
+            this.rh.writeOpeningTag("div");
+            this.rh.writeClosingTag("div");
+            this.rh.writeOpeningTag("p");
+            this.rh.writeClosingTag("p");
+
+            this.rm.flush(this.domNode);
+            equal(this.domNode.innerHTML.toLowerCase().replace(/\s+/g,""), '<div></div><p></p>'.toLowerCase());
+        });
+
+	</script>
+</head>
+
+<body class="sapUiBody" role="application">
+	<div id="qunit"></div>
+	<div id="content"></div>
+</body>
+</html>

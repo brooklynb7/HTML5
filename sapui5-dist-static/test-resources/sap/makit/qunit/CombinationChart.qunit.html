@@ -1,0 +1,296 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<title>qUnit Page for sap.makit.Chart</title>
+
+		<script id="sap-ui-bootstrap" 
+			type="text/javascript"
+			src="../../../../resources/sap-ui-core.js"
+			data-sap-ui-theme="sap_mvi"
+			data-sap-ui-noConflict="true"
+			data-sap-ui-libs="sap.m, sap.makit">
+		</script>
+    
+		<link rel="stylesheet" href="../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
+		<script type="text/javascript" src="../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+		<script type="text/javascript" src="../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
+		<script type="text/javascript" src="QUnitTestData.js"></script>
+
+		<script type="text/javascript">
+		
+			QUnit.config.autostart = false;
+			jQuery(document).ready(function() {
+				QUnit.start();
+			});
+			
+			var dataModel = getCombiChartMSDataModel();
+
+			//Create combination chart w/o layers
+			var oChart1 = new sap.makit.CombinationChart("chart1", { 
+				width:"100%", height:"300px",
+				categoryRegions: [new sap.makit.Category({column: "yearCategory"})]
+			}).placeAt("content1");
+			
+			test("Combination Chart creation failure", function() {
+				ok(jQuery.sap.domById("chart1"), "chart1 container should be rendered");
+				ok(!jQuery.sap.domById("chart1_graph"), "chart1_graph should be not rendered");
+				ok(!jQuery.sap.domById("chart1_rangeSelector"), "chart1_rangeSelector should not be rendered");
+				
+				var chart = sap.ui.getCore().byId("chart1");
+				ok(! chart._makitChart, "chart1._makitChart should not be initialized");
+			});
+			
+			//Minimum chart initialization test w/o data
+			var layer1 = new sap.makit.Layer({
+				series : new sap.makit.Series({ column : "productSeries", displayName : "Product" }),
+				values : [new sap.makit.Value({
+					expression : "revenueValue", format : "currency", displayName : "Revenue"
+				})]
+			});
+			var oChart2 = new sap.makit.CombinationChart("chart2", {
+				width:"100%", height:"300px",
+				categoryRegions: [new sap.makit.Category({column: "yearCategory"})],
+				layers: [layer1]
+			}).placeAt("content2");
+			
+			test("Combination Chart creation succcess", function() {
+				ok(jQuery.sap.domById("chart2"), "chart2 should be rendered");
+				ok(jQuery.sap.domById("chart2_graph"), "chart2_graph should be rendered");
+				ok(jQuery.sap.domById("chart2_rangeSelector"), "chart2_rangeSelector should be rendered");
+				
+				var chart = sap.ui.getCore().byId("chart2");
+				ok(chart._makitChart, "chart2._makitChart should be initialized");
+			});
+			
+			//Minimum chart initialization test w/o data
+			var layer1 = new sap.makit.Layer({
+				series : new sap.makit.Series({ column : "productSeries", displayName : "Product" }),
+				values : [new sap.makit.Value({
+					expression : "revenueValue", format : "currency", displayName : "Revenue"
+				})],
+				columns: [new sap.makit.Column({name:"yearCategory", value:"{year}"}),
+			          	new sap.makit.Column({name:"monthCategory", value:"{month}"}),
+						new sap.makit.Column({name:"productSeries", value:"{product}"}),
+						new sap.makit.Column({name:"revenueValue", value:"{revenue}", type:"number"})]
+			});
+			
+			var layer2 = new sap.makit.Layer({
+				type: sap.makit.ChartType.Line,
+				drawOnSecondaryAxis: true,
+				series : new sap.makit.Series({ column : "productSeries", displayName : "Product" }),
+				values : [new sap.makit.Value({
+					expression : "costValue", format : "currency", displayName : "Revenue"
+				})],
+				columns: [new sap.makit.Column({name:"yearCategory", value:"{year}"}),
+			          	new sap.makit.Column({name:"monthCategory", value:"{month}"}),
+						new sap.makit.Column({name:"productSeries", value:"{product}"}),
+						new sap.makit.Column({name:"costValue", value:"{cost}", type:"number"})],
+			});
+			
+			var layer3 = new sap.makit.Layer({
+				type: sap.makit.ChartType.Line,
+				series : new sap.makit.Series({ column : "productSeries", displayName : "Product" }),
+				values : [new sap.makit.Value({
+					expression : "revenueValue-costValue", format : "currency", displayName : "Revenue"
+				})],
+				columns: [new sap.makit.Column({name:"yearCategory", value:"{year}"}),
+			          	new sap.makit.Column({name:"monthCategory", value:"{month}"}),
+						new sap.makit.Column({name:"productSeries", value:"{product}"}),
+						new sap.makit.Column({name:"revenueValue", value:"{revenue}", type:"number"}),
+						new sap.makit.Column({name:"costValue", value:"{cost}", type:"number"})],
+			});
+			
+			layer1.setModel(dataModel);
+			layer1.bindRows("/mydata");
+			layer2.setModel(dataModel);
+			layer2.bindRows("/mydata");
+			layer3.setModel(dataModel);
+			layer3.bindRows("/mydata");
+			
+			//CategoryAxis
+			var catAxis = new sap.makit.CategoryAxis({
+				showLabel:true,
+				showPrimaryLine:true,
+				showGrid:false,
+				thickness:1.5,
+			});
+			
+			var oChart3 = new sap.makit.CombinationChart("chart3", {
+				width:"100%", height:"300px",
+				categoryRegions: [new sap.makit.Category({column: "yearCategory", displayName : "Year", format:"number"}), new sap.makit.Category({column: "monthCategory", displayName: "Month"})],
+				categoryAxis:catAxis,
+				layers: [layer1, layer2, layer3]
+			}).placeAt("content3");
+			
+			test("Combination Chart creation succcess", function() {
+				ok(jQuery.sap.domById("chart3"), "chart3 should be rendered");
+				ok(jQuery.sap.domById("chart3_graph"), "chart3_graph should be rendered");
+				ok(jQuery.sap.domById("chart3_rangeSelector"), "chart3_rangeSelector should be rendered");
+				
+				var chart = sap.ui.getCore().byId("chart3");
+				ok(chart._makitChart, "chart3._makitChart should be initialized");
+			});
+			
+			test("Chart data populated", function() {
+				var expectedRowsLenNoData = 0; //Expected rows count for chart with no binding
+				var expectedRowsLenWithData = 396; //Expected rows count for chart with binding on creation
+				
+				var chart3 = sap.ui.getCore().byId("chart3");
+				var layers = chart3.getLayers();
+				deepEqual(layers[0]._datarows.length, expectedRowsLenWithData, "layer1._datarows.length should now be "+expectedRowsLenWithData);
+				deepEqual(layers[1]._datarows.length, expectedRowsLenWithData, "layer2._datarows.length should now be "+expectedRowsLenWithData);
+				deepEqual(layers[2]._datarows.length, expectedRowsLenWithData, "layer3._datarows.length should now be "+expectedRowsLenWithData);				
+			});
+			
+			test("Chart range selector test", function() {
+				var expectedRowsLenNoData = 0; //Expected rows count for chart with no binding
+				var expectedRowsLenWithData = 396; //Expected rows count for chart with binding on creation
+				
+				var chart3 = sap.ui.getCore().byId("chart3");
+				var layers = chart3.getLayers();
+				
+				//Range selector visibility test
+				deepEqual(chart3._makitChart.isRangeSelectorViewVisible(), true, "chart3 range selector should be visible");
+				chart3.setShowRangeSelector(false);
+				deepEqual(chart3._makitChart.isRangeSelectorViewVisible(), false, "chart3 range selector should not be visible anymore");
+			});
+			
+			test("Chart value bubble testing", function() {
+				var chart3 = sap.ui.getCore().byId("chart3");
+				var vb = chart3.getValueBubble();
+				var styleObj = chart3._makitChart.getValueBubbleStyle();
+				var sapStyleObj = vb.toObject();
+				deepEqual(styleObj.style, sapStyleObj.style, "_makitChart ValueBubble style should be set");
+				deepEqual(styleObj.position, sapStyleObj.position, "_makitChart ValueBubble position should be set");
+				deepEqual(styleObj.showCategoryText, sapStyleObj.showCategoryText, "_makitChart ValueBubble showCategoryText should be set");
+				deepEqual(styleObj.showCategoryDisplayName, sapStyleObj.showCategoryDisplayName, "_makitChart ValueBubble showCategoryDisplayName should be set");
+				deepEqual(styleObj.showValueDisplayName, sapStyleObj.showValueDisplayName, "_makitChart ValueBubble showValueDisplayName should be set");
+				deepEqual(styleObj.showValueOnPieChart, sapStyleObj.showValueOnPieChart, "_makitChart ValueBubble showValueOnPieChart should be set");
+				deepEqual(styleObj.showLegendLabel, sapStyleObj.showLegendLabel, "_makitChart ValueBubble showLegendLabel should be set");
+				deepEqual(styleObj.showNullValue, sapStyleObj.showNullValue, "_makitChart ValueBubble showNullValue should be set");
+				
+				vb.setStyle(vb.getStyle() === sap.makit.ValueBubbleStyle.Top? sap.makit.ValueBubbleStyle.FloatTop : sap.makit.ValueBubbleStyle.Top);
+				
+				styleObj = chart3._makitChart.getValueBubbleStyle();
+				sapStyleObj = vb.toObject();
+				deepEqual(styleObj.style, sapStyleObj.style, "_makitChart ValueBubble style should be set");
+				deepEqual(styleObj.position, sapStyleObj.position, "_makitChart ValueBubble position should be set");
+				deepEqual(styleObj.showCategoryText, sapStyleObj.showCategoryText, "_makitChart ValueBubble showCategoryText should be set");
+				deepEqual(styleObj.showCategoryDisplayName, sapStyleObj.showCategoryDisplayName, "_makitChart ValueBubble showCategoryDisplayName should be set");
+				deepEqual(styleObj.showValueDisplayName, sapStyleObj.showValueDisplayName, "_makitChart ValueBubble showValueDisplayName should be set");
+				deepEqual(styleObj.showValueOnPieChart, sapStyleObj.showValueOnPieChart, "_makitChart ValueBubble showValueOnPieChart should be set");
+				deepEqual(styleObj.showLegendLabel, sapStyleObj.showLegendLabel, "_makitChart ValueBubble showLegendLabel should be set");
+				deepEqual(styleObj.showNullValue, sapStyleObj.showNullValue, "_makitChart ValueBubble showNullValue should be set");
+			});
+			
+			test("Chart category testing", function() {
+				var chart3 = sap.ui.getCore().byId("chart3");
+				deepEqual(chart3._makitChart.getProperty("categories[0].column"), "yearCategory", "_makitChart column should be yearCategory");
+				deepEqual(chart3._makitChart.getProperty("categories[0].format"), "number", "_makitChart column should be number");
+				deepEqual(chart3._makitChart.getProperty("categories[1].column"), "monthCategory", "_makitChart column should be monthCategory");
+				//displayname of all categories should be combined into the first category's displayname
+				deepEqual(chart3._makitChart.getProperty("categories[0].displayName"), "Month | Year", "_makitChart column should be Month | Year");
+			});
+			
+			test("Chart primary axis testing", function() {
+				var chart3 = sap.ui.getCore().byId("chart3");
+				deepEqual(chart3._makitChart.getProperty("primaryaxis.values.min"), undefined, "_makitChart primary value axis showlabel should be undefined");
+				deepEqual(chart3._makitChart.getProperty("primaryaxis.values.max"), undefined, "_makitChart primary value axis showlabel should be undefined");
+				deepEqual(chart3._makitChart.getProperty("primaryaxis.values.showlabel"), true, "_makitChart primary value axis showlabel should be true");
+				deepEqual(chart3._makitChart.getProperty("primaryaxis.values.showprimaryline"), false, "_makitChart primary value axis showprimaryline should be false");
+				deepEqual(chart3._makitChart.getProperty("primaryaxis.values.showgrid"), true, "_makitChart primary value axis showgrid should be true");
+				deepEqual(chart3._makitChart.getProperty("primaryaxis.values.thickness"), 1, "_makitChart primary value axis thickness should be 1");
+				deepEqual(chart3._makitChart.getProperty("primaryaxis.values.color"), "gray", "_makitChart primary value axis color should be gray");
+				
+				var primValueAxis = chart3.getPrimaryValueAxis();
+				primValueAxis.setMin(10);
+				primValueAxis.setMax(1000000);
+				primValueAxis.setShowLabel(false);
+				primValueAxis.setShowPrimaryLine(true);
+				primValueAxis.setShowGrid(false);
+				primValueAxis.setThickness(2);
+				primValueAxis.setColor("green");
+				deepEqual(chart3._makitChart.getProperty("primaryaxis.values.min"), 10, "_makitChart primary value axis min should be 10");
+				deepEqual(chart3._makitChart.getProperty("primaryaxis.values.max"), 1000000, "_makitChart primary value axis max should be 1000000");
+				deepEqual(chart3._makitChart.getProperty("primaryaxis.values.showlabel"), false, "_makitChart primary value axis showlabel should be false");
+				deepEqual(chart3._makitChart.getProperty("primaryaxis.values.showprimaryline"), true, "_makitChart primary value axis showprimaryline should be true");
+				deepEqual(chart3._makitChart.getProperty("primaryaxis.values.showgrid"), false, "_makitChart primary value axis showgrid should be false");
+				deepEqual(chart3._makitChart.getProperty("primaryaxis.values.thickness"), 2, "_makitChart primary value axis thickness should be 1");
+				deepEqual(chart3._makitChart.getProperty("primaryaxis.values.color"), "green", "_makitChart primary value axis color should be green");
+				
+			});
+			
+			test("Chart secondary axis testing", function() {
+				var chart3 = sap.ui.getCore().byId("chart3");
+				deepEqual(chart3._makitChart.getProperty("secondaryaxis.values.min"), undefined, "_makitChart secondary value axis min should be undefined");
+				deepEqual(chart3._makitChart.getProperty("secondaryaxis.values.max"), undefined, "_makitChart secondary value axis max should be undefined");
+				deepEqual(chart3._makitChart.getProperty("secondaryaxis.values.showlabel"), true, "_makitChart secondary value axis showlabel should be true");
+				deepEqual(chart3._makitChart.getProperty("secondaryaxis.values.showprimaryline"), false, "_makitChart secondary value axis showprimaryline should be false");
+				deepEqual(chart3._makitChart.getProperty("secondaryaxis.values.showgrid"), true, "_makitChart secondary value axis showgrid should be true");
+				deepEqual(chart3._makitChart.getProperty("secondaryaxis.values.thickness"), 1, "_makitChart secondary value axis thickness should be 1");
+				deepEqual(chart3._makitChart.getProperty("secondaryaxis.values.color"), "gray", "_makitChart secondary value axis color should be gray");
+				
+				var secondaryValueAxis = chart3.getSecondaryValueAxis();
+				secondaryValueAxis.setMin(10);
+				secondaryValueAxis.setMax(1000000);
+				secondaryValueAxis.setShowLabel(false);
+				secondaryValueAxis.setShowPrimaryLine(true);
+				secondaryValueAxis.setShowGrid(false);
+				secondaryValueAxis.setThickness(2);
+				secondaryValueAxis.setColor("green");
+				deepEqual(chart3._makitChart.getProperty("secondaryaxis.values.min"), 10, "_makitChart secondary value axis showlabel should be 10");
+				deepEqual(chart3._makitChart.getProperty("secondaryaxis.values.max"), 1000000, "_makitChart secondary value axis showlabel should be 1000000");
+				deepEqual(chart3._makitChart.getProperty("secondaryaxis.values.showlabel"), false, "_makitChart secondary value axis showlabel should be false");
+				deepEqual(chart3._makitChart.getProperty("secondaryaxis.values.showprimaryline"), true, "_makitChart secondary value axis showprimaryline should be true");
+				deepEqual(chart3._makitChart.getProperty("secondaryaxis.values.showgrid"), false, "_makitChart secondary value axis showgrid should be false");
+				deepEqual(chart3._makitChart.getProperty("secondaryaxis.values.thickness"), 2, "_makitChart secondary value axis thickness should be 1");
+				deepEqual(chart3._makitChart.getProperty("secondaryaxis.values.color"), "green", "_makitChart secondary value axis color should be green");
+				
+			});
+			
+			test("Chart category axis testing", function() {
+				var chart3 = sap.ui.getCore().byId("chart3");
+				deepEqual(chart3._makitChart.getProperty("category.sortorder"), "none", "_makitChart category axis sortorder should be none");
+				deepEqual(chart3._makitChart.getProperty("category.displayLastLabel"), false, "_makitChart category axis displaylastlabel should be false");
+				deepEqual(chart3._makitChart.getProperty("categories.display"), "true", "_makitChart category axis displayall should be true");
+				deepEqual(chart3._makitChart.getProperty("category.showlabel"), true, "_makitChart category axis showlabel should be true");
+				deepEqual(chart3._makitChart.getProperty("category.showprimaryline"), true, "_makitChart category axis showprimaryline should be true");
+				deepEqual(chart3._makitChart.getProperty("category.showgrid"), false, "_makitChart category axis showgrid should be false");
+				deepEqual(chart3._makitChart.getProperty("category.thickness"), 1.5, "_makitChart category axis thickness should be 1.5");
+				deepEqual(chart3._makitChart.getProperty("category.color"), "gray", "_makitChart category axis color should be gray");
+				
+				//Switch them
+				var categoryAxis = chart3.getCategoryAxis();
+				categoryAxis.setSortOrder(sap.makit.SortOrder.Descending);
+				categoryAxis.setDisplayLastLabel(true);
+				categoryAxis.setDisplayAll(false);
+				categoryAxis.setShowLabel(false);
+				categoryAxis.setShowPrimaryLine(false);
+				categoryAxis.setShowGrid(true);
+				categoryAxis.setThickness(2);
+				categoryAxis.setColor("green");
+				deepEqual(chart3._makitChart.getProperty("category.sortorder"), "descending", "_makitChart category axis sortorder should be descending");
+				deepEqual(chart3._makitChart.getProperty("category.displayLastLabel"), true, "_makitChart category axis displaylastlabel should be true");
+				deepEqual(chart3._makitChart.getProperty("categories.display"), "", "_makitChart category axis displayall should be empty");
+				deepEqual(chart3._makitChart.getProperty("category.showlabel"), false, "_makitChart category axis showlabel should be false");
+				deepEqual(chart3._makitChart.getProperty("category.showprimaryline"), false, "_makitChart category axis showprimaryline should be false");
+				deepEqual(chart3._makitChart.getProperty("category.showgrid"), true, "_makitChart category axis showgrid should be true");
+				deepEqual(chart3._makitChart.getProperty("category.thickness"), 2, "_makitChart category axis thickness should be 1");
+				deepEqual(chart3._makitChart.getProperty("category.color"), "green", "_makitChart category axis color should be green");
+			});
+		</script>
+	
+	</head>
+	<body id="body" class="sapUiBody">
+	<h1 id="qunit-header">qUnit Page for sap.makit.CombinationChart</h1>
+    <h2 id="qunit-banner"></h2>
+    <h2 id="qunit-userAgent"></h2>
+    <ol id="qunit-tests"></ol>
+    <div id="content1" style="width:100%; height: 500px;"></div>
+    <div id="content2" style="width:100%; height: 500px;"></div>
+    <div id="content3" style="width:100%; height: 500px;"></div>
+    <div id="content4" style="width:100%; height: 500px;"></div>
+	</body>
+
+</html>

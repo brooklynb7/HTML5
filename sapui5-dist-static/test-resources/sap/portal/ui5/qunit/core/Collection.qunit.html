@@ -1,0 +1,134 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset='UTF-8'/>
+    <title>Qunit</title>
+
+    <!-- UI5 Bootstrap -->
+    <script id='sap-ui-bootstrap'
+            type='text/javascript'
+            src='../../../../../../resources/sap-ui-core.js'
+            data-sap-ui-theme='sap_goldreflection'
+            data-sap-ui-libs='sap.ui.commons,sap.portal.ui5'></script>
+
+    <!-- QUnit libraries -->
+    <link rel='stylesheet'
+          href='../../../../../../resources/sap/ui/thirdparty/qunit.css'
+          type='text/css' media='screen'/>
+    <script src='../../../../../../resources/sap/ui/thirdparty/qunit.js'></script>
+    <script type='text/javascript' src='/jsunit-testrunner/qunit/qunit-jsunit.js'></script>
+    <script type='text/javascript' src='../../../../../../resources/sap/ui/qunit/QUnitUtils.js'></script>
+    <script>
+
+        module('Collection functionality test - sap.portal.ui5.core.Collection');
+
+        test('add item', function() {
+
+        	var collection = new sap.portal.ui5.core.Collection();
+            equal(collection.getLength(), 0, 'Collection length is 0 by default');
+
+            var item = { a: 1, b: 2 };
+            collection.addItem(item);
+            equal(collection.getLength(), 1, 'Collection length is 1 after adding item');
+
+            equal(collection.getItemAtIndex(0), item, 'item is exist in the collection');
+        });
+
+		test('remove item', function() {
+
+        	var collection = new sap.portal.ui5.core.Collection();
+
+            var item = { a: 1, b: 2 };
+            collection.addItem(item);
+            equal(collection.getLength(), 1, 'Collection length is 1 after adding item');
+            equal(collection.getItemAtIndex(0), item, 'item is exist in the collection');
+
+            collection.removeItem(item);
+            equal(collection.getLength(), 0, 'Collection length is 0 after removing item');
+            equal(collection.getItemAtIndex(0), undefined, 'item is not exist in the collection');
+        });
+
+		test('add items', function() {
+
+        	var collection = new sap.portal.ui5.core.Collection();
+
+        	var items = [{a: 1, b: 2}, {c: 1, d: 2}];
+            collection.addItems(items, 0);
+            equal(collection.getLength(), 2, 'Collection length is 2 after adding two items');
+
+            equal(collection.getItemAtIndex(0), items[0], 'item is exist in the collection');
+            equal(collection.getItemAtIndex(1), items[1], 'item is exist in the collection');
+        });
+
+		test('remove items', function() {
+
+        	var collection = new sap.portal.ui5.core.Collection();
+
+        	var items = [{a: 1, b: 2}, {c: 1, d: 2}];
+            collection.addItems(items, 0);
+
+            collection.removeItems(items);
+            equal(collection.getLength(), 0, 'Collection length is 0 after removing items');
+            equal(collection.getItemAtIndex(0), undefined, 'item is not exist in the collection');
+            equal(collection.getItemAtIndex(1), undefined, 'item is not exist in the collection');
+        });
+
+        test('autodestroy items', function() {
+
+            var items = [
+                new sap.portal.ui5.core.Object
+            ];
+
+            var collection = new sap.portal.ui5.core.Collection({
+                autoDestroyItems: false,
+                items: items
+            });
+
+            var destroyCalled = false;
+
+            items[0].attachDestroy({}, function() {
+
+                destroyCalled = true;
+
+            });
+
+            equal(destroyCalled, false);
+            collection.destroy();
+            equal(destroyCalled, false);
+
+        });
+
+        test('autodestroy items', function() {
+
+            var items = [
+                new sap.portal.ui5.core.Object
+            ];
+
+            var collection = new sap.portal.ui5.core.Collection({
+                autoDestroyItems: true,
+                items: items
+            });
+
+            var destroyCalled = false;
+
+            items[0].attachDestroy({}, function() {
+
+                destroyCalled = true;
+
+            });
+
+            equal(destroyCalled, false);
+            collection.destroy();
+            equal(destroyCalled, true);
+
+        });
+
+
+    </script>
+</head>
+
+<body class='sapUiBody'>
+	<div id='qunit'></div>
+	<div id='uiArea0'></div>
+</body>
+</html>

@@ -1,0 +1,173 @@
+<!DOCTYPE HTML>
+<!-- 
+  Tested module: jquery.sap.resources.js
+  Author: Frank Weigel, Martin Schaus 
+-->
+<html>
+	<head>
+		<title>Test Page for ResourceBunde class</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<script id="sap-ui-bootstrap" 
+			type="text/javascript"
+			src="../../../../../resources/sap-ui-core.js"
+			data-sap-ui-theme="sap_platinum"
+			data-sap-ui-noConflict="true">
+		</script>
+		<link rel="stylesheet" href="../../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
+		<script type="text/javascript" src="../../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+		<script type="text/javascript" src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
+		<script type="text/javascript" src="../../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
+		<script language="javascript">
+		
+			test("jQuery.sap.resource code available", function() {
+				ok(jQuery.sap.resources, "jQuery.sap.resources must exist");
+				equal(typeof jQuery.sap.resources, "function", "jQuery.sap.resources must be a function");
+			});
+			 
+			module(".properties files");
+			
+			test("access and parsing", function() {
+				var oProps = jQuery.sap.resources({url : "testdata/resources/bundle.properties", locale : "zh_HK"});
+				var sValue = oProps.getText("transkey5");
+				equal(sValue, "Test Text 1 zh_HK", "transkey5 accessed");
+				sValue = oProps.getText("transkey4");
+				equal(sValue, "Test Text 1 zh_TW", "transkey4 accessed");
+				sValue = oProps.getText("transkey2");
+				equal(sValue, "Test Text 2 en", "transkey2 accessed");
+				sValue = oProps.getText("transkey1");
+				equal(sValue, "Test Text 1 Fallback", "transkey1 accessed");
+				
+				sValue = oProps.getText("emptykey");
+				equal(sValue, "", "emptykey accessed");
+				sValue = oProps.getText("nonexistingkey");
+				equal(sValue, "nonexistingkey", "nonexistingkey accessed");
+			});
+
+			test("fallback for invalid locales", function() {
+				var oProps = jQuery.sap.resources({url : "testdata/resources/bundle.properties", locale : "0815"});
+				sValue = oProps.getText("transkey1");
+				equal(sValue, "Test Text 1 Fallback", "transkey1 accessed");
+				var oProps = jQuery.sap.resources({url : "testdata/resources/bundle.properties", locale : ""});
+				sValue = oProps.getText("transkey1");
+				equal(sValue, "Test Text 1 Fallback", "transkey1 accessed");
+				var oProps = jQuery.sap.resources({url : "testdata/resources/bundle.properties", locale : undefined});
+				sValue = oProps.getText("transkey1");
+				equal(sValue, "Test Text 1 Fallback", "transkey1 accessed");
+			});
+
+			test("origin info", function() {
+				var oProps = jQuery.sap.resources({url : "testdata/resources/bundle.properties", locale : "en", includeInfo : true});
+				var sValue = oProps.getText("transkey2"),
+					oInfo = sValue.originInfo;
+				equal(oInfo.source, "Resource Bundle", "Origin Info: source");
+				equal(oInfo.url, "testdata/resources/bundle.properties", "Origin Info: url");
+				equal(oInfo.locale, "en", "Origin Info: locale");
+				equal(oInfo.key, "transkey2", "Origin Info: key");
+			});
+
+			module(".hdbtextbundle files");
+
+			/*test("access and parsing", function() {
+				var oProps = jQuery.sap.resources({url : "testdata/resources/bundle.hdbtextbundle", locale : "zh_HK"});
+				var sValue = oProps.getText("transkey5");
+				equal(sValue, "Test Text 1 zh_HK", "transkey5 accessed");
+				sValue = oProps.getText("transkey4");
+				equal(sValue, "Test Text 1 zh_TW", "transkey4 accessed");
+				sValue = oProps.getText("transkey2");
+				equal(sValue, "Test Text 2 en", "transkey2 accessed");
+				sValue = oProps.getText("transkey1");
+				equal(sValue, "Test Text 1 Fallback", "transkey1 accessed");
+			});*/
+
+			test("fallback for invalid locales", function() {
+				var oProps = jQuery.sap.resources({url : "testdata/resources/bundle.hdbtextbundle", locale : "0815"});
+				sValue = oProps.getText("transkey1");
+				equal(sValue, "Test Text 1 Fallback", "transkey1 accessed");
+				var oProps = jQuery.sap.resources({url : "testdata/resources/bundle.hdbtextbundle", locale : ""});
+				sValue = oProps.getText("transkey1");
+				equal(sValue, "Test Text 1 Fallback", "transkey1 accessed");
+				var oProps = jQuery.sap.resources({url : "testdata/resources/bundle.hdbtextbundle", locale : undefined});
+				sValue = oProps.getText("transkey1");
+				equal(sValue, "Test Text 1 Fallback", "transkey1 accessed");
+			});
+
+			test("origin info", function() {
+				var oProps = jQuery.sap.resources({url : "testdata/resources/bundle.hdbtextbundle", locale : "en", includeInfo : true});
+				var sValue = oProps.getText("transkey2"),
+					oInfo = sValue.originInfo;
+				equal(oInfo.source, "Resource Bundle", "Origin Info: source");
+				equal(oInfo.url, "testdata/resources/bundle.hdbtextbundle", "Origin Info: url");
+				equal(oInfo.locale, "en", "Origin Info: locale");
+				equal(oInfo.key, "transkey2", "Origin Info: key");
+			});
+
+			module("negative tests");
+
+			test("type with query params and/or hash", 3, function() {
+				try {
+					jQuery.sap.resources({ url : "testdata/resources/bundle.properties?version=2"});
+					ok(true, "no exception must occur");
+				} catch (e) {
+					ok(false, "no exception must occur");
+				}
+				try {
+					jQuery.sap.resources({ url : "testdata/resources/bundle.properties#2"});
+					ok(true, "no exception must occur");
+				} catch (e) {
+					ok(false, "no exception must occur");
+				}
+				try {
+					jQuery.sap.resources({ url : "testdata/resources/bundle.properties?version=2#2"});
+					ok(true, "no exception must occur");
+				} catch (e) {
+					ok(false, "no exception must occur");
+				}
+			});
+			
+			test("invalid file types", function() {
+				raises(function() {
+					jQuery.sap.resources({ url : "testdata/resources/bundle"});
+				}, "URL without file extension should raise an exception");
+			});
+
+			test("unsupported type", function() {
+				raises(function() {
+					jQuery.sap.resources({ url : "testdata/resources/bundle.json"});
+				}, "URL with invalid file extension should raise an exception");
+			});
+
+			test("supported type after query", function() {
+				raises(function() {
+					jQuery.sap.resources({ url : "testdata/resources/bundle.json?.properties"});
+				}, "URL with invalid file extension should raise an exception");
+			});
+
+			test("supported type after hash", function() {
+				raises(function() {
+					jQuery.sap.resources({ url : "testdata/resources/bundle.json#.properties"});
+				}, "URL with invalid file extension should raise an exception");
+			});
+
+			test("supported type after query and hash", function() {
+				raises(function() {
+					jQuery.sap.resources({ url : "testdata/resources/bundle.json?test=true#.properties"});
+				}, "URL with invalid file extension should raise an exception");
+			});
+
+			test("unexpected position of known type", function() {
+				raises(function() {
+					jQuery.sap.resources({ url : "testdata/resources.properties/bundle"});
+				}, "URL with misplaced file extension should raise an exception");
+			});
+			
+		</script>
+  </head>
+  <body>		
+		<h1 id="qunit-header">QUnit tests: sap.ui.core.Core</h1>
+		<h2 id="qunit-banner"></h2>
+	 	<h2 id="qunit-userAgent"></h2>
+		<div id="qunit-testrunner-toolbar"></div>
+		<ol id="qunit-tests"></ol>
+		<br>
+	</body>
+</html>

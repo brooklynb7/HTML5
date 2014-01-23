@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>BusinessCard - sap.suite.ui.commons</title>
+
+    <!-- UI5 Bootstrap -->
+    <script src="../../../../../resources/sap-ui-core.js"
+            type="text/javascript"
+            id="sap-ui-bootstrap"
+            data-sap-ui-libs="sap.ui.commons,sap.suite.ui.commons,sap.ui.ux3"
+            data-sap-ui-theme="sap_goldreflection"></script>
+
+<style>
+    .suiteUiCard .sapUiMltPadRight {
+        padding-bottom: 0;
+    }
+</style>
+
+<script type="text/javascript">    
+
+	var oContent = new sap.ui.commons.layout.MatrixLayout({widths:["30px", "100px"]});
+	oContent.createRow(new sap.ui.commons.TextView({text:"Phone:"}), new sap.ui.commons.TextView({text:"+41 (635) 457-2875"}));
+	
+    var oBadge = new sap.suite.ui.commons.BusinessCard({
+        id: "badge1",
+        firstTitle: new sap.ui.commons.Link({id:"badge1-name-link",text:"White, Helen",tooltip:"White, Helen",href:"http://www.sap.com", target:"_blank"}),
+        iconPath: "demokit/images/persons/female_IngallsB.jpg",
+        secondTitle: "Sales Contact at Customer Side",
+        imageTooltip:"White, Helen",
+        width: "281px"
+    });
+	
+    oBadge.placeAt("sample1");
+    oBadge.setContent(oContent);
+   
+    var oVCard = new sap.suite.ui.commons.BusinessCard({
+        id: "vcard1",
+        firstTitle:  new sap.ui.commons.Label({id:"vcard1-name-label",text:"Doe, John",tooltip:"Doe, John"}),
+        iconPath: "demokit/images/persons/male_MillerM.jpg",
+        secondTitle: "Sales Contact at Customer Side",
+        imageTooltip:"Doe, John",
+        width: "424px"
+    });
+	
+    oVCard.placeAt("sample2");
+	var oContentCard = new sap.ui.commons.layout.MatrixLayout({widths:["20px", "100px"]});
+	var oCell = new sap.ui.commons.layout.MatrixLayoutCell({hAlign:sap.ui.commons.layout.HAlign.Center});
+	oCell.addContent(new sap.ui.commons.TextView({text:"Phone:"}));
+	oContentCard.createRow(oCell, new sap.ui.commons.TextView({text:"+41 (635) 457-2877"}));
+	
+	oCell = new sap.ui.commons.layout.MatrixLayoutCell({hAlign:sap.ui.commons.layout.HAlign.Center});
+	oCell.addContent(new sap.ui.commons.TextView({text:"E-Mail:"}));
+	oContentCard.createRow(oCell, new sap.ui.commons.TextView({text:"john.doe@company.com"}));
+	
+	oContentCard.createRow(new sap.ui.commons.TextView({text:"Address:"}), new sap.ui.commons.TextView({text:"Diermar-Hopp Allee 16"}));
+    oVCard.setContent(oContentCard);
+    
+    </script>
+</head>
+
+<body class="sapUiBody">
+    <h1>Badge view</h1>
+    <br/>
+	<div id="sample1"></div>
+	
+	<h1>VCard view</h1>
+	<br/>
+	<div id="sample2"></div>
+</body>
+</html>

@@ -1,0 +1,199 @@
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<script id="sap-ui-bootstrap" 
+		type="text/javascript"
+		src="../../../../../resources/sap-ui-core.js"
+		data-sap-ui-theme="sap_goldreflection"
+		data-sap-ui-language="en-US"
+		data-sap-ui-noConflict="true"
+		data-sap-ui-libs="sap.ui.commons,sap.uiext.inbox">
+	</script>
+		<link rel="stylesheet" href="../../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
+		<script type="text/javascript" src="../../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+		<script type="text/javascript" src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
+		<script type="text/javascript" src="../../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
+		<script>
+			// redirect any resource loading for "sap.uiext.inbox.qunit.mockServer" to the local folder "mockServer/" 
+			jQuery.sap.registerModulePath("sap.uiext.inbox.qunit.mockServer", "mockServer/");
+			
+			// now load and activate the mock server
+			jQuery.sap.require("sap.uiext.inbox.qunit.mockServer.InboxMockServerQUnit");
+
+			module("Load");
+
+			test("InboxCreationOk",function() {
+				sap.ui.getCore().applyChanges(); 
+				equals(false, (jQuery.sap.byId("inbox") === undefined), "Checking if the Inbox Control is created and is not undefined.");
+				equals(false, (jQuery.sap.byId("inbox") === null), "Checking if the Inbox Control is created and is not null.");
+				
+			});
+			
+			asyncTest("SwitchToStreamView", function() {
+				qutils.triggerMouseEvent("inbox--rrViewSelectionButton", "click");
+				sap.ui.getCore().applyChanges(); 
+				ok(jQuery.sap.byId("inbox--tasksRowRepeater").get(0), "RowRepeater displayed in Stream View");
+				ok(jQuery.sap.byId("inbox--tasksRowRepeater").find(".sapUiRrRow"), "Rows displayed in RowRepeater displayed in Stream View");
+				var delayedCall = function() {
+					sap.ui.getCore().applyChanges(); 
+					equal(jQuery.sap.byId("inbox--tasksRowRepeater").find(".sapUiRrRow").size(),"5", "5 Rows displayed in RowRepeater displayed in Stream View");
+					start();
+				};
+				setTimeout(delayedCall, 0); 
+			});
+			
+			module("Comments");
+			
+			asyncTest("CheckIfCommentsButtonDisplay", function() {
+				ok(jQuery.sap.byId("inbox--tasksRowRepeater-row_0").find("#inbox--commentsSegBtn-inbox--tasksRowRepeater-0"), "Comments button displayed when SupportsComments is true");
+				ok(jQuery.sap.byId("inbox--tasksRowRepeater-row_1").find("#inbox--commentsSegBtn-inbox--tasksRowRepeater-1"), "Comments button not displayed when SupportsComments is false");
+				ok(jQuery.sap.byId("inbox--tasksRowRepeater-row_2").find("#inbox--commentsSegBtn-inbox--tasksRowRepeater-2"), "Comments button not displayed when SupportsComments is not available");
+				start();
+			});
+			
+			asyncTest("RetrieveComments", function() {
+				qutils.triggerMouseEvent("inbox--commentsSegBtn-inbox--tasksRowRepeater-0", "click");
+				sap.ui.getCore().applyChanges();  
+				var delayedCall = function() {
+					//Whole Comment section available?
+					ok(jQuery.sap.byId("inbox--comments-0").children("section").get(0), "Comment section found for task");
+					
+					// number of comments
+					equal(jQuery.sap.byId("inbox--comments-0").find(".sapuiextInboxTaskComments").text().slice(0,1), "1", "Text for Number of comments is correct");
+					
+					//Testing Comment Feeder section - START
+					//Comment Feeder seciontion visible?					
+					ok(jQuery.sap.byId("inbox--comments-0").find("#inbox--comments-0-InboxTaskCommentFeeder").get(0), "Comment feeder for new comments is visible for the task");
+					//No media link resource implementation yet. So checking for default image visibility
+					equal(sap.ui.getCore().getControl("inbox--comments-0-InboxTaskCommentFeeder").getThumbnailSrc(), "", "comment feeder thumbnail property is empty");
+					//Testing Comment Feeder section - END
+					
+					
+					//Check for attributes displayed in comments - START 
+					//Feeder Image
+					//No media link resource implementation yet. So checking for default image visibility
+					equal(jQuery.sap.byId("__comment0-inbox--comments-0-0-thumb").attr("src"), "../../../../../resources/sap/uiext/inbox/themes/" + sap.ui.getCore().getConfiguration().getTheme() + "/img/comments/person_placeholder_48.png", "Default Sender image rendered for comment");
+					equal(jQuery.sap.byId("__comment0-inbox--comments-0-0-thumb").attr("alt"), "Kumar, Abhishek", "Correct Alt for Sender Image for Comment");
+					
+					// date/time 
+					var sTimestamp = sap.ui.core.format.DateFormat.getDateTimeInstance({style : "full"}).format(new Date(1371821677347));
+					equal(jQuery.sap.byId("__comment0-inbox--comments-0-0").children(".sapuiextInboxCommentChunkByline").text(), sTimestamp, "Timestamp rendered for comment");
+					
+					//Sender Text
+					equal(jQuery.sap.byId("__comment0-inbox--comments-0-0").find(".sapuiextInboxCommentSenderText").text(), "Kumar, Abhishek", "Correct sender text rendered for comment");
+					
+					//Comment Text		
+					var iSenderTextLength = jQuery.sap.byId("__comment0-inbox--comments-0-0").find(".sapuiextInboxCommentSenderText").text().length;
+					equal(jQuery.sap.byId("__comment0-inbox--comments-0-0").children(".sapuiextInboxCommentText").text().slice(iSenderTextLength +1), "Super idea", "Proper Comment Text rendered for comment");
+
+					//Check for attributes displayed in comments - END
+					
+					start();
+				};
+				setTimeout(delayedCall, 0); 
+			});
+			
+			asyncTest("AddComments", function() {
+				jQuery.sap.domById("inbox--comments-0-InboxTaskCommentFeeder-input").focus();
+				jQuery.sap.byId("inbox--comments-0-InboxTaskCommentFeeder-input").text("Okay done");
+				qutils.triggerKeyup("inbox--comments-0-InboxTaskCommentFeeder-input", jQuery.sap.KeyCodes.T, false, false, false);
+				qutils.triggerMouseEvent("inbox--comments-0-InboxTaskCommentFeeder-send", "click");
+				sap.ui.getCore().applyChanges();
+				
+				var delayedCall = function() {
+					var aComments = sap.ui.getCore().getControl("inbox--comments-0").getComments();
+					ok(aComments, "Comments visible after adding a comment");
+					equal(aComments.length,"2", "Correct number of Comments - (2) - visible after adding a comment");
+					
+					
+					//Check attributes of last added comment via API
+					var iLastCommentAdded = aComments.length-1;
+					equal(aComments[iLastCommentAdded].getText(), "Okay done","Comment Text of the added comment");
+					equal(aComments[iLastCommentAdded].getSender(), "Kumar, Abhishek","Sender Name of the added comment");
+					//No media link resource implementation yet. So checking for default image visibility
+					equal(aComments[iLastCommentAdded].getThumbnailSrc(), "","Thunmbnail source of the added comment");
+					
+					
+					// number of comments
+					equal(jQuery.sap.byId("inbox--comments-0").find(".sapuiextInboxTaskComments").text().slice(0,1), "2", "Text for Number of comments is correct");
+					
+					//Testing Comment Feeder section - START
+					//Comment Feeder seciontion visible?					
+					ok(jQuery.sap.byId("inbox--comments-0").find("#inbox--comments-0-InboxTaskCommentFeeder").get(0), "Comment feeder for new comments is visible for the task");
+					//No media link resource implementation yet. So checking for default image visibility
+					equal(sap.ui.getCore().getControl("inbox--comments-0-InboxTaskCommentFeeder").getThumbnailSrc(), "", "comment feeder thumbnail property is empty");
+					//Testing Comment Feeder section - END
+					
+					//Check for attributes displayed in newly added comments (DOM)- START 
+					//Feeder Image
+					//No media link resource implementation yet. So checking for default image visibility
+					equal(jQuery.sap.byId("inbox--comments-0-new-1-thumb").attr("src"), "../../../../../resources/sap/uiext/inbox/themes/" + sap.ui.getCore().getConfiguration().getTheme() + "/img/comments/person_placeholder_48.png", "Default Sender image rendered for comment");
+					equal(jQuery.sap.byId("inbox--comments-0-new-1-thumb").attr("alt"), "Kumar, Abhishek", "Correct Alt for Sender Image for Comment");
+					
+					// date/time 
+					//TODO: Timestamp is currently not bound from the addComment response. So the timestamp might change. Commenting out and needs to be added when this is fixes 
+					var sTimestamp = sap.ui.core.format.DateFormat.getDateTimeInstance({style : "full"}).format(new Date(1372261883107));
+					equal(jQuery.sap.byId("inbox--comments-0-new-1").children(".sapuiextInboxCommentChunkByline").text(), sTimestamp, "Timestamp rendered for newly added comment");
+					
+					//Sender Text
+					equal(jQuery.sap.byId("inbox--comments-0-new-1").find(".sapuiextInboxCommentSenderText").text(), "Kumar, Abhishek", "Correct sender text rendered for comment");
+					
+					//Comment Text		
+					var iSenderTextLength = jQuery.sap.byId("inbox--comments-0-new-1").find(".sapuiextInboxCommentSenderText").text().length;
+					equal(jQuery.sap.byId("inbox--comments-0-new-1").children(".sapuiextInboxCommentText").text().slice(iSenderTextLength +1), "Okay done", "Proper Comment Text rendered for comment");
+					
+					//proper message displayed
+					equal(jQuery.sap.byId("inbox--msbBarTextView").text(), "Comment added successfully", "Correct message text rendered for comment");
+					
+					start();
+				};
+				setTimeout(delayedCall, 0);
+			});
+			
+			asyncTest("LongComment", function() {
+				// Check if long comment(>500 characters) is being trimmed
+				jQuery.sap.domById("inbox--comments-0-InboxTaskCommentFeeder-input").focus();
+				jQuery.sap.byId("inbox--comments-0-InboxTaskCommentFeeder-input").empty();
+				// Set long comment
+				jQuery.sap.byId("inbox--comments-0-InboxTaskCommentFeeder-input").text("Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo ");
+				qutils.triggerKeyup("inbox--comments-0-InboxTaskCommentFeeder-input", jQuery.sap.KeyCodes.T, false, false, false);
+				qutils.triggerMouseEvent("inbox--comments-0-InboxTaskCommentFeeder-send", "click");
+				sap.ui.getCore().applyChanges();
+				
+				var delayedCall = function() {
+				var vComments = sap.ui.getCore().getControl("inbox--comments-0").getComments();
+				var index=vComments.length-1;
+				equal(vComments[index].getText(), "Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negredo Negr","Comment Text of the added comment");
+				
+				start();
+			};
+			setTimeout(delayedCall, 0);
+			});
+			
+			asyncTest("HideComments", function() {
+				qutils.triggerMouseEvent("inbox--commentsSegBtn-inbox--tasksRowRepeater-0", "click");
+				sap.ui.getCore().applyChanges();  
+				var delayedCall = function() {
+					
+					//Comment section not available?
+					ok(!jQuery.sap.byId("inbox--comments-0").children("section").get(0), "Comment section not found for task");								
+					start();
+				};
+				setTimeout(delayedCall, 0);
+			});
+
+		</script>
+	</head>
+	<body>
+		<h1 id="qunit-header"><title>qUnit Page for Inbox Comments</title></h1>
+		<h2 id="qunit-banner"></h2>
+		<h2 id="qunit-userAgent"></h2>
+		<ol id="qunit-tests"></ol>
+		<div id="qunit-fixture">test markup, will be hidden</div>
+		<div id="canvas" style="height:300px; width:300px"></div>
+		<br>
+		<div id="uiArea1" style="width: 80%;"></div>
+	</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html data-sap-ui-dk-category="Controls/ComplexControls" data-sap-ui-dk-controls="sap.portal.ui5.Example">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Example - SAPUI5 Demo Kit</title>
+<link rel="stylesheet" type="text/css" href="../../../../../theme/default.css" />
+<script id="sap-ui-bootstrap" type="text/javascript"
+	src="../../../../../resources/sap-ui-core.js"
+	data-sap-ui-theme="sap_goldreflection"
+	data-sap-ui-libs="sap.ui.commons,sap.ui.demokit,sap.portal.ui5">
+
+</script>
+<script type="text/javascript" src="../../../../../js/utils.js"></script>
+
+<script id='ExampleScript' type="text/javascript">
+	// Create an Example Control
+	var oExample = new sap.portal.ui5.Example({text: "Hello World"});
+
+	// attach it to some element in the page
+	oExample.placeAt("sample1");
+</script>
+
+</head>
+
+<body class="sapUiDemokitBody" role="application">
+	<h1 color="Yellow" icon="images/ctrls/example-icon.png">Example</h1>
+
+	<h2>Introduction</h2>
+	<p>
+		The Example is a dummy control to showcase the Demokit pages
+	</p>
+
+	<h2>Examples</h2>
+
+	<h3>Example</h3>
+	<p>Basic Example:</p>
+	<div code-sample="sample1" script="ExampleScript"></div>
+
+</body>
+</html>

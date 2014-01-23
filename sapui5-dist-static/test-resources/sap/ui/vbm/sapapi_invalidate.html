@@ -1,0 +1,101 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <link href="style/sapvbistyle.css" type="text/css" rel="stylesheet" />
+
+            <script src="../../../../resources/sap-ui-core.js"
+                id="Script1"
+                data-sap-ui-libs="sap.ui.vbm"
+                data-sap-ui-theme="sap_goldreflection" >
+            </script>
+
+            <script >
+                var app = {
+	                    "SAPVB": {
+		                    "version": "2.0",
+		                    "xmlns:VB": "VB",
+		                    "Windows": {
+			                    "Set": {
+				                    "Window": {
+					                    "id": "W1",
+					                    "type": "geo",
+					                    "refScene": "S1",
+				                    }
+			                    }
+		                    },
+		                    "Scenes": {
+			                    "Set": {
+				                    "SceneGeo": {
+					                    "id": "S1",
+					                    "refMapLayerStack": "OSM"
+				                    }
+			                    }
+		                    },
+		                    "MapProviders": {
+			                    "Set": {
+				                    "MapProvider":  {
+						                    "name": "OPENSTREETMAP",
+						                    "tileX": "256",
+						                    "tileY": "256",
+						                    "maxLOD": "19",
+						                    "Source": 
+                                      [
+							                    {
+								                    "id": "SV1",
+								                    "url": "http://a.tile.openstreetmap.org/{LOD}/{X}/{Y}.png"
+							                    }
+						                    ]
+					                    }
+                                }
+		                    },
+		                    "MapLayerStacks": {
+			                    "Set": {
+				                    "MapLayerStack": {
+					                    "name": "OSM",
+					                    "MapLayer": {
+						                    "name": "L1",
+						                    "refMapProvider": "OPENSTREETMAP",
+						                    "opacity": "1.0",
+						                    "colBkgnd": "RGB(255,255,255)"
+					                    }
+				                    }
+			                    }
+		                    }
+	                    }
+                    };
+            </script>
+   			<script>
+   			  	// creation of visual business...........................//
+			        sap.ui.localResources("vbitestapp");
+   			  		
+                    //var view = sap.ui.view({id:"idVBITestView1", viewName:"vbitestapp.VBITestView", type:sap.ui.core.mvc.ViewType.JS});
+                    var oVBI1 = new sap.ui.vbm.VBI('vbiWrap',{
+                    	width : 600,
+                    	height: 400,
+                        config : app
+                   	});
+                    oVBI1.placeAt("content");
+
+                    function onBtnInvalidate()
+                    {
+                        sap.ui.getCore().byId("vbiWrap").invalidate();
+                    };
+
+                    function onBtnSetConfig()
+                    {
+                        sap.ui.getCore().byId("vbiWrap").setConfig( app );
+                    };
+            </script>
+       </head>
+
+       <body class="sapUiBody" role="application">
+		<h1>Visual Business UI5: Simulating the UI5 Rendering Event</h1>
+        Pressing 'Invalidate Test' should not influence the map, the navigation control should still work. <br/>
+        Pressing 'Set Config Test' should reset the map to its initial state, the navigation control should work. <br/>
+        <br/><br/>
+        <div id="content"></div>
+		<button id="btn" onClick="onBtnInvalidate()">Invalidate Test</button>              
+        <button id="Button1" onClick="onBtnSetConfig()">SetConfig Test</button>              
+       </body>
+</html>

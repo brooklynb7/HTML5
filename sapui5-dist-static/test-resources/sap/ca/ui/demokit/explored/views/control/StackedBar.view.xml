@@ -1,0 +1,49 @@
+<core:View xmlns:core="sap.ui.core" xmlns="sap.m"
+	xmlns:charts="sap.ca.ui.charts" controllerName="sap.ca.ui.sample.views.control.StackedBar">
+	<Page id="page">
+		<content id="chartContainer">
+            <IconTabBar expandable="false" selectedKey="All">
+                <items>
+                    <IconTabFilter icon="sap-icon://horizontal-stacked-chart">
+                        <content>
+                            <charts:StackedHorizontalBarChart
+                                    id="sbChart" title="Test Stacked Horizontal Bar Chart" type="viz/stacked_bar" />
+                        </content>
+                    </IconTabFilter>
+                    <IconTabFilter icon="sap-icon://full-stacked-chart">
+                        <content>
+                            <charts:StackedHorizontalBarChart
+                                    id="sb100Chart" title="Test 100% Stacked Horizontal Bar Chart" type="viz/100_stacked_bar" />
+                        </content>
+                    </IconTabFilter>
+                    <IconTabFilter icon="sap-icon://horizontal-stacked-chart">
+                        <content>
+                            <charts:StackedHorizontalBarChart
+                                    id="dsbChart" title="Test Dual Stacked Horizontal Bar Chart" type="viz/dual_stacked_bar" secondAxisVisible = 'true'/>
+                        </content>
+                    </IconTabFilter>
+                    <IconTabFilter icon="sap-icon://full-stacked-chart">
+                        <content>
+                            <charts:StackedHorizontalBarChart
+                                    id="dsb100Chart" title="Test 100% Dual Stacked Horizontal Bar Chart" secondAxisVisible = 'true'
+                                    type="viz/100_dual_stacked_bar" />
+                        </content>
+                    </IconTabFilter>
+                </items>
+            </IconTabBar>
+
+
+
+
+
+		</content>
+		<footer>
+			<Bar>
+				<contentRight>
+					<CheckBox text="Legend" id="legendCheckbox" selected='true'
+						select='pressLegendButton' />
+				</contentRight>
+			</Bar>
+		</footer>
+	</Page>
+</core:View>

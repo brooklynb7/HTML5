@@ -1,0 +1,149 @@
+<!DOCTYPE HTML>
+<html data-sap-ui-dk-category="Controls/ValueHolders"
+	data-sap-ui-dk-controls="sap.suite.ui.commons.FeedTile">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="keywords" content="Control FeedTile" />
+<title>FeedTile - SAPUI5 Demo Kit</title>
+<link rel="stylesheet" type="text/css" href="../../../../../../theme/default.css"></link>
+<script id="sap-ui-bootstrap" type="text/javascript"
+	src="../../../../../../resources/sap-ui-core.js"
+	data-sap-ui-theme="sap_goldreflection"
+	data-sap-ui-libs="sap.ui.commons,sap.ui.demokit,sap.suite.ui.commons">
+    
+</script>
+<script type="text/javascript" src="../../../../../../js/utils.js"></script>
+
+<script id='FeedTileBasic' type="text/javascript">
+
+	// Create two test articles for the tile to cycle through and display. Normally these would be created from
+	// actual feeds.
+	var oTwoDaysAgo = new Date();
+	oTwoDaysAgo.setDate(oTwoDaysAgo.getDate() - 2);
+	var oFinanceArticle = new sap.suite.ui.commons.FeedItem({
+		title: "Help! My Sister Wants Me Off Her Credit Cards",
+		image: "images/balloons.jpg",
+		link: "http://finance.yahoo.com/news/help-sister-wants-off-her-110045864.html",
+		source: "Yahoo Finance", 
+		publicationDate: oTwoDaysAgo		
+	});
+	
+	var oHourAgo = new Date();
+	oHourAgo.setHours(oHourAgo.getHours() - 1);
+	var oStyleArticle = new sap.suite.ui.commons.FeedItem({
+		title: "How To Be In Style This Season",
+		image: "images/grass.jpg",
+		link: "http://www.zappos.com/",
+		source: "Zappos", 
+		publicationDate: oHourAgo		
+	});	
+	
+	var articles = new Array();
+	articles.push(oStyleArticle);
+	articles.push(oFinanceArticle);
+	
+	var oFeedTile = new sap.suite.ui.commons.FeedTile({
+		items: articles,
+	});
+	
+	// Create a container for the FeedTile with a specified height and width 
+	var oBorderLayout = new sap.ui.commons.layout.BorderLayout({width: "499px", height: "214px"});
+
+	// Add the FeedTile to the container
+	oBorderLayout.createArea(sap.ui.commons.layout.BorderLayoutAreaTypes.top, oFeedTile );
+	oBorderLayout.setAreaData(sap.ui.commons.layout.BorderLayoutAreaTypes.top, {
+		size : "100%",
+		visible : true
+	});
+   
+	// attach it to some element in the page
+	oBorderLayout.placeAt("basic");
+</script>
+
+<script id='FeedTileConfigurableProperties' type="text/javascript">
+
+	// Create two test articles for the tile to cycle through and display. Normally these would be created from
+	// actual feeds.
+	var oTwoDaysAgo = new Date();
+	oTwoDaysAgo.setDate(oTwoDaysAgo.getDate() - 2);
+	var oFinanceArticle = new sap.suite.ui.commons.FeedItem({
+		title: "America's best little beach towns",
+		image: "images/grass.jpg",
+		link: "http://www.cnn.com/2013/06/12/travel/best-beach-towns/index.html",
+		source: "CNN.com - Top Stories", 
+		publicationDate: oTwoDaysAgo		
+	});
+	
+	var oHourAgo = new Date();
+	oHourAgo.setHours(oHourAgo.getHours() - 1);
+	var oStyleArticle = new sap.suite.ui.commons.FeedItem({
+		title: "Natural DNA Cannot Be Patented, Supreme Court Rules",
+		image: "images/grass.jpg",		
+		link: "http://www.npr.org/blogs/thetwo-way/2013/06/13/191283148/natural-dna-cannot-be-patented-supreme-court-rules?ft=1&f=1001",
+		source: "NPR News", 
+		publicationDate: oHourAgo		
+	});	
+	
+	var articles = new Array();
+	articles.push(oStyleArticle);
+	articles.push(oFinanceArticle);
+	
+	var oFeedTile = new sap.suite.ui.commons.FeedTile({
+		items: articles,
+		defaultImages: ["images/grass.jpg"],
+		displayDuration: 8,
+		displayArticleImage: false
+	});
+
+	// Create a container for the FeedTile with a specified height and width 
+	var oBorderLayout = new sap.ui.commons.layout.BorderLayout({width: "499px", height: "214px"});
+
+	// Add the FeedTile to the container
+	oBorderLayout.createArea(sap.ui.commons.layout.BorderLayoutAreaTypes.top, oFeedTile );
+	oBorderLayout.setAreaData(sap.ui.commons.layout.BorderLayoutAreaTypes.top, {
+		size : "100%",
+		visible : true
+	});
+   
+	// attach it to some element in the page
+	oBorderLayout.placeAt("configurableProperties");
+</script>
+
+</head>
+
+<body class="sapUiDemokitBody" role="application">
+	<h1 color="Blue" icon="images/ctrls/feed_tile-icon.png">FeedTile</h1>
+
+	<h2>Introduction</h2>
+
+	<p>The FeedTile control provides a container for an aggregation of
+		FeedItems. The control will cycle through the list of FeedItems and
+		display the title, age of the article, source and the image associated
+		with the article. The control provides a press event that can be used
+		to navigate down to a second level. As an example, it may navigate to
+		a list of FeedItemHeaders where all, or a subset, of feed articles are
+		presented.
+	</p>
+
+	<h2>Examples</h2>
+	<h3>Basic Example</h3>
+	<p>This example shows a tile that displays two articles using the default display duration.</p>
+	<div code-sample="basic" script="FeedTileBasic"></div>
+
+	<h3>Configurable Properties Example</h3>
+	<p>This example shows a tile that displays two articles with several configurable properties explicitly set 
+	   to modify the default behavior of the tile.</p>
+	<div code-sample="configurableProperties" script="FeedTileConfigurableProperties"></div>
+
+	<h2>Keyboard Support</h2>
+	<p></p>
+	
+	<p>
+		See <a class="sapUiDemokitSrcLink"
+			href="../../../../../../docs/api/symbols/sap.suite.ui.commons.FeedTile.html">API
+			documentation</a>
+	</p>
+
+</body>
+</html>

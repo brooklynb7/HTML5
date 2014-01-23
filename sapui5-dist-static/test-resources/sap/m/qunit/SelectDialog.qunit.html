@@ -1,0 +1,89 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<title>qUnit Page for sap.m.SelectDialog</title>
+
+		<script id="sap-ui-bootstrap" 
+			type="text/javascript"
+			src="../../../../resources/sap-ui-core.js"
+			data-sap-ui-theme="sap_bluecrystal"
+			data-sap-ui-noConflict="true"
+			data-sap-ui-libs="sap.m">
+		</script>
+
+		<link rel="stylesheet" href="../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
+		<script type="text/javascript" src="../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+		<script type="text/javascript" src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
+		<script type="text/javascript" src="../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
+
+		<script language="javascript">
+
+		jQuery.sap.require("sap.ui.model.FilterOperator");
+
+		var oSelectDialog = new sap.m.SelectDialog("selectDialog", {
+				title: "my SelectDialog",
+				noDataText: "Sorry, no data is available",
+				growingThreshold: 50
+			});
+
+			var oHtml = new sap.ui.core.HTML({
+				content : '<div id="contentHolder"></div><h1 id="qunit-header">qUnit Page for sap.m.SelectDialog</h1><h2 id="qunit-banner"></h2><h2 id="qunit-userAgent"></h2><ol id="qunit-tests"></ol>',
+				afterRendering: function(){
+					oButton.placeAt("contentHolder");
+				}
+			});
+
+			var page = new sap.m.Page("myFirstPage", {
+				title : "Select Dialog Test",
+				content : oHtml
+			});
+
+			var oButton = new sap.m.Button({
+				text : "Open Dialog",
+				press : function() {
+					oSelectDialog.open();
+				}
+			});
+
+			var app = new sap.m.App("myApp", {
+				initPage: "myFirstPage"
+			});
+
+			app.addPage(page).placeAt("content");
+
+			module("Initial Check");
+
+			test("Initialization", function() {
+				ok(!jQuery.sap.domById("selectDialog"), "Dialog is not rendered before it's ever opened.");
+				strictEqual(oSelectDialog.getTitle(), "my SelectDialog", 'The title should be "my SelectDialog"');
+				strictEqual(oSelectDialog.getNoDataText(), "Sorry, no data is available", '"Sorry, no data is available" should be displayed when no data is there');
+				strictEqual(oSelectDialog.getGrowingThreshold(), 50, 'The growing threshold should be "50"');
+			});	
+
+			module("Open and Close");
+
+			test("Open Dialog", function(){
+				oButton.firePress();
+				ok(jQuery.sap.domById("selectDialog-dialog"), "Dialog is opened");
+				ok(jQuery.sap.domById("selectDialog-dialog-title"), "Dialog title should be rendered");
+				ok(jQuery.sap.domById("selectDialog-searchField"), "Dialog should have a searchfield");
+			});
+
+			asyncTest("Destroy Dialog", function(){
+				expect(1);
+				// simulate close
+				oSelectDialog._dialog.attachAfterClose(function() {
+					oSelectDialog.destroy();
+					strictEqual(oSelectDialog.$().length, 0, "SelectDialog is destroyed");
+					start();
+				})
+				oSelectDialog._dialog.close();
+			});
+		</script>
+	</head>
+	<body id="body" class="sapUiBody">
+		<div id="content"></div>
+		<div id="qunit-fixture"></div>
+	</body>
+</html>

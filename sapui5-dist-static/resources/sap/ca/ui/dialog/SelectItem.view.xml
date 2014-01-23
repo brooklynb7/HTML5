@@ -1,0 +1,16 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
+			controllerName="sap.ca.ui.dialog.SelectItem" xmlns:html="http://www.w3.org/1999/xhtml"
+			resourceBundleName="sap.ca.ui.i18n.i18n" resourceBundleAlias="ca_i18n">
+
+	<Dialog id="DLG_SLTITEM" title="{/title}" contentWidth="350px" contentHeight="434px" beforeOpen="onBeforeOpenDialog">
+		<content>
+			<List id="LST_ITEMS" mode="SingleSelectMaster" selectionChange="onSelectionChange" items="{/items}" showNoData="true">
+				<StandardListItem id="ITM_ITEM" title="{itemContent}">
+				</StandardListItem>
+			</List>
+		</content>
+		<endButton>
+			<Button id="BTN_CANCEL" press="onCancelDialog" text="{ca_i18n>dialog.cancel}"/>
+		</endButton>
+	</Dialog>
+</core:View>

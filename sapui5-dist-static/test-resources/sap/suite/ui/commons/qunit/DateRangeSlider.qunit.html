@@ -1,0 +1,554 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>DateRangeSlider - sap.suite.ui.commons</title>
+
+<!-- UI5 Bootstrap -->
+<script id="sap-ui-bootstrap" type="text/javascript"
+	src="../../../../../../resources/sap-ui-core.js"
+	data-sap-ui-theme="sap_goldreflection"
+	data-sap-ui-libs="sap.ui.commons,sap.suite.ui.commons"></script>
+
+<!-- QUnit libraries -->
+<link rel="stylesheet"
+	href="../../../../../../resources/sap/ui/thirdparty/qunit.css"
+	type="text/css" media="screen" />
+<script src="../../../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+<script type="text/javascript"
+	src="../../../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
+<script type="text/javascript"
+	src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
+
+
+<script>
+    qutils.delayTestStart();
+
+    var iIndex = 10;
+    function next() {
+
+        return iIndex++;
+    }
+
+    var sModuleSuffix = " - sap.suite.ui.commons.DateRangeSlider";
+
+    var sDrsId = "dateRangeSliderId";
+
+    var oDrs = new sap.suite.ui.commons.DateRangeSlider(sDrsId);
+    oDrs.placeAt("uiArea1");
+
+    /******************************************************************/
+    module("Rendering Tests" + sModuleSuffix);
+
+    test("TestRendering", function() {
+
+        notEqual(jQuery.sap.domById(sDrsId), null, "DateRangeSlider outer HTML Element should be rendered.");
+        notEqual(jQuery.sap.domById(sDrsId + "-dateRangeSliderInternal"), null, "DateRangeSliderInternal outer HTML Element should be rendered.");
+        notEqual(jQuery.sap.domById(sDrsId + "-dateRangeSliderInternal-bar"), null, "DateRangeSlider inner slider control should be rendered.");
+        notEqual(jQuery.sap.domById(sDrsId + "-dateRangeSliderInternal-grip"), null, "DateRangeSlider inner slider control grip should be rendered.");
+        notEqual(jQuery.sap.domById(sDrsId + "-dateRangeSliderInternal-grip2"), null, "DateRangeSlider inner slider control grip2 should be rendered.");
+        notEqual(jQuery.sap.domById(sDrsId + "-dateRangeSliderInternal-bubble"), null, "DateRangeSlider left bubble should be rendered.");
+        notEqual(jQuery.sap.domById(sDrsId + "-dateRangeSliderInternal-bubble2"), null, "DateRangeSlider right bubble should be rendered.");
+        notEqual(jQuery.sap.domById(sDrsId + "-dateRangeSliderInternal-bubbleTxt"), null, "DateRangeSlider left bubble text should be rendered.");
+        notEqual(jQuery.sap.domById(sDrsId + "-dateRangeSliderInternal-bubbleTxt2"), null, "DateRangeSlider right bubble text should be rendered.");
+    });
+
+    /******************************************************************/
+
+    var sDrsPropertiesId = sDrsId + next();
+    var oDrsProperties = new sap.suite.ui.commons.DateRangeSlider(sDrsPropertiesId);
+    oDrsProperties.placeAt("uiArea2");
+
+    module("Properties tests" + sModuleSuffix, {
+        setup : function() {
+
+        },
+        teardown : function() {
+
+        }
+    });
+
+    test("TestProperties", function() {
+
+        equal(oDrsProperties.getShowBubbles(), true, "ShowBubbles property is set to true by default.");
+        equal(oDrsProperties.getEnabled(), true, "Enabled property is set to true by default.");
+        equal(oDrsProperties.getEditable(), true, "Editable property is set to true by default.");
+        equal(oDrsProperties.getWidth(), "100%", "Width property is set to 100% by default.");
+        equal(oDrsProperties.getStepLabels(), false, "StepLabels property is set to false by default.");
+
+        var aLabels = [ "1", "2", "3" ];
+
+        oDrsProperties.setShowBubbles(false);
+        oDrsProperties.setEnabled(false);
+        oDrsProperties.setEditable(false);
+        oDrsProperties.setWidth("75%");
+        oDrsProperties.setStepLabels(true);
+        oDrsProperties.setTotalUnits(15);
+        oDrsProperties.setSmallStepWidth(5);
+        oDrsProperties.setLabels(aLabels);
+
+        ok(!oDrsProperties.getShowBubbles(), "ShowBubbles property is set to false");
+        ok(!oDrsProperties._oDateRangeSliderInternal.getShowBubbles(), "oDrsProperties's DateRangeSliderInternal Object's ShowBubbles property is set to false");
+        ok(!oDrsProperties.getEnabled(), "Enabled property is set to false");
+        ok(!oDrsProperties._oDateRangeSliderInternal.getEnabled(), "oDrsProperties's DateRangeSliderInternal Object's ShowBubbles property is set to false");
+        ok(!oDrsProperties.getEditable(), "Editable property is set to false");
+        ok(!oDrsProperties._oDateRangeSliderInternal.getEditable(), "oDrsProperties's DateRangeSliderInternal Object's Editable property is set to false");
+        equal(oDrsProperties.getWidth(), "75%", "Width property is should have set to 75%.");
+        equal(oDrsProperties._oDateRangeSliderInternal.getWidth(), "75%", "oDrsProperties's DateRangeSliderInternal Object's Width property is should have set to 75%.");
+        equal(oDrsProperties.getStepLabels(), true, "StepLabels property is set to true.");
+        equal(oDrsProperties._oDateRangeSliderInternal.getStepLabels(), true, "oDrsProperties's DateRangeSliderInternal Object's StepLabels property is set to true.");
+        equal(oDrsProperties.getTotalUnits(), 15, "Total Units property is set to 15.");
+        equal(oDrsProperties._oDateRangeSliderInternal.getTotalUnits(), 15, "oDrsProperties's DateRangeSliderInternal Object's Total Units property is set to 15.");
+        equal(oDrsProperties.getSmallStepWidth(), 5, "Small Step Width property is set to 5.");
+        equal(oDrsProperties._oDateRangeSliderInternal.getSmallStepWidth(), 5, "oDrsProperties's DateRangeSliderInternal Object's Small Step Width property is set to 5.");
+        deepEqual(oDrsProperties.getLabels(), aLabels, "Labels property is should have set to supplied string array.");
+        deepEqual(oDrsProperties._oDateRangeSliderInternal.getLabels(), aLabels,
+                "oDrsProperties's DateRangeSliderInternal Object's Labels property is should have set to supplied string array.");
+
+    });
+
+    test("TestMinAndMax", function() {
+
+        var dMin = oDrsProperties.getMin();
+        var dMax = oDrsProperties.getMax();
+
+        ok(dMin instanceof Date, "Min is instance of date.");
+        ok(dMax instanceof Date, "Max is instance of date.");
+
+        oDrsProperties.setMin(null);
+        oDrsProperties.setMax(null);
+
+        deepEqual(oDrsProperties.getMin(), dMin, "Min does not change to null.");
+        deepEqual(oDrsProperties.getMax(), dMax, "Max does not change to null.");
+
+        oDrsProperties.setMin(new Boolean(false));
+        oDrsProperties.setMax(new Boolean(false));
+
+        deepEqual(oDrsProperties.getMin(), dMin, "Min does not change to boolean.");
+        deepEqual(oDrsProperties.getMax(), dMax, "Max does not change to boolean.");
+
+        var dNewMin = new Date(dMin);
+        dNewMin.setMonth(dNewMin.getMonth() - 2);
+        var dNewMax = new Date(dMax);
+        dNewMax.setMonth(dNewMax.getMonth() + 2);
+        oDrsProperties.setMin(dNewMin);
+        oDrsProperties.setMax(dNewMax);
+
+        deepEqual(oDrsProperties.getMin(), dNewMin, "Min changed to new min date.");
+        deepEqual(oDrsProperties.getMax(), dNewMax, "Max changed to new max date.");
+
+        var dNewMaxBeforeMin = new Date(oDrsProperties.getMin());
+        dNewMaxBeforeMin.setMonth(dNewMaxBeforeMin.getMonth() - 2);
+        oDrsProperties.setMax(dNewMaxBeforeMin);
+        deepEqual(oDrsProperties.getMax(), dNewMax, "Max does not change to date before min date.");
+
+        var dNewMinAfterMax = new Date(oDrsProperties.getMax());
+        dNewMinAfterMax.setMonth(dNewMinAfterMax.getMonth() + 2);
+        oDrsProperties.setMin(dNewMinAfterMax);
+        deepEqual(oDrsProperties.getMin(), dNewMin, "Min does not change to date after max date.");
+    });
+
+    test("TestValueAndValue2", function() {
+
+        var dMin = oDrsProperties.getMin();
+        var dMax = oDrsProperties.getMax();
+        var dValue = oDrsProperties.getValue();
+        var dValue2 = oDrsProperties.getValue2();
+
+        ok(dValue instanceof Date, "value is instance of date.");
+        ok(dValue2 instanceof Date, "value2 is instance of date.");
+
+        oDrsProperties.setValue(null);
+        oDrsProperties.setValue2(null);
+
+        deepEqual(oDrsProperties.getValue(), dValue, "value does not change to null.");
+        deepEqual(oDrsProperties.getValue2(), dValue2, "value2 does not change to null.");
+
+        oDrsProperties.setValue(new Boolean(false));
+        oDrsProperties.setValue2(new Boolean(false));
+
+        deepEqual(oDrsProperties.getValue(), dValue, "value does not change to boolean.");
+        deepEqual(oDrsProperties.getValue2(), dValue2, "value2 does not change to boolean.");
+
+        var dNewValue = new Date(dValue);
+        dNewValue.setDate(dNewValue.getDate() + 10);
+        var dNewValue2 = new Date(dValue2);
+        dNewValue2.setDate(dNewValue2.getDate() - 10)
+        oDrsProperties.setValue(dNewValue);
+        oDrsProperties.setValue2(dNewValue2);
+
+        sap.suite.ui.commons.util.DateUtils.resetDateToEndOfDay(dNewValue2);
+        deepEqual(oDrsProperties.getValue(), dNewValue, "value changed to new value date.");
+        deepEqual(oDrsProperties.getValue2(), dNewValue2, "value2 changed to new value2 date.");
+
+        var dNewValueBeforeMin = new Date(dMin);
+        dNewValueBeforeMin.setDate(dNewValueBeforeMin.getDate() - 10);
+        oDrsProperties.setValue(dNewValueBeforeMin);
+        notEqual(oDrsProperties.getValue().getTime(), dNewValueBeforeMin.getTime(), "value does not change to date before min date.");
+
+        var dNewValue2AfterMax = new Date(dMax);
+        dNewValue2AfterMax.setDate(dNewValue2AfterMax.getDate() + 10);
+        oDrsProperties.setValue2(dNewValue2AfterMax);
+        notEqual(oDrsProperties.getValue2().getTime(), dNewValue2AfterMax.getTime(), "value2 does not change to date after max date.");
+    });
+
+    test("TestVisible", function() {
+
+        equal(oDrsProperties.getVisible(), true, "Visible property is set to true by default.");
+        oDrsProperties.setVisible(false);
+        oDrsProperties.rerender();
+        ok(!oDrsProperties.getVisible(), "DateRangeSlider is invisible");
+        equal(jQuery.sap.domById(sDrsPropertiesId + "-dateRangeSliderInternal-grip"), null, "DateRangeSlider left grip should not be rendered.");
+        equal(jQuery.sap.domById(sDrsPropertiesId + "-dateRangeSliderInternal-bar"), null, "DateRangeSlider bar should not be rendered.");
+    });
+
+    /******************************************************************/
+
+    var sTxtBfr = null, sTxtAftEvt = "Event caught", iClicks = 0;
+    var dMinDate = null, dMaxDate = null;
+    function handleChangeEvt(oEvent) {
+
+        sTxtBfr = sTxtAftEvt;
+        dMinDate = oEvent.getParameter("value");
+        dMaxDate = oEvent.getParameter("value2");
+    }
+
+    function handleLiveChangeEvt(oEvent) {
+
+        iClicks++;
+    }
+
+    var sDrsEvtId = sDrsId + next();
+    var oDrsEvt = new sap.suite.ui.commons.DateRangeSlider(sDrsEvtId);
+    oDrsEvt.attachChange(handleChangeEvt);
+    oDrsEvt.attachLiveChange(handleLiveChangeEvt);
+    oDrsEvt.placeAt("uiArea3");
+
+    module("Change/Live Change event tests" + sModuleSuffix, {
+        setup : function() {
+
+        },
+        teardown : function() {
+
+            sTxtBfr = null;
+            iClicks = 0;
+            dMinDate = null;
+            dMaxDate = null;
+        }
+    });
+
+    test("TestChangeEventOnLeftGrip", function() {
+
+        jQuery("#" + sDrsEvtId).focus();
+        qutils.triggerMouseEvent(sDrsEvtId + "-dateRangeSliderInternal-grip", "mousedown", 1, 1);
+        qutils.triggerKeyboardEvent(sDrsEvtId + "-dateRangeSliderInternal-grip", "ARROW_RIGHT");
+        equal(sTxtBfr, sTxtAftEvt, "Change event should modify text after moving left grip");
+        ok(dMinDate instanceof Date, "Event should have min date as Date Object");
+        ok(dMaxDate instanceof Date, "Event should have max date as Date Object");
+    });
+
+    test("TestChangeEventOnRightGrip", function() {
+
+        jQuery("#" + sDrsEvtId).focus();
+        qutils.triggerMouseEvent(sDrsEvtId + "-dateRangeSliderInternal-grip2", "mousedown", 1, 1);
+        qutils.triggerKeyboardEvent(sDrsEvtId + "-dateRangeSliderInternal-grip2", "ARROW_LEFT");
+        equal(sTxtBfr, sTxtAftEvt, "Change event should modify text after moving right grip");
+        ok(dMinDate instanceof Date, "Event should have min date as Date Object");
+        ok(dMaxDate instanceof Date, "Event should have max date as Date Object");
+    });
+
+    test("TestLiveChangeEventOnLeftGrip", function() {
+
+        jQuery("#" + sDrsEvtId).focus();
+        qutils.triggerMouseEvent(sDrsEvtId + "-dateRangeSliderInternal-grip", "mousedown", 1, 1);
+        qutils.triggerKeyboardEvent(sDrsEvtId + "-dateRangeSliderInternal-grip", "ARROW_RIGHT");
+        qutils.triggerKeyboardEvent(sDrsEvtId + "-dateRangeSliderInternal-grip", "ARROW_RIGHT");
+        qutils.triggerKeyboardEvent(sDrsEvtId + "-dateRangeSliderInternal-grip", "ARROW_RIGHT");
+        equal(iClicks, 3, "3 Live Change events should increment var clicks 3 times after moving left grip");
+    });
+
+    test("TestLiveChangeEventOnRightGrip", function() {
+
+        jQuery("#" + sDrsEvtId).focus();
+        qutils.triggerMouseEvent(sDrsEvtId + "-dateRangeSliderInternal-grip2", "mousedown", 1, 1);
+        qutils.triggerKeyboardEvent(sDrsEvtId + "-dateRangeSliderInternal-grip2", "ARROW_LEFT");
+        qutils.triggerKeyboardEvent(sDrsEvtId + "-dateRangeSliderInternal-grip2", "ARROW_LEFT");
+        equal(iClicks, 2, "2 Live Change events should increment var clicks 2 times after moving left grip");
+    });
+
+    /******************************************************************/
+
+    var sDrsExitId = sDrsId + next();
+    var oDrsExit = new sap.suite.ui.commons.DateRangeSlider(sDrsExitId);
+    oDrsExit.placeAt("uiArea4");
+
+    module("Exit function tests" + sModuleSuffix, {
+        setup : function() {
+
+        },
+        teardown : function() {
+
+        }
+    });
+
+    test("TestExit", function() {
+
+        ok(!(oDrsExit === null), "oDrsExit Object is not null");
+        ok(!(oDrsExit._oDateRangeSliderInternal === null), "oDrsExit's DateRangeSliderInternal Object is not null");
+        oDrsExit.destroy();
+        ok(!(oDrsExit === null), "oDrsExit Object is not null after destroy");
+        ok(oDrsExit._oDateRangeSliderInternal === null, "oDrsExit's DateRangeSliderInternal Object is null after destroy");
+    });
+
+    /******************************************************************/
+
+    var sDrsGranularityId = sDrsId + next();
+    var oDrsGranularitySlider = new sap.suite.ui.commons.DateRangeSlider(sDrsGranularityId);
+    oDrsGranularitySlider.placeAt("uiArea5");
+
+    module("DateRangeSlider Granularity Tests" + sModuleSuffix, {
+        setup : function() {
+
+        },
+        teardown : function() {
+
+        }
+    });
+
+    test("TestMonthGranularity", function() {
+
+        var dMinDate = oDrsGranularitySlider.getMin();
+        var dMaxDate = oDrsGranularitySlider.getMax();
+
+        //set the min date and max date in the same month with 6 days apart
+        var dNewMinDate = new Date(2013, 0, 1, 0, 0, 0, 0);
+        var dNewMaxDate = new Date(2013, 0, 7, 0, 0, 0, 0);
+        oDrsGranularitySlider.setMin(dNewMinDate);
+        oDrsGranularitySlider.setMax(dNewMaxDate);
+
+        oDrsGranularitySlider.setMonthGranularity();
+
+        sap.suite.ui.commons.util.DateUtils.resetDateToStartOfDay(dNewMinDate);
+        sap.suite.ui.commons.util.DateUtils.resetDateToEndOfDay(dNewMaxDate);
+
+        deepEqual(oDrsGranularitySlider.getMin(), dNewMinDate, "TestMonthGranularity same month: min date not changed.");
+        deepEqual(oDrsGranularitySlider.getMax(), dNewMaxDate, "TestMonthGranularity same month: max date not changed.");
+        deepEqual(oDrsGranularitySlider.getValue(), dNewMinDate, "TestMonthGranularity same month: value date not changed.");
+        deepEqual(oDrsGranularitySlider.getValue2(), dNewMaxDate, "TestMonthGranularity same month: value2 date not changed.");
+
+        //test for min and max are valid with one year apart
+        dNewMinDate = new Date(2013, 0, 1, 0, 0, 0, 0);
+        dNewMaxDate = new Date(2014, 0, 1, 0, 0, 0, 0);
+        var dNewValue = new Date(2013, 5, 5, 0, 0, 0, 0);
+        var dNewValue2 = new Date(2013, 7, 8, 0, 0, 0, 0);
+        oDrsGranularitySlider.setMin(dNewMinDate);
+        oDrsGranularitySlider.setMax(dNewMaxDate);
+        oDrsGranularitySlider.setValue2(dNewValue2);
+        oDrsGranularitySlider.setValue(dNewValue);
+
+        oDrsGranularitySlider.setMonthGranularity();
+
+        sap.suite.ui.commons.util.DateUtils.resetDateToStartOfMonth(dNewMinDate);
+        sap.suite.ui.commons.util.DateUtils.resetDateToEndOfMonth(dNewMaxDate);
+        sap.suite.ui.commons.util.DateUtils.resetDateToStartOfMonth(dNewValue);
+        sap.suite.ui.commons.util.DateUtils.resetDateToEndOfMonth(dNewValue2);
+
+        deepEqual(oDrsGranularitySlider.getMin(), dNewMinDate, "TestMonthGranularity one year apart: min date changed.");
+        deepEqual(oDrsGranularitySlider.getMax(), dNewMaxDate, "TestMonthGranularity one year apart: max date changed.");
+        deepEqual(oDrsGranularitySlider.getValue(), dNewValue, "TestMonthGranularity one year apart: value changed.");
+        deepEqual(oDrsGranularitySlider.getValue2(), dNewValue2, "TestMonthGranularity one year apart: value2 changed.");
+
+        //test the boundary value one month apart
+        dNewMinDate = new Date(2013, 0, 1, 0, 0, 0, 0);
+        dNewMaxDate = new Date(2013, 1, 1, 0, 0, 0, 0);
+        dNewValue = new Date(2013, 0, 5, 0, 0, 0, 0);
+        dNewValue2 = new Date(2013, 0, 8, 0, 0, 0, 0);
+        oDrsGranularitySlider.setMin(dNewMinDate);
+        oDrsGranularitySlider.setMax(dNewMaxDate);
+        oDrsGranularitySlider.setValue2(dNewValue2);
+        oDrsGranularitySlider.setValue(dNewValue);
+
+        oDrsGranularitySlider.setMonthGranularity();
+
+        var dExpectedMinDate = new Date(dNewMinDate);
+        var dExpectedMaxDate = new Date(dNewMaxDate);
+
+        sap.suite.ui.commons.util.DateUtils.resetDateToStartOfMonth(dExpectedMinDate);
+        sap.suite.ui.commons.util.DateUtils.resetDateToEndOfMonth(dExpectedMaxDate);
+
+        deepEqual(oDrsGranularitySlider.getMin(), dExpectedMinDate, "TestMonthGranularity one month apart: min date changed.");
+        deepEqual(oDrsGranularitySlider.getMax(), dExpectedMaxDate, "TestMonthGranularity one month apart: max date changed.");
+        //the value and value2 is less than one month apart input will be ignored
+        deepEqual(oDrsGranularitySlider.getValue(), dExpectedMinDate, "TestMonthGranularity one month apart: value changed.");
+        deepEqual(oDrsGranularitySlider.getValue2(), dExpectedMaxDate, "TestMonthGranularity one month apart: value2 changed.");
+
+    });
+
+    test("TestDayGranularity", function() {
+
+        var dMinDate = oDrsGranularitySlider.getMin();
+        var dMaxDate = oDrsGranularitySlider.getMax();
+        var dValueDate = oDrsGranularitySlider.getValue();
+        var dValue2Date = oDrsGranularitySlider.getValue2();
+
+        //set the Granularity from month to day 
+        oDrsGranularitySlider.setDayGranularity();
+
+        deepEqual(oDrsGranularitySlider.getMin(), dMinDate, "TestDayGranularity: min date not changed.");
+        deepEqual(oDrsGranularitySlider.getMax(), dMaxDate, "TestDayGranularity: max date not changed.");
+        deepEqual(oDrsGranularitySlider.getValue(), dValueDate, "TestDayGranularity: value date not changed.");
+        deepEqual(oDrsGranularitySlider.getValue2(), dValue2Date, "TestDayGranularity: value2 date not changed.");
+
+        //test the boundary value one day apart
+        var dNewMinDate = new Date(2013, 0, 1, 0, 0, 0, 0);
+        var dNewMaxDate = new Date(2013, 0, 2, 0, 0, 0, 0);
+        var dNewValue = new Date(2013, 0, 1, 0, 0, 0, 0);
+        var dNewValue2 = new Date(2013, 0, 2, 0, 0, 0, 0);
+        oDrsGranularitySlider.setMin(dNewMinDate);
+        oDrsGranularitySlider.setMax(dNewMaxDate);
+        oDrsGranularitySlider.setValue2(dNewValue2);
+        oDrsGranularitySlider.setValue(dNewValue);
+
+        oDrsGranularitySlider.setDayGranularity();
+
+        sap.suite.ui.commons.util.DateUtils.resetDateToStartOfDay(dNewMinDate);
+        sap.suite.ui.commons.util.DateUtils.resetDateToEndOfDay(dNewMaxDate);
+        sap.suite.ui.commons.util.DateUtils.resetDateToStartOfDay(dNewValue);
+        sap.suite.ui.commons.util.DateUtils.resetDateToEndOfDay(dNewValue2);
+
+        deepEqual(oDrsGranularitySlider.getMin(), dNewMinDate, "TestDayGranularity: min date changed.");
+        deepEqual(oDrsGranularitySlider.getMax(), dNewMaxDate, "TestDayGranularity: max date changed.");
+        deepEqual(oDrsGranularitySlider.getValue(), dNewValue, "TestDayGranularity: value changed.");
+        deepEqual(oDrsGranularitySlider.getValue2(), dNewValue2, "TestDayGranularity: value2 changed.");
+
+    });
+    
+    /*******************************************************************************************************************/
+    var sDrsSetDateFormatId = sDrsId + next();
+    var oDrsSetDateFormatSlider = new sap.suite.ui.commons.DateRangeSlider(sDrsSetDateFormatId);
+    oDrsSetDateFormatSlider.placeAt("uiArea6");
+    
+    module("Test setDateFormat API" + sModuleSuffix, {
+        setup : function() {
+        }
+    });
+
+    test("TestDateFormatIsNotSetInitially", function() {
+
+        equal(oDrsSetDateFormatSlider._oDateRangeSliderInternal.getDateFormat(), null, "Date format of the control should not be set initially.");
+    });
+
+    test("TestDateFormatIsSetCorrectly", function() {
+
+        var oLocale = new sap.ui.core.Locale("de");
+        oDrsSetDateFormatSlider.setDateFormat(sap.ui.core.format.DateFormat.getDateInstance(oLocale));
+        notEqual(oDrsSetDateFormatSlider._oDateRangeSliderInternal.getDateFormat(), null, "Date format of the control should be set to supplied date format.");
+        oDrsSetDateFormatSlider.setDateFormat(null);
+        equal(oDrsSetDateFormatSlider._oDateRangeSliderInternal.getDateFormat(), null, "Date format of the control should not be set if null is passed.");
+        oDrsSetDateFormatSlider.setDateFormat(sap.ui.core.format.DateFormat.getDateInstance(oLocale));        
+        notEqual(oDrsSetDateFormatSlider._oDateRangeSliderInternal.getDateFormat(), null, "Date format of the control should be set to supplied date format.");
+        oDrsSetDateFormatSlider.setDateFormat(new Boolean(true));
+        equal(oDrsSetDateFormatSlider._oDateRangeSliderInternal.getDateFormat(), null, "Date format of the control should not be set if invalid obj is passed.");
+    });
+    
+    test("TestSetDateFormatLabelBubbleToolTipChanges", function() {
+        
+        oDrsSetDateFormatSlider.setStepLabels(true);
+        //test the value set to YYYY-MM-dd for the bubble and Tool Tip
+        var dNewMinDate = new Date(2013, 0, 1 );
+        var dNewMaxDate = new Date(2013, 11, 31 );
+        var dNewValue = new Date(2013, 2, 10);
+        var dNewValue2 = new Date(2013, 3, 10);
+        oDrsSetDateFormatSlider.setMin(dNewMinDate);
+        oDrsSetDateFormatSlider.setMax(dNewMaxDate);
+        oDrsSetDateFormatSlider.setValue2(dNewValue2);
+        oDrsSetDateFormatSlider.setValue(dNewValue);
+        var aOldLabels = new Object(oDrsSetDateFormatSlider.getLabels());
+        
+        var oDateFormat = sap.ui.core.format.DateFormat.getDateInstance({
+            pattern : "YYYY-MM-dd"
+        }); 
+        oDrsSetDateFormatSlider.setDateFormat(oDateFormat);	
+        var sExpectedValue = "2013-03-10";
+        var sExpectedValue2 = "2013-04-10";        
+       
+        var oInternalSlider = oDrsSetDateFormatSlider._oDateRangeSliderInternal;
+        
+        equal(oInternalSlider._oBubble.getText(), sExpectedValue, "_bubble text Date format changed to 2013-03-10."); 
+        equal(oInternalSlider._oBubble2.getText(), sExpectedValue2, "_bubble2 text Date format changed to 2013-04-10."); 
+        
+        equal(oInternalSlider.oGrip.title, sExpectedValue, "grip Tool Tip Date format changed to 2013-03-10."); 
+        equal(oInternalSlider.oGrip2.title, sExpectedValue2, "grip2 Tool Tip Date format changed to 2013-04-10.");  
+        
+        var aLabels = oInternalSlider.getLabels();
+        for(var i = 0; i < aLabels.length; i++){
+            notEqual(aOldLabels[i], aLabels[i], "Label at " + i + " Date format changed from " + aOldLabels[i] + " to " + aLabels[i]); 
+        }
+    });
+    
+    /*******************************************************************************************************************/
+    
+    var sDrsPinGripGrip2Id = sDrsId + next();
+    
+    var oDrsPinGripGrip2Slider = new sap.suite.ui.commons.DateRangeSlider(sDrsPinGripGrip2Id);
+    oDrsPinGripGrip2Slider.placeAt("uiArea7");
+    
+    module("Test pinGrip/pinGrip2 Properties" + sModuleSuffix, {
+        setup : function() {
+        
+        },
+        teardown : function() {
+
+        }
+    });
+    
+    
+    test("TestPinGripAndPinGrip2AreFalseInitially", function() {
+
+        equal(oDrsPinGripGrip2Slider.getPinGrip(), false, "PinGrip property of DateRangeSlider is set to false initially.");
+        equal(oDrsPinGripGrip2Slider.getPinGrip2(), false, "PinGrip2 property of DateRangeSlider is set to false initially.");
+        equal(oDrsPinGripGrip2Slider._oDateRangeSliderInternal.getPinGrip(), false, "PinGrip property of DateRangeSliderInternal is set to false initially.");
+        equal(oDrsPinGripGrip2Slider._oDateRangeSliderInternal.getPinGrip2(), false, "PinGrip2 property of DateRangeSliderInternal is set to false initially.");
+    });
+    
+    test("TestPinGripAndPinGrip2AreSettingCorrectly", function() {
+
+        oDrsPinGripGrip2Slider.setPinGrip(true);
+        oDrsPinGripGrip2Slider.setPinGrip2(true);
+        equal(oDrsPinGripGrip2Slider.getPinGrip(), true, "PinGrip property is set to true.");
+        equal(oDrsPinGripGrip2Slider.getPinGrip2(), true, "PinGrip2 property is set to true.");
+        equal(oDrsPinGripGrip2Slider._oDateRangeSliderInternal.getPinGrip(), true, "PinGrip property of DateRangeSliderInternal is set to true.");
+        equal(oDrsPinGripGrip2Slider._oDateRangeSliderInternal.getPinGrip2(), true, "PinGrip2 property of DateRangeSliderInternal is set to true.");
+        
+        oDrsPinGripGrip2Slider.setPinGrip(false);
+        oDrsPinGripGrip2Slider.setPinGrip2(false);
+        equal(oDrsPinGripGrip2Slider.getPinGrip(), false, "PinGrip property is set again to false.");
+        equal(oDrsPinGripGrip2Slider.getPinGrip2(), false, "PinGrip2 property is set again to false.");
+        equal(oDrsPinGripGrip2Slider._oDateRangeSliderInternal.getPinGrip(), false, "PinGrip property of DateRangeSliderInternal is set again to false.");
+        equal(oDrsPinGripGrip2Slider._oDateRangeSliderInternal.getPinGrip2(), false, "PinGrip2 property of DateRangeSliderInternal is set again to false.");
+    });
+    
+    
+    /*******************************************************************************************************************/
+</script>
+</head>
+
+<body class="sapUiBody">
+	<div id="qunit"></div>
+	<br>
+	<div id="uiArea1"></div>
+	<br>
+	<div id="uiArea2"></div>
+	<br>
+	<div id="uiArea3"></div>
+	<br>
+	<div id="uiArea4"></div>
+	<br>
+	<div id="uiArea5"></div>
+	<br>
+	<div id="uiArea6"></div>
+	<br>
+	<div id="uiArea7"></div>
+	<br>
+</body>
+</html>

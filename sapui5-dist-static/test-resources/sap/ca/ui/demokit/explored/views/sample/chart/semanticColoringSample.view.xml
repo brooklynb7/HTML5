@@ -1,0 +1,36 @@
+<core:View xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:charts="sap.ca.ui.charts"
+           controllerName="views.sample.chart.semanticColoringSample">
+    <Page id="page" enableScrolling="false">
+        <content>
+            <charts:ChartToolBar height="100%"
+                                 showFullScreen="true"
+                                 showPersonalization="true"
+                                 personalizationPressed="onPersonalizationPressed"
+
+                                 firstDimensionPath = "/businessData"
+                                 firstDimensionKeyPath = "COUNTRY"
+                                 firstDimensionTextPath = "COUNTRY"
+
+                                 secondDimensionPath = "/businessData"
+                                 secondDimensionKeyPath = "REVENUE"
+                                 secondDimensionTextPath = "REVENUE"
+
+                                 firstDimensionKeySelected = "onAnyDimensionKeySelected"
+                                 secondDimensionKeySelected = "onAnyDimensionKeySelected"
+
+                                 chartTitle="My nice chart Title"
+                    >
+                <charts:charts>
+                    <charts:Chart id="fioriChart2" chartType="Column"/>
+                    <charts:Chart id="fioriChart1" chartType="Bar"/>
+                    <charts:BubbleChart id="fioriChart3"/>
+                    <charts:BubbleChart id="fioriChart4"/>
+                </charts:charts>
+            </charts:ChartToolBar>
+        </content>
+        <footer>
+            <Bar>
+            </Bar>
+        </footer>
+    </Page>
+</core:View>

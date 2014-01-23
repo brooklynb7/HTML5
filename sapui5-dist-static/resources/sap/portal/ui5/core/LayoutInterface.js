@@ -1,0 +1,1 @@
+"use strict";jQuery.sap.require('sap.portal.ui5.core.Object');jQuery.sap.declare('sap.portal.ui5.core.LayoutInterface');sap.portal.ui5.core.Object.extend('sap.portal.ui5.core.LayoutInterface',{metadata:{'abstract':true},processLayout:function processLayout(c,l,v,C){return{component:{},childComponents:{}}}});

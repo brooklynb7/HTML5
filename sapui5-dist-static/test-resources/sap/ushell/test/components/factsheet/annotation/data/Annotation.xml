@@ -1,0 +1,1508 @@
+<?xml version="1.0" encoding="utf-8"?><edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+ <edmx:Reference Uri="/sap/bc/ui5_ui5/sap/cbesh_gen_vocs/Vocabulary-UI-V4.xml">
+  <edmx:Include Namespace="com.sap.vocabularies.UI" Alias="UI"/>
+ </edmx:Reference>
+ <edmx:Reference Uri="sap/bc/ui5_ui5/sap/cbesh_gen_vocs/Vocabulary-Communication-V4.xml">
+  <edmx:Include Namespace="com.sap.vocabularies.Communication" Alias="vCard"/>
+ </edmx:Reference>
+ <edmx:Reference Uri="/sap/bc/ui5_ui5/sap/cbesh_gen_vocs/Vocabulary-CQP-V4-TO-BE-DONE.xml">
+  <edmx:Include Namespace="com.sap.vocabularies.CurrQuan" Alias="CQP"/>
+ </edmx:Reference>
+ <edmx:Reference Uri="/sap/opu/odata/sap/CB_SALES_ORDER_SRV/$metadata">
+  <edmx:Include Namespace="CB_SALES_ORDER_SRV" Alias="CB_SALES_ORDER_SRV"/>
+ </edmx:Reference>
+
+ <edmx:Reference Uri="/sap/opu/odata/sap/CB_SALES_QUOTATION_SRV/$metadata">
+  <edmx:Include Namespace="CB_SALES_QUOTATION_SRV" Alias="CB_SALES_QUOTATION_SRV"/>
+  <Annotation Term="UI.AnnotationUri" String="/sap/bc/bsp/sap/CB_UI_ANFSDSLS/CB_SALES_QUOTATION_SRV_anno.xml" xmlns="http://docs.oasis-open.org/odata/ns/edm"/>
+ </edmx:Reference>
+ <edmx:Reference Uri="/sap/opu/odata/sap/CB_SALES_CONTRACT_SRV/$metadata">
+  <edmx:Include Namespace="CB_SALES_CONTRACT_SRV" Alias="CB_SALES_CONTRACT_SRV"/>
+  <Annotation Term="UI.AnnotationUri" String="/sap/bc/bsp/sap/CB_UI_ANFSDSLS/CB_SALES_CONTRACT_SRV_anno.xml" xmlns="http://docs.oasis-open.org/odata/ns/edm"/>
+ </edmx:Reference>
+ <edmx:Reference Uri="/sap/opu/odata/sap/CB_OUTBOUND_DELIVERY_SRV/$metadata">
+  <edmx:Include Namespace="CB_OUTBOUND_DELIVERY_SRV" Alias="CB_OUTBOUND_DELIVERY_SRV"/>
+  <Annotation Term="UI.AnnotationUri" String="/sap/bc/bsp/sap/CBESH_UI_ANF_LE/CB_OUTBOUND_DELIVERY_SRV_ANNO.xml" xmlns="http://docs.oasis-open.org/odata/ns/edm"/>
+ </edmx:Reference>
+ <edmx:DataServices>
+
+  <Schema Namespace="sap.cbesh.cestbon.CB_SALES_ORDER_SRVAnnotation" Alias="CB_SALES_ORDER_SRVAnnotation" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+   <Term Name="SalesQuotation" Type="CB_SALES_QUOTATION_SRV.SalesQuotation"/>
+   <Term Name="SalesContract" Type="CB_SALES_CONTRACT_SRV.SalesContract"/>
+   <Term Name="OutboundDelivery" Type="CB_OUTBOUND_DELIVERY_SRV.OutboundDelivery"/>
+
+   <Annotations Target="CB_SALES_ORDER_SRV.SalesOrder/NetAmount">
+    <Annotation Term="CQP.IsoCurrency" Path="TransactionCurrency"/>
+   </Annotations>
+   <Annotations Target="CB_SALES_ORDER_SRV.SD_VBAP/NetAmount">
+    <Annotation Term="CQP.IsoCurrency" Path="WAERK_NETWR"/>
+   </Annotations>
+   <Annotations Target="CB_SALES_ORDER_SRV.SD_VBAP/NetPriceAmount">
+    <Annotation Term="CQP.IsoCurrency" Path="WAERK_NETPR"/>
+   </Annotations>
+   <Annotations Target="CB_SALES_ORDER_SRV.SalesQuotation/SalesQuotationNetAmount">
+    <Annotation Term="CQP.IsoCurrency" Path="TransactionCurrency"/>
+   </Annotations>
+   <Annotations Target="CB_SALES_ORDER_SRV.SalesContract/NetAmount">
+    <Annotation Term="CQP.IsoCurrency" Path="WAERK_NETWR"/>
+   </Annotations>
+   <Annotations Target="CB_SALES_ORDER_SRV.OutboundDelivery/TotalGrossWeight">
+    <Annotation Term="CQP.UnitOfMeasure" Path="GEWEI_1"/>
+   </Annotations>
+   <Annotations Target="CB_SALES_ORDER_SRV.OutboundDelivery/TotalNetWeight">
+    <Annotation Term="CQP.UnitOfMeasure" Path="GEWEI_2"/>
+   </Annotations>
+   <Annotations Target="CB_SALES_ORDER_SRV.OutboundDelivery/VOLUM">
+    <Annotation Term="CQP.UnitOfMeasure" Path="VOLEH_HEAD_MSEH3"/>
+   </Annotations>
+   <Annotations Target="CB_SALES_ORDER_SRV.SD_VBAP/OrderQuantity">
+    <Annotation Term="CQP.UnitOfMeasure" Path="OrderQuantityUnit_E" />
+   </Annotations>
+
+   <Annotations Target="CB_SALES_ORDER_SRV.SalesOrder">
+    <Annotation Term="UI.HeaderInfo">
+     <Record>
+      <PropertyValue Property="TypeName" String="Sales&#x20;Order"/>
+      <PropertyValue Property="TypeNamePlural" String="Sales&#x20;Order"/>
+      <PropertyValue Property="Title">
+       <Record>
+        <PropertyValue Property="Value" Path="SalesOrder"/>
+       </Record>
+      </PropertyValue>
+      <PropertyValue Property="Description">
+       <Record>
+        <PropertyValue Property="Value" Path="AUART_TEXT" />
+       </Record>
+      </PropertyValue>
+      <PropertyValue Property="ImageUrl" String="/sap/public/BusinessSuite/CBESH_ICONS/SalesOrder/grey_64.png"/>
+     </Record>
+    </Annotation>
+
+    <Annotation Term="UI.Identification">
+     <Collection>
+      <Record Type="UI.DataField">
+      <PropertyValue Property="Label" String="Sold-To Party                   " />
+       <PropertyValue Property="Value">
+        <Apply Function="odata.concat">
+
+         <Path>SoldToPartyName</Path>
+         <String> </String>
+         <Path>SoldToPartyAdditionalName</Path>
+        </Apply>
+       </PropertyValue>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+      <Record Type="UI.DataField">
+      <PropertyValue Property="Label" String="Ship-To Party                                                                                                                                                                                                                                                  " />
+       <PropertyValue Property="Value">
+        <Apply Function="odata.concat">
+
+         <Path>ShipToPartyName</Path>
+         <String> </String>
+         <Path>ShipToPartyAdditionalName</Path>
+        </Apply>
+       </PropertyValue>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Value" String=""/>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Value" Path="SalesOrderDate"/>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Value" String=""/>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Value" Path="PurchaseOrderByCustomer"/>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Value" String=""/>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Value" Path="NetAmount"/>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Value" String=""/>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Label" String="Sales Area                                                                                                                                                                                                                                                     " />
+       <PropertyValue Property="Value">
+        <Apply Function="odata.concat">
+
+         <Path>VKORG_TEXT</Path>
+         <String>, </String>
+
+         <Path>VTWEG_TEXT</Path>
+         <String>, </String>
+
+         <Path>SPART_TEXT</Path>
+        </Apply>
+       </PropertyValue>
+      </Record>
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Value">
+        <PropertyValue Property="Label" String="Sales Group         " />
+        <Apply Function="odata.concat">
+
+         <Path>VKGRP_TEXT</Path>
+        </Apply>
+       </PropertyValue>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Label" String="Sales Office                                                                                                                                                                                                                                                   " />
+       <PropertyValue Property="Value">
+        <Apply Function="odata.concat">
+
+         <Path>VKBUR_TEXT</Path>
+        </Apply>
+       </PropertyValue>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Value" String=""/>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Value" Path="RequestedDeliveryDate"/>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Value" String=""/>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Value" Path="CreationDate"/>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+      <Record Type="UI.DataFiel">      <!-- <Record Type="UI.DataFieldWithNavigationPath"> -->
+       <PropertyValue Property="Label" String="Created By     " />
+       <PropertyValue Property="Value">
+        <Apply Function="odata.concat">
+
+         <Path>AcademicTitleName</Path>
+         <String> </String>
+         <Path>CreatedByUserName</Path>
+        </Apply>
+       </PropertyValue>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+
+      </Record>
+     </Collection>
+    </Annotation>
+
+    <Annotation Term="UI.LineItem">
+     <Collection/>
+    </Annotation>
+
+    <Annotation Term="UI.StatusInfo">
+     <Collection>
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Value" Path="GBSTK_TEXT"/>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Value" Path="LFSTK_TEXT"/>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Value" Path="CMGST_TEXT"/>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+     </Collection>
+    </Annotation>
+
+    <Annotation Term="UI.Badge">
+     <Record>
+      <PropertyValue Property="Headline">
+       <Record Type="UI.DataField">
+        <PropertyValue Property="Value" String="Sales&#x20;Order"/>
+       </Record>
+      </PropertyValue>
+      <PropertyValue Property="TypeImageUrl" String="PathToGenericSalesOrderIcon"/>
+      <PropertyValue Property="Title">
+       <Record Type="UI.DataField">
+        <PropertyValue Property="Value" Path="DummyRole"/>
+       </Record>
+      </PropertyValue>
+      <PropertyValue Property="MainInfo">
+       <Record Type="UI.DataField">
+        <PropertyValue Property="Value" Path="AUART_TEXT"/>
+       </Record>
+      </PropertyValue>
+     </Record>
+    </Annotation>
+
+    <Annotation Term="UI.Facets">
+     <Collection>
+      <Record Type="UI.CollectionFacet">
+       <PropertyValue Property="FacetLabel" String="Overview                      "/>
+       <PropertyValue Property="FacetID" String="1 "/>
+       <PropertyValue Property="Facets">
+        <Collection>
+         <Record Type="UI.CollectionFacet">
+          <PropertyValue Property="FacetLabel" String="General                       "/>
+          <PropertyValue Property="FacetID" String="100 "/>
+          <PropertyValue Property="Facets">
+           <Collection>
+            <Record Type="UI.ReferenceFacet">
+             <PropertyValue Property="FacetLabel" String="General                       "/>
+             <PropertyValue Property="FacetID" String="1000 "/>
+             <PropertyValue Property="UseTerm" String="UI.Identification"/>
+            </Record>
+            <Record Type="UI.ReferenceFacet">
+             <PropertyValue Property="FacetLabel" String="Status                                                                                                                                                                                                                                                         "/>
+             <PropertyValue Property="FacetID" String="1001 "/>
+             <PropertyValue Property="UseTerm" String="UI.StatusInfo"/>
+            </Record>
+           </Collection>
+          </PropertyValue>
+         </Record>
+         <Record Type="UI.ReferenceFacet">
+          <PropertyValue Property="FacetLabel" String="Items"/>
+          <PropertyValue Property="FacetID" String="101 "/>
+          <PropertyValue Property="NavigationPath" NavigationPropertyPath="SNAV_SO_VBAP"/>
+          <PropertyValue Property="UseTerm" String="UI.LineItem"/>
+         </Record>
+         <Record Type="UI.ReferenceFacet">
+          <PropertyValue Property="FacetLabel" String="Sales&#x20;Quotation"/>
+          <PropertyValue Property="FacetID" String="102 "/>
+          <PropertyValue Property="NavigationPath" NavigationPropertyPath="CPREVIOUS_QUOTATION"/>
+          <PropertyValue Property="UseTerm" String="UI.Badge"/>
+         </Record>
+         <Record Type="UI.ReferenceFacet">
+          <PropertyValue Property="FacetLabel" String="Sales&#x20;Contract"/>
+          <PropertyValue Property="FacetID" String="103 "/>
+          <PropertyValue Property="NavigationPath" NavigationPropertyPath="CPREVIOUS_CONTRACT"/>
+          <PropertyValue Property="UseTerm" String="UI.Badge"/>
+         </Record>
+         <Record Type="UI.ReferenceFacet">
+          <PropertyValue Property="FacetLabel" String="Outbound&#x20;Delivery"/>
+          <PropertyValue Property="FacetID" String="104 "/>
+          <PropertyValue Property="NavigationPath" NavigationPropertyPath="CSUBS_OUTBOUND_DELIVERY"/>
+          <PropertyValue Property="UseTerm" String="UI.Badge"/>
+         </Record>
+        </Collection>
+       </PropertyValue>
+      </Record>
+      <Record Type="UI.ReferenceFacet">
+       <PropertyValue Property="FacetLabel" String="Items"/>
+       <PropertyValue Property="FacetID" String="2 "/>
+       <PropertyValue Property="NavigationPath" NavigationPropertyPath="SNAV_SO_VBAP"/>
+       <PropertyValue Property="UseTerm" String="UI.LineItem"/>
+      </Record>
+      <Record Type="UI.ReferenceFacet">
+       <PropertyValue Property="FacetLabel" String="Sales&#x20;Quotation"/>
+       <PropertyValue Property="FacetID" String="3 "/>
+       <PropertyValue Property="NavigationPath" NavigationPropertyPath="CPREVIOUS_QUOTATION"/>
+       <PropertyValue Property="UseTerm" String="UI.LineItem"/>
+      </Record>
+      <Record Type="UI.ReferenceFacet">
+       <PropertyValue Property="FacetLabel" String="Sales&#x20;Contract"/>
+       <PropertyValue Property="FacetID" String="4 "/>
+       <PropertyValue Property="NavigationPath" NavigationPropertyPath="CPREVIOUS_CONTRACT"/>
+       <PropertyValue Property="UseTerm" String="UI.LineItem"/>
+      </Record>
+      <Record Type="UI.ReferenceFacet">
+       <PropertyValue Property="FacetLabel" String="Outbound&#x20;Delivery"/>
+       <PropertyValue Property="FacetID" String="5 "/>
+       <PropertyValue Property="NavigationPath" NavigationPropertyPath="CSUBS_OUTBOUND_DELIVERY"/>
+       <PropertyValue Property="UseTerm" String="UI.LineItem"/>
+      </Record>
+     </Collection>
+    </Annotation>
+   </Annotations>
+
+
+
+
+   <Annotations Target="CB_SALES_ORDER_SRV.SD_VBAP">
+    <Annotation Term="UI.HeaderInfo">
+     <Record>
+      <PropertyValue Property="TypeName" String="Items"/>
+      <PropertyValue Property="TypeNamePlural" String="Items"/>
+      <PropertyValue Property="Title">
+       <Record>
+        <PropertyValue Property="Value" Path="Material"/>
+       </Record>
+      </PropertyValue>
+      <PropertyValue Property="Description">
+       <Record>
+        <PropertyValue Property="Value" Path="MaterialName"/>
+       </Record>
+      </PropertyValue>
+      <PropertyValue Property="ImageUrl" String="/sap/public/BusinessSuite/CBESH_ICONS/Material/grey_32.png"/>
+     </Record>
+    </Annotation>
+
+    <Annotation Term="UI.Identification">
+     <Collection>
+
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Value" String=""/>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Value" Path="SalesOrderItem"/>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.High"/>
+      </Record>
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Value" Path="MATKL_TEXT"/>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Value" Path="MaterialByCustomer"/>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Value" Path="PSTYV_TEXT"/>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Value" Path="WERKS_TEXT"/>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Value" Path="GBSTA_TEXT"/>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Value" Path="LFSTA_TEXT"/>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Value" Path="NetPriceAmount"/>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Value" Path="OrderQuantity"/>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Value" Path="NetAmount"/>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+     </Collection>
+    </Annotation>
+
+    <Annotation Term="UI.LineItem">
+     <Collection>
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Value" Path="SalesOrderItem"/>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.High"/>
+      </Record>
+
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Value">
+        <Apply Function="odata.concat">
+         <Path>Material</Path>
+         <String> - </String>
+         <Path>MaterialName</Path>
+        </Apply>
+       </PropertyValue>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.High"/>
+      </Record>
+
+
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Value" Path="NetPriceAmount"/>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Value" Path="OrderQuantity"/>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Value" Path="NetAmount"/>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+     </Collection>
+    </Annotation>
+
+    <Annotation Term="UI.Badge">
+     <Record>
+      <PropertyValue Property="Headline">
+       <Record Type="UI.DataField">
+        <PropertyValue Property="Value" String="Items"/>
+       </Record>
+      </PropertyValue>
+      <PropertyValue Property="TypeImageUrl" String="/sap/public/BusinessSuite/CBESH_ICONS/Material/grey_32.png"/>
+      <PropertyValue Property="Title">
+       <Record Type="UI.DataField">
+        <PropertyValue Property="Value" Path="Material"/>
+       </Record>
+      </PropertyValue>
+      <PropertyValue Property="MainInfo">
+       <Record Type="UI.DataField">
+        <PropertyValue Property="Value" Path="MaterialName"/>
+       </Record>
+      </PropertyValue>
+     </Record>
+    </Annotation>
+
+    <Annotation Term="UI.Facets">
+     <Collection>
+      <Record Type="UI.CollectionFacet">
+       <PropertyValue Property="FacetLabel" String="Overview                      "/>
+       <PropertyValue Property="FacetID" String="1 "/>
+       <PropertyValue Property="Facets">
+        <Collection>
+         <Record Type="UI.CollectionFacet">
+          <PropertyValue Property="FacetLabel" String="General                       "/>
+          <PropertyValue Property="FacetID" String="100 "/>
+          <PropertyValue Property="Facets">
+           <Collection>
+            <Record Type="UI.ReferenceFacet">
+             <PropertyValue Property="FacetLabel" String="Items"/>
+             <PropertyValue Property="FacetID" String="1000 "/>
+             <PropertyValue Property="UseTerm" String="UI.Identification"/>
+            </Record>
+           </Collection>
+          </PropertyValue>
+         </Record>
+        </Collection>
+       </PropertyValue>
+      </Record>
+     </Collection>
+    </Annotation>
+   </Annotations>
+
+
+
+
+
+   <Annotations Target="CB_SALES_ORDER_SRV.Customer">
+    <Annotation Term="UI.HeaderInfo">
+     <Record>
+      <PropertyValue Property="TypeName" String="Customer"/>
+      <PropertyValue Property="TypeNamePlural" String="Customer"/>
+      <PropertyValue Property="Title">
+       <Record>
+        <PropertyValue Property="Value">
+         <Apply Function="odata.concat">
+
+          <Path>CustomerName</Path>
+         </Apply>
+        </PropertyValue>
+       </Record>
+      </PropertyValue>
+     </Record>
+    </Annotation>
+
+    <Annotation Term="UI.Identification">
+     <Collection>
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Value" Path="Customer"/>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Value" Path="CustomerName"/>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Value" Path="AddressPhoneNumber"/>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Value" Path="PhoneNumberExtension"/>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Value" Path="EmailAddress"/>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+     </Collection>
+    </Annotation>
+
+    <Annotation Term="UI.LineItem">
+     <Collection>
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Value" Path="Customer"/>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Value" Path="CustomerName"/>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Value" Path="AddressPhoneNumber"/>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Value" Path="PhoneNumberExtension"/>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Value" Path="EmailAddress"/>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+     </Collection>
+    </Annotation>
+
+    <Annotation Term="UI.Badge">
+     <Record>
+      <PropertyValue Property="Headline">
+       <Record Type="UI.DataField">
+        <PropertyValue Property="Value" String="Customer"/>
+       </Record>
+      </PropertyValue>
+      <PropertyValue Property="TypeImageUrl" String="/sap/public/BusinessSuite/CBESH_ICONS/Customer/grey_32.png"/>
+      <PropertyValue Property="Title">
+       <Record Type="UI.DataField">
+        <PropertyValue Property="Value" Path="DummyRole"/>
+       </Record>
+      </PropertyValue>
+      <PropertyValue Property="MainInfo">
+       <Record Type="UI.DataField">
+        <PropertyValue Property="Value" Path="AddressPhoneNumber"/>
+       </Record>
+      </PropertyValue>
+     </Record>
+    </Annotation>
+
+    <Annotation Term="UI.Facets">
+     <Collection>
+      <Record Type="UI.CollectionFacet">
+       <PropertyValue Property="FacetLabel" String="Overview                      "/>
+       <PropertyValue Property="FacetID" String="1 "/>
+       <PropertyValue Property="Facets">
+        <Collection>
+         <Record Type="UI.CollectionFacet">
+          <PropertyValue Property="FacetLabel" String="General                       "/>
+          <PropertyValue Property="FacetID" String="100 "/>
+          <PropertyValue Property="Facets">
+           <Collection>
+            <Record Type="UI.ReferenceFacet">
+             <PropertyValue Property="FacetLabel" String="Customer"/>
+             <PropertyValue Property="FacetID" String="1000 "/>
+             <PropertyValue Property="UseTerm" String="UI.Identification"/>
+            </Record>
+           </Collection>
+          </PropertyValue>
+         </Record>
+        </Collection>
+       </PropertyValue>
+      </Record>
+     </Collection>
+    </Annotation>
+   </Annotations>
+
+
+
+
+
+   <Annotations Target="CB_SALES_ORDER_SRV.Customer">
+    <Annotation Term="UI.HeaderInfo">
+     <Record>
+      <PropertyValue Property="TypeName" String="Customer"/>
+      <PropertyValue Property="TypeNamePlural" String="Customer"/>
+      <PropertyValue Property="Title">
+       <Record>
+        <PropertyValue Property="Value">
+         <Apply Function="odata.concat">
+
+          <Path>CustomerName</Path>
+         </Apply>
+        </PropertyValue>
+       </Record>
+      </PropertyValue>
+     </Record>
+    </Annotation>
+
+    <Annotation Term="UI.Identification">
+     <Collection>
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Value" Path="Customer"/>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Value" Path="CustomerName"/>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Value" Path="AddressPhoneNumber"/>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Value" Path="PhoneNumberExtension"/>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Value" Path="EmailAddress"/>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+     </Collection>
+    </Annotation>
+
+    <Annotation Term="UI.LineItem">
+     <Collection>
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Value" Path="Customer"/>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Value" Path="CustomerName"/>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Value" Path="AddressPhoneNumber"/>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Value" Path="PhoneNumberExtension"/>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Value" Path="EmailAddress"/>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+     </Collection>
+    </Annotation>
+
+    <Annotation Term="UI.Badge">
+     <Record>
+      <PropertyValue Property="Headline">
+       <Record Type="UI.DataField">
+        <PropertyValue Property="Value" String="Customer"/>
+       </Record>
+      </PropertyValue>
+      <PropertyValue Property="TypeImageUrl" String="PathToGenericSalesOrderIcon"/>
+      <PropertyValue Property="Title">
+       <Record Type="UI.DataField">
+        <PropertyValue Property="Value" Path="DummyRole"/>
+       </Record>
+      </PropertyValue>
+      <PropertyValue Property="MainInfo">
+       <Record Type="UI.DataField">
+        <PropertyValue Property="Value" Path="AddressPhoneNumber"/>
+       </Record>
+      </PropertyValue>
+     </Record>
+    </Annotation>
+
+    <Annotation Term="UI.Facets">
+     <Collection>
+      <Record Type="UI.CollectionFacet">
+       <PropertyValue Property="FacetLabel" String="Overview                      "/>
+       <PropertyValue Property="FacetID" String="1 "/>
+       <PropertyValue Property="Facets">
+        <Collection>
+         <Record Type="UI.CollectionFacet">
+          <PropertyValue Property="FacetLabel" String="General                       "/>
+          <PropertyValue Property="FacetID" String="100 "/>
+          <PropertyValue Property="Facets">
+           <Collection>
+            <Record Type="UI.ReferenceFacet">
+             <PropertyValue Property="FacetLabel" String="Customer"/>
+             <PropertyValue Property="FacetID" String="1000 "/>
+             <PropertyValue Property="UseTerm" String="UI.Identification"/>
+            </Record>
+           </Collection>
+          </PropertyValue>
+         </Record>
+        </Collection>
+       </PropertyValue>
+      </Record>
+     </Collection>
+    </Annotation>
+   </Annotations>
+
+
+
+
+
+   <Annotations Target="CB_SALES_ORDER_SRV.USER_H">
+    <Annotation Term="UI.HeaderInfo">
+     <Record>
+      <PropertyValue Property="TypeName" String="User"/>
+      <PropertyValue Property="TypeNamePlural" String="User"/>
+      <PropertyValue Property="Title">
+       <Record>
+        <PropertyValue Property="Value" Path="PersonFullName"/>
+       </Record>
+      </PropertyValue>
+     </Record>
+    </Annotation>
+
+    <Annotation Term="UI.Identification">
+     <Collection>
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Value" Path="PersonFullName"/>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Value" Path="DEPARTMENT"/>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Value" Path="BUILDING"/>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Value" Path="InternationalPhoneNumber"/>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Value" Path="EmailAddress"/>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+     </Collection>
+    </Annotation>
+
+    <Annotation Term="UI.LineItem">
+     <Collection>
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Value" Path="PersonFullName"/>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Value" Path="DEPARTMENT"/>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Value" Path="BUILDING"/>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Value" Path="InternationalPhoneNumber"/>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Value" Path="EmailAddress"/>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+     </Collection>
+    </Annotation>
+
+    <Annotation Term="UI.Badge">
+     <Record>
+      <PropertyValue Property="Headline">
+       <Record Type="UI.DataField">
+        <PropertyValue Property="Value" String="User"/>
+       </Record>
+      </PropertyValue>
+      <PropertyValue Property="TypeImageUrl" String="PathToGenericSalesOrderIcon"/>
+      <PropertyValue Property="Title">
+       <Record Type="UI.DataField">
+        <PropertyValue Property="Value" Path="DummyRole"/>
+       </Record>
+      </PropertyValue>
+      <PropertyValue Property="MainInfo">
+       <Record Type="UI.DataField">
+        <PropertyValue Property="Value" Path="AddressID"/>
+       </Record>
+      </PropertyValue>
+     </Record>
+    </Annotation>
+
+    <Annotation Term="UI.Facets">
+     <Collection>
+      <Record Type="UI.CollectionFacet">
+       <PropertyValue Property="FacetLabel" String="Overview                      "/>
+       <PropertyValue Property="FacetID" String="1 "/>
+       <PropertyValue Property="Facets">
+        <Collection>
+         <Record Type="UI.CollectionFacet">
+          <PropertyValue Property="FacetLabel" String="General                       "/>
+          <PropertyValue Property="FacetID" String="100 "/>
+          <PropertyValue Property="Facets">
+           <Collection>
+            <Record Type="UI.ReferenceFacet">
+             <PropertyValue Property="FacetLabel" String="User"/>
+             <PropertyValue Property="FacetID" String="1000 "/>
+             <PropertyValue Property="UseTerm" String="UI.Identification"/>
+            </Record>
+           </Collection>
+          </PropertyValue>
+         </Record>
+        </Collection>
+       </PropertyValue>
+      </Record>
+     </Collection>
+    </Annotation>
+   </Annotations>
+
+
+
+
+
+   <Annotations Target="CB_SALES_ORDER_SRV.SalesQuotation">
+    <Annotation Term="UI.HeaderInfo">
+     <Record>
+      <PropertyValue Property="TypeName" String="Sales&#x20;Quotation"/>
+      <PropertyValue Property="TypeNamePlural" String="Sales&#x20;Quotation"/>
+      <PropertyValue Property="Title">
+       <Record Type="UI.DataFieldWithNavigationPath">
+        <PropertyValue Property="Value" Path="SalesQuotation"/>
+        <PropertyValue Property="NavigationPath" NavigationPropertyPath="@CB_SALES_ORDER_SRVAnnotation.SalesQuotation"/>
+       </Record>
+      </PropertyValue>
+      <PropertyValue Property="Description">
+       <Record>
+        <PropertyValue Property="Value" Path="VBELN_DESCR"/>
+       </Record>
+      </PropertyValue>
+      <PropertyValue Property="TypeImageUrl" String="/sap/public/BusinessSuite/CBESH_ICONS/SalesQuotation/grey_32.png"/>
+     </Record>
+    </Annotation>
+    <Annotation Term="CB_SALES_ORDER_SRVAnnotation.SalesQuotation">
+     <Url>
+      <Apply Function="odata.fillUriTemplate">
+       <String>/sap/opu/odata/sap/CB_SALES_QUOTATION_SRV/SalesQuotations(SalesQuotation='{ID1}')</String>
+       <LabeledElement Name="ID1">
+        <Apply Function="odata.UriEncode">
+         <Path>SalesQuotation</Path>
+        </Apply>
+       </LabeledElement>
+      </Apply>
+     </Url>
+    </Annotation>
+
+    <Annotation Term="UI.Identification">
+     <Collection>
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Value" String=""/>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+      <Record Type="UI.DataField">
+      <PropertyValue Property="Label" String="Sold-To Party                   " />
+       <PropertyValue Property="Value">
+        <Apply Function="odata.concat">
+         <Path>SoldToPartyName</Path>
+         <String> </String>
+         <Path>SoldToPartyAdditionalName</Path>
+        </Apply>
+       </PropertyValue>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+      <Record Type="UI.DataField">
+      <PropertyValue Property="Label" String="Ship-To Party                                                                                                                                                                                                                                                  " />
+       <PropertyValue Property="Value">
+        <Apply Function="odata.concat">
+         <Path>ShipToPartyName</Path>
+         <String> </String>
+         <Path>ShipToPartyAdditionalName</Path>
+        </Apply>
+       </PropertyValue>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Value" Path="GBSTK_TEXT"/>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Value" Path="RFSTK_TEXT"/>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Value" Path="ABSTK_TEXT"/>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Value" Path="SalesQuotationValdtyStartDate"/>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Value" Path="SalesQuotationValidityEndDate"/>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Value" Path="SalesQuotationDate"/>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Value" Path="PurchaseOrderByCustomer"/>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Value" Path="SalesQuotationNetAmount"/>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Label" String="Sales Area                                                                                                                                                                                                                                                     " />
+       <PropertyValue Property="Value">
+        <Apply Function="odata.concat">
+
+         <Path>VKORG_TEXT</Path>
+         <String>, </String>
+
+         <Path>VTWEG_TEXT</Path>
+         <String>, </String>
+
+         <Path>SPART_TEXT</Path>
+        </Apply>
+       </PropertyValue>
+      </Record>
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Value">
+        <PropertyValue Property="Label" String="Sales Group         " />
+        <Apply Function="odata.concat">
+
+         <Path>VKGRP_TEXT</Path>
+        </Apply>
+       </PropertyValue>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Label" String="Sales Office                                                                                                                                                                                                                                                   " />
+       <PropertyValue Property="Value">
+        <Apply Function="odata.concat">
+
+         <Path>VKBUR_TEXT</Path>
+        </Apply>
+       </PropertyValue>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Value" Path="CreationDate"/>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+      <Record Type="UI.DataFiel">      <!-- <Record Type="UI.DataFieldWithNavigationPath"> -->
+       <PropertyValue Property="Label" String="Created By     " />
+       <PropertyValue Property="Value">
+        <Apply Function="odata.concat">
+
+         <Path>AcademicTitleName</Path>
+         <String> </String>
+         <Path>CreatedByUserName</Path>
+        </Apply>
+       </PropertyValue>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+
+      </Record>
+     </Collection>
+    </Annotation>
+
+    <Annotation Term="UI.LineItem">
+     <Collection>
+       <Record Type="UI.DataFieldWithNavigationPath">
+        <PropertyValue Property="Value" Path="SalesQuotation"/>
+        <PropertyValue Property="Importance" EnumMember="UI.Priority.High"/>
+        <PropertyValue Property="NavigationPath" NavigationPropertyPath="@CB_SALES_ORDER_SRVAnnotation.SalesQuotation"/>
+       </Record>
+       <Record Type="UI.DataField">
+        <PropertyValue Property="Value" Path="VBELN_DESCR"/>
+       </Record>
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Value" Path="SalesQuotationDate"/>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.High"/>
+      </Record>
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Value" Path="GBSTK_TEXT"/>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Value" Path="RFSTK_TEXT"/>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Value" Path="ABSTK_TEXT"/>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Value" Path="SalesQuotationNetAmount"/>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+     </Collection>
+    </Annotation>
+
+    <Annotation Term="UI.Badge">
+     <Record>
+      <PropertyValue Property="Headline">
+       <Record Type="UI.DataField">
+        <PropertyValue Property="Value" String="Sales&#x20;Quotation"/>
+       </Record>
+      </PropertyValue>
+      <PropertyValue Property="TypeImageUrl" String="/sap/public/BusinessSuite/CBESH_ICONS/SalesQuotation/grey_32.png"/>
+      <PropertyValue Property="Title">
+       <Record Type="UI.DataFieldWithNavigationPath">
+        <PropertyValue Property="Value" Path="SalesQuotation"/>
+        <PropertyValue Property="NavigationPath" NavigationPropertyPath="@CB_SALES_ORDER_SRVAnnotation.SalesQuotation"/>
+       </Record>
+      </PropertyValue>
+      <PropertyValue Property="MainInfo">
+       <Record Type="UI.DataField">
+        <PropertyValue Property="Value" Path="VBELN_DESCR"/>
+       </Record>
+      </PropertyValue>
+     </Record>
+    </Annotation>
+
+    <Annotation Term="UI.Facets">
+     <Collection>
+      <Record Type="UI.CollectionFacet">
+       <PropertyValue Property="FacetLabel" String="Overview                      "/>
+       <PropertyValue Property="FacetID" String="1 "/>
+       <PropertyValue Property="Facets">
+        <Collection>
+         <Record Type="UI.CollectionFacet">
+          <PropertyValue Property="FacetLabel" String="General                       "/>
+          <PropertyValue Property="FacetID" String="100 "/>
+          <PropertyValue Property="Facets">
+           <Collection>
+            <Record Type="UI.ReferenceFacet">
+             <PropertyValue Property="FacetLabel" String="Sales&#x20;Quotation"/>
+             <PropertyValue Property="FacetID" String="1000 "/>
+             <PropertyValue Property="UseTerm" String="UI.Identification"/>
+            </Record>
+           </Collection>
+          </PropertyValue>
+         </Record>
+        </Collection>
+       </PropertyValue>
+      </Record>
+     </Collection>
+    </Annotation>
+   </Annotations>
+
+
+
+
+
+   <Annotations Target="CB_SALES_ORDER_SRV.SalesContract">
+    <Annotation Term="UI.HeaderInfo">
+     <Record>
+      <PropertyValue Property="TypeName" String="Sales&#x20;Contract"/>
+      <PropertyValue Property="TypeNamePlural" String="Sales&#x20;Contract"/>
+      <PropertyValue Property="Title">
+       <Record Type="UI.DataFieldWithNavigationPath">
+        <PropertyValue Property="Value" Path="SalesContract"/>
+        <PropertyValue Property="NavigationPath" NavigationPropertyPath="@CB_SALES_ORDER_SRVAnnotation.SalesContract"/>
+       </Record>
+      </PropertyValue>
+      <PropertyValue Property="Description">
+       <Record>
+        <PropertyValue Property="Value" Path="VBELN_DESCR"/>
+       </Record>
+      </PropertyValue>
+      <PropertyValue Property="TypeImageUrl" String="/sap/public/BusinessSuite/CBESH_ICONS/SalesContract/grey_32.png"/>
+     </Record>
+    </Annotation>
+    <Annotation Term="CB_SALES_ORDER_SRVAnnotation.SalesContract">
+     <Url>
+      <Apply Function="odata.fillUriTemplate">
+       <String>/sap/opu/odata/sap/CB_SALES_CONTRACT_SRV/SalesContracts(SalesContract='{ID2}')</String>
+       <LabeledElement Name="ID2">
+        <Apply Function="odata.UriEncode">
+         <Path>SalesContract</Path>
+        </Apply>
+       </LabeledElement>
+      </Apply>
+     </Url>
+    </Annotation>
+
+    <Annotation Term="UI.Identification">
+     <Collection>
+
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Value" String=""/>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Label" String="Sold-To Party                   "/>
+       <PropertyValue Property="Value">
+        <Apply Function="odata.concat">
+         <Path>SoldToPartyName</Path>
+         <String> </String>
+         <Path>SoldToPartyAdditionalName</Path>
+        </Apply>
+       </PropertyValue>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Label" String="Ship-To Party                                                                                                                                                                                                                                                  "/>
+       <PropertyValue Property="Value">
+        <Apply Function="odata.concat">
+
+         <Path>ShipToPartyName</Path>
+         <String> </String>
+         <Path>ShipToPartyAdditionalName</Path>
+        </Apply>
+       </PropertyValue>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Value" Path="GBSTK_TEXT"/>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Value" Path="RFSTK_TEXT"/>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Value" Path="SalesContractValidityStartDate"/>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Value" Path="SalesContractValidityEndDate"/>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Value" Path="SalesContractDate"/>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Value" Path="PurchaseOrderByCustomer"/>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Value" Path="NetAmount"/>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Label" String="Sales Area                                                                                                                                                                                                                                                     " />
+       <PropertyValue Property="Value">
+        <Apply Function="odata.concat">
+
+         <Path>VKORG_TEXT</Path>
+         <String>, </String>
+
+         <Path>VTWEG_TEXT</Path>
+         <String>, </String>
+
+         <Path>SPART_TEXT</Path>
+        </Apply>
+       </PropertyValue>
+      </Record>
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Value" String=""/>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Label" String="Sales Group         " />
+       <PropertyValue Property="Value">
+        <Apply Function="odata.concat">
+         <Path>VKGRP_TEXT</Path>
+        </Apply>
+       </PropertyValue>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Label" String="Sales Office                                                                                                                                                                                                                                                   " />
+       <PropertyValue Property="Value">
+        <Apply Function="odata.concat">
+         <Path>VKBUR_TEXT</Path>
+        </Apply>
+       </PropertyValue>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Value" Path="CreationDate"/>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+      <Record Type="UI.DataFiel">
+       <PropertyValue Property="Label" String="Created By     " />
+       <PropertyValue Property="Value">
+        <Apply Function="odata.concat">
+         <Path>AcademicTitleName</Path>
+         <String> </String>
+         <Path>CreatedByUserName</Path>
+        </Apply>
+       </PropertyValue>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+     </Collection>
+    </Annotation>
+
+    <Annotation Term="UI.LineItem">
+     <Collection>
+      <Record Type="UI.DataFieldWithNavigationPath">
+       <PropertyValue Property="Value" Path="SalesContract"/>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.High"/>
+       <PropertyValue Property="NavigationPath" NavigationPropertyPath="@CB_SALES_ORDER_SRVAnnotation.SalesContract"/>
+      </Record>
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Value" Path="VBELN_DESCR"/>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.High"/>
+      </Record>
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Value" Path="SalesContractValidityStartDate"/>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Value" Path="SalesContractValidityEndDate"/>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Value" Path="NetAmount"/>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.High"/>
+      </Record>
+     </Collection>
+    </Annotation>
+
+    <Annotation Term="UI.Badge">
+     <Record>
+      <PropertyValue Property="Headline">
+       <Record Type="UI.DataField">
+        <PropertyValue Property="Value" String="Sales&#x20;Contract"/>
+       </Record>
+      </PropertyValue>
+      <PropertyValue Property="TypeImageUrl" String="/sap/public/BusinessSuite/CBESH_ICONS/SalesContract/grey_32.png"/>
+      <PropertyValue Property="Title">
+       <Record Type="UI.DataFieldWithNavigationPath">
+        <PropertyValue Property="Value" Path="SalesContract"/>
+        <PropertyValue Property="NavigationPath" NavigationPropertyPath="@CB_SALES_ORDER_SRVAnnotation.SalesContract"/>
+       </Record>
+      </PropertyValue>
+      <PropertyValue Property="MainInfo">
+       <Record Type="UI.DataField">
+        <PropertyValue Property="Value" Path="VBELN_DESCR"/>
+       </Record>
+      </PropertyValue>
+     </Record>
+    </Annotation>
+
+    <Annotation Term="UI.Facets">
+     <Collection>
+      <Record Type="UI.CollectionFacet">
+       <PropertyValue Property="FacetLabel" String="Overview                      "/>
+       <PropertyValue Property="FacetID" String="1 "/>
+       <PropertyValue Property="Facets">
+        <Collection>
+         <Record Type="UI.CollectionFacet">
+          <PropertyValue Property="FacetLabel" String="General                       "/>
+          <PropertyValue Property="FacetID" String="100 "/>
+          <PropertyValue Property="Facets">
+           <Collection>
+            <Record Type="UI.ReferenceFacet">
+             <PropertyValue Property="FacetLabel" String="Sales&#x20;Contract"/>
+             <PropertyValue Property="FacetID" String="1000 "/>
+             <PropertyValue Property="UseTerm" String="UI.Identification"/>
+            </Record>
+           </Collection>
+          </PropertyValue>
+         </Record>
+        </Collection>
+       </PropertyValue>
+      </Record>
+     </Collection>
+    </Annotation>
+   </Annotations>
+
+
+
+
+
+   <Annotations Target="CB_SALES_ORDER_SRV.OutboundDelivery">
+    <Annotation Term="UI.HeaderInfo">
+     <Record>
+      <PropertyValue Property="TypeName" String="Outbound&#x20;Delivery"/>
+      <PropertyValue Property="TypeNamePlural" String="Outbound&#x20;Delivery"/>
+      <PropertyValue Property="Title">
+       <Record Type="UI.DataFieldWithNavigationPath">
+        <PropertyValue Property="Value" Path="DeliveryDocument"/>
+        <PropertyValue Property="NavigationPath" NavigationPropertyPath="@CB_SALES_ORDER_SRVAnnotation.OutboundDelivery"/>
+       </Record>
+      </PropertyValue>
+      <PropertyValue Property="Description">
+       <Record>
+        <PropertyValue Property="Value" Path="LFART_TEXT"/>
+       </Record>
+      </PropertyValue>
+      <PropertyValue Property="TypeImageUrl" String="/sap/public/BusinessSuite/CBESH_ICONS/OutboundDelivery/grey_32.png"/>
+     </Record>
+    </Annotation>
+    <Annotation Term="CB_SALES_ORDER_SRVAnnotation.OutboundDelivery">
+     <Url>
+      <Apply Function="odata.fillUriTemplate">
+       <String>/sap/opu/odata/sap/CB_OUTBOUND_DELIVERY_SRV/OutboundDeliverys(DeliveryDocument='{ID3}')</String>
+       <LabeledElement Name="ID3">
+        <Apply Function="odata.UriEncode">
+         <Path>DeliveryDocument</Path>
+        </Apply>
+       </LabeledElement>
+      </Apply>
+     </Url>
+    </Annotation>
+
+    <Annotation Term="UI.Identification">
+     <Collection>
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Value" String=""/>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+      <Record Type="UI.DataField">
+        <PropertyValue Property="Label" String="Ship-To Party                                                                                                                                                                                                                                                  "/>
+        <PropertyValue Property="Value">
+        <Apply Function="odata.concat">
+
+         <Path>NAME1_WE</Path>
+         <String> </String>
+         <Path>NAME2_WE</Path>
+        </Apply>
+       </PropertyValue>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Label" String="Sold-To Party                   "/>
+       <PropertyValue Property="Value">
+        <Apply Function="odata.concat">
+         <Path>NAME1_AG</Path>
+         <String> </String>
+         <Path>NAME2_AG</Path>
+        </Apply>
+       </PropertyValue>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+      <Record>
+       <PropertyValue Property="Value" Path="GBSTK_DESCRIPTION"/>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+      <Record>
+       <PropertyValue Property="Value" Path="FKSTK_DESCRIPTION"/>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+      <Record>
+       <PropertyValue Property="Value" Path="WBSTK_DESCRIPTION"/>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+
+      <Record>
+       <PropertyValue Property="Value" Path="TRSTA_DESCRIPTION"/>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Value" Path="LFDAT"/>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Value" Path="WADAT"/>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Value" Path="LDDAT"/>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Value" Path="KODAT"/>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Value" Path="TDDAT"/>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+      <Record>
+       <PropertyValue Property="Value" Path="TotalGrossWeight"/>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+      <Record>
+       <PropertyValue Property="Value" Path="TotalNetWeight"/>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+      <Record>
+       <PropertyValue Property="Value" Path="VOLUM"/>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Value" Path="CreationDate"/>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+      <Record Type="UI.DataFiel">      <!-- <Record Type="UI.DataFieldWithNavigationPath"> -->
+       <PropertyValue Property="Label" String="Created By     " />
+       <PropertyValue Property="Value">
+        <Apply Function="odata.concat">
+         <Path>USER_NAME_CREATE</Path>
+        </Apply>
+       </PropertyValue>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+
+      </Record>
+     </Collection>
+    </Annotation>
+
+    <Annotation Term="UI.LineItem">
+     <Collection>
+      <Record Type="UI.DataFieldWithNavigationPath">
+       <PropertyValue Property="Value" Path="DeliveryDocument"/>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.High"/>
+       <PropertyValue Property="NavigationPath" NavigationPropertyPath="@CB_SALES_ORDER_SRVAnnotation.OutboundDelivery"/>
+      </Record>
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Value" Path="LFART_TEXT"/>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.High"/>
+      </Record>
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Value" Path="LFDAT"/>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+      <Record Type="UI.DataField">
+       <PropertyValue Property="Value" Path="GBSTK_DESCRIPTION"/>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+      <Record>
+       <PropertyValue Property="Value" Path="TotalGrossWeight"/>
+       <PropertyValue Property="Importance" EnumMember="UI.Priority.Medium"/>
+      </Record>
+     </Collection>
+    </Annotation>
+
+    <Annotation Term="UI.Badge">
+     <Record>
+      <PropertyValue Property="Headline">
+       <Record Type="UI.DataField">
+        <PropertyValue Property="Value" String="Outbound&#x20;Delivery"/>
+       </Record>
+      </PropertyValue>
+      <PropertyValue Property="TypeImageUrl" String="/sap/public/BusinessSuite/CBESH_ICONS/OutboundDelivery/grey_32.png"/>
+      <PropertyValue Property="Title">
+       <Record Type="UI.DataFieldWithNavigationPath">
+        <PropertyValue Property="Value" Path="DeliveryDocument"/>
+        <PropertyValue Property="NavigationPath" NavigationPropertyPath="@CB_SALES_ORDER_SRVAnnotation.OutboundDelivery"/>
+       </Record>
+      </PropertyValue>
+      <PropertyValue Property="MainInfo">
+       <Record Type="UI.DataField">
+        <PropertyValue Property="Value" Path="LFART_TEXT"/>
+       </Record>
+      </PropertyValue>
+     </Record>
+    </Annotation>
+
+    <Annotation Term="UI.Facets">
+     <Collection>
+      <Record Type="UI.CollectionFacet">
+       <PropertyValue Property="FacetLabel" String="Overview                      "/>
+       <PropertyValue Property="FacetID" String="1 "/>
+       <PropertyValue Property="Facets">
+        <Collection>
+         <Record Type="UI.CollectionFacet">
+          <PropertyValue Property="FacetLabel" String="General                       "/>
+          <PropertyValue Property="FacetID" String="100 "/>
+          <PropertyValue Property="Facets">
+           <Collection>
+            <Record Type="UI.ReferenceFacet">
+             <PropertyValue Property="FacetLabel" String="Outbound&#x20;Delivery"/>
+             <PropertyValue Property="FacetID" String="1000 "/>
+             <PropertyValue Property="UseTerm" String="UI.Identification"/>
+            </Record>
+           </Collection>
+          </PropertyValue>
+         </Record>
+        </Collection>
+       </PropertyValue>
+      </Record>
+     </Collection>
+    </Annotation>
+   </Annotations>
+
+   <Annotations Target="CB_SALES_QUOTATION_SRV.SalesQuotationCE">
+    <Annotation Term="UI.IsCallableEntity"/>
+   </Annotations>
+   <Annotations Target="CB_SALES_CONTRACT_SRV.SalesContractCE">
+    <Annotation Term="UI.IsCallableEntity"/>
+   </Annotations>
+   <Annotations Target="CB_OUTBOUND_DELIVERY_SRV.OutboundDeliveryCE">
+    <Annotation Term="UI.IsCallableEntity"/>
+   </Annotations>
+  </Schema>
+ </edmx:DataServices>
+</edmx:Edmx>

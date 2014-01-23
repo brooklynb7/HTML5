@@ -1,0 +1,28 @@
+<mvc:View xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns:commons="sap.ui.commons"
+		controllerName="sap.ui.core.fragmenttest.TestFragment">
+
+	<Button id="btn1" text="Open XML Dialog! (external Fragment)" press="openXMLDialog" />
+	<Button id="btn1b" text="Open XML Dialog with given ID! (external)" press="openXMLDialogWithId" />
+	<Button id="btn2" text="Open HTML Dialog! (external Fragment)" press="openHTMLDialog" />
+	<Button id="btn2b" text="Open HTML Dialog with given ID! (external)" press="openHTMLDialogWithId" />
+	<Button id="btn3" text="Open JS Popover! (external Fragment)" press="openPopover" />
+	
+	<Button text="{/someText}" />
+	
+	<commons:HorizontalDivider />
+
+	<Label text="Next to this text there should be a Button, imported from an XML fragment:"/>
+	
+	<core:Fragment fragmentName="sap.ui.core.fragmenttest.InnerFragment" type="XML" />
+	
+	<core:Fragment id="innerXmlFrag2" fragmentName="sap.ui.core.fragmenttest.InnerFragment" type="XML" />
+	
+	<commons:HorizontalDivider />
+	
+	<core:Fragment fragmentName="sap.ui.core.fragmenttest.InnerFragment" type="HTML" />
+
+	<commons:HorizontalDivider />
+	
+	<mvc:XMLView viewName="sap.ui.core.fragmenttest.InnerView" />
+		
+</mvc:View>

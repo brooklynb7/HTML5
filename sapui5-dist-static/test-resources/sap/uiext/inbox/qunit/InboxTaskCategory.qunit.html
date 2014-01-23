@@ -1,0 +1,87 @@
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<script id="sap-ui-bootstrap" 
+		type="text/javascript"
+		src="../../../../../resources/sap-ui-core.js"
+		data-sap-ui-theme="sap_bluecrystal"
+		data-sap-ui-language="en-US"
+		data-sap-ui-noConflict="true"
+		data-sap-ui-libs="sap.ui.commons,sap.uiext.inbox">
+	</script>
+		<link rel="stylesheet" href="../../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
+		<script type="text/javascript" src="../../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+		<script type="text/javascript" src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
+		<script type="text/javascript" src="../../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
+		<script>
+			// redirect any resource loading for "sap.uiext.inbox.qunit.mockServer" to the local folder "mockServer/" 
+			jQuery.sap.registerModulePath("sap.uiext.inbox.qunit.mockServer", "mockServer/");
+			
+			// now load and activate the mock server
+			jQuery.sap.require("sap.uiext.inbox.qunit.mockServer.InboxMockServerQUnit");
+
+			module("Load");
+
+			test("InboxCreationOk",function() {
+				sap.ui.getCore().applyChanges(); 
+				equals(false, (jQuery.sap.byId("inbox") === undefined), "Checking if the Inbox Control is created and is not undefined.");
+				equals(false, (jQuery.sap.byId("inbox") === null), "Checking if the Inbox Control is created and is not null.");
+				
+			});
+			
+			// Tests for Category Images in Table view
+			asyncTest("CategoryImages", function() {
+				var delayedCall = function() {
+					equal(jQuery.sap.byId("inbox--taskCategoryImg-col0-row0").attr("src"), "../../../../../resources/sap/uiext/inbox/themes/sap_bluecrystal/img/task.png", "Task image for Table view rendered");
+					equal(jQuery.sap.byId("inbox--taskCategoryImg-col0-row1").attr("src"), "../../../../../resources/sap/uiext/inbox/themes/sap_bluecrystal/img/todo.png", "Todo image for Table view rendered");
+					equal(jQuery.sap.byId("inbox--taskCategoryImg-col0-row2").attr("src"), "../../../../../resources/sap/uiext/inbox/themes/sap_bluecrystal/img/alert.png", "Alert image for Table view rendered");
+					equal(jQuery.sap.byId("inbox--taskCategoryImg-col0-row3").attr("src"), "../../../../../resources/sap/uiext/inbox/themes/sap_bluecrystal/img/notification.png", "Notification image for Table view rendered");
+					equal(jQuery.sap.byId("inbox--taskCategoryImg-col0-row4").attr("src"), "../../../../../resources/sap/uiext/inbox/themes/sap_bluecrystal/img/task.png", "Default image rendered for Task with unrecognized category");
+					start();
+				};
+				setTimeout(delayedCall, 1000);
+				sap.ui.getCore().applyChanges();
+			});
+			
+			asyncTest("SwitchToStreamView", function() {
+				qutils.triggerMouseEvent("inbox--rrViewSelectionButton", "click");
+				sap.ui.getCore().applyChanges(); 
+				ok(jQuery.sap.byId("inbox--tasksRowRepeater").get(0), "RowRepeater displayed in Stream View");
+				ok(jQuery.sap.byId("inbox--tasksRowRepeater").find(".sapUiRrRow"), "Rows displayed in RowRepeater displayed in Stream View");
+				var delayedCall = function() {
+					sap.ui.getCore().applyChanges(); 
+					equal(jQuery.sap.byId("inbox--tasksRowRepeater").find(".sapUiRrRow").size(),"5", "5 Rows displayed in RowRepeater displayed in Stream View");
+					start();
+				};
+				setTimeout(delayedCall, 1000); 
+			});
+			
+			// Tests for Category Images in Stream view
+			asyncTest("StreamViewCategoryImages", function() {
+				var delayedCall = function() {
+					sap.ui.getCore().applyChanges();
+					equal(jQuery.sap.byId("inbox--taskInitiatorImg-inbox--tasksRowRepeater-0").attr("src"), "../../../../../resources/sap/uiext/inbox/themes/sap_bluecrystal/img/taskInitiator_default.png", "Task image for Stream view rendered");
+					equal(jQuery.sap.byId("inbox--taskInitiatorImg-inbox--tasksRowRepeater-1").attr("src"), "../../../../../resources/sap/uiext/inbox/themes/sap_bluecrystal/img/rr_view_todo.png", "Todo image for Stream view rendered");
+					equal(jQuery.sap.byId("inbox--taskInitiatorImg-inbox--tasksRowRepeater-2").attr("src"), "../../../../../resources/sap/uiext/inbox/themes/sap_bluecrystal/img/rr_view_alert.png", "Alert image for Stream view rendered");
+					equal(jQuery.sap.byId("inbox--taskInitiatorImg-inbox--tasksRowRepeater-3").attr("src"), "../../../../../resources/sap/uiext/inbox/themes/sap_bluecrystal/img/rr_view_notification.png", "Notification image for Stream view rendered");
+					equal(jQuery.sap.byId("inbox--taskInitiatorImg-inbox--tasksRowRepeater-4").attr("src"), "../../../../../resources/sap/uiext/inbox/themes/sap_bluecrystal/img/taskInitiator_default.png", "Default image rendered for Task with unrecognized category");
+					start();
+				};
+				setTimeout(delayedCall, 0);
+			});
+			
+			</script>
+	</head>
+	<body>
+		<h1 id="qunit-header"><title>qUnit Page for Inbox Task Category</title></h1>
+		<h2 id="qunit-banner"></h2>
+		<h2 id="qunit-userAgent"></h2>
+		<ol id="qunit-tests"></ol>
+		<div id="qunit-fixture">test markup, will be hidden</div>
+		<div id="canvas" style="height:300px; width:300px"></div>
+		<br>
+		<div id="uiArea1" style="width: 80%;"></div>
+	</body>
+</html>

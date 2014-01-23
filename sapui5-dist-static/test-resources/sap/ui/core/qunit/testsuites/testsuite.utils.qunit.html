@@ -1,0 +1,45 @@
+<html>
+	<head>
+		<title>TestSuite for sap.ui.core: GTP testcase CORE/UTILS</title>
+		<script language="javascript" src="/jsunit-testrunner/app/jsUnitCore.js"></script>
+	</head>
+	<body>
+		<script language="javascript">
+
+			/**
+			 * Add test pages to this test suite function.
+			 * Please order alphabetically
+			 */
+
+			function suite() {
+				var suite = new top.jsUnitTestSuite();
+				var contextPath = "/" + window.location.pathname.split("/")[1];
+				suite.addTestPage(contextPath + "/test-resources/sap/ui/core/qunit/BusyIndicator.qunit.html");
+				suite.addTestPage(contextPath + "/test-resources/sap/ui/core/qunit/Encoding.qunit.html");
+				suite.addTestPage(contextPath + "/test-resources/sap/ui/core/qunit/HTMLSanitizer.qunit.html");
+				suite.addTestPage(contextPath + "/test-resources/sap/ui/core/qunit/jquery.sap.dom.qunit.html");
+//				suite.addTestPage(contextPath + "/test-resources/sap/ui/core/qunit/jquery.sap.history.qunit.html");
+				suite.addTestPage(contextPath + "/test-resources/sap/ui/core/qunit/jquery.sap.logger.qunit.html");
+				suite.addTestPage(contextPath + "/test-resources/sap/ui/core/qunit/jquery.sap.properties.qunit.html");
+				suite.addTestPage(contextPath + "/test-resources/sap/ui/core/qunit/jquery.sap.resources.qunit.html");
+				suite.addTestPage(contextPath + "/test-resources/sap/ui/core/qunit/jquery.sap.script.qunit.html");
+				suite.addTestPage(contextPath + "/test-resources/sap/ui/core/qunit/jquery.sap.strings.qunit.html");
+				suite.addTestPage(contextPath + "/test-resources/sap/ui/core/qunit/jQuery.sap.Version.qunit.html");
+				suite.addTestPage(contextPath + "/test-resources/sap/ui/core/qunit/jquery.sap.xml.qunit.html");
+				suite.addTestPage(contextPath + "/test-resources/sap/ui/core/qunit/PerformanceMeasurement.qunit.html");
+				suite.addTestPage(contextPath + "/test-resources/sap/ui/core/qunit/Popup.qunit.html");
+				suite.addTestPage(contextPath + "/test-resources/sap/ui/core/qunit/ScrollBar.qunit.html");
+				suite.addTestPage(contextPath + "/test-resources/sap/ui/core/qunit/SelectionModel.qunit.html");
+				suite.addTestPage(contextPath + "/test-resources/sap/ui/core/qunit/Serializer.qunit.html");
+				suite.addTestPage(contextPath + "/test-resources/sap/ui/core/qunit/ValidateUrl.qunit.html");
+				suite.addTestPage(contextPath + "/test-resources/sap/ui/core/qunit/ValueStateSupport.qunit.html");
+				suite.addTestPage(contextPath + "/test-resources/sap/ui/core/qunit/ViewSerializer.qunit.html");
+				suite.addTestPage(contextPath + "/test-resources/sap/ui/core/qunit/ws/SapPcpWebSocket.qunit.html");
+			    suite.addTestPage(contextPath + "/test-resources/sap/ui/core/qunit/ws/WebSocket.qunit.html");
+				return suite;
+			}
+
+			redirectToTestrunnerIfRequired();
+		</script>
+	</body>
+</html>

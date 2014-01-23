@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta charset="UTF-8">
+
+    <title>AppRef: Report Quality Issue</title>
+
+    <!-- difference 1/2 with real app: path to the ui core script -->
+    <script id="sap-ui-bootstrap" type="text/javascript"
+            src="../../../../resources/sap-ui-core.js"
+            data-sap-ui-libs="sap.m, sap.me"
+            data-sap-ui-theme="sap_bluecrystal"
+            data-sap-ui-xx-bindingSyntax="complex"
+            data-sap-ui-resourceroots='{"i2d.qm.qualityissue.confirm.appref": "./"}'>
+
+    </script>
+
+    <!-- Application launch configuration -->
+    <script type="text/javascript">
+        // Registers SAP UI5
+        <!-- difference 2/2 with real app: path to the sap.ca.ui lib -->
+        jQuery.sap.registerModulePath("sap.ca.ui", '../../../../resources/sap/ca/ui/');
+
+        var vizDefine = window.define;
+        window.define = function(/*qname, deps, factory*/){
+            var qname = arguments[0],
+                    deps = arguments[1],
+                    factory = arguments[2];
+            if(Object.prototype.toString.call(qname) === "[object Function]"){
+                var obj = qname();
+                window[obj.name] = obj;
+            }
+            vizDefine(arguments);
+        };
+
+        sap.ui.core.Component.activateCustomizing("i2d.qm.qualityissue.confirm.appref");
+
+        sap.ui.getCore().attachInitEvent(function () {
+            var oComponentContainer = new sap.ui.core.ComponentContainer({
+                height : "100%",
+                name:"i2d.qm.qualityissue.confirm.appref"
+            });
+            oComponentContainer.placeAt("content");
+        });
+    </script>
+</head>
+
+<!-- UI Content -->
+<body class="sapUiBody" id="content" role="application">
+</body>
+
+</html>

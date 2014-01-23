@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html data-sap-ui-dk-category="Controls/Complex" data-sap-ui-dk-controls="sap.suite.ui.commons.ThingCollection">
+<head>
+    <meta charset="UTF-8">
+    <title>ThingCollection - sap.suite.ui.commons</title>
+
+    <!-- Bootstrap -->
+    <script id="sap-ui-bootstrap" type="text/javascript"
+            src="../../../../../../resources/sap-ui-core.js"
+            data-sap-ui-theme="sap_goldreflection"
+            data-sap-ui-libs="sap.ui.commons, sap.ui.ux3, sap.ui.demokit, sap.suite.ui.commons">
+    </script>
+    <script src="../../../../../../js/utils.js"></script>
+
+    <!-- Example 1 script -->
+    <script id="thingCollection1" type="text/javascript">
+        function row(sLabel, sText) {
+            var oControl = new sap.ui.commons.TextView({
+                text: sText,
+                tooltip: sText
+            });
+            var oLabel = new sap.ui.commons.Label({
+                text: sLabel + ":",
+                labelFor: oControl
+            });
+            var oMLCell1 = new sap.ui.commons.layout.MatrixLayoutCell({
+                hAlign: sap.ui.commons.layout.HAlign.End,
+                vAlign: sap.ui.commons.layout.VAlign.Top,
+                content: [ oLabel ]
+            });
+            var oMLCell2 = new sap.ui.commons.layout.MatrixLayoutCell({
+                hAlign: sap.ui.commons.layout.HAlign.Begin,
+                vAlign: sap.ui.commons.layout.VAlign.Top,
+                content: [ oControl ]
+            });
+
+            return new sap.ui.commons.layout.MatrixLayoutRow({
+                cells: [ oMLCell1, oMLCell2 ]
+            });
+        }
+
+        var index = 1;
+
+        // Creates and adds new ThingViewer control into collection
+        function addProduct() {
+            var oProductThingViewer = new sap.suite.ui.commons.ThreePanelThingViewer({
+                type: "PRODUCT " + (index++),
+                title: "ID: 7438",
+                subtitle: "Industrial Lighting",
+                icon: "images/light_bulb.png"
+            });
+
+            oThingCollection.addNextContent(oProductThingViewer).shiftNext();
+        }
+
+        function addContact() {
+            var oContactThingViewer = new sap.suite.ui.commons.ThreePanelThingViewer({
+                type: "EMPLOYEE " + (index++),
+                title: "John Doe",
+                subtitle: "Sales Contact at Customer Side",
+                icon: "images/persons/male_MillerM.jpg"
+            });
+
+            oThingCollection.addNextContent(oContactThingViewer).shiftNext();
+        }
+
+        // First facet content
+        var oFC1 = new sap.ui.ux3.ThingGroup({
+            title : "Contacts",
+            colspan: true,
+            content: [
+                new sap.suite.ui.commons.BusinessCard({
+                	firstTitle: new sap.ui.commons.Link({text: "Doe, John", href: "javascript:addContact()"}),
+                    secondTitle: "Sales Contact at Customer Side",
+                    iconPath: "images/persons/male_MillerM.jpg",
+                    width: "280px"
+                })
+            ]
+        });
+
+        // Second facet content
+        var oFC2 = new sap.ui.ux3.ThingGroup({
+            title : "Product Ranges",
+            colspan: true,
+            content: [
+                new sap.suite.ui.commons.BusinessCard({
+                	firstTitle: new sap.ui.commons.Link({text: "ID: 7438", href: "javascript:addProduct()"}),
+                    secondTitle: "Industrial Lighting",
+                    iconPath: "images/light_bulb.png",
+                    width: "280px"
+                })
+            ]
+        });
+
+        // Action menu selection event handler
+        var fnSelectMenu = function(oEvent) {
+            alert("Action '" + oEvent.getSource().getProperty("text") + "' selected.");
+        };
+
+        // Initialize the first ThingViewer control
+        var oThingViewer = new sap.suite.ui.commons.ThreePanelThingViewer({
+            id: "tpThingViewer",
+            type: "SUPPLIER",
+            title: "Company Northern Lights Ltd.",
+            subtitle: "Industrial and automotive lightning",
+            sidebarWidth: "226px",
+            icon: "../images/gen_bo_img.png",
+            logo: "../images/img_key_company.png",
+            facets: [
+                new sap.suite.ui.commons.CountingNavigationItem({ key: "overview", text: "Overview" }),
+                new sap.suite.ui.commons.CountingNavigationItem({ key: "contacts", text: "Contacts", quantity: 1 }),
+                new sap.suite.ui.commons.CountingNavigationItem({ key: "products", text: "Product Ranges", quantity: 1 })
+            ],
+            menuContent: [
+                new sap.ui.commons.Link({text: "Set As Additional filter", press: fnSelectMenu}),
+                new sap.ui.commons.Link({text: "Open Fact Sheet", press: fnSelectMenu}),
+                new sap.ui.commons.Link({text: "E-mail", href: "mailto:company@site.com"}),
+                new sap.ui.commons.Link({text: "Call", press: fnSelectMenu})
+            ],
+            headerContent: [
+                new sap.ui.ux3.ThingGroup({
+                    title : "General",
+                    content: [
+                        new sap.ui.commons.layout.MatrixLayout({
+                            rows: [
+                                row("ABC Classification", "B-Supplier"),
+                                row("Industry", "Electronics"),
+                                row("Customer ID", "123765")
+                        ]})
+                    ]
+                }),
+                new sap.ui.ux3.ThingGroup({
+                    title : "Purchasing Data",
+                    content: [
+                        new sap.ui.commons.layout.MatrixLayout({
+                            rows: [
+                                row("Payment Terms", "Payable immediately due net"),
+                                row("Min. Order Value", "$50.00")
+                        ]})
+                    ]
+                })
+            ],
+            facetSelected: function(oEvent) {
+                this.removeAllFacetContent();
+
+                switch (oEvent.getParameter("key")) {
+                case "overview":
+                    this.addFacetContent(oFC1);
+                    this.addFacetContent(oFC2);
+                    this.setShowHeader(true);
+                    break;
+                case "contacts":
+                    this.addFacetContent(oFC1);
+                    this.setShowHeader(false);
+                    break;
+                case "products":
+                    this.addFacetContent(oFC2);
+                    this.setShowHeader(false);
+                    break;
+                }
+            }
+        });
+
+        oThingViewer.selectDefaultFacet();
+
+        // Initialize the second ThingViewer control
+        var oThingViewer2 = new sap.suite.ui.commons.ThreePanelThingViewer({
+            id: "tpThingViewer2",
+            showHeader: true,
+            type: "EMPLOYEE",
+            title: "Viola Gains",
+            subtitle: "Channel Account Executive",
+            icon: "images/persons/female_GainsV.jpg",
+            headerContent: [
+                new sap.ui.ux3.ThingGroup({
+                    title : "General",
+                    content: [
+                        new sap.ui.commons.layout.MatrixLayout({
+                            rows: [
+                                row("Gender", "Female"),
+                                row("Country", "Germany"),
+                                row("E-Mail", "viola.gains@site.com")
+                            ]
+                        })
+                    ]
+                })
+            ]
+        });
+
+        // Initialize a ThingCollection control
+        var oThingCollection = new sap.suite.ui.commons.ThingCollection({
+            id : "thingCollection",
+            width: "1024px",
+            height: "717px"
+        });
+
+        oThingCollection.addContent(oThingViewer);
+        oThingCollection.addContent(oThingViewer2);
+
+        // Attach the ThingCollection control to the page
+        oThingCollection.placeAt("sample1");
+    </script>
+</head>
+
+<body class="sapUiDemokitBody" role="application">
+<h1 color="Blue" icon="images/ctrls/thingcollection-icon.png">ThingCollection</h1>
+
+<h2>Introduction</h2>
+<p>
+    This control contains a collection of items. You can navigate through these items. As soon as the first or last item is reached,
+    navigation is possible only in the opposite direction. You can delete items from the collection. Note that the last item in
+    the collection cannot be deleted. You can use the <a class="sapUiDemokitSrcLink" href="../../../../../../docs/api/symbols/sap.ui.ux3.ThingViewer.html">ThingViewer</a>
+    control or its descendants (for example, <a class="sapUiDemokitSrcLink" href="../../../../../../test-resources/sap/suite/ui/commons/demokit/ThreePanelThingViewer.html">ThreePanelThingViewer</a>)
+    as a collection item.
+</p>
+<br/>
+
+<h2>Keyboard Support</h2>
+<p>Use <code>arrow keys</code> to navigate through the items.</p>
+
+<h2>Example</h2>
+<p>The following example shows how the ThingCollection can be used. Two ThreePanelThingViewer controls are created and added
+    to the <code>content</code> aggregation of the ThingCollection. Choosing the link in the facet content area creates another
+    ThreePanelThingViewer control that is placed to the right of the current one.
+</p>
+<div code-sample="sample1" script="thingCollection1"></div>
+
+<br/>
+<p><a class="sapUiDemokitSrcLink" href="../../../../../../docs/api/symbols/sap.suite.ui.commons.ThingCollection.html">ThingCollection API documentation</a></p>
+<br/>
+</body>
+</html>

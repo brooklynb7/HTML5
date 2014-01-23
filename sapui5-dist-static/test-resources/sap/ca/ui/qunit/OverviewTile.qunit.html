@@ -1,0 +1,75 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <title>Fiori Wave 2: Test Page for OverviewTile</title>
+
+    <script src="../../../../../resources/sap-ui-core.js" id="sap-ui-bootstrap"
+            data-sap-ui-libs="sap.m" data-sap-ui-theme="sap_bluecrystal"
+            data-sap-ui-xx-bindingSyntax="complex" data-sap-ui-noConflict="true">
+    </script>
+
+    <link rel="stylesheet" href="../../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
+    <script type="text/javascript" src="../../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+    <script type="text/javascript" src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
+    <script type="text/javascript" src="../../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
+    <script type="text/javascript" src="utils/qunithelper.js"></script>
+
+
+    <script type="text/javascript" src="OverviewTileTest.js"></script>
+
+    <script type="text/javascript">
+        QUnit.config.autostart = false;
+        jQuery(document).ready(function() {
+            QUnit.start();
+        });
+
+        // require dialog module
+        jQuery.sap.require("sap.m.IconTabBar");
+        jQuery.sap.require("sap.ca.ui.OverviewTile");
+        var oHtml = new sap.ui.core.HTML(
+                {
+                    content : '<div id="contentHolder"></div><h1 id="qunit-header">Fiori Wave 2: Test Page for OverviewTile</h1><h2 id="qunit-banner"></h2><h2 id="qunit-userAgent"></h2><ol id="qunit-tests"></ol>',
+                    afterRendering : function() {
+                        oHorizontal.placeAt("contentHolder");
+                    }
+                });
+
+        var page = new sap.m.Page("myFirstPage", {
+            title : "Fiori - OverviewTile Test",
+            showNavButton : true,
+            enableScrolling : true,
+            content : oHtml
+        });
+
+        var oOverviewTile = new sap.ca.ui.OverviewTile({icon : "",
+                                                    contact:"Chuck Norris Hotel Particulier Chatillon Paris France",
+                                                    title : "Flower Power incorporated that will rock Flower Power incorporated that will rock Flower Power incorporated that will rock",
+                                                    address:"Magasin de Luxe, 158 rue Foubourg Saint Honorine, 8e arrondissement de Paris  75008 Paris , France",
+                                                    rating:"Diamond",
+                                                    opportunities:"Tons of money",
+                                                    revenue:"Millions of Millions of Millions of Millions of dollars",
+                                                    lastContact:"13 May. 2013",
+                                                    nextContact:"24 Oct. 2013",
+                                                    press:"onTileTap",
+                                                    contactPress:"showContact"});
+
+
+        var oHorizontal = new sap.m.HBox({
+            items : [ oOverviewTile ]
+        });
+
+        var app = new sap.m.App("myApp", {
+            initPage : "myFirstPage"
+        });
+
+        app.addPage(page).placeAt("content");
+
+    </script>
+
+</head>
+<body id="body" class="sapUiBody">
+<div id="content"></div>
+</body>
+</html>

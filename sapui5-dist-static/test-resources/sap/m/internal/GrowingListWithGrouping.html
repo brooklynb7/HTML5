@@ -1,0 +1,123 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+		<title>sap.m.GrowingList Test</title>
+
+		<script src="../../../../resources/sap-ui-core.js"
+			type="text/javascript"
+			id="sap-ui-bootstrap"
+			data-sap-ui-libs="sap.m"
+			data-sap-ui-theme="sap_bluecrystal">
+		</script>
+
+		<script type="text/javascript">
+
+
+			var app = new sap.m.App("myApp");
+
+			var listOverview = new sap.m.Page("listOverview", {
+				title : "Growing List Testpage (JSON)",
+				footer : new sap.m.Bar({
+					contentMiddle : []
+				})
+			});
+
+
+			var nav = new Array();
+			for ( var i = 0; i < 1000; i++) {
+				nav[i] = new Array();
+				nav[i].title = "List Item No: " + i;
+				nav[i].description = Math.round(Math.random()*9) + " Description Text";
+				nav[i].type = sap.m.ListType.Detail;
+				nav[i].press = "Content pressed";
+			}
+
+			var dataOverview = {
+				navigation : nav
+			}
+
+
+			var oItemTemplate = new sap.m.StandardListItem({
+				title : "{title}",
+				description : "{description}",
+				icon : "../images/travel_expend.png",
+				activeIcon : "../images/travel_expend_grey.png",
+				iconInset : false,
+				type : "{type}",
+				unread : true,
+				counter : 99,
+				selected : false
+			});
+
+
+			var oList = new sap.m.List({
+				growing: true,
+				growingThreshold : 10,
+				growingScrollToLoad: false,
+				headerText : "Growing List",
+				inset : false,
+				footerText : "List Footer",
+				'delete' : deleteItem,
+				mode : sap.m.ListMode.Delete,
+				triggerText : "",
+				showNoData: false,
+			});
+
+
+			function deleteItem(oEvent) {
+				var model = oEvent.mParameters.listItem.getModel();
+				if (model) {
+					var deleteId = model.getProperty("", oEvent.mParameters.listItem.getBindingContext());
+					var data = model.getData().navigation;
+					jQuery.each(data,function(iIndex, oEntry){
+						if (oEntry == deleteId) {
+							data.splice(iIndex, 1);
+							return false;
+						}
+					});
+					model.updateBindings();
+				}
+			}
+
+
+			function bindListData(data, itemTemplate, list) {
+				jQuery.sap.require("sap.ui.model.json.JSONModel");
+				var oModel = new sap.ui.model.json.JSONModel();
+				oModel.setData(data);
+				// set the model to the list
+				list.setModel(oModel);
+				//sap.ui.getCore().setModel(oModel);
+
+				// create a CustomData template, set its key to "answer" and bind its value to the answer data
+				var oDataTemplate = new sap.ui.core.CustomData({
+					key : "xyz"
+				});
+				oDataTemplate.bindProperty("value", "press");
+
+				// add the CustomData template to the item template
+				itemTemplate.addCustomData(oDataTemplate);
+
+				// bind Aggregation
+				list.bindAggregation("items", "/navigation", itemTemplate);
+
+				// now apply sorting and grouping
+				var oSorter = new sap.ui.model.Sorter("description", false, function(oContext){
+					return oContext.getProperty("description").charAt(0); // group by first letter of Name
+				});
+				list.getBinding("items").sort(oSorter);
+			}
+
+
+			bindListData(dataOverview, oItemTemplate, oList);
+			listOverview.addContent(oList);
+			app.addPage(listOverview)
+
+			app.placeAt("body");
+		</script>
+
+	</head>
+	<body id="body" class="sapUiBody">
+	</body>
+</html>

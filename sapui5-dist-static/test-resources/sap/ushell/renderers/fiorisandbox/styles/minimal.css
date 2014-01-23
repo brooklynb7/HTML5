@@ -1,0 +1,45 @@
+/* Copyright (c) 2013 SAP AG, All Rights Reserved */
+/*
+* version: @version@
+* This is the stylesheet for the Unified Shell's Fiori sandbox renderer.
+*
+* since: 1.16.0
+*/
+
+/* TODO Theme Designer Support!! */
+body {
+    margin: 0;
+}
+.sapUShellFullHeight {
+  height: 100%;
+}
+.sapUShellLogout {
+    background-color: rgb(226, 226, 226); /* sapUiButtonBackground */
+    opacity: 0.75;
+    color: black; /* sapUiButtonTextColor */
+    bottom: 12px;
+    display: inline-block;
+    font-size: 36px;
+    height: 44px;
+    left: auto;
+    position: fixed;
+    right: 12px;
+    text-align: center;
+    vertical-align: middle;
+    width: 44px;
+    z-index: 100;
+}
+.sapUShellLogout:hover {
+    background-color: rgb(0, 0, 0); /* sapUiButtonHoverBackground */
+    color: white; /* sapUiButtonHoverTextColor */
+}
+html[dir='rtl'] .sapUShellLogout {
+    left: 12px;
+    right: auto;
+}
+.pagebuilder_widget_control {
+    background: white;
+}
+.pagebuilder .sapUiPanelHdrItem.sapUiPanelTitle.sapUiTvH5 {
+    display: none;
+}

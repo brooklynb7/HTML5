@@ -1,0 +1,46 @@
+.newsTitleDetail {
+	margin-left: 1.875rem;
+	margin-right: 1.875rem;
+	width: 11.875rem;
+	font-size: 1.5rem;
+	font-family: 'OpenSans-Semibold', sans-serif; /* TODO: Use LESS param */
+	line-height: 3rem;
+}
+
+.newsListDetail .sapMLIB-CTX {
+	padding: 0;
+}
+
+.searchFieldDetail > .sapMSFMG {
+	text-align: left;
+}
+.sapMBar {
+	height: 3rem;
+}
+
+.sapMBarLeft {
+	padding-left: 0.875rem;
+}
+
+.sapMBarRight {
+	width: 75% !important;
+}
+.sapMSFB>form{
+	padding-left: 1.875rem;	
+}
+.sapMPageWithHeader > section > .sapMPageScroll{
+	border-top-width: 3rem;
+}
+
+.sap-desktop .sapMPageWithHeader >section,.sapMPageWithHeader > section > .sapMScrollbarV {
+	top: 3rem;
+}
+
+.searchFieldDetail.sapMSF.sapMSFM {
+	padding-left: 2rem;
+}
+
+/* For IE9, make sure list items do not have space on the left. */
+html[data-sap-ui-browser="ie9"] .newsListDetail .sapMLIBContent.sapMLIBContentMargin {
+	padding-left: 0;
+}

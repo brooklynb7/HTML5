@@ -1,0 +1,1328 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>UnifiedThingInspector - sap.suite.ui.commons</title>
+
+    <!-- UI5 Bootstrap -->
+    <script src="../../../../../resources/sap-ui-core.js"
+            type="text/javascript"
+            id="sap-ui-bootstrap"
+            data-sap-ui-libs="sap.ui.commons,sap.suite.ui.commons,sap.m, sap.ui.layout"
+            data-sap-ui-theme="sap_bluecrystal"></script>
+
+<style>
+
+.sapUtiImagePaddingRight {
+    margin-right: 1rem;
+}
+
+.sapSuiteFovContent>.sapUtiFacetOverviewContentMargin {
+    margin: 0;
+}
+
+.sapUtiImagePaddingLeft {
+    margin-left: 0.5rem;
+}
+
+.sapSuiteUtiSalesQuotation {
+    background-color: white;
+}
+.sap-phone .sapSuiteUtiSalesQuotation {
+    padding: 1rem 1rem;
+}
+.sap-phone .sapSuiteUtiOrderDetails {
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.sap-phone .sapSuiteUtgContent > .sapMVBox > .sapMFlexItem {
+    margin-bottom: 1rem;
+}
+
+.sapUtiLocationFacet {
+	margin-left: 2rem;
+}
+.sapUtiLocationFacet > div {
+	margin-bottom: 0.6rem;
+}
+.sapUtiLocationFacet > div > div:FIRST-CHILD {
+	text-align: right;
+	margin-right: 1rem;
+}
+
+.sapUtiLocationFacet > div > div:LAST-CHILD {
+	margin-left: 1rem;
+}
+
+</style>
+
+<script type="text/javascript">
+    jQuery.sap.initMobile();
+
+    jQuery.sap.require("sap.m.MessageToast");
+    jQuery.sap.require("sap.ui.core.format.DateFormat");
+
+    var isPhone = jQuery.device.is.phone;
+    var sDevice = isPhone ? "phone" : "desktop";
+
+    var iSegmentsInGeneralTeaser = 2;
+
+    /**
+     * Returns tile height in rem, depending on device type and number of segments the tile consists of.
+     * @param {number=} [iSegments=1] Number of segments the tile will take vertically in the grid (optional).
+     *                  Currently expected values are 1, 2, 3, however any positive number is supported.
+     *                  Default value is 1.
+     * @return {string} Tile height in rem.
+     */
+    var fnGetTeaserTileHeight = function(iSegments) {
+        iSegments = iSegments || 1;
+        if (isPhone) {
+            return (7 * iSegments)+"rem";
+        } else {
+            return (11 * iSegments - 1)+"rem";
+        }
+    };
+
+    /**
+     * Returns number of rows to be taken from the model to display in General teaser tile,
+     * depending on device type and number of segments the tile consists of.
+     * @param {number=} [iSegments=1]  Number of segments the tile will take vertically in the grid (optional).
+     *                  Currently expected values are 1, 2, 3, however any positive number is supported.
+     *                  Default value is 1.
+     * @return {number} number of rows shown in General teaser tile.
+     */
+    var fnGetGeneralTeaserRowThreshold = function(iSegments) {
+        iSegments = iSegments || 1;
+        if (isPhone) {
+            return (3 * iSegments - 1);
+        } else {
+            return (6 * iSegments - 3);
+        }
+    };
+
+    var oGeneralFacetRow_CustomJB = new sap.m.ColumnListItem({
+        cells: [
+            new sap.m.Label({
+                text: "Responsible:"
+            }).addStyleClass("sapSuiteUtiLabel"),
+            new sap.m.Link({
+                text: "John Bradford",
+                press: function(oe) {
+                    sap.m.MessageToast.show("John Bradford's custom template.");
+					return false;
+                }
+            })
+        ]
+    });
+
+    var oGeneralFacetData = {
+        items: [
+            { label: "Locked for", text: "Actual Primary Costs" },
+            {                      text: "Actual Secondary Costs" },
+            { label: "Valid From", text: "01.01.2010" },
+            {   type: "separator" },
+            { label: "Valid To",   text: "Partially Invoiced" },
+            { label: "Created on", text: "01.01.2010" },
+            { label: "Created by", text: "John Smith", type: "link", href: "http://www.sap.com" },
+            {   type: "separator" },
+            {
+                type: "custom",
+                row: oGeneralFacetRow_CustomJB
+            },
+            { label: "Profit Center",       text: "Sales" },
+            { label: "Company",             text: "Consultant AG UK" },
+            { label: "Controlling Area",    text: "Consult AG" },
+            { label: "Group In",            text: "0010 Marketing" },
+            { label: "Standard Hierarchy" },
+            {   type: "separator" },
+            { label: "Sales & Marketing",               type: "heading"},
+            { label: "Cost Center Type",    text: "Sales & Marketing" },
+            { label: "Cost Center Type",    text: "Event Marketing" }
+
+        ]
+    };
+
+    var oGeneralTeaserData = {
+        items: oGeneralFacetData.items.slice(0, fnGetGeneralTeaserRowThreshold(iSegmentsInGeneralTeaser))
+    };
+
+    var oGeneralTableTemplate_Separator = new sap.m.ColumnListItem({
+        cells: [new sap.m.Text(), new sap.m.Text()]
+    });
+
+    var oGeneralTableTemplate_Text = new sap.m.ColumnListItem({
+        cells: [
+            new sap.m.Label({
+                text: {
+                    path: "label",
+                    formatter: function(v) {
+                        return v ? v+":" : "";
+                    }
+                }
+            }).addStyleClass("sapSuiteUtiLabel"),
+
+            new sap.m.Text({
+                text: "{text}"
+            }).addStyleClass("sapSuiteUtiText")
+        ]
+    });
+
+    var oGeneralTableTemplate_Heading = new sap.m.ColumnListItem({
+        cells: [
+            new sap.m.Label({
+                text: {
+                    path: "label",
+                    formatter: function(v) {
+                        return v || "";
+                    }
+                },
+                design: sap.m.LabelDesign.Bold
+            }).addStyleClass("sapSuiteUtiLabel"),
+
+            new sap.m.Text()
+        ]
+    });
+
+    var oGeneralTableTemplate_Link = new sap.m.ColumnListItem({
+        cells: [
+            new sap.m.Label({
+                text: {
+                    path: "label",
+                    formatter: function(v) {
+                        return v ? v+":" : "";
+                    }
+                }
+            }).addStyleClass("sapSuiteUtiLabel"),
+            new sap.m.Link({
+                text: "{text}",
+                href: "{href}",
+                target: "_blank",
+                press: function(oe) {
+                    return false;
+                }
+            })
+        ]
+    });
+
+    var fnGeneralTableItemFactory = function(sId, oContext) {
+        var type = oContext.getProperty("type");
+        var rowTemplate;
+        switch (type) {
+            case "custom":
+                rowTemplate = oContext.getProperty("row") || oGeneralTableTemplate_Text;
+                break;
+            case "separator":
+                rowTemplate = oGeneralTableTemplate_Separator;
+                break;
+            case "heading":
+                rowTemplate = oGeneralTableTemplate_Heading;
+                break;
+            case "link":
+                rowTemplate = oGeneralTableTemplate_Link;
+                break;
+            default:
+                rowTemplate = oGeneralTableTemplate_Text;
+        }
+        return rowTemplate.clone();
+    };
+
+    var oGeneralTeaserContent = new sap.m.Table({
+        backgroundDesign: sap.m.BackgroundDesign.Transparent,
+        showSeparators: sap.m.ListSeparators.None,
+        columns: [
+            new sap.m.Column({
+                width: "42%",
+                hAlign: sap.ui.core.TextAlign.End
+            }),
+            new sap.m.Column({
+            })
+        ],
+        items: {
+            path: "/items",
+            factory: fnGeneralTableItemFactory
+        }
+    });
+    oGeneralTeaserContent.setModel(new sap.ui.model.json.JSONModel(oGeneralTeaserData));
+    oGeneralTeaserContent.addStyleClass("sapSuiteUtiGeneral");
+    oGeneralTeaserContent.addStyleClass("sapSuiteUtiGeneralInTeaser");
+
+    var oGeneralFacetContent = new sap.m.Table({
+        backgroundDesign: sap.m.BackgroundDesign.Transparent,
+        showSeparators: sap.m.ListSeparators.None,
+        columns: [
+            new sap.m.Column({
+                width: "42%",
+                hAlign: sap.ui.core.TextAlign.End
+            }),
+            new sap.m.Column({
+            })
+        ],
+        items: {
+            path: "/items",
+            factory: fnGeneralTableItemFactory
+        }
+    });
+    oGeneralFacetContent.setModel(new sap.ui.model.json.JSONModel(oGeneralFacetData));
+    oGeneralFacetContent.addStyleClass("sapSuiteUtiGeneral");
+    oGeneralFacetContent.addStyleClass("sapSuiteUtiGeneralOnPage");
+
+    var oFormOverviewGroup = new sap.suite.ui.commons.UnifiedThingGroup("general", {
+    	title : "General",
+    	description : "4711, Marketing",
+    	content : oGeneralFacetContent
+    });
+
+    var oControllingDocsData = {
+        content : [{
+        	date: "20.04.2013",
+        	document: "47110001",
+        	header: "Header Text",
+        	amount: "140 USD",
+        	amountTC: "110 EUR"
+        }, {
+        	date: "20.04.2013",
+        	document: "47110020",
+        	header: "Header Text",
+        	amount: "140 USD",
+        	amountTC: "110 EUR"
+        }, {
+        	date: "20.04.2013",
+        	document: "47112300",
+        	header: "Header Text",
+        	amount: "230 USD",
+        	amountTC: "190 EUR"
+        }, {
+        	date: "20.04.2013",
+        	document: "47112500",
+        	header: "Header Text",
+        	amount: "230 USD",
+        	amountTC: "190 EUR"
+        }, {
+        	date: "20.04.2013",
+        	document: "47113000",
+        	header: "Header Text",
+        	amount: "140 USD",
+        	amountTC: "110 EUR"
+        }, {
+        	date: "20.04.2013",
+        	document: "47113100",
+        	header: "Header Text",
+        	amount: "210 USD",
+        	amountTC: "170 EUR"
+        }, {
+        	date: "20.04.2013",
+        	document: "47113200",
+        	header: "Header Text",
+        	amount: "140 USD",
+        	amountTC: "110 EUR"
+        }]
+    };
+
+    var oControllingDocsTemplate  = new sap.m.ColumnListItem({
+        cells : [
+			new sap.m.Text({text : "{date}"}),
+            new sap.m.Link({text : "{document}"}),
+            new sap.m.Text({text : "{header}"}),
+            new sap.m.Text({text : "{amount}"}),
+            new sap.m.Text({text : "{amountTC}"})
+        ]
+    });
+    
+    var oControllingDocsList = new sap.m.List({
+        columns : [
+            new sap.m.Column({
+            	header : new sap.m.Text({text : "Posting Date"})
+        }), new sap.m.Column({
+            	header : new sap.m.Text({text : "Document No"})
+        }), new sap.m.Column({
+            	header : new sap.m.Text({text : "Header Text"})
+        }), new sap.m.Column({
+        		width: "25%",
+            	header : new sap.m.Text({text : "Amount in Controlling Area Currency"}),
+                minScreenWidth : "Tablet",
+                demandPopin : true
+        }), new sap.m.Column({
+        		width: "25%",
+            	header : new sap.m.Text({text : "Amount in Transaction Currency"}),
+                minScreenWidth : "Tablet",
+                demandPopin : true
+        })],
+        items : {
+            path : "/content",
+            template : oControllingDocsTemplate
+        }
+    });
+        
+    var oControllingDocsModel = new sap.ui.model.json.JSONModel();
+    oControllingDocsModel.setData(oControllingDocsData);
+    oControllingDocsList.setModel(oControllingDocsModel);
+
+    var oListContactsGroup = new sap.suite.ui.commons.UnifiedThingGroup("docs", {
+    	title: "Controlling Documents",
+    	description: "4711, Marketing",
+    	content: oControllingDocsList,
+        design: sap.suite.ui.commons.ThingGroupDesign.TopIndent
+    });
+    
+    var oStorageLocationTemplate  = new sap.m.ColumnListItem({
+        cells : [
+			new sap.m.Text({text : "{country}"}),
+            new sap.m.Text({text : "{plant}"}),
+            new sap.m.Text({text : "{location}"}),
+            new sap.m.Text({text : "{available}"})
+        ]
+    });
+    
+    var oStorageLocationsList = new sap.m.List({
+        columns : [
+            new sap.m.Column({
+            	header : new sap.m.Text({text : "Country"})
+        }), new sap.m.Column({
+            	header : new sap.m.Text({text : "Plant"})
+        }), new sap.m.Column({
+        		width: "40%",
+            	header : new sap.m.Text({text : "Storage Location"}),
+                minScreenWidth : "Tablet",
+                demandPopin : true
+        }), new sap.m.Column({
+        		hAlign : "Center",
+        		width: "15%",
+            	header : new sap.m.Text({text : "Available Stock"}),
+                minScreenWidth : "Tablet",
+                demandPopin : true
+        })],
+        items : {
+            path : "/content",
+            template : oStorageLocationTemplate
+        }
+    });
+    
+    var oStorageLocationsData = {
+        content : [{
+        	country: "Germany",
+        	plant: "DC Germany South",
+        	location: "Loc1 Mills Rd",
+        	available: "200"
+        }, {
+        	country: "Germany",
+        	plant: "DC Germany South",
+        	location: "Loc2 Lee Avenue",
+        	available: "40"
+        }, {
+        	country: "Germany",
+        	plant: "Store Munich",
+        	location: "South Castle Peak Rd",
+        	available: "20"
+        }]
+    };
+    
+    var oStorageLocationsModel = new sap.ui.model.json.JSONModel();
+    oStorageLocationsModel.setData(oStorageLocationsData);
+    oStorageLocationsList.setModel(oStorageLocationsModel);
+    
+    var oStorageLocationsContent = new sap.suite.ui.commons.UnifiedThingGroup("storage-location", {
+        title: "Storage Location",
+        description : "4711, Marketing",
+        content: oStorageLocationsList,
+        design: sap.suite.ui.commons.ThingGroupDesign.TopIndent
+    });
+    
+    var oOrdersData = {
+        navigation : [{
+            name : "23000",
+            description : "CeBit Demo",
+            orderType : "040 Event",
+            systemStatus : "Planned"
+        }, {
+            name : "23120",
+            description : "Order 2",
+            orderType : "040 Event",
+            systemStatus : "Released"
+        }, {
+            name : "23230",
+            description : "Order 3",
+            orderType : "040 Event",
+            systemStatus : "Released"
+        }, {
+            name : "21000",
+            description : "Order 4",
+            orderType : "040 Event",
+            systemStatus : "Released"
+        }]
+    };	
+    var oContactsWithImagesData = {
+        navigation: [{
+            image: "demokit/images/persons/female_BaySu.jpg",
+            name: "White, Helen",
+            title: "Internal Sales Rep",
+            phone: "+382832838238",
+            email: "helen.white@sap.com"
+        },
+        {
+            image: "demokit/images/persons/female_WangM.jpg",
+            name: "Yairi Samakusha",
+            title: "Very important",
+            phone: "1-800-VERY",
+            email: "j.samakusha@sap.com"
+        },
+        {
+            image: "demokit/images/persons/female_RushJ.jpg",
+            name: "Ilya Murometz",
+            title: "Team Lead",
+            phone: "1(605)-1232-123-1",
+            email: "ilya.murom@sap.com"
+        }]
+    };
+
+    var oTemplateContactsWithImagesData = new sap.m.ColumnListItem({
+        type: sap.m.Inactive,
+        unread: false,
+        cells: [
+            new sap.m.Image({src: "{image}", width: "74px", height: "74px"}),
+            new sap.m.Link({text: "{name}"}),
+            new sap.m.Text({text: "{title}"}),
+            new sap.m.Link({text: "{phone}"}),
+            new sap.m.Link({text: "{email}"})
+        ]
+    });
+    var oTemplateOrdersData = new sap.m.ColumnListItem({
+        type : sap.m.ListType.Navigation,
+        press : function(oEvent) {
+        	var sId = oEvent.getSource().getCells()[0].getText();
+        	var sDesc = oEvent.getSource().getCells()[1].getText();
+        	var sOrderType = oEvent.getSource().getCells()[2].getText();
+        	var sStatus = oEvent.getSource().getCells()[3].getText();
+        	
+        	var oDeliveryData = {
+                items: [
+                    { label: "Name", text: "SAP Germany" },
+                    { label: "Street", text: "Dietmar-Hopp-Allee 16" },
+                    { label: "City", text: "69190 Walldorf" },
+                    { label: "Country", text: "Germany" }
+                ]
+            };
+
+            var oDeliveryTable = new sap.m.Table({
+                backgroundDesign: sap.m.BackgroundDesign.Transparent,
+                showSeparators: sap.m.ListSeparators.None,
+                columns: [
+                    new sap.m.Column({
+                        width: "42%",
+                        hAlign: sap.ui.core.TextAlign.End
+                    }),
+                    new sap.m.Column({
+                    })
+                ],
+                items: {
+                    path: "/items",
+                    factory: fnGeneralTableItemFactory
+                }
+            });
+            oDeliveryTable.setModel(new sap.ui.model.json.JSONModel(oDeliveryData));
+            oDeliveryTable.addStyleClass("sapSuiteUtiGeneral");
+            oDeliveryTable.addStyleClass("sapSuiteUtiGeneralOnPage");
+
+        	var oDeliveryUtg = new sap.suite.ui.commons.UnifiedThingGroup({
+        		content: oDeliveryTable,
+        		description : "Delivery Address"
+        	});
+        	
+        	
+        	var oPage = new sap.m.Page({
+        		title : "Order Detail",
+        		showNavButton : true,
+        		content : [
+        		    new sap.m.ObjectHeader({
+        		    	title : sDesc,
+        		    	number : sId,
+        		    	flagged : true,
+        		    	showFlag : true,
+        		    	attributes : [
+        		    		new sap.m.ObjectAttribute({text : sOrderType}),
+        		    		new sap.m.ObjectAttribute({text : sStatus})
+        		    	]
+        		    }).addStyleClass("sapSuiteUtiOrderDetails"),
+        		    oDeliveryUtg
+        		]
+        	});
+        	oUTI.navigateToPage(oPage, true);
+        },
+        unread : false,
+        cells : [
+            new sap.m.Link({text : "{name}"}),
+            new sap.m.Text({text : "{description}"}),
+            new sap.m.Text({text : "{orderType}"}),
+            new sap.m.Text({text : "{systemStatus}"})
+        ]
+    });
+
+    var oListOrdersForm = new sap.m.List("internal-orders-list", {
+						        threshold: 2,
+						        inset : false,
+						        showUnread : true,
+						        scrollToLoad : true,
+						        columns : [
+						            new sap.m.Column({
+						            hAlign : "Left",
+						            header : new sap.m.Text({text : "Order Number"}),
+						            width : "25%"
+						        }), new sap.m.Column({
+						            hAlign : "Left",
+						            header : new sap.m.Text({text : "Description"}),
+						            minScreenWidth : "Tablet",
+						            width : "25%",
+						            demandPopin : true
+						        }), new sap.m.Column({
+						            hAlign : "Left",
+						            width : "25%",
+						            header : new sap.m.Text({text : "Order Type"}),
+						            demandPopin : true
+						        }), new sap.m.Column({
+						            hAlign : "Left",
+						            header : new sap.m.Text({text : "System Status"}),
+						            demandPopin : true
+						        })],
+						        items: {
+						            path : "/navigation",
+						            template : oTemplateOrdersData
+						        }
+						    });
+
+    var oListContactsWithImagesForm = new sap.m.List({
+        threshold: 2,
+        inset : false,
+        showUnread : true,
+        scrollToLoad : true,
+        columns : [
+            new sap.m.Column({
+                hAlign: "Left",
+                header: new sap.m.Text({text: ""})
+            }),
+            new sap.m.Column({
+            hAlign : "Left",
+            header : new sap.m.Text({text : "Name"})
+            }), 
+            new sap.m.Column({
+                hAlign : "Left",
+                header : new sap.m.Text({text : "Job Title"}),
+                minScreenWidth : "Tablet",
+                demandPopin : true
+            }), 
+            new sap.m.Column({
+                hAlign : "Left",
+                width : "30%",
+                header : new sap.m.Text({text : "Phone"}),
+                minScreenWidth : "Tablet",
+                demandPopin : true
+            }),
+            new sap.m.Column({
+                hAlign : "Left",
+                width : "30%",
+                header : new sap.m.Text({text : "Email"}),
+                minScreenWidth : "Tablet",
+                demandPopin : true
+            })],
+        items: {
+            path : "/navigation",
+            template : oTemplateContactsWithImagesData
+        }
+    });
+
+
+    var oListOrdersFormGroup = new sap.suite.ui.commons.UnifiedThingGroup("orders", {
+    	title: "Internal Orders",
+    	description: isPhone ? "" : "4711, Marketing",
+    	content: oListOrdersForm,
+        design: sap.suite.ui.commons.ThingGroupDesign.TopIndent
+    });
+
+
+    var oModelOrders = new sap.ui.model.json.JSONModel();
+    oModelOrders.setData(oOrdersData);
+    oListOrdersForm.setModel(oModelOrders);
+
+    var oModelContactsWithImages = new sap.ui.model.json.JSONModel();
+    oModelContactsWithImages.setData(oContactsWithImagesData);
+    oListContactsWithImagesForm.setModel(oModelContactsWithImages);
+
+	var oSalesQuotationGrid = new sap.ui.layout.Grid("sales-quotation-grid", {
+    	defaultSpan: "L6 M12 S12",
+        hSpacing: 1,
+        vSpacing: 1,
+    	content: [
+			new sap.m.ObjectHeader({
+			    title: "40000019",
+			    titleActive: true,
+			    number: "70,000.00",
+			    numberUnit: "EUR",
+			    attributes: [ new sap.m.ObjectAttribute({ text: "Quantity Contract" }) ],
+			    firstStatus: new sap.m.ObjectStatus({ text: "Being processed"}),
+			    secondStatus: new sap.m.ObjectStatus({ text: "01/01/2013 - 05/31/2014"})
+			}).addStyleClass("sapSuiteUtiSalesQuotation"),
+			new sap.m.ObjectHeader({
+		        title: "40000020",
+		        titleActive: true,
+		        number: "100,000.00",
+		        numberUnit: "EUR",
+		        attributes: [ new sap.m.ObjectAttribute({ text: "Matl.-rel. Value Cont" }) ],
+		        firstStatus: new sap.m.ObjectStatus({ text: "Open"}),
+		        secondStatus: new sap.m.ObjectStatus({ text: "01/15/2013 - 02/15/2014"})
+		    }).addStyleClass("sapSuiteUtiSalesQuotation")
+    	]
+    }).addStyleClass("sapSuiteUtiSalesQuotationGrid");
+
+    var oSalesQuotationFormGroup = new sap.suite.ui.commons.UnifiedThingGroup("sales", {
+        title: "Sales Quotation",
+        description: "27, Standard Order",
+        content: oSalesQuotationGrid,
+        design: sap.suite.ui.commons.ThingGroupDesign.TopIndent
+    });
+
+    var oContactsWithImagesFormGroup = new sap.suite.ui.commons.UnifiedThingGroup("contacts", {
+        title: "Contacts",
+        description: "4711, Marketing",
+        content: oListContactsWithImagesForm,
+        design: sap.suite.ui.commons.ThingGroupDesign.TopIndent
+    });
+
+    var oLocale = sap.ui.getCore().getConfiguration().getLocale();
+    var oDateFormat = sap.ui.core.format.DateFormat.getDateTimeInstance({style: "short"}, oLocale);
+    var oListAttachments = new sap.m.List({
+    	items : [
+    		new sap.m.StandardListItem({
+    			title : "fioriBon.pdf, 40KB",
+    			iconInset : false,
+    			icon : "sap-icon://pdf-attachment",
+    			info : oDateFormat.format(new Date()),
+    			type : sap.m.ListType.Active,
+    			press : function(oEvent) {
+
+    				if(jQuery.device.is.tablet || jQuery.device.is.iphone || jQuery.device.is.phone) {
+    					window.open(window.location.origin + "/uilib-sample/test-resources/sap/suite/ui/commons/images/fioriBon.pdf", 'Download');
+    					oEvent.preventDefault();
+    					return;
+    				}
+    				
+    				var html1 = new sap.ui.core.HTML({
+    					content:
+    						"<object type='application/pdf' style='width:100%; height:100%; position: absolute;' data='" + window.location.origin + "/uilib-sample/test-resources/sap/suite/ui/commons/images/fioriBon.pdf?#scrollbar=1&toolbar=1&navpanes=1'>" +
+    						"</object>",
+    					preferDOM : false
+    				});
+
+    	        	var oPage = new sap.m.Page({
+    	        		title : "fioriBon.pdf",
+    	        		showNavButton : true,
+    	        		content : [
+							html1
+    	        		]
+    	        	});
+    	        	oUTI.navigateToPage(oPage, true);
+    	        	
+    			}
+    		}),
+    		new sap.m.StandardListItem({
+    			title : "SalesReport.xlsx, 168KB",
+    			iconInset : false,
+    			icon : "sap-icon://excel-attachment",
+    			info : oDateFormat.format(new Date()),
+    			type : sap.m.ListType.Active,
+    			press : function(oEvent) {
+   				    window.open(window.location.origin + "/uilib-sample/test-resources/sap/suite/ui/commons/images/salesReport.xlsx", 'Download');
+   					oEvent.preventDefault();
+    			}
+    		}),
+		    new sap.m.StandardListItem({
+    			title : "SalesReport.doc, 16KB",
+    			iconInset : false,
+    			icon : "sap-icon://doc-attachment",
+    			info : oDateFormat.format(new Date()),
+    			type : sap.m.ListType.Active,
+    			press : function(oEvent) {
+    				window.open(window.location.origin + "/uilib-sample/test-resources/sap/suite/ui/commons/images/Document.docx", 'Download');
+   					oEvent.preventDefault();
+    			}
+    		}),
+		    new sap.m.StandardListItem({
+    			title : "grass.jpg, 35KB",
+    			iconInset : false,
+    			icon : "sap-icon://attachment-photo",
+    			info : oDateFormat.format(new Date()),
+    			type : sap.m.ListType.Active,
+    			press : function(oEvent) {
+                    var panel1 = new sap.m.Panel({
+                        headerText: "Ideal",
+                        content: [
+                            new sap.m.Image({
+                                src: window.location.origin + "/uilib-sample/test-resources/sap/suite/ui/commons/images/grass.jpg"
+                            }),
+                            new sap.m.Text({
+                              text: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt"
+                            })
+                        ]
+   					});
+
+    	        	var oPage = new sap.m.Page({
+    	        		title : "Ideal",
+    	        		showNavButton : true,
+    	        		content : [
+							panel1
+    	        		]
+    	        	});
+    	        	oUTI.navigateToPage(oPage, false);
+    			}
+    		})
+    	]
+    });
+    
+    oDateFormat = sap.ui.core.format.DateFormat.getDateTimeInstance({style: "short"}, oLocale);
+    oDateFormat.format(new Date());
+    
+    var oAttachmentContentFacet = new sap.ui.layout.Grid("attachment-grid", {
+    	defaultSpan: "L6 M6 S12"
+    }).addStyleClass("sapUtiFacetOverviewContentMargin");
+
+    var genHBox = new sap.m.VBox({
+        items: [
+            new sap.m.Label({text:"fioriBon.pdf"}),
+            new sap.m.Text({text:oDateFormat.format(new Date())})
+        ]
+    });
+    oAttachmentContentFacet.addContent(genHBox);
+   
+    if (!jQuery.device.is.iphone || !isPhone) {
+	    genHBox = new sap.m.VBox({
+            items: [
+                new sap.m.Label({text:"SalesOrder.xlsx"}),
+                new sap.m.Text({text:oDateFormat.format(new Date())})
+            ]
+        });
+	    oAttachmentContentFacet.addContent(genHBox);
+	   
+        genHBox = new sap.m.VBox({
+            items: [
+                new sap.m.Label({text:"SalesOrder.docx"}),
+                new sap.m.Text({text:oDateFormat.format(new Date())})
+            ]
+        });
+	    oAttachmentContentFacet.addContent(genHBox);
+	    
+        genHBox = new sap.m.VBox({
+            items: [
+                new sap.m.Label({text:"grass.jpg"}),
+                new sap.m.Text({text:oDateFormat.format(new Date())})
+            ]
+        });
+	     oAttachmentContentFacet.addContent(genHBox);
+    }
+
+    var oAttachmentsContent = new sap.suite.ui.commons.UnifiedThingGroup("attacments", {
+        title: "Attachments",
+        description: "4711, Marketing",
+        content: oListAttachments,
+        design: sap.suite.ui.commons.ThingGroupDesign.TopIndent
+    });
+    
+    var oAttachmentsFacet = new sap.suite.ui.commons.FacetOverview("facet-attachments-types", {
+        title: "Attachments",
+        quantity: 5,
+        height: fnGetTeaserTileHeight(),
+        content : oAttachmentContentFacet,
+        press: function() {
+        	setFacetContent("attachments");
+        }
+    });
+    
+    var oFacetData = {
+        overview: oFormOverviewGroup,
+        contacts: oListContactsGroup,
+        orders: oListOrdersFormGroup,
+        quotation: oSalesQuotationFormGroup,
+        contactsImages: oContactsWithImagesFormGroup,
+        attachments: oAttachmentsContent,
+        storageLocation: oStorageLocationsContent
+    };
+
+    function setFacetContent(sKey) {
+            oUTI.navigateToDetailWithContent(oFacetData[sKey]);
+    }
+
+    var oData = {
+        title: "Article",
+        name: "Frozen Strawberries",
+        //name: "FrozenStrawberries FrozenStrawberrie",
+        description: "2901972",
+        kpis: [{
+            description: "Net Value",
+            doubleFontSize: false,
+            valueStatus: sap.suite.ui.commons.ValueStatus.Critical
+        }, {
+            description: "Overall Processing Status",
+            doubleFontSize: false
+        }],
+        facets: [{
+            title: "General"
+        }, {
+            title: "Contacts",
+            quantity: 17
+        }, {
+            title: "Internal Orders",
+            quantity: 3
+        }, {
+            title: "Controlling Documents",
+            quantity: 99
+        }, {
+            title: "Invoices",
+            quantity: 14
+        }, {
+            title: "Activity Types",
+            quantity: 8
+        }],
+        transactions : [
+                		{
+                			text:"Transaction 1"
+                		},
+                		{
+                			text:"Transaction 2"
+                		},
+                		{
+                			text : "sap.com",
+                			href : "http://www.sap.com"
+                		}
+        ],
+        actions : [
+                   {
+                	   icon : "sap-icon://decline",
+                	   text : "Reject"
+                   },
+                   {
+                	   icon : "sap-icon://accept",
+                	   text : "Accept"
+                   },
+                   {
+                	   icon : "sap-icon://email",
+                	   text : "EMail"
+                   },
+                   {
+                	   icon : "sap-icon://forward",
+                	   text : "Forward"
+                   },
+                   {
+                	   icon : "sap-icon://delete",
+                	   text : "Delete"
+                   }
+         ]
+    };
+    var oModel = new sap.ui.model.json.JSONModel();
+    oModel.setData(oData);
+
+    var oKpiTemplate = new sap.suite.ui.commons.KpiTile({
+        value: "{value}",
+        description: "{description}",
+        valueScale: "{valueScale}",
+        valueUnit: "{valueUnit}",
+        doubleFontSize: "{doubleFontSize}",
+        valueStatus: "{valueStatus}"
+    });
+
+    /***************************
+    Contact Facet Section
+    ***************************/
+
+    var image1 = new sap.m.Image({
+        src: "demokit/images/persons/female_BaySu.jpg",
+        width: "64px",
+        height: "64px"
+    });
+    image1.addStyleClass("sapUtiImagePaddingRight");
+    image1.addStyleClass("sapUtiImagePaddingLeft");
+    var image2 = new sap.m.Image({
+        src: "demokit/images/persons/female_SummerS.jpg",
+        width: "64px",
+        height: "64px"
+    });
+    image2.addStyleClass("sapUtiImagePaddingRight");
+    var image3 = new sap.m.Image({
+        src: "demokit/images/persons/male_KentC.jpg",
+        width: "64px",
+        height: "64px"
+    });
+    image3.addStyleClass("sapUtiImagePaddingRight");
+    var image4 = new sap.m.Image({
+        src: "demokit/images/persons/female_DwyerN.jpg",
+        width: "64px",
+        height: "64px"
+    });
+    image4.addStyleClass("sapUtiImagePaddingRight");
+    var image5 = new sap.m.Image({
+        src: "demokit/images/persons/female_RushJ.jpg",
+        width: "64px",
+        height: "64px"
+    });
+    image5.addStyleClass("sapUtiImagePaddingLeft");
+
+    var oContactsContent = new sap.m.HBox("hbox");
+    oContactsContent.addItem(image1);
+    oContactsContent.addItem(image2);
+    oContactsContent.addItem(image3);
+
+    if (!isPhone) {
+        oContactsContent.addItem(image4);
+    }
+
+    var oContactsFacet = new sap.suite.ui.commons.FacetOverview("contacts-facet", {
+        title: "Contacts",
+        quantity: 6,
+        content: oContactsContent,
+        height: isPhone ? "8rem" : "10rem", //non-standard on phone
+        press: function() {
+            setFacetContent("contactsImages")
+        }
+    });
+
+    /************END Contacts Facet Section************/
+
+    var oGeneralContent = new sap.ui.layout.Grid("overview-grid", {
+    });
+    genHBox = new sap.m.VBox({
+       items:[
+               new sap.m.Label({text:"Sold-To Party:"}),
+               new sap.m.Text({text:"1 - Being processed"})
+       ],
+             layoutData: new sap.ui.layout.GridData({
+                    span: "L6 M6 S6"
+             })
+    });
+   
+    oGeneralContent.addContent(genHBox);
+   
+    genHBox = new sap.m.VBox({
+       items:[
+               new sap.m.Label({text:"City"}),
+               new sap.m.Text({text:"Östringen"})
+       ],
+             layoutData: new sap.ui.layout.GridData({
+                    span: "L6 M6 S6"
+             })
+    });
+   
+    oGeneralContent.addContent(genHBox);
+
+    if (!isPhone) {
+        genHBox = new sap.m.VBox({
+            items: [
+                new sap.m.Label({ text: "Additional Name" }),
+                new sap.m.Text({ text: "Roger - Jochen" })
+            ],
+            layoutData: new sap.ui.layout.GridData({ span: "L6 M6 S6" })
+        });
+        oGeneralContent.addContent(genHBox);
+
+        genHBox = new sap.m.VBox({
+            items: [
+                new sap.m.Label({ text: "Country" }),
+                new sap.m.Text({ text: "DE" })
+            ],
+            layoutData: new sap.ui.layout.GridData({ span: "L6 M6 S6" })
+        });
+        oGeneralContent.addContent(genHBox);
+    }
+   
+    var oGeneralFacet = new sap.suite.ui.commons.FacetOverview("facet-general", {
+        title: "General",
+        content: oGeneralTeaserContent,
+        height: fnGetTeaserTileHeight(iSegmentsInGeneralTeaser),
+        rowSpan: 2,
+        press: function() {
+            setFacetContent("overview");
+        }
+    });
+
+    var oOrdersContent = new sap.ui.layout.Grid("form-orders", {
+    	defaultSpan: "L6 M6 S6",
+    	content: [
+			new sap.m.VBox({
+				items: [
+			        new sap.m.Label({text: "CeBit Demo:"}),
+			        new sap.m.Text({text: "040 Event"})
+			    ]
+			}),
+			new sap.m.VBox({
+				items: [
+			        new sap.m.Label({text: "Order 2:"}),
+			        new sap.m.Text({text: "040 Event"})
+			    ]
+			}),
+			new sap.m.VBox({
+				items: [
+			        new sap.m.Label({text: "Order 3:"}),
+			        new sap.m.Text({text: "040 Event"})
+			    ],
+			    layoutData: new sap.ui.layout.GridData({visibleOnSmall: false})
+			}),
+			new sap.m.VBox({
+				items: [
+			        new sap.m.Label({text: "Order 4:"}),
+			        new sap.m.Text({text: "040 Event"})
+			    ],
+			    layoutData: new sap.ui.layout.GridData({visibleOnSmall: false})
+			})
+    	]
+    }).addStyleClass("sapUtiFacetOverviewContentMargin");
+
+    var oOrdersFacet = new sap.suite.ui.commons.FacetOverview("facet-orders", {
+        title: "Internal Orders",
+        quantity: 3,
+        content: oOrdersContent,
+        height: fnGetTeaserTileHeight(),
+        press: function() {
+            setFacetContent("orders");
+        }
+    });
+    
+    var oDocumentsContent = new sap.ui.layout.Grid("form-docs", {
+    	defaultSpan: "L6 M6 S6",
+    	content: [
+			new sap.m.VBox({
+				items: [
+			        new sap.m.Label({text: "4711000:"}),
+			        new sap.m.Text({text: "240 USD"})
+			    ]
+			}),
+			new sap.m.VBox({
+				items: [
+			        new sap.m.Label({text: "4711001:"}),
+			        new sap.m.Text({text: "110 USD"})
+			    ]
+			}),
+			new sap.m.VBox({
+				items: [
+			        new sap.m.Label({text: "4711002:"}),
+			        new sap.m.Text({text: "320 USD"})
+			    ],
+			    layoutData: new sap.ui.layout.GridData({visibleOnSmall: false})
+			}),
+			new sap.m.VBox({
+				items: [
+			        new sap.m.Label({text: "4711003:"}),
+			        new sap.m.Text({text: "2670 USD"})
+			    ],
+			    layoutData: new sap.ui.layout.GridData({visibleOnSmall: false})
+			})
+    	]
+    }).addStyleClass("sapUtiFacetOverviewContentMargin");
+
+    var oDocumentsFacet = new sap.suite.ui.commons.FacetOverview("facet-documents", {
+        title: "Controlling Documents",
+        quantity: 99,
+        content: oDocumentsContent,
+        height: fnGetTeaserTileHeight(),
+        press: function() {
+            setFacetContent("contacts");
+        }
+    });
+
+	var oActivityTypesContent = new sap.ui.layout.Grid("form-activity-types", {
+		defaultSpan: "L6 M6 S6",
+		content: [
+			new sap.m.VBox({
+				items: [
+			        new sap.m.Label({text: "Type:"}),
+			        new sap.m.Text({text: "588"})
+			    ]
+			}),
+			new sap.m.VBox({
+				items: [
+			        new sap.m.Label({text: "Type:"}),
+			        new sap.m.Text({text: "046"})
+			    ]
+			}),
+			new sap.m.VBox({
+				items: [
+			        new sap.m.Label({text: "Type:"}),
+			        new sap.m.Text({text: "644"})
+			    ],
+			    layoutData: new sap.ui.layout.GridData({visibleOnSmall: false})
+			}),
+			new sap.m.VBox({
+				items: [
+			        new sap.m.Label({text: "Type:"}),
+			        new sap.m.Text({text: "048"})
+			    ],
+			    layoutData: new sap.ui.layout.GridData({visibleOnSmall: false})
+			})
+		]
+	}).addStyleClass("sapUtiFacetOverviewContentMargin");
+
+
+    var oStorageFacetData = {
+        items: [
+            { type: "link", href: "http://sap.com", label: "Storage Location 001", text: "DC Germany South" },
+            { type: "link", href: "http://sap.com", label: "Storage Location 002", text: "DC Germany South" },
+            { type: "link", href: "http://sap.com", label: "Storage Location 003", text: "DC Germany South" }
+        ]
+    };
+
+    var oStorageTableTemplate_Link = new sap.m.ColumnListItem({
+        cells: [
+            new sap.m.Link({
+                text: {
+                    path: "text",
+                    formatter: function(v) {
+                        var concatString = isPhone ? ":" : " -";
+                        return v ? v + concatString : "";
+                    }
+                },
+                href: "{href}",
+                target: "_blank",
+                press: function(oe) {
+                    return false;
+                }
+            }),
+            new sap.m.Label({
+                text: {
+                    path: "label"
+                }
+            }).addStyleClass("sapSuiteUtiLabel")
+        ]
+    });
+
+    var fnStorageTableItemFactory = function(sId, oContext) {
+        var type = oContext.getProperty("type");
+        var rowTemplate;
+        switch (type) {
+            case "custom":
+                rowTemplate = oContext.getProperty("row") || oGeneralTableTemplate_Text;
+                break;
+            case "separator":
+                rowTemplate = oGeneralTableTemplate_Separator;
+                break;
+            case "heading":
+                rowTemplate = oGeneralTableTemplate_Heading;
+                break;
+            case "link":
+                rowTemplate = oStorageTableTemplate_Link;
+                break;
+            default:
+                rowTemplate = oGeneralTableTemplate_Text;
+        }
+        return rowTemplate.clone();
+    };
+
+    var oStorageContentTable = new sap.m.Table({
+        backgroundDesign: sap.m.BackgroundDesign.Transparent,
+        showSeparators: sap.m.ListSeparators.None,
+        columns: [
+            new sap.m.Column({
+                width: isPhone ? "60%" : "40%",
+                hAlign: sap.ui.core.TextAlign.End
+            }),
+            new sap.m.Column({
+            })
+        ],
+        items: 
+        {
+            path: "/items",
+            factory: fnStorageTableItemFactory
+        }
+    });
+
+    oStorageContentTable.setModel(new sap.ui.model.json.JSONModel(oStorageFacetData));
+
+	var oActivityTypesFacet = new sap.suite.ui.commons.FacetOverview(
+			"facet-activity-types", {
+				title : "Activity Types",
+				quantity : 8,
+				content : oActivityTypesContent,
+				height : fnGetTeaserTileHeight(),
+				press : function() {
+					setFacetContent("quotation");
+				}
+			});
+
+	var oStorageFacet = new sap.suite.ui.commons.FacetOverview("facet-storage-location", {
+		title : "Storage Location View",
+		quantity : 3,
+		content : oStorageContentTable,
+		height : fnGetTeaserTileHeight(),
+		press : function() {
+			setFacetContent("storageLocation");
+		}
+	});
+
+	var oButtonTempl = new sap.m.Button({
+		icon : "{icon}",
+		text : "{text}",
+		press : function(oE) {
+			sap.m.MessageToast.show(this.getText() +  " action pressed.")
+		}
+	});
+	
+	var oLinkTempl = new sap.m.Link({
+		text : "{text}",
+		href : "{href}",
+		press : function(oE) {
+			sap.m.MessageToast.show(this.getText() +  " selected.")
+		}
+	});
+	
+	var oSalesFacet = new sap.suite.ui.commons.FacetOverview("facet-sales-view", {
+		title : "Sales View",
+		quantity : 0,
+		content : new sap.m.Label({text: "No related sales content items are available."}),
+		height : fnGetTeaserTileHeight()
+	});
+	
+	var oUTI = new sap.suite.ui.commons.UnifiedThingInspector({
+		id : "unified",
+        icon: "images/strawberries_frozen.jpg",
+        //icon: "sap-icon://business-one",
+		title : "{/title}",
+		name : "{/name}",
+		description : "{/description}",
+		actionsVisible : true,
+		transactionsVisible : true,
+		kpis : {
+			path : "/kpis",
+			template : oKpiTemplate
+		},
+		facets : [ oGeneralFacet, oOrdersFacet, oActivityTypesFacet,
+				oDocumentsFacet, oContactsFacet,
+				oAttachmentsFacet, oStorageFacet, oSalesFacet],
+		backAction : function() {
+			sap.m.MessageToast.show("Back action pressed.")
+		},
+		transactions : {
+			path:"/transactions", 
+			template : oLinkTempl
+		},
+		actions : {
+			path: "/actions",
+			template : oButtonTempl
+		}
+	});
+
+	oUTI.attachConfigurationButtonPress(function(oE){
+		sap.m.MessageToast.show("Configuration button pressed.");
+	});
+
+	oUTI.attachTransactionsButtonPress(function(oE){
+		//oE.bPreventDefault = true;
+	});
+	
+	oUTI.setModel(oModel);
+	var oApp = new sap.m.App("myApp", {initialPage:"initial-page"});
+	
+	var oInitialPage = new sap.m.Page("initial-page", {
+		showHeader: false,
+		enableScrolling: false,
+		content:[ oUTI ]});
+	oApp.addPage(oInitialPage).placeAt("sample1");
+	</script>
+</head>
+
+<body class="sapUiBody">
+	<div id="sample1" style="width: 100%; height: 100%;"></div>
+</body>
+</html>

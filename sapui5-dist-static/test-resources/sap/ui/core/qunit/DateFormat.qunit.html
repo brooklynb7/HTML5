@@ -1,0 +1,173 @@
+<!DOCTYPE HTML>
+
+<!-- 
+  Tested sap.ui.core.format.DateFormat
+  Author: d040216
+-->
+
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<!-- Initialization -->
+<script id="sap-ui-bootstrap" type="text/javascript"
+	src="../../../../../resources/sap-ui-core.js"
+	data-sap-ui-theme="sap_platinum" data-sap-ui-libs="sap.ui.commons"
+	data-sap-ui-language="en-US"
+	data-sap-ui-originInfo="true">
+	</script>
+
+<link rel="stylesheet"
+	href="../../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css"
+	media="screen" />
+<script type="text/javascript"
+	src="../../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+<script type="text/javascript"
+	src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
+<script type="text/javascript"
+	src="../../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
+
+<!-- Test functions -->
+<script language="javascript">
+
+	jQuery.sap.require("sap.ui.core.format.DateFormat");
+	var oDate = new Date("Tue Sep 11 08:46:13 2001"),
+		oTZDate = new Date("Tue Sep 11 03:46:13 2001 GMT+0530"),
+		oDefaultDate = sap.ui.core.format.DateFormat.getInstance(),
+		oDefaultDateTime = sap.ui.core.format.DateFormat.getDateTimeInstance(),
+		oDefaultTime = sap.ui.core.format.DateFormat.getTimeInstance();
+
+	test("format default date", function(){
+		equal(oDefaultDate.format(oDate), "Sep 11, 2001", "default date");
+		equal(oDefaultDateTime.format(oDate), "Sep 11, 2001 8:46:13 AM", "default datetime");
+		equal(oDefaultTime.format(oDate), "8:46:13 AM", "default time");
+	});
+
+	test("format default date UTC", function(){
+		equal(oDefaultDate.format(oTZDate, true), "Sep 10, 2001", "default date");
+		equal(oDefaultDateTime.format(oTZDate, true), "Sep 10, 2001 10:16:13 PM", "default datetime");
+		equal(oDefaultTime.format(oTZDate, true), "10:16:13 PM", "default time");
+	});
+	
+	test("format date for a specific locale", function(){
+		var oLocale = new sap.ui.core.Locale("de-DE");
+		equal(sap.ui.core.format.DateFormat.getDateInstance(oLocale).format(oDate), "11.09.2001", "date with defaults for given locale");
+		equal(sap.ui.core.format.DateFormat.getDateTimeInstance(oLocale).format(oDate), "11.09.2001 08:46:13", "datetime with defaults for given locale");
+		equal(sap.ui.core.format.DateFormat.getTimeInstance(oLocale).format(oDate), "08:46:13", "time with defaults for given locale");
+	});
+	
+	test("format custom date", function(){
+		var oDate = new Date("Wed Jul 4 12:08:56 2001"),
+			sCustomPattern,
+			oCustomDate,
+			oCustomDatePatterns = {
+				"yyyy.MM.dd G 'at' HH:mm:ss z": "2001.07.04 AD at 12:08:56 PDT",
+				"EEE, MMM d, ''yy": "Wed, Jul 4, '01",
+				"h:mm a": "12:08 PM",
+				"hh 'o''clock' a, zzzz": "12 o'clock PM, Pacific Daylight Time",
+				"K:mm a, z": "0:08 PM, PDT",
+				"yyyyy.MMMMM.dd GGG hh:mm aaa": "02001.July.04 AD 12:08 PM",
+				"EEE, d MMM yyyy HH:mm:ss Z": "Wed, 4 Jul 2001 12:08:56 +0700",
+				"yyMMddHHmmssZ": "010704120856+0700",
+				"yyyy-MM-dd'T'HH:mm:ss.SSSZ": "2001-07-04T12:08:56.235+0700",
+				"yyyy-MM-dd'T'HH:mm:ss.SSSXXX": "2001-07-04T12:08:56.235+07:00",
+				"YYYY-'W'ww-u": "2001-W27-3",
+				"'datetime'''yyyy-MM-dd'T'HH:mm:ss''": "datetime'2001-07-04T12:08:56'"
+			};
+		
+		// Overwrite getTimezoneOffset to get reproducible results independent of the
+		// timezone where the test is run in, add additional information which 
+		// is not provided by the standard JS Date object
+		oDate.getTimezoneOffset = function() { return -420 };
+		oDate.getTimezoneShort = function() { return "PDT" };
+		oDate.getTimezoneLong = function() { return "Pacific Daylight Time" };
+		oDate.getWeek = function() { return 27 };
+		oDate.setMilliseconds(235);
+
+		for (sCustomPattern in oCustomDatePatterns) {
+			oCustomDate = sap.ui.core.format.DateFormat.getInstance({pattern: sCustomPattern});
+			equal(oCustomDate.format(oDate), oCustomDatePatterns[sCustomPattern], sCustomPattern);
+		}
+	});
+
+	test("format custom date UTC", function(){
+		var oDate = new Date("Wed Jul 4 12:08:56 2001 UTC"),
+			oCustomDate;
+		
+		// Overwrite getTimezoneOffset to get reproducible results independent of the
+		// timezone where the test is run in, add additional information which 
+		// is not provided by the standard JS Date object
+		oDate.getTimezoneOffset = function() { return 0 };
+		oDate.getTimezoneShort = function() { return "UTC" };
+		oDate.getTimezoneLong = function() { return "Coordinated Universal Time" };
+		oDate.getWeek = function() { return 27 };
+		oDate.setMilliseconds(235);
+
+		oCustomDate = sap.ui.core.format.DateFormat.getInstance({pattern: "yyyy-MM-dd'T'HH:mm:ss.SSSX"});
+		equal(oCustomDate.format(oDate, true), "2001-07-04T12:08:56.235Z", "yyyy-MM-dd'T'HH:mm:ss.SSSX");
+	});
+
+	test("parse default date", function(){
+		var oDate = oDefaultDate.parse("May 23, 2008");
+		equal(oDate.getFullYear(), 2008, "Year 2008");
+		equal(oDate.getMonth(), 4, "Month May");
+		equal(oDate.getDate(), 23, "Day 23rd");
+		var oDate = oDefaultDateTime.parse("May 23, 2008 5:23:00 PM");
+		equal(oDate.getFullYear(), 2008, "Year 2008");
+		equal(oDate.getMonth(), 4, "Month May");
+		equal(oDate.getDate(), 23, "Day 23rd");
+		equal(oDate.getHours(), 17, "Hours 17");
+		equal(oDate.getMinutes(), 23, "Minutes 23");
+	});
+	
+	
+	test("parse custom date", function(){
+		
+		function inclTimezoneOffset(iTimestamp){
+			return iTimestamp + (new Date(iTimestamp)).getTimezoneOffset()*60*1000;
+		};
+		
+		var oCustomDatePatterns = {
+			"yyyy.MM.dd 'at' HH:mm:ss z": ["2001.07.04 at 12:08:56 GMT+02:00", 994241336000],
+			"EEE, MMM d, ''yy Z": ["Wed, Jul 4, '01 +0200", 994197600000],
+			"h:mm a z": ["12:08 PM Z", 43680000],
+			"hh 'o''clock' a, X": ["12 o'clock PM, +07:00", 18000000],
+			"K:mm a, z": ["0:08 PM, UTC+01:00", 40080000],
+			
+			"yyyyy.MMMMM.dd hh:mm aaa": ["02001.July.04 12:08 PM", inclTimezoneOffset(994248480000)],
+			"EEE, d MMM yyyy HH:mm:ss": ["Wed, 4 Jul 2001 12:08:56", inclTimezoneOffset(994248536000)],
+			"yyMMddHHmms": ["010704120856", inclTimezoneOffset(994248536000)],
+			"yyyy-MM-dd'T'HH:mm:ss.SSS": ["2001-07-04T12:08:56.235", inclTimezoneOffset(994248536235)],
+			"yyyy-MM-dd'T'HH:mm:ss.SSSX": ["2001-07-04T12:08:56.235Z", 994248536235]
+		};
+
+		for (sCustomPattern in oCustomDatePatterns) {
+			var oCustomDate = sap.ui.core.format.DateFormat.getDateTimeInstance({pattern: sCustomPattern});
+			equal(oCustomDate.parse(oCustomDatePatterns[sCustomPattern][0]).getTime(), oCustomDatePatterns[sCustomPattern][1], sCustomPattern);
+			
+		}
+	});
+
+	test("origin info", function(){
+		var oOriginDate = sap.ui.core.format.DateFormat.getInstance(),
+			sValue = oOriginDate.format(oDate),
+			oInfo = sValue.originInfo;
+		equal(oInfo.source, "Common Locale Data Repository", "Origin Info: source")
+		equal(oInfo.locale, "en-US", "Origin Info: locale")
+		equal(oInfo.style, "medium", "Origin Info: style")
+		equal(oInfo.pattern, "MMM d, y", "Origin Info: pattern")
+	});
+	
+</script>
+
+</head>
+<body>
+<h1 id="qunit-header">QUnit tests: DateFormat</h1>
+<h2 id="qunit-banner"></h2>
+<h2 id="qunit-userAgent"></h2>
+<div id="qunit-testrunner-toolbar"></div>
+<ol id="qunit-tests"></ol>
+<br>
+<div id="target1"></div>
+<div id="target2"></div>
+</body>
+</html>

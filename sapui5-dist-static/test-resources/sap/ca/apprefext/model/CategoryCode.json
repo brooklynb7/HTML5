@@ -1,0 +1,56 @@
+[
+    {
+        "__metadata":{
+            "uri":"/sap/opu/odata/sap/Z_I2D_QM_QUALITYISSUE_CONFIRM_SRV/CategoryCodeCollection('%24%2401')",
+            "type":"Z_I2D_QM_QUALITYISSUE_CONFIRM_SRV.CategoryCode"
+        },
+        "Value":"Goods Receipt Area",
+        "Key":"$$01",
+        "Group":"No group"
+    },
+    {
+        "__metadata":{
+            "uri":"/sap/opu/odata/sap/Z_I2D_QM_QUALITYISSUE_CONFIRM_SRV/CategoryCodeCollection('%24%2420')",
+            "type":"Z_I2D_QM_QUALITYISSUE_CONFIRM_SRV.CategoryCode"
+        },
+        "Value":"Warehouse",
+        "Key":"$$20",
+        "Group":"No group"
+    },
+    {
+        "__metadata":{
+            "uri":"/sap/opu/odata/sap/Z_I2D_QM_QUALITYISSUE_CONFIRM_SRV/CategoryCodeCollection('%24%2430')",
+            "type":"Z_I2D_QM_QUALITYISSUE_CONFIRM_SRV.CategoryCode"
+        },
+        "Value":"Production",
+        "Key":"$$30",
+        "Group":"No group"
+    },
+    {
+        "__metadata":{
+            "uri":"/sap/opu/odata/sap/Z_I2D_QM_QUALITYISSUE_CONFIRM_SRV/CategoryCodeCollection('%24%2410')",
+            "type":"Z_I2D_QM_QUALITYISSUE_CONFIRM_SRV.CategoryCode"
+        },
+        "Value":"Purchasing Department",
+        "Key":"$$10",
+        "Group":"No group"
+    },
+    {
+        "__metadata":{
+            "uri":"/sap/opu/odata/sap/Z_I2D_QM_QUALITYISSUE_CONFIRM_SRV/CategoryCodeCollection('%24%2430')",
+            "type":"Z_I2D_QM_QUALITYISSUE_CONFIRM_SRV.CategoryCode"
+        },
+        "Value":"Shop Floor",
+        "Key":"$$30",
+        "Group":"No group"
+    },
+    {
+        "__metadata":{
+            "uri":"/sap/opu/odata/sap/Z_I2D_QM_QUALITYISSUE_CONFIRM_SRV/CategoryCodeCollection('%24%2420')",
+            "type":"Z_I2D_QM_QUALITYISSUE_CONFIRM_SRV.CategoryCode"
+        },
+        "Value":"Quality Control",
+        "Key":"$$20",
+        "Group":"No group"
+    }
+]

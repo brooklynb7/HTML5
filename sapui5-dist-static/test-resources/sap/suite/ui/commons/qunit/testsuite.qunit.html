@@ -1,0 +1,49 @@
+<html>
+ <head>
+  <title>TestSuite for sap.suite.ui.commons</title>
+  <script language="javascript" src="/jsunit-testrunner/app/jsUnitCore.js"></script>
+ </head>
+ <body>
+  <script language="javascript">
+
+  /**
+   * Add test pages to this test suite function.
+   * Please order alphabetically
+   */
+  function suite() {
+    var suite = new top.jsUnitTestSuite();
+    var contextPath = "/" + window.location.pathname.split("/")[1];
+    suite.addTestPage(contextPath + "/test-resources/sap/suite/ui/commons/qunit/DateRangeScroller.qunit.html");
+    suite.addTestPage(contextPath + "/test-resources/sap/suite/ui/commons/qunit/DateRangeSlider.qunit.html");
+    suite.addTestPage(contextPath + "/test-resources/sap/suite/ui/commons/qunit/DateRangeSliderInternal.qunit.html");
+    suite.addTestPage(contextPath + "/test-resources/sap/suite/ui/commons/qunit/DateUtils.qunit.html");
+    suite.addTestPage(contextPath + "/test-resources/sap/suite/ui/commons/qunit/NoteTaker.qunit.html");
+    suite.addTestPage(contextPath + "/test-resources/sap/suite/ui/commons/qunit/NoteTakerCard.qunit.html");
+    suite.addTestPage(contextPath + "/test-resources/sap/suite/ui/commons/qunit/NoteTakerFeeder.qunit.html");
+    suite.addTestPage(contextPath + "/test-resources/sap/suite/ui/commons/qunit/RenderUtils.qunit.html");
+    suite.addTestPage(contextPath + "/test-resources/sap/suite/ui/commons/qunit/SplitButton.qunit.html");
+
+    suite.addTestPage(contextPath + "/test-resources/sap/suite/ui/commons/qunit/BusinessCard.qunit.html");
+    suite.addTestPage(contextPath + "/test-resources/sap/suite/ui/commons/qunit/FacetOverview.qunit.html");
+    suite.addTestPage(contextPath + "/test-resources/sap/suite/ui/commons/qunit/FeedAggregator.qunit.html");
+    suite.addTestPage(contextPath + "/test-resources/sap/suite/ui/commons/qunit/FeedItemHeader.qunit.html");
+    suite.addTestPage(contextPath + "/test-resources/sap/suite/ui/commons/qunit/FeedItemUtils.qunit.html");
+    suite.addTestPage(contextPath + "/test-resources/sap/suite/ui/commons/qunit/FeedTile.qunit.html");
+    suite.addTestPage(contextPath + "/test-resources/sap/suite/ui/commons/qunit/LaunchTile.qunit.html");
+    suite.addTestPage(contextPath + "/test-resources/sap/suite/ui/commons/qunit/LinkActionSheet.qunit.html");
+    suite.addTestPage(contextPath + "/test-resources/sap/suite/ui/commons/qunit/ThingCollection.qunit.html");
+    suite.addTestPage(contextPath + "/test-resources/sap/suite/ui/commons/qunit/ThreePanelThingInspector.qunit.html");
+    suite.addTestPage(contextPath + "/test-resources/sap/suite/ui/commons/qunit/ThreePanelThingViewer.qunit.html");
+    suite.addTestPage(contextPath + "/test-resources/sap/suite/ui/commons/qunit/UnifiedThingGroup.qunit.html");
+    suite.addTestPage(contextPath + "/test-resources/sap/suite/ui/commons/qunit/UnifiedThingInspector.qunit.html");
+    suite.addTestPage(contextPath + "/test-resources/sap/suite/ui/commons/qunit/VerticalNavigationBar.qunit.html");
+    suite.addTestPage(contextPath + "/test-resources/sap/suite/ui/commons/qunit/ViewRepeater.qunit.html");
+    
+    return suite;
+  }
+
+  redirectToTestrunnerIfRequired();
+
+  </script>
+ </body>
+</html>

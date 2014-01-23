@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Test Page for sap.m.Carousel</title>
+<script id="sap-ui-bootstrap" 
+	type="text/javascript"
+	src="../../../../resources/sap-ui-core.js"
+	data-sap-ui-theme="sap_mvi"
+	data-sap-ui-noConflict="true"
+	data-sap-ui-libs="sap.m">
+</script>
+
+<link rel="stylesheet" href="../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
+<script type="text/javascript" src="../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+<script type="text/javascript" src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
+<script type="text/javascript" src="../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
+
+<script>
+
+
+
+
+module("Properties");
+
+var oEmptyCarousel = new sap.m.Carousel("empty_carousel"); 
+test("Default Values", function() {
+	// without parameter
+	strictEqual( oEmptyCarousel.getLoop(), false, "Default 'loop' value is wrong");
+	strictEqual( oEmptyCarousel.getWidth(), '100%', "Default 'width' value is wrong");
+	strictEqual( oEmptyCarousel.getHeight(), '100%', "Default 'height' value is wrong");
+	strictEqual( oEmptyCarousel.getVisible(), true, "Default 'loop' value is wrong");
+	equal( oEmptyCarousel.getActivePage(), null, "Default 'activePage' value is wrong");
+});
+
+module("Methods");
+
+var img1 = new sap.m.Image("myPage1", {
+	src: "../images/demo/nature/desert.jpg",
+});
+var img2 = new sap.m.Image("myPage2", {
+	src: "../images/demo/nature/elephant.jpg",
+});
+var img3 = new sap.m.Image("myPage3", {
+	src: "../images/demo/nature/fish.jpg",
+});
+var img4 = new sap.m.Image("myPage4", {
+	src: "../images/demo/nature/forest.jpg",
+});
+var img5 = new sap.m.Image("myPage5", {
+	src: "../images/demo/nature/huntingLeopard.jpg",
+});
+var img6 = new sap.m.Image("myPage6", {
+	src: "../images/demo/nature/prairie.jpg",
+});
+
+var img11 = new sap.m.Image("myPage11", {
+	src: "../images/demo/nature/desert.jpg",
+});
+var img21 = new sap.m.Image("myPage21", {
+	src: "../images/demo/nature/elephant.jpg",
+});
+var img31 = new sap.m.Image("myPage31", {
+	src: "../images/demo/nature/fish.jpg",
+});
+var img41 = new sap.m.Image("myPage41", {
+	src: "../images/demo/nature/forest.jpg",
+});
+var img51 = new sap.m.Image("myPage51", {
+	src: "../images/demo/nature/huntingLeopard.jpg",
+});
+var img61 = new sap.m.Image("myPage61", {
+	src: "../images/demo/nature/prairie.jpg",
+});
+
+
+var oPictureCarousel = new sap.m.Carousel("picture_carousel", {
+	activePage: "myPage1",
+	height:"100%",
+	width:"100%",
+	pages: [ img1, img2, img3, img4, img5, img6]
+});
+
+var oApp = new sap.m.App("testCarouselApp", {initialPage:"myPageApp"});
+var oPageApp = new sap.m.Page("myPageApp", {title: "Carousel Test Page", enableScrolling: false});
+
+oPageApp.addContent(oPictureCarousel);
+oApp.addPage(oPageApp);
+oApp.placeAt("carousel-test-content");
+
+
+asyncTest("Move active page", function() {
+	equal( oPictureCarousel.getActivePage(), "myPage1", "Default 'activePage' value is wrong");
+	oPictureCarousel.setActivePage("myPage6");
+	setTimeout(function() {
+		ok(jQuery.sap.byId("myPage6").parent().parent().hasClass('swipeview-active'), "Page 6 should be active");
+		ok(jQuery.sap.byId("picture_carousel-nav-dot5").hasClass('sapMCrslIndLstItSel'), "Page Indicator 5 should still be selected");
+		oPictureCarousel.setActivePage("myPage1");
+		setTimeout(function() {
+			ok(jQuery.sap.byId("myPage1").parent().parent().hasClass('swipeview-active'), "Page 1 should be active");
+			ok(jQuery.sap.byId("picture_carousel-nav-dot0").hasClass('sapMCrslIndLstItSel'), "Page Indicator 1 should still be selected");
+			oPictureCarousel.setActivePage("myPage3");
+			setTimeout(function() {
+				ok(jQuery.sap.byId("myPage3").parent().parent().hasClass('swipeview-active'), "Page 3 should be active");
+				ok(jQuery.sap.byId("picture_carousel-nav-dot2").hasClass('sapMCrslIndLstItSel'), "Page Indicator 3 should still be selected");
+				start();
+			}, 600);
+		}, 600);
+	}, 600);
+});	
+
+
+
+asyncTest("Next, Previous", function() {
+	oPictureCarousel.previous();
+	oPictureCarousel.previous();
+	setTimeout(function() {
+		ok(jQuery.sap.byId("myPage1").parent().parent().hasClass('swipeview-active'), "Page 1 should be active");
+		ok(jQuery.sap.byId("picture_carousel-nav-dot0").hasClass('sapMCrslIndLstItSel'), "Page Indicator 1 should be selected");
+		oPictureCarousel.previous();
+		setTimeout(function() {
+			ok(jQuery.sap.byId("myPage1").parent().parent().hasClass('swipeview-active'), "Page 1 should still be active");
+			ok(jQuery.sap.byId("picture_carousel-nav-dot0").hasClass('sapMCrslIndLstItSel'), "Page Indicator 1 should still be selected");
+			for(var i=0; i<5; i++) { oPictureCarousel.next(); };
+			setTimeout(function() {
+				ok(jQuery.sap.byId("myPage6").parent().parent().hasClass('swipeview-active'), "Page 6 should be active");
+				ok(jQuery.sap.byId("picture_carousel-nav-dot5").hasClass('sapMCrslIndLstItSel'), "Page Indicator 6 should be selected");
+				oPictureCarousel.next();
+				setTimeout(function() {
+					ok(jQuery.sap.byId("myPage6").parent().parent().hasClass('swipeview-active'), "Page 6 should still be active");
+					ok(jQuery.sap.byId("picture_carousel-nav-dot5").hasClass('sapMCrslIndLstItSel'), "Page Indicator 6 should still be active");
+					start();
+				}, 600);
+			}, 600);
+		}, 600);
+	}, 600);
+});	
+
+asyncTest("Loop", function() {
+	oPictureCarousel.setLoop(true);
+	oPictureCarousel.next();
+	setTimeout(function() {
+		ok(jQuery.sap.byId("myPage1").parent().parent().hasClass('swipeview-active'), "Page 1 should be active");
+		ok(jQuery.sap.byId("picture_carousel-nav-dot0").hasClass('sapMCrslIndLstItSel'), "Page Indicator 1 should be selected");
+		oPictureCarousel.previous();
+		setTimeout(function() {
+			ok(jQuery.sap.byId("myPage6").parent().parent().hasClass('swipeview-active'), "Page 6 should still be active");
+			ok(jQuery.sap.byId("picture_carousel-nav-dot5").hasClass('sapMCrslIndLstItSel'), "Page Indicator 6 should still be selected");
+			start();
+		}, 600);
+	}, 600);
+});	
+
+asyncTest("Carousel Visibility", function() {
+	oPictureCarousel.setVisible(false);
+	setTimeout(function() {
+		ok(jQuery.sap.byId("myPageApp-cont").children().length == 1, "Carousel should deleted from DOM");
+		oPictureCarousel.setVisible(true);
+		setTimeout(function() {
+			ok(jQuery.sap.byId("myPage6").parent().parent().hasClass('swipeview-active'), "Page 6 should be visible again");
+			ok(jQuery.sap.byId("picture_carousel-nav-dot5").hasClass('sapMCrslIndLstItSel'), "Page Indicator 6 should be selected again");
+			start();
+		}, 600);
+	}, 600);
+});	
+
+asyncTest("Page Indicator Visibility", function() {
+	var originalDisplayValue = jQuery.sap.byId("picture_carousel-nav").css('display');
+	oPictureCarousel.setShowPageIndicator(false);
+	setTimeout(function() {
+		ok(jQuery.sap.byId("picture_carousel-nav").css('display') == 'none', "Page Indicator should be invisible");
+		oPictureCarousel.setShowPageIndicator(true);
+		setTimeout(function() {
+			ok(jQuery.sap.byId("picture_carousel-nav").css('display') == originalDisplayValue, "Page Indicator should be visible again");
+			start();
+		}, 600);
+	}, 600);
+});
+
+asyncTest("Page Indicator Position", function() {
+	oPictureCarousel.setPageIndicatorPlacement(sap.m.PlacementType.Top);
+	setTimeout(function() {
+		var aChildren = jQuery.sap.byId("picture_carousel").children();
+		ok(aChildren[0].id == 'picture_carousel-nav', "Page Indicator should be on top");
+		oPictureCarousel.setPageIndicatorPlacement(sap.m.PlacementType.Bottom);
+		setTimeout(function() {
+			var aChildren = jQuery.sap.byId("picture_carousel").children();
+			ok(aChildren[1].id == 'picture_carousel-nav', "Page Indicator should be at bottom");
+			oPictureCarousel.setActivePage(img6);
+			start();
+		}, 600);
+	}, 600);
+});	
+
+asyncTest("Removing Pages", function() {
+	
+	var oRemovedPage = oPictureCarousel.removePage(img6);
+	ok(oRemovedPage.getId() === 'myPage6', "'removePage' does not return correct page");
+	
+	oPictureCarousel.removePage(img5);
+	oPictureCarousel.removePage(img4);
+	oPictureCarousel.removePage(img3);
+	oPictureCarousel.removePage(img2);
+	setTimeout(function() {
+		ok(oPictureCarousel.getActivePage() == 'myPage1', "Active page should be 'myPage1' but  is: " +  oPictureCarousel.getActivePage());
+		ok(jQuery.sap.byId("picture_carousel-nav").children().length == 3, "Page Indicator should show one dot: " + jQuery.sap.byId("picture_carousel-nav").children().length );
+		oPictureCarousel.addPage(img5);
+		setTimeout(function() {
+			oPictureCarousel.next();
+			setTimeout(function() {
+				ok(oPictureCarousel.getActivePage() == 'myPage5', "Active page should be 'myPage5' but  is: " +  oPictureCarousel.getActivePage());
+				ok(jQuery.sap.byId("picture_carousel-nav").children().length == 4, "Page Indicator should show two dots");
+				oPictureCarousel.addPage(img6);
+				setTimeout(function() {
+					oPictureCarousel.next();
+					setTimeout(function() {
+						ok(oPictureCarousel.getActivePage() == 'myPage6', "Active page should be 'myPage6' but  is: " +  oPictureCarousel.getActivePage());
+						ok(jQuery.sap.byId("picture_carousel-nav").children().length == 5, "Page Indicator should show three dots");
+						oPictureCarousel.removePage(img1);
+						start();
+					}, 1200);
+				}, 600);
+			}, 600);
+		}, 600);
+	}, 600);
+});	
+
+
+asyncTest("Add a second carousel", function() {
+	oEmptyCarousel.addPage(img11);
+	oEmptyCarousel.addPage(img21);
+	oEmptyCarousel.addPage(img31);
+	oEmptyCarousel.setHeight('50%');
+	oPictureCarousel.setHeight('50%');
+	oPictureCarousel.setLoop(false);
+	oPageApp.addContent(oEmptyCarousel);
+	setTimeout(function() {
+		ok(jQuery.sap.byId("empty_carousel") != null, "Second carousel should have been added");
+		oEmptyCarousel.insertPage(img41, 2);
+		oEmptyCarousel.insertPage(img51, 2);
+		oEmptyCarousel.insertPage(img61, 2);
+		start();
+	}, 600);
+});	
+
+
+
+asyncTest("Remove all pages from second carousel and add pages which were used in other carousel. AddCustom style", function() {
+	var allPages = oEmptyCarousel.removeAllPages();
+	ok(allPages.length === 6, "'removeAllPages' does not return correct page array");
+	
+	setTimeout(function() {
+		ok(jQuery.sap.byId("empty_carousel-nav").children().length == 2, "Second Carousel should deleted from DOM");
+		oEmptyCarousel.addPage(img11);
+		oEmptyCarousel.addStyleClass('TestClass');
+		setTimeout(function() {
+			ok(oEmptyCarousel.getActivePage() == 'myPage11', "Active page should be 'myPage11' but  is: " +  oEmptyCarousel.getActivePage());
+			ok(jQuery.sap.byId("empty_carousel-nav").children().length == 3, "Page Indicator should show one dot: " + jQuery.sap.byId("picture_carousel-nav").children().length );
+			ok(oEmptyCarousel.$().hasClass("TestClass"), "Carousel has custom style class");
+			var whoAmI = oEmptyCarousel.destroyPages();
+			ok(whoAmI === oEmptyCarousel, "'destroyPages' does not return carousel");
+			start();
+		}, 600);
+	}, 600);
+}); 
+
+
+asyncTest("Remove busy indicator from first carousel and add it again" , function() {
+	var busyIndicatorRemoved;
+	oPictureCarousel.setShowBusyIndicator(false);
+	setTimeout(function() {
+		busyIndicatorRemoved = true;
+		var i;
+		for (i=0; i<3; i++) {
+			if(jQuery.sap.byId("picture_carousel-indicator-" + i).length > 0) {
+				busyIndicatorRemoved = false;
+				break;
+			}
+		}
+		ok(busyIndicatorRemoved, "Busy indicator has not been removed");
+		oPictureCarousel.setShowBusyIndicator(true);
+		setTimeout(function() {
+			busyIndicatorRemoved = false;
+			for (i=0; i<3; i++) {
+				if(jQuery.sap.byId("picture_carousel-indicator-" + i).length === 0) {
+					busyIndicatorRemoved = true;
+					break;
+				}
+			}
+			ok(!busyIndicatorRemoved, "Busy indicator is missing");
+			start();
+		}, 200);
+	}, 200);
+});
+
+asyncTest("Set Busy Indicator Size to '2em'" , function() {
+	
+	oPictureCarousel.setBusyIndicatorSize("4em");
+	setTimeout(function() {
+		var sizeAdapted = true;
+		var aSpinners = jQuery("#picture_carousel").find(".sapMSpinner");
+		for (i=0; i<aSpinners.length; i++) {
+			if(jQuery(aSpinners[0]).css('width') != "64px" ||
+					jQuery(aSpinners[0]).css('height') != "64px") {
+				sizeAdapted = false;
+				break;
+			}
+		}
+		ok(sizeAdapted, "Busy indicator size is not changed to '2em'");
+		start();
+	}, 200);
+});
+
+/* asyncTest("Enable/disable scrolling in containing page" , function() {
+	oPageApp.setEnableScrolling(true);
+	setTimeout(function() {
+		ok(jQuery.sap.byId('picture_carousel-content').css('height') != "0px", "Carousel's content is not visible.");
+		oPageApp.setEnableScrolling(false);
+		setTimeout(function() {
+			ok(jQuery.sap.byId('picture_carousel-content').css('height') != "0px", "Carousel's content is not visible.");
+			start();
+		}, 200);
+	}, 200);
+});
+
+
+
+module("Events"); 
+
+
+
+asyncTest("Listen to Load, Unload, PageChanged, BeforeFirstShow, BeforeShow and AfterHide" , function() {
+	oPictureCarousel.addPage(img2);
+	oPictureCarousel.addPage(img3);
+	oPictureCarousel.addPage(img4);
+	
+	var bLoadPageOk = false;
+	var bUnloadPageOk = false;
+	var bPageNewOK = false;
+	var bPageOldOK = false;
+	var bBeforeShowOK = false;
+	var bBeforeFirstShowOK = true;
+	var bAfterHideOK = false;
+	
+	setTimeout(function() {
+		oPictureCarousel.attachLoadPage(function(oControlEvent) {
+			bLoadPageOk = oControlEvent.getParameters().pageId == 'myPage3';
+		});
+		
+		
+		oPictureCarousel.attachUnloadPage(function(oControlEvent) {
+			bUnloadPageOk = oControlEvent.getParameters().pageId == 'myPage5'
+		});
+		
+		oPictureCarousel.attachPageChanged(function(oControlEvent) {
+			bPageNewOK = oControlEvent.getParameters().oldActivePageId == 'myPage6';
+			bPageOldOK = oControlEvent.getParameters().newActivePageId == 'myPage2';
+		}); 
+		
+		img3.addEventDelegate({ 
+			onBeforeShow: function(oControlEvent) {
+				bBeforeShowOK = true;
+			}
+		});
+		
+		img3.addEventDelegate({ 
+			onBeforeFirstShow: function(oControlEvent) {
+				bBeforeFirstShowOK = true;
+			}
+		});
+		
+		img5.addEventDelegate({ 
+			onAfterHide: function(oControlEvent) {
+				bAfterHideOK = true;
+			}
+		});
+		
+		oPictureCarousel.next();
+		setTimeout(function() {
+			ok(bLoadPageOk, "Loaded page should be 'myPage3'");
+			ok(bUnloadPageOk, "Unloaded page should be 'myPage5'");
+			ok(bPageNewOK, "Old active page should be 'myPage6'");
+			ok(bPageOldOK, "New active page should be 'myPage2'");
+			ok(bBeforeShowOK, "Delegate 'BeforeShow' should have been called for 'myPage3'");
+			ok(bBeforeFirstShowOK, "Delegate 'BeforeFirstShow' should have been called for 'myPage3'");
+			ok(bAfterHideOK, "Delegate 'AfterHide' should have been called for 'myPage5'");
+			bBeforeFirstShowOK = false;
+			oPictureCarousel.previous();
+			oPictureCarousel.next();
+			setTimeout(function() {
+				ok(!bBeforeFirstShowOK, "Delegate 'BeforeFirstShow' should NOT have been called for 'myPage3'");
+				start();
+			}, 600);
+		}, 600);
+	}, 600);
+}); */
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+<style>
+	#mSAPUI5SupportMessage {
+		display: none !important;
+	}
+</style>
+
+
+</head>
+<body id="body" class="sapUiBody">
+
+<h1 id="qunit-header">QUnit tests: sap.m.Carousel</h1>
+	<h2 id="qunit-banner"></h2>
+	<h2 id="qunit-userAgent"></h2>
+	<div id="qunit-testrunner-toolbar"></div>
+	<ol id="qunit-tests"></ol>
+	<div id="carousel-test-content"></div>
+</body>
+</html>

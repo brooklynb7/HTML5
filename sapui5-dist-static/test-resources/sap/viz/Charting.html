@@ -1,0 +1,1159 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>UI5 CVOM HTML5 Charts - sap.viz.ui5</title>
+
+<script id="sap-ui-bootstrap" type="text/javascript"
+  src="../../../resources/sap-ui-core.js"
+  data-sap-ui-theme="sap_goldreflection" data-sap-ui-libs="sap.viz"></script>
+<script>
+  try {
+    sap.ui.getCore().loadLibrary("sap.ui.commons");
+  } catch (e) {
+    alert("This test page requires the library 'sap.ui.commons' which is not available.");
+    throw (e);
+  }
+  try {
+    sap.ui.getCore().loadLibrary("sap.ui.table");
+  } catch (e) {
+    alert("This test page requires the library 'sap.ui.table' which is not available.");
+    throw (e);
+  }
+  try {
+    sap.ui.getCore().loadLibrary("sap.ui.ux3");
+  } catch (e) {
+    alert("This test page requires the library 'sap.ui.ux3' which is not available.");
+    throw (e);
+  }
+
+  sap.ui.getCore().attachInitEvent(
+      function() {
+
+        // Create the ux3 Shell
+        var oShell = new sap.ui.ux3.Shell("myShell", {
+          appTitle : "UI5 (new) VIZ HTML5 Demo", // give a title
+          worksetItems : [ // add some items to the top navigation
+          new sap.ui.ux3.NavigationItem({
+            key : "wi_home",
+            text : "Home",
+            subItems : [ // the "Home" workcenter also gets three sub-items
+            new sap.ui.ux3.NavigationItem({
+              key : "wi_home_line",
+              text : "Line"
+            }), new sap.ui.ux3.NavigationItem({
+              key : "wi_home_pie",
+              text : "Pie"
+            }), new sap.ui.ux3.NavigationItem({
+              key : "wi_home_donut",
+              text : "Donut"
+            }), new sap.ui.ux3.NavigationItem({
+              key : "wi_home_bar",
+              text : "Bar"
+            }), new sap.ui.ux3.NavigationItem({
+              key : "wi_home_column",
+              text : "Column"
+            }), new sap.ui.ux3.NavigationItem({
+              key : "wi_home_combi",
+              text : "Combination"
+            }), new sap.ui.ux3.NavigationItem({
+              key : "wi_home_bubble",
+              text : "Bubble"
+            }), new sap.ui.ux3.NavigationItem({
+              key : "wi_home_scatter",
+              text : "Scatter"
+            }), new sap.ui.ux3.NavigationItem({
+              key : "wi_home_stvbar",
+              text : "Stacked VBar"
+            }), new sap.ui.ux3.NavigationItem({
+              key : "wi_home_pstvbar",
+              text : "Stacked VBar(%)"
+            }), new sap.ui.ux3.NavigationItem({
+              key : "wi_home_custstvbar",
+              text : "Stacked VBar (customized)"
+            }), new sap.ui.ux3.NavigationItem({
+              key : "wi_home_dualbar",
+              text : "Dual Bar"
+            }), new sap.ui.ux3.NavigationItem({
+              key : "wi_home_dualline",
+              text : "Dual line"
+            }), new sap.ui.ux3.NavigationItem({
+              key : "wi_home_dualcombination",
+              text : "Dual Combination"
+            }), new sap.ui.ux3.NavigationItem({
+              key : "wi_home_dualvbar",
+              text : "Dual Column"
+            }), new sap.ui.ux3.NavigationItem({
+              key : "wi_home_dualstvbar",
+              text : "Dual Stacked VBar"
+            }), new sap.ui.ux3.NavigationItem({
+              key : "wi_home_dualpstvbar",
+              text : "Dual Stacked VBar(%)"
+            }),, new sap.ui.ux3.NavigationItem({
+              key : "wi_home_heatmap",
+              text : "Heatmap"
+            }),, new sap.ui.ux3.NavigationItem({
+              key : "wi_home_treemap",
+              text : "Treemap"
+            }),, new sap.ui.ux3.NavigationItem({
+              key : "wi_home_area",
+              text : "Area"
+            }),, new sap.ui.ux3.NavigationItem({
+              key : "wi_home_horizontalarea",
+              text : "Horizontal Area"
+            }),, new sap.ui.ux3.NavigationItem({
+              key : "wi_home_parea",
+              text : "Area(%)"
+            }),, new sap.ui.ux3.NavigationItem({
+              key : "wi_home_phorizontalarea",
+              text : "Horizontal Area(%)"
+            }), new sap.ui.ux3.NavigationItem({
+              key : "wi_home_table",
+              text : "Table"
+            }) ]
+          }) ],
+          paneBarItems : [ // add also one item to the right-side PaneBar
+          new sap.ui.core.Item({
+            key : "pb_people",
+            text : "People"
+          }) ],
+          logout : function() { // create a handler function and attach it to the "logout" event
+            alert("User wants to log out...");
+          }
+        });
+
+        // also set some content for the side pane
+        oShell.setPaneContent(new sap.ui.commons.Button({
+          text : "This Button is in the Pane"
+        }));
+
+        var oBusinessData = [ {
+          Country : "Canada",
+          revenue : 410.87,
+          profit : -141.25,
+          population : 34789000
+        }, {
+          Country : "China",
+          revenue : 338.29,
+          profit : 133.82,
+          population : 1339724852
+        }, {
+          Country : "France",
+          revenue : 487.66,
+          profit : 348.76,
+          population : 65350000
+        }, {
+          Country : "Germany",
+          revenue : 470.23,
+          profit : 217.29,
+          population : 81799600
+        }, {
+          Country : "India",
+          revenue : 170.93,
+          profit : 117.00,
+          population : 1210193422
+        }, {
+          Country : "United States",
+          revenue : 905.08,
+          profit : 609.16,
+          population : 313490000
+        } ];
+
+        oModel = new sap.ui.model.json.JSONModel();
+
+        setTimeout(function() {
+          oModel.setData({
+            businessData : oBusinessData
+          });
+        }, 4000);
+
+        var oModel2D = new sap.ui.model.json.JSONModel({
+          data : [ {
+            country : 'China',
+            year : '2001',
+            product : 'Car',
+            profit : 10
+          }, {
+            country : 'China',
+            year : '2002',
+            product : 'Car',
+            profit : 32
+          }, {
+            country : 'France',
+            year : '2001',
+            product : 'Car',
+            profit : 23
+          }, {
+            country : 'France',
+            year : '2002',
+            product : 'Car',
+            profit : 43
+          }, {
+            country : 'Germany',
+            year : '2001',
+            product : 'Car',
+            profit : 123
+          }, {
+            country : 'Germany',
+            year : '2002',
+            product : 'Car',
+            profit : 34
+          }, {
+            country : 'USA',
+            year : '2001',
+            product : 'Car',
+            profit : 14
+          }, {
+            country : 'USA',
+            year : '2002',
+            product : 'Car',
+            profit : 25
+          }, {
+            country : 'China',
+            year : '2001',
+            product : 'Truck',
+            profit : 12
+          }, {
+            country : 'China',
+            year : '2002',
+            product : 'Truck',
+            profit : 78
+          }, {
+            country : 'France',
+            year : '2001',
+            product : 'Truck',
+            profit : 45
+          }, {
+            country : 'France',
+            year : '2002',
+            product : 'Truck',
+            profit : 86
+          }, {
+            country : 'Germany',
+            year : '2001',
+            product : 'Truck',
+            profit : 34
+          }, {
+            country : 'Germany',
+            year : '2002',
+            product : 'Truck',
+            profit : 56
+          }, {
+            country : 'USA',
+            year : '2001',
+            product : 'Truck',
+            profit : 23
+          }, {
+            country : 'USA',
+            year : '2002',
+            product : 'Truck',
+            profit : 76
+          }, {
+            country : 'China',
+            year : '2001',
+            product : 'Motorcycle',
+            profit : 12
+          }, {
+            country : 'China',
+            year : '2002',
+            product : 'Motorcycle',
+            profit : 78
+          }, {
+            country : 'France',
+            year : '2001',
+            product : 'Motorcycle',
+            profit : 45
+          }, {
+            country : 'France',
+            year : '2002',
+            product : 'Motorcycle',
+            profit : 86
+          }, {
+            country : 'Germany',
+            year : '2001',
+            product : 'Motorcycle',
+            profit : 34
+          }, {
+            country : 'Germany',
+            year : '2002',
+            product : 'Motorcycle',
+            profit : 56
+          }, {
+            country : 'USA',
+            year : '2001',
+            product : 'Motorcycle',
+            profit : 23
+          }, {
+            country : 'USA',
+            year : '2002',
+            product : 'Motorcycle',
+            profit : 76
+          }, {
+            country : 'China',
+            year : '2001',
+            product : 'Bicycle',
+            profit : 12
+          }, {
+            country : 'China',
+            year : '2002',
+            product : 'Bicycle',
+            profit : 78
+          }, {
+            country : 'France',
+            year : '2001',
+            product : 'Bicycle',
+            profit : 45
+          }, {
+            country : 'France',
+            year : '2002',
+            product : 'Bicycle',
+            profit : 86
+          }, {
+            country : 'Germany',
+            year : '2001',
+            product : 'Bicycle',
+            profit : 34
+          }, {
+            country : 'Germany',
+            year : '2002',
+            product : 'Bicycle',
+            profit : 56
+          }, {
+            country : 'USA',
+            year : '2001',
+            product : 'Bicycle',
+            profit : 23
+          }, {
+            country : 'USA',
+            year : '2002',
+            product : 'Bicycle',
+            profit : 76
+          } ]
+        });
+
+        var oMassData = [];
+        /*
+        for ( var c = 0; c < 1000; c++) {
+          oMassData.push({
+            Country : "Country" + c,
+            population : Math.random() * 10000000 + 1000000,
+            profit : 200 * Math.random()
+          });
+        }*/
+        oMassData = [{"Country":"Country0","population":7457419.374492019,"profit":22.18239577487111},{"Country":"Country1","population":7959302.194882184,"profit":170.08033329620957},{"Country":"Country2","population":8397022.538352758,"profit":172.55974342115223},{"Country":"Country3","population":6054224.121849984,"profit":119.13506332784891},{"Country":"Country4","population":3270642.062649131,"profit":13.007298111915588},{"Country":"Country5","population":10923479.615245014,"profit":31.828020606189966},{"Country":"Country6","population":10912832.980044186,"profit":8.07463307864964},{"Country":"Country7","population":6564101.517666131,"profit":141.55385419726372},{"Country":"Country8","population":1630879.8701502383,"profit":31.62126108072698},{"Country":"Country9","population":7327018.151059747,"profit":139.26228526979685},{"Country":"Country10","population":10664926.575496793,"profit":34.222837118431926},{"Country":"Country11","population":2637206.415180117,"profit":184.29979900829494},{"Country":"Country12","population":2196024.9789990485,"profit":154.42255339585245},{"Country":"Country13","population":10096910.49484536,"profit":193.5002056416124},{"Country":"Country14","population":2209039.4645929337,"profit":22.473119571805},{"Country":"Country15","population":4863845.632877201,"profit":17.842686688527465},{"Country":"Country16","population":1423126.1438690126,"profit":73.39713969267905},{"Country":"Country17","population":10178157.567512244,"profit":9.881851635873318},{"Country":"Country18","population":6995956.149417907,"profit":179.42100134678185},{"Country":"Country19","population":2926820.1664090157,"profit":52.377336006611586},{"Country":"Country20","population":5907440.319657326,"profit":173.56496714055538},{"Country":"Country21","population":8964087.466243654,"profit":103.591622505337},{"Country":"Country22","population":10794915.444217622,"profit":89.2091921530664},{"Country":"Country23","population":3534544.5470884442,"profit":144.07277083955705},{"Country":"Country24","population":10385899.62432161,"profit":125.44732978567481},{"Country":"Country25","population":2191239.6480329335,"profit":37.19438402913511},{"Country":"Country26","population":5321690.578944981,"profit":60.5033244471997},{"Country":"Country27","population":7471903.524361551,"profit":123.85044815018773},{"Country":"Country28","population":5221220.975741744,"profit":135.68013370968401},{"Country":"Country29","population":1806014.6123170853,"profit":103.70274935849011},{"Country":"Country30","population":10569779.322482646,"profit":22.26458555087447},{"Country":"Country31","population":9686388.328205794,"profit":23.949267389252782},{"Country":"Country32","population":7850223.341025412,"profit":154.52271969988942},{"Country":"Country33","population":9503300.461452454,"profit":157.04456232488155},{"Country":"Country34","population":10958012.686111033,"profit":191.18326716125011},{"Country":"Country35","population":4782235.637772828,"profit":49.50272124260664},{"Country":"Country36","population":2404446.945525706,"profit":77.57325419224799},{"Country":"Country37","population":1732400.6804265082,"profit":64.65568547137082},{"Country":"Country38","population":1264168.055728078,"profit":21.371577214449644},{"Country":"Country39","population":7108024.795539677,"profit":113.96036734804511},{"Country":"Country40","population":3318217.3329405487,"profit":70.75641811825335},{"Country":"Country41","population":4456507.00153783,"profit":153.3190114889294},{"Country":"Country42","population":5111400.8612930775,"profit":90.84119703620672},{"Country":"Country43","population":5051466.304808855,"profit":157.87765234708786},{"Country":"Country44","population":9511953.388806432,"profit":52.91701043024659},{"Country":"Country45","population":5444321.98535651,"profit":30.05285430699587},{"Country":"Country46","population":4538527.14644745,"profit":143.41606595553458},{"Country":"Country47","population":9103469.209745526,"profit":36.30750896409154},{"Country":"Country48","population":5871426.951140165,"profit":22.53862004727125},{"Country":"Country49","population":2105655.711144209,"profit":63.871920481324196},{"Country":"Country50","population":3155418.4146225452,"profit":81.26133605837822},{"Country":"Country51","population":3163804.031442851,"profit":55.57626695372164},{"Country":"Country52","population":10835676.741786301,"profit":165.01462841406465},{"Country":"Country53","population":7693652.267567813,"profit":137.37897323444486},{"Country":"Country54","population":7635638.845618814,"profit":41.477355966344476},{"Country":"Country55","population":6647429.637610912,"profit":26.31656783632934},{"Country":"Country56","population":5796840.860508382,"profit":67.13063232600689},{"Country":"Country57","population":2720499.135553837,"profit":68.9230174291879},{"Country":"Country58","population":4376352.33765468,"profit":192.64947064220905},{"Country":"Country59","population":4089795.8227433264,"profit":17.25783064030111},{"Country":"Country60","population":8653627.616818994,"profit":192.65038487501442},{"Country":"Country61","population":10403148.468118161,"profit":114.93289219215512},{"Country":"Country62","population":2290853.307582438,"profit":192.88779124617577},{"Country":"Country63","population":3779206.4007371664,"profit":66.31210050545633},{"Country":"Country64","population":3515909.660141915,"profit":92.55842664279044},{"Country":"Country65","population":10899820.36408037,"profit":85.00939644873142},{"Country":"Country66","population":7885923.927184194,"profit":67.15195467695594},{"Country":"Country67","population":5850340.23411572,"profit":140.4285383876413},{"Country":"Country68","population":3268628.051970154,"profit":66.11516200937331},{"Country":"Country69","population":3532525.130081922,"profit":73.28296769410372},{"Country":"Country70","population":2722276.4785401523,"profit":42.22669331356883},{"Country":"Country71","population":3274944.9987895787,"profit":139.03722232207656},{"Country":"Country72","population":9719916.83728993,"profit":152.64123198576272},{"Country":"Country73","population":7590031.960513443,"profit":55.7105119805783},{"Country":"Country74","population":10570119.08525601,"profit":78.58815276995301},{"Country":"Country75","population":6916278.928052634,"profit":47.5392600055784},{"Country":"Country76","population":10859042.819589376,"profit":25.0794748775661},{"Country":"Country77","population":1917044.8663644493,"profit":172.032477427274},{"Country":"Country78","population":6064348.827581853,"profit":55.23803178220987},{"Country":"Country79","population":7270971.500780433,"profit":112.88067335262895},{"Country":"Country80","population":7023762.687109411,"profit":143.37830590084195},{"Country":"Country81","population":2610948.9323571324,"profit":78.95949590019882},{"Country":"Country82","population":4165334.577206522,"profit":58.83568087592721},{"Country":"Country83","population":4074618.1425638497,"profit":45.29477651230991},{"Country":"Country84","population":2105514.101218432,"profit":75.04097451455891},{"Country":"Country85","population":6714428.094215691,"profit":158.2266241312027},{"Country":"Country86","population":5502196.563407779,"profit":22.14633715339005},{"Country":"Country87","population":10229167.788289487,"profit":165.26614730246365},{"Country":"Country88","population":1977880.4960660636,"profit":61.25644058920443},{"Country":"Country89","population":5690740.604419261,"profit":92.48663033358753},{"Country":"Country90","population":1103295.9716394544,"profit":155.48091460950673},{"Country":"Country91","population":3825813.856907189,"profit":3.556603891775012},{"Country":"Country92","population":1721514.3973007798,"profit":103.47590507008135},{"Country":"Country93","population":2125388.0569711328,"profit":52.21274485811591},{"Country":"Country94","population":9301550.94852671,"profit":77.19580195844173},{"Country":"Country95","population":3731691.8154247105,"profit":58.50409739650786},{"Country":"Country96","population":9794200.67416504,"profit":171.2829413358122},{"Country":"Country97","population":6080574.518069625,"profit":193.9704949501902},{"Country":"Country98","population":9780827.322043478,"profit":59.9241410382092},{"Country":"Country99","population":3132458.675187081,"profit":73.61219003796577},{"Country":"Country100","population":2104999.2218613625,"profit":171.40644644387066},{"Country":"Country101","population":6619536.9199849665,"profit":1.8182622268795967},{"Country":"Country102","population":2266119.657084346,"profit":155.33804381266236},{"Country":"Country103","population":7285438.337363303,"profit":24.510114267468452},{"Country":"Country104","population":8125506.266020238,"profit":154.32897442951798},{"Country":"Country105","population":8344620.630610734,"profit":129.3180180247873},{"Country":"Country106","population":4776153.55886519,"profit":71.36107375845313},{"Country":"Country107","population":7631448.022089899,"profit":173.18723774515092},{"Country":"Country108","population":6035762.791521847,"profit":88.12690102495253},{"Country":"Country109","population":3080182.1094937623,"profit":14.745751209557056},{"Country":"Country110","population":3651518.229395151,"profit":108.83411825634539},{"Country":"Country111","population":1840325.0388801098,"profit":103.87609633617103},{"Country":"Country112","population":10903156.661894172,"profit":184.69672929495573},{"Country":"Country113","population":2092412.0410345495,"profit":90.25461063720286},{"Country":"Country114","population":6776551.910676062,"profit":184.19895013794303},{"Country":"Country115","population":6915015.083737671,"profit":7.809934997931123},{"Country":"Country116","population":2175220.1290801167,"profit":18.79386599175632},{"Country":"Country117","population":9906852.228101343,"profit":161.2490556202829},{"Country":"Country118","population":6748502.244241536,"profit":17.817539907991886},{"Country":"Country119","population":9186778.544913977,"profit":7.020632270723581},{"Country":"Country120","population":4837435.44574827,"profit":26.82054489850998},{"Country":"Country121","population":3018864.2316497862,"profit":3.2763677183538675},{"Country":"Country122","population":1949251.7309263349,"profit":118.37730896659195},{"Country":"Country123","population":7854995.251633227,"profit":170.14620956033468},{"Country":"Country124","population":5285514.915827662,"profit":123.14644199796021},{"Country":"Country125","population":10528575.744479895,"profit":31.790438946336508},{"Country":"Country126","population":7585037.37533465,"profit":56.307537481188774},{"Country":"Country127","population":4275137.941818684,"profit":3.1521599739789963},{"Country":"Country128","population":2404911.4077351987,"profit":157.41546377539635},{"Country":"Country129","population":3326420.920435339,"profit":52.3468682076782},{"Country":"Country130","population":4410148.562397808,"profit":112.04892508685589},{"Country":"Country131","population":10854995.727073401,"profit":137.41774098016322},{"Country":"Country132","population":3370252.7722343802,"profit":23.382944660261273},{"Country":"Country133","population":8870947.129558772,"profit":100.96970964223146},{"Country":"Country134","population":6369587.8479629755,"profit":95.2503667678684},{"Country":"Country135","population":3709996.111225337,"profit":19.47088805027306},{"Country":"Country136","population":10020766.627509147,"profit":189.84614498913288},{"Country":"Country137","population":8392873.053904623,"profit":174.83186633326113},{"Country":"Country138","population":3987584.2994078994,"profit":161.43049569800496},{"Country":"Country139","population":7513056.512922049,"profit":41.17999104782939},{"Country":"Country140","population":3821768.415160477,"profit":10.27091913856566},{"Country":"Country141","population":9329992.981161922,"profit":79.56890813075006},{"Country":"Country142","population":4383277.82927081,"profit":2.624955913051963},{"Country":"Country143","population":2858376.3134665787,"profit":178.6340681836009},{"Country":"Country144","population":2863079.1641771793,"profit":67.95493699610233},{"Country":"Country145","population":10544785.481411964,"profit":127.46965191327035},{"Country":"Country146","population":8746133.184991777,"profit":156.23378762975335},{"Country":"Country147","population":3955184.7325637937,"profit":152.87250825203955},{"Country":"Country148","population":4162165.5472554266,"profit":192.03111534006894},{"Country":"Country149","population":4532214.015722275,"profit":176.7505478579551},{"Country":"Country150","population":3925107.5978390872,"profit":84.46004968136549},{"Country":"Country151","population":5211201.025173068,"profit":44.21510687097907},{"Country":"Country152","population":8174350.791610777,"profit":51.19590652175248},{"Country":"Country153","population":8322155.029978603,"profit":28.620618535205722},{"Country":"Country154","population":9989891.833625734,"profit":155.79505246132612},{"Country":"Country155","population":5824487.695004791,"profit":66.37156861834228},{"Country":"Country156","population":10092461.573891342,"profit":170.5421155784279},{"Country":"Country157","population":8622038.405388594,"profit":194.49112708680332},{"Country":"Country158","population":1701926.9792363048,"profit":190.93487914651632},{"Country":"Country159","population":1233565.028756857,"profit":178.17126265726984},{"Country":"Country160","population":8839190.396480262,"profit":61.40914033167064},{"Country":"Country161","population":2833137.7184949815,"profit":105.36889373324811},{"Country":"Country162","population":6023019.451182336,"profit":82.57499341852963},{"Country":"Country163","population":4300059.400498867,"profit":30.42182377539575},{"Country":"Country164","population":2990911.243483424,"profit":32.033055601641536},{"Country":"Country165","population":5512502.811849117,"profit":62.61241640895605},{"Country":"Country166","population":9077728.892676532,"profit":17.407535761594772},{"Country":"Country167","population":4576469.961553812,"profit":11.377166397869587},{"Country":"Country168","population":7489195.243921131,"profit":44.27618933841586},{"Country":"Country169","population":8997739.964630455,"profit":121.85062812641263},{"Country":"Country170","population":2835609.7722426057,"profit":130.81828989088535},{"Country":"Country171","population":10871287.071146071,"profit":39.77309805341065},{"Country":"Country172","population":7985825.460869819,"profit":22.292767418548465},{"Country":"Country173","population":9877637.15814799,"profit":111.14974860101938},{"Country":"Country174","population":7516573.28940928,"profit":179.46308446116745},{"Country":"Country175","population":4198338.474612683,"profit":132.03984312713146},{"Country":"Country176","population":2819917.9880321026,"profit":45.65534801222384},{"Country":"Country177","population":4494511.041790247,"profit":50.50958092324436},{"Country":"Country178","population":8548679.749015719,"profit":35.759775852784514},{"Country":"Country179","population":2439632.880501449,"profit":94.81201292946935},{"Country":"Country180","population":3896325.006149709,"profit":80.25805377401412},{"Country":"Country181","population":9525211.091618985,"profit":110.69840854033828},{"Country":"Country182","population":9879415.895789862,"profit":116.50707609951496},{"Country":"Country183","population":2269858.106970787,"profit":37.210334092378616},{"Country":"Country184","population":7890585.653018206,"profit":94.06000128947198},{"Country":"Country185","population":1841670.0921952724,"profit":99.23927639611065},{"Country":"Country186","population":8310729.762539268,"profit":106.30038338713348},{"Country":"Country187","population":10295371.260959655,"profit":176.70051897875965},{"Country":"Country188","population":7434849.337674677,"profit":93.87285630218685},{"Country":"Country189","population":5814623.014535755,"profit":112.86040497943759},{"Country":"Country190","population":10585793.898440897,"profit":98.88841179199517},{"Country":"Country191","population":10798382.844310254,"profit":189.2607212997973},{"Country":"Country192","population":1176574.69259575,"profit":61.08044506981969},{"Country":"Country193","population":1658013.008069247,"profit":60.781596740707755},{"Country":"Country194","population":9242502.945940942,"profit":145.2713624574244},{"Country":"Country195","population":3572737.3198606074,"profit":73.0047372635454},{"Country":"Country196","population":8065694.823395461,"profit":126.818494964391},{"Country":"Country197","population":3221894.2595645785,"profit":198.30549592152238},{"Country":"Country198","population":1071002.0470432937,"profit":18.616041028872132},{"Country":"Country199","population":8578138.357494026,"profit":175.5255250260234},{"Country":"Country200","population":4878649.086691439,"profit":32.70358541049063},{"Country":"Country201","population":5966116.533614695,"profit":195.70059343241155},{"Country":"Country202","population":6497678.271494806,"profit":89.54304745420814},{"Country":"Country203","population":5557659.986894578,"profit":189.84421296045184},{"Country":"Country204","population":7845325.054600835,"profit":132.65978028066456},{"Country":"Country205","population":4969830.374699086,"profit":93.55465769767761},{"Country":"Country206","population":10968180.44455722,"profit":26.07089839875698},{"Country":"Country207","population":10216104.63410616,"profit":198.47299824468791},{"Country":"Country208","population":2191504.888702184,"profit":24.84864522702992},{"Country":"Country209","population":7594139.754306525,"profit":69.96037685312331},{"Country":"Country210","population":2342464.068438858,"profit":42.786003369838},{"Country":"Country211","population":6204940.317198634,"profit":34.31893293745816},{"Country":"Country212","population":7131697.446107864,"profit":175.05314145237207},{"Country":"Country213","population":3692208.1923112273,"profit":186.9501897599548},{"Country":"Country214","population":7560292.700305581,"profit":32.96781927347183},{"Country":"Country215","population":7199950.615409762,"profit":120.2947523444891},{"Country":"Country216","population":6150593.430735171,"profit":22.427573846653104},{"Country":"Country217","population":10412714.142818004,"profit":189.77368236519396},{"Country":"Country218","population":5766946.663148701,"profit":140.99210873246193},{"Country":"Country219","population":1160944.0823085606,"profit":117.79622468166053},{"Country":"Country220","population":5778819.242492318,"profit":42.694800114259124},{"Country":"Country221","population":4910016.193985939,"profit":50.50441441126168},{"Country":"Country222","population":7967544.439248741,"profit":119.56206522881985},{"Country":"Country223","population":2763690.59830904,"profit":23.14215423539281},{"Country":"Country224","population":4704702.048562467,"profit":157.79712218791246},{"Country":"Country225","population":4829495.420213789,"profit":24.856912484392524},{"Country":"Country226","population":6694597.577676177,"profit":39.05572141520679},{"Country":"Country227","population":6008498.928509653,"profit":64.0205136500299},{"Country":"Country228","population":9714608.906302601,"profit":152.07144017331302},{"Country":"Country229","population":9673447.128385305,"profit":120.13662299141288},{"Country":"Country230","population":4639869.8831908405,"profit":70.8699629176408},{"Country":"Country231","population":10322220.664471388,"profit":134.7668670117855},{"Country":"Country232","population":3727574.7060775757,"profit":43.4426543302834},{"Country":"Country233","population":6759462.211281061,"profit":111.56077422201633},{"Country":"Country234","population":3998071.990441531,"profit":10.325602535158396},{"Country":"Country235","population":3991249.3866868317,"profit":170.26697038672864},{"Country":"Country236","population":1555948.552209884,"profit":161.5379774942994},{"Country":"Country237","population":6514345.22960335,"profit":88.673792546615},{"Country":"Country238","population":10217183.059081435,"profit":164.4523301627487},{"Country":"Country239","population":3091446.2744258344,"profit":176.56627697870135},{"Country":"Country240","population":9017284.933011979,"profit":152.3974608629942},{"Country":"Country241","population":4335070.009343326,"profit":131.5506556071341},{"Country":"Country242","population":6042823.231779039,"profit":195.05625157617033},{"Country":"Country243","population":10989308.819640428,"profit":33.557679085060954},{"Country":"Country244","population":9770900.13353154,"profit":190.4854990541935},{"Country":"Country245","population":8035566.775593907,"profit":57.56249474361539},{"Country":"Country246","population":9428841.852582991,"profit":116.80538188666105},{"Country":"Country247","population":6329929.79278788,"profit":56.59035691060126},{"Country":"Country248","population":9504889.993928373,"profit":198.91992984339595},{"Country":"Country249","population":6985306.578222662,"profit":133.40892400592566},{"Country":"Country250","population":3424786.9942337275,"profit":125.46527665108442},{"Country":"Country251","population":1858950.0514790416,"profit":93.05290384218097},{"Country":"Country252","population":4223772.901110351,"profit":137.02694573439658},{"Country":"Country253","population":10444030.402228236,"profit":183.8002618867904},{"Country":"Country254","population":4313371.0362017155,"profit":138.06527769193053},{"Country":"Country255","population":4743849.357124418,"profit":37.737029464915395},{"Country":"Country256","population":10248471.520841122,"profit":177.2100754082203},{"Country":"Country257","population":3057768.1227587163,"profit":125.80844634212554},{"Country":"Country258","population":1010080.3864188492,"profit":190.08636428043246},{"Country":"Country259","population":2424723.432864994,"profit":31.082656420767307},{"Country":"Country260","population":1242248.2217662036,"profit":195.82997080869973},{"Country":"Country261","population":9257363.49914223,"profit":103.63074815832078},{"Country":"Country262","population":5032754.5162290335,"profit":102.37251543439925},{"Country":"Country263","population":3009439.298417419,"profit":97.22742382436991},{"Country":"Country264","population":10489946.092944592,"profit":130.01701538451016},{"Country":"Country265","population":7607158.798724413,"profit":136.87468599528074},{"Country":"Country266","population":8248945.080209523,"profit":85.40981584228575},{"Country":"Country267","population":2861663.2861085236,"profit":140.0745762977749},{"Country":"Country268","population":3879646.4414335787,"profit":158.7555492296815},{"Country":"Country269","population":1500524.8705856502,"profit":27.243093959987164},{"Country":"Country270","population":7562798.36082831,"profit":10.966994008049369},{"Country":"Country271","population":6788685.148581862,"profit":139.62694951333106},{"Country":"Country272","population":5103301.747236401,"profit":19.968859991058707},{"Country":"Country273","population":10012679.534498602,"profit":48.38420897722244},{"Country":"Country274","population":6155576.607212424,"profit":126.2731104157865},{"Country":"Country275","population":5230171.54680565,"profit":12.534876074641943},{"Country":"Country276","population":5110308.2173503935,"profit":103.06117557920516},{"Country":"Country277","population":3869931.203313172,"profit":174.66346630826592},{"Country":"Country278","population":7979702.329263091,"profit":131.72034355811775},{"Country":"Country279","population":5532679.144758731,"profit":195.58669431135058},{"Country":"Country280","population":10183100.988157094,"profit":130.8414584491402},{"Country":"Country281","population":3134640.1306800544,"profit":148.6237951554358},{"Country":"Country282","population":1720299.5917759836,"profit":153.57728134840727},{"Country":"Country283","population":9955128.06950137,"profit":178.67297837510705},{"Country":"Country284","population":4815659.310203046,"profit":100.32233600504696},{"Country":"Country285","population":9252968.748565763,"profit":162.23534224554896},{"Country":"Country286","population":5076189.498882741,"profit":44.37562031671405},{"Country":"Country287","population":1033566.3533769548,"profit":196.98080141097307},{"Country":"Country288","population":8970812.48369068,"profit":61.366189923137426},{"Country":"Country289","population":6167229.066137224,"profit":168.0124884005636},{"Country":"Country290","population":8169069.615192711,"profit":106.06533684767783},{"Country":"Country291","population":3470416.4639115334,"profit":38.153126975521445},{"Country":"Country292","population":3276120.9052987397,"profit":25.835053296759725},{"Country":"Country293","population":5468445.06310299,"profit":177.5720225647092},{"Country":"Country294","population":7010520.285926759,"profit":198.35878517478704},{"Country":"Country295","population":5344975.592102855,"profit":139.85189315862954},{"Country":"Country296","population":10333040.036726743,"profit":85.42362642474473},{"Country":"Country297","population":9716439.984273165,"profit":82.98662193119526},{"Country":"Country298","population":1742183.7328001857,"profit":53.862724313512444},{"Country":"Country299","population":9722727.729473263,"profit":30.249430844560266},{"Country":"Country300","population":1390567.376744002,"profit":138.3740011136979},{"Country":"Country301","population":10661520.146764815,"profit":62.916302820667624},{"Country":"Country302","population":2366857.2111055255,"profit":121.35610529221594},{"Country":"Country303","population":10686505.871359259,"profit":64.18082006275654},{"Country":"Country304","population":10886516.26277715,"profit":81.31662546657026},{"Country":"Country305","population":2478228.1476072967,"profit":118.41947776265442},{"Country":"Country306","population":7037689.824588597,"profit":149.81737765483558},{"Country":"Country307","population":9524536.250624806,"profit":162.79377723112702},{"Country":"Country308","population":8884508.97205621,"profit":102.91002010926604},{"Country":"Country309","population":6207660.931628197,"profit":171.20410562492907},{"Country":"Country310","population":3283645.924180746,"profit":14.171498408541083},{"Country":"Country311","population":7428678.564261645,"profit":106.44932491704822},{"Country":"Country312","population":3187726.602423936,"profit":189.7818102966994},{"Country":"Country313","population":6299581.743311137,"profit":96.11258013173938},{"Country":"Country314","population":10911778.90682593,"profit":147.1723242662847},{"Country":"Country315","population":7384646.787773818,"profit":41.44748607650399},{"Country":"Country316","population":6362592.858728021,"profit":155.30207557603717},{"Country":"Country317","population":10786450.17137751,"profit":41.38619606383145},{"Country":"Country318","population":3637654.3403603137,"profit":102.2559180855751},{"Country":"Country319","population":1787966.5005020797,"profit":58.37831203825772},{"Country":"Country320","population":9358364.494051784,"profit":125.82567958161235},{"Country":"Country321","population":6949189.59075585,"profit":180.43003040365875},{"Country":"Country322","population":7214988.2526136935,"profit":26.352462731301785},{"Country":"Country323","population":5687129.715457559,"profit":97.74541817605495},{"Country":"Country324","population":2207868.6989843845,"profit":66.00395957939327},{"Country":"Country325","population":9374694.883823395,"profit":80.83811081014574},{"Country":"Country326","population":10120947.134215385,"profit":30.468234978616238},{"Country":"Country327","population":10163978.88911888,"profit":142.08663431927562},{"Country":"Country328","population":7091098.08690846,"profit":18.314047995954752},{"Country":"Country329","population":2129445.7921758294,"profit":148.05683651939034},{"Country":"Country330","population":6313356.160186231,"profit":131.1842464376241},{"Country":"Country331","population":7126108.360476792,"profit":152.70342091098428},{"Country":"Country332","population":7511061.431374401,"profit":197.4558090325445},{"Country":"Country333","population":5045386.910438538,"profit":59.41642811521888},{"Country":"Country334","population":2449846.406467259,"profit":167.95196062885225},{"Country":"Country335","population":6247295.855078846,"profit":162.7076594159007},{"Country":"Country336","population":10838384.471368045,"profit":87.12987042963505},{"Country":"Country337","population":4300383.880268782,"profit":185.0434605497867},{"Country":"Country338","population":6474907.963071018,"profit":149.7481555212289},{"Country":"Country339","population":2450226.1206507683,"profit":34.95407192967832},{"Country":"Country340","population":5100277.989637107,"profit":159.1352941468358},{"Country":"Country341","population":1765214.9582281709,"profit":39.82110102660954},{"Country":"Country342","population":3785157.4309170246,"profit":68.16677516326308},{"Country":"Country343","population":4584428.958129138,"profit":130.1215454004705},{"Country":"Country344","population":2155173.9485003054,"profit":194.35690604150295},{"Country":"Country345","population":6277842.730283737,"profit":104.26090266555548},{"Country":"Country346","population":3699594.4674126804,"profit":141.51575057767332},{"Country":"Country347","population":1796774.7980728745,"profit":145.5048500560224},{"Country":"Country348","population":10373322.799801826,"profit":194.954770244658},{"Country":"Country349","population":9488042.403478175,"profit":108.19593816995621},{"Country":"Country350","population":10725418.162997812,"profit":19.936581328511238},{"Country":"Country351","population":10909480.917267501,"profit":61.57821211963892},{"Country":"Country352","population":8854936.383664608,"profit":186.6170252673328},{"Country":"Country353","population":2990561.957936734,"profit":75.58197206817567},{"Country":"Country354","population":3267769.759055227,"profit":43.74865856952965},{"Country":"Country355","population":4061252.1804869175,"profit":175.6168351508677},{"Country":"Country356","population":9357446.193695068,"profit":9.981370996683836},{"Country":"Country357","population":3900070.622563362,"profit":8.89983749948442},{"Country":"Country358","population":4644550.277385861,"profit":10.378589946776628},{"Country":"Country359","population":10632992.8166233,"profit":124.68056767247617},{"Country":"Country360","population":8685804.588254541,"profit":16.848738119006157},{"Country":"Country361","population":8643632.791005075,"profit":98.12014200724661},{"Country":"Country362","population":6226323.455572128,"profit":42.87198935635388},{"Country":"Country363","population":2570686.3068044186,"profit":45.391087187454104},{"Country":"Country364","population":3242060.1220801473,"profit":66.84190537780523},{"Country":"Country365","population":5034349.212888628,"profit":35.82383072935045},{"Country":"Country366","population":3498206.072486937,"profit":121.10649063251913},{"Country":"Country367","population":1669223.7965762615,"profit":36.81449079886079},{"Country":"Country368","population":6405356.693081558,"profit":168.1449417490512},{"Country":"Country369","population":6493942.725006491,"profit":87.74547525681555},{"Country":"Country370","population":10495288.475882262,"profit":4.60984050296247},{"Country":"Country371","population":6220450.547058135,"profit":14.09246283583343},{"Country":"Country372","population":7388133.377768099,"profit":68.172453250736},{"Country":"Country373","population":4194466.459099203,"profit":4.48623918928206},{"Country":"Country374","population":10145531.551912427,"profit":140.65138697624207},{"Country":"Country375","population":1493278.605863452,"profit":173.36973315104842},{"Country":"Country376","population":9982850.962784141,"profit":100.68048010580242},{"Country":"Country377","population":5523177.652154118,"profit":115.5820176936686},{"Country":"Country378","population":9945763.297379017,"profit":180.36948475055397},{"Country":"Country379","population":5073880.603536963,"profit":199.02477297000587},{"Country":"Country380","population":4035273.072309792,"profit":13.427336188033223},{"Country":"Country381","population":4519730.684347451,"profit":70.59009042568505},{"Country":"Country382","population":9347254.996187985,"profit":197.81500538811088},{"Country":"Country383","population":7598554.861266166,"profit":19.0153990406543},{"Country":"Country384","population":5898759.480565786,"profit":46.25987443141639},{"Country":"Country385","population":3000291.431322694,"profit":121.7438898049295},{"Country":"Country386","population":7757416.8695136905,"profit":165.28366669081151},{"Country":"Country387","population":9412002.39257887,"profit":96.35171690024436},{"Country":"Country388","population":10415566.839743406,"profit":102.6283510029316},{"Country":"Country389","population":2448617.1468161047,"profit":175.70002782158554},{"Country":"Country390","population":8372512.137517333,"profit":168.11675843782723},{"Country":"Country391","population":7766001.980286092,"profit":170.74657860212028},{"Country":"Country392","population":8967857.022304088,"profit":171.45842388272285},{"Country":"Country393","population":9659114.367328584,"profit":125.48357038758695},{"Country":"Country394","population":3356484.1458573937,"profit":15.166890854015946},{"Country":"Country395","population":10837674.309965223,"profit":120.51646518521011},{"Country":"Country396","population":10706153.583247215,"profit":155.1930650137365},{"Country":"Country397","population":6044534.320477396,"profit":103.5331716760993},{"Country":"Country398","population":9336796.581279486,"profit":145.284659601748},{"Country":"Country399","population":8934573.381207883,"profit":63.40774376876652},{"Country":"Country400","population":10791567.847132683,"profit":111.7649660911411},{"Country":"Country401","population":9601429.376285523,"profit":71.58066909760237},{"Country":"Country402","population":8577541.654463857,"profit":125.40613831952214},{"Country":"Country403","population":7531281.340867281,"profit":11.387980869039893},{"Country":"Country404","population":5980563.842691481,"profit":147.99700030125678},{"Country":"Country405","population":4651223.024353385,"profit":88.87032140046358},{"Country":"Country406","population":2327337.168622762,"profit":99.46960099041462},{"Country":"Country407","population":8260888.756718487,"profit":140.99069559015334},{"Country":"Country408","population":4885778.968688101,"profit":127.66255647875369},{"Country":"Country409","population":3283323.381561786,"profit":29.925441229715943},{"Country":"Country410","population":2647938.536480069,"profit":170.2829119283706},{"Country":"Country411","population":4425319.98641789,"profit":51.69715089723468},{"Country":"Country412","population":6639126.205351204,"profit":171.21755084954202},{"Country":"Country413","population":2224750.177934766,"profit":192.72906589321792},{"Country":"Country414","population":8772438.989486545,"profit":156.85420269146562},{"Country":"Country415","population":1368630.0432309508,"profit":18.07386497966945},{"Country":"Country416","population":7474998.046178371,"profit":171.54851844534278},{"Country":"Country417","population":4981304.734479636,"profit":72.81950172036886},{"Country":"Country418","population":2102334.3866690993,"profit":69.8275534901768},{"Country":"Country419","population":5796231.968794018,"profit":42.26995254866779},{"Country":"Country420","population":6652872.212231159,"profit":75.88678868487477},{"Country":"Country421","population":10324083.612300456,"profit":19.289711955934763},{"Country":"Country422","population":9690925.259143114,"profit":179.71290503628552},{"Country":"Country423","population":10651865.15590176,"profit":161.25432960689068},{"Country":"Country424","population":1835927.82728374,"profit":101.32310721091926},{"Country":"Country425","population":2266803.6413379014,"profit":117.66761210747063},{"Country":"Country426","population":3163083.639461547,"profit":112.37570927478373},{"Country":"Country427","population":4425224.092788994,"profit":63.44077824614942},{"Country":"Country428","population":10901870.512403548,"profit":71.53065092861652},{"Country":"Country429","population":8510074.1465576,"profit":72.53948734141886},{"Country":"Country430","population":10750722.222961485,"profit":155.42142265476286},{"Country":"Country431","population":6568623.028229922,"profit":139.22477457672358},{"Country":"Country432","population":4903532.524127513,"profit":126.18509065359831},{"Country":"Country433","population":7507642.171345651,"profit":195.94767936505377},{"Country":"Country434","population":1380717.571824789,"profit":104.08715754747391},{"Country":"Country435","population":5254812.682047486,"profit":26.300836401060224},{"Country":"Country436","population":4952483.076136559,"profit":176.42168360762298},{"Country":"Country437","population":7095163.356512785,"profit":63.839455461129546},{"Country":"Country438","population":6208652.64814347,"profit":53.071097703650594},{"Country":"Country439","population":8358872.964978218,"profit":73.26991236768663},{"Country":"Country440","population":6400191.40811637,"profit":124.13108418695629},{"Country":"Country441","population":4228748.040273786,"profit":130.1596888806671},{"Country":"Country442","population":10394208.791200072,"profit":104.97908792458475},{"Country":"Country443","population":5659832.529723644,"profit":109.89056061953306},{"Country":"Country444","population":6889446.502551436,"profit":144.0751357935369},{"Country":"Country445","population":10382960.56818217,"profit":93.80046906881034},{"Country":"Country446","population":2050833.5218764842,"profit":8.421254204586148},{"Country":"Country447","population":4043521.430809051,"profit":69.17616724967957},{"Country":"Country448","population":1986655.1659069955,"profit":96.7093113809824},{"Country":"Country449","population":1083673.7034842372,"profit":46.652862802147865},{"Country":"Country450","population":8552170.571871102,"profit":14.853411307558417},{"Country":"Country451","population":9977689.479943365,"profit":90.76864481903613},{"Country":"Country452","population":7399421.759415418,"profit":146.44034197553992},{"Country":"Country453","population":1651516.7956240475,"profit":133.34223721176386},{"Country":"Country454","population":1293313.388247043,"profit":189.18766868300736},{"Country":"Country455","population":2064538.904465735,"profit":12.02594256028533},{"Country":"Country456","population":6259814.946912229,"profit":45.28603698126972},{"Country":"Country457","population":6441206.2535993755,"profit":130.99856176413596},{"Country":"Country458","population":4988397.668581456,"profit":40.62510007061064},{"Country":"Country459","population":7052142.22567156,"profit":81.53881379403174},{"Country":"Country460","population":4950434.506405145,"profit":11.116084922105074},{"Country":"Country461","population":4775523.1349729,"profit":145.64935872331262},{"Country":"Country462","population":8766136.846039444,"profit":57.368116825819016},{"Country":"Country463","population":1882436.3630264997,"profit":80.61565100215375},{"Country":"Country464","population":2399196.065030992,"profit":32.076614163815975},{"Country":"Country465","population":8806811.619084328,"profit":156.7193883471191},{"Country":"Country466","population":8695497.539825737,"profit":36.55249485746026},{"Country":"Country467","population":9514099.73576665,"profit":97.3941289819777},{"Country":"Country468","population":2868114.883545786,"profit":127.35920459963381},{"Country":"Country469","population":4594302.623532712,"profit":199.20983258634806},{"Country":"Country470","population":10257414.788007736,"profit":159.00390399619937},{"Country":"Country471","population":8428913.640324026,"profit":52.190469997003675},{"Country":"Country472","population":5965242.443140596,"profit":196.83634811080992},{"Country":"Country473","population":6510725.749190897,"profit":118.34398065693676},{"Country":"Country474","population":10091603.495180607,"profit":92.26141045801342},{"Country":"Country475","population":8091646.045446396,"profit":95.84734058007598},{"Country":"Country476","population":6502355.906646699,"profit":148.59313215129077},{"Country":"Country477","population":9200872.470624745,"profit":132.02815582044423},{"Country":"Country478","population":5394403.0976854265,"profit":133.38030567392707},{"Country":"Country479","population":5796279.377769679,"profit":4.224387276917696},{"Country":"Country480","population":6379935.929086059,"profit":27.579986630007625},{"Country":"Country481","population":2841315.042693168,"profit":9.6450240816921},{"Country":"Country482","population":2347103.992011398,"profit":94.09236120991409},{"Country":"Country483","population":7481143.035925925,"profit":79.1052988730371},{"Country":"Country484","population":3781982.59184137,"profit":61.41264964826405},{"Country":"Country485","population":4211670.224554837,"profit":150.66478103399277},{"Country":"Country486","population":2761284.6894189715,"profit":97.76377552188933},{"Country":"Country487","population":10453548.07190597,"profit":44.204839039593935},{"Country":"Country488","population":4997346.756514162,"profit":4.138860804960132},{"Country":"Country489","population":8783970.115706325,"profit":53.9201476611197},{"Country":"Country490","population":2572067.183442414,"profit":108.52844924665987},{"Country":"Country491","population":8291806.68015033,"profit":180.11612840928137},{"Country":"Country492","population":2491899.3460014462,"profit":25.388289475813508},{"Country":"Country493","population":9801714.067813009,"profit":52.68707275390625},{"Country":"Country494","population":5710233.025252819,"profit":14.043036568909883},{"Country":"Country495","population":6816533.041652292,"profit":131.49621095508337},{"Country":"Country496","population":6546532.2732925415,"profit":32.720647659152746},{"Country":"Country497","population":4554774.294607341,"profit":13.400935335084796},{"Country":"Country498","population":7479119.698051363,"profit":48.00765193067491},{"Country":"Country499","population":3192641.6154019535,"profit":97.37811326049268},{"Country":"Country500","population":3438453.1006217003,"profit":180.8909315150231},{"Country":"Country501","population":2139474.045485258,"profit":36.86080011539161},{"Country":"Country502","population":7662710.763048381,"profit":167.4631591886282},{"Country":"Country503","population":6005967.4750082195,"profit":26.339847454801202},{"Country":"Country504","population":5591541.171539575,"profit":49.590362748131156},{"Country":"Country505","population":2094475.6236858666,"profit":158.7602809537202},{"Country":"Country506","population":3550120.430532843,"profit":167.8235016297549},{"Country":"Country507","population":8750567.581970245,"profit":101.02648930624127},{"Country":"Country508","population":8159444.459248334,"profit":71.79411160759628},{"Country":"Country509","population":5442929.8979230225,"profit":189.19094325974584},{"Country":"Country510","population":8100813.412107527,"profit":166.34737076237798},{"Country":"Country511","population":6088749.970309436,"profit":92.36441664397717},{"Country":"Country512","population":3169978.5185046494,"profit":61.37712635099888},{"Country":"Country513","population":5461204.176768661,"profit":92.01257564127445},{"Country":"Country514","population":6770991.079043597,"profit":51.696715550497174},{"Country":"Country515","population":10322637.496516109,"profit":68.83223839104176},{"Country":"Country516","population":4940217.308700085,"profit":15.56897247210145},{"Country":"Country517","population":2812228.6233119667,"profit":38.87184169143438},{"Country":"Country518","population":6693962.4808728695,"profit":33.841028390452266},{"Country":"Country519","population":7182426.754385233,"profit":19.11918194964528},{"Country":"Country520","population":2673726.2811511755,"profit":149.69462743028998},{"Country":"Country521","population":5383979.525882751,"profit":85.71585495956242},{"Country":"Country522","population":7401715.555693954,"profit":125.73006548918784},{"Country":"Country523","population":6241497.722454369,"profit":54.931940604001284},{"Country":"Country524","population":8496383.276302367,"profit":15.434567583724856},{"Country":"Country525","population":8333277.948200703,"profit":177.9445401392877},{"Country":"Country526","population":5883422.972634435,"profit":86.21500036679208},{"Country":"Country527","population":4812137.842178345,"profit":136.1829326953739},{"Country":"Country528","population":8025001.959409565,"profit":111.00575462915003},{"Country":"Country529","population":5255777.1992869675,"profit":190.7039257697761},{"Country":"Country530","population":1256333.7259925902,"profit":198.58453711494803},{"Country":"Country531","population":9373262.688983232,"profit":188.04045226424932},{"Country":"Country532","population":7574939.7105537355,"profit":130.91810755431652},{"Country":"Country533","population":9084074.37056303,"profit":80.99004193209112},{"Country":"Country534","population":10846020.46199143,"profit":196.81301354430616},{"Country":"Country535","population":8353961.318731308,"profit":128.8740281946957},{"Country":"Country536","population":9786927.512846887,"profit":72.36484284512699},{"Country":"Country537","population":10085910.180583596,"profit":2.208344778046012},{"Country":"Country538","population":1065020.5579586327,"profit":142.46452529914677},{"Country":"Country539","population":8660173.608455807,"profit":123.02786805666983},{"Country":"Country540","population":8304475.9524054825,"profit":138.1017335690558},{"Country":"Country541","population":2800563.8057366014,"profit":7.034591119736433},{"Country":"Country542","population":6998033.392243087,"profit":19.91404015570879},{"Country":"Country543","population":4535125.823691487,"profit":90.70070455782115},{"Country":"Country544","population":3146737.7338558435,"profit":170.72725663892925},{"Country":"Country545","population":7920879.154931754,"profit":19.36080465093255},{"Country":"Country546","population":6635826.5853486955,"profit":195.96325317397714},{"Country":"Country547","population":2746835.8715996146,"profit":40.62075023539364},{"Country":"Country548","population":7365261.727478355,"profit":138.7286442797631},{"Country":"Country549","population":2733532.4082523584,"profit":98.59770704060793},{"Country":"Country550","population":5817221.495322883,"profit":15.53466273471713},{"Country":"Country551","population":9597976.460587233,"profit":3.9712222293019295},{"Country":"Country552","population":9501865.00698328,"profit":199.24052776768804},{"Country":"Country553","population":6719755.9415362775,"profit":186.4524256438017},{"Country":"Country554","population":9042163.769714534,"profit":142.39796986803412},{"Country":"Country555","population":1875695.1428949833,"profit":148.25124987401068},{"Country":"Country556","population":3992479.589302093,"profit":96.66584236547351},{"Country":"Country557","population":3304488.3529655635,"profit":130.75839281082153},{"Country":"Country558","population":6631151.939742267,"profit":181.96737482212484},{"Country":"Country559","population":10306799.715850502,"profit":119.5701586548239},{"Country":"Country560","population":10627692.149952054,"profit":91.83382452465594},{"Country":"Country561","population":4402604.693546891,"profit":106.93396995775402},{"Country":"Country562","population":9159166.772384197,"profit":194.2108972929418},{"Country":"Country563","population":3698510.433547199,"profit":22.890834882855415},{"Country":"Country564","population":6571133.370976895,"profit":152.68743531778455},{"Country":"Country565","population":9929974.222555757,"profit":60.89022783562541},{"Country":"Country566","population":3560643.0415064096,"profit":174.35944671742618},{"Country":"Country567","population":1857436.7873370647,"profit":93.28077104873955},{"Country":"Country568","population":5673309.549689293,"profit":172.10553255863488},{"Country":"Country569","population":5423527.806065977,"profit":135.04635682329535},{"Country":"Country570","population":1909086.2167067826,"profit":88.98550155572593},{"Country":"Country571","population":2636259.8282285035,"profit":23.152006417512894},{"Country":"Country572","population":10942668.753210455,"profit":191.31527352146804},{"Country":"Country573","population":6065998.5188394785,"profit":87.96473778784275},{"Country":"Country574","population":1826285.253278911,"profit":148.93467305228114},{"Country":"Country575","population":9241145.727224648,"profit":7.376816822215915},{"Country":"Country576","population":4105963.9272280037,"profit":118.49695309065282},{"Country":"Country577","population":2317906.747572124,"profit":17.5978253595531},{"Country":"Country578","population":6956801.5253171325,"profit":22.1384703181684},{"Country":"Country579","population":4361129.93536517,"profit":175.25099501945078},{"Country":"Country580","population":3458371.005486697,"profit":65.97037548199296},{"Country":"Country581","population":4173157.295677811,"profit":85.27158643119037},{"Country":"Country582","population":10677917.233202606,"profit":126.46120567806065},{"Country":"Country583","population":7029684.825334698,"profit":196.52922260574996},{"Country":"Country584","population":3801179.8905208707,"profit":195.04028647206724},{"Country":"Country585","population":1302561.5378282964,"profit":40.74759897775948},{"Country":"Country586","population":7554351.833183318,"profit":77.9658555984497},{"Country":"Country587","population":6577981.811948121,"profit":77.45407279580832},{"Country":"Country588","population":2761214.639991522,"profit":63.40934685431421},{"Country":"Country589","population":3949538.7664064765,"profit":175.2318238839507},{"Country":"Country590","population":3825741.597916931,"profit":153.29133477061987},{"Country":"Country591","population":4721301.381010562,"profit":119.08838748931885},{"Country":"Country592","population":4105120.0395449996,"profit":187.16438151896},{"Country":"Country593","population":6337886.121124029,"profit":92.33677550219},{"Country":"Country594","population":4659716.818947345,"profit":140.4115374200046},{"Country":"Country595","population":2481149.0988358855,"profit":166.54270254075527},{"Country":"Country596","population":4362798.169255257,"profit":98.63613788038492},{"Country":"Country597","population":6942254.52048704,"profit":77.37847846001387},{"Country":"Country598","population":6186043.267603964,"profit":87.30082218535244},{"Country":"Country599","population":8206546.433735639,"profit":1.696019247174263},{"Country":"Country600","population":2117077.7468942106,"profit":170.71702647954226},{"Country":"Country601","population":10904253.331478685,"profit":137.918869452551},{"Country":"Country602","population":7169281.266629696,"profit":108.13544727861881},{"Country":"Country603","population":3617452.4310044944,"profit":145.9692639298737},{"Country":"Country604","population":3996389.8845016956,"profit":62.267416436225176},{"Country":"Country605","population":2887056.6319674253,"profit":65.10137314908206},{"Country":"Country606","population":7033435.321878642,"profit":187.47664019465446},{"Country":"Country607","population":6674809.312913567,"profit":16.21161592192948},{"Country":"Country608","population":6037766.459863633,"profit":164.48398563079536},{"Country":"Country609","population":6323321.123141795,"profit":2.292226580902934},{"Country":"Country610","population":3663531.4314626157,"profit":185.30301610007882},{"Country":"Country611","population":9115645.14413476,"profit":25.52217054180801},{"Country":"Country612","population":1543068.5938335955,"profit":120.57876600883901},{"Country":"Country613","population":2941054.693888873,"profit":63.92142311669886},{"Country":"Country614","population":2423903.9923995733,"profit":33.43191174790263},{"Country":"Country615","population":8185439.551249146,"profit":16.599865863099694},{"Country":"Country616","population":5444613.26347664,"profit":42.983797611668706},{"Country":"Country617","population":10396545.621566474,"profit":98.38523091748357},{"Country":"Country618","population":9292043.863330036,"profit":162.9473333247006},{"Country":"Country619","population":4746652.528643608,"profit":48.439964558929205},{"Country":"Country620","population":9299275.154713541,"profit":114.20013327151537},{"Country":"Country621","population":10017726.222518831,"profit":59.1299494728446},{"Country":"Country622","population":2438927.6783913374,"profit":138.8650187291205},{"Country":"Country623","population":6133855.3871028125,"profit":163.1931504700333},{"Country":"Country624","population":8319096.417631954,"profit":33.02255980670452},{"Country":"Country625","population":2022861.7093525827,"profit":144.70730405300856},{"Country":"Country626","population":7826916.008722037,"profit":144.64915660209954},{"Country":"Country627","population":3439348.8676287234,"profit":128.66723220795393},{"Country":"Country628","population":4633959.607686847,"profit":196.00721797905862},{"Country":"Country629","population":9132778.04525569,"profit":157.80968060716987},{"Country":"Country630","population":7217219.450045377,"profit":154.110053088516},{"Country":"Country631","population":8732106.503099203,"profit":149.66026307083666},{"Country":"Country632","population":7099838.863592595,"profit":54.79035563766956},{"Country":"Country633","population":9082298.606168479,"profit":185.7651602011174},{"Country":"Country634","population":9559009.139426053,"profit":31.420079711824656},{"Country":"Country635","population":6211333.674378693,"profit":75.6825452670455},{"Country":"Country636","population":7115949.635859579,"profit":33.69511952623725},{"Country":"Country637","population":1373237.8385029733,"profit":168.20797785185277},{"Country":"Country638","population":8067849.547602236,"profit":161.95183582603931},{"Country":"Country639","population":8924862.457439303,"profit":99.1081181447953},{"Country":"Country640","population":1088320.339564234,"profit":148.1496678199619},{"Country":"Country641","population":3396276.514045894,"profit":73.67274290882051},{"Country":"Country642","population":9337642.557453364,"profit":187.90259980596602},{"Country":"Country643","population":4882583.070080727,"profit":11.51323989033699},{"Country":"Country644","population":2347711.2678810954,"profit":103.72084593400359},{"Country":"Country645","population":9541814.112104475,"profit":9.543202444911003},{"Country":"Country646","population":4536065.160296857,"profit":133.92681083641946},{"Country":"Country647","population":3257332.0753872395,"profit":68.01271648146212},{"Country":"Country648","population":8751739.406958222,"profit":49.59809938445687},{"Country":"Country649","population":4825778.593309224,"profit":28.457824839279056},{"Country":"Country650","population":3329137.3113170266,"profit":1.3923908583819866},{"Country":"Country651","population":10298197.019379586,"profit":76.68701764196157},{"Country":"Country652","population":5585506.950970739,"profit":144.56007066182792},{"Country":"Country653","population":10561367.640271783,"profit":13.238223176449537},{"Country":"Country654","population":5559834.5482721925,"profit":177.16042851097882},{"Country":"Country655","population":7835533.017292619,"profit":118.3517920318991},{"Country":"Country656","population":4402235.242538154,"profit":147.02987247146666},{"Country":"Country657","population":7310292.97830537,"profit":167.61218989267945},{"Country":"Country658","population":8804782.891180366,"profit":83.51611774414778},{"Country":"Country659","population":6641399.449668825,"profit":49.264438450336456},{"Country":"Country660","population":8925037.434324622,"profit":118.62551104277372},{"Country":"Country661","population":4252918.927464634,"profit":162.51881797797978},{"Country":"Country662","population":1594301.789533347,"profit":198.15296987071633},{"Country":"Country663","population":4690267.479978502,"profit":122.87993184290826},{"Country":"Country664","population":7088878.992013633,"profit":162.55042725242674},{"Country":"Country665","population":1661127.8350465,"profit":120.72270791977644},{"Country":"Country666","population":10535897.925961763,"profit":135.7045461423695},{"Country":"Country667","population":6291223.647072911,"profit":27.908722823485732},{"Country":"Country668","population":1854694.7059221566,"profit":160.21016747690737},{"Country":"Country669","population":10228700.613602996,"profit":106.17075026966631},{"Country":"Country670","population":3026860.711630434,"profit":83.35023201070726},{"Country":"Country671","population":3768312.8998614848,"profit":160.12411443516612},{"Country":"Country672","population":3388911.7874205112,"profit":60.89171296916902},{"Country":"Country673","population":1495656.8940542638,"profit":145.78126454725862},{"Country":"Country674","population":4018868.5073517263,"profit":26.924493117257953},{"Country":"Country675","population":10379491.282161325,"profit":122.7839081082493},{"Country":"Country676","population":8057433.370500803,"profit":101.5253848861903},{"Country":"Country677","population":5237276.748754084,"profit":156.87250159680843},{"Country":"Country678","population":2233164.2350181937,"profit":111.5532448515296},{"Country":"Country679","population":6918171.675875783,"profit":186.49718849919736},{"Country":"Country680","population":2315513.4487897158,"profit":18.851484451442957},{"Country":"Country681","population":2922350.8471623063,"profit":190.43424781411886},{"Country":"Country682","population":3149790.299590677,"profit":72.01201682910323},{"Country":"Country683","population":5496113.304048777,"profit":92.98880323767662},{"Country":"Country684","population":10411062.37936765,"profit":154.21408428810537},{"Country":"Country685","population":3028823.555447161,"profit":110.15316434204578},{"Country":"Country686","population":3853114.4675798714,"profit":130.98233225755394},{"Country":"Country687","population":5205024.801194668,"profit":198.7200296483934},{"Country":"Country688","population":7338748.5686689615,"profit":23.972936533391476},{"Country":"Country689","population":3684278.227388859,"profit":17.182531487196684},{"Country":"Country690","population":1863902.6153832674,"profit":5.512453522533178},{"Country":"Country691","population":2617683.8683895767,"profit":24.457444716244936},{"Country":"Country692","population":5000753.35521251,"profit":113.93183413892984},{"Country":"Country693","population":3454144.34466511,"profit":115.3360262978822},{"Country":"Country694","population":10491675.975732505,"profit":32.124829571694136},{"Country":"Country695","population":6371798.3327806,"profit":24.059862503781915},{"Country":"Country696","population":7999913.337640464,"profit":4.0321900974959135},{"Country":"Country697","population":7850424.1039045155,"profit":121.0842392873019},{"Country":"Country698","population":2668084.1031484306,"profit":31.176951993256807},{"Country":"Country699","population":1927515.1486508548,"profit":119.09530535340309},{"Country":"Country700","population":7508369.415532798,"profit":184.32245831936598},{"Country":"Country701","population":10980906.80455789,"profit":79.86384527757764},{"Country":"Country702","population":6241185.205522925,"profit":19.082026137039065},{"Country":"Country703","population":6861278.79563719,"profit":16.217673756182194},{"Country":"Country704","population":3060154.762584716,"profit":98.62832338549197},{"Country":"Country705","population":10064515.673089772,"profit":30.341372592374682},{"Country":"Country706","population":10012640.370056033,"profit":107.04253767617047},{"Country":"Country707","population":3888029.3597467244,"profit":183.89838845469058},{"Country":"Country708","population":6588356.170337647,"profit":154.75794672966003},{"Country":"Country709","population":8028010.003268719,"profit":101.18717928417027},{"Country":"Country710","population":4099309.850949794,"profit":118.88239467516541},{"Country":"Country711","population":9210960.316937417,"profit":73.92533742822707},{"Country":"Country712","population":3320903.2299928367,"profit":49.423298286274076},{"Country":"Country713","population":10199335.90805158,"profit":38.147290563210845},{"Country":"Country714","population":2364483.123179525,"profit":161.63623635657132},{"Country":"Country715","population":2478474.43819046,"profit":140.817443234846},{"Country":"Country716","population":5738068.0264905095,"profit":173.85767716914415},{"Country":"Country717","population":6587508.073076606,"profit":73.14005121588707},{"Country":"Country718","population":8800530.309323221,"profit":53.94266750663519},{"Country":"Country719","population":2335322.2026489675,"profit":45.25775336660445},{"Country":"Country720","population":3281905.4475985467,"profit":132.94655340723693},{"Country":"Country721","population":3003781.7349657416,"profit":186.6854077205062},{"Country":"Country722","population":2700507.2301253676,"profit":24.951773788779974},{"Country":"Country723","population":3930010.5734728277,"profit":124.20012424699962},{"Country":"Country724","population":8366095.0642079115,"profit":109.22728609293699},{"Country":"Country725","population":4231361.9600608945,"profit":41.29789946600795},{"Country":"Country726","population":7465587.85578236,"profit":92.72778076119721},{"Country":"Country727","population":3959845.110308379,"profit":189.3531972542405},{"Country":"Country728","population":5705210.344400257,"profit":81.6149830352515},{"Country":"Country729","population":10795669.617597014,"profit":64.31552185676992},{"Country":"Country730","population":9872923.8207452,"profit":105.69455507211387},{"Country":"Country731","population":10053810.574114323,"profit":142.72335870191455},{"Country":"Country732","population":7710796.160623431,"profit":4.701124131679535},{"Country":"Country733","population":9090989.557094872,"profit":108.56549046002328},{"Country":"Country734","population":10779904.338065535,"profit":128.06231742724776},{"Country":"Country735","population":6003970.505204052,"profit":104.3641781900078},{"Country":"Country736","population":9120866.0826087,"profit":98.94792824052274},{"Country":"Country737","population":1730942.8206644952,"profit":29.317638697102666},{"Country":"Country738","population":10144058.02031979,"profit":64.45726724341512},{"Country":"Country739","population":9344503.012485802,"profit":108.68910383433104},{"Country":"Country740","population":3774229.8739030957,"profit":128.0663091223687},{"Country":"Country741","population":3809064.721222967,"profit":145.4308662097901},{"Country":"Country742","population":5411029.983311892,"profit":99.12766059860587},{"Country":"Country743","population":1717641.8672315776,"profit":80.23882759734988},{"Country":"Country744","population":5673642.364796251,"profit":196.35299807414412},{"Country":"Country745","population":9373208.91674608,"profit":117.71291070617735},{"Country":"Country746","population":7209612.709935755,"profit":84.98745234683156},{"Country":"Country747","population":8733052.785042673,"profit":148.61927987076342},{"Country":"Country748","population":9099141.432903707,"profit":34.52501818537712},{"Country":"Country749","population":5447919.696103781,"profit":177.2224495653063},{"Country":"Country750","population":4266315.953806043,"profit":132.8036711551249},{"Country":"Country751","population":3625132.689718157,"profit":196.84808454476297},{"Country":"Country752","population":9799315.625801682,"profit":166.43892121501267},{"Country":"Country753","population":6724228.420294821,"profit":96.90013569779694},{"Country":"Country754","population":1092973.7091064453,"profit":48.35884990170598},{"Country":"Country755","population":4391857.233364135,"profit":88.86494869366288},{"Country":"Country756","population":3889773.0354219675,"profit":48.005339317023754},{"Country":"Country757","population":5918785.190675408,"profit":1.3538513332605362},{"Country":"Country758","population":3378813.459072262,"profit":103.44454003497958},{"Country":"Country759","population":6099658.337421715,"profit":62.00212761759758},{"Country":"Country760","population":6473136.128857732,"profit":162.61605387553573},{"Country":"Country761","population":7951605.419162661,"profit":25.81388708204031},{"Country":"Country762","population":3768725.7155776024,"profit":83.49448246881366},{"Country":"Country763","population":6416472.749784589,"profit":93.81584664806724},{"Country":"Country764","population":5583550.011739135,"profit":57.10622793994844},{"Country":"Country765","population":4932584.14696902,"profit":93.76699435524642},{"Country":"Country766","population":4043205.1327079535,"profit":167.49610407277942},{"Country":"Country767","population":1243471.6164134443,"profit":149.69197581522167},{"Country":"Country768","population":6379834.205377847,"profit":17.19483081251383},{"Country":"Country769","population":7253954.723943025,"profit":56.62352181971073},{"Country":"Country770","population":7645173.460710794,"profit":76.3709744438529},{"Country":"Country771","population":9748371.622059494,"profit":191.05785829015076},{"Country":"Country772","population":2218471.557367593,"profit":125.85461605340242},{"Country":"Country773","population":4931766.271125525,"profit":20.16730043105781},{"Country":"Country774","population":5382713.490631431,"profit":105.89427151717246},{"Country":"Country775","population":2825474.235229194,"profit":31.949019944295287},{"Country":"Country776","population":7395793.268457055,"profit":61.38151008635759},{"Country":"Country777","population":8730993.079021573,"profit":77.68580233678222},{"Country":"Country778","population":3176398.5021971166,"profit":27.2880042437464},{"Country":"Country779","population":1944574.4496770203,"profit":149.71988527104259},{"Country":"Country780","population":2365997.2208552063,"profit":6.151323718950152},{"Country":"Country781","population":6196624.053642154,"profit":101.27344774082303},{"Country":"Country782","population":8870995.216071606,"profit":94.81190447695553},{"Country":"Country783","population":6627512.137871236,"profit":47.53302652388811},{"Country":"Country784","population":10322506.149765104,"profit":170.0894447043538},{"Country":"Country785","population":8117901.60741657,"profit":95.14704961329699},{"Country":"Country786","population":5912112.599704415,"profit":2.672831481322646},{"Country":"Country787","population":7895903.099793941,"profit":64.07888126559556},{"Country":"Country788","population":1582285.8540341258,"profit":7.12323491461575},{"Country":"Country789","population":9152122.953906655,"profit":112.73323353379965},{"Country":"Country790","population":1621966.3959927857,"profit":31.049816589802504},{"Country":"Country791","population":8015379.737131298,"profit":24.28275030106306},{"Country":"Country792","population":9908372.013829648,"profit":18.019864475354552},{"Country":"Country793","population":7576572.128105909,"profit":110.86627347394824},{"Country":"Country794","population":8963005.448691547,"profit":137.5907254870981},{"Country":"Country795","population":4801486.776210368,"profit":130.62719590961933},{"Country":"Country796","population":4366188.2556043565,"profit":17.844592640176415},{"Country":"Country797","population":4769206.565339118,"profit":14.513168903067708},{"Country":"Country798","population":10822282.104287297,"profit":60.21499992348254},{"Country":"Country799","population":6214750.925078988,"profit":68.71299813501537},{"Country":"Country800","population":7385511.704720557,"profit":107.50737627968192},{"Country":"Country801","population":9756201.141513884,"profit":15.868239616975188},{"Country":"Country802","population":1826172.933448106,"profit":3.361323243007064},{"Country":"Country803","population":1081397.8700898588,"profit":156.27239486202598},{"Country":"Country804","population":5276337.418705225,"profit":145.50920445472002},{"Country":"Country805","population":1343782.2847627103,"profit":111.30496473051608},{"Country":"Country806","population":7337316.83017686,"profit":69.83942268416286},{"Country":"Country807","population":3529124.8760186136,"profit":42.67151518724859},{"Country":"Country808","population":7794887.83236593,"profit":5.605434998869896},{"Country":"Country809","population":3736036.6540960968,"profit":130.25827393867075},{"Country":"Country810","population":7388902.105391026,"profit":193.32606997340918},{"Country":"Country811","population":6947819.07973811,"profit":194.96070886962116},{"Country":"Country812","population":9229735.237546265,"profit":9.965617535635829},{"Country":"Country813","population":10619952.898938209,"profit":114.85452228225768},{"Country":"Country814","population":9857179.624028504,"profit":50.550333224236965},{"Country":"Country815","population":3502801.3135306537,"profit":78.45480279065669},{"Country":"Country816","population":10172551.361843944,"profit":36.4683925639838},{"Country":"Country817","population":5340224.25673902,"profit":77.53412020392716},{"Country":"Country818","population":7698199.270758778,"profit":185.92561003752053},{"Country":"Country819","population":4617581.718135625,"profit":161.50175062939525},{"Country":"Country820","population":9029816.04123488,"profit":148.78561226651073},{"Country":"Country821","population":9746859.75490138,"profit":100.25441935285926},{"Country":"Country822","population":6497782.286256552,"profit":118.70201956480742},{"Country":"Country823","population":8403171.535115689,"profit":91.23110147193074},{"Country":"Country824","population":10075735.989026725,"profit":126.99329610913992},{"Country":"Country825","population":7135835.661552846,"profit":167.1308295801282},{"Country":"Country826","population":5426497.225649655,"profit":39.8298388812691},{"Country":"Country827","population":7352728.377096355,"profit":151.855584140867},{"Country":"Country828","population":4535136.715508997,"profit":52.95677846297622},{"Country":"Country829","population":1000872.709788382,"profit":196.00987192243338},{"Country":"Country830","population":9513592.693489045,"profit":16.374080954119563},{"Country":"Country831","population":10182794.12901029,"profit":11.16700666025281},{"Country":"Country832","population":7360828.522592783,"profit":132.10896640084684},{"Country":"Country833","population":8769386.884756386,"profit":164.07060283236206},{"Country":"Country834","population":10672832.31439069,"profit":85.14527846127748},{"Country":"Country835","population":2596276.971977204,"profit":11.716601718217134},{"Country":"Country836","population":7825374.274048954,"profit":163.86333289556205},{"Country":"Country837","population":4991448.876913637,"profit":165.09087216109037},{"Country":"Country838","population":2981745.711527765,"profit":49.17363291606307},{"Country":"Country839","population":8681518.143508583,"profit":178.61307822167873},{"Country":"Country840","population":8695971.590001136,"profit":42.64979958534241},{"Country":"Country841","population":5991034.641861916,"profit":102.07016416825354},{"Country":"Country842","population":6544202.874880284,"profit":118.33533202297986},{"Country":"Country843","population":2889249.805826694,"profit":33.568028174340725},{"Country":"Country844","population":2391945.683863014,"profit":156.1821818817407},{"Country":"Country845","population":8965448.184404522,"profit":186.69707397930324},{"Country":"Country846","population":8545083.067379892,"profit":46.90415067598224},{"Country":"Country847","population":6480154.922697693,"profit":165.4041703324765},{"Country":"Country848","population":7797465.647105128,"profit":187.820018036291},{"Country":"Country849","population":4050067.7856616676,"profit":186.7792626377195},{"Country":"Country850","population":2913067.7613429725,"profit":77.42311544716358},{"Country":"Country851","population":1068771.4526429772,"profit":148.44418582506478},{"Country":"Country852","population":6638099.950738251,"profit":152.07397039048374},{"Country":"Country853","population":2300674.406811595,"profit":139.48493916541338},{"Country":"Country854","population":2804873.2285387814,"profit":57.3131016921252},{"Country":"Country855","population":2363938.436843455,"profit":13.617972377687693},{"Country":"Country856","population":9015299.930702895,"profit":107.4862043838948},{"Country":"Country857","population":9298944.139387459,"profit":74.90187715739012},{"Country":"Country858","population":6975874.015130103,"profit":111.12797260284424},{"Country":"Country859","population":10219093.597494066,"profit":49.00842187926173},{"Country":"Country860","population":4316480.040084571,"profit":197.01812895946205},{"Country":"Country861","population":1254259.502980858,"profit":191.7530936654657},{"Country":"Country862","population":10688857.749570161,"profit":17.870720801874995},{"Country":"Country863","population":9079274.031333625,"profit":46.22698905877769},{"Country":"Country864","population":4610879.385378212,"profit":13.124906551092863},{"Country":"Country865","population":1432480.7645753026,"profit":199.19598861597478},{"Country":"Country866","population":8222951.01499185,"profit":83.36773072369397},{"Country":"Country867","population":4037489.322014153,"profit":198.8893867470324},{"Country":"Country868","population":3154707.1263194084,"profit":198.25545442290604},{"Country":"Country869","population":2955027.8573296964,"profit":188.0483515560627},{"Country":"Country870","population":1120712.3533822596,"profit":78.72227937914431},{"Country":"Country871","population":9055614.54501003,"profit":108.12778864055872},{"Country":"Country872","population":4143178.487662226,"profit":125.31425426714122},{"Country":"Country873","population":8465288.150124252,"profit":3.285916382446885},{"Country":"Country874","population":3467403.095215559,"profit":61.49618034251034},{"Country":"Country875","population":6618316.987529397,"profit":152.9419572558254},{"Country":"Country876","population":2761037.1042974293,"profit":42.62513923458755},{"Country":"Country877","population":3424298.857804388,"profit":174.67917720787227},{"Country":"Country878","population":5978797.510266304,"profit":7.993876421824098},{"Country":"Country879","population":9905452.2709921,"profit":23.64642908796668},{"Country":"Country880","population":5361194.7959288955,"profit":127.68553788773715},{"Country":"Country881","population":6660520.032979548,"profit":190.35868723876774},{"Country":"Country882","population":5880049.349740148,"profit":76.7890359275043},{"Country":"Country883","population":5427684.410475194,"profit":102.5868393946439},{"Country":"Country884","population":7599302.40130052,"profit":131.87582422979176},{"Country":"Country885","population":6232972.642406821,"profit":166.5200439747423},{"Country":"Country886","population":8224022.385198623,"profit":194.89914197474718},{"Country":"Country887","population":2882504.066452384,"profit":70.96459334716201},{"Country":"Country888","population":3935701.0358944535,"profit":60.92022662051022},{"Country":"Country889","population":10468320.941086859,"profit":98.87821595184505},{"Country":"Country890","population":6583283.936139196,"profit":21.119572082534432},{"Country":"Country891","population":8105902.452021837,"profit":62.132451590150595},{"Country":"Country892","population":4138376.9446983933,"profit":11.652780463919044},{"Country":"Country893","population":7369825.683068484,"profit":161.78183052688837},{"Country":"Country894","population":4921416.650991887,"profit":56.950542610138655},{"Country":"Country895","population":3941784.6351861954,"profit":40.95788840204477},{"Country":"Country896","population":1616592.3061780632,"profit":115.03627519123256},{"Country":"Country897","population":3944092.182442546,"profit":154.213675763458},{"Country":"Country898","population":10528260.32647863,"profit":12.560883583500981},{"Country":"Country899","population":6561251.521576196,"profit":78.45444814302027},{"Country":"Country900","population":10327864.39312622,"profit":172.30421300046146},{"Country":"Country901","population":9592580.673284829,"profit":100.7433841470629},{"Country":"Country902","population":4664370.083715767,"profit":29.647511057555676},{"Country":"Country903","population":1394490.7570257783,"profit":62.61024568229914},{"Country":"Country904","population":10020798.45778644,"profit":15.814193477854133},{"Country":"Country905","population":2408732.5264699757,"profit":71.41732387244701},{"Country":"Country906","population":7159938.517957926,"profit":134.59048992954195},{"Country":"Country907","population":4854534.034617245,"profit":38.33775711245835},{"Country":"Country908","population":3745146.597735584,"profit":187.68553235568106},{"Country":"Country909","population":1873342.640697956,"profit":171.05094376020133},{"Country":"Country910","population":3815906.3099883497,"profit":155.30789401382208},{"Country":"Country911","population":10773329.037707299,"profit":101.3842973858118},{"Country":"Country912","population":2615028.011146933,"profit":89.25402495078743},{"Country":"Country913","population":7500725.136138499,"profit":1.6971328761428595},{"Country":"Country914","population":10285431.818570942,"profit":108.87958286330104},{"Country":"Country915","population":10392492.71294102,"profit":183.2279825117439},{"Country":"Country916","population":10109984.920360148,"profit":141.5327218361199},{"Country":"Country917","population":6587478.620000184,"profit":110.77381079085171},{"Country":"Country918","population":10857855.909503996,"profit":140.8271810039878},{"Country":"Country919","population":10621292.615775019,"profit":183.51793820038438},{"Country":"Country920","population":3421213.25340122,"profit":187.14410341344774},{"Country":"Country921","population":9658912.698738277,"profit":176.4983391854912},{"Country":"Country922","population":5325034.8209403455,"profit":14.635852444916964},{"Country":"Country923","population":7627600.975334644,"profit":65.65971402451396},{"Country":"Country924","population":10238054.642919451,"profit":137.22671018913388},{"Country":"Country925","population":4750795.724336058,"profit":188.73438904993236},{"Country":"Country926","population":6884297.6577579975,"profit":186.414343258366},{"Country":"Country927","population":5629398.549441248,"profit":96.00396319292486},{"Country":"Country928","population":3833835.5058804154,"profit":86.74200251698494},{"Country":"Country929","population":9634867.609944195,"profit":132.85020939074457},{"Country":"Country930","population":4854430.55536598,"profit":79.67393919825554},{"Country":"Country931","population":10026756.9036223,"profit":120.86492581292987},{"Country":"Country932","population":10430520.746391267,"profit":174.40371816046536},{"Country":"Country933","population":2808606.958948076,"profit":191.46102839149535},{"Country":"Country934","population":2753922.700881958,"profit":185.78056041151285},{"Country":"Country935","population":3130343.501921743,"profit":174.64182609692216},{"Country":"Country936","population":3832128.4288540483,"profit":25.5496334284544},{"Country":"Country937","population":5860825.787764043,"profit":143.8959465827793},{"Country":"Country938","population":7225310.689769685,"profit":189.40671691671014},{"Country":"Country939","population":10986632.01695308,"profit":42.15884511359036},{"Country":"Country940","population":7723613.266367465,"profit":149.37545042485},{"Country":"Country941","population":4723879.435565323,"profit":89.05319455079734},{"Country":"Country942","population":6853432.901203632,"profit":5.667455354705453},{"Country":"Country943","population":2723709.737416357,"profit":194.9663566891104},{"Country":"Country944","population":4325720.624998212,"profit":160.53908704780042},{"Country":"Country945","population":2744539.469946176,"profit":22.15015455149114},{"Country":"Country946","population":4339394.368231297,"profit":84.54099004156888},{"Country":"Country947","population":9455847.976729274,"profit":120.15264425426722},{"Country":"Country948","population":1308811.5900754929,"profit":120.17026292160153},{"Country":"Country949","population":10886869.054753333,"profit":64.22751271165907},{"Country":"Country950","population":3463383.0110542476,"profit":89.18711682781577},{"Country":"Country951","population":1972579.5942358673,"profit":144.04445234686136},{"Country":"Country952","population":1129593.1357890368,"profit":128.69320549070835},{"Country":"Country953","population":1872552.1177984774,"profit":15.200791042298079},{"Country":"Country954","population":1094615.7239377499,"profit":178.39901819825172},{"Country":"Country955","population":2797603.035811335,"profit":158.7432560045272},{"Country":"Country956","population":3531248.1517903507,"profit":150.57617537677288},{"Country":"Country957","population":8924428.235273808,"profit":142.58398143574595},{"Country":"Country958","population":7742918.763775378,"profit":87.37760307267308},{"Country":"Country959","population":6952300.985809416,"profit":98.95102833397686},{"Country":"Country960","population":6247155.101969838,"profit":143.463897658512},{"Country":"Country961","population":4888316.520024091,"profit":173.9511561114341},{"Country":"Country962","population":3724761.1805796623,"profit":139.06912631355226},{"Country":"Country963","population":1910048.7176328897,"profit":80.46152545139194},{"Country":"Country964","population":5086015.019565821,"profit":185.6947334483266},{"Country":"Country965","population":1286218.4029072523,"profit":71.31098387762904},{"Country":"Country966","population":9258689.711801708,"profit":73.20796330459416},{"Country":"Country967","population":10886268.18638295,"profit":172.30798825621605},{"Country":"Country968","population":8809661.889914423,"profit":97.17921679839492},{"Country":"Country969","population":10980675.594415516,"profit":69.5024133194238},{"Country":"Country970","population":5050574.7543647885,"profit":31.27664579078555},{"Country":"Country971","population":10421484.125778079,"profit":156.89025879837573},{"Country":"Country972","population":1802350.1420393586,"profit":31.85935919173062},{"Country":"Country973","population":8584032.993763685,"profit":9.802940720692277},{"Country":"Country974","population":2663705.217652023,"profit":10.853361384943128},{"Country":"Country975","population":2257794.7275713086,"profit":188.38323852978647},{"Country":"Country976","population":7632587.40445599,"profit":196.1641287431121},{"Country":"Country977","population":2866305.754519999,"profit":76.61147178150713},{"Country":"Country978","population":5201476.946473122,"profit":170.67714487202466},{"Country":"Country979","population":3425912.1157228947,"profit":84.38057550229132},{"Country":"Country980","population":10486586.707644165,"profit":99.60512202233076},{"Country":"Country981","population":10886297.080665827,"profit":96.02530091069639},{"Country":"Country982","population":4817035.316023976,"profit":62.801066134124994},{"Country":"Country983","population":5937158.026732504,"profit":83.30926862545311},{"Country":"Country984","population":1818131.1329826713,"profit":196.930947387591},{"Country":"Country985","population":5971909.779123962,"profit":132.66798476688564},{"Country":"Country986","population":1418209.4824500382,"profit":120.93454352580011},{"Country":"Country987","population":4250598.5256284475,"profit":56.97951992042363},{"Country":"Country988","population":5819799.161050469,"profit":110.11511338874698},{"Country":"Country989","population":2807985.615450889,"profit":150.4723286256194},{"Country":"Country990","population":6013572.094030678,"profit":51.67620158754289},{"Country":"Country991","population":1988011.7001011968,"profit":7.647911412641406},{"Country":"Country992","population":7904403.17383036,"profit":76.76319535821676},{"Country":"Country993","population":2291769.2214250565,"profit":28.37176718749106},{"Country":"Country994","population":3855120.5061376095,"profit":88.89256925322115},{"Country":"Country995","population":5349108.664318919,"profit":112.56642718799412},{"Country":"Country996","population":1390588.773880154,"profit":147.37983965314925},{"Country":"Country997","population":5026952.306739986,"profit":153.69001212529838},{"Country":"Country998","population":2647516.372613609,"profit":195.66462482325733},{"Country":"Country999","population":2569374.1175346076,"profit":153.39824217371643}];
+
+        oMassDataModel = new sap.ui.model.json.JSONModel({
+          businessData : oMassData
+        });
+
+        // all charts and the table share the same model, so we set it to a common parent, the shell
+        oShell.setModel(oModel);
+
+        // Page content creation - for each workset the content is defined here 
+        // For demo purposes there is just one button on each page
+        var mContent = {}; // a map to remember page content once it is created
+        function getContent(key) {
+          if (mContent[key])
+            return mContent[key]; // if content is already created, return it directly
+
+          if (key == "wi_home_pie") {
+
+            var dataset = new sap.viz.ui5.data.FlattenedDataset({
+
+              dimensions : [ {
+                axis : 1,
+                name : 'Country',
+                value : "{Country}"
+              } ],
+
+              measures : [ {
+                name : 'Revenue',
+                value : { path : 'revenue', formatter : function($) { return 2*$; }}
+              } ],
+
+              data : {
+                path : "/businessData",
+                factory : function() {
+                }
+              }
+
+            });
+
+            var pie = new sap.viz.ui5.Pie({
+              width : "80%",
+              height : "400px",
+              plotArea : {
+              //'colorPalette' : d3.scale.category20().range()
+              },
+              /*
+              title : {
+                visible : true,
+                text : 'Revenue By Country'
+              },*/
+              dataset : dataset
+            });
+
+            // alternative way of setting configuration 
+            pie.getTitle().setVisible(true).setText("Revenue By Country");
+
+            mContent[key] = pie;
+
+          } else if (key == "wi_home_donut") {
+
+            var dataset = new sap.viz.ui5.data.FlattenedDataset({
+
+              dimensions : [ {
+                axis : 1,
+                name : 'Country',
+                value : "{Country}"
+              } ],
+
+              measures : [ {
+                name : 'Profit',
+                value : '{profit}'
+              } ],
+
+              data : {
+                path : "/businessData"
+              }
+
+            });
+
+            var donut = new sap.viz.ui5.Donut({
+              width : "80%",
+              height : "400px",
+              plotArea : {
+              //'colorPalette' : d3.scale.category20().range()
+              },
+              title : {
+                visible : true,
+                text : 'Profit By Country'
+              },
+              dataset : dataset
+            });
+            mContent[key] = donut;
+
+          } else if (key == "wi_home_bar") {
+
+            var panel = new sap.ui.commons.Panel({
+              text : "Additional Screen Content",
+              content : new sap.ui.commons.Button({
+                text : "Some control above the chart",
+                width : "480px",
+                height : "200px"
+              }),
+              collapsed : true
+            });
+
+            var dataset = new sap.viz.ui5.data.FlattenedDataset({
+
+              dimensions : [ {
+                axis : 1,
+                name : 'Country',
+                value : "{Country}"
+              } ],
+
+              measures : [ {
+                name : 'Profit',
+                value : '{profit}'
+              }, {
+                name : 'Revenue',
+                value : '{revenue}'
+              } ],
+
+              data : {
+                path : "/businessData"
+              }
+
+            });
+
+            var oCallout = new sap.ui.commons.Callout({
+              content : new sap.ui.commons.TextView({
+                text : "Hello Chartworld!"
+              })
+            });
+
+            var bar = new sap.viz.ui5.Bar({
+              width : "80%",
+              height : "400px",
+              plotArea : {
+              //'colorPalette' : d3.scale.category20().range()
+              },
+              interaction : {
+                selectability : {
+                  mode : 'single'
+                }
+              },
+              title : {
+                visible : true,
+                text : 'Profit and Revenue By Country'
+              },
+              noData : new sap.ui.commons.Button({
+                text : "No data!"
+              }),
+              dataset : dataset,
+              tooltip : oCallout, // Note: this is the UI5 tooltip
+              showTooltip : function(o) {
+                oCallout.setProperty("offset", o.getParameter("data").point.x + " "
+                    + o.getParameter("data").point.y, true);
+                oCallout.openPopup(bar);
+                oCallout.adjustPosition();
+                jQuery.sap.log.info("showTooltip:" + o.getParameters());
+              },
+              hideTooltip : function(o) {
+                oCallout.closePopup();
+                jQuery.sap.log.info("hideTooltip:" + o.getParameters());
+              }
+            });
+
+            var change = 0;
+            var button = new sap.ui.commons.Button({
+              text : "Modify Dataset",
+              press : function() {
+                change++;
+                if ( change === 1 ) {
+                  dataset.addMeasure(new sap.viz.ui5.data.MeasureDefinition({
+                    name : 'Populuation',
+                    value : '{population}'
+                  }));
+                } else if ( change === 2 ) {
+                  dataset.getMeasures()[2].bindProperty('value', { 
+                    path : 'population', 
+                    formatter : function($) { 
+                      return (Math.round($ / 1E4) / 100); 
+                    } 
+                  });
+                } else if ( change === 3 ) {
+                  dataset.removeMeasure(0).destroy();
+                }
+              }
+            });
+            
+            mContent[key] = [ panel, bar, button ];
+
+          } else if (key == "wi_home_line") {
+
+            var dataset = new sap.viz.ui5.data.FlattenedDataset({
+
+              dimensions : [ {
+                axis : 1,
+                name : 'Country',
+                value : "{Country}"
+              } ],
+
+              measures : [ {
+                name : 'Profit',
+                value : '{profit}'
+              }, {
+                name : 'Revenue',
+                value : '{revenue}'
+              } ],
+
+              data : {
+                path : "/businessData"
+              }
+
+            });
+
+            var line = new sap.viz.ui5.Line({
+              width : "80%",
+              height : "400px",
+              plotArea : {
+              //'colorPalette' : d3.scale.category20().range()
+              },
+              title : {
+                visible : true,
+                text : 'Profit and Revenue By Country'
+              },
+              dataset : dataset
+            });
+
+            mContent[key] = line;
+
+          } else if (key == "wi_home_combi") {
+
+            var dataset = new sap.viz.ui5.data.FlattenedDataset({
+
+              dimensions : [ {
+                axis : 1,
+                name : 'Country',
+                value : "{Country}"
+              } ],
+
+              measures : [ {
+                name : 'Profit',
+                value : '{profit}'
+              }, {
+                name : 'Revenue',
+                value : '{revenue}'
+              } ],
+
+              data : {
+                path : "/businessData"
+              }
+
+            });
+
+            var combination = new sap.viz.ui5.Combination({
+              width : "80%",
+              height : "400px",
+              plotArea : {
+              //'colorPalette' : d3.scale.category20().range()
+              },
+              title : {
+                visible : true,
+                text : 'Profit and Revenue By Country'
+              },
+              bar : {
+
+              },
+              line : {
+
+              },
+              dataset : dataset
+            });
+
+            mContent[key] = combination;
+
+          } else if (key == "wi_home_column") {
+
+            var dataset = new sap.viz.ui5.data.FlattenedDataset({
+
+              dimensions : [ {
+                axis : 1,
+                name : 'Country',
+                value : "{Country}"
+              } ],
+
+              measures : [ {
+                name : 'Profit',
+                value : '{profit}'
+              }, {
+                name : 'Revenue',
+                value : '{revenue}'
+              } ],
+
+              data : {
+                path : "/businessData"
+              }
+
+            });
+
+            var column = new sap.viz.ui5.Column({
+              width : "80%",
+              height : "400px",
+              plotArea : {
+              //'colorPalette' : d3.scale.category20().range()
+              },
+              title : {
+                visible : true,
+                text : 'Profit and Revenue By Country'
+              },
+              dataset : dataset
+            });
+
+            mContent[key] = column;
+
+          } else if (key == "wi_home_bubble") {
+
+            var dataset = new sap.viz.ui5.data.FlattenedDataset({
+
+              dimensions : [ {
+                axis : 1,
+                name : 'Country',
+                value : "{Country}"
+              } ],
+
+              measures : [ {
+                group : 1,
+                name : 'Population',
+                value : '{population}'
+              }, {
+                group : 2,
+                name : 'Profit',
+                value : '{profit}'
+              }, {
+                group : 3,
+                name : 'Revenue',
+                value : '{revenue}'
+              } ],
+
+              data : {
+                path : "/businessData",
+                factory : function() {
+                }
+              }
+
+            });
+
+            var bubble = new sap.viz.ui5.Bubble({
+              width : "80%",
+              height : "400px",
+              plotArea : {
+              //'colorPalette' : d3.scale.category20().range()
+              },
+              title : {
+                visible : true,
+                text : 'Profit and Revenue By Country'
+              },
+              dataset : dataset
+            });
+
+            mContent[key] = bubble;
+
+          } else if (key == "wi_home_bar") {
+
+            var dataset = new sap.viz.ui5.data.FlattenedDataset({
+
+              dimensions : [ {
+                axis : 1,
+                name : 'Country',
+                value : "{Country}"
+              } ],
+
+              measures : [ {
+                name : 'Profit',
+                value : '{profit}'
+              }, {
+                name : 'Revenue',
+                value : '{revenue}'
+              } ],
+
+              data : {
+                path : "/businessData"
+              }
+
+            });
+
+            var bar = new sap.viz.ui5.Bar({
+              width : "80%",
+              height : "400px",
+              bar : {
+              //'colorPalette' : d3.scale.category20().range()
+              },
+              title : {
+                visible : true,
+                text : 'Profit and Revenue By Country'
+              },
+              dataset : dataset
+            });
+
+            mContent[key] = bar;
+
+          } else if (key == "wi_home_scatter") {
+
+            var dataset = new sap.viz.ui5.data.FlattenedDataset({
+
+              dimensions : [ {
+                axis : 1,
+                name : 'Country',
+                value : "{Country}"
+              } ],
+
+              measures : [ {
+                group : 1,
+                name : 'Population',
+                value : '{population}'
+              }, {
+                group : 2,
+                name : 'Profit',
+                value : '{profit}'
+              }, ],
+
+              data : {
+                path : "/businessData"
+              }
+
+            });
+
+            var scatter = new sap.viz.ui5.Scatter({
+              width : "80%",
+              height : "400px",
+              plotArea : {
+              //'colorPalette' : d3.scale.category20().range()
+              },
+              title : {
+                visible : true,
+                text : 'Profit By Country & Population'
+              },
+              legend: {
+                isScrollable: true
+              },
+              dataset : dataset
+            });
+            scatter.setModel(oMassDataModel);
+            mContent[key] = scatter;
+
+          } else if (key == "wi_home_stvbar" || key == "wi_home_custstvbar") {
+
+            var dataset = new sap.viz.ui5.data.FlattenedDataset({
+
+              dimensions : [ {
+                axis : 1,
+                name : 'Country',
+                value : "{country}"
+              }, {
+                axis : 1,
+                name : 'Year',
+                value : "{year}"
+              }, {
+                axis : 2,
+                name : 'Product',
+                value : "{product}"
+              } ],
+
+              measures : [ {
+                name : 'Profit',
+                value : '{profit}'
+              } ],
+
+              data : {
+                path : "/data",
+                factory : function() {
+                }
+              }
+
+            });
+
+            var column = new sap.viz.ui5.StackedColumn({
+              width : "80%",
+              height : "400px",
+              plotArea : {
+              //'colorPalette' : d3.scale.category20().range()
+              },
+              title : {
+                visible : true,
+                text : 'Profit By Country & Population'
+              },
+              dataset : dataset
+            });
+
+            // for the customized vertical stack bar, we attach a listener to "createViz" and modify some options
+            if (key == "wi_home_custstvbar") {
+              column.attachBeforeCreateViz(function(e) {
+
+                var usrOptions = e.getParameter("usrOptions");
+                // make the vertical stacked bar a horizontal stacked bar
+                usrOptions.type = "viz/stacked_bar";
+                // add a feeding definition to show MND
+                usrOptions.feeding = [ {
+                  "feedId" : "axisLabels",
+                  "binding" : [ {
+                    "type" : "measureNamesDimension"
+                  }, {
+                    "type" : "analysisAxis",
+                    "index" : 1
+                  } ]
+                }, {
+                  "feedId" : "regionColor",
+                  "binding" : [ {
+                    "type" : "analysisAxis",
+                    "index" : 2
+                  } ]
+                }, {
+                  "feedId" : "primaryValues",
+                  "binding" : [ {
+                    "type" : "measureValuesGroup",
+                    "index" : 1
+                  } ]
+                } ];
+
+              });
+            }
+            column.setModel(oModel2D);
+
+            mContent[key] = column;
+
+          } else if (key == "wi_home_pstvbar") {
+
+            var dataset = new sap.viz.ui5.data.FlattenedDataset({
+
+              dimensions : [ {
+                axis : 1,
+                name : 'Country',
+                value : "{country}"
+              }, {
+                axis : 1,
+                name : 'Year',
+                value : "{year}"
+              }, {
+                axis : 2,
+                name : 'Product',
+                value : "{product}"
+              } ],
+
+              measures : [ {
+                name : 'Profit',
+                value : '{profit}'
+              } ],
+
+              data : {
+                path : "/data"
+              }
+
+            });
+
+            var vbar = new sap.viz.ui5.StackedColumn100({
+              width : "80%",
+              height : "400px",
+              plotArea : {
+              //'colorPalette' : d3.scale.category20().range()
+              },
+              title : {
+                visible : true,
+                text : 'Profit By Country & Population'
+              },
+              dataset : dataset
+            });
+
+            vbar.setModel(oModel2D);
+            mContent[key] = vbar;
+
+          }else if(key === 'wi_home_heatmap'){
+            var dataset = new sap.viz.ui5.data.FlattenedDataset({
+
+              dimensions : [ {
+                axis : 1,
+                name : 'Country',
+                value : "{Country}"
+              } ],
+
+              measures : [ {
+                group : 1,
+                name : 'Population',
+                value : '{population}'
+              }, {
+                group : 2,
+                name : 'Profit',
+                value : '{profit}'
+              }, ],
+
+              data : {
+                path : "/businessData"
+              }
+
+            });
+
+            var vbar = new sap.viz.ui5.Heatmap({
+              width : "80%",
+              height : "400px",
+              plotArea : {
+              //'colorPalette' : d3.scale.category20().range()
+              },
+              title : {
+                visible : true,
+                text : 'Profit By Country & Population'
+              },
+              dataset : dataset
+            });
+            vbar.setModel(oMassDataModel);
+            mContent[key] = vbar;
+            
+          } else if(key === 'wi_home_treemap'){
+            var generateUI5data = function(){
+              var rs = [],item = {};
+              var iNum = 90;
+              for(var i = 1; i<=iNum; i++){
+                item = {
+                  'R1': "N + 10, N <= 90",
+                  'R2': i*10,
+                  'Size': i*10,
+                  'Color': i*10
+                };
+                rs.push(item);
+              }
+              for(var i = 1; i<=iNum; i++){
+                item = {
+                  'R1' : "N ^ 1.1, N <= 90",
+                  'R2' : Math.pow(1.1,i),
+                  'Size' : Math.pow(1.1,i),
+                  'Color' : Math.pow(1.1,i)
+                };
+                rs.push(item);
+              }
+              return rs;
+            };
+            var treeDS = generateUI5data();
+            var treeModel = new sap.ui.model.json.JSONModel({
+              data: treeDS 
+            });
+            var treeDataset = new sap.viz.ui5.data.FlattenedDataset({
+              dimensions : [ {
+                axis : 1,
+                name : 'R1',
+                value : "{R1}"
+              },{
+                axis : 1,
+                name : 'R2',
+                value : "{R2}"
+              }  ],
+
+              measures : [ {
+                group : 1,
+                name : 'Size',
+                value : '{Size}'
+              },{
+                group : 2,
+                name : 'Color',
+                value : '{Color}'
+              } ],
+
+              data : {
+                path : "/data"
+              }
+            });
+            
+            var vbar = new sap.viz.ui5.Treemap({
+              width : "80%",
+              height : "400px",
+              plotArea : {
+                "endColor":"#3300c0", 
+                "startColor":"#a9f0ff"
+              },
+              title : {
+                visible : true,
+                text : 'Profit By Country & Population'
+              },
+              dataset : treeDataset
+            });
+            vbar.setModel(treeModel);
+            mContent[key] = vbar;
+          }else if(key === 'wi_home_dualbar' || key === 'wi_home_dualline' || key=== 'wi_home_dualvbar'
+              || key === 'wi_home_dualcolumn' || key === 'wi_home_dualcombination' 
+              || key === 'wi_home_dualstvbar' || key === 'wi_home_dualpstvbar'
+              || key === 'wi_home_area' || key === 'wi_home_parea'
+              || key === 'wi_home_horizontalarea' || key === 'wi_home_phorizontalarea'){
+            var a1a2m1m2m3Model = {
+                data:[
+                    {Region: "Asia", Company: "FJ", Revenue: 10, Measure: 110, Population: 1200},
+                    {Region: "Asia", Company: "KI", Revenue: 5, Measure: 180, Population: 1900},
+                    {Region: "Asia", Company: "LA", Revenue: 17, Measure: 105, Population: 1680},
+                    {Region: "Europe", Company: "FJ", Revenue: 2, Measure: 130, Population: 1003},
+                    {Region: "Europe", Company: "KI", Revenue: 22, Measure: 80, Population: 1312},
+                    {Region: "Europe", Company: "LA", Revenue: 24, Measure: 40, Population: 1453},
+                    {Region: "Africa", Company: "FJ", Revenue: 37, Measure:88, Population: 1335},
+                    {Region: "Africa", Company: "KI", Revenue: 15, Measure: 55, Population: 1859},
+                    {Region: "Africa", Company: "LA", Revenue: 44, Measure:140, Population: 1879}
+                ]
+              };
+              
+              var a1a2m1m2Data = {
+                  dimensions : [
+                      {axis : 1, name: "Region", value: "{Region}"},
+                      {axis : 2, name: "Company", value: "{Company}"},
+                  ],
+                  measures : [
+                      {group: 1, name : "Revenue", value : "{Revenue}"},
+                      {group: 2, name : "Measure", value : "{Measure}"}
+                  ],
+                  data : {
+                    path : "/data"
+                  }
+                };
+            var oDataset = new sap.viz.core.FlattenedDataset(a1a2m1m2Data);
+            var oModel = new sap.ui.model.json.JSONModel(a1a2m1m2m3Model);
+            oDataset.setModel(oModel);
+            var oProperties = {
+              width : "80%",
+              height : "400px",
+              title: {
+                visible : true,
+                text : 'Profit & Measure By Region & Company'
+              },
+              dataset: oDataset
+            };
+            var oDualChart;
+            switch(key){
+            case 'wi_home_dualbar':
+              oDualChart = new sap.viz.ui5.DualBar(oProperties);
+              break;
+            case 'wi_home_dualline':
+              oDualChart = new sap.viz.ui5.DualLine(oProperties);
+              break;
+            case 'wi_home_dualcombination':
+              oDualChart = new sap.viz.ui5.DualCombination(oProperties);
+              break;
+            case 'wi_home_dualstvbar':
+              oDualChart = new sap.viz.ui5.DualStackedColumn(oProperties);
+              break;
+            case 'wi_home_dualpstvbar':
+              oDualChart = new sap.viz.ui5.DualStackedColumn100(oProperties);
+              break;
+            case 'wi_home_dualvbar':
+              oDualChart = new sap.viz.ui5.DualColumn(oProperties);
+              break;
+            case 'wi_home_area':
+              oDualChart = new sap.viz.ui5.Area(oProperties);
+              break;
+            case 'wi_home_parea':
+              oDualChart = new sap.viz.ui5.Area100(oProperties);
+              break;
+            case 'wi_home_horizontalarea':
+              oDualChart = new sap.viz.ui5.HorizontalArea(oProperties);
+              break;
+            case 'wi_home_phorizontalarea':
+              oDualChart = new sap.viz.ui5.HorizontalArea100(oProperties);
+              break;
+            }
+            mContent[key] = oDualChart;
+          } else if (key == "wi_home_table") {
+
+            var oTable = new sap.ui.table.Table({
+              columns : [ new sap.ui.table.Column({
+                label : "Country",
+                template : new sap.ui.commons.TextView({
+                  text : "{Country}"
+                }),
+                sortProperty : "Country",
+                filterProperty : "Country",
+                width : "200px"
+              }), new sap.ui.table.Column({
+                label : "profit",
+                template : new sap.ui.commons.TextView({
+                  text : "{profit}"
+                }),
+                sortProperty : "profit",
+                filterProperty : "profit",
+                width : "200px"
+              }), new sap.ui.table.Column({
+                label : "revenue",
+                template : new sap.ui.commons.TextView({
+                  text : "{revenue}"
+                }),
+                sortProperty : "revenue",
+                filterProperty : "revenue",
+                width : "200px"
+              }) ],
+              rows : "{/businessData}",
+              visibleRowCount : 6
+            });
+
+            mContent[key] = oTable;
+
+          }
+          return mContent[key];
+        }
+
+        // when the user selects a workset, put the respective content into the shell's main area
+        oShell.attachWorksetItemSelected(function(oEvent) {
+          var key = oEvent.getParameter("key");
+          oShell.setContent(getContent(key));
+        });
+
+        // set the initial content of the Shell - the Home pie is selected initially
+        oShell.addContent(getContent("wi_home_line"));
+
+        // place the Shell into the <div> element defined below
+        oShell.placeAt("shellArea");
+      });
+</script>
+
+</head>
+<body class="sapUiBody">
+
+  <!-- This is where the Shell will live -->
+  <div id="shellArea"></div>
+
+</body>
+</html>

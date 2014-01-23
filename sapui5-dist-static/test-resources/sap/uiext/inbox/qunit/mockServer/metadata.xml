@@ -1,0 +1,302 @@
+<?xml version='1.0' encoding='utf-8'?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx">
+	<edmx:DataServices m:DataServiceVersion="2.0" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata">
+		<Schema Namespace="TASKPROCESSING" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+			<EntityType Name="SubstitutionRule">
+				<Key>
+					<PropertyRef Name="SAP__Origin"/>
+					<PropertyRef Name="SubstitutionRuleID"/>
+				</Key>
+				<Property Name="SAP__Origin" Type="Edm.String" Nullable="false" MaxLength="16"/>
+				<Property Name="SubstitutionRuleID" Type="Edm.String" Nullable="false"/>
+				<Property Name="EndDate" Type="Edm.DateTime" Nullable="false"/>
+				<Property Name="BeginDate" Type="Edm.DateTime" Nullable="false"/>
+				<Property Name="FullName" Type="Edm.String" Nullable="true"/>
+				<Property Name="User" Type="Edm.String" Nullable="false"/>
+				<Property Name="IsEnabled" Type="Edm.Boolean" Nullable="true"/>
+				<Property Name="SupportsDeleteSubstitutionRule" Type="Edm.Boolean" Nullable="true"/>
+				<Property Name="SupportsEnableSubstitutionRule" Type="Edm.Boolean" Nullable="true"/>
+			</EntityType>
+			<EntityType Name="CustomAttributeDefinition">
+				<Key>
+					<PropertyRef Name="SAP__Origin"/>
+					<PropertyRef Name="Name"/>
+					<PropertyRef Name="TaskDefinitionID"/>
+				</Key>
+				<Property Name="SAP__Origin" Type="Edm.String" Nullable="false" MaxLength="16"/>
+				<Property Name="Name" Type="Edm.String" Nullable="false"/>
+				<Property Name="TaskDefinitionID" Type="Edm.String" Nullable="false"/>
+				<Property Name="Type" Type="Edm.String" Nullable="true"/>
+				<Property Name="Label" Type="Edm.String" Nullable="true"/>
+			</EntityType>
+			<EntityType Name="FilterOption">
+				<Key>
+					<PropertyRef Name="SAP__Origin"/>
+					<PropertyRef Name="Type"/>
+					<PropertyRef Name="TechnicalName"/>
+				</Key>
+				<Property Name="SAP__Origin" Type="Edm.String" Nullable="false" MaxLength="16"/>
+				<Property Name="Type" Type="Edm.String" Nullable="false"/>
+				<Property Name="TechnicalName" Type="Edm.String" Nullable="false"/>
+				<Property Name="DisplayName" Type="Edm.String" Nullable="true"/>
+			</EntityType>
+			<EntityType Name="UIExecution">
+				<Key>
+					<PropertyRef Name="SAP__Origin"/>
+					<PropertyRef Name="InstanceID"/>
+				</Key>
+				<Property Name="SAP__Origin" Type="Edm.String" Nullable="false" MaxLength="16"/>
+				<Property Name="InstanceID" Type="Edm.String" Nullable="false"/>
+				<Property Name="GUI_Link" Type="Edm.String" Nullable="true"/>
+			</EntityType>
+			<EntityType Name="UserInfo">
+				<Key>
+					<PropertyRef Name="SAP__Origin"/>
+					<PropertyRef Name="UniqueName"/>
+				</Key>
+				<Property Name="SAP__Origin" Type="Edm.String" Nullable="false" MaxLength="16"/>
+				<Property Name="Address" Type="TASKPROCESSING.Address" Nullable="false"/>
+				<Property Name="UniqueName" Type="Edm.String" Nullable="false"/>
+				<Property Name="DisplayName" Type="Edm.String" Nullable="true"/>
+				<Property Name="SubstitutedUsers" Type="Edm.Boolean" Nullable="true"/>
+				<Property Name="SearchPattern" Type="Edm.String" Nullable="true"/>
+				<Property Name="FirstName" Type="Edm.String" Nullable="true"/>
+				<Property Name="LastName" Type="Edm.String" Nullable="true"/>
+				<Property Name="Email" Type="Edm.String" Nullable="true"/>
+				<Property Name="WorkPhone" Type="Edm.String" Nullable="true"/>
+				<Property Name="MobilePhone" Type="Edm.String" Nullable="true"/>
+				<Property Name="HomePhone" Type="Edm.String" Nullable="true"/>
+				<Property Name="mime_type" Type="Edm.String" Nullable="true"/>
+			</EntityType>
+			<EntityType Name="Comment">
+				<Key>
+					<PropertyRef Name="SAP__Origin"/>
+					<PropertyRef Name="InstanceID"/>
+					<PropertyRef Name="ID"/>
+				</Key>
+				<Property Name="SAP__Origin" Type="Edm.String" Nullable="false"/>
+				<Property Name="InstanceID" Type="Edm.String" Nullable="false"/>
+				<Property Name="ID" Type="Edm.String" Nullable="false"/>
+				<Property Name="CreatedAt" Type="Edm.DateTime" Nullable="false"/>
+				<Property Name="CreatedBy" Type="Edm.String" Nullable="false"/>
+				<Property Name="CreatedByName" Type="Edm.String" Nullable="false"/>
+				<Property Name="Text" Type="Edm.String" Nullable="false"/>
+				<NavigationProperty Name="CommentCreatedBy" Relationship="TASKPROCESSING.CommentCreatedBy" FromRole="FromRole_CommentCreatedBy" ToRole="ToRole_CommentCreatedBy"/>
+			</EntityType>
+			<EntityType Name="TaskDescription">
+				<Key>
+					<PropertyRef Name="SAP__Origin"/>
+					<PropertyRef Name="InstanceID"/>
+				</Key>
+				<Property Name="SAP__Origin" Type="Edm.String" Nullable="false" MaxLength="16"/>
+				<Property Name="InstanceID" Type="Edm.String" Nullable="false"/>
+				<Property Name="Description" Type="Edm.String" Nullable="false"/>
+			</EntityType>
+			<EntityType Name="TaskDefinition">
+				<Key>
+					<PropertyRef Name="SAP__Origin"/>
+					<PropertyRef Name="TaskDefinitionID"/>
+				</Key>
+				<Property Name="SAP__Origin" Type="Edm.String" Nullable="false" MaxLength="16"/>
+				<Property Name="TaskModelID" Type="Edm.String" Nullable="false"/>
+				<Property Name="TaskDefinitionID" Type="Edm.String" Nullable="false"/>
+				<Property Name="TaskName" Type="Edm.String" Nullable="true"/>
+				<Property Name="Category" Type="Edm.String" Nullable="false"/>
+				<NavigationProperty Name="CustomAttributeDefinitionData" Relationship="TASKPROCESSING.CustomAttributeDefinitionData" FromRole="FromRole_CustomAttributeDefinitionData" ToRole="ToRole_CustomAttributeDefinitionData"/>
+			</EntityType>
+			<EntityType Name="CustomAttribute">
+				<Key>
+					<PropertyRef Name="SAP__Origin"/>
+					<PropertyRef Name="InstanceID"/>
+					<PropertyRef Name="Name"/>
+				</Key>
+				<Property Name="SAP__Origin" Type="Edm.String" Nullable="false" MaxLength="16"/>
+				<Property Name="InstanceID" Type="Edm.String" Nullable="false"/>
+				<Property Name="Name" Type="Edm.String" Nullable="false"/>
+				<Property Name="Value" Type="Edm.String" Nullable="true"/>
+			</EntityType>
+			<EntityType Name="Task">
+				<Key>
+					<PropertyRef Name="InstanceID"/>
+					<PropertyRef Name="SAP__Origin"/>
+				</Key>
+				<Property Name="SAP__Origin" Type="Edm.String" Nullable="false" MaxLength="16"/>
+				<Property Name="InstanceID" Type="Edm.String" Nullable="false"/>
+				<Property Name="TaskModelID" Type="Edm.String" Nullable="true"/>
+				<Property Name="TaskDefinitionID" Type="Edm.String" Nullable="true"/>
+				<Property Name="TaskDefinitionName" Type="Edm.String" Nullable="true"/>
+				<Property Name="TaskTitle" Type="Edm.String" Nullable="true"/>
+				<Property Name="Priority" Type="Edm.String" Nullable="true"/>
+				<Property Name="Status" Type="Edm.String" Nullable="true"/>
+				<Property Name="CreatedOn" Type="Edm.DateTime" Nullable="true"/>
+				<Property Name="CreatedBy" Type="Edm.String" Nullable="true"/>
+				<Property Name="CreatedByName" Type="Edm.String" Nullable="true"/>
+				<Property Name="Processor" Type="Edm.String" Nullable="true"/>
+				<Property Name="StartDeadLine" Type="Edm.DateTime" Nullable="true"/>
+				<Property Name="CompletionDeadLine" Type="Edm.DateTime" Nullable="true"/>
+				<Property Name="ExpiryDate" Type="Edm.DateTime" Nullable="true"/>
+				<Property Name="LastChangedTime" Type="Edm.DateTime" Nullable="true"/>
+				<Property Name="LastChangedBy" Type="Edm.String" Nullable="true"/>
+				<Property Name="SupportsClaim" Type="Edm.Boolean" Nullable="true"/>
+				<Property Name="SupportsRelease" Type="Edm.Boolean" Nullable="true"/>
+				<Property Name="SupportsForward" Type="Edm.Boolean" Nullable="true"/>
+				<Property Name="SupportsComments" Type="Edm.Boolean" Nullable="true"/>
+				<Property Name="IsEscalated" Type="Edm.Boolean" Nullable="true"/>
+				<Property Name="HasComments" Type="Edm.Boolean" Nullable="true"/>
+				<Property Name="HasAttachments" Type="Edm.Boolean" Nullable="true"/>
+				<Property Name="HasPotentialOwners" Type="Edm.Boolean" Nullable="true"/>
+				<Property Name="IsSubstituted" Type="Edm.Boolean" Nullable="true"/>
+				<Property Name="SubstitutedUser" Type="Edm.String" Nullable="true"/>
+				<NavigationProperty Name="UIExecutionLink" Relationship="TASKPROCESSING.UIExecutionLink" FromRole="FromRole_UIExecutionLink" ToRole="ToRole_UIExecutionLink"/>
+				<NavigationProperty Name="TaskDefinitionData" Relationship="TASKPROCESSING.TaskDefinitionData" FromRole="FromRole_TaskDefinitionData" ToRole="ToRole_TaskDefinitionData"/>
+				<NavigationProperty Name="CustomAttributeData" Relationship="TASKPROCESSING.CustomAttributeData" FromRole="FromRole_CustomAttributeData" ToRole="ToRole_CustomAttributeData"/>
+				<NavigationProperty Name="Description" Relationship="TASKPROCESSING.Description" FromRole="FromRole_Description" ToRole="ToRole_Description"/>
+				<NavigationProperty Name="Comments" Relationship="TASKPROCESSING.Comments" FromRole="FromRole_Comments" ToRole="ToRole_Comments"/>
+			</EntityType>
+			<ComplexType Name="Address">
+				<Property Name="Street" Type="Edm.String" Nullable="true"/>
+				<Property Name="StreetNumber" Type="Edm.String" Nullable="true"/>
+				<Property Name="City" Type="Edm.String" Nullable="true"/>
+				<Property Name="PostalCode" Type="Edm.String" Nullable="true"/>
+				<Property Name="State" Type="Edm.String" Nullable="true"/>
+				<Property Name="Country" Type="Edm.String" Nullable="false"/>
+			</ComplexType>
+			<ComplexType Name="DecisionOption">
+				<Property Name="DecisionKey" Type="Edm.String" Nullable="true"/>
+				<Property Name="DecisionText" Type="Edm.String" Nullable="true"/>
+				<Property Name="CommentMandatory" Type="Edm.Boolean" Nullable="true"/>
+				<Property Name="Nature" Type="Edm.String" Nullable="true"/>
+				<Property Name="InstanceID" Type="Edm.String" Nullable="false"/>
+			</ComplexType>
+			<Association Name="CommentCreatedBy">
+				<End Type="TASKPROCESSING.Comment" Multiplicity="*" Role="FromRole_CommentCreatedBy"/>
+				<End Type="TASKPROCESSING.UserInfo" Multiplicity="1" Role="ToRole_CommentCreatedBy"/>
+			</Association>
+			<Association Name="CustomAttributeDefinitionData">
+				<End Type="TASKPROCESSING.TaskDefinition" Multiplicity="1" Role="FromRole_CustomAttributeDefinitionData"/>
+				<End Type="TASKPROCESSING.CustomAttributeDefinition" Multiplicity="*" Role="ToRole_CustomAttributeDefinitionData"/>
+			</Association>
+			<Association Name="UIExecutionLink">
+				<End Type="TASKPROCESSING.Task" Multiplicity="1" Role="FromRole_UIExecutionLink"/>
+				<End Type="TASKPROCESSING.UIExecution" Multiplicity="1" Role="ToRole_UIExecutionLink"/>
+			</Association>
+			<Association Name="TaskDefinitionData">
+				<End Type="TASKPROCESSING.Task" Multiplicity="*" Role="FromRole_TaskDefinitionData"/>
+				<End Type="TASKPROCESSING.TaskDefinition" Multiplicity="1" Role="ToRole_TaskDefinitionData"/>
+			</Association>
+			<Association Name="CustomAttributeData">
+				<End Type="TASKPROCESSING.Task" Multiplicity="1" Role="FromRole_CustomAttributeData"/>
+				<End Type="TASKPROCESSING.CustomAttribute" Multiplicity="*" Role="ToRole_CustomAttributeData"/>
+			</Association>
+			<Association Name="Description">
+				<End Type="TASKPROCESSING.Task" Multiplicity="1" Role="FromRole_Description"/>
+				<End Type="TASKPROCESSING.TaskDescription" Multiplicity="0..1" Role="ToRole_Description"/>
+			</Association>
+			<Association Name="Comments">
+				<End Type="TASKPROCESSING.Task" Multiplicity="1" Role="FromRole_Comments"/>
+				<End Type="TASKPROCESSING.Comment" Multiplicity="*" Role="ToRole_Comments"/>
+			</Association>
+			<EntityContainer Name="CustomContainer" m:IsDefaultEntityContainer="true">
+				<EntitySet Name="SubstitutionRuleCollection" EntityType="TASKPROCESSING.SubstitutionRule"/>
+				<EntitySet Name="SubstitutesRuleCollection" EntityType="TASKPROCESSING.SubstitutionRule"/>
+				<EntitySet Name="CustomAttributeDefinitionCollection" EntityType="TASKPROCESSING.CustomAttributeDefinition"/>
+				<EntitySet Name="FilterOptionCollection" EntityType="TASKPROCESSING.FilterOption"/>
+				<EntitySet Name="UIExecutionCollection" EntityType="TASKPROCESSING.UIExecution"/>
+				<EntitySet Name="UserInfoCollection" EntityType="TASKPROCESSING.UserInfo"/>
+				<EntitySet Name="SubstitutedUsersCollection" EntityType="TASKPROCESSING.UserInfo"/>
+				<EntitySet Name="CommentsCollection" EntityType="TASKPROCESSING.Comment"/>
+				<EntitySet Name="TaskDescriptionCollection" EntityType="TASKPROCESSING.TaskDescription"/>
+				<EntitySet Name="TaskDefinitionCollection" EntityType="TASKPROCESSING.TaskDefinition"/>
+				<EntitySet Name="CustomAttributeCollection" EntityType="TASKPROCESSING.CustomAttribute"/>
+				<EntitySet Name="TaskCollection" EntityType="TASKPROCESSING.Task"/>
+				<AssociationSet Name="CommentCreatedBy" Association="TASKPROCESSING.CommentCreatedBy">
+					<End EntitySet="CommentsCollection" Role="FromRole_CommentCreatedBy"/>
+					<End EntitySet="UserInfoCollection" Role="ToRole_CommentCreatedBy"/>
+				</AssociationSet>
+				<AssociationSet Name="CustomAttributeDefinitionData" Association="TASKPROCESSING.CustomAttributeDefinitionData">
+					<End EntitySet="TaskDefinitionCollection" Role="FromRole_CustomAttributeDefinitionData"/>
+					<End EntitySet="CustomAttributeDefinitionCollection" Role="ToRole_CustomAttributeDefinitionData"/>
+				</AssociationSet>
+				<AssociationSet Name="UIExecutionLink" Association="TASKPROCESSING.UIExecutionLink">
+					<End EntitySet="TaskCollection" Role="FromRole_UIExecutionLink"/>
+					<End EntitySet="UIExecutionCollection" Role="ToRole_UIExecutionLink"/>
+				</AssociationSet>
+				<AssociationSet Name="TaskDefinitionData" Association="TASKPROCESSING.TaskDefinitionData">
+					<End EntitySet="TaskCollection" Role="FromRole_TaskDefinitionData"/>
+					<End EntitySet="TaskDefinitionCollection" Role="ToRole_TaskDefinitionData"/>
+				</AssociationSet>
+				<AssociationSet Name="CustomAttributeData" Association="TASKPROCESSING.CustomAttributeData">
+					<End EntitySet="TaskCollection" Role="FromRole_CustomAttributeData"/>
+					<End EntitySet="CustomAttributeCollection" Role="ToRole_CustomAttributeData"/>
+				</AssociationSet>
+				<AssociationSet Name="Description" Association="TASKPROCESSING.Description">
+					<End EntitySet="TaskCollection" Role="FromRole_Description"/>
+					<End EntitySet="TaskDescriptionCollection" Role="ToRole_Description"/>
+				</AssociationSet>
+				<AssociationSet Name="Comments" Association="TASKPROCESSING.Comments">
+					<End EntitySet="TaskCollection" Role="FromRole_Comments"/>
+					<End EntitySet="CommentsCollection" Role="ToRole_Comments"/>
+				</AssociationSet>
+				<FunctionImport Name="Release" ReturnType="TASKPROCESSING.Task" EntitySet="TaskCollection" m:HttpMethod="POST">
+					<Parameter Name="InstanceID" Type="Edm.String" Mode="In"/>
+					<Parameter Name="SAP__Origin" Type="Edm.String" Mode="In"/>
+				</FunctionImport>
+				<FunctionImport Name="Claim" ReturnType="TASKPROCESSING.Task" EntitySet="TaskCollection" m:HttpMethod="POST">
+					<Parameter Name="SAP__Origin" Type="Edm.String" Mode="In"/>
+					<Parameter Name="InstanceID" Type="Edm.String" Mode="In"/>
+					<Parameter Name="Comments" Type="Edm.String" Mode="In" Nullable="true"/>
+				</FunctionImport>
+				<FunctionImport Name="Forward" ReturnType="TASKPROCESSING.Task" EntitySet="TaskCollection" m:HttpMethod="POST">
+					<Parameter Name="SAP__Origin" Type="Edm.String" Mode="In"/>
+					<Parameter Name="InstanceID" Type="Edm.String" Mode="In"/>
+					<Parameter Name="ForwardTo" Type="Edm.String" Mode="In"/>
+					<Parameter Name="Comments" Type="Edm.String" Mode="In" Nullable="true"/>
+				</FunctionImport>
+				<FunctionImport Name="Decision" ReturnType="TASKPROCESSING.Task" EntitySet="TaskCollection" m:HttpMethod="POST">
+					<Parameter Name="SAP__Origin" Type="Edm.String" Mode="In"/>
+					<Parameter Name="InstanceID" Type="Edm.String" Mode="In"/>
+					<Parameter Name="DecisionKey" Type="Edm.String" Mode="In"/>
+					<Parameter Name="Comments" Type="Edm.String" Mode="In" Nullable="true"/>
+				</FunctionImport>
+				<FunctionImport Name="DecisionOptions" ReturnType="Collection(TASKPROCESSING.DecisionOption)" EntitySet="TaskCollection" m:HttpMethod="GET">
+					<Parameter Name="SAP__Origin" Type="Edm.String" Mode="In"/>
+					<Parameter Name="InstanceID" Type="Edm.String" Mode="In"/>
+				</FunctionImport>
+				<FunctionImport Name="Enable" ReturnType="TASKPROCESSING.SubstitutionRule" m:HttpMethod="POST">
+					<Parameter Name="SAP__Origin" Type="Edm.String" Mode="In"/>
+					<Parameter Name="SubstitutionRuleID" Type="Edm.String" Mode="In"/>
+					<Parameter Name="Enabled" Type="Edm.String" Mode="In"/>
+					<Parameter Name="TakenOver" Type="Edm.String" Mode="In"/>
+				</FunctionImport>
+				<FunctionImport Name="SearchUsers" ReturnType="Collection(TASKPROCESSING.UserInfo)" EntitySet="UserInfoCollection" m:HttpMethod="GET">
+					<Parameter Name="SAP__Origin" Type="Edm.String" Mode="In"/>
+					<Parameter Name="SearchPattern" Type="Edm.String" Mode="In" Nullable="true"/>
+					<Parameter Name="MaxResults" Type="Edm.Int16" Mode="In" Nullable="true"/>
+				</FunctionImport>
+				<FunctionImport Name="AddComment" ReturnType="TASKPROCESSING.Comment" EntitySet="CommentsCollection" m:HttpMethod="POST">
+					<Parameter Name="SAP__Origin" Type="Edm.String" Mode="In"/>
+					<Parameter Name="InstanceID" Type="Edm.String" Mode="In"/>
+					<Parameter Name="Text" Type="Edm.String" Mode="In"/>
+				</FunctionImport>
+				<FunctionImport Name="EnableSubstitutionRule" ReturnType="TASKPROCESSING.SubstitutionRule" EntitySet="SubstitutionRuleCollection" m:HttpMethod="POST">
+					<Parameter Name="SAP__Origin" Type="Edm.String" Mode="In"/>
+					<Parameter Name="SubstitutionRuleID" Type="Edm.String" Mode="In"/>
+					<Parameter Name="Enabled" Type="Edm.Boolean" Mode="In"/>
+				</FunctionImport>
+				<FunctionImport Name="DeleteSubstitutionRule" ReturnType="Edm.Boolean" EntitySet="SubstitutionRuleCollection" m:HttpMethod="POST">
+					<Parameter Name="SAP__Origin" Type="Edm.String" Mode="In"/>
+					<Parameter Name="SubstitutionRuleID" Type="Edm.String" Mode="In"/>
+				</FunctionImport>
+				<FunctionImport Name="CreateSubstitutionRule" ReturnType="TASKPROCESSING.SubstitutionRule" EntitySet="SubstitutionRuleCollection" m:HttpMethod="POST">
+					<Parameter Name="SAP__Origin" Type="Edm.String" Mode="In"/>
+					<Parameter Name="BeginDate" Type="Edm.String" Mode="In"/>
+					<Parameter Name="EndDate" Type="Edm.String" Mode="In"/>
+					<Parameter Name="IsEnabled" Type="Edm.String" Mode="In"/>
+					<Parameter Name="Mode" Type="Edm.String" Mode="In"/>
+					<Parameter Name="User" Type="Edm.String" Mode="In"/>
+				</FunctionImport>
+			</EntityContainer>
+		</Schema>
+	</edmx:DataServices>
+</edmx:Edmx>
+

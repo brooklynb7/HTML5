@@ -1,0 +1,873 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset='UTF-8'/>
+    <title>Qunit</title>
+
+    <!-- UI5 Bootstrap -->
+    <script id='sap-ui-bootstrap'
+            type='text/javascript'
+            src='../../../../../../resources/sap-ui-core.js'
+            data-sap-ui-theme='sap_goldreflection'
+            data-sap-ui-libs='sap.ui.commons,sap.portal.ui5'></script>
+
+    <!-- QUnit libraries -->
+    <link rel='stylesheet'
+          href='../../../../../../resources/sap/ui/thirdparty/qunit.css'
+          type='text/css' media='screen'/>
+    <script src='../../../../../../resources/sap/ui/thirdparty/qunit.js'></script>
+    <script type='text/javascript' src='/jsunit-testrunner/qunit/qunit-jsunit.js'></script>
+    <script type='text/javascript' src='../../../../../../resources/sap/ui/qunit/QUnitUtils.js'></script>
+    <script>
+
+        module('sap.portal.ui5.core.Component');
+
+        test('Create component', function() {
+
+            var instance1 = new sap.portal.ui5.core.Component;
+            ok(instance1 instanceof sap.portal.ui5.core.Component);
+
+        });
+
+        test('id - create component with id', function() {
+
+            var ids = [
+                'my-test-id',
+                'mytestid',
+                '123',
+                'my.test.id'
+            ];
+
+            jQuery.each(ids, function(index, value) {
+
+                var instance = new sap.portal.ui5.core.Component({ componentId: value });
+                equal(instance.getComponentId(), value);
+                instance.destroy();
+
+            })
+
+        });
+
+        test('register component with already existed id', function() {
+
+            var cmp1 = new sap.portal.ui5.core.Component({
+                componentId: '123'
+            });
+
+            ok(cmp1, 'Component with id created successfully');
+
+            throws(function() {
+
+                var cmp2 = new sap.portal.ui5.core.Component({
+                    componentId: '123'
+                });
+
+            }, Error);
+
+            cmp1.destroy();
+
+        });
+
+        test('layout - should not be instantiated', function() {
+
+            var instance1 = new sap.portal.ui5.core.Component();
+            ok(instance1.getLayout() === null);
+
+        });
+
+        test('layout from hash - should not be instantiated', function() {
+
+            throws(function() {
+                var instance1 = new sap.portal.ui5.core.Component({
+                    layout: {}
+                });
+            }, Error);
+
+        });
+
+        test('layout data - should not be instantiated', function() {
+
+            var instance1 = new sap.portal.ui5.core.Component();
+            ok(instance1.getLayoutData() === null);
+
+        });
+
+        test('layout data from hash - should be instantiated', function() {
+
+            var instance1 = new sap.portal.ui5.core.Component({
+                layoutData: {}
+            });
+
+            ok(instance1.getLayoutData() instanceof Object && instance1.getLayoutData() !== null);
+
+        });
+
+        test('create nested component', function() {
+
+            var instance2 = new sap.portal.ui5.core.Component({
+                componentId: 'test2'
+            });
+
+            var instance3 = new sap.portal.ui5.core.Component({
+                componentId: 'test3'
+            });
+
+            var collection1 = new sap.portal.ui5.core.ComponentCollection({
+                items: [
+                    instance2,
+                    instance3
+                ]
+            });
+
+            var instance1 = new sap.portal.ui5.core.Component({
+                componentId: 'test1',
+                childComponents: collection1
+            });
+
+            ok(instance1.getChildByComponentId('test2') === instance2);
+            ok(instance1.getChildByComponentId('test3') === instance3);
+
+            instance2.destroy();
+            instance3.destroy();
+            instance1.destroy();
+
+        });
+
+        test('create nested component using hash', function() {
+
+            var instance1 = new sap.portal.ui5.core.Component({
+                componentId: 'test1',
+                childComponents: {
+                    items: [
+                        {
+                            componentId: 'test2'
+                        },
+                        {
+                            componentId: 'test3'
+                        }
+                    ]
+                }
+            });
+
+            ok(instance1.getChildByComponentId('test2'));
+            ok(instance1.getChildByComponentId('test3'));
+
+            instance1.getChildByComponentId('test2').destroy();
+            instance1.getChildByComponentId('test3').destroy();
+            instance1.destroy();
+
+        });
+
+        test('add nested component using hash', function() {
+
+            var instance1 = new sap.portal.ui5.core.Component({
+                componentId: 'test1',
+                childComponents: {
+                    items: [
+                        {
+                            componentId: 'test2'
+                        },
+                        {
+                            componentId: 'test3'
+                        }
+                    ]
+                }
+            });
+
+            instance1.getChildComponents().addItem({
+                componentId: 'test4'
+            });
+
+            ok(instance1.getChildByComponentId('test4'));
+            ok(instance1.getChildByComponentId('test4') instanceof sap.portal.ui5.core.Component);
+
+            instance1.getChildByComponentId('test4').destroy();
+            instance1.getChildByComponentId('test2').destroy();
+            instance1.getChildByComponentId('test3').destroy();
+            instance1.destroy();
+
+        });
+
+        test('view - should not be instantiated', function() {
+
+            var instance1 = new sap.portal.ui5.core.Component();
+            ok(instance1.getView() === null);
+
+        });
+
+        test('view - should be instantiated from hash', function() {
+
+            sap.portal.ui5.core.View.extend('sap.portal.ui5.core.test.View', {
+            });
+
+
+            var instance1 = new sap.portal.ui5.core.Component({
+                view: {
+                    uctype: 'sap.portal.ui5.core.test.View'
+                },
+            });
+
+            ok(instance1.getView() instanceof sap.portal.ui5.core.test.View && instance1.getView() !== null);
+
+        });
+
+        test('view - should be bounded into controller', function() {
+
+            sap.portal.ui5.core.View.extend('sap.portal.ui5.core.test.View', {
+            });
+
+            var instance1 = new sap.portal.ui5.core.Component({
+                view: {
+                    uctype: 'sap.portal.ui5.core.test.View'
+                }
+            });
+
+            ok(instance1.getView().getController() === instance1);
+
+        });
+
+        asyncTest('view - should be rendered', function() {
+
+            sap.portal.ui5.core.View.extend('sap.portal.ui5.core.test.View', {
+
+                render: function() {
+
+                    $(this.getPlaceAt()).html('hello world!');
+
+                    if (this._super) {
+                        this._super.apply(this, arguments);
+                    }
+
+                },
+
+                isRendered: function() {
+
+                    return $(this.getPlaceAt()).length;
+
+                },
+
+                unrender: function() {
+
+                    $(this.getPlaceAt()).remove();
+
+                }
+
+            });
+
+
+            var cmp1 = new sap.portal.ui5.core.Component({
+                view: {
+                    uctype: 'sap.portal.ui5.core.test.View'
+                }
+            });
+
+            cmp1.setPlaceAt('#uiArea0')
+            .pipe( function() {
+
+                ok($(cmp1.getPlaceAt()).html() === 'hello world!', 'view html - hello world');
+                return cmp1.destroy();
+
+            })
+            .pipe( function() {
+
+                ok(!$(cmp1.getPlaceAt()).length, 'destroyed');
+                start();
+
+            });
+
+
+        });
+
+        asyncTest('view with components - should be rendered', function() {
+
+            sap.portal.ui5.core.View.extend('sap.portal.ui5.core.test.ViewTile', {
+
+                _bRendered: false,
+
+                render: function() {
+
+                    if (this._bRendered) {
+                        return;
+                    }
+
+                    this._bRendered = true;
+
+                    $(this.getPlaceAt()).append('<div style="border: 5px solid blue;" id="' + this.getController().getComponentId() +'">' + this.getController().getComponentId() + '</div>');
+
+                    if (this._super) {
+                        return this._super.apply(this, arguments);
+                    }
+
+                },
+
+                isRendered: function() {
+
+                    return $(this.getPlaceAt()).length;
+
+                },
+
+                unrender: function() {
+
+                    $(this.getPlaceAt()).remove();
+
+                    if (this._super) {
+                        return this._super.apply(this, arguments);
+                    }
+
+                }
+
+            });
+
+            sap.portal.ui5.core.View.extend('sap.portal.ui5.core.test.ViewContainer', {
+
+                render: function() {
+
+                    $(this.getPlaceAt()).html('<div style="border: 5px solid red;" id="' + this.getController().getComponentId() +'"></div>');
+
+                    if (this._super) {
+                        return this._super.apply(this, arguments);
+                    }
+
+                },
+
+                isRendered: function() {
+
+                    return $(this.getPlaceAt()).length;
+
+                },
+
+                renderChildComponents: function(aComponents, oComponentsLayout) {
+
+                    jQuery.each(aComponents.getItems(), function(index, oComponent) {
+
+                        oComponent.setPlaceAt('#' + this.getController().getComponentId());
+                        oComponent.getView().render();
+
+                    }.bind(this));
+
+                },
+
+                unrender: function() {
+
+                    $(this.getPlaceAt()).remove();
+
+                    if (this._super) {
+                        return this._super.apply(this, arguments);
+                    }
+
+                }
+
+            });
+
+
+            var cmp1 = new sap.portal.ui5.core.Component({
+                componentId: 'a1',
+                view: {
+                    uctype: 'sap.portal.ui5.core.test.ViewContainer'
+                }
+            });
+
+            cmp1.addChildComponent({
+                componentId: 'b2',
+                view: {
+                    uctype: 'sap.portal.ui5.core.test.ViewTile'
+                }
+            });
+
+            cmp1.addChildComponent({
+                componentId: 'c3',
+                view: {
+                    uctype: 'sap.portal.ui5.core.test.ViewTile'
+                }
+            });
+
+            cmp1.setPlaceAt('#uiArea1').done( function() {
+
+                ok($('#a1').length);
+                ok($('#b2').length);
+                ok($('#c3').length);
+
+                cmp1.getChildByComponentId('b2').destroy();
+                cmp1.getChildByComponentId('c3').destroy();
+                cmp1.destroy().done( function() {
+
+                    start();
+
+                });
+
+            });
+
+        });
+
+        asyncTest('component supports async layout engine', function() {
+
+            var oCalcLayout = {
+                component: {},
+                childComponents: {
+                    'test1': {
+                        top:    100,
+                        left:   100
+                    }
+                }
+            };
+
+            sap.portal.ui5.core.LayoutInterface.extend('testLayout', {
+
+                processLayout: function() {
+
+                    var oDfd = jQuery.Deferred();
+
+                    window.setTimeout( function() {
+
+                        oDfd.resolve(oCalcLayout);
+
+                    }, 100);
+
+                    return oDfd.promise();
+
+                }
+
+            });
+
+            var child = new sap.portal.ui5.core.Component({
+                id: 'test-child',
+                view: {
+                    id: 'test-child-view',
+                    uctype: 'sap.portal.ui5.core.UI5ControlView',
+                    controlClass: 'sap.ui.commons.Panel'
+                }
+            });
+
+            var parent = new sap.portal.ui5.core.Component({
+                id: 'test-parent',
+                childComponents: [child],
+                layout: {
+                    uctype: 'testLayout'
+                },
+                view: {
+                    id: 'test-parent-view',
+                    uctype: 'sap.portal.ui5.core.UI5ControlView',
+                    controlClass: 'sap.ui.commons.Panel'
+                }
+            });
+
+            parent.attachBeforeLayout({}, function(oEvent) {
+
+                equal(oEvent.getParameter('layout'), oCalcLayout);
+
+
+            });
+
+            parent.setPlaceAt('uiArea4').done(function() {
+
+                parent.destroy();
+                child.destroy();
+                start();
+
+            });
+
+        });
+
+        asyncTest('beforeRender control through promises', function() {
+
+            var cmp = new sap.portal.ui5.core.Component({
+                view: {
+                    uctype: 'sap.portal.ui5.core.UI5ControlView',
+                    controlClass: 'sap.ui.commons.Panel'
+                }
+            });
+
+            var beforeRenderCalled = false,
+                waitPromise = jQuery.Deferred(),
+                renderDoneCalled = false;
+
+            cmp.attachEvent('beforeRender', {}, function(oEvent) {
+
+                var waitPromises = oEvent.getParameter('promises');
+                ok( waitPromises instanceof Array );
+                waitPromises.push(waitPromise);
+                beforeRenderCalled = true;
+                window.setTimeout(function() {
+                    ok(!renderDoneCalled);
+                    waitPromise.resolve();
+                }, 100);
+
+            });
+
+            cmp.setPlaceAt('uiArea3').done( function() {
+                renderDoneCalled = true;
+                ok( beforeRenderCalled );
+                equal( waitPromise.state(), 'resolved');
+                cmp.destroy();
+                start();
+
+            });
+
+        });
+
+        test('create child components with array', function() {
+
+            var cmp = new sap.portal.ui5.core.Component({
+                childComponents: [{ id: 'cmp1' },{ id: 'cmp2' }]
+            });
+
+            equal(cmp.getLength(), 2);
+            ok(cmp.getChildComponents() instanceof sap.portal.ui5.core.ComponentCollection);
+            cmp.destroy();
+
+        });
+
+        test('set new child components data', function() {
+
+            var cmp = new sap.portal.ui5.core.Component;
+
+            ok(cmp.getChildComponents());
+            equal(cmp.getLength(), 0);
+
+            cmp.setChildComponents({
+                items: [ { id: 'cmp4' } ]
+            });
+
+            equal(cmp.getLength(), 1);
+
+            cmp.destroy();
+
+
+        });
+
+        test('set new child components data array', function() {
+
+            var cmp = new sap.portal.ui5.core.Component;
+
+            ok(cmp.getChildComponents());
+            equal(cmp.getLength(), 0);
+
+            cmp.setChildComponents([ { id: 'cmp4' } ]);
+
+            equal(cmp.getLength(), 1);
+
+            cmp.destroy();
+
+        });
+
+        asyncTest('check that setting new items into child components relayouts view', function() {
+
+            sap.portal.ui5.core.View.extend('mockView', {
+
+                render: function() {
+                },
+
+                renderChildComponents: function() {
+                },
+
+                isRendered: function() {
+
+                    return true;
+
+                }
+
+            });
+
+            var cmp = new sap.portal.ui5.core.Component({
+                view: {
+                    uctype: 'mockView'
+                },
+                placeAt: 'body'
+            });
+
+            var child = new sap.portal.ui5.core.Component;
+
+            cmp.attachLayout({}, function() {
+
+                ok(cmp.getLength(), 1);
+                cmp.destroy();
+                start();
+
+            });
+
+            cmp.setChildComponentItems([child]);
+
+
+        });
+
+        asyncTest('check that setting new items layout data relayouts view', function() {
+
+            sap.portal.ui5.core.View.extend('mockView', {
+
+                render: function() {
+                },
+
+                renderChildComponents: function() {
+                },
+
+                isRendered: function() {
+
+                    return true;
+
+                }
+
+            });
+
+            var child = new sap.portal.ui5.core.Component({
+                componentId: 'test'
+            });
+
+            var cmp = new sap.portal.ui5.core.Component({
+                view: {
+                    uctype: 'mockView'
+                },
+                childComponents: [child]
+            });
+
+
+            cmp.setPlaceAt('body').done( function() {
+
+                cmp.attachLayout({}, function() {
+
+                    ok(cmp.getLength(), 1);
+                    cmp.destroy();
+                    start();
+
+                });
+
+                cmp.setLayoutData([{
+                    componentId: 'test', top: 0, left: 0
+                }])
+
+            });
+
+        });
+
+        asyncTest('check that setting new items only layout data relayouts view', function() {
+
+            sap.portal.ui5.core.View.extend('mockView', {
+
+                render: function() {
+                },
+
+                renderChildComponents: function() {
+                },
+
+                isRendered: function() {
+
+                    return true;
+
+                }
+
+            });
+
+            var child = new sap.portal.ui5.core.Component({
+                componentId: 'test'
+            });
+
+            var cmp = new sap.portal.ui5.core.Component({
+                view: {
+                    uctype: 'mockView'
+                },
+                layoutData: [],
+                childComponents: [child]
+            });
+
+
+            cmp.setPlaceAt('body').done( function() {
+
+                cmp.attachLayout({}, function() {
+
+                    ok(cmp.getLength(), 1);
+                    cmp.destroy();
+                    child.destroy();
+                    start();
+
+                });
+
+                cmp.setLayoutDataItems([{
+                    componentId: 'test', top: 0, left: 0
+                }])
+
+            });
+
+        });
+
+        test('add/remove items', function() {
+
+            var cmp = new sap.portal.ui5.core.Component;
+            ok(cmp);
+            equal(cmp.getLength(), 0);
+            cmp.addChildComponents([{ componentId: 'cmp1' }]);
+            equal(cmp.getLength(), 1);
+            cmp.removeChildComponents([cmp.getChildByComponentId('cmp1')]);
+            equal(cmp.getLength(), 0);
+            cmp.destroy();
+
+        });
+
+        test('add/remove items + layout data', function() {
+
+            var cmp = new sap.portal.ui5.core.Component({
+                layoutData: {
+                    items: []
+                }
+            });
+
+            ok(cmp);
+            equal(cmp.getLength(), 0);
+            equal(cmp.getLayoutData().getLength(), 0);
+            cmp.addChildComponents([{ componentId: 'cmp2' }], [{ componentId: 'cmp2'}]);
+            equal(cmp.getLength(), 1);
+            equal(cmp.getLayoutData().getLength(), 1);
+            cmp.removeChildComponents([cmp.getChildByComponentId('cmp2')], true);
+            equal(cmp.getLength(), 0);
+            equal(cmp.getLayoutData().getLength(), 0);
+            cmp.destroy();
+
+        });
+
+        test('add/remove items + layout data + destroy', function() {
+
+            var child = new sap.portal.ui5.core.Component({
+                componentId: 'test'
+            });
+
+            var cmp = new sap.portal.ui5.core.Component({
+                layoutData: {
+                    items: []
+                }
+            });
+
+            ok(cmp);
+            equal(cmp.getLength(), 0);
+            equal(cmp.getLayoutData().getLength(), 0);
+            cmp.addChildComponents([child]);
+            equal(cmp.getLength(), 1);
+            cmp.removeChildComponents([child], true, true);
+            equal(cmp.getLength(), 0);
+            equal(cmp.getLayoutData().getLength(), 0);
+            ok(child.isDestroyed());
+            child.destroy();
+            cmp.destroy();
+
+        });
+
+        asyncTest('Synchronic - test setPlaceAt', function () {
+            expect(3);
+            var child = new sap.portal.ui5.core.Component({
+                componentId: 'test'
+            });
+
+            var cmp = new sap.portal.ui5.core.Component({
+                view: {
+                    uctype: 'sap.portal.ui5.core.UI5ControlView',
+                    controlClass: 'sap.ui.commons.Panel'
+                },
+                childComponents: [child]
+            });
+
+            cmp.setPlaceAt('uiArea5').done(function () {
+
+                ok(cmp.getView().getControl().$().length === 1 && cmp.getView().isRendered(), "Synchronic - The panel control should exist in dom");
+                cmp.setPlaceAt(null).done(function () {
+                    ok(cmp.getView().getControl().$().length === 0 && !cmp.getView().isRendered(), "Synchronic - The panel control should not exist in dom when using setPlaceAt(null)");
+                    cmp.setPlaceAt('uiArea5').done(function () {
+                        ok(cmp.getView().getControl().$().length === 1 && cmp.getView().isRendered(), "Synchronic - The panel control should exist in dom again");
+                        cmp.destroy();
+
+                        start();
+                    });
+
+                });
+
+            });
+        });
+        asyncTest('Async - test setPlaceAt(null)', function () {
+            expect(2);
+            var child = new sap.portal.ui5.core.Component({
+                componentId: 'test'
+            });
+
+            var cmp = new sap.portal.ui5.core.Component({
+                view: {
+                    uctype: 'sap.portal.ui5.core.UI5ControlView',
+                    controlClass: 'sap.ui.commons.Panel'
+                },
+                childComponents: [child]
+            });
+
+            cmp.setPlaceAt('uiArea6').always(function () {
+                ok(cmp.getView().getControl().$().length === 0 && !cmp.getView().isRendered(), "Async - The panel control should not exist in dom when when render promise is rejected");
+            });
+            cmp.setPlaceAt(null).always(function () {
+                ok(cmp.getView().getControl().$().length === 0 && !cmp.getView().isRendered(), "Async - The panel control should not exist in dom when using setPlaceAt(null)");
+                cmp.destroy();
+                start();
+            });
+
+        });
+
+        asyncTest('Async - test setPlaceAt not null', function () {
+            expect(2);
+            var child = new sap.portal.ui5.core.Component({
+                componentId: 'test'
+            });
+
+            var cmp = new sap.portal.ui5.core.Component({
+                view: {
+                    uctype: 'sap.portal.ui5.core.UI5ControlView',
+                    controlClass: 'sap.ui.commons.Panel'
+                },
+                childComponents: [child]
+            });
+
+            cmp.setPlaceAt('uiArea7').always(function () {
+
+                cmp.setPlaceAt(null).always(function () {
+                    ok(cmp.getView().getControl().$().length === 1 && cmp.getView().isRendered(), "Async - The panel control should exist in dom when setPlaceAt(null) promise was rejected");
+                });
+
+                cmp.setPlaceAt('uiArea7').always(function () {
+                    ok(cmp.getView().getControl().$().length === 1 && cmp.getView().isRendered(), "Async - The panel control should exist in dom");
+                    cmp.destroy();
+                    start();
+                });
+
+            });
+
+        });
+
+        asyncTest('test unrender', function () {
+            expect(2);
+            var child = new sap.portal.ui5.core.Component({
+                componentId: 'test'
+            });
+
+            var cmp = new sap.portal.ui5.core.Component({
+                view: {
+                    uctype: 'sap.portal.ui5.core.UI5ControlView',
+                    controlClass: 'sap.ui.commons.Panel'
+                },
+                childComponents: [child]
+            });
+
+            cmp.setPlaceAt('uiArea8').done(function () {
+                ok(cmp.getView().getControl().$().length === 1 && cmp.getView().isRendered(), "The panel control should exist in dom when setPlaceAt is called");
+                cmp.getView().unrender().done(function () {
+                    ok(cmp.getView().getControl().$().length === 0 && !cmp.getView().isRendered(), "Check that the view was unrendered");
+                    start();
+                });
+            });
+        });
+    </script>
+</head>
+
+<body class='sapUiBody'>
+<div id='qunit'></div>
+<div id='uiArea0'></div>
+<div id='uiArea1'></div>
+<div id='uiArea2'></div>
+<div id='uiArea3'></div>
+<div id='uiArea4'></div>
+<div id='uiArea5'></div>
+<div id='uiArea6'></div>
+<div id='uiArea7'></div>
+<div id='uiArea8'></div>
+</body>
+</html>

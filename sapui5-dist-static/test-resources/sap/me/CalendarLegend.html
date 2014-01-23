@@ -1,0 +1,95 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>CalendarLegend - sap.me</title>
+<style type="text/css">
+body {
+	overflow: auto;
+}
+</style>
+
+<script src="../../../resources/sap-ui-core.js" type="text/javascript"
+	id="sap-ui-bootstrap" data-sap-ui-libs="sap.m,sap.me"
+	data-sap-ui-theme="sap_bluecrystal">
+	
+</script>
+<script type="text/javascript">
+	var cl = new sap.me.CalendarLegend(
+			"cl",
+			{
+				legendForType00: "non-working day",
+				legendForType01: "sick leave",
+				legendForType04: "open request",
+				legendForType06: "public holiday / and very long text",
+				legendForType07: "leave",
+				legendForToday: "today",
+				legendForSelected: "selected",
+				legendForSelected00: "selected weekend",
+				legendForNormal: "normal day",
+				design: "Approval",
+				expanded: false,
+				expandable : true
+
+			});
+	var app = new sap.m.App();
+	var switchCollapseExpand = function(oControlEvent) {
+		cl.setExpandable(oControlEvent.getParameters().state);
+		if(cl.getLegendForToday() =="today")
+			cl.setLegendForToday(null);
+		else
+			cl.setLegendForToday("today");
+
+
+	}
+	var switchTodayAction= function(oControlEvent) {
+		if(cl.getLegendForToday() =="today")
+			cl.setLegendForToday(null);
+		else{
+			cl.setLegendForToday("today");
+
+		}
+		
+
+
+	}
+	var switchExpandLbl = new sap.m.Label({
+		text : "Expandable : "
+	});
+	var switchExpand = new sap.m.Switch({
+		change : switchCollapseExpand,
+		state: true
+	});
+	var switchTodayLbl = new sap.m.Label({
+		text : "     Remove Today value : "
+	});
+	var switchToday = new sap.m.Switch({
+		change : switchTodayAction,
+		state: false
+	});
+	switchExpandLbl.setLabelFor(switchExpand);
+	switchTodayLbl.setLabelFor(switchToday);
+
+	var hbox = new sap.m.HBox({
+		items : [ switchExpandLbl, switchExpand,switchTodayLbl,switchToday],
+		alignItems : sap.m.FlexAlignItems.Center
+	})
+	
+	var page = new sap.m.Page({
+		showHeader : false
+	});
+	
+	app.setInitialPage(page.getId());
+	page.setEnableScrolling(true);
+	page.setShowHeader(false);
+	app.addPage(page);
+	page.addContent(hbox);
+	page.addContent(cl);
+	app.placeAt('body');
+</script>
+
+
+</head>
+<body id="body" class="sapUiBody">
+
+</body>
+</html>

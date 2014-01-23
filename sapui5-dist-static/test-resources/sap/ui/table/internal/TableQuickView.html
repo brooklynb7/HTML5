@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html><head>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge' />
+    <title>Table example</title>
+    
+    <!-- Load UI5, select gold reflection theme and the "commons" and "table" control libraries -->
+    <script id='sap-ui-bootstrap' type='text/javascript'
+    src='../../../../../resources/sap-ui-core.js'
+       data-sap-ui-theme='sap_goldreflection'
+       data-sap-ui-libs='sap.ui.commons,sap.ui.table'></script>
+    
+<script>
+		try{
+		  sap.ui.getCore().loadLibrary("sap.ui.ux3");
+		}catch(e){
+		  alert("This test page requires the library 'sap.ui.ux3' which is not available.");
+		  throw(e);
+		}        
+          // create the DataTable control
+          var oTable = new sap.ui.table.Table({
+	          editable : true
+          });
+
+          // define the Table columns
+          var oControl = new sap.ui.commons.TextView({
+	          text : "{lastName}"
+          });
+          oTable.addColumn(new sap.ui.table.Column({
+            label : "Last Name",
+            template : oControl,
+            sortProperty : "lastName",
+            filterProperty : "lastName",
+            width : "100px"
+          }));
+          oControl = new sap.ui.commons.TextField().bindProperty("value",
+              "name");
+          oTable.addColumn(new sap.ui.table.Column({
+            label : "First Name",
+            template : oControl,
+            sortProperty : "name",
+            filterProperty : "name"
+          }));
+          oControl = new sap.ui.commons.Image().bindProperty("src", "image");
+          oTable.addColumn(new sap.ui.table.Column({
+            label : "Image",
+            template : oControl,
+            sortProperty : "name",
+            filterProperty : "name"
+          }));
+
+          var fnQVDeferred = function(sValue) {
+	          var oQVModel = new sap.ui.model.json.JSONModel();
+	          var oQuickViewCtrl = new sap.ui.ux3.QuickView({
+	            type : "{/type}",
+	            open : function(oEvent) {
+		            setTimeout(function() {
+			            oQVModel.setData({
+				            type : sValue
+			            });
+		            }, 500);
+	            }
+	          });
+	          oQuickViewCtrl.setModel(oQVModel);
+	          return oQuickViewCtrl;
+          };
+          oControl.setTooltip(fnQVDeferred("Test"));
+
+          // create some local data
+          var aData = [ {
+            lastName : "Dente",
+            name : "Al",
+            image : "http://www.sap.com/global/ui/images/global/sap-logo.png"
+          }, {
+            lastName : "Friese",
+            name : "Andy",
+            image : "http://www.sap.com/global/ui/images/global/sap-logo.png"
+          }, {
+            lastName : "Mann",
+            name : "Anita",
+            image : "http://www.sap.com/global/ui/images/global/sap-logo.png"
+          } ];
+
+          // create a JSONModel, fill in the data and bind the Table to this model
+          var oModel = new sap.ui.model.json.JSONModel();
+          oModel.setData({
+	          modelData : aData
+          });
+          oTable.setModel(oModel);
+          oTable.bindRows("/modelData");
+
+          // finally place the Table into the UI
+          oTable.placeAt("content");
+
+          var oButton = new sap.ui.commons.Button({
+            text : "Reset",
+            press : function() {
+	            oControl.setTooltip(fnQVDeferred("Test"));
+	            oTable.invalidate();
+            }
+          });
+          oButton.placeAt("content");
+
+          var oButton = new sap.ui.commons.Button({
+            text : "Update",
+            press : function() {
+	            oControl.setTooltip("Hello World");
+            }
+          });
+          oButton.placeAt("content");
+
+          var oButton = new sap.ui.commons.Button({
+            text : "Update and Invalidate",
+            press : function() {
+	            oControl.setTooltip("Hello World 1");
+	            oTable.invalidate();
+            }
+          });
+          oButton.placeAt("content");
+	</script>
+    
+    </head>
+    <body class='sapUiBody'>
+        <div id='content'></div>
+    </body>
+</html>

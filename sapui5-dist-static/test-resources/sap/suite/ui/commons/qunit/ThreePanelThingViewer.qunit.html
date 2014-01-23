@@ -1,0 +1,469 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>qUnit Page for sap.suite.ui.commons.ThreePanelThingViewer</title>
+
+    <!-- UI5 Bootstrap -->
+    <script id="sap-ui-bootstrap"
+            type="text/javascript"
+            src="../../../../../../resources/sap-ui-core.js"
+            data-sap-ui-theme="sap_goldreflection"
+            data-sap-ui-libs="sap.ui.ux3,sap.ui.commons,sap.suite.ui.commons">
+    </script>
+
+    <!-- QUnit libraries -->
+    <link rel="stylesheet"
+          href="../../../../../../resources/sap/ui/thirdparty/qunit.css"
+          type="text/css" media="screen" />
+    <script src="../../../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+    <script type="text/javascript" src="../../../../../../resources/sap/ui/qunit/QUnitUtils.js"></script> 
+    <script type="text/javascript" src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
+
+<!-- Control initialization -->
+    <script>
+    var oNavBarData = [{
+        key : "overview",
+        text : "Overview",
+        tooltip: "Custom tooltip for Overview"
+    }, {
+        key : "contacts",
+        text : "Contacts Lorem Ipsum Dolores",
+        quantity: 3
+    }, {
+        key : "items",
+        text : "Items",
+        quantity: 3,
+        tooltip: "Custom tooltip for Items"
+    }, {
+        key : "related_documents",
+        text : "Related Documents",
+        quantity: 0
+    }, {
+        key : "addresses",
+        text : "Addresses",
+        quantity: 0
+    }, {
+        key : "activities",
+        text : "Activities",
+        quantity: 0
+    }, {
+        key : "analytics",
+        text : "Analytics",
+        quantity: 0
+    }];
+
+    var oNavBarItemTemplate = new sap.suite.ui.commons.CountingNavigationItem({
+        key: "{key}",
+        text: "{text}",
+        quantity: "{quantity}",
+        tooltip: "{tooltip}"
+    });
+/*********************************************/
+    var oMenuData = [{
+        text: "1st Transaction Lorem Ipsum Dolor Sit Amet Lorem Ipsum",
+        href: "http://www.sap.com"
+    }, {
+        text: "2nd Transaction Dolor Sit Amet Tempor",
+        href: "http://www.sap.com"
+    }, {
+        text: "3rd Transaction Takimata Nonumy Duo Elitr",
+        href: "#"
+    }, {
+        text: "4th Transaction Sanctus Invidunt Nonumy",
+        href: "#"
+    }, {
+        text: "5th Transaction Labore Magna Accusam At",
+        href: "#"
+    }, {
+        text: "6th Transaction Vero Conseteur Duo Justo",
+        href: "#"
+    }, {
+        text: "7th Transaction Nagsy Nonumy Duo Elitr",
+        href: "#"
+    }];
+
+    var oMenuTemplate = new sap.ui.commons.Link({
+        text : "{text}",
+        href : "{href}"
+    });
+/***********************************************/
+    var oHeaderData = [{
+        title : "General Information",
+        content : [{
+            label : "Delivery Status",
+            text : "Ordered"
+        }, {
+            label : "Invoice Status",
+            text : "Partially Invoiced"
+        }, {
+            label : "Total Value",
+            text : "91.680,00 USD"
+        }, {
+            label : "Sales",
+            text : "Global Sales"
+        }, {
+            label : "Organization",
+            text : "Consumer Industries"
+        }]
+    }, {
+        title : "Sub-Header",
+        content : [{
+            label : "Customer",
+            text : "Bortelli Corp"
+        }, {
+            label : "Recipient",
+            text : "John Bradford"
+        }, {
+            label : "Ordered On",
+            text : "Nov. 11, 2012"
+        }, {
+            label : "Last Changed On",
+            text : "Jan. 1, 2013"
+        }, {
+            label : "Created By",
+            text : "Steven Tyler"
+        }]
+    }, {
+        title : "Lorem Ipsum",
+        content : [{
+            label : "Lorem",
+            text : "Rebum"
+        }, {
+            label : "Ipsum",
+            text : "Tempor"
+        }, {
+            label : "At Vero",
+            text : "Invidunt"
+        }, {
+            label : "Voluptua",
+            text : "Nonumy"
+        }]
+    }];
+
+    var oHeaderTemplate = new sap.ui.ux3.ThingGroup({
+        title : "{title}",
+        content : new sap.ui.commons.layout.MatrixLayout({
+            rows : {
+                path : "content",
+                template : new sap.ui.commons.layout.MatrixLayoutRow({
+                    cells : [
+                        new sap.ui.commons.layout.MatrixLayoutCell({
+                            hAlign : sap.ui.commons.layout.HAlign.End,
+                            vAlign : sap.ui.commons.layout.VAlign.Top,
+                            content : new sap.ui.commons.Label({
+                                text : {
+                                    path : "label",
+                                    formatter : function(fValue) {
+                                        return fValue + ":"
+                                    }
+                                }
+                            })
+                        }),
+                        new sap.ui.commons.layout.MatrixLayoutCell({
+                            hAlign : sap.ui.commons.layout.HAlign.Begin,
+                            vAlign : sap.ui.commons.layout.VAlign.Top,
+                            content : new sap.ui.commons.TextView({
+                                text : "{text}"
+                            })
+                        })
+                    ]
+                })
+            }
+        })
+    });
+/********************************************/
+    var oContactsData = [{
+        title : "Contacts",
+        colspan : true,
+        type : 2,
+        content : [{
+            name : "Jag, Mick",
+            phone : "+1 (692) 742-2633"
+        }, {
+            name : "Bradford, John",
+            phone : "+1 (635) 457-2875"
+        }, {
+            name : "Stiff, Clark",
+            phone : "+1 (703) 515-8363"
+        }]
+    }];
+
+    var oItemsData = [{
+        title : "Items",
+        colspan : true,
+        type : 1,
+        content : [{
+            number : 1,
+            unit : "20 ea",
+            name : "LED & Smd BA9S",
+            price : "$ 19.95"
+        }, {
+            number : 2,
+            unit : "35 ea",
+            name : "LED & Smd Tfl Canbus",
+            price : "$ 29.91"
+        }, {
+            number : 3,
+            unit : "40 ea",
+            name : "LED Angel Eyes",
+            price : "$ 21.90"
+        }]
+    }];
+
+    var oRelDocsData = [{
+        title : "Related Documents",
+        colspan : true
+    }];
+
+    var oOverviewData = oContactsData.concat(oItemsData, oRelDocsData);
+
+    var oFacetContentTemplate = new sap.ui.ux3.ThingGroup({
+        title : "{title}",
+        colspan : "{colspan}",
+        content : new sap.ui.commons.RowRepeater({
+            rows :  {
+                path : "content",
+                factory : function(sId, oContext) {
+                    var iNumber = oContext.getProperty("number");
+
+                    if (iNumber) {
+                        return new sap.ui.commons.layout.MatrixLayout({
+                            rows : new sap.ui.commons.layout.MatrixLayoutRow({
+                                cells : [
+                                    new sap.ui.commons.layout.MatrixLayoutCell({
+                                        content : new sap.ui.commons.Label({ text : "{number}" })
+                                    }),
+                                    new sap.ui.commons.layout.MatrixLayoutCell({
+                                        content : new sap.ui.commons.Label({ text : "{unit}" })
+                                    }),
+                                    new sap.ui.commons.layout.MatrixLayoutCell({
+                                        content : new sap.ui.commons.Label({ text : "{name}" })
+                                    }),
+                                    new sap.ui.commons.layout.MatrixLayoutCell({
+                                        content : new sap.ui.commons.Label({ text : "{price}" })
+                                    })
+                                ]
+                            })
+                        });
+                    } else {
+                        return new sap.ui.commons.layout.MatrixLayout({
+                            rows : [
+                                new sap.ui.commons.layout.MatrixLayoutRow({
+                                    cells : new sap.ui.commons.layout.MatrixLayoutCell({
+                                        content : new sap.ui.commons.Label({ text : "{name}" })
+                                    })
+                                }),
+                                new sap.ui.commons.layout.MatrixLayoutRow({
+                                    cells : new sap.ui.commons.layout.MatrixLayoutCell({
+                                        content : new sap.ui.commons.Label({ text : "{phone}" })
+                                    })
+                                })
+                            ]
+                        });
+                    }
+                }
+            }
+        })
+    });
+/******************************************************/
+    var oData = {
+            type: "Sales Order",
+            title: "440000126411117000112345004318",
+            subtitle: "Sales Title Nestle Lorem Ipsum Dolor Sit Amet",
+            icon: "../images/gen_bo_img.png",
+            logo : "../images/img_key_company.png",
+            showHeader : true,
+            sidebarWidth : "224px",
+            facets: oNavBarData,
+            menuContent: oMenuData,
+            headerContent: oHeaderData,
+            facetContent : oOverviewData
+        };
+
+    var oModel = new sap.ui.model.json.JSONModel();
+    oModel.setData(oData);
+
+    var oThingViewer = new sap.suite.ui.commons.ThreePanelThingViewer({
+        id : "thingview1",
+        type : "{/type}",
+        title : "{/title}",
+        titleLink : "{/titleLink}",
+        subtitle : "{/subtitle}",
+        icon : "{/icon}",
+        logo : "{/logo}",
+        showHeader : "{/showHeader}",
+        description : "{/description}",
+        sidebarWidth : "{/sidebarWidth}",
+        facets : {
+            path : "/facets",
+            template : oNavBarItemTemplate
+        },
+        menuContent: {
+            path : "/menuContent",
+            template : oMenuTemplate
+        },
+        headerContent : {
+            path : "/headerContent",
+            template : oHeaderTemplate
+        },
+        facetContent : {
+            path : "/facetContent",
+            template : oFacetContentTemplate
+        },
+        facetSelected : function(oEvent) {
+            var sFacetKey = oEvent.getParameters().key;
+            setContent(sFacetKey);
+            this.setShowHeader("overview" == sFacetKey);
+        }
+    });
+
+    oThingViewer.setModel(oModel);
+    oThingViewer.setSelectedFacet(oThingViewer.getFacets()[0]);
+<!--    oThingViewer.setShowHeader(true);-->
+    oThingViewer.placeAt("uiArea1");
+
+    </script>
+    
+<!-- Test functions -->
+	<script>
+	module("Appearance");
+
+	test("ThreePanelThingViewer exists", function() {
+<!--		oOverlay.open();-->
+		var oDomRef = jQuery.sap.domById(oThingViewer.getId());
+		ok(oDomRef, "Rendered ThreePanelThingViewer should exist in the page");
+		equal(oDomRef.className, "sapUiUx3TV", "Rendered ThreePanelThingViewer should have the class 'sapUiUx3TV'");
+	});
+
+	test("Title Icon is rendered", function() {
+		var oSwatch = jQuery.sap.domById(oThingViewer.getId() + "-swatch");
+		ok(oSwatch, "Title Icon should exist in the page");
+		equal(oSwatch.className, "sapSuiteTvTitleIcon", "Rendered title icon should have the class 'sapSuiteTvTitleIcon'");
+	});
+
+	test("Title bar is rendered", function() {
+		var oTitle = jQuery.sap.domById(oThingViewer.getId() + "-header");
+		ok(oTitle, "Title should exist in the page");
+		equal(oTitle.className, "sapSuiteTvTitle", "Rendered title should have the class 'sapSuiteTvTitle'");
+	});
+
+	test("Menu button exists", function() {
+	    var menuButton = jQuery.sap.domById(oThingViewer.getId() + "-menu-button");
+	    notDeepEqual(menuButton, [], "menu button found: " + menuButton );
+	});
+
+	test("Vertical navigation exists", function() {
+	    var oNavBar = jQuery.sap.domById(oThingViewer.getId() + "-navigation");
+		ok(oNavBar, "Vertical navigation should exist in the page");
+		equal(oNavBar.className, "sapSuiteTvNav", "Rendered vertical navigation bar should have the class 'sapSuiteTvNav'");
+	});
+
+	test("Items", function() {
+		//number of navigation items must be the same as number of facets
+		var facets = oThingViewer.getFacets();
+		var $facets = jQuery(".sapSuiteTvNavBarList");
+		for ( var i = 0; i < facets.length; i++) {
+			ok(jQuery.sap.domById(facets[i].sId), "Rendered ThingViewer Item " + facets[i].sId + " should exist in the page");
+		}
+	});
+
+	test("Header exists", function() {
+	    var oHeader = jQuery.sap.domById(oThingViewer.getId() + "-headerContent");
+		ok(oHeader, "Header should exist in the page");
+		equal(oHeader.className, "sapSuiteTvHeader", "Rendered header should have the class 'sapSuiteTvHeader'");
+	});
+
+	test("Facet content exists", function() {
+	    var oFacetContent = jQuery.sap.domById(oThingViewer.getId() + "-facetContent");
+		ok(oFacetContent, "Facet content should exist in the page");
+		equal(oFacetContent.className, "sapSuiteTvFacet", "Rendered facet content should have the class 'sapSuiteTvFacet'");
+	});
+
+	module("Behaviour");
+	
+	asyncTest("Show header content", function() {
+		var oHeader = jQuery.sap.domById(oThingViewer.getId() + "-headerContent");
+		oThingViewer.setShowHeader(false);
+		setTimeout(function() {
+			equal(oHeader.style.display, 'none', "Header not rendered");
+			start();
+		}, 100);
+	});
+
+	asyncTest("Hide header content", function() {
+		var oHeader = jQuery.sap.domById(oThingViewer.getId() + "-headerContent");
+		oThingViewer.setShowHeader(true);
+		setTimeout(function() {
+			notEqual(oHeader.style.display, 'none', "Header is rendered");
+			start();
+		}, 100);
+	});
+	
+	asyncTest("Show menu popup", function() {
+		var oMenuPopup = jQuery.sap.domById(oThingViewer.getId() + "-menu-popup");
+		var oMenuButton = jQuery.sap.domById(oThingViewer.getId() + "-menu-button");
+		expect(1);
+		qutils.triggerMouseEvent(oMenuButton, "click", 1, 1, 1, 1);
+		setTimeout(function() {
+			equal(oMenuPopup.style.display, 'block', "Menu popup opened");
+			start();
+		}, 100);
+	});
+	
+    test("menu down", function() {
+        var $oMenuPopup = jQuery.sap.byId(oThingViewer.getId() + "-menu-popup");
+        var ev;
+
+        //has 7 items
+        oThingViewer._iSelectedMenuItem = 5;
+
+        ev = jQuery.Event("keydown", { keyCode: 40 /*ARROW DOWN*/ });
+        $oMenuPopup.trigger(ev);
+        equal(oThingViewer._iSelectedMenuItem, 6, "Next menu item selected.");
+
+        ev = jQuery.Event("keydown", { keyCode: 39 /*ARROW RIGHT*/ });
+        $oMenuPopup.trigger(ev);
+        equal(oThingViewer._iSelectedMenuItem, 0, "Jump to the first after the last.");
+
+    });
+
+    test("menu up", function() {
+        var $oMenuPopup = jQuery.sap.byId(oThingViewer.getId() + "-menu-popup");
+        var ev;
+
+        //has 7 items
+        oThingViewer._iSelectedMenuItem = 1;
+
+        ev = jQuery.Event("keydown", { keyCode: 37 /*ARROW LEFT*/ });
+        $oMenuPopup.trigger(ev);
+        equal(oThingViewer._iSelectedMenuItem, 0, "Previous menu item selected.");
+
+        ev = jQuery.Event("keydown", { keyCode: 38 /*ARROW UP*/ });
+        $oMenuPopup.trigger(ev);
+        equal(oThingViewer._iSelectedMenuItem, 6, "Jump to the last after the first.");
+
+    });
+
+
+    asyncTest("Hide menu popup", function() {
+        var oMenuPopup = jQuery.sap.domById(oThingViewer.getId() + "-menu-popup");
+        var $oMenuPopup = jQuery.sap.byId(oThingViewer.getId() + "-menu-popup");
+        var ev;
+        ev = jQuery.Event("keydown", { keyCode: 27 /*ESCAPE*/ });
+        $oMenuPopup.trigger(ev);
+
+        setTimeout(function() {
+            equal(oMenuPopup.style.display, 'none', "Menu popup closed");
+            start();
+        }, 100);
+    });
+	</script>
+</head>
+
+<body class="sapUiBody">
+    <div id="qunit"></div>
+    <div id="uiArea1"></div>
+
+</body>
+</html>

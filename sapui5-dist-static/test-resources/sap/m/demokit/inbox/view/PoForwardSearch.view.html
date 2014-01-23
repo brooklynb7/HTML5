@@ -1,0 +1,14 @@
+<template data-controller-name="view.PoForwardSearch">
+	<div data-sap-ui-aggregation="content">
+		<div data-sap-ui-type="sap.m.List" id="contactList" data-inset="false" data-items="{contacts>/contacts}" data-mode="SingleSelectMaster">
+		<!--  div data-sap-ui-type="sap.m.List" id="people" data-inset="false" data-mode="SingleSelectMaster" data-select="listSelect"-->
+			<div data-sap-ui-aggregation="items">
+				<div data-sap-ui-type="sap.m.StandardListItem"
+					data-title="{contacts>name}"
+					data-description="{contacts>title}"
+					data-icon="{contacts>img}">
+				</div>
+			</div>
+		</div>
+	</div>
+</template>

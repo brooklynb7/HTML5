@@ -1,0 +1,137 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		
+		<title>Inbox - sap.uiext.inbox</title>
+		<script src="../../../../../resources/sap-ui-core.js"
+			type="text/javascript" 
+			id="sap-ui-bootstrap"
+			data-sap-ui-libs="sap.uiext.inbox"
+			data-sap-ui-theme="sap_goldreflection">
+		</script>
+		
+				    
+		<script>
+		var jsonData = {
+        "Tasks" : [
+        {
+        "__metadata" : {
+        "uri" : "/sap.com~tc~tm~wl~odata~web/BPMTasks.svc/Tasks('bpm://bpm.sap.com/task-instance/772e0a4d8f9a11e1b92500000031b78a')", "type" : "Inbox.Tasks"
+        }, "ID" : "bpm://bpm.sap.com/task-instance/772e0a4d8f9a11e1b92500000031b78a", "Category" : "TASK", "TaskName" : "LeaveReq", "TaskTitle" : "LeaveReq", "Status" : "RESERVED", "Priority" : "MEDIUM", "Requestor" : "", "CreatedOn" : "\/Date(1335439338973)\/", "StartDeadline" : "", "CompletionDeadline" : "", "TechnicalStatus" : "", "TechnicalPriority" : "", "LastChangedTime" : "\/Date(1339421412125)\/", "LastChangedBy" : "", "IsEscalated" : false, "HasComments" : false, "HasAttachments" : false, "HasPotentialOwners" : false, "TaskexecutionUrl" : ""
+        }, {
+        "__metadata" : {
+        "uri" : "/sap.com~tc~tm~wl~odata~web/BPMTasks.svc/Tasks('bpm://bpm.sap.com/task-instance/c03c97868ecb11e1b90900000031b78a')", "type" : "Inbox.Tasks"
+        }, "ID" : "bpm://bpm.sap.com/task-instance/c03c97868ecb11e1b90900000031b78a", "Category" : "TASK", "TaskName" : "Sales Order Approval", "TaskTitle" : "Sales Order Approval Task - 1234", "Status" : "RESERVED", "Priority" : "VERY_HIGH", "Requestor" : "", "CreatedOn" : "\/Date(1335350556977)\/", "StartDeadline" : "\/Date(1335436957423)\/", "CompletionDeadline" : "\/Date(1335696157427)\/", "TechnicalStatus" : "", "TechnicalPriority" : "", "LastChangedTime" : "\/Date(1339421412125)\/", "LastChangedBy" : "", "IsEscalated" : true, "HasComments" : false, "HasAttachments" : false, "HasPotentialOwners" : false, "TaskexecutionUrl" : ""
+        }, {
+        "__metadata" : {
+        "uri" : "/sap.com~tc~tm~wl~odata~web/BPMTasks.svc/Tasks('bpm://bpm.sap.com/task-instance/c03b30fd8ecb11e1bace00000031b78a')", "type" : "Inbox.Tasks"
+        }, "ID" : "bpm://bpm.sap.com/task-instance/c03b30fd8ecb11e1bace00000031b78a", "Category" : "TASK", "TaskName" : "Purchase Order Form", "TaskTitle" : "Purchase Order Form - Laptops", "Status" : "RESERVED", "Priority" : "HIGH", "Requestor" : "", "CreatedOn" : "\/Date(1335350556907)\/", "StartDeadline" : "\/Date(1335523357193)\/", "CompletionDeadline" : "", "TechnicalStatus" : "", "TechnicalPriority" : "", "LastChangedTime" : "\/Date(1339421412126)\/", "LastChangedBy" : "", "IsEscalated" : false, "HasComments" : false, "HasAttachments" : false, "HasPotentialOwners" : false, "TaskexecutionUrl" : ""
+        }, {
+        "__metadata" : {
+        "uri" : "/sap.com~tc~tm~wl~odata~web/BPMTasks.svc/Tasks('bpm://bpm.sap.com/task-instance/c0712ab28ecb11e1898d00000031b78a')", "type" : "Inbox.Tasks"
+        }, "ID" : "bpm://bpm.sap.com/task-instance/c0712ab28ecb11e1898d00000031b78a", "Category" : "TASK", "TaskName" : "Raise Purchase Request", "TaskTitle" : "Raise Purchase Request for iPAD", "Status" : "RESERVED", "Priority" : "MEDIUM", "Requestor" : "", "CreatedOn" : "\/Date(1335350556410)\/", "StartDeadline" : "", "CompletionDeadline" : "\/Date(1336041756660)\/", "TechnicalStatus" : "", "TechnicalPriority" : "", "LastChangedTime" : "\/Date(1339421412126)\/", "LastChangedBy" : "", "IsEscalated" : true, "HasComments" : false, "HasAttachments" : false, "HasPotentialOwners" : false, "TaskexecutionUrl" : ""
+        }, {
+        "__metadata" : {
+        "uri" : "/sap.com~tc~tm~wl~odata~web/BPMTasks.svc/Tasks('bpm://bpm.sap.com/task-instance/be6882d38ecb11e188c300000031b78a')", "type" : "Inbox.Tasks"
+        }, "ID" : "bpm://bpm.sap.com/task-instance/be6882d38ecb11e188c300000031b78a", "Category" : "TASK", "TaskName" : "Purchase Order Form", "TaskTitle" : "Purchase Order Form - Laptops", "Status" : "RESERVED", "Priority" : "HIGH", "Requestor" : "", "CreatedOn" : "\/Date(1335350554667)\/", "StartDeadline" : "\/Date(1335523354833)\/", "CompletionDeadline" : "", "TechnicalStatus" : "", "TechnicalPriority" : "", "LastChangedTime" : "\/Date(1339421412126)\/", "LastChangedBy" : "", "IsEscalated" : true, "HasComments" : false, "HasAttachments" : false, "HasPotentialOwners" : false, "TaskexecutionUrl" : ""
+        }, {
+        "__metadata" : {
+        "uri" : "/sap.com~tc~tm~wl~odata~web/BPMTasks.svc/Tasks('bpm://bpm.sap.com/task-instance/be4acb8c8ecb11e1cfc400000031b78a')", "type" : "Inbox.Tasks"
+        }, "ID" : "bpm://bpm.sap.com/task-instance/be4acb8c8ecb11e1cfc400000031b78a", "Category" : "TASK", "TaskName" : "Raise Purchase Request", "TaskTitle" : "Raise Purchase Request for iPAD", "Status" : "RESERVED", "Priority" : "MEDIUM", "Requestor" : "", "CreatedOn" : "\/Date(1335350554133)\/", "StartDeadline" : "", "CompletionDeadline" : "\/Date(1336041754297)\/", "TechnicalStatus" : "", "TechnicalPriority" : "", "LastChangedTime" : "\/Date(1339421412126)\/", "LastChangedBy" : "", "IsEscalated" : true, "HasComments" : false, "HasAttachments" : false, "HasPotentialOwners" : false, "TaskexecutionUrl" : ""
+        }, {
+        "__metadata" : {
+        "uri" : "/sap.com~tc~tm~wl~odata~web/BPMTasks.svc/Tasks('bpm://bpm.sap.com/task-instance/be2f84018ecb11e1b36300000031b78a')", "type" : "Inbox.Tasks"
+        }, "ID" : "bpm://bpm.sap.com/task-instance/be2f84018ecb11e1b36300000031b78a", "Category" : "TASK", "TaskName" : "Some Dummy Task", "TaskTitle" : "Some Dummy Task for you", "Status" : "READY", "Priority" : "LOW", "Requestor" : "", "CreatedOn" : "\/Date(1335350553633)\/", "StartDeadline" : "", "CompletionDeadline" : "", "TechnicalStatus" : "", "TechnicalPriority" : "", "LastChangedTime" : "\/Date(1339421412126)\/", "LastChangedBy" : "", "IsEscalated" : false, "HasComments" : false, "HasAttachments" : false, "HasPotentialOwners" : false, "TaskexecutionUrl" : ""
+        }
+        ], "__count" : "7"
+        };
+  
+  var jsonDataRefresh = {
+              "Tasks" : [
+              {
+              "__metadata" : {
+              "uri" : "/sap.com~tc~tm~wl~odata~web/BPMTasks.svc/Tasks('bpm://bpm.sap.com/task-instance/c0712ab28ecb11e1898d00000031b78a')", "type" : "Inbox.Tasks"
+              }, "ID" : "bpm://bpm.sap.com/task-instance/c0712ab28ecb11e1898d00000031b78a", "Category" : "TASK", "TaskName" : "Raise Purchase Request", "TaskTitle" : "Raise Purchase Request for iPAD", "Status" : "READY", "Priority" : "MEDIUM", "Requestor" : "", "CreatedOn" : "\/Date(1335350556410)\/", "StartDeadline" : "", "CompletionDeadline" : "\/Date(1336041756660)\/", "TechnicalStatus" : "", "TechnicalPriority" : "", "LastChangedTime" : "\/Date(1339421412126)\/", "LastChangedBy" : "", "IsEscalated" : true, "HasComments" : false, "HasAttachments" : false, "HasPotentialOwners" : false, "TaskexecutionUrl" : ""
+              }, {
+              "__metadata" : {
+              "uri" : "/sap.com~tc~tm~wl~odata~web/BPMTasks.svc/Tasks('bpm://bpm.sap.com/task-instance/be6882d38ecb11e188c300000031b78a')", "type" : "Inbox.Tasks"
+              }, "ID" : "bpm://bpm.sap.com/task-instance/be6882d38ecb11e188c300000031b78a", "Category" : "TASK", "TaskName" : "Purchase Order Form", "TaskTitle" : "Purchase Order Form - Laptops", "Status" : "RESERVED", "Priority" : "HIGH", "Requestor" : "", "CreatedOn" : "\/Date(1335350554667)\/", "StartDeadline" : "\/Date(1335523354833)\/", "CompletionDeadline" : "", "TechnicalStatus" : "", "TechnicalPriority" : "", "LastChangedTime" : "\/Date(1339421412126)\/", "LastChangedBy" : "", "IsEscalated" : true, "HasComments" : false, "HasAttachments" : false, "HasPotentialOwners" : false, "TaskexecutionUrl" : ""
+              }, {
+              "__metadata" : {
+              "uri" : "/sap.com~tc~tm~wl~odata~web/BPMTasks.svc/Tasks('bpm://bpm.sap.com/task-instance/be4acb8c8ecb11e1cfc400000031b78a')", "type" : "Inbox.Tasks"
+              }, "ID" : "bpm://bpm.sap.com/task-instance/be4acb8c8ecb11e1cfc400000031b78a", "Category" : "TASK", "TaskName" : "Raise Purchase Request", "TaskTitle" : "Raise Purchase Request for iPAD", "Status" : "COMPLETED", "Priority" : "MEDIUM", "Requestor" : "", "CreatedOn" : "\/Date(1335350554133)\/", "StartDeadline" : "", "CompletionDeadline" : "\/Date(1336041754297)\/", "TechnicalStatus" : "", "TechnicalPriority" : "", "LastChangedTime" : "\/Date(1339421412126)\/", "LastChangedBy" : "", "IsEscalated" : true, "HasComments" : false, "HasAttachments" : false, "HasPotentialOwners" : false, "TaskexecutionUrl" : ""
+              }, {
+              "__metadata" : {
+              "uri" : "/sap.com~tc~tm~wl~odata~web/BPMTasks.svc/Tasks('bpm://bpm.sap.com/task-instance/be2f84018ecb11e1b36300000031b78a')", "type" : "Inbox.Tasks"
+              }, "ID" : "bpm://bpm.sap.com/task-instance/be2f84018ecb11e1b36300000031b78a", "Category" : "TASK", "TaskName" : "Some Dummy Task", "TaskTitle" : "Some Dummy Task for you", "Status" : "READY", "Priority" : "LOW", "Requestor" : "", "CreatedOn" : "\/Date(1335350553633)\/", "StartDeadline" : "", "CompletionDeadline" : "", "TechnicalStatus" : "", "TechnicalPriority" : "", "LastChangedTime" : "\/Date(1339421412126)\/", "LastChangedBy" : "", "IsEscalated" : false, "HasComments" : false, "HasAttachments" : false, "HasPotentialOwners" : false, "TaskexecutionUrl" : ""
+              }
+              ], "__count" : "7"
+              };
+  
+  var jsonDataClaimed = {
+              "Tasks" : [
+              {
+              "__metadata" : {
+              "uri" : "/sap.com~tc~tm~wl~odata~web/BPMTasks.svc/Tasks('bpm://bpm.sap.com/task-instance/c0712ab28ecb11e1898d00000031b78a')", "type" : "Inbox.Tasks"
+              }, "ID" : "bpm://bpm.sap.com/task-instance/c0712ab28ecb11e1898d00000031b78a", "Category" : "TASK", "TaskName" : "Raise Purchase Request", "TaskTitle" : "Raise Purchase Request for iPAD", "Status" : "RESERVED", "Priority" : "MEDIUM", "Requestor" : "", "CreatedOn" : "\/Date(1335350556410)\/", "StartDeadline" : "", "CompletionDeadline" : "\/Date(1336041756660)\/", "TechnicalStatus" : "", "TechnicalPriority" : "", "LastChangedTime" : "\/Date(1339421412126)\/", "LastChangedBy" : "", "IsEscalated" : true, "HasComments" : false, "HasAttachments" : false, "HasPotentialOwners" : false, "TaskexecutionUrl" : ""
+              }, {
+              "__metadata" : {
+              "uri" : "/sap.com~tc~tm~wl~odata~web/BPMTasks.svc/Tasks('bpm://bpm.sap.com/task-instance/be6882d38ecb11e188c300000031b78a')", "type" : "Inbox.Tasks"
+              }, "ID" : "bpm://bpm.sap.com/task-instance/be6882d38ecb11e188c300000031b78a", "Category" : "TASK", "TaskName" : "Purchase Order Form", "TaskTitle" : "Purchase Order Form - Laptops", "Status" : "RESERVED", "Priority" : "HIGH", "Requestor" : "", "CreatedOn" : "\/Date(1335350554667)\/", "StartDeadline" : "\/Date(1335523354833)\/", "CompletionDeadline" : "", "TechnicalStatus" : "", "TechnicalPriority" : "", "LastChangedTime" : "\/Date(1339421412126)\/", "LastChangedBy" : "", "IsEscalated" : true, "HasComments" : false, "HasAttachments" : false, "HasPotentialOwners" : false, "TaskexecutionUrl" : ""
+              }, {
+              "__metadata" : {
+              "uri" : "/sap.com~tc~tm~wl~odata~web/BPMTasks.svc/Tasks('bpm://bpm.sap.com/task-instance/be4acb8c8ecb11e1cfc400000031b78a')", "type" : "Inbox.Tasks"
+              }, "ID" : "bpm://bpm.sap.com/task-instance/be4acb8c8ecb11e1cfc400000031b78a", "Category" : "TASK", "TaskName" : "Raise Purchase Request", "TaskTitle" : "Raise Purchase Request for iPAD", "Status" : "COMPLETED", "Priority" : "MEDIUM", "Requestor" : "", "CreatedOn" : "\/Date(1335350554133)\/", "StartDeadline" : "", "CompletionDeadline" : "\/Date(1336041754297)\/", "TechnicalStatus" : "", "TechnicalPriority" : "", "LastChangedTime" : "\/Date(1339421412126)\/", "LastChangedBy" : "", "IsEscalated" : true, "HasComments" : false, "HasAttachments" : false, "HasPotentialOwners" : false, "TaskexecutionUrl" : ""
+              }, {
+              "__metadata" : {
+              "uri" : "/sap.com~tc~tm~wl~odata~web/BPMTasks.svc/Tasks('bpm://bpm.sap.com/task-instance/be2f84018ecb11e1b36300000031b78a')", "type" : "Inbox.Tasks"
+              }, "ID" : "bpm://bpm.sap.com/task-instance/be2f84018ecb11e1b36300000031b78a", "Category" : "TASK", "TaskName" : "Some Dummy Task", "TaskTitle" : "Some Dummy Task for you", "Status" : "READY", "Priority" : "LOW", "Requestor" : "", "CreatedOn" : "\/Date(1335350553633)\/", "StartDeadline" : "", "CompletionDeadline" : "", "TechnicalStatus" : "", "TechnicalPriority" : "", "LastChangedTime" : "\/Date(1339421412126)\/", "LastChangedBy" : "", "IsEscalated" : false, "HasComments" : false, "HasAttachments" : false, "HasPotentialOwners" : false, "TaskexecutionUrl" : ""
+              }
+              ], "__count" : "7"
+              };
+
+		
+		
+	  		var locale = 'en';
+			var inx = new sap.uiext.inbox.Inbox("Inbox");
+			inx.setHandleBindings(false);
+			inx.openTaskExecutionUIOpenInNewTab = true;
+			//var taskFilter = new sap.uiext.inbox.TaskInitialFilters(["READY"],null,null,null);// (It is the Status, Priority filters as array)
+			var oModel = new sap.ui.model.json.JSONModel();
+		    oModel.setData(jsonData);
+
+			inx.setModel(oModel);
+			inx.bindTaskTypeDynamicFilter(function(){var t = [];t.push('Raise Purchase Request');t.push('Some Dummy Task');t.push('Purchase Order Form');t.push('LeaveReq');return t;})
+			inx.bindTaskTable("/Tasks",null);
+			inx.bindTaskExecutionURL(function(id){return "/demokit";},function(id){return "COMPLETED";});
+		    inx.bindSearch(function(){alert('Not Supported');});
+      		inx.attachRefresh(function(){oModel.setData(jsonDataRefresh);});
+      		inx.attachTaskAction(function(oEvent){alert(oEvent.getParameter('action'));alert(oEvent.getParameter('selectedIDs'));oModel.setData(jsonDataClaimed);});
+      		
+      		var exitButton = new sap.ui.commons.Button('ExitButton',{text: "ExitButton"});
+      		exitButton.attachPress(this,function(oEvent,view){
+				var oInbox = sap.ui.getCore().byId('Inbox');
+				oInbox.destroy();
+				var oInbox1 = new sap.uiext.inbox.Inbox('Inbox');
+				var oShell = sap.ui.getCore().byId('inboxShell');
+				oShell.setContent(oInbox1,true); 
+			});
+
+      		var oLayout2 = new sap.ui.commons.layout.VerticalLayout("Layout2");
+    		oLayout2.addContent(exitButton);
+    		oLayout2.addContent(inx);
+      		
+			var inboxShell = new sap.ui.ux3.Shell("inboxShell");
+			inboxShell.setAppTitle("BPM INBOX");
+			inboxShell.setShowLogoutButton(false);
+			inboxShell.setContent(oLayout2,true);
+			inboxShell.placeAt('inboxArea');
+		</script>
+		
+	</head>
+	<body  class="sapUiBody" role="application">
+		<div id="inboxArea"></div>
+	
+	</body>
+</html>

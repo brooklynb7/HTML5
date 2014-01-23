@@ -1,0 +1,131 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+    		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+        <title>Line Controls Test Page</title>
+        <script id="sap-ui-bootstrap"
+								data-sap-ui-theme="sap_goldreflection"
+                data-sap-ui-trace="false"
+                type="text/javascript"
+                data-sap-ui-libs="sap.ui.commons"
+                src="../../../../../resources/sap-ui-core.js"
+                >
+        </script>
+        <script src="../../../../../resources/sap-ui-debug.js"></script>
+        <script type="text/javascript">
+				var oCore = sap.ui.getCore();
+				oCore.attachInitEvent(function () {
+
+        var oButton = new sap.ui.commons.Button("button1");
+        oButton.setText("This is a Ñagçefox Button");
+        oButton.placeAt("uiArea1");
+
+        var oLabel = new sap.ui.commons.Label("label1"); 
+        oLabel.setText("Some Ñagçefox Label");
+        oLabel.placeAt("uiArea2");
+
+        var oInput = new sap.ui.commons.TextField('input1');
+        oInput.setValue("This is a Ñagçefox TextField");
+        oInput.setWidth("250px");
+        oInput.placeAt("uiArea3");
+
+        oButton = new sap.ui.commons.Button("button2");
+        oButton.setText("This is a Button with icon");
+        oButton.setIcon("images/rss-16x16.gif");
+        oButton.placeAt("uiArea4");
+
+        oLabel = new sap.ui.commons.Label("label2"); 
+        oLabel.setText("Some Label with icon");
+        oLabel.setIcon("images/rss-16x16.gif");
+        oLabel.placeAt("uiArea5");
+
+        oInput = new sap.ui.commons.TextField('input2');
+        oInput.setValue("This is a TextField with F4 help icon (not yet functional)");
+        oInput.setWidth("50px");
+        // TODO: set properties so F4 help icon appears; the same also for combo dropdown 
+        oInput.placeAt("uiArea6");
+
+        var oTextView = new sap.ui.commons.TextView("textview1"); 
+        oTextView.setText("Some TextView");
+        oTextView.placeAt("uiArea7");
+
+        var oCheckBox = new sap.ui.commons.CheckBox("checkbox1");
+        oCheckBox.setText("This is a Ñagçefox CheckBox");
+        oCheckBox.placeAt("uiArea_c1");
+
+        oCheckBox = new sap.ui.commons.CheckBox("checkbox2");
+        oCheckBox.setText("This is a disabled, checked CheckBox");
+        oCheckBox.setEnabled(false);
+        oCheckBox.setChecked(true);
+        oCheckBox.placeAt("uiArea_c2");
+
+        var oRadioButton = new sap.ui.commons.RadioButton("rb1");
+        oRadioButton.setText("This is a Ñagçefox RadioButton");
+        oRadioButton.placeAt("uiArea_r1");
+
+
+        // a matrix layout
+        var oLayout = new sap.ui.commons.layout.MatrixLayout("loginLyt");
+				oLayout.setLayoutFixed(false);
+
+        // first row
+        var oRow = new sap.ui.commons.layout.MatrixLayoutRow("uRow1");
+        oLayout.addRow(oRow);     
+         
+        var oCell = new sap.ui.commons.layout.MatrixLayoutCell("cell1");
+        oRow.addCell(oCell);
+        oLabel = new sap.ui.commons.Label("matrixLabel");
+        oLabel.setText("Name:");
+        oCell.addContent(oLabel);
+
+        oCell = new sap.ui.commons.layout.MatrixLayoutCell("cell2");
+        oRow.addCell(oCell);
+        oInput = new sap.ui.commons.TextField("matrixUsername");
+        if(oLabel.setLabelFor)oLabel.setLabelFor(oInput.getId());
+        oInput.setValue("Enter Name Here...");
+        oInput.setWidth("130px");
+        oCell.addContent(oInput);
+
+        oCell = new sap.ui.commons.layout.MatrixLayoutCell("cell3");
+        oRow.addCell(oCell);
+        oButton = new sap.ui.commons.Button("matrixButton");
+        oButton.setText("This is a Button");
+        oCell.addContent(oButton);
+
+        // second row, simpler syntax
+        oLabel = new sap.ui.commons.Label("matrixLabel2");
+        oLabel.setText("Something else:");
+        oInput = new sap.ui.commons.TextField("matrixInput2");
+        oInput.setWidth("130px");
+        oButton = new sap.ui.commons.Button("matrixButton2");
+        oButton.setText("Press!");
+        oLayout.createRow(oLabel, oInput, oButton);
+
+        oLayout.placeAt("uiArea8");
+    }
+);
+        </script>
+        <style>
+        </style>
+</head>
+    <body class="sapUiBody" role="application">
+        <h1>Checking vertical alignment of controls within one line (at least trying to...)</h1>
+        (currently not possible to put them into a line directly next to each other)<br>
+        In Platinum theme, the contents of each red box needs to be 21px high and if put next to each other, the text baselines need to be aligned:<br>
+
+        <div style="border: 1px solid red;margin:0;padding:0;" id="uiArea1"></div>
+        <div style="border: 1px solid red;margin:0;padding:0;" id="uiArea2"></div>
+        <div style="border: 1px solid red;margin:0;padding:0;" id="uiArea3"></div>
+        <div style="border: 1px solid red;margin:0;padding:0;" id="uiArea4"></div>
+        <div style="border: 1px solid red;margin:0;padding:0;" id="uiArea5"></div>
+        <div style="border: 1px solid red;margin:0;padding:0;" id="uiArea6"></div>
+        <div style="border: 1px solid red;margin:0;padding:0;" id="uiArea7"></div>
+        <div style="border: 1px solid red;margin:0;padding:0;" id="uiArea_c1"></div>
+        <div style="border: 1px solid red;margin:0;padding:0;" id="uiArea_c2"></div>
+        <div style="border: 1px solid red;margin:0;padding:0;" id="uiArea_r1"></div>
+        <br>
+        MatrixLayout with line controls:
+        <div style="border: 1px solid red;margin:0;padding:0;" id="uiArea8"></div>
+    </body>
+</html>

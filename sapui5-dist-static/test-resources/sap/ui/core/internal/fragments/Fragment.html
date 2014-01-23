@@ -1,0 +1,109 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+		<title>Fragment - sap.ui.core</title>
+
+		<script id="sap-ui-bootstrap"
+				type="text/javascript"
+				src="../../../../../../resources/sap-ui-core.js"
+				data-sap-ui-xx-test-mobile="true"
+				data-sap-ui-theme="sap_bluecrystal">
+		</script>
+
+
+		<script>
+			try{
+				sap.ui.getCore().loadLibrary("sap.m");
+			}catch(e){
+				alert("This test page requires the library 'sap.m' which is not available.");
+				throw(e);
+			}
+			
+			try {
+				sap.ui.getCore().loadLibrary("sap.ui.commons");
+			} catch (e) {
+				alert("This test page requires the library 'sap.ui.commons' which is not available.");
+				throw (e);
+			}
+
+			// set application namespace. Views and controller are loaded relative to this page
+			jQuery.sap.registerModulePath("sap.ui.core.fragmenttest", "./");
+
+			
+			// Data Binding preparation
+			var data = {
+				someText: "Text from Databinding"
+			};
+			var oModel = new sap.ui.model.json.JSONModel();
+			oModel.setData(data);
+			
+			
+			// define XML View and place it onto the page
+			var view = sap.ui.view({
+				id : "myView",
+				viewName : "sap.ui.core.fragmenttest.TestFragment",
+				type : sap.ui.core.mvc.ViewType.XML
+			});
+			view.setModel(oModel);
+			view.placeAt("content");
+			
+			
+			
+			// Panel for inline Fragments
+			
+			var panel = new sap.ui.commons.Panel({
+				text: "Direct inline-defined content"
+			});
+			
+			// XML Fragment
+			var xml = '<Button id="inlineXmlFragBtn" xmlns="sap.ui.commons" text="This Button is inside an inline XML Fragment"></Button>';
+			var fragment = sap.ui.xmlfragment({fragmentContent:xml});
+			panel.addContent(fragment);
+			
+			// HTML Fragment
+			var html = '<template><div id="inlineHtmlFragBtn" data-sap-ui-type="sap.ui.commons.Button" data-text="This Button is in an inline HTML Fragment" ></div></template>';
+			fragment = sap.ui.htmlfragment({fragmentContent:html});
+			panel.addContent(fragment);
+			
+			panel.placeAt('content');
+			
+			
+			// multi-root JS Fragment
+			var aFragmentControls = sap.ui.jsfragment({fragmentName:"sap.ui.core.fragmenttest.MultiRootFragment"});
+			for (var i = 0; i < aFragmentControls.length; i++) {
+				aFragmentControls[i].placeAt("multirootJS");
+			}
+			
+			
+			// multi-root XML Fragment
+			var aFragmentControls = sap.ui.xmlfragment({fragmentName:"sap.ui.core.fragmenttest.MultiRootFragment"});
+			for (var i = 0; i < aFragmentControls.length; i++) {
+				aFragmentControls[i].placeAt("multirootXML");
+			}
+			
+			// XML Fragment with multi-root XML Fragment as child
+			sap.ui.xmlfragment({fragmentName:"sap.ui.core.fragmenttest.FragmentWithMultiRootFragmentAsChild"}).placeAt("multirootXMLAsChild");
+			
+		</script>
+	</head>
+
+	<body class="sapUiBody" role="application">
+		<h1>Test Page for sap.ui.core.Fragment</h1>
+		<div id="content"></div>
+		
+		<hr>
+		
+		<h3>Multi-root JS Fragment:</h3>
+		<div id="multirootJS"></div>
+		
+		<h3>Multi-root XML Fragment:</h3>
+		<div id="multirootXML"></div>
+		
+		<h3>XML Fragment with Multi-root XML Fragment as child:</h3>
+		<div id="multirootXMLAsChild"></div>
+		
+		
+	</body>
+</html>

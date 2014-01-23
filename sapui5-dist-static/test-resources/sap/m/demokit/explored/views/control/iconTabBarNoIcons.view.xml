@@ -1,0 +1,35 @@
+<core:View
+	xmlns="sap.m"
+	xmlns:l="sap.ui.layout"
+	xmlns:core="sap.ui.core" >
+	<l:VerticalLayout
+		width="100%">
+		<l:content>
+			<Text id="description" class="marginAll" />
+
+			<IconTabBar
+				id="idIconTabBarNoIcons"
+				expanded="{device>/isNoPhone}">
+				<items>
+					<IconTabFilter
+						text="Info">
+						<Text text="Info content goes here ..." />
+					</IconTabFilter>
+					<IconTabFilter
+						text="Attachments">
+						<Text text="Attachments go here ..." />
+					</IconTabFilter>
+					<IconTabFilter
+						text="Notes">
+						<Text text="Notes go here ..." />
+					</IconTabFilter>
+					<IconTabFilter
+						text="People">
+						<Text text="People content goes here ..." />
+					</IconTabFilter>
+				</items>
+			</IconTabBar>
+
+		</l:content>
+	</l:VerticalLayout>
+</core:View>

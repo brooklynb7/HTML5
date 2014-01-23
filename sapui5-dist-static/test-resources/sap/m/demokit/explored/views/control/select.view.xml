@@ -1,0 +1,42 @@
+<core:View
+	xmlns="sap.m"
+	xmlns:l="sap.ui.layout"
+	xmlns:core="sap.ui.core" >
+	<Page
+		showHeader="false"
+		class="marginBoxContent">
+		<subHeader>
+			<Bar>
+				<contentRight>
+					<Select
+						autoAdjustWidth="true"
+						items="{ path: '/ProductCollection', sorter: { path: 'Name' } }">
+							<core:Item key="{ProductId}" text="{Name}" />
+					</Select>
+				</contentRight>
+			</Bar>
+		</subHeader>
+		<content>
+			<VBox>
+				<Text id="description" class="marginTopBottom" />
+				<Select
+					items="{ path: '/ProductCollection', sorter: { path: 'Name' } }">
+						<core:Item key="{ProductId}" text="{Name}" />
+				</Select>
+			</VBox>
+		</content>
+		<footer>
+			<Bar>
+				<contentRight>
+					<Select
+						type="IconOnly"
+						icon="sap-icon://filter"
+						autoAdjustWidth="true"
+						items="{ path: '/ProductCollection', sorter: { path: 'Name' } }">
+							<core:Item key="{ProductId}" text="{Name}" />
+					</Select>
+				</contentRight>
+			</Bar>
+		</footer>
+	</Page>
+</core:View>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Test Page for sap.suite.ui.commons.VerticalNavigationBar</title>
+
+    <!-- UI5 Bootstrap -->
+    <script src="../../../../../resources/sap-ui-core.js"
+            type="text/javascript"
+            id="sap-ui-bootstrap"
+            data-sap-ui-libs="sap.ui.commons, sap.suite.ui.commons"
+            data-sap-ui-theme="sap_goldreflection"></script>
+
+    <script type="text/javascript">
+
+        var oData = {
+            items : [{
+                key : "overview",
+                text : "Overview"
+            }, {
+                key : "contacts",
+                text : "Contacts Lorem Ipsum Dolores",
+                quantity: 25543
+            }, {
+                key : "items",
+                text : "Items",
+                quantity: 3,
+                tooltip: "Custom tooltip for Items"
+            }, {
+                key : "related_documents",
+                text : "Related Documents",
+                quantity: 0
+            }, {
+                key : "addresses",
+                text : "Addresses",
+                quantity: 0
+            }, {
+                key : "activities",
+                text : "Activities",
+                quantity: 0
+            }, {
+                key : "Leads",
+                text : "Leads",
+                quantity: 0
+            }, {
+                key : "bank_details",
+                text : "Bank Details",
+                quantity: 0
+            }, {
+                key : "analytics",
+                text : "Analytics",
+                quantity: 0
+            }]
+        };
+
+        var oNavBarItemTemplate = new sap.suite.ui.commons.CountingNavigationItem({
+            key : "{key}",
+            text : "{text}",
+            quantity: "{quantity}",
+            tooltip: "{tooltip}"
+        });
+
+        var oNavBar = new sap.suite.ui.commons.VerticalNavigationBar({
+            id: "navBar",
+            items: {
+                path : "/items",
+                template : oNavBarItemTemplate
+            },
+            select: function(oEvent) {
+                alert("Navigation item '" + oEvent.getParameters().itemId +  "' selected.");
+            }
+        });
+
+        var oModel = new sap.ui.model.json.JSONModel();
+        oModel.setData(oData);
+        oNavBar.setModel(oModel);
+        oNavBar.placeAt("contentArea1");
+    </script>
+</head>
+
+<body class="sapUiBody" role="application">
+    <h1>VerticalNavigationBar - sap.suite.ui.commons</h1>
+    <div id="contentArea1" style="width: 250px; border: 1px solid black"></div>
+</body>
+</html>

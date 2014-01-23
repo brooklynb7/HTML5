@@ -1,0 +1,203 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		
+		<title>Popover - sap.m</title>
+		<script src="../../../../resources/sap-ui-core.js"
+			type="text/javascript" 
+			id="sap-ui-bootstrap"
+			data-sap-ui-libs="sap.m"
+			data-sap-ui-theme="sap_mvi">
+		</script>
+		
+		<script type="text/javascript">
+			jQuery.sap.initMobile();
+//create the list
+			var oList2 = new sap.m.List({
+				inset : true
+			});
+			
+			var data = {
+				navigation : [ {
+					title : "Travel Expend",
+					description : "Access the travel expend workflow",
+					icon : "../images/travel_expend.png",
+					iconInset : false,
+					type : "Navigation",
+					press : 'detailPage'
+				}, {
+					title : "Travel and expense report",
+					description : "Access travel and expense reports",
+					icon : "../images/travel_expense_report.png",
+					iconInset : false,
+					type : "Navigation",
+					press : 'detailPage'
+				}, {
+					title : "Travel Request",
+					description : "Access the travel request workflow",
+					icon : "../images/travel_request.png",
+					iconInset : false,
+					type : "Navigation",
+					press : 'detailPage'
+				}, {
+					title : "Work Accidents",
+					description : "Report your work accidents",
+					icon : "../images/wounds_doc.png",
+					iconInset : false,
+					type : "Navigation",
+					press : 'detailPage'
+				}, {
+					title : "Travel Settings",
+					description : "Change your travel worflow settings",
+					icon : "../images/settings.png",
+					iconInset : false,
+					type : "Navigation",
+					press : 'detailPage'
+				} ]
+			};
+			
+			var oItemTemplate1 = new sap.m.StandardListItem({
+				title : "{title}",
+				description : "{description}",
+				icon : "{icon}",
+				iconInset : "{iconInset}",
+				type : "{type}"
+			});
+			
+			function bindListData(data, itemTemplate, list)
+			{
+				var oModel = new sap.ui.model.json.JSONModel();
+				// set the data for the model
+				oModel.setData(data);
+				// set the model to the list
+				list.setModel(oModel);
+
+				// bind Aggregation
+				list.bindAggregation("items", "/navigation", itemTemplate);
+			}
+			
+			bindListData(data, oItemTemplate1, oList2)
+//end of the list creation
+
+//create the scrollContainer
+			var oScrollContainer = new sap.m.ScrollContainer({
+				horizontal: false,
+				vertical: true,
+				content: oList2
+			});
+			
+			
+			
+			var oLeftButton = new sap.m.Button({
+				text: "Modal",
+				type: sap.m.ButtonType.Reject,
+				press: function(){
+					oPopover.setModal(!oPopover.getModal());
+				}
+			});
+			
+			
+			var oRightButton = new sap.m.Button({
+				text: "Close",
+				type: sap.m.ButtonType.Accept,
+				press: function(){
+					oPopover.close();
+				}
+			});
+			
+			
+			var footer = new sap.m.Bar({ 
+				contentLeft: [],	
+				contentMiddle: [new sap.m.Button({icon: "../images/feed@2x.png"}),
+				                new sap.m.Button({icon: "../images/favorite@2x.png"}),
+				                new sap.m.Button({icon: "../images/flag@2x.png"})],
+				contentRight: []
+			});
+			
+			var oPopover = new sap.m.Popover("c.a.b.d", {
+				placement: sap.m.PlacementType.Bottom,
+				title: "Popover",
+				showHeader: true,
+				leftButton: oLeftButton,
+				rightButton: oRightButton,
+				footer: footer,
+				offsetX: 156,
+				offsetY: 80,
+				content: [
+					oScrollContainer
+				]
+			});
+			
+			var oLeftButton1 = new sap.m.Button({
+				text: "Modal",
+				type: sap.m.ButtonType.Reject,
+				press: function(){
+					oPopover1.setModal(!oPopover1.getModal());
+				}
+			});
+			
+			
+			var oRightButton1 = new sap.m.Button({
+				text: "Close",
+				type: sap.m.ButtonType.Accept,
+				press: function(){
+					oPopover1.close();
+				}
+			});
+			
+			
+			var footer1 = new sap.m.Bar({ 
+				contentLeft: [],	
+				contentMiddle: [new sap.m.Button({icon: "../images/feed@2x.png"}),
+				                new sap.m.Button({icon: "../images/favorite@2x.png"}),
+				                new sap.m.Button({icon: "../images/flag@2x.png"})],
+				contentRight: []
+			});
+			
+			var oPopover1 = new sap.m.Popover("a.b.c.d", {
+				placement: sap.m.PlacementType.Bottom,
+				title: "Popover",
+				showHeader: true,
+				leftButton: oLeftButton1,
+				rightButton: oRightButton1,
+				footer: footer1,
+				offsetX: 186,
+				offsetY: 80,
+				content: [
+					new sap.m.Button({text: "click me, I need to be long enough :)"})
+				]
+			});
+			
+			jQuery(function(){
+				jQuery("#p").bind("click", function(){
+					oPopover.openBy(this);	
+				});
+				
+				
+				jQuery("#p1").bind("click", function(){
+					oPopover1.openBy(this);	
+				});
+			});
+			
+			
+			
+			
+		</script>
+		<style>
+			#setter{
+				position: absolute;
+				right: 100px;
+				top: 300px;
+			}
+		</style>
+	</head>
+	<body id="body" class="sapUiBody">
+		<h3>Some SVG</h3>
+    
+	    <svg xmlns="http://www.w3.org/2000/svg">
+	        <polyline id="p" fill="red" points="30,90 30,130 340,130 340,90 270,90 245,50 125,50 100,90" />
+	        <polyline id="p1" fill="black" points="330,90 330,130 640,130 640,90 570,90 545,50 425,50 400,90" />
+	    </svg>
+	</body>
+</html>

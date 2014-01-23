@@ -1,0 +1,331 @@
+{
+	"SAPVB": {
+		"version": "2.0",
+		"xmlns:VB": "VB",
+		"Resources": {
+			"Set": {
+				"Resource": [
+					{
+						"name": "flag.png",
+						"value": "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"
+					}
+				]
+			}
+		},
+		"Windows": {
+			"Set": {
+				"Window": {
+					"id": "Window1",
+					"type": "geo",
+					"refScene": "Scene1"
+				}
+			}
+		},
+		"Data": {
+			"Set": {
+				"N": [
+					{
+						"name": "Buildings"
+					},
+					{
+						"name": "Pies"
+					},
+					{
+						"name": "Flags"
+					},
+					{
+						"name": "Table1",
+						"E": [
+							{
+								"C1": "8.6431509;49.29340323;0.0",
+								"C2": "Walldorf"
+							},
+							{
+								"C1": "1.0;0.0;0.0",
+								"C2": "Tooltip2"
+							},
+							{
+								"C1": "2.0;0.0;0.0",
+								"C2": "Tooltip3"
+							},
+							{
+								"C1": "3.0;0.0;0.0",
+								"C2": "Tooltip4"
+							}
+						]
+					},
+					{
+						"name": "DetailData1",
+						"E": [
+							{
+								"T": "Dietmar-Hopp-Allee 16"
+							},
+							{
+								"T": "69190 Walldorf"
+							},
+							{
+								"T": "06227 747474"
+							},
+							{
+								"T": "www.sap.com"
+							}
+						]
+					}
+				]
+			}
+		},
+		"DataTypes": {
+			"Set": {
+				"N": [
+					{
+						"name": "Buildings",
+						"A": [
+							{
+								"name": "GeoPosition",
+								"alias": "pos",
+								"type": "vector"
+							},
+							{
+								"name": "Scale",
+								"alias": "scale",
+								"type": "vector"
+							}
+						]
+					},
+					{
+						"name": "Pies",
+						"A": [
+							{
+								"name": "GeoPosition",
+								"alias": "pos",
+								"type": "vector"
+							},
+							{
+								"name": "Scale",
+								"alias": "scale",
+								"type": "vector"
+							}
+						],
+						"N": {
+							"name": "Series",
+							"A": [
+								{
+									"name": "Val",
+									"alias": "val",
+									"type": "string"
+								},
+								{
+									"name": "Name",
+									"alias": "name",
+									"type": "string"
+								}
+							]
+						}
+					},
+					{
+						"name": "Flags",
+						"A": {
+							"name": "GeoPosition",
+							"alias": "pos",
+							"type": "vector"
+						}
+					},
+					{
+						"name": "Table1",
+						"A": [
+							{
+								"name": "GeoPosition",
+								"type": "vector",
+								"alias": "C1"
+							},
+							{
+								"name": "ToolTip",
+								"type": "string",
+								"alias": "C2"
+							}
+						]
+					},
+					{
+						"name": "DetailData1",
+						"A": {
+							"name": "Text",
+							"type": "string",
+							"alias": "T"
+						}
+					}
+				]
+			}
+		},
+		"Scenes": {
+			"Set": {
+				"SceneGeo": {
+					"id": "Scene1",
+					"refMapLayerStack": "Stack1",
+					"initialStartPosition": "0;0;0",
+					"initialZoom": "2",
+               "VO": [
+						{
+							"id": "PIECHARTS",
+							"type": "{00100000-2012-0004-B001-383477EA1DEB}",
+							"datasource": "Pies",
+							"series.bind": "Pies.Series",
+							"value.bind": "Pies.Series.Val",
+							"text.bind": "Pies.Series.Name",
+							"tooltip": "Chart",
+							"scale.bind": "Pies.Scale",
+							"pos.bind": "Pies.GeoPosition",
+							"fxsize": "true"
+						},
+						{
+							"id": "CONTAINER",
+							"type": "{00100000-2012-0004-B001-BFED458C3076}",
+							"datasource": "Buildings",
+							"pos.bind": "Buildings.GeoPosition",
+							"scale.bind": "Buildings.Scale",
+							"fxdir": "false",
+							"fxsize": "true",
+							"texture": "building.dds"
+						},
+						{
+							"id": "FLAG",
+							"type": "{00100000-2012-0004-B001-64592B8DB964}",
+							"datasource": "Flags",
+							"image": "flag.png",
+							"pos.bind": "Flags.GeoPosition",
+							"fxdir": "true",
+							"fxsize": "true",
+							"scale": "2;2;1"
+						}
+					]
+				},
+				"Scene": {
+					"id": "Details",
+					"navControlVisible": "false",
+					"VO": [
+						{
+							"id": "SUBCAPTION",
+							"type": "{00100000-2013-1000-1100-50059A6A47FA}",
+							"left": "0",
+							"top": "0",
+							"right": "300",
+							"bottom": "20",
+							"design": "0",
+							"level": "3",
+							"text": "SAP Walldorf"
+						},
+						{
+							"id": "LINE00",
+							"type": "{00100000-2013-1000-3700-AD84DDBBB31B}",
+							"noColon": "1",
+							"left": "0",
+							"top": "25",
+							"right": "300",
+							"bottom": "40",
+							"text.bind": "DetailData1.0.Text"
+						},
+						{
+							"id": "LINE01",
+							"type": "{00100000-2013-1000-3700-AD84DDBBB31B}",
+							"noColon": "1",
+							"left": "0",
+							"top": "41",
+							"right": "300",
+							"bottom": "56",
+							"text.bind": "DetailData1.1.Text"
+						},
+						{
+							"id": "LINE02",
+							"type": "{00100000-2013-1000-3700-AD84DDBBB31B}",
+							"noColon": "1",
+							"left": "0",
+							"top": "57",
+							"right": "300",
+							"bottom": "72",
+							"text.bind": "DetailData1.2.Text"
+						},
+						{
+							"id": "LINE03",
+							"type": "{00100000-2013-1000-3700-AD84DDBBB31B}",
+							"noColon": "1",
+							"left": "0",
+							"top": "73",
+							"right": "300",
+							"bottom": "88",
+							"text.bind": "DetailData1.3.Text"
+						},
+						{
+							"id": "Link1",
+							"type": "{00100000-2013-1000-2400-D305F7942B98}",
+							"reference": "BTN1",
+							"autoexecute": "0",
+							"left": "0",
+							"top": "95",
+							"right": "80",
+							"bottom": "113",
+							"text": "Button 1"
+						},
+						{
+							"id": "Link2",
+							"type": "{00100000-2013-1000-2400-D305F7942B98}",
+							"reference": "BTN2",
+							"autoexecute": "0",
+							"left": "80",
+							"top": "95",
+							"right": "160",
+							"bottom": "113",
+							"text": "Button 2"
+						}
+					]
+				}
+			}
+		},
+		"MapLayerStacks": {
+			"Set": {
+				"MapLayerStack": {
+					"name": "Stack1",
+					"MapLayer": {
+						"name": "layer1",
+						"refMapProvider": "OVITERRAIN"
+					}
+				}
+			}
+		},
+		"MapProviders": {
+			"Set": {
+				"MapProvider": {
+					"name": "OVITERRAIN",
+					"type": "",
+					"description": "",
+					"tileX": "256",
+					"tileY": "256",
+					"maxLOD": "19",
+					"copyright": "Maps © 2012 Nokia",
+					"Source": {
+						"id": "server1",
+						"url": "http://maps.nlp.nokia.com/maptiler/v2/maptile/newest/terrain.day/{LOD}/{X}/{Y}/256/png8?token=OvJJVLXUQZGWHmYf1HZCFg&app_id=TSCNwGZFblBU5DnJLAH8"
+					}
+				}
+			}
+		},
+		"Actions": {
+			"Set": {
+				"Action": [
+					{
+						"id": "1",
+						"name": "CLICK_ON_FLAG",
+						"refScene": "Scene1",
+						"refVO": "FLAG",
+						"refEvent": "Click"
+					},
+					{
+						"id": "2",
+						"name": "CLICK_ON_CONTAINER",
+						"refScene": "Scene1",
+						"refVO": "CONTAINER",
+						"refEvent": "Click"
+					}
+				]
+			}
+		}
+	}
+}

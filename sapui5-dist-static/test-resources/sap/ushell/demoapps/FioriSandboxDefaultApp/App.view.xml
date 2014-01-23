@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Copyright (c) 2013 SAP AG, All Rights Reserved -->
+<core:View controllerName="sap.ushell.demoapps.FioriSandboxDefaultApp.App"
+	xmlns:core="sap.ui.core" xmlns="sap.m">
+
+	<App>
+		<Page title="Default Application for the Fiori Launchpad Sandbox">
+			<content>
+				<Panel headerText="Apps Configured for Sandbox Shell">
+					<List id="applist" noDataText="No applications found in configuration"
+						items="{path: '/apps'}">
+						<CustomListItem>
+							<Link href="{href}" text="{appDescription}" />
+						</CustomListItem>
+					</List>
+				</Panel>
+			</content>
+		</Page>
+	</App>
+
+</core:View>

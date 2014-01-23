@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta charset="UTF-8">
+
+	<title>Mobile Apps</title>
+
+	<script id="sap-ui-bootstrap" 
+		src="../../../../../resources/sap-ui-core.js"
+		data-sap-ui-theme="sap_bluecrystal"
+		data-sap-ui-xx-bindingSyntax="complex"
+		data-sap-ui-libs="sap.m">
+	</script>
+	
+	<style>
+		@font-face {
+			font-family: 'brandico';
+			font-style: 'normal';
+			font-weight: 'normal';
+			src: url('demoAppsIconFont.eot') ;
+			src: url('demoAppsIconFont.eot?#iefix') format('embedded-opentype'), url('demoAppsIconFont.ttf') format('truetype');
+		}
+	</style>
+
+	<link rel="stylesheet" type="text/css" href="style.css">
+
+	<script>
+	
+		// Tell UI5 where to find app content
+		jQuery.sap.registerModulePath('Config', 'Config');
+		jQuery.sap.registerModulePath('App', 'App');
+		var homePage = sap.ui.xmlview("App", "App");
+		var app = new sap.m.App();
+		app.addPage(homePage);
+		app.placeAt("content");
+		
+	</script>
+</head>
+<body class="sapUiBody" id="content">
+</body>
+</html>

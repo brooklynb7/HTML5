@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+		<title>ThemeCheck - sap.ui.core</title>
+
+		<script id="sap-ui-bootstrap" 
+				type="text/javascript"
+				src="../../../../../resources/sap-ui-core.js"
+				data-sap-ui-theme="sap_goldreflection"
+				data-sap-ui-libs="sap.ui.core">
+		</script>
+
+		<script>
+		sap.ui.getCore().attachInitEvent(function(){
+			jQuery("#content").append("Theme loaded in init event: "+sap.ui.getCore().isThemeApplied()+"<br>");
+		});
+		sap.ui.getCore().attachThemeChanged(function(){
+			jQuery("#content").append("Theme loaded in theme changed event: "+sap.ui.getCore().isThemeApplied()+"<br>");
+		});
+		</script>
+	</head>
+	<body class="sapUiBody" role="application">
+		<div id="content"></div>
+	</body>
+</html>
+		

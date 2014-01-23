@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html data-sap-ui-dk-category="Controls/Complex" data-sap-ui-dk-controls="sap.suite.ui.commons.VerticalNavigationBar">
+<head>
+    <meta charset="UTF-8">
+    <title>VerticalNavigationBar - sap.suite.ui.commons</title>
+
+    <!-- Bootstrap -->
+    <script id="sap-ui-bootstrap" type="text/javascript"
+            src="../../../../../../resources/sap-ui-core.js"
+            data-sap-ui-theme="sap_goldreflection"
+            data-sap-ui-libs="sap.ui.commons, sap.ui.ux3, sap.ui.demokit, sap.suite.ui.commons">
+    </script>
+    <script src="../../../../../../js/utils.js"></script>
+
+    <!-- Example 1 script -->
+    <script id='verticalNavBar1' type='text/javascript'>
+        var oData = {
+            items : [
+                {
+                    key : "overview",
+                    text : "Overview"
+                },
+                {
+                    key : "contacts",
+                    text : "Contacts",
+                    quantity: 3
+                },
+                {
+                    key : "item3",
+                    text : "Item w/o Count"
+                },
+                {
+                    key : "item4",
+                    text : "Item with Count",
+                    quantity: 12
+                },
+                {
+                    key : "item5",
+                    text : "Very Long Item With Default Tooltip",
+                    quantity: 25543
+                },
+                {
+                    key : "item6",
+                    text : "Custom Tooltip Item",
+                    quantity: 7,
+                    tooltip: "Custom tooltip text is provided for this item"
+                }
+            ]
+        };
+
+        // Create a navigation item template as instance of CountingNavigationItem control
+        var oNavBarItemTemplate = new sap.suite.ui.commons.CountingNavigationItem({
+            key : "{key}",
+            text : "{text}",
+            quantity: "{quantity}",
+            tooltip: "{tooltip}"
+        });
+
+        // Create a VerticalNavigationBar instance
+        var oNavBar = new sap.suite.ui.commons.VerticalNavigationBar({
+            id: "navBar",
+            items: {
+                path : "/items",
+                template : oNavBarItemTemplate
+            },
+            select: function(oEvent) {
+                alert("Navigation item with key='" + oEvent.getParameters().item.getKey() +
+                                      "'\n        and id='" + oEvent.getParameters().itemId + "' selected.");
+            }
+        });
+
+        // Apply model to Navigation Bar and select second item by default
+        var oModel = new sap.ui.model.json.JSONModel();
+        oModel.setData(oData);
+        oNavBar.setModel(oModel);
+        oNavBar.setSelectedItem(oNavBar.getItems()[1]);
+
+        // Create a BorderLayout instance
+        var oBorderLayout1 = new sap.ui.commons.layout.BorderLayout("BorderLayout1", {
+            width: "500px", height: "200px",
+            begin: new sap.ui.commons.layout.BorderLayoutArea({
+                size: "250px",
+                visible: true,
+                content: [oNavBar]
+            })
+        });
+
+        // Attach the BorderLayout to the page
+        oBorderLayout1.placeAt("navi");
+
+
+    </script>
+</head>
+
+<body class="sapUiDemokitBody" role="application">
+<h1 color="Blue" icon="images/ctrls/vertnavbar-icon.png">VerticalNavigationBar</h1>
+
+<h2>Introduction</h2>
+<p>This control extends the <a class="sapUiDemokitSrcLink"  href="../../../../../../test-resources/sap/ui/ux3/demokit/NavigationBar.html">sap.ui.ux3.NavigationBar</a>
+    and allows you to display navigation items vertically.
+    The navigation list can contain <a class="sapUiDemokitSrcLink" href="../../../../../../docs/api/symbols/sap.ui.ux3.NavigationItem.html">NavigationItem</a>
+    or <a class="sapUiDemokitSrcLink" href="../../../../../../docs/api/symbols/sap.suite.ui.commons.CountingNavigationItem.html">CountingNavigationItem</a> controls.
+    The <code>CountingNavigationItem</code> control can display the number of items on a corresponding content area. It also provides a rich tooltip that can appear and disappear after a certain delay. 
+</p>
+<br/>
+
+<h2>Keyboard Support</h2>
+<p>Use <code>arrow keys</code> to navigate through the items and <code>Spacebar</code> or <code>Enter</code> to choose the items.</p>
+
+<h2>Example</h2>
+<div code-sample="navi" script="verticalNavBar1"></div>
+
+
+<br/>
+<p><a class="sapUiDemokitSrcLink" href="../../../../../../docs/api/symbols/sap.suite.ui.commons.VerticalNavigationBar.html">VerticalNavigationBar API documentation</a></p>
+<p><a class="sapUiDemokitSrcLink" href="../../../../../../docs/api/symbols/sap.suite.ui.commons.CountingNavigationItem.html">CountingNavigationItem API documentation</a></p>
+<br/>
+</body>
+</html>

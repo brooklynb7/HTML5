@@ -1,0 +1,21 @@
+.stdMarginTop {
+       margin-top: 1rem;
+}
+
+.stdMarginBottom {
+       margin-bottom: 1rem;
+}
+
+.lineItemList {
+       padding: 1rem;
+       width: 100%; 
+       box-sizing : border-box;
+}
+
+.sap-phone .lineItemList {
+       padding: 1rem 0 0;
+}
+
+.recipientDialog.sapMDialog .sapMDialogScrollCont {
+       padding: 0rem;
+}

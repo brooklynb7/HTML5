@@ -1,0 +1,2 @@
+// Copyright (c) 2013 SAP AG, All Rights Reserved
+(function(){"use strict";jQuery.sap.declare("sap.ushell.ui.tile.StaticTileRenderer");jQuery.sap.require("sap.ushell.ui.tile.TileBaseRenderer");sap.ushell.ui.tile.StaticTileRenderer=sap.ui.core.Renderer.extend(sap.ushell.ui.tile.TileBaseRenderer);sap.ushell.ui.tile.StaticTileRenderer.renderPart=function(r,c){r.write("<span");r.addClass("sapUshellStaticTile");r.writeClasses();r.write(">");r.write("</span>")}}());

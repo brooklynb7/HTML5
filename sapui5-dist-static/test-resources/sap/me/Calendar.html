@@ -1,0 +1,120 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+<title>Calendar - sap.me</title>
+
+<script src="../../../resources/sap-ui-core.js" type="text/javascript"
+	id="sap-ui-bootstrap" data-sap-ui-libs="sap.m, sap.me"
+	data-sap-ui-theme="sap_bluecrystal">    
+</script>
+
+<script type="text/javascript">
+	//no var to ease debug from console
+	jQuery.sap.require("sap.me.Calendar");
+	calendar = new sap.me.Calendar({
+		 monthsPerRow: 1,
+		 currentDate: "2013/04/30",
+		 firstDayOffset: 1,
+		 enableMultiselection: true
+	});
+	calendar.toggleDatesType( ["2013/04/01"], sap.me.CalendarEventType.Type01, true);
+	calendar.toggleDatesType( ["2013/04/04"], sap.me.CalendarEventType.Type04, true);
+	calendar.toggleDatesType( ["2013/04/08"], sap.me.CalendarEventType.Type06, true);
+	calendar.toggleDatesType( ["2013/04/12"], sap.me.CalendarEventType.Type07, true);
+	
+	
+	var msgLabel = new sap.m.Label({width:"100%"});
+
+	calendar.attachTapOnDate(function(oEvent){
+		msgLabel.setText("you tapped on "+ oEvent.getParameters().date + " didSelected: " + oEvent.getParameters().didSelect);
+	});
+	calendar.attachChangeCurrentDate(function(oEvent){
+		msgLabel.setText("you navigated to new date: "+ oEvent.getParameters().currentDate);
+	});
+	calendar.attachChangeRange(function(oEvent){
+		msgLabel.setText("you selected a range of dates from: "+ oEvent.getParameters().fromDate + " to: "+ oEvent.getParameters().toDate);
+	});
+
+	var unselectBtn = new sap.m.Button({text:"unselect all", press:function(){
+		var aDates = calendar.getSelectedDates();
+		calendar.unselectAllDates();
+		msgLabel.setText("unselected "+ aDates.length +" dates");
+	}});
+	var aFormats = ["narrow","abbreviated","wide"];
+	var iFormat = 0;
+	var footer  = new sap.m.HBox({items:[
+	                                                  new sap.m.Button("week", {text:"week",press:function(){
+	                                                	  calendar.setMonthsPerRow(1);
+	                                                	  calendar.setWeeksPerRow(1);
+	  	                                        		calendar.setSingleRow(true);
+	                                                  }}),
+	                                                  new sap.m.Button("weeks", {text:"2 weeks",press:function(){
+	                                                	  calendar.setMonthsPerRow(1);
+	                                                	  calendar.setWeeksPerRow(2);
+	  	                                        		calendar.setSingleRow(true);
+	                                                  }}),
+	                                                  new sap.m.Button("month", {text:"month",press:function(){
+	                                                	  calendar.setSingleRow(false);
+	  	                                        		calendar.setMonthsToDisplay(1);
+	                                                	  calendar.setWeeksPerRow(1);
+	  	                                        		calendar.setMonthsPerRow(1);
+	                                                  }}),
+	                                                  new sap.m.Button("months", {text:"2 months",press:function(){
+	                                                	  calendar.setSingleRow(false);
+	  	                                        		calendar.setMonthsToDisplay(2);
+	                                                	  calendar.setWeeksPerRow(1);
+	  	                                        		calendar.setMonthsPerRow(2);
+	                                                  }}),
+	                                                  new sap.m.Button("year", {text:"year",press:function(){
+	                                                	  calendar.setSingleRow(false);
+	  	                                        		calendar.setMonthsToDisplay(12);
+	                                                	  calendar.setWeeksPerRow(1);
+	  	                                        		calendar.setMonthsPerRow(3); 
+	                                                  }}),
+	                                                  new sap.m.Switch("design",{
+	                                                	  customTextOff:sap.me.CalendarDesign.Action,
+	                                                	  customTextOn:sap.me.CalendarDesign.Approve,
+	                                                	  change:function(oEvent){
+	                                                		  if( oEvent.getParameter("state")){
+	                                                			  calendar.setDesign(sap.me.CalendarDesign.Action); 
+	                                                		  }else{
+	                                                			  calendar.setDesign(sap.me.CalendarDesign.Approve);
+	                                                		  }
+	                                                		  
+	                                                	  }
+	                                                  }),
+	                                                  new sap.m.Switch("swipe",{
+	                                                	  customTextOff:"swipe to select",
+	                                                	  customTextOn:"swipte to navigate",
+	                                                	  change:function(oEvent){
+	                                                			  calendar.setSwipeToNavigate(oEvent.getParameter("state"))
+	                                                		 
+	                                                		  
+	                                                	  }
+	                                                  }),
+	                                                  new sap.m.Button("removeTypes", {text:"Remove Types",press:function(){
+	                                                	  calendar.removeTypesOfAllDates(); 
+	                                                  }}),
+	                                                  new sap.m.Button("chWidth", {text:"Change width",press:function(){
+	                                                	  calendar.setWidth("768px"); 
+	                                                  }}),
+	                                                  new sap.m.Button("chFmt", {text:"Change names",press:function(){
+	                                                	  calendar.setDays(sap.m.getLocaleData().getDays(aFormats[iFormat]));
+                                                	  	  calendar.setMonths(sap.m.getLocaleData().getMonths(aFormats[iFormat]));
+	                                                	  iFormat=(iFormat+1)%aFormats.length;
+	                                                  }})
+	                                                  ]
+	                                       
+	});
+    var app = new sap.m.App();    
+    var page = new sap.m.Page({headerContent:unselectBtn, content:[calendar, new sap.m.Label({width: "100%", text:"Messages log"}), msgLabel,footer]});
+    app.addPage(page);
+    app.placeAt('body');
+</script>
+
+</head>
+<body id="body" class="sapUiBody">
+</body>
+</html>

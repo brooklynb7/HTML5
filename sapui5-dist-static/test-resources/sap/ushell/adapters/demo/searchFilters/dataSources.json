@@ -1,0 +1,47 @@
+[
+    {
+        "dataSource": {
+            "schemaName":{
+                "label" : "",
+                "value":""
+            },
+            "packageName":{
+                "label":"ABAP",
+                "value":"ABAP"
+            },
+            "objectName":{
+                "label":"$$ALL$$",
+                "value":"$$ALL$$"
+            },
+            "type":{
+                "label":"Category",
+                "value":"Category"
+            },
+            "label":"All",
+            "level":0
+        }
+    },
+    {
+        "dataSource": {
+            "schemaName":{
+                "label" : "",
+                "value":""
+            },
+            "packageName":{
+                "label":"ABAP",
+                "value":"ABAP"
+            },
+            "objectName":{
+                "label":"Employees",
+                "value":"Employees"
+            },
+            "type":{
+                "label":"Category",
+                "value":"Category"
+            },
+            "label":"Employees",
+            "level":1,
+            "value":100
+        }
+    }
+]

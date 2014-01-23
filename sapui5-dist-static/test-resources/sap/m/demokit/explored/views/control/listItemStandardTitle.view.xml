@@ -1,0 +1,44 @@
+<core:View
+	controllerName="views.control.listItemStandardTitle"
+	xmlns="sap.m"
+	xmlns:l="sap.ui.layout"
+	xmlns:core="sap.ui.core" >
+	<l:VerticalLayout width="100%">
+		<l:content>
+			<Text id="description" class="marginNoBottom" />
+
+			<List
+				id="ShortProductList"
+				headerText="Products">
+				<items>
+					<StandardListItem
+						title="{0/Name}"
+						description="{0/ProductId}"
+						icon="{0/ProductPicUrl}"
+						iconInset="false"
+						adaptTitleSize="false" />
+					<!--  set this item's description be empty -->
+					<StandardListItem
+						title="{1/Name}"
+						description=""
+						icon="{1/ProductPicUrl}"
+						iconInset="false"
+						adaptTitleSize="false" />
+					<StandardListItem
+						title="{2/Name}"
+						description="{2/ProductId}"
+						icon="{2/ProductPicUrl}"
+						iconInset="false"
+						adaptTitleSize="false" />
+					<!--  don't specify a description for this item -->
+					<StandardListItem
+						title="{3/Name}"
+						icon="{3/ProductPicUrl}"
+						iconInset="false"
+						adaptTitleSize="false" />
+				</items>
+			</List>
+
+		</l:content>
+	</l:VerticalLayout>
+</core:View>

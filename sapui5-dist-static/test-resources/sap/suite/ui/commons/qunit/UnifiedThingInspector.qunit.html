@@ -1,0 +1,651 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<title>qUnit Page for sap.suite.ui.commons.UnifiedThingInspector</title>
+
+		<script id="sap-ui-bootstrap" 
+			type="text/javascript"
+			src="../../../../../../resources/sap-ui-core.js"
+			data-sap-ui-theme="sap_bluecrystal"
+			data-sap-ui-libs="sap.m,sap.ui.commons,sap.suite.ui.commons">
+		</script>
+
+ 		<link rel="stylesheet" href="../../../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" /> 
+		<script type="text/javascript" src="../../../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+		<script type="text/javascript" src="../../../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
+	    <script type="text/javascript" src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
+
+		<script>
+		QUnit.config.autostart = false;
+		jQuery(document).ready(function() {
+			QUnit.start();
+		});
+
+		if (!(jQuery.browser.msie && jQuery.browser.version >= 8.0 && jQuery.browser.version < 9.0)) {
+
+			jQuery.sap.initMobile();
+
+			jQuery.sap.require("sap.m.MessageToast");
+			jQuery.sap.require("sap.ui.core.format.DateFormat");
+		      
+			var oUTI;
+			var oFacetData;
+			
+		    function prepareUTI(sId, iKpis) {
+			    var oListOrdersFormGroup = new sap.suite.ui.commons.UnifiedThingGroup({
+			    	title : "Internal Orders",
+			    	description : "4711, Marketing",
+		    		content : oListOrdersForm = new sap.m.List({
+					threshold: 2,
+					inset : false,
+					showUnread : true,
+					scrollToLoad : true,
+					columns : [	new sap.m.Column({
+						hAlign : "Left",
+						header : new sap.m.Text({text : "Order Number"})
+					})],
+					items: [
+						new sap.m.ColumnListItem({
+							type : sap.m.ListType.Navigation,
+					   		press : function(oEvent) {
+				    	    	oUTI.navigateToPage(
+				        			new sap.m.Page(sId+"-order-detail-page", {
+				        			    title : "Order Detail",
+				        				showNavButton : true,
+				      		  			content : [
+				        					new sap.m.ObjectHeader({
+				        						title : oEvent.getSource().getCells()[1].getText(),
+				        		    			number : oEvent.getSource().getCells()[0].getText(),
+				        		 		   		flagged : true,
+				        		    			showFlag : true,
+				        		    			attributes : [
+				        		    				new sap.m.ObjectAttribute({text : oEvent.getSource().getCells()[2].getText() }),
+				        		    				new sap.m.ObjectAttribute({text : oEvent.getSource().getCells()[3].getText() })
+				        						]
+				        					}),
+				        					new sap.ui.commons.form.SimpleForm({
+					        					minWidth : 1024,
+					        					maxContainerCols : 2,
+					        					content : [	new sap.ui.commons.Title({ text: "Company Address" }) ]
+						       				})
+				        				]
+				        			}), true);
+				    			},
+				    		unread : false,
+				    		cells : [
+				    			new sap.m.Link({id: sId+"-order-detail-link" , text : "23000"}),
+				       			new sap.m.Text({text : "CeBit Demo"}),
+				        		new sap.m.Text({text : "040 Event"}),
+				        		new sap.m.Text({text : "Planned"})
+				    		]
+						})]
+			    	})
+		    	});
+		    
+		  	  var oSalesQuotationFormGroup = new sap.suite.ui.commons.UnifiedThingGroup({
+		        title : "Sales Quotation",
+		        description : "27, Standard Order",
+		        content : new sap.m.HBox({
+			        items: [
+				    	new sap.m.ObjectHeader({
+				        	title: "40000019",
+				            titleActive: true,
+				            number: "70,000.00",
+				            numberUnit: "EUR",
+				            attributes: [ new sap.m.ObjectAttribute({ text: "Quantity Contract" }) ],
+				            firstStatus: new sap.m.ObjectStatus({ text: "Being processed"}),
+				            secondStatus: new sap.m.ObjectStatus({ text: "01/01/2013 - 05/31/2014"}),
+				            layoutData: new sap.m.FlexItemData({ growFactor: 1 })
+				        }).addStyleClass("sapSuiteUtiWhiteBackground")
+				    ]
+				})
+		    });
+
+		    var oContactsWithImagesFormGroup = new sap.suite.ui.commons.UnifiedThingGroup({
+		        title : "Contacts",
+		        description: "4711, Marketing",
+		        content: new sap.m.List({
+			        threshold: 2,
+			        inset : false,
+			        showUnread : true,
+			        scrollToLoad : true,
+			        columns : [
+			            new sap.m.Column({
+			                hAlign: "Left",
+			                header: new sap.m.Text({text: ""})
+			            }),
+			            new sap.m.Column({
+			            hAlign : "Left",
+			            header : new sap.m.Text({text : "Name"})
+			            }), 
+			            new sap.m.Column({
+			                hAlign : "Left",
+			                header : new sap.m.Text({text : "Job Title"}),
+			                minScreenWidth : "Tablet",
+			                demandPopin : true
+			            })
+			        ],
+			        items: [
+			            new sap.m.ColumnListItem({
+				  			type: sap.m.Inactive,
+				    		unread: false,
+				    		cells: [
+								new sap.m.Image({src: "../demokit/images/persons/female_BaySu.jpg", width: "74px", height: "74px"}),
+				        		new sap.m.Link({text: "White, Helen"}),
+				        		new sap.m.Text({text: "Internal Sales Rep"})
+				    		]
+						})
+			    	]
+			    })
+		    });
+
+		    var oLocale = sap.ui.getCore().getConfiguration().getLocale();
+		    var oDateFormat = sap.ui.core.format.DateFormat.getDateTimeInstance({style: "short"}, oLocale);
+
+		    oDateFormat = sap.ui.core.format.DateFormat.getDateTimeInstance({style: "short"}, oLocale);
+		    oDateFormat.format(new Date());
+		    
+		    var oAttachmentContentFacet = new sap.ui.layout.Grid(sId+"-attachment-grid");
+		    var genHBox = new sap.m.VBox({
+		        items: [
+		            new sap.m.Label({text:"fioriBon.pdf"}),
+		            new sap.m.Text({text:oDateFormat.format(new Date())})
+		        ],
+		        layoutData: new sap.ui.layout.GridData({ span: "L4 M4 S6" })
+		    });
+		    oAttachmentContentFacet.addContent(genHBox);
+		   
+		    var oAttachmentsContent = new sap.suite.ui.commons.UnifiedThingGroup({
+		        title : "Attchments",
+		        description : "4711, Marketing",
+		        content: new sap.m.List({
+			    	items : [
+				    		new sap.m.StandardListItem({
+				    			title : "fioriBon.pdf, 40KB",
+				    			iconInset : false,
+				    			icon : "sap-icon://pdf-attachment",
+				    			info : oDateFormat.format(new Date()),
+				    			type : sap.m.ListType.Active,
+				    		})
+				    	]
+				    })
+		    });
+		    
+		    var oAttachmentsFacet = new sap.suite.ui.commons.FacetOverview(sId+"-facet-attachments-types", {
+		        title: "Attachments",
+		        quantity: 5,
+		        height: jQuery.device.is.phone ? "7rem" : "10rem",
+		        content : oAttachmentContentFacet,
+		        press: function() {
+		        	setFacetContent("attachments");
+		        }
+		    });
+		    
+		    oFacetData = {
+		        overview: new sap.suite.ui.commons.UnifiedThingGroup({
+			   		title : "General",
+			   		description : "4711, Marketing",
+			   		content : new sap.m.VBox({
+						items: [new sap.m.Label({ text: "Locked for" })]
+					})
+				}),
+		        contacts: new sap.suite.ui.commons.UnifiedThingGroup({
+			   		title : "Contacts",
+			   		description : "4711, Marketing",
+			   		content : new sap.m.List({
+						headerText : "Contacts",
+					    items : [{	
+					    	content : [{ 
+					            name: "Jag, Mick",	
+					            phone: "+1 (692) 742-2633"
+					        }]	
+					    }]
+					})
+				}),
+		        orders: oListOrdersFormGroup,
+		        quotation: oSalesQuotationFormGroup,
+		        contactsImages: oContactsWithImagesFormGroup,
+		        attachments : oAttachmentsContent
+		    };
+
+		    function setFacetContent(sKey) {
+		            oUTI.navigateToDetailWithContent(oFacetData[sKey]);
+		    }
+
+
+		    var image1 = new sap.m.Image({
+		        src: "../demokit/images/persons/female_BaySu.jpg",
+		        width: "64px",
+		        height: "64px"
+		    });
+		    image1.addStyleClass("sapUtiImagePaddingRight");
+		    image1.addStyleClass("sapUtiImagePaddingLeft");
+
+		    var oContactsContent = new sap.m.HBox(sId+"-hbox");
+		    oContactsContent.addItem(image1);
+
+		    var oContactsFacet = new sap.suite.ui.commons.FacetOverview(sId+"-contacts-facet", {
+		        title: "Contacts",
+		        quantity: 6,
+		        content: oContactsContent,
+		        height: jQuery.device.is.phone ? "8rem" : "10rem",
+		        press: function() {
+		            setFacetContent("contactsImages")
+		        }
+		    });
+
+    	    var oGeneralFacet =	new sap.suite.ui.commons.FacetOverview(sId+"-facet-general", {
+				title: "General",
+				content: new sap.ui.layout.Grid(sId+"-overview-grid", {
+					content: [
+						new sap.m.VBox({
+							items:[
+						    	new sap.m.Label({text:"Sold-To Party:"}),
+						        new sap.m.Text({text:"1 - Being processed"})
+						    ],
+						    layoutData: new sap.ui.layout.GridData({ span: "L4 M4 S6" })
+						}),
+					]
+				}),
+				quantity: 14,
+				height: jQuery.device.is.phone ? "7rem" : "10rem",
+				press: function() {
+					setFacetContent("overview");
+				}
+			});
+		    
+		    var oOrdersContent = new sap.ui.commons.form.Form(sId+"-form-orders", {
+		        layout: new sap.ui.commons.form.ResponsiveLayout()
+		    });
+
+		    var oOrdersElement = new sap.ui.commons.form.FormContainer(sId+"-FOrdC1", {
+		        formElements: [
+		            new sap.ui.commons.form.FormElement({
+		                label: new sap.m.Label({text: "CeBit Demo"}),
+		                fields: [ new sap.m.Text({text: "040 Event"}) ]
+		            })
+		        ]
+		    });
+		    oOrdersContent.addFormContainer(oOrdersElement);
+
+		    var oOrdersFacet = new sap.suite.ui.commons.FacetOverview(sId+"-facet-orders", {
+		        title: "Internal Orders",
+		        quantity: 3,
+		        content: oOrdersContent,
+		        height: jQuery.device.is.phone ? "7rem" : "10rem",
+		        press: function() {
+		            setFacetContent("orders");
+		        }
+		    });
+
+		    var oDocumentsContent = new sap.ui.commons.form.Form(sId+"-form-docs", {
+		        layout: new sap.ui.commons.form.ResponsiveLayout()
+		    });
+
+		    var oDocumentElement = new sap.ui.commons.form.FormContainer(sId+"-FDocC1", {
+		        formElements: [
+		            new sap.ui.commons.form.FormElement({
+		                label: new sap.m.Label({text: "4711000"}),
+		                fields: [ new sap.m.Text({text: "240 USD"}) ]
+		            })
+		        ]
+		    });
+		    oDocumentsContent.addFormContainer(oDocumentElement);
+
+		    if (!jQuery.device.is.phone) {
+		        oDocumentElement = new sap.ui.commons.form.FormContainer(sId+"-FDocC2", {
+		            formElements: [
+		                new sap.ui.commons.form.FormElement({
+		                    label: new sap.m.Label({text: "4711002"}),
+		                    fields: [ new sap.m.Text({text: "320 USD"}) ]
+		                })
+		            ]
+		        });
+		        oDocumentsContent.addFormContainer(oDocumentElement);
+		    }
+
+		    var oDocumentsFacet = new sap.suite.ui.commons.FacetOverview(sId+"-facet-documents", {
+		        title: "Controlling Documents",
+		        quantity: 99,
+		        content: oDocumentsContent,
+		        height: jQuery.device.is.phone ? "7rem" : "10rem",
+		        press: function() {
+		            setFacetContent("contacts");
+		        }
+		    });
+
+		    var oActivityTypesContent = new sap.ui.commons.form.Form(sId+"-form-activity-types", {
+		        layout: new sap.ui.commons.form.ResponsiveLayout()
+		    });
+
+		    var oActivityTypesElement = new sap.ui.commons.form.FormContainer(sId+"-form-activity-types-content-1", {
+		        formElements: [
+		            new sap.ui.commons.form.FormElement({
+		                label: new sap.m.Label({text: "Type"}),
+		                fields: [ new sap.m.Text({text: "588"}) ]
+		            })
+		        ]
+		    });
+		    oActivityTypesContent.addFormContainer(oActivityTypesElement);
+
+		    if (!jQuery.device.is.phone) {
+		        oActivityTypesElement = new sap.ui.commons.form.FormContainer(sId+"-form-activity-types-content-2", {
+		            formElements: [
+		                new sap.ui.commons.form.FormElement({
+		                    label: new sap.m.Label({text: "Type"}),
+		                    fields: [ new sap.m.Text({text: "644"}) ]
+		                })
+		            ]
+		        });
+		        oActivityTypesContent.addFormContainer(oActivityTypesElement);
+		    }
+
+		    var oActivityTypesFacet = new sap.suite.ui.commons.FacetOverview(sId+"-facet-activity-types", {
+		        title: "Activity Types",
+		        quantity: 8,
+		        content: oActivityTypesContent,
+		        height: jQuery.device.is.phone ? "7rem" : "10rem",
+		        press: function() {
+		            setFacetContent("quotation");
+		        }
+		    });
+		    
+			    oUTI = new sap.suite.ui.commons.UnifiedThingInspector({
+					id: sId,
+		        	title: "Cost Center",
+			        name: "4711",
+			        description: "Marketing",
+	        		actionsVisible : true,
+	        		transactionsVisible : true,
+	        		kpis: [
+	        			new sap.suite.ui.commons.KpiTile({
+			        		value: "280",
+			        		description: "Square Meters, 4771",
+			        		doubleFontSize: false,
+			        		valueScale: "m",
+			        		valueUnit: "%"
+			    		})
+			        ],
+					facets: [
+						oGeneralFacet, 
+		    			oOrdersFacet, 
+		    			oDocumentsFacet, 
+		    			oActivityTypesFacet, 
+		    			oContactsFacet,
+		    			oAttachmentsFacet
+	        		],
+	        		backAction: function() {
+	        			sap.m.MessageToast.show("Back action pressed.");
+	        		},
+	        	    icon: "../images/strawberries_frozen.jpg",
+	    			transactions : [
+	    				new sap.m.Link({
+							text : "Link 1",
+							href : "http://www.sap.com"
+						})
+					],
+					actions : [new sap.m.Button({ text : "Button 1"	})]
+				});
+			    
+			    if (iKpis > 1) {
+			    	oUTI.addKpi(new sap.suite.ui.commons.KpiTile({
+		        		value: "28",
+		        		description: "Employees, 8000",
+		        		doubleFontSize: true
+		    		}));
+			    }
+
+			    if (iKpis == 3) {
+					oUTI.addKpi(new sap.suite.ui.commons.KpiTile({
+		        		value: "1200h",
+	    	    		description: "Production Hours, 0815",
+	        			doubleFontSize: true
+	    			}));
+			    }
+			    
+				oUTI.placeAt("content","only");
+		    }
+
+		    module("Render Tests - sap.suite.ui.commons.UnifiedhingInspector", {
+			    setup: function() {
+			    	prepareUTI("unified1", 2);
+				},
+				
+		    	teardown: function() {
+		    	    oUTI.destroy();
+		    	}
+			});
+
+		    asyncTest("controls rendering tests", function() {
+				setTimeout(function() {
+			   		ok(jQuery.sap.domById("unified1"), "control was rendered");
+			    	ok(jQuery.sap.domById("unified1-nav-container"), "navigation area was rendered");
+			    	ok(jQuery.sap.domById("unified1-kpi-scroll-container"), "kpi scroll container was rendered");
+			    	ok(jQuery.sap.domById("unified1-facets-grid"), "facets area was rendered");
+			    	ok(jQuery.sap.domById("unified1-header"), "header area was rendered");
+			    	ok(jQuery.sap.domById("unified1-master-page"), "master page was rendered");
+			    	ok(jQuery.sap.domById("unified1-master-footer"), "master footer was rendered");
+			    	ok(jQuery.sap.domById("unified1-master-settings-button"), "master settings button was rendered");
+			    	ok(jQuery.sap.domById("unified1-master-action-button"), "master action button was rendered");
+			    
+			    	ok(!jQuery.sap.domById("unified1-detail-page"), "detail page should not be rendered initially");
+			    	ok(!jQuery.sap.domById("unified1-detail-footer"), "detail footer should not be rendered initially");
+			    	ok(!jQuery.sap.domById("unified1-detail-settings-button"), "detail settings button should not be rendered initially");
+			    	ok(!jQuery.sap.domById("unified1-detail-action-button"), "detail actions button should not be rendered initially");
+			    
+			    	if (jQuery.device.is.desktop) {
+			    		ok(jQuery.sap.domById("unified1-master-transaction-button"), "master transaction button was rendered");
+			    		ok(!jQuery.sap.domById("unified1-detail-transaction-button"), "detail transaction button should not be rendered initially");
+			    	} else {
+			    		ok(!jQuery.sap.domById("unified1-master-transaction-button"), "master transaction button should not be rendered on mobile devices");
+			    		ok(!jQuery.sap.domById("unified1-detail-transaction-button"), "detail transaction button should not be rendered on mobile devices");
+			    	}
+			    	ok(jQuery.sap.domById("unified1-header-icon-image"), "icon button was rendered");
+			        jQuery.sap.domById("unified1-facet-orders").click();    
+			    	setTimeout(function() {
+				    	ok(jQuery.sap.domById("unified1"), "control is still rendered after click");
+				    	ok(jQuery.sap.domById("unified1-nav-container"), "navigation area is still rendered after click");
+					    ok(jQuery.sap.domById("unified1-kpi-scroll-container"), "kpi scroll container is still rendered after click");
+					    ok(jQuery.sap.domById("unified1-facets-grid"), "facets area is still rendered after click");
+					    ok(jQuery.sap.domById("unified1-header"), "header area is still rendered after click");
+					    ok(jQuery.sap.domById("unified1-master-page"), "master page is still rendered after click");
+				    	ok(jQuery.sap.domById("unified1-master-footer"), "master footer is still rendered after click");
+					    ok(jQuery.sap.domById("unified1-master-settings-button"), "master settings button is still rendered after click");
+					    ok(jQuery.sap.domById("unified1-master-action-button"), "master action button is still rendered after click");
+					    
+					    ok(jQuery.sap.domById("unified1-detail-page"), "detail page is rendered after click");
+					    ok(jQuery.sap.domById("unified1-detail-footer"), "detail footer is rendered after click");
+					    ok(jQuery.sap.domById("unified1-detail-settings-button"), "detail settings button is rendered after click");
+					    ok(jQuery.sap.domById("unified1-detail-action-button"), "detail actions button is rendered after click");
+				    
+					    if (jQuery.device.is.desktop) {
+				    		ok(jQuery.sap.domById("unified1-master-transaction-button"), "master transaction button is still rendered after click");
+				    		ok(jQuery.sap.domById("unified1-detail-transaction-button"), "detail transaction button is rendered after click");
+				    	} else {
+				    		ok(!jQuery.sap.domById("unified1-master-transaction-button"), "master transaction button should not be rendered on mobile devices");
+				    		ok(!jQuery.sap.domById("unified1-detail-transaction-button"), "detail transaction button should not be rendered on mobile devices");
+				    	}
+				    	start();
+			    	}, 1000);
+				}, 1000);
+	    	});
+ 
+		    module("Behavior Tests - sap.suite.ui.commons.UnifiedhingInspector", {
+			    setup: function() {
+			    	prepareUTI("unified2", 1);
+				}
+			});
+		    
+		    asyncTest("navigation tests", function() {
+				setTimeout(function() {
+					equal(oUTI._oNavContainer.getPages().length, 2, "Initially NavContainer should have 2 pages");
+			        jQuery.sap.domById("unified2-facet-orders").click();    // navigate to details page
+			    	setTimeout(function() {
+			    	    jQuery.sap.byId("unified2-order-detail-link").tap();        // navigate to Order Detail page
+				    	setTimeout(function() {
+							equal(oUTI._oNavContainer.getPages().length, 3, "Here NavContainer should have 3 pages");
+				    	    jQuery.sap.byId("unified2-order-detail-page-navButton").tap();  // navigate back to details page
+					    	setTimeout(function() {
+								equal(oUTI._oNavContainer.getPages().length, 3, "Here NavContainer should again have 3 pages");
+								oUTI._navigateToMaster();
+							    setTimeout(function() {
+							    	equal(oUTI._oNavContainer.getCurrentPage().sId, "unified2-master-page", "Current page should be master-page");
+							    	jQuery.sap.byId("unified2-master-page-navButton").tap();   // navigate back from master page should not change the page
+							    	setTimeout(function() {
+							    		equal(oUTI._oNavContainer.getCurrentPage().sId, "unified2-master-page", "Current page should be master-page");
+						    			oUTI.navigateToDetailWithContent(oFacetData["attachments"]);
+							   			setTimeout(function() {
+							   				equal(oUTI._oNavContainer.getCurrentPage().sId, "unified2-detail-page", "Current page should be detail-page");
+							        		var oPage = new sap.m.Page("new-order-detail-page", {
+							       		 		title : "Order Detail",
+							        			showNavButton : true,
+							        			content : [
+							        				new sap.m.ObjectHeader({
+							        					title : "Test title",
+							        			    	number : "new_page",
+							        			    	flagged : true,
+							        		    		showFlag : true,
+							        		    		attributes : [
+							        		    			new sap.m.ObjectAttribute({text : "Order Type"}),
+							        		    			new sap.m.ObjectAttribute({text : "Status"})
+							        		    		]
+							        				})
+							        			]
+							        		});
+							   				oUTI.navigateToPage(oPage, true);
+							    			setTimeout(function() {
+							    				equal(oUTI._oNavContainer.getCurrentPage().sId, "new-order-detail-page", "Current page should be new-order-detail-page");
+							    				oUTI.navigateToDetail();
+								    			setTimeout(function() {
+								    				equal(oUTI._oNavContainer.getCurrentPage().sId, "unified2-detail-page", "Current page should be unified2-detail-page");
+	 						    	   		 		start();
+								    			}, 1000);
+								    		}, 1000);
+							    		}, 1000);
+							    	}, 1000);
+						    	}, 1000);
+					    	}, 1000); 
+			    		}, 1000); 
+		 		   	}, 1000);
+				}, 1000);
+	    	});
+
+		    module("Functional Tests - sap.suite.ui.commons.UnifiedhingInspector", {
+			    setup: function() {
+			    	prepareUTI("unified3", 3);
+				}
+			});
+	
+			asyncTest("Test functions", function() {
+		    	equals(oUTI.isPhone(), !jQuery.device.is.desktop && !jQuery.device.is.ipad, "The function should correctly disinguish phones from other devices");  
+
+		    	var oFacet1 = new sap.suite.ui.commons.FacetOverview("facet-1", {rowSpan: 2});
+			    var genHBox1 = new sap.m.VBox({
+			        items: [
+			            new sap.m.Label({text:"First facet"})
+			        ],
+			        layoutData: new sap.ui.layout.GridData({ span: "L4 M4 S6" })
+			    });
+			    oFacet1.setContent(genHBox1);
+			    
+			    var oFacet2 = new sap.suite.ui.commons.FacetOverview("facet-2");
+			    var genHBox2 = new sap.m.VBox({
+			        items: [
+			            new sap.m.Label({text:"Second facet"})
+			        ],
+			        layoutData: new sap.ui.layout.GridData({ span: "L4 M4 S6" })
+			    });
+			    oFacet2.setContent(genHBox2); 
+			    
+			    oUTI.addFacet(oFacet1);
+			    oUTI.insertFacet(oFacet2, 2);
+			    
+			    oUTI.setTitle("My Title 1");
+			    oUTI.setName("My Name 1");
+			    oUTI.setDescription("My Description 1");
+
+			    setTimeout(function() {
+
+				    equals(jQuery.sap.byId("unified3-facets-grid").find(">div>div")[2].id, "facet-2", "Facet-2 should be added as the 3rd facet");
+				    equals(jQuery.sap.byId("unified3-facets-grid").find(">div>div").last().attr("id"), "facet-1", "Facet-1 should be added at the end");
+				    equals(jQuery.sap.domById("unified3-master-page-title").innerText, "My Title 1", "Title should appear on master page");
+				    equals(jQuery.sap.domById("unified3-header-name").innerText, "My Name 1", "Name should appear on header");
+				    equals(jQuery.sap.byId("unified3-header-description").text(), "My Description 1", "Description should appear on header");
+				    
+		    		start();
+				}, 1000);
+		    });
+
+			module("Aggregation Tests - sap.suite.ui.commons.UnifiedhingInspector", {
+			    setup: function() {
+			    	prepareUTI("unified4", 3);
+				},
+			   	teardown: function() {
+		   			oUTI.destroy();
+			   	}
+			});
+	
+		    test("Test aggregations", function() {
+		    	equals(oUTI.getAggregation("kpis", undefined).length, 3, "The function should return 3 kpis");
+		    	var aKpis = oUTI.getAggregation("kpis", undefined);
+		    	equals(oUTI.validateAggregation("kpis", aKpis[0], true), aKpis[0], "kpi taken from kpis aggregation should be valid for it");
+		    	raises(function() {oUTI.validateAggregation("actions", aKpis[0], true)}, /is not valid for aggregation/, "kpi taken from kpis aggregation should be invalid for actions aggregation");
+		    	equals(oUTI.indexOfAggregation("kpis", aKpis[0]), 0, "index of the first kpi in kpis aggregation should be 0");
+		    	equals(oUTI.indexOfAggregation("facets", aKpis[0]), -1, "index of the first kpi in facets aggregation should be -1");
+		    	oUTI.removeAggregation("kpis", aKpis[0], true);
+		    	equals(oUTI.getAggregation("kpis", undefined).length, 2, "There should be 2 kpis now");
+		    	oUTI.addAggregation("kpis", aKpis[0], true);
+		    	equals(oUTI.getAggregation("kpis", undefined).length, 3, "There should be 3 kpis now");
+		    	oUTI.removeAggregation("kpis", aKpis[0], true);
+		    	oUTI.insertAggregation("kpis", aKpis[0], 1, true);
+		    	equals(oUTI.getAggregation("kpis", undefined).length, 3, "There should be 3 kpis now");
+		    	equals(oUTI.indexOfAggregation("kpis", aKpis[0]), 1, "The inserted kpi should be on second position now");
+		    	equals(oUTI._callMethodInManagedObject("indexOfAggregation", "kpis", aKpis[0]), 1, "The inserted kpi should be on second position now");
+		    	equals(oUTI.getAggregation("facets", undefined).length, 6, "Initially there should be 6 facets");
+		    	
+		    	oUTI.removeAllAggregation("facets", true);
+		    	equals(oUTI.getAggregation("facets", undefined), undefined, "All facets should be removed");
+		    	
+		    	equals(oUTI.getActions().length, 1, "There should be 1 action initially");
+		    	var newAction = new sap.m.Button({ text : "Button 2"}); 
+		    	oUTI.insertAction(newAction,0);
+		    	equals(oUTI.getActions().length, 2, "There should be 2 actions now");
+		    	equals(oUTI.indexOfAction(newAction), 0, "New action should have index of 0");
+		    	oUTI.removeAction(newAction);
+		    	equals(oUTI.getActions().length, 1, "There should be 1 action now");
+		    	oUTI.removeAllActions();
+		    	equals(oUTI.getActions().length, 0, "There should be no actions now");
+		    	oUTI.addAction(newAction);
+		    	equals(oUTI.getActions().length, 1, "There should be 1 action now");
+		    	oUTI.destroyActions();
+		    	equals(oUTI.getActions().length, 0, "There should be no actions now");
+
+		    	equals(oUTI.getTransactions().length, 1, "There should be 1 transaction initially");
+		    	var newTransaction = new sap.m.Link({ text : "Link 2"}); 
+		    	oUTI.insertTransaction(newTransaction,0);
+		    	equals(oUTI.getTransactions().length, 2, "There should be 2 transactions now");
+		    	equals(oUTI.indexOfTransaction(newTransaction), 0, "New transaction should have index of 0");
+		    	oUTI.removeTransaction(newTransaction);
+		    	equals(oUTI.getTransactions().length, 1, "There should be 1 transaction now");
+		    	oUTI.removeAllTransactions();
+		    	equals(oUTI.getTransactions().length, 0, "There should be no transactions now");
+		    	oUTI.addTransaction(newTransaction);
+		    	equals(oUTI.getTransactions().length, 1, "There should be 1 transaction now");
+		    	oUTI.destroyTransactions();
+		    	equals(oUTI.getTransactions().length, 0, "There should be no transactions now");
+
+		    });
+		}
+		</script>
+	</head>
+	<body id="body" class="sapUiBody">
+	<div id="content" style="width: 100%; height: 50%;">
+   	</div>
+ 		<h1 id="qunit-header">qUnit Page for sap.suite.ui.commons.UnifiedThingInspector</h1>
+		<h2 id="qunit-banner"></h2>
+		<h2 id="qunit-userAgent"></h2>
+		<ol id="qunit-tests"></ol>
+		<div id="qunit-fixture">test markup, will be hidden</div>
+	</body>
+</html>

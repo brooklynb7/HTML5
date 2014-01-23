@@ -1,0 +1,32 @@
+<core:View xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form"
+	xmlns="sap.m" controllerName="sap.ca.ui.quickoverview.Company"
+	resourceBundleName="sap.ca.ui.i18n.i18n" resourceBundleAlias="ca_i18n">
+
+	<!-- Contact Information -->
+	<form:SimpleForm id="bcCompanyContainer" class="bcUpperContainer" minWidth="1024" maxContainerCols="2">
+		<form:content>
+			<core:Title id="bcAccountContact" text="{ca_i18n>Quickoverview.company.contacttitle}" />
+			<Label text="{ca_i18n>Quickoverview.company.phone}"></Label>
+			<Link text="{/companyphone}" press="onTapPhone" />
+			<Label text="{ca_i18n>Quickoverview.company.address}" />
+			<Text text="{/companyaddress}" />
+		</form:content>
+	</form:SimpleForm>
+	
+	<!-- Company  -->
+	<form:SimpleForm id="bcMainContactContainer" class="bcLowerContainer" minWidth="1024" maxContainerCols="2">
+		<form:content>
+			<core:Title id="bcMainContact" text="{ca_i18n>Quickoverview.company.maincontacttitle}" />
+			<Label text="{ca_i18n>Quickoverview.company.maincontactname}"></Label>
+			<Text text="{/maincontactname}" />
+			<Label text="{ca_i18n>Quickoverview.company.maincontactmobile}"></Label>			
+			<Link id="qvMainContactMobile" text="{/maincontactmobile}" press="onTapPhone" />
+ 			<core:Icon id="qvMainContactSMS" src="sap-icon://iphone-2" color="#666666" press="onTapSMS"/>			
+			<Label text="{ca_i18n>Quickoverview.company.maincontactphone}" />
+			<Link text="{/maincontactphone}" press="onTapPhone" />
+			<Label text="{ca_i18n>Quickoverview.company.maincontactemail}" />
+			<Link text="{/maincontactemail}" press="onTapEmail" />			
+		</form:content>
+	</form:SimpleForm>	
+
+</core:View>

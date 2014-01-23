@@ -1,0 +1,121 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+	<title>Fiori Wave 2: Test Page for Messages</title>
+
+	<script src="../../../../../../resources/sap-ui-core.js"
+			id="sap-ui-bootstrap"
+			data-sap-ui-libs="sap.m"
+			data-sap-ui-theme="sap_bluecrystal"
+			data-sap-ui-xx-bindingSyntax="complex"
+			data-sap-ui-compatVersion="1.16"
+			data-sap-ui-noConflict="true">
+	</script>
+	
+	<link rel="stylesheet" href="../../../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
+	<script type="text/javascript" src="../../../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+	<script type="text/javascript" src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
+	<script type="text/javascript" src="../../../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
+
+	<script type="text/javascript" src="../utils/qunithelper.js"></script>
+	<script type="text/javascript" src="messageTest.js"></script>
+	
+	<script type="text/javascript">
+		QUnit.config.autostart = false;
+		jQuery(document).ready(function() {
+			QUnit.start();
+		});
+	
+		// require dialog module
+		jQuery.sap.require("sap.ca.ui.message.message");
+	
+		var oHtml = new sap.ui.core.HTML({
+			content : '<div id="contentHolder"></div><h1 id="qunit-header">Fiori Wave 2: Test Page for Messages</h1><h2 id="qunit-banner"></h2><h2 id="qunit-userAgent"></h2><ol id="qunit-tests"></ol>',
+			afterRendering: function(){
+				oHorizontal.placeAt("contentHolder");
+			}
+		});
+	
+		var page = new sap.m.Page("myFirstPage", {
+			title : "Fiori - Message Test",
+			showNavButton : true,
+			enableScrolling : true,
+			content : oHtml
+		});
+				
+		var oButton = new sap.m.Button({
+			text : "Open Message Toast",
+			press : function() {
+				sap.ca.ui.message.showMessageToast("It's a great success!");
+			}
+		});
+		
+		var isMsgBoxClosed = false;
+		var oButton1 = new sap.m.Button({
+			text : "Open (Error) Message Box",
+			press : function() {
+				var fnClose = function(){
+					isMsgBoxClosed = true;
+				};
+				sap.ca.ui.message.showMessageBox({
+					type: sap.ca.ui.message.Type.ERROR,
+					message: "No connection can be established to the backend system ABC",
+					details: "Lorem ipsum dolor sit amet, eum an vidit porro ocurreret, has elit illud probatus ut. Ut est audire necessitatibus, case denique scribentur vel no. Ipsum suscipit te quo, eam ne justo insolens. His dico impedit offendit ea, decore eripuit volumus sea an, ut omnes cetero delectus eos.\n\nTota paulo graecis ei usu, mei te alii alia harum. Nulla singulis in nec, qui vide solum inani no. Lorem timeam posidonium nec te, decore noster ut eum, sit mazim delicata deterruisset cu. Id mea nemore delenit, eu ignota propriae eum.\n\nSolum atqui persecuti ut est, altera corrumpit te his. Nam justo epicurei mnesarchum ut, ne nam error ludus. Aeque utinam eum ad, homero audiam recteque nec ne, mazim constituam ne pri. Cum tollit dolorum interesset at. Pri partem tempor reprehendunt in, delectus vulputate sed ne. Etiam aeterno dolores eum ut.\n\nEx conceptam omittantur quo. Sit et petentium scripserit, te mea simul civibus scaevola. Mel solum ludus ea, ut sed cibo choro exerci. Eum discere quaestio ei, sed legendos platonem necessitatibus in. Eu duo populo mnesarchum vituperata."
+				}, fnClose);
+				isMsgBoxClosed = false;
+			}
+		});
+	
+		var oButton2 = new sap.m.Button({
+			text : "Open (Info) Message Box",
+			press : function() {
+				sap.ca.ui.message.showMessageBox({
+					type: sap.ca.ui.message.Type.INFO,
+					message: "You got notifications...",
+					details: "          message1:1\nmessage2:2\nmessage3:3\n"
+				});
+				isMsgBoxClosed = false;
+			}
+		});
+	
+		var oButton3 = new sap.m.Button({
+			text : "Open (Warning) Message Box",
+				press : function() {
+				sap.ca.ui.message.showMessageBox({
+					type: sap.ca.ui.message.Type.WARNING,
+					message: "No Recipients found"
+				});
+				isMsgBoxClosed = false;
+			}
+		});
+	
+		var oButton4 = new sap.m.Button({
+			text : "Open (Success) Message Box",
+			press : function() {
+				sap.ca.ui.message.showMessageBox({
+					type: sap.ca.ui.message.Type.SUCCESS,
+					message: "   You may need to use Message Toast\n",
+					details: "You may need to use Message Toast\n"
+				});
+				isMsgBoxClosed = false;
+			}
+		});
+	
+		var oHorizontal = new sap.m.HBox({
+			items: [oButton, oButton1, oButton2, oButton3, oButton4]
+		});
+	
+		var app = new sap.m.App("myApp", {
+			initPage: "myFirstPage"
+		});
+	
+		app.addPage(page).placeAt("content");
+	</script>
+
+</head>
+<body id="body" class="sapUiBody">
+<div id="content"></div>
+</body>
+</html>

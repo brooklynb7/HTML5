@@ -1,0 +1,381 @@
+<!DOCTYPE HTML>
+<html data-sap-ui-dk-category="Controls/Complex" data-sap-ui-dk-controls="sap.suite.ui.commons.SplitButton">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Button - SAPUI5 Demo Kit</title>
+<link rel="stylesheet" type="text/css" href="../../../../../../theme/default.css" />
+<script id="sap-ui-bootstrap" type="text/javascript"
+	src="../../../../../../resources/sap-ui-core.js"
+	data-sap-ui-theme="sap_goldreflection"
+	data-sap-ui-libs="sap.ui.commons,sap.ui.demokit,sap.suite.ui.commons">
+	
+</script>
+<script type="text/javascript" src="../../../../../../js/utils.js"></script>
+
+<script id='SplitButtonDefaultMenuItemScript' type="text/javascript">
+	//Create a SplitButton Control
+	var oSplitButton = new sap.suite.ui.commons.SplitButton();
+
+	//Create the menu
+	var oMenu1 = new sap.ui.commons.Menu({
+		ariaDescription : "File Menu",
+		tooltip : "Menu containing file related actions"
+	});
+	//Create the items and add them to the menu
+	var oMenuItem1 = new sap.ui.commons.MenuItem({
+		text : "Open",
+		tooltip : "Opens a file.",
+		icon : "images/open.gif",
+		select : function() {
+			alert('Alert from ' + oMenuItem1.getText());
+		}
+	});
+	oMenu1.addItem(oMenuItem1);
+	var oMenuItem2 = new sap.ui.commons.MenuItem({
+		text : "New"
+	}); //Icon must be not larger than 16x16 px
+	oMenu1.addItem(oMenuItem2);
+	var oMenuItem3 = new sap.ui.commons.MenuItem({
+		text : "Delete"
+	});
+	oMenu1.addItem(oMenuItem3);
+
+	//Create a sub menu for item 2
+	var oMenu2 = new sap.ui.commons.Menu({
+		ariaDescription : "New File Menu"
+	});
+	oMenuItem2.setSubmenu(oMenu2);
+	//Create the items and add them to the sub menu
+	var oMenuItem4 = new sap.ui.commons.MenuItem({
+		text : "New TXT file",
+		tooltip : "Creates a new TXT file.",
+		icon : "images/new.gif",
+		select : function() {
+			alert('Alert from ' + oMenuItem4.getText());
+		}
+	});
+	oMenu2.addItem(oMenuItem4);
+	var oMenuItem5 = new sap.ui.commons.MenuItem({
+		text : "New RAR file",
+		tooltip : "Creates a new RAR file."
+	});
+	oMenu2.addItem(oMenuItem5);
+
+	//Attach the Menu to the MenuButton
+	oSplitButton.setMenu(oMenu1);
+	// attach it to some element in the page
+	oSplitButton.placeAt("sample1");
+</script>
+
+<script id='SplitButtonMenuItemSpecifiedScript' type="text/javascript">
+	//Create a SplitButton Control
+	var oSplitButton = new sap.suite.ui.commons.SplitButton();
+
+	//Create the menu
+	var oMenu1 = new sap.ui.commons.Menu({
+		ariaDescription : "File Menu",
+		tooltip : "Menu containing file related actions"
+	});
+	//Create the items and add them to the menu
+	var oMenuItem1 = new sap.ui.commons.MenuItem({
+		text : "Open",
+		tooltip : "Opens a file.",
+		icon : "images/open.gif",
+		select : function() {
+			alert('Alert from ' + oMenuItem1.getText());
+		}
+	});
+	oMenu1.addItem(oMenuItem1);
+	var oMenuItem2 = new sap.ui.commons.MenuItem({
+		text : "New"
+	}); //Icon must be not larger than 16x16 px
+	oMenu1.addItem(oMenuItem2);
+	var oMenuItem3 = new sap.ui.commons.MenuItem({
+		text : "Delete"
+	});
+	oMenu1.addItem(oMenuItem3);
+
+	//Create a sub menu for item 2
+	var oMenu2 = new sap.ui.commons.Menu({
+		ariaDescription : "New File Menu"
+	});
+	oMenuItem2.setSubmenu(oMenu2);
+	//Create the items and add them to the sub menu
+	var oMenuItem4 = new sap.ui.commons.MenuItem({
+		text : "New TXT file",
+		tooltip : "Creates a new TXT file.",
+		icon : "images/new.gif",
+		select : function() {
+			alert('Alert from ' + oMenuItem4.getText());
+		}
+	});
+	oMenu2.addItem(oMenuItem4);
+	var oMenuItem5 = new sap.ui.commons.MenuItem({
+		text : "New RAR file",
+		tooltip : "Creates a new RAR file."
+	});
+	oMenu2.addItem(oMenuItem5);
+
+	//Attach the Menu to the MenuButton and set default menu item.
+	oSplitButton.setMenu(oMenu1, oMenuItem4);
+	// attach it to some element in the page
+	oSplitButton.placeAt("sample2");
+</script>
+
+<script id='SplitButtonOverrideMenuItemPropertiesScript'
+	type="text/javascript">
+	//Create a SplitButton Control
+	var oSplitButton = new sap.suite.ui.commons.SplitButton();
+
+	//Create the menu
+	var oMenu1 = new sap.ui.commons.Menu({
+		ariaDescription : "File Menu",
+		tooltip : "Menu containing file related actions"
+	});
+	//Create the items and add them to the menu
+	var oMenuItem1 = new sap.ui.commons.MenuItem({
+		text : "Open",
+		tooltip : "Opens a file.",
+		icon : "images/open.gif",
+		select : function() {
+			alert('Alert from ' + oMenuItem1.getText());
+		}
+	});
+	oMenu1.addItem(oMenuItem1);
+	var oMenuItem2 = new sap.ui.commons.MenuItem({
+		text : "New"
+	}); //Icon must be not larger than 16x16 px
+	oMenu1.addItem(oMenuItem2);
+	var oMenuItem3 = new sap.ui.commons.MenuItem({
+		text : "Delete"
+	});
+	oMenu1.addItem(oMenuItem3);
+
+	//Create a sub menu for item 2
+	var oMenu2 = new sap.ui.commons.Menu({
+		ariaDescription : "New File Menu"
+	});
+	oMenuItem2.setSubmenu(oMenu2);
+	//Create the items and add them to the sub menu
+	var oMenuItem4 = new sap.ui.commons.MenuItem({
+		text : "New TXT file",
+		tooltip : "Creates a new TXT file.",
+		icon : "images/new.gif",
+		select : function() {
+			alert('Alert from ' + oMenuItem4.getText());
+		}
+	});
+	oMenu2.addItem(oMenuItem4);
+	var oMenuItem5 = new sap.ui.commons.MenuItem({
+		text : "New RAR file",
+		tooltip : "Creates a new RAR file."
+	});
+	oMenu2.addItem(oMenuItem5);
+
+	//Attach the Menu to the MenuButton and set default menu item.
+	oSplitButton.setMenu(oMenu1, oMenuItem4);
+	//Override properties from menu item at SplitButton control level.
+	oSplitButton.setText("");
+	oSplitButton.setIcon("images/person.gif");
+	// attach it to some element in the page
+	oSplitButton.placeAt("sample3");
+</script>
+
+<script id='SplitButtonLiteScript' type="text/javascript">
+	//Create a SplitButton Control
+	var oSplitButton = new sap.suite.ui.commons.SplitButton();
+
+	//Create the menu
+	var oMenu1 = new sap.ui.commons.Menu({
+		ariaDescription : "File Menu",
+		tooltip : "Menu containing file related actions"
+	});
+	//Create the items and add them to the menu
+	var oMenuItem1 = new sap.ui.commons.MenuItem({
+		text : "Open",
+		tooltip : "Opens a file.",
+		icon : "images/open.gif",
+		select : function() {
+			alert('Alert from ' + oMenuItem1.getText());
+		}
+	});
+	oMenu1.addItem(oMenuItem1);
+	var oMenuItem2 = new sap.ui.commons.MenuItem({
+		text : "New"
+	}); //Icon must be not larger than 16x16 px
+	oMenu1.addItem(oMenuItem2);
+	var oMenuItem3 = new sap.ui.commons.MenuItem({
+		text : "Delete"
+	});
+	oMenu1.addItem(oMenuItem3);
+
+	//Attach the Menu to the MenuButton and set default menu item.
+	oSplitButton.setMenu(oMenu1, oMenuItem4);
+	//Set lite property.
+	oSplitButton.setLite(true);
+	// attach it to some element in the page
+	oSplitButton.placeAt("sample4");
+</script>
+
+<script id='SpecialSplitButtonScript' type="text/javascript">
+	//Create the menu
+	var createMenu = function(menuText) {
+		var oMenu1 = new sap.ui.commons.Menu({
+			ariaDescription : "Special Button Menu",
+			tooltip : "Menu containing special button actions"
+		});
+		//Create the items and add them to the menu
+		var oMenuItem1 = new sap.ui.commons.MenuItem({
+			text : menuText,
+			tooltip : menuText+".",
+			select : function() {
+				alert('Alert from ' + menuText);
+			}
+		});
+		oMenu1.addItem(oMenuItem1);
+		return oMenu1;
+	};
+
+	//Create an emphasized SplitButton
+	var oSplitButton = new sap.suite.ui.commons.SplitButton({
+		text : "Emphasized",
+		style : sap.ui.commons.ButtonStyle.Emph
+	});
+	// set the menu
+	oSplitButton.setMenu(createMenu("Emphasized"));
+	// attach it to some element in the page
+	oSplitButton.placeAt("sample5");
+
+	//Create an accept SplitButton
+	oSplitButton = new sap.suite.ui.commons.SplitButton({
+		text : "Accept",
+		style : sap.ui.commons.ButtonStyle.Accept
+	});
+	// set the menu
+	oSplitButton.setMenu(createMenu("Accept"));
+	// attach it to some element in the page
+	oSplitButton.placeAt("sample5");
+
+	//Create an reject SplitButton
+	oSplitButton = new sap.suite.ui.commons.SplitButton({
+		text : "Reject",
+		style : sap.ui.commons.ButtonStyle.Reject
+	});
+	// set an empty menu
+	oSplitButton.setMenu(createMenu("Reject"));
+	// attach it to some element in the page
+	oSplitButton.placeAt("sample5");
+</script>
+
+</head>
+
+<body class="sapUiDemokitBody" role="application">
+	<h1 color="Yellow" icon="images/ctrls/splitbutton-icon.png">SplitButton</h1>
+
+	<h2>Introduction</h2>
+	<p>
+		The SplitButton is a composite control that consists of a
+		default-action <a class="sapUiDemokitSrcLink"
+			href="../SimpleControls/Button.html">Button</a> and a <a
+			class="sapUiDemokitSrcLink" href="../Complex/MenuButton.html">MenuButton</a>
+		control. The default-action button control represents a simple push
+		button. It is used for initiating actions, such as save or print. It
+		can contain some text, an icon, or both; the order of the two can be
+		configured. The action initiated by this button is considered to be
+		the default action for the control, and it must be one of the
+		selections defined in the menu button menu. The menu button control is
+		a button that opens a menu upon user's click. <a
+			class="sapUiDemokitSrcLink" href="../Complex/MenuButton.html">MenuButton</a>
+		is a composition of the <a class="sapUiDemokitSrcLink"
+			href="../Complex/Menu.html">Menu</a> control and the <a
+			class="sapUiDemokitSrcLink" href="../SimpleControls/Button.html">Button</a>
+		control and thus inheriting all features. When a menu item is selected
+		by the user, the menu button throws an event called
+		<code>itemSelected</code>
+		. The event transfers the
+		<code>itemId</code>
+		of the selected item. As an alternative, the button
+		<code>press</code>
+		event can be used which has a similar behavior.
+	</p>
+	<p>
+		The SplitButton default-action button
+		<code>press</code>
+		function corresponds to the
+		<code>select</code>
+		function of an indicated menu item from the SplitButton menu. The default-action button and specified
+		menu item have the same values for these properties unless overridden at the SplitButton control level:
+	<ul>
+		<li><code>text</code></li>
+		<li><code>icon</code></li>
+		<li><code>enabled</code></li>
+	</ul>
+	<p>
+		The first menu item in the SplitButton menu is used for the
+		default-action button if a menu item is not specified or the specified
+		menu item has
+		<code>visible</code>
+		property set to
+		<code>false</code>.
+	</p>
+	</p>
+
+	<h2>Examples</h2>
+
+	<h3>SplitButton With First Menu Item Defaulted</h3>
+	<p>The default-action button corresponds to the first menu item if
+		a specific menu item is not provided.</p>
+	<div code-sample="sample1" script="SplitButtonDefaultMenuItemScript"></div>
+
+	<h3>SplitButton With Menu Item Specified</h3>
+	<p>The default-action button can be set to any menu item.</p>
+	<div code-sample="sample2" script="SplitButtonMenuItemSpecifiedScript"></div>
+
+	<h3>SplitButton Control Level Properties</h3>
+	<p>
+		At the SplitButton control level, you can override default-action
+		button
+		<code>text</code>
+		,
+		<code>icon</code>
+		, and
+		<code>enabled</code>
+		properties which are normally derived from the specified menu item.
+	</p>
+	<div code-sample="sample3"
+		script="SplitButtonOverrideMenuItemPropertiesScript"></div>
+
+	<h3>Lite SplitButton</h3>
+	<p>
+		The split button can be displayed as lite-button using the
+		<code>lite</code>
+		property. Depending on the used theme the button is displayed less
+		prominent.
+	</p>
+	<div code-sample="sample4" script="SplitButtonLiteScript"></div>
+
+	<h3>Special SplitButtons</h3>
+	<p>
+		There are different special layouts for buttons, emphasized, accept
+		and reject. These designs can be activated using the
+		<code>style</code>
+		property.
+	</p>
+	<div code-sample="sample5" script="SpecialSplitButtonScript"></div>
+
+    <h2>Keyboard Support</h2>
+	<p>
+	</p>
+		
+	<h2>ARIA Support</h2>
+	<p>
+	</p>
+
+	<p>
+		See <a class="sapUiDemokitSrcLink"
+			href="../../../../../../docs/api/symbols/sap.suite.ui.commons.SplitButton.html">API
+			documentation</a>
+	</p>
+</body>
+</html>

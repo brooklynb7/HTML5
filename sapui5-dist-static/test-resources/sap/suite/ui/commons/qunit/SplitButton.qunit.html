@@ -1,0 +1,339 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8"/>
+	<title>SplitButton - sap.suite.ui.commons</title>
+
+    <!-- UI5 Bootstrap -->
+    <script id="sap-ui-bootstrap"
+            type="text/javascript"
+            src="../../../../../../resources/sap-ui-core.js"
+            data-sap-ui-theme="sap_goldreflection"
+            data-sap-ui-libs="sap.ui.commons,sap.suite.ui.commons"></script>
+
+    <!-- QUnit libraries -->
+    <link rel="stylesheet"
+          href="../../../../../../resources/sap/ui/thirdparty/qunit.css"
+          type="text/css" media="screen" />
+    <script src="../../../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+    <script type="text/javascript" src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
+    <script type="text/javascript" src="../../../../../../resources/sap/ui/qunit/QUnitUtils.js"></script> 
+
+	<script>
+		
+		var sId1 = "id1";
+	    var oSplitButton = new sap.suite.ui.commons.SplitButton({
+	    id:sId1
+	    });    
+	    
+		var sPressMessage = "Button Pressed Event!";
+		var sMsg = null;
+	    
+		function pressEventHandler() {
+			sMsg = sPressMessage
+		}
+	    
+		var oMenu1	= new sap.ui.commons.Menu("menu1");
+		var oMenuItem1 = new sap.ui.commons.MenuItem("menuitem1", {text:"Item1"});
+		oMenu1.addItem(oMenuItem1);
+		var oMenuItem2 = new sap.ui.commons.MenuItem("menuitem2", {text:"Item2", select: pressEventHandler});
+		oMenu1.addItem(oMenuItem2);	
+				
+		oSplitButton.setMenu(oMenu1, oMenuItem2);
+		
+	    oSplitButton.placeAt("uiArea0");
+	</script>    
+	<script>    
+	    module("Control Rendering Test - sap.suite.ui.commons.SplitButton");
+
+		test("TestRenderedOK", function() {
+			notEqual(jQuery.sap.domById(sId1), null, "SplitButton outer HTML Element should be rendered.");
+		});
+				
+		test("TestDefaultActionButtonRenderedOK", function() {
+			notEqual(jQuery.sap.domById(sId1 +"-defaultActionButton"), null, "DefaultActionButton HTML Element should be rendered.");
+		});
+		
+		test("TestMenuButtonRenderedOK", function() {
+			notEqual(jQuery.sap.domById(sId1+"-menuButton"), null, "MenuButton HTML Element should be rendered.");
+		});	
+		
+		/************************************************************************************************/
+		
+		var oSB = null, oM = null, oM2=null, oM3=null, 
+			oMI1=null, oMI2=null, oMI2_1=null, oMI2_2=null,
+			oMI3=null, oMI3_1=null, oMI3_2=null,
+			sMId=null
+			sMI1Msg = "oMI1_Select";
+		
+		var iMATIndex = 1;
+			
+		module("Menu Aggregation Test - sap.suite.ui.commons.SplitButton", {
+			setup: function (){
+				// create menu
+	    		oM = new sap.ui.commons.Menu("mMAT-"+iMATIndex);
+	    		sMId = oM.getId();	    		
+	    		// create splitButton
+	    		oSB = new sap.suite.ui.commons.SplitButton("smbMAT-"+iMATIndex);
+	    		
+	    		iMATIndex++;
+			},
+		});
+			    
+	    test("SettingMenuViaConstructorOk", function(){
+	    	var oSmb = new sap.suite.ui.commons.SplitButton("smbMAT-smc", {menu: oM});		
+			ok(oSmb.getMenu(), "Menu is set");
+	    });
+	    
+	    test("SettingMenuOk", function(){
+	    	ok(!oSB.getMenu(), "Menu has not been set");
+	    	oSB.setMenu(oM);
+	    	ok(oSB.getMenu(), "Menu has been set");
+	    });
+	    
+	    test("DestroyMenuOk", function(){	    	
+	    	oSB.setMenu(oM);
+	    	ok(oSB.getMenu(), "Menu has been set");
+	    	oSB.destroyMenu();
+	    	ok(!oSB.getMenu(), "Menu has been destroyed");
+	    });
+		
+	    /************************************************************************************************/
+	    
+	    var iABTIndex = 1;
+	    module("Action Button Test - sap.suite.ui.commons.SplitButton", {
+	    	setup: function (){
+	    		// create menu
+	    		oM = new sap.ui.commons.Menu("m-"+iABTIndex);
+	    		sMId = oM.getId();	    		
+	    		// create splitButton
+	    		oSB = new sap.suite.ui.commons.SplitButton("smb-"+iABTIndex);
+				
+	    		// default menu item event and message	    		
+	    		var oMI1_Select = function () {
+	    			sMsg = sMI1Msg;
+	    		}	    		
+	    		oMI1 = new sap.ui.commons.MenuItem(sMId+"-item1" , {text: sMId+" item1", select: oMI1_Select});
+	    		
+	    		// other menu items
+	    		oMI2 = new sap.ui.commons.MenuItem(sMId+"-item2" , {text: sMId+" item2"});
+	    		oMI3 = new sap.ui.commons.MenuItem(sMId+"-item3" , {text: sMId+" item3"});
+	    		oM.addItem(oMI1);
+	    		oM.addItem(oMI2);
+	    		oM.addItem(oMI3);
+	    		
+	    		oMI2_1 = new sap.ui.commons.MenuItem(sMId+"-item2-subitem1", {text: sMId+" item2 subitem1"});
+	    		oMI2_2 = new sap.ui.commons.MenuItem(sMId+"-item2-subitem2", {text: sMId+" item2 subitem2"});
+	    		oM2 = new sap.ui.commons.Menu(sMId+"-m-2");
+	    		oM2.addItem(oMI2_1);
+	    		oM2.addItem(oMI2_2);
+	    		oMI2.setSubmenu(oM2);   		
+	    		
+	    		oMI3_1 = new sap.ui.commons.MenuItem(sMId+"-item3-subitem1", {text: sMId+" item3 subitem1"});
+	    		oMI3_2 = new sap.ui.commons.MenuItem(sMId+"-item3-subitem2", {text: sMId+" item3 subitem2"});
+	    		oMI3_3 = new sap.ui.commons.MenuItem(sMId+"-item3-subitem3", {text: sMId+" item3 subitem3", icon: "../images/mail.gif", tooltip: "Email", enabled: false});
+	    		oMI3_4 = new sap.ui.commons.MenuItem(sMId+"-item3-subitem4", {text: sMId+" item3 subitem4"});
+	    		oM3 = new sap.ui.commons.Menu(sMId+"-m-3");
+	    		oM3.addItem(oMI3_1);
+	    		oM3.addItem(oMI3_2);
+	    		oM3.addItem(oMI3_3);
+	    		oM3.addItem(oMI3_4);
+	    		oMI3.setSubmenu(oM3);			
+								
+				oSB.placeAt('uiArea'+iABTIndex);			
+				
+				//increment index for IDs in the setup;
+				iABTIndex++;
+	    	}
+	    	//teardown: function(){}, 
+	    });    
+
+	    // Test that default menu item can be set correctly via constructor
+	    test("InitializeSplitButtonWithMenu", function(){
+	    	var oSmb = new sap.suite.ui.commons.SplitButton("smb-ABT", {menu: oM});
+	    	ok(oSmb._oDefaultActionButton.getText()===oMI1.getText(), "Action button text is set to the first menu item text");
+			// prepare to fire the event
+			sMsg=null;
+			oSmb._oDefaultActionButton.firePress();
+			ok(sMsg == sMI1Msg, "Default event was fired!");			
+	    });
+	    
+	    // Test menu without any items - no default action is set
+		test("EmptyMenuOk", function () {			
+			oSB.setMenu(new sap.ui.commons.Menu("empty-menu"), null);			
+			ok(!oSB._oDefaultActionButton.getText(), "Action button text is empty");
+			ok(oSB.getMenu(), "Menu is set");
+		});
+		
+		// If the menu item is not set the default menu item is used
+		test("DefaultMenuItemOk", function () {			
+			oSB.setMenu(oM);			
+			ok(oSB._oDefaultActionButton.getText()===oMI1.getText(), "Action button text is set to the first menu item text");
+			// prepare to fire the event
+			sMsg=null;
+			oSB._oDefaultActionButton.firePress();
+			ok(sMsg == sMI1Msg, "Default event was fired!");
+			ok(oSB.getMenu(), "Menu is set");
+		});
+		
+		// test that first item in the menu is used when the app developer is setting incorrect menuitem 
+		test("SettingIncorrectMenuItemOk", function () {			
+			oSB.setMenu(oM, new sap.ui.commons.MenuItem("new-mi1", {text: "new-mi1", select: pressEventHandler}));
+			ok(oSB._oDefaultActionButton.getText()!=="new-mi1", "Action button text is not set to incorrect menu item");
+			ok(oSB._oDefaultActionButton.getText()===oMI1.getText(), "Action button text is set to the first menu item text");
+			// prepare to fire the event
+			sMsg=null;
+			oSB._oDefaultActionButton.firePress();
+			ok(sMsg != sPressMessage, "False event wasn't fired!");
+			ok(sMsg == sMI1Msg, "Default event was fired!");
+			ok(oSB.getMenu(), "Menu is set");
+		});
+		
+		// set the correct menu item
+		test("SettingCorrectMenuItemOk", function () {
+			oMI3_2.attachSelect(pressEventHandler);			
+			oSB.setMenu(oM, oMI3_2);			
+			ok(oSB._oDefaultActionButton.getText(), "Action button text exists");
+			// prepare to fire the event
+			sMsg=null;
+			oSB._oDefaultActionButton.firePress();
+			ok(sMsg == sPressMessage, "Event was fired!");
+			ok(oSB.getMenu(), "Menu is set");			
+		});
+		
+		test("DefaultButtonPropertiesOk", function () {
+			oSB.setMenu(oM, oMI3_3);
+			ok(oSB._oDefaultActionButton.getText(), "Action button text exists");
+	    	ok(oSB._oDefaultActionButton.getText()===oMI3_3.getText(), "Action button text is set to the menu item text");
+	    	ok(oSB._oDefaultActionButton.getIcon()===oMI3_3.getIcon(), "Action button icon is set to the menu item icon");
+	    	ok(oSB._oDefaultActionButton.getTooltip()===oMI3_3.getTooltip(), "Action button tooltip is set to the menu item tooltip");
+	    	ok(oSB._oDefaultActionButton.getEnabled()===oMI3_3.getEnabled(), "Action button enabled is set to the menu item enabled");
+		});	
+		
+		test("ModifyMenuItemDefaultButtonPropertiesOk", function () {
+			oSB.setMenu(oM, oMI3_3);
+			oMI3_3.setText("New Text");
+			oMI3_3.setIcon("../images/help.gif");
+			oMI3_3.setTooltip("New Tooltip");			
+			oMI3_3.setEnabled(true);
+			
+			ok(oSB._oDefaultActionButton.getText(), "Action button text exists");
+	    	ok(oSB._oDefaultActionButton.getText()===oMI3_3.getText(), "Action button text is set to the menu item text");
+	    	ok(oSB._oDefaultActionButton.getIcon()===oMI3_3.getIcon(), "Action button icon is set to the menu item icon");
+	    	ok(oSB._oDefaultActionButton.getTooltip()===oMI3_3.getTooltip(), "Action button tooltip is set to the menu item tooltip");
+	    	ok(oSB._oDefaultActionButton.getEnabled()===oMI3_3.getEnabled(), "Action button enabled is set to the menu item enabled");
+		});
+		
+		test("MenuItemNotVisibleOk", function () {
+			oSB.setMenu(oM, oMI3_4);
+			ok(oSB._oDefaultActionButton.getText(), "Action button text exists");
+			ok(oSB._oDefaultActionButton.getText()===oMI3_4.getText(), "Action button text is set to menu item text");
+			oMI3_4.setVisible(false);
+			ok(oSB._oDefaultActionButton.getText()===oMI1.getText(), "Action button text is set to the first menu item text");
+		});
+		
+		test("MenuItemEnabledInterceptorOk", function () {
+			oSB.setMenu(oM, oMI3_4);
+			oSB.setEnabled(true);
+			oMI3_4.setEnabled(false);
+			
+			ok(!oSB._oDefaultActionButton.getEnabled(), "Action button is disabled");
+			ok(oSB.getEnabled(), "Split Button is enabled");
+			ok(!oMI3_4.getEnabled(), "MenuItem is disabled");
+		});
+		
+		test("MenuItemTooltipInterceptorOk", function () {
+			oSB.setMenu(oM, oMI3_4);
+			oMI3_4.setTooltip("menuitem_tooltip");
+			
+			equal(oSB._oDefaultActionButton.getTooltip(), "menuitem_tooltip", "Action button tooltip is same");
+		});
+		
+		test("MenuItemIconInterceptorOk", function () {
+			oSB.setMenu(oM, oMI3_4);
+			oMI3_4.setIcon("../images/mail.gif");
+			equal(oSB._oDefaultActionButton.getIcon(), oMI3_4.getIcon(), "Icons are same");
+			oSB.setIcon("../images/help.gif");
+			oMI3_4.setIcon("../images/mail.gif");
+			notEqual(oSB._oDefaultActionButton.getIcon(), oMI3_4.getIcon(), "Icons are not same");
+		});
+		
+		test("MenuItemTextInterceptorOk", function () {
+			oSB.setMenu(oM, oMI3_4);
+			oMI3_4.setText("oldtext");
+			equal(oSB._oDefaultActionButton.getText(), oMI3_4.getText(), "Texts are same");
+			oSB.setText("newtext");
+			oMI3_4.setText("oldtext");
+			notEqual(oSB._oDefaultActionButton.getText(), oMI3_4.getText(), "Texts are not same");
+		});
+		
+		/************************************************************************************************/
+		
+		var oSegMenuBthDef = null, oSegMenuBthSet = null;
+		module("Property Test - sap.suite.ui.commons.SplitButton", {
+			setup: function (){
+				oSegMenuBthDef = new sap.suite.ui.commons.SplitButton();
+				oSegMenuBthSet = new sap.suite.ui.commons.SplitButton(
+						        {lite:true, enabled:false, visible:false, styled:false, 
+						         iconFirst:false, icon:"../images/help.gif", text:"Hi", style:sap.ui.commons.ButtonStyle.Reject});
+			},
+		});
+		
+		// default properties are set correctly
+		test("DefaultPropertyOk", function(){
+			equal (oSegMenuBthDef.getEnabled(), true, "Enabled Property is true");
+			equal (oSegMenuBthDef.getVisible(), true, "Visible Property is true");
+			equal (oSegMenuBthDef.getLite(), false, "Lite Property is false");
+			equal (oSegMenuBthDef.getStyled(), true, "Styled Property is true");
+			equal (oSegMenuBthDef.getIconFirst(), true, "Icon First Property is true");
+			equal (oSegMenuBthDef.getIcon(), '', "Icon Property is empty");
+			equal (oSegMenuBthDef.getText(), '', "Text Property is empty");
+			equal (oSegMenuBthDef.getStyle(), sap.ui.commons.ButtonStyle.Default, "Style Property is sap.ui.commons.ButtonStyle.Default");
+	    });
+		
+		// set properties are set correctly
+		test("SettingPropertyOk", function(){
+			equal (oSegMenuBthSet.getEnabled(), false, "Enabled Property is false");
+			equal (oSegMenuBthSet.getVisible(), false, "Visible Property is false");
+			equal (oSegMenuBthSet.getLite(), true, "Lite Property is true");
+			equal (oSegMenuBthSet.getStyled(), false, "Styled Property is false");
+			equal (oSegMenuBthSet.getIconFirst(), false, "Icon First Property is false");
+			notEqual (oSegMenuBthSet.getIcon(), '', "Icon Property is not empty");
+			notEqual (oSegMenuBthSet.getText(), '', "Text Property is not empty");
+			notEqual (oSegMenuBthSet.getStyle(), sap.ui.commons.ButtonStyle.Default, "Style Property is not sap.ui.commons.ButtonStyle.Default");
+	    });
+		
+		
+		
+	</script>
+</head>
+
+<body class="sapUiBody">
+	<div id="qunit"></div>
+	<div id="uiArea0"></div>
+	<p/>
+	<div id="uiArea1"></div>
+	<p/>
+	<div id="uiArea2"></div>
+	<p/>
+	<div id="uiArea3"></div>
+	<p/>
+	<div id="uiArea4"></div>
+	<p/>
+	<div id="uiArea5"></div>
+	<p/>
+	<div id="uiArea6"></div>
+	<p/>
+	<div id="uiArea7"></div>
+	<p/>
+	<div id="uiArea8"></div>
+	<p/>
+	<div id="uiArea9"></div>	
+	<p/>
+	<div id="uiArea10"></div>
+	<p/>
+	<div id="uiArea11"></div>
+	<p/>
+	<div id="uiArea12"></div>		
+</body>
+</html>

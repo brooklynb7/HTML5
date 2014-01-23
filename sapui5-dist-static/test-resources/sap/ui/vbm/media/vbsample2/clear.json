@@ -1,0 +1,27 @@
+{
+	"SAPVB": {
+		"version": "2.0",
+		"xmlns:VB": "VB",
+		"Data": {
+			"Remove": [
+				{
+					"type": "N",
+					"name": "Buildings"
+				},
+				{
+					"type": "N",
+					"name": "Pies"
+				},
+				{
+					"type": "N",
+					"name": "Flags"
+				}
+			]
+		},
+		"Windows": {
+			"Remove": {
+				"name": "Detail1"
+			}
+		}
+	}
+}

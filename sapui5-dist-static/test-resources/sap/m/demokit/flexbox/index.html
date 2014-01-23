@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Ultimate FlexBox Samples</title>
+	<meta http-equiv='X-UA-Compatible' content='IE=edge' />
+	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" href="index.css">
+	<script id='sap-ui-bootstrap' type='text/javascript'
+		src='../../../../../resources/sap-ui-core.js'
+			data-sap-ui-theme='sap_bluecrystal'
+			data-sap-ui-libs='sap.m'>
+	</script>
+	<script src="js/DemoAppReuse.js"></script>
+	<script>
+
+		// define page Ids
+		var ID_HOME_PAGE = "home"
+			ID_BASIC_ALIGNMENT = "basicAlignment",
+			ID_EQUAL_COLUMNS = "equalColumns",
+			ID_ELEMENT_ORDER = "elementOrder",
+			ID_SIZE_ADJUSTMENTS = "sizeAdjustments",
+			ID_NAVIGATION_EXAMPLES = "navigationExamples",
+			ID_OPPOSING_ALIGNMENT = "opposingAlignment",
+			ID_FIT_VIEWPORT = "fitViewport",
+			ID_NESTED_FLEXBOXES = "nestedFlexboxes"
+
+		// define icons and images
+		var	ICON_CODE = "images/iconCode.png",
+			ICON_UI5 = "images/144_iPad_Retina_Web_Clip.png";
+
+		var pageFunctions = {};		// Functions for page creation
+		var elementFunctions = {};	// Functions for creating the controls and also the basis for the code pages
+
+		/**
+		 * Adds a page demonstrating the alignment properties
+		 */
+		 pageFunctions[ID_BASIC_ALIGNMENT] = function () {
+			var elements = elementFunctions[ID_BASIC_ALIGNMENT]();
+
+			var basicAlignment = new sap.m.Page(ID_BASIC_ALIGNMENT, {
+				content: [
+					new sap.ui.core.HTML({content:"<header><h2>Flex items in upper left of horizontal FlexBox</h2><p class='code'>justifyContent = Start<br>alignItems = Start</p></header>"}),
+					elements[0],
+					new sap.ui.core.HTML({content:"<header><h2>Flex items in upper center of horizontal FlexBox</h2><p class='code'>justifyContent = Center<br>alignItems = Start</p></header>"}),
+					elements[1],
+					new sap.ui.core.HTML({content:"<header><h2>Flex items in upper right of horizontal FlexBox</h2><p class='code'>justifyContent = End<br>alignItems = Start</p></header>"}),
+					elements[2],
+					new sap.ui.core.HTML({content:"<header><h2>Flex items in middle left of horizontal FlexBox</h2><p class='code'>justifyContent = Start<br>alignItems = Center</p></header>"}),
+					elements[3],
+					new sap.ui.core.HTML({content:"<header><h2>Flex items in middle center of horizontal FlexBox</h2><p class='code'>justifyContent = Center<br>alignItems = Center</p></header>"}),
+					elements[4],
+					new sap.ui.core.HTML({content:"<header><h2>Flex items in middle right of horizontal FlexBox</h2><p class='code'>justifyContent = End<br>alignItems = Center</p></header>"}),
+					elements[5],
+					new sap.ui.core.HTML({content:"<header><h2>Flex items in lower left of horizontal FlexBox</h2><p class='code'>justifyContent = Start<br>alignItems = End</p></header>"}),
+					elements[6],
+					new sap.ui.core.HTML({content:"<header><h2>Flex items in lower center of horizontal FlexBox</h2><p class='code'>justifyContent = Center<br>alignItems = End</p></header>"}),
+					elements[7],
+					new sap.ui.core.HTML({content:"<header><h2>Flex items in lower right of horizontal FlexBox</h2><p class='code'>justifyContent = End<br>alignItems = End</p></header>"}),
+					elements[8]
+				]
+			});
+			populatePageHeader(basicAlignment, ID_BASIC_ALIGNMENT, "Horizontal and Vertical Alignment");
+
+			app.addPage(basicAlignment);
+		}
+
+		/**
+		 * Prepares elements demonstrating the alignment properties
+		 */
+		elementFunctions[ID_BASIC_ALIGNMENT] = function () {
+			//CODESNIP_START
+			// Creating nine flexboxes with flex items holding an image each
+			// Each flexbox has a different combination of horizontal and vertical alignment
+			var oFlexBox1 = new sap.m.FlexBox("ba-flexbox1", {
+				items:[
+					new sap.m.Image({src: "images/mark1.png"}),
+					new sap.m.Image({src: "images/mark2.png"}),
+					new sap.m.Image({src: "images/mark3.png"})
+				]
+			});
+			oFlexBox1.setJustifyContent('Start');
+			oFlexBox1.setAlignItems('Start');
+
+			var oFlexBox2 = new sap.m.FlexBox("ba-flexbox2", {
+				items:[
+					new sap.m.Image({src: "images/mark1.png"}),
+					new sap.m.Image({src: "images/mark2.png"}),
+					new sap.m.Image({src: "images/mark3.png"})
+				]
+			});
+			oFlexBox2.setJustifyContent('Center');
+			oFlexBox2.setAlignItems('Start');
+
+			var oFlexBox3 = new sap.m.FlexBox("ba-flexbox3", {
+				items:[
+					new sap.m.Image({src: "images/mark1.png"}),
+					new sap.m.Image({src: "images/mark2.png"}),
+					new sap.m.Image({src: "images/mark3.png"})
+				]
+			});
+			oFlexBox3.setJustifyContent('End');
+			oFlexBox3.setAlignItems('Start');
+
+			var oFlexBox4 = new sap.m.FlexBox("ba-flexbox4", {
+				items:[
+					new sap.m.Image({src: "images/mark1.png"}),
+					new sap.m.Image({src: "images/mark2.png"}),
+					new sap.m.Image({src: "images/mark3.png"})
+				]
+			});
+			oFlexBox4.setJustifyContent('Start');
+			oFlexBox4.setAlignItems('Center');
+			
+			var oFlexBox5 = new sap.m.FlexBox("ba-flexbox5", {
+				items:[
+					new sap.m.Image({src: "images/mark1.png"}),
+					new sap.m.Image({src: "images/mark2.png"}),
+					new sap.m.Image({src: "images/mark3.png"})
+				]
+			});
+			oFlexBox5.setJustifyContent('Center');
+			oFlexBox5.setAlignItems('Center');
+
+			var oFlexBox6 = new sap.m.FlexBox("ba-flexbox6", {
+				items:[
+					new sap.m.Image({src: "images/mark1.png"}),
+					new sap.m.Image({src: "images/mark2.png"}),
+					new sap.m.Image({src: "images/mark3.png"})
+				]
+			});
+			oFlexBox6.setJustifyContent('End');
+			oFlexBox6.setAlignItems('Center');
+
+			var oFlexBox7 = new sap.m.FlexBox("ba-flexbox7", {
+				items:[
+					new sap.m.Image({src: "images/mark1.png"}),
+					new sap.m.Image({src: "images/mark2.png"}),
+					new sap.m.Image({src: "images/mark3.png"})
+				]
+			});
+			oFlexBox7.setJustifyContent('Start');
+			oFlexBox7.setAlignItems('End');
+
+			var oFlexBox8 = new sap.m.FlexBox("ba-flexbox8", {
+				items:[
+					new sap.m.Image({src: "images/mark1.png"}),
+					new sap.m.Image({src: "images/mark2.png"}),
+					new sap.m.Image({src: "images/mark3.png"})
+				]
+			});
+			oFlexBox8.setJustifyContent('Center');
+			oFlexBox8.setAlignItems('End');
+
+			var oFlexBox9 = new sap.m.FlexBox("ba-flexbox9", {
+				items:[
+					new sap.m.Image({src: "images/mark1.png"}),
+					new sap.m.Image({src: "images/mark2.png"}),
+					new sap.m.Image({src: "images/mark3.png"})
+				]
+			});
+			oFlexBox9.setJustifyContent('End');
+			oFlexBox9.setAlignItems('End');
+			//CODESNIP_END
+
+			return [oFlexBox1, oFlexBox2, oFlexBox3, oFlexBox4, oFlexBox5, oFlexBox6, oFlexBox7, oFlexBox8, oFlexBox9];
+		}
+
+
+
+
+		/**
+		 * Adds adds a page with two equal-height columns
+		 */
+		pageFunctions[ID_EQUAL_COLUMNS] = function () {
+			var elements = elementFunctions[ID_EQUAL_COLUMNS]();
+
+			var equalColumns = new sap.m.Page(ID_EQUAL_COLUMNS, {
+				content: [
+					elements[0]
+				]
+			});
+			populatePageHeader(equalColumns, ID_EQUAL_COLUMNS, "Equal-height Columns");
+
+			app.addPage(equalColumns);
+		}
+
+		/**
+		 * Prepares two equal-height columns
+		 */
+		elementFunctions[ID_EQUAL_COLUMNS] = function () {
+			//CODESNIP_START
+			// Create a flexbox
+			var oColumns = new sap.m.FlexBox("columns", {
+				items:[
+					new sap.ui.core.HTML({
+						
+						content:"<div><p>Although they have different amounts of text, both columns are of equal height.</p><p class='code'>alignItems: Stretch</p></div>",
+						layoutData: new sap.m.FlexItemData({growFactor: 1, id: "column1"})
+					}),
+					new sap.ui.core.HTML({
+						content:"<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>",
+						layoutData: new sap.m.FlexItemData({growFactor: 1, id: "column2"})
+					})
+				]
+			});
+			oColumns.setAlignItems('Stretch');
+			//CODESNIP_END
+
+			return [oColumns];
+		}
+
+
+
+
+		/**
+		 * Adds a page demonstrating direction changes and ordering
+		 */
+		pageFunctions[ID_ELEMENT_ORDER] = function () {
+			var elements = elementFunctions[ID_ELEMENT_ORDER]();
+
+			var elementOrder = new sap.m.Page(ID_ELEMENT_ORDER, {
+				content: [
+					new sap.ui.core.HTML({content:"<header><h2>Flex items stack in reverse direction of horizontal FlexBox</h2><p class='code'>direction = RowReverse</p></header>"}),
+					elements[0],
+					new sap.ui.core.HTML({content:"<header><h2>Flex items stack from top to bottom in vertical FlexBox</h2><p class='code'>direction = Column</p></header>"}),
+					elements[1],
+					new sap.ui.core.HTML({content:"<header><h2>Flex items stack from bottom to top in reverse vertical FlexBox</h2><p class='code'>direction = ColumnReverse</p></header>"}),
+					elements[2],
+					new sap.ui.core.HTML({content:"<header><h2>Flex item order can be set arbitrarily regardless of source order</h2><p class='code'>order = &lt;number&gt;</p></header>"}),
+					elements[3],
+				]
+			});
+			populatePageHeader(elementOrder, ID_ELEMENT_ORDER, "Manipulating Direction and Element Order");
+
+			app.addPage(elementOrder);
+		}
+
+		/**
+		 * Prepares several flexboxes demonstrating direction changes and ordering
+		 */
+		elementFunctions[ID_ELEMENT_ORDER] = function () {
+			//CODESNIP_START
+			// Creating four flexboxes with items holding an image each
+			// Each flexbox has a different flex direction or flex item order
+			var oFlexBox1 = new sap.m.FlexBox("eo-flexbox1", {
+				items:[
+					new sap.m.Image({src: "images/mark1.png"}),
+					new sap.m.Image({src: "images/mark2.png"}),
+					new sap.m.Image({src: "images/mark3.png"})
+				]
+			});
+			oFlexBox1.setDirection('RowReverse');
+			oFlexBox1.setAlignItems('Start');
+
+			var oFlexBox2 = new sap.m.FlexBox("eo-flexbox2", {
+				items:[
+					new sap.m.Image({src: "images/mark1.png"}),
+					new sap.m.Image({src: "images/mark2.png"}),
+					new sap.m.Image({src: "images/mark3.png"})
+				]
+			});
+			oFlexBox2.setDirection('Column');
+			oFlexBox2.setAlignItems('Start');
+
+			var oFlexBox3 = new sap.m.FlexBox("eo-flexbox3", {
+				items:[
+					new sap.m.Image({src: "images/mark1.png"}),
+					new sap.m.Image({src: "images/mark2.png"}),
+					new sap.m.Image({src: "images/mark3.png"})
+				]
+			});
+			oFlexBox3.setDirection('ColumnReverse');
+			oFlexBox3.setAlignItems('Start');
+
+			var oFlexBox4 = new sap.m.FlexBox("eo-flexbox4", {
+				items:[
+					new sap.m.Image({src: "images/mark1.png", layoutData: new sap.m.FlexItemData({order: 2})}),
+					new sap.m.Image({src: "images/mark2.png", layoutData: new sap.m.FlexItemData({order: 3})}),
+					new sap.m.Image({src: "images/mark3.png", layoutData: new sap.m.FlexItemData({order: 1})})
+				]
+			});
+			oFlexBox4.setAlignItems('Start');
+			//CODESNIP_END
+
+			return [oFlexBox1, oFlexBox2, oFlexBox3, oFlexBox4];
+		}
+
+
+
+
+		/**
+		 * Adds several flexboxes demonstrating automatic size adjustments
+		 */
+		pageFunctions[ID_SIZE_ADJUSTMENTS] = function () {
+			var elements = elementFunctions[ID_SIZE_ADJUSTMENTS]();
+
+			var sizeAdjustments = new sap.m.Page(ID_SIZE_ADJUSTMENTS, {
+				content: [
+					new sap.ui.core.HTML({content:"<header><h2>Flex items with equal flexibility and equal amount of content in horizontal FlexBox</h2><p class='code'>growFactor = 1 (all flex items)<br>Result: equal item widths as long as original width is the same</p></header>"}),
+					elements[0],
+					new sap.ui.core.HTML({content:"<header><h2>Flex items with different flexibility and equal amount of content in horizontal FlexBox</h2><p class='code'>growFactor = 1 (flex item 1)<br>growFactor = 2 (flex item 2)<br>growFactor = 3 (flex item 3)<br>Result: extra width proportional to grow factor of item</p></header>"}),
+					elements[1],
+					new sap.ui.core.HTML({content:"<header><h2>Flex items with equal flexibility and different amounts of content in horizontal FlexBox</h2><p class='code'>growFactor = 1 (all flex items)<br>Result: equal extra width of item</p></header>"}),
+					elements[2],
+					new sap.ui.core.HTML({content:"<header><h2>Flex items with equal flexibility and different amounts of content but width set to 0 in horizontal FlexBox</h2><p class='code'>growFactor = 1 (all flex items)<br>width: 0 (all flex items, via CSS)<br>Result: equal item widths independent of content</p></header>"}),
+					elements[3],
+					new sap.ui.core.HTML({content:"<header><h2>Flex items with different flexibility and different amounts of content but width set to 0 in horizontal FlexBox</h2><p class='code'>growFactor = 3 (flex item 1)<br>growFactor = 2 (flex item 2)<br>growFactor = 1 (flex item 3)<br>width: 0 (all flex items, via CSS)<br>Result: item width proportional to grow factor of item independent of content</p></header>"}),
+					elements[4],
+				]
+			});
+			populatePageHeader(sizeAdjustments, ID_SIZE_ADJUSTMENTS, "Automatic Size Adjustments");
+
+			app.addPage(sizeAdjustments);
+		}
+
+		/**
+		 * Prepares several flexboxes demonstrating automatic size adjustments
+		 */
+		elementFunctions[ID_SIZE_ADJUSTMENTS] = function () {
+			//CODESNIP_START
+			// Creating five flexboxes with flex items holding one or more images each
+			// Each flexbox has a different combination of flex item grow factors and CSS widths
+			var oFlexBox1 = new sap.m.FlexBox("sa-flexbox1", {
+				items:[
+					new sap.m.Image({src: "images/mark1.png", layoutData: new sap.m.FlexItemData({growFactor: 1})}),
+					new sap.m.Image({src: "images/mark2.png", layoutData: new sap.m.FlexItemData({growFactor: 1})}),
+					new sap.m.Image({src: "images/mark3.png", layoutData: new sap.m.FlexItemData({growFactor: 1})})
+				]
+			});
+			oFlexBox1.setAlignItems('Start');
+
+			var oFlexBox2 = new sap.m.FlexBox("sa-flexbox2", {
+				items:[
+					new sap.m.Image({src: "images/mark1.png", layoutData: new sap.m.FlexItemData({growFactor: 1})}),
+					new sap.m.Image({src: "images/mark2.png", layoutData: new sap.m.FlexItemData({growFactor: 2})}),
+					new sap.m.Image({src: "images/mark3.png", layoutData: new sap.m.FlexItemData({growFactor: 3})})
+				]
+			});
+			oFlexBox2.setAlignItems('Start');
+
+			var oFlexBox3 = new sap.m.FlexBox("sa-flexbox3", {
+				items:[
+					new sap.m.Image({src: "images/mark1.png", layoutData: new sap.m.FlexItemData({growFactor: 1})}),
+					new sap.m.Image({src: "images/mark2.png", width: "96px", layoutData: new sap.m.FlexItemData({growFactor: 1})}),
+					new sap.m.Image({src: "images/mark3.png", width: "144px", layoutData: new sap.m.FlexItemData({growFactor: 1})})
+				]
+			});
+			oFlexBox3.setAlignItems('Start');
+
+			var oFlexBox4 = new sap.m.FlexBox("sa-flexbox4", {
+				items:[
+					new sap.m.Image({src: "images/mark1.png", layoutData: new sap.m.FlexItemData({growFactor: 1})}),
+					new sap.m.Image({src: "images/mark2.png", width: "96px", layoutData: new sap.m.FlexItemData({growFactor: 1})}),
+					new sap.m.Image({src: "images/mark3.png", width: "144px", layoutData: new sap.m.FlexItemData({growFactor: 1})})
+				]
+			});
+			oFlexBox4.setAlignItems('Start');
+
+			var oFlexBox5 = new sap.m.FlexBox("sa-flexbox5", {
+				items:[
+					new sap.m.Image({src: "images/mark1.png", layoutData: new sap.m.FlexItemData({growFactor: 3})}),
+					new sap.m.Image({src: "images/mark2.png", width: "96px", layoutData: new sap.m.FlexItemData({growFactor: 2})}),
+					new sap.m.Image({src: "images/mark3.png", width: "144px", layoutData: new sap.m.FlexItemData({growFactor: 1})})
+				]
+			});
+			oFlexBox5.setAlignItems('Start');
+			//CODESNIP_END
+
+			return [oFlexBox1, oFlexBox2, oFlexBox3, oFlexBox4, oFlexBox5];
+		}
+
+
+
+
+		/**
+		 * Adds navigation examples to the application
+		 */
+		pageFunctions[ID_NAVIGATION_EXAMPLES] = function () {
+			var elements = elementFunctions[ID_NAVIGATION_EXAMPLES]();
+
+			var navigationExamples = new sap.m.Page(ID_NAVIGATION_EXAMPLES, {
+				content: [
+					new sap.ui.core.HTML({content:"<header><h2>Variable-width navigation items as unordered list</h2><p class='code'>renderType = List<br>justifyContent = Center</p></header>"}),
+					elements[0],
+					new sap.ui.core.HTML({content:"<header><h2>Same-width navigation items as unordered list with transition effect on tap/hover</h2><p class='code'>renderType = List<br>justifyContent = SpaceBetween<br>growFactor = 1 (for all flex items)<br>equal base size and transition effect via CSS</p></header>"}),
+					elements[1]
+				]
+			});
+			populatePageHeader(navigationExamples, ID_NAVIGATION_EXAMPLES, "Navigation Examples");
+
+			app.addPage(navigationExamples);
+		}
+
+		/**
+		 * Prepares navigation examples
+		 */
+		elementFunctions[ID_NAVIGATION_EXAMPLES] = function () {
+			//CODESNIP_START
+			// Create a flexbox with nav items
+			var oNavigation1 = new sap.m.FlexBox("ne-flexbox1", {
+				items:[
+					new sap.ui.core.HTML({content:"<a href='javascript:return false;'>Item 1</a>"}),
+					new sap.ui.core.HTML({content:"<a href='javascript:return false;'>Long item 2</a>"}),
+					new sap.ui.core.HTML({content:"<a href='javascript:return false;'>Item 3</a>"})
+				]
+			});
+			oNavigation1.setRenderType('List');
+			oNavigation1.setJustifyContent('Center');
+			oNavigation1.setAlignItems('Center');
+
+			// Create a flexbox with nav items
+			var oNavigation2 = new sap.m.FlexBox("ne-flexbox2", {
+				items:[
+					new sap.ui.core.HTML({content:"<a href='javascript:return false;'>Item 1</a>", layoutData: new sap.m.FlexItemData({growFactor: 1})}),
+					new sap.ui.core.HTML({content:"<a href='javascript:return false;'>Long item 2</a>", layoutData: new sap.m.FlexItemData({growFactor: 1})}),
+					new sap.ui.core.HTML({content:"<a href='javascript:return false;'>Item 3</a>", layoutData: new sap.m.FlexItemData({growFactor: 1})})
+				]
+			});
+			oNavigation2.setRenderType('List');
+			oNavigation2.setJustifyContent('SpaceBetween');
+			oNavigation2.setAlignItems('Center');
+			//CODESNIP_END
+
+			return [oNavigation1, oNavigation2];
+		}
+
+
+
+
+		/**
+		 * Adds a page demonstrating opposite alignment to the application
+		 */
+		pageFunctions[ID_OPPOSING_ALIGNMENT] = function () {
+			var elements = elementFunctions[ID_OPPOSING_ALIGNMENT]();
+
+			var opposingAlignment = new sap.m.Page(ID_OPPOSING_ALIGNMENT, {
+				content: [
+					new sap.ui.core.HTML({ content:"<header><h2>Single flex items laid out opposite each other in horizontal FlexBox </h2><p class='code'>justifyContent = SpaceBetween</p></header>" }),
+					elements[0],
+					/*new sap.ui.core.HTML({ content:"<header><h2>Groups of flex items laid out opposite each other in horizontal FlexBox</h2><p class='code'>margin-left: auto (flex item 2)</p></header>"}),
+					elements[1]*/
+				]
+			});
+			populatePageHeader(opposingAlignment, ID_OPPOSING_ALIGNMENT, "Opposing Alignment");
+
+			app.addPage(opposingAlignment);
+		}
+
+		/**
+		 * Prepares flexboxes demonstrating opposite alignment to the application
+		 */
+		elementFunctions[ID_OPPOSING_ALIGNMENT] = function () {
+			//CODESNIP_START
+			// Creating two flexboxes with items holding one or more images each
+			var oFlexBox1 = new sap.m.FlexBox("oa-flexbox1", {
+				items:[
+					new sap.m.Image({src: "images/mark1.png"}),
+					new sap.m.Image({src: "images/mark2.png"})
+				]
+			});
+			oFlexBox1.setJustifyContent('SpaceBetween');
+			oFlexBox1.setAlignItems('Start');
+
+			var oFlexBox2 = new sap.m.FlexBox("oa-flexbox2", {
+				items:[
+					new sap.m.Image({src: "images/mark1.png"}),
+					new sap.m.Image({src: "images/mark2.png"}),
+					new sap.m.Image({src: "images/mark3.png", layoutData: new sap.m.FlexItemData({growFactor: 1, id: "oa-item3"})})
+				]
+			});
+			oFlexBox2.setAlignItems('Start');
+			//CODESNIP_END
+
+			return [oFlexBox1, oFlexBox2];
+		}
+
+
+
+
+		/**
+		 * Adds a flexbox scaled to fit the viewport
+		 */
+		pageFunctions[ID_FIT_VIEWPORT] = function () {
+			var elements = elementFunctions[ID_FIT_VIEWPORT]();
+
+			//create page
+			var fitViewport = new sap.m.Page(ID_FIT_VIEWPORT, {
+				enableScrolling: false,
+				content: [
+					elements[0]
+				],
+			});
+			populatePageHeader(fitViewport, ID_FIT_VIEWPORT, "Fit Viewport");
+
+			app.addPage(fitViewport);
+		}
+
+		/**
+		 * Prepares a simple flexbox
+		 */
+		elementFunctions[ID_FIT_VIEWPORT] = function () {
+			//CODESNIP_START
+			var oFlexBox = new sap.m.HBox("fv-flexbox", {
+				items: [
+					new sap.ui.core.HTML({content: '<h2>Panel 1</h2>', layoutData: new sap.m.FlexItemData({growFactor: 1, id: "fv-item1"})}),
+					new sap.ui.core.HTML({content: '<h2>Panel 2</h2>', layoutData: new sap.m.FlexItemData({growFactor: 1, id: "fv-item2"})})
+				],
+				fitContainer: true,
+				alignItems: "Stretch"
+			});
+
+			//CODESNIP_END
+
+			return [oFlexBox];
+		}
+
+
+
+
+		/**
+		 * Adds nested flexboxes with six panels to the application
+		 */
+		pageFunctions[ID_NESTED_FLEXBOXES] = function () {
+			var elements = elementFunctions[ID_NESTED_FLEXBOXES]();
+
+			//create page
+			var nestedFlexBoxes = new sap.m.Page(ID_NESTED_FLEXBOXES, {
+				enableScrolling: false,
+				content: [
+					elements[0]
+				]
+			});
+			populatePageHeader(nestedFlexBoxes, ID_NESTED_FLEXBOXES, "Nested FlexBoxes");
+
+			app.addPage(nestedFlexBoxes);
+		}
+		
+		/**
+		 * Prepares nested flexboxes with six panels
+		 */
+		elementFunctions[ID_NESTED_FLEXBOXES] = function () {
+			//CODESNIP_START
+			var oOuterHBox = new sap.m.HBox("outerHBox", {
+				items: [
+					new sap.ui.core.HTML({content: '<h2>Panel 1</h2>', layoutData: new sap.m.FlexItemData({growFactor: 2, id: "nf-item1"})}),
+					new sap.ui.core.HTML({content: '<h2>Panel 2</h2>', layoutData: new sap.m.FlexItemData({growFactor: 3, id: "nf-item2"})}),
+					new sap.m.VBox("vbox", {
+						items: [
+							new sap.ui.core.HTML({content: '<h2>Panel 3</h2>', layoutData: new sap.m.FlexItemData({growFactor: 5, id: "nf-item3"})}),
+							new sap.m.HBox("innerHBox", {
+								items: [
+									new sap.ui.core.HTML({content: '<h2>Panel 4</h2>', layoutData: new sap.m.FlexItemData({growFactor: 1, id: "nf-item4"})}),
+									new sap.ui.core.HTML({content: '<h2>Panel 5</h2>', layoutData: new sap.m.FlexItemData({growFactor: 1, id: "nf-item5"})})
+								],
+								fitContainer: true,
+								alignItems: "Stretch",
+								layoutData: new sap.m.FlexItemData({ growFactor: 3 })
+							})
+						],
+						fitContainer: true,
+						layoutData: new sap.m.FlexItemData({ growFactor: 7 })
+					}),
+					new sap.ui.core.HTML({content: '<h2>Panel 6</h2>', layoutData: new sap.m.FlexItemData({growFactor: 5, id: "nf-item6"})})
+				],
+				fitContainer: true,
+				alignItems: "Stretch"
+			});
+			//CODESNIP_END
+
+			return [oOuterHBox];
+		}
+
+
+		/**
+		 * Convenience function for back
+		 */
+		function navBack() {
+			jQuery.sap.history.back();
+		}
+
+		/**
+		 * function for filling the header bar for example pages
+		 */
+		function populatePageHeader(page, id, title, backTitle) {
+			if(backTitle) {
+				page.setNavButtonText(backTitle);
+			}
+			page.setShowNavButton(true)
+				.attachNavButtonPress(navBack)
+				.setTitle(title)
+				.setIcon(ICON_UI5)
+				.addHeaderContent(createCodeButton(id, title));
+		}
+
+		/**
+		 * function for creating a button to a code page
+		 */
+		function createCodeButton(id, title) {
+
+			var PAGE_PREFIX = "CODE_";
+
+			// prepare code
+			var code = DemoAppReuse.convertCodeToHtml(elementFunctions[id]);
+
+			// create button
+			var button = new sap.m.Button({
+				icon: ICON_CODE,
+				press: function() {
+					var codePageId = PAGE_PREFIX + id;
+					if (!pageFunctions[codePageId]) {
+						pageFunctions[codePageId] = function(id) {
+							return new sap.m.Page(id, {
+								title: "Code: " + title,
+								icon: ICON_UI5,
+								navButtonText: title,
+								showNavButton: true,
+								navButtonPress: navBack,
+								enableScrolling: false,
+								content: [
+									new sap.m.ScrollContainer({
+										height: "100%",
+										width: "100%",
+										horizontal: true,
+										vertical: true,
+										content: new sap.ui.core.HTML({
+											content: code,
+										}),
+									}),
+								],
+							});
+						}
+					}
+					DemoAppReuse.navToPage(app, pageFunctions, codePageId, true, undefined);	
+				},
+			});
+			button.addStyleClass('codeButton');
+			return button;
+		}
+
+
+
+
+		/**
+		 * Adds the home page to the application
+		 */
+		function addHomePage() {
+			// create list
+			var oList1 = new sap.m.List({
+				id : "sapMList001",
+				inset : false,
+			});
+
+			function bindListData(data, itemTemplate, list) {
+				var oModel = new sap.ui.model.json.JSONModel();
+				// set the data for the model
+				oModel.setData(data);
+				// set the model to the list
+				list.setModel(oModel);
+
+				// bind Aggregation
+				list.bindAggregation("items", "/navigation", itemTemplate);
+			}
+
+			var oItemTemplate = new sap.m.StandardListItem({
+				title : "{title}",
+				type : "{type}",
+				customData: [
+					new sap.ui.core.CustomData({
+						key: "id",
+						value: "{id}" 
+					}),
+				],
+				press : function() {
+					var id = this.data("id");
+					DemoAppReuse.navToPage(app, undefined, id, true, undefined);
+				}
+			});
+
+			var data = {
+				navigation : [
+					{
+						title : "Horizontal and Vertical Alignment",
+						type : "Active",
+						id : ID_BASIC_ALIGNMENT
+					},
+					{
+						title : "Equal-height Columns",
+						type : "Active",
+						id : ID_EQUAL_COLUMNS
+					},
+					{
+						title : "Manipulating Direction and Element Order",
+						type : "Active",
+						id : ID_ELEMENT_ORDER
+					},
+					{
+						title : "Automatic Size Adjustments",
+						type : "Active",
+						id : ID_SIZE_ADJUSTMENTS
+					},
+					{
+						title : "Navigation Examples",
+						type : "Active",
+						id : ID_NAVIGATION_EXAMPLES
+					},
+					{
+						title : "Opposing Alignment",
+						type : "Active",
+						id : ID_OPPOSING_ALIGNMENT
+					},
+					{
+						title : "Fit Viewport",
+						type : "Active",
+						id : ID_FIT_VIEWPORT
+					},
+					{
+						title : "Nested FlexBoxes",
+						type : "Active",
+						id : ID_NESTED_FLEXBOXES
+					}
+				]
+			}
+
+			bindListData(data, oItemTemplate, oList1)
+
+
+			// create page
+			var homePage = new sap.m.Page(ID_HOME_PAGE, {
+				title: "Ultimate FlexBox Samples",
+				icon: ICON_UI5,
+				content: [ oList1 ]
+			});
+
+			app.addPage(homePage);
+		}
+
+
+		// ~~~InitApplication~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		// create app
+		var app = new sap.m.App({
+			homeIcon : {
+				'phone' : 'images/57_iPhone_Desktop_Launch.png',
+				'phone@2' : 'images/114_iPhone-Retina_Web_Clip.png',
+				'tablet' : 'images/72_iPad_Desktop_Launch.png',
+				'tablet@2' : 'images/144_iPad_Retina_Web_Clip.png',
+				'favicon' : 'images/favicon.ico',
+				'precomposed': false
+			}
+		});
+		app.placeAt("content");
+
+		addHomePage();
+		pageFunctions[ID_BASIC_ALIGNMENT]();
+		pageFunctions[ID_EQUAL_COLUMNS]();
+		pageFunctions[ID_ELEMENT_ORDER]();
+		pageFunctions[ID_SIZE_ADJUSTMENTS]();
+		pageFunctions[ID_NAVIGATION_EXAMPLES]();
+		pageFunctions[ID_OPPOSING_ALIGNMENT]();
+		pageFunctions[ID_FIT_VIEWPORT]();
+		pageFunctions[ID_NESTED_FLEXBOXES]();
+
+		// init history management
+		DemoAppReuse.initHistoryHandling(app, undefined, ID_HOME_PAGE);
+
+	</script>
+</head>
+<body class='sapUiBody' id='content'>
+</body>
+</html>

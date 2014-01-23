@@ -1,0 +1,18 @@
+<core:View
+	controllerName="view.DetailAttachments"
+	xmlns="sap.m"
+	xmlns:form="sap.ui.layout.form"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:core="sap.ui.core" >
+	<List
+		id="list"
+		showSeparators="None"
+		items="{path:'Attachments'}" >
+		<StandardListItem
+			title="{Title}, {Size}"
+			icon="{path:'Type', formatter:'util.Formatter.AttachmentIcon'}"
+			description="{Description}"
+			iconInset="false"
+			info="{path:'CreatedAt', formatter:'util.Formatter.Date'}" />
+	</List>
+</core:View>

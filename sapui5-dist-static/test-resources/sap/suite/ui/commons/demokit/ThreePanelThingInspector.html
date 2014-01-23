@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html data-sap-ui-dk-category="Controls/Complex" data-sap-ui-dk-controls="sap.suite.ui.commons.ThreePanelThingInspector">
+<head>
+    <meta charset="UTF-8">
+    <title>ThreePanelThingInspector - sap.suite.ui.commons</title>
+
+    <!-- Bootstrap -->
+    <script id="sap-ui-bootstrap" type="text/javascript"
+            src="../../../../../../resources/sap-ui-core.js"
+            data-sap-ui-theme="sap_goldreflection"
+            data-sap-ui-libs="sap.ui.commons, sap.ui.ux3, sap.ui.demokit, sap.suite.ui.commons">
+    </script>
+    <script src="../../../../../../js/utils.js"></script>
+
+    <!-- Example 1 script -->
+    <script id="threePanelThingInspector1" type="text/javascript">
+        function row(sLabel, sText) {
+            var oControl = new sap.ui.commons.TextView({
+                text: sText,
+                tooltip: sText
+            });
+            var oLabel = new sap.ui.commons.Label({
+                text: sLabel + ":",
+                labelFor: oControl
+            });
+            var oMLCell1 = new sap.ui.commons.layout.MatrixLayoutCell({
+                hAlign: sap.ui.commons.layout.HAlign.End,
+                vAlign: sap.ui.commons.layout.VAlign.Top,
+                content: [ oLabel ]
+            });
+            var oMLCell2 = new sap.ui.commons.layout.MatrixLayoutCell({
+                hAlign: sap.ui.commons.layout.HAlign.Begin,
+                vAlign: sap.ui.commons.layout.VAlign.Top,
+                content: [ oControl ]
+            });
+
+            return new sap.ui.commons.layout.MatrixLayoutRow({
+                cells: [ oMLCell1, oMLCell2 ]
+            });
+        }
+
+        var oFC1 = new sap.ui.ux3.ThingGroup({
+            title : "Contacts",
+            colspan: true,
+            content: [
+                new sap.suite.ui.commons.BusinessCard({
+                	firstTitle: new sap.ui.commons.Link({text: "Doe, John", href: "http://www.sap.com"}),
+                    secondTitle: "Sales Contact at Customer Side",
+                    iconPath: "images/persons/male_MillerM.jpg",
+                    width: "280px"
+                })
+            ]
+        });
+
+        var oFC2 = new sap.ui.ux3.ThingGroup({
+            title : "Product Ranges",
+            colspan: true,
+            content: [
+                new sap.suite.ui.commons.BusinessCard({
+                	firstTitle: new sap.ui.commons.Label({text: "ID: 7438"}),
+                    secondTitle: "Industrial Lighting",
+                    iconPath: "images/light_bulb.png",
+                    width: "280px"
+                })
+            ]
+        });
+
+        var fnCloseThingInspector = function() {
+            if (oThingInspector.isOpen()) {
+                oThingInspector.close();
+            }
+        };
+
+        var fnSelectMenu = function(oEvent) {
+            alert("Action '" + oEvent.getSource().getProperty("text") + "' selected.");
+        };
+
+        var oThingInspector = new sap.suite.ui.commons.ThreePanelThingInspector({
+            id: "tpThingInspector",
+            type: "SUPPLIER",
+            firstTitle: "Company Northern Lights Ltd.",
+            secondTitle: "Industrial and automotive lightning",
+            sidebarWidth: "226px",
+            icon: "../images/gen_bo_img.png",
+            logo: "../images/img_key_company.png",
+            facets: [
+                new sap.suite.ui.commons.CountingNavigationItem({ key: "overview", text: "Overview" }),
+                new sap.suite.ui.commons.CountingNavigationItem({ key: "contacts", text: "Contacts", quantity: 1 }),
+                new sap.suite.ui.commons.CountingNavigationItem({ key: "products", text: "Product Ranges", quantity: 1 })
+            ],
+            menuContent: [
+                new sap.ui.commons.Link({text: "Set As Additional filter", press: fnSelectMenu}),
+                new sap.ui.commons.Link({text: "Open Fact Sheet", press: fnSelectMenu}),
+                new sap.ui.commons.Link({text: "E-mail", href: "mailto:company@site.com"}),
+                new sap.ui.commons.Link({text: "Close", press: fnCloseThingInspector})
+            ],
+            headerContent: [
+                new sap.ui.ux3.ThingGroup({
+                    title : "General",
+                    content: [
+                        new sap.ui.commons.layout.MatrixLayout({
+                            rows: [
+                                row("ABC Classification", "B-Supplier"),
+                                row("Industry", "Electronics"),
+                                row("Customer ID", "123765")
+                        ]})
+                    ]
+                }),
+                new sap.ui.ux3.ThingGroup({
+                    title : "Purchasing Data",
+                    content: [
+                        new sap.ui.commons.layout.MatrixLayout({
+                            rows: [
+                                row("Payment Terms", "Payable immediately due net"),
+                                row("Min. Order Value", "$50.00")
+                        ]})
+                    ]
+                })
+            ],
+            facetSelected: function(oEvent) {
+                this.removeAllFacetContent();
+
+                switch (oEvent.getParameter("key")) {
+                case "overview":
+                    this.addFacetContent(oFC1);
+                    this.addFacetContent(oFC2);
+                    this.setShowHeader(true);
+                    break;
+                case "contacts":
+                    this.addFacetContent(oFC1);
+                    this.setShowHeader(false);
+                    break;
+                case "products":
+                    this.addFacetContent(oFC2);
+                    this.setShowHeader(false);
+                    break;
+                }
+            }
+        });
+
+        var oButton = new sap.ui.commons.Button({
+            text: "Open ThreePanelThingInspector",
+            press: function() {
+                if (!oThingInspector.isOpen()) {
+                    oThingInspector.open();
+                }
+            }
+        });
+
+        oButton.placeAt("sample1");
+    </script>
+</head>
+
+<body class="sapUiDemokitBody" role="application">
+<h1 color="Blue" icon="images/ctrls/tpthingviewer-icon.png">ThreePanelThingInspector</h1>
+
+<h2>Introduction</h2>
+<p>This control extends the <a class="sapUiDemokitSrcLink" href="../../../../../../test-resources/sap/ui/ux3/demokit/ThingInspector.html">ThingInspector</a> control.
+   It displays <a class="sapUiDemokitSrcLink"  href="../../../../../../test-resources/sap/suite/ui/commons/demokit/ThreePanelThingViewer.html">ThreePanelThingViewer</a>
+   control in the <a class="sapUiDemokitSrcLink"  href="../../../../../../docs/api/symbols/sap.ui.ux3.Overlay.html">Overlay</a> control.
+</p>
+<br/>
+
+<h2>Keyboard Support</h2>
+<p>Use <code>arrow keys</code> to navigate through the items and <code>Spacebar</code> or <code>Enter</code> to choose the items.</p>
+
+<h2>Example</h2>
+<div code-sample="sample1" script="threePanelThingInspector1"></div>
+
+<br/>
+<p><a class="sapUiDemokitSrcLink" href="../../../../../../docs/api/symbols/sap.suite.ui.commons.ThreePanelThingInspector.html">ThreePanelThingInspector API documentation</a></p>
+<p><a class="sapUiDemokitSrcLink" href="../../../../../../docs/api/symbols/sap.ui.ux3.ThingInspector.html">ThingInspector API documentation</a></p>
+<br/>
+</body>
+</html>

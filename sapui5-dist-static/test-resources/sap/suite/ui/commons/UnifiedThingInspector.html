@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>UnifiedThingInspector - sap.suite.ui.commons</title>
+
+    <!-- UI5 Bootstrap -->
+    <script src="../../../../../resources/sap-ui-core.js"
+            type="text/javascript"
+            id="sap-ui-bootstrap"
+            data-sap-ui-libs="sap.ui.commons,sap.suite.ui.commons,sap.m, sap.ui.layout"
+            data-sap-ui-theme="sap_bluecrystal"></script>
+    <script src="./UnifiedThingInspector/Utilities.js"></script>
+    <script src="./UnifiedThingInspector/GeneralFacet.js"></script>
+    <script src="./UnifiedThingInspector/ControllingDocsFacet.js"></script>
+    <script src="./UnifiedThingInspector/StorageFacet.js"></script>
+    <script src="./UnifiedThingInspector/InternalOrderFacet.js"></script>
+    <script src="./UnifiedThingInspector/ContactsFacet.js"></script>
+    <script src="./UnifiedThingInspector/AttachmentsFacet.js"></script>
+    <script src="./UnifiedThingInspector/SalesFacet.js"></script>
+    <script src="./UnifiedThingInspector/ActivityTypesFacet.js"></script>
+    <script src="./UnifiedThingInspector/RelatedArticlesFacet.js"></script>
+    <script src="./UnifiedThingInspector/SalesOrganizationFacet.js"></script>
+    
+<style>
+
+.sapSuiteUtiGeneralOnPage .sapMListTblCell {
+    padding: 6px 2px;
+}
+
+.sapMList.sapSuiteUtiGeneralOnPage {
+    padding: 1rem 0;
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+.sapSuiteUtiGeneralInTeaser .sapMListTblCell {
+    padding: 5px 2px;
+}
+
+.sapSuiteFov .sapMListTblHeaderNone .sapMListTblCell {
+    padding: 0;
+}
+
+.sapUtiImagePaddingRight {
+    margin-right: 1rem;
+}
+
+.sapUtiImagePaddingRight.sapUtiRtl {
+	margin-left: 1rem;
+	margin-right: 0rem;
+}
+
+.sapSuiteFovContent>.sapUtiFacetOverviewContentMargin {
+    margin: 0;
+}
+
+.sapUtiImagePaddingLeft {
+    margin-left: 0.5rem;
+}
+
+.sapSuiteUtiSalesQuotation {
+    background-color: #FFFFFF;
+    margin: 0;
+}
+.sap-phone .sapSuiteUtiSalesQuotation {
+    padding: 1rem 1rem;
+}
+
+.sapSuiteUtiOrderDetails {
+    margin: 0;
+}
+
+.sap-phone .sapSuiteUtiOrderDetails {
+    background-color: rgba(255, 255, 255, 0.5);
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.sap-phone .sapSuiteUtgContent > .sapMVBox > .sapMFlexItem {
+    margin-bottom: 1rem;
+}
+
+.sapUtiLocationFacet > div > div:FIRST-CHILD {
+    text-align: right;
+    margin-right: 1rem;
+}
+
+.sapUtiLocationFacet > div > div:LAST-CHILD {
+    margin-left: 1rem;
+}
+.sapUtiSalesOrgFacet {
+    position: absolute;
+    left:6.6rem;
+    right: 0px;
+}
+
+.sapUtiSalesOrgFacet.sapUtiRtl {
+    right: 6.6rem;
+    left: 0px;
+}
+
+.sapUtiSalesOrgFacet > .sapMFlexBox {
+    padding: 0 0.5rem 0.5rem 0;
+}
+
+.sapUtiSalesOrgKeyLabel {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 100%;
+}
+
+.sapUtiSalesOrgDelimiter {
+	padding-right: 0.4rem;
+}
+
+.sapUtiSalesOrgValueLabel {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 100%;
+    white-space: nowrap;
+}
+
+
+.sap-phone .sapUtiSalesOrgFacet {
+    position: absolute;
+    left: 4rem;
+}
+
+.sap-phone .sapUtiSalesOrgFacet.sapUtiRtl {
+    right: 4rem;
+    left: 0rem;
+}
+
+@media all and (orientation:portrait) {
+	.sap-phone .sapUtiSalesOrgValueLabel {
+	    text-overflow: ellipsis;
+	    overflow: hidden;
+	    white-space: nowrap;
+	    max-width : 88px;
+	}
+	.sap-phone .sapUtiSalesOrgKeyLabel {
+		max-width : 88px;
+	}
+}
+</style>
+
+<script type="text/javascript">
+    jQuery.sap.initMobile();
+
+    jQuery.sap.require("sap.m.MessageToast");
+    jQuery.sap.require("sap.ui.core.format.DateFormat");
+    
+    var oFacetData = {
+        overview: oGeneralFacetGroup,
+        controllingDocs: oListControllingDocsGroup,
+        orders: oListOrdersFormGroup,
+        quotation: oSalesQuotationFormGroup,
+        contactsImages: oContactsWithImagesFormGroup,
+        attachments: oAttachmentsContent,
+        storageLocation: oStorageLocationsContent,
+        relatedArticles: oRelatedArticlesContent
+    };
+
+    function setFacetContent(sKey) {
+            oUTI.navigateToDetailWithContent(oFacetData[sKey]);
+    }
+
+    var oData = {
+        title: "Article",
+        name: "Frozen Strawberries",
+        //name: "FrozenStrawberries FrozenStrawberrie",
+        description: "2901972",
+        kpis: [{
+            value: "In Approval",
+            description: "Status",
+            doubleFontSize: false,
+            valueStatus: sap.suite.ui.commons.ValueStatus.Critical
+        }, {
+            value: "32",
+            valueScale: "M",
+            valueUnit: "USD",
+            description: "Gross national program",
+            valueStatus: sap.suite.ui.commons.ValueStatus.Good
+        }, {
+            value: "Finished Product",
+            description: "Material Type",
+            doubleFontSize: false
+        }],
+        facets: [{
+            title: "General"
+        }, {
+            title: "Contacts",
+            quantity: 17
+        }, {
+            title: "Internal Orders",
+            quantity: 3
+        }, {
+            title: "Controlling Documents",
+            quantity: 99
+        }, {
+            title: "Invoices",
+            quantity: 14
+        }, {
+            title: "Activity Types",
+            quantity: 8
+        }],
+        transactions : [
+            {
+                text:"Transaction 1"
+                },
+            {
+                text:"Transaction 2"
+            },
+            {
+                text : "sap.com",
+                href : "http://www.sap.com"
+            }
+        ],
+        actions : [
+            {
+                icon : "sap-icon://decline",
+                text : "Reject"
+           },
+           {
+               icon : "sap-icon://accept",
+               text : "Accept"
+           },
+           {
+               icon : "sap-icon://email",
+               text : "EMail"
+           },
+           {
+               icon : "sap-icon://forward",
+               text : "Forward"
+           },
+           {
+               icon : "sap-icon://delete",
+               text : "Delete"
+           }
+         ]
+    };
+    var oModel = new sap.ui.model.json.JSONModel();
+    oModel.setData(oData);
+
+    var oKpiTemplate = new sap.suite.ui.commons.KpiTile({
+        value: "{value}",
+        description: "{description}",
+        valueScale: "{valueScale}",
+        valueUnit: "{valueUnit}",
+        doubleFontSize: "{doubleFontSize}",
+        valueStatus: "{valueStatus}"
+    });
+    
+    
+
+    var oButtonTempl = new sap.m.Button({
+        icon : "{icon}",
+        text : "{text}",
+        press : function(oE) {
+            sap.m.MessageToast.show(this.getText() +  " action pressed.")
+        }
+    });
+    
+    var oLinkTempl = new sap.m.Link({
+        text : "{text}",
+        href : "{href}",
+        press : function(oE) {
+            sap.m.MessageToast.show(this.getText() +  " selected.")
+        }
+    });
+    
+    var oUTI = new sap.suite.ui.commons.UnifiedThingInspector({
+        id : "unified",
+        icon: "images/strawberries_frozen.jpg",
+        //icon: "sap-icon://business-one",
+        title : "{/title}",
+        name : "{/name}",
+        description : "{/description}",
+        actionsVisible : true,
+        transactionsVisible : true,
+        kpis : {
+            path : "/kpis",
+            template : oKpiTemplate
+        },
+        facets : [ oGeneralFacet, oOrdersFacet, oActivityTypesFacet,
+                oControllingDocsFacet, oContactsFacet,
+                oAttachmentsFacet, oStorageFacet, oSalesFacet, oArticlesFacet, oSalesOrgFacet ],
+        backAction : function() {
+            sap.m.MessageToast.show("Back action pressed.")
+        },
+        transactions : {
+            path:"/transactions", 
+            template : oLinkTempl
+        },
+        actions : {
+            path: "/actions",
+            template : oButtonTempl
+        }
+    });
+
+    oUTI.attachConfigurationButtonPress(function(oE){
+        sap.m.MessageToast.show("Configuration button pressed.");
+    });
+
+    oUTI.attachTransactionsButtonPress(function(oE){
+        //oE.bPreventDefault = true;
+    });
+    
+    oUTI.setModel(oModel);
+    var oApp = new sap.m.App("myApp", {initialPage:"initial-page"});
+    
+    var oInitialPage = new sap.m.Page("initial-page", {
+        showHeader: false,
+        enableScrolling: false,
+        content:[ oUTI ]});
+    oApp.addPage(oInitialPage).placeAt("sample1");
+    </script>
+</head>
+
+<body class="sapUiBody">
+    <div id="sample1" style="width: 100%; height: 100%;"></div>
+</body>
+</html>

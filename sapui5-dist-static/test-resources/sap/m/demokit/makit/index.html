@@ -1,0 +1,110 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Chart Demo</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<link rel="stylesheet" type="text/css" href="index.css">
+		<script src="../../../../../resources/sap-ui-core.js"
+			id="sap-ui-bootstrap"
+			data-sap-ui-libs="sap.m,sap.makit"
+			data-sap-ui-theme="sap_mvi" >
+		</script>
+		<script src="./TestData.js"></script>
+		<script src="./ChartBuilder.js"></script>
+		<script src="./ConfigurationBuilder.js"></script>
+		<script src="./CombiChartConfigBuilder.js"></script>
+		<!-- add sap.ui.table,sap.ui.ux3 and/or other libraries to 'data-sap-ui-libs' if required -->
+		<script>
+			jQuery.sap.require("jquery.sap.history");
+			
+			//define helper function for navigation back
+			function navBack() {
+				jQuery.sap.history.back();
+			}
+
+			// define helper function for navigating to page
+			function navToPage(id, writeHistory, navType) {
+
+				if(MakitApp === undefined) {
+					return;
+				}
+				// tell app to navigate in the right direction
+				(navType === jQuery.sap.history.NavType.Back) ? MakitApp.back() : MakitApp.to(id);
+				
+				// write browser history
+				if (writeHistory === undefined || writeHistory) {
+					var bookmarkable = false;
+					var stateData = {id: id};
+					jQuery.sap.history.addHistory(HISTORY_PATH_PAGE, stateData, bookmarkable);
+				}
+				
+				// log
+				jQuery.sap.log.info("navToPage '" + id + "' (" + writeHistory + "," + navType + ")");
+			}
+		
+			var HISTORY_PATH_PAGE = "page";
+			var MakitApp = undefined;
+			MakitApp = new sap.m.App("makitApp", {
+				initialPage : "mainPage",
+				homeIcon : {
+					'phone' : 'img/57_iPhone_Desktop_Launch.png',
+					'phone@2' : 'img/114_iPhone-Retina_Web_Clip.png',
+					'tablet' : 'img/72_iPad_Desktop_Launch.png',
+					'tablet@2' : 'img/144_iPad_Retina_Web_Clip.png',
+					'favicon' : 'img/favicon.ico',
+					'precomposed': false
+				}
+			});
+			
+			//StandardListItem
+			var oMainList = new sap.m.List("mainList");
+			var oMainPage = new sap.m.Page("mainPage", { title : "Chart Demo" });
+			var oListItem1 = new sap.m.StandardListItem("ssChartListItem", {title:"Single Series Chart", icon:"img/bar_chart_icon.png", type: sap.m.ListType.Active, press: function(){ navToPage("NormalChartPage", true);}});
+			var oListItem2 = new sap.m.StandardListItem("msChartListItem", {title:"Multi Series Chart", icon:"img/ms_bar_chart_icon.png", type: sap.m.ListType.Active, press: function(){ navToPage("MultiSeriesChartPage", true);}});
+			var oListItem3 = new sap.m.StandardListItem("pieChartListItem", {title:"Pie Chart", icon:"img/pie_chart_icon.png", type: sap.m.ListType.Active, press: function(){ navToPage("PieChartPage", true);}});
+			var oListItem4 = new sap.m.StandardListItem("combiMSChartListItem", {title:"Combination Multi Series Chart", icon:"img/ms_bar_chart_icon.png", type: sap.m.ListType.Active, press: function(){ navToPage("CombiMSChartPage", true);}});
+			oMainList.addItem(oListItem1).addItem(oListItem2).addItem(oListItem3).addItem(oListItem4);
+			oMainPage.addContent(oMainList);
+			
+			var msModel = getMultiSeriesJSONDataModel();
+			var oPage1 = createMSChart("MultiSeriesChartPage", "Multi-Series Chart", msModel);
+			
+			var ssModel = getSingleSeriesJSONDataModel();
+			var oPage2 = createSSChart("NormalChartPage", "Standard Chart", ssModel);
+			
+			var pieModel = getPieRevenueDataModel();
+			var oPage3 = createPieChart("PieChartPage", "Pie Chart", pieModel);
+			
+			var ccModel = getCombinationChartMSDataModel()
+			var oPage4 = createCombinationMSChart("CombiMSChartPage", "Combination Multi-Series Chart", ccModel);
+			
+			MakitApp.addPage(oMainPage).addPage(oPage1).addPage(oPage2).addPage(oPage3).addPage(oPage4);
+			MakitApp.placeAt("body");
+			
+			// init history management as the last step 
+			// (app and pages need to be instantiated at this stage)
+			jQuery.sap.history({
+				routes: [{
+					path: HISTORY_PATH_PAGE,
+					handler: function(params, navType) {
+						
+						// This handler is executed when you navigate back to the history state on the path "page"
+						if (!params || !params.id) {
+							jQuery.sap.log.error("invalid page parameter: " + params);
+						} else {
+							navToPage(params.id, false, navType);
+						}
+					}
+				}],
+				defaultHandler: function(navType) {
+					// The default handler is executed when you navigate back to the history state with an empty hash
+					navToPage("mainPage", false, navType);
+				}
+			});
+
+		</script>
+	</head>
+	<body id="body" class="sapUiBody">
+		<div id="content1" style="width:100%; height: 500px;"></div>
+	</body>
+</html>

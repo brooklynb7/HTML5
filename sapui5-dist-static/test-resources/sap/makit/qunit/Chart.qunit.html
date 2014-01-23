@@ -1,0 +1,286 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<title>qUnit Page for sap.makit.Chart</title>
+
+		<script id="sap-ui-bootstrap" 
+			type="text/javascript"
+			src="../../../../resources/sap-ui-core.js"
+			data-sap-ui-theme="sap_mvi"
+			data-sap-ui-noConflict="true"
+			data-sap-ui-libs="sap.m, sap.makit">
+		</script>
+    
+		<link rel="stylesheet" href="../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
+		<script type="text/javascript" src="../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+		<script type="text/javascript" src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
+		<script type="text/javascript" src="../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
+		<script type="text/javascript" src="QUnitTestData.js"></script>
+
+		<script type="text/javascript">
+		
+			QUnit.config.autostart = false;
+			jQuery(document).ready(function() {
+				QUnit.start();
+			});
+			
+			var model = getMultiSeriesJSONDataModel();
+
+			//Minimum chart initialization test w/o data
+			var oChart1 = new sap.makit.Chart("chart1", { 
+				values: [new sap.makit.Value({expression: "revenueValue"})],
+				category: new sap.makit.Category({column: "yearCategory"})
+			}).placeAt("content1");
+			
+			
+			//Minimum chart initialization test with data
+			var oChart2 = new sap.makit.Chart("chart2", { 
+				values: [new sap.makit.Value({ expression: "revenueValue" })],
+				category: new sap.makit.Category({ column: "yearCategory" }),
+				series : new sap.makit.Series({ column : "productSeries" }),
+				columns: [
+				      	new sap.makit.Column({name:"yearCategory", value:"{year}"}),
+				    	new sap.makit.Column({name:"productSeries", value:"{product}"}),
+				    	new sap.makit.Column({name:"revenueValue", value:"{revenue}", type:"number"})
+				],
+				rows: { path:"/mydata"}
+			}).placeAt("content2");
+			oChart2.setModel(model);
+			
+			//Maximum chart initialization test
+			var oChart3 = new sap.makit.Chart("chart3",{
+				width : "80%",
+				height : "80%",
+				type : sap.makit.ChartType.Line,
+				showRangeSelector : false,
+				showTableView : false,
+				valueAxis : new sap.makit.ValueAxis({}),
+				categoryAxis : new sap.makit.CategoryAxis({}),
+				category : new sap.makit.Category({
+					column : "yearCategory",
+					displayName : "The Year",
+				}),
+				series : new sap.makit.Series({
+					column : "productSeries",
+					displayName : "Product",
+				}),
+				values : [new sap.makit.Value({
+					expression : "revenueValue",
+					format : "currency",
+					displayName : "Revenue",
+				})],
+				valueBubble : new sap.makit.ValueBubble({
+					style: sap.makit.ValueBubbleStyle.FloatTop,
+					showCategoryText: false
+				}),
+			}).placeAt("content3");
+			
+			oChart3.addColumn(new sap.makit.Column({name:"yearCategory", value:"{year}"}));
+			oChart3.addColumn(new sap.makit.Column({name:"productSeries", value:"{product}"}));
+			oChart3.addColumn(new sap.makit.Column({name:"revenueValue", value:"{revenue}", type:"number"}));
+			oChart3.addColumn(new sap.makit.Column({name:"costValue", value:"{cost}", type:"number"}));
+			oChart3.bindRows("/mydata");
+			oChart3.setModel(model);
+
+			test("Chart initialized", function() {
+				ok(jQuery.sap.domById("chart1"), "chart1 should be rendered");
+				ok(jQuery.sap.domById("chart1_graph"), "chart1_graph should be rendered");
+				ok(jQuery.sap.domById("chart1_rangeSelector"), "chart1_rangeSelector should be rendered");
+				ok(jQuery.sap.domById("chart2"), "chart2 should be rendered");
+				ok(jQuery.sap.domById("chart3"), "chart3 should be rendered");
+				
+				var chart1 = sap.ui.getCore().byId("chart1");
+				ok(chart1._makitChart, "chart1._makitChart should be initialized");
+				var chart2 = sap.ui.getCore().byId("chart2");
+				ok(chart2._makitChart, "chart2._makitChart should be initialized");
+				var chart3 = sap.ui.getCore().byId("chart3");
+				ok(chart3._makitChart, "chart3._makitChart should be initialized");
+			});
+			
+			test("Chart size testing", function() {
+				var chart1 = sap.ui.getCore().byId("chart1");
+				var chart1ParentDOM = jQuery.sap.domById(chart1.getParent().getId());
+				var chart1DOM = jQuery.sap.domById("chart1");
+				deepEqual(chart1DOM.offsetHeight, chart1ParentDOM.offsetHeight, "chart1's height should be "+ chart1ParentDOM.offsetHeight);
+				
+				var chart2 = sap.ui.getCore().byId("chart2");
+				
+				var chart3 = sap.ui.getCore().byId("chart3");
+				var chart3ParentDOM = jQuery.sap.domById(chart3.getParent().getId());
+				var expectedHeight = Math.ceil(chart3ParentDOM.offsetHeight * 0.8);
+				
+				var chart3DOM = jQuery.sap.domById("chart3");
+				deepEqual(chart3DOM.offsetHeight, expectedHeight, "chart3's height should be "+ expectedHeight);
+			});
+			
+			test("Chart data populated", function() {
+				var expectedRowsLenNoData = 0; //Expected rows count for chart with no binding
+				var expectedRowsLenWithData = 6; //Expected rows count for chart with binding on creation
+				
+				var chart1 = sap.ui.getCore().byId("chart1");
+				deepEqual(chart1._datarows.length, expectedRowsLenNoData, "chart1._datarows.length should now be "+expectedRowsLenNoData);
+				
+				var chart2 = sap.ui.getCore().byId("chart2");
+				deepEqual(chart2._datarows.length, expectedRowsLenWithData, "chart2._datarows.length should now be "+expectedRowsLenWithData);
+				
+				var chart3 = sap.ui.getCore().byId("chart3");
+				deepEqual(chart3._datarows.length, expectedRowsLenWithData, "chart3._datarows.length should now be "+expectedRowsLenWithData);				
+			});
+			
+			test("Chart default property value", function() {
+				var chart1 = sap.ui.getCore().byId("chart1");
+				deepEqual(chart1.getType().toLowerCase(), chart1._makitChart.getProperty("charttype"), "_makitChart charttype should be set (lowercase expected)");
+				deepEqual(chart1.getShowTableView(), chart1._makitChart.isTableViewVisible(), "chart1 showTableView should be false");
+				deepEqual(chart1.getShowRangeSelector(), chart1._makitChart.isRangeSelectorViewVisible(), "chart1 showRangeSelector should be false");
+				
+				var chartCategoryAxis = chart1.getCategoryAxis();
+				ok(chartCategoryAxis instanceof sap.makit.CategoryAxis, "chart1 categoryAxis property should be of sap.makit.CategoryAxis type");
+				deepEqual(chartCategoryAxis.getShowLabel(), chart1._makitChart.getProperty("category.showlabel"), "_makitChart category.showlabel default value should be set");
+				deepEqual(chartCategoryAxis.getShowPrimaryLine(), chart1._makitChart.getProperty("category.showprimaryline"), "_makitChart category.showprimaryline should be set");
+				deepEqual(chartCategoryAxis.getShowGrid(), chart1._makitChart.getProperty("category.showgrid"), "_makitChart category.showGrid should be set");
+				deepEqual(chartCategoryAxis.getThickness(), chart1._makitChart.getProperty("category.thickness"), "_makitChart category.thickness should be set");
+				deepEqual(chartCategoryAxis.getSortOrder().toLowerCase(), chart1._makitChart.getProperty("category.sortorder"), "_makitChart category.sortorder should be set (lowercase expected)");
+				deepEqual(chartCategoryAxis.getDisplayLastLabel(), chart1._makitChart.getProperty("category.displaylastlabel"), "_makitChart category.displaylastlabel should be set");
+				
+				var chartValueAxis = chart1.getValueAxis();
+				ok(chartValueAxis instanceof sap.makit.ValueAxis, "chart1 categoryAxis property should be of sap.makit.ValueAxis type");
+				deepEqual(chartValueAxis.getShowLabel(), chart1._makitChart.getProperty("values.showlabel"), "_makitChart values.showlabel default value should be set");
+				deepEqual(chartValueAxis.getShowPrimaryLine(), chart1._makitChart.getProperty("values.showprimaryline"), "_makitChart values.showprimaryline should be set");
+				deepEqual(chartValueAxis.getShowGrid(), chart1._makitChart.getProperty("values.showgrid"), "_makitChart values.showGrid should be set");
+				deepEqual(chartValueAxis.getThickness(), chart1._makitChart.getProperty("values.thickness"), "_makitChart values.thickness should be set");
+				
+				//Now change the default value
+				chart1.setShowTableView(!chart1.getShowTableView());
+				chart1.setShowRangeSelector(!chart1.getShowRangeSelector());
+				
+				chartCategoryAxis.setShowLabel(!chartCategoryAxis.getShowLabel());
+				chartCategoryAxis.setShowPrimaryLine(!chartCategoryAxis.getShowPrimaryLine());
+				chartCategoryAxis.setShowGrid(!chartCategoryAxis.getShowGrid());
+				chartCategoryAxis.setThickness(chartCategoryAxis.getThickness() == 0.5? 1.0 : 0.5);
+				chartCategoryAxis.setSortOrder(chartCategoryAxis.getSortOrder() == sap.makit.SortOrder.Ascending? sap.makit.SortOrder.Descending : sap.makit.SortOrder.Ascending);
+				chartCategoryAxis.setDisplayLastLabel(!chartCategoryAxis.getDisplayLastLabel());
+				
+				chartValueAxis.setShowLabel(!chartCategoryAxis.getShowLabel());
+				chartValueAxis.setShowPrimaryLine(!chartCategoryAxis.getShowPrimaryLine());
+				chartValueAxis.setShowGrid(!chartCategoryAxis.getShowGrid());
+				chartValueAxis.setThickness(chartCategoryAxis.getThickness() == 0.5? 1.0 : 0.5);
+				
+				//Check that the default value has changed
+				deepEqual(chart1.getShowTableView(), chart1._makitChart.isTableViewVisible(), "chart1 showTableView should be false");
+				deepEqual(chart1.getShowRangeSelector(), chart1._makitChart.isRangeSelectorViewVisible(), "chart1 showRangeSelector should be false");
+				
+				deepEqual(chartCategoryAxis.getShowLabel(), chart1._makitChart.getProperty("category.showlabel"), "_makitChart category.showlabel default value should be set");
+				deepEqual(chartCategoryAxis.getShowPrimaryLine(), chart1._makitChart.getProperty("category.showprimaryline"), "_makitChart category.showprimaryline should be set");
+				deepEqual(chartCategoryAxis.getShowGrid(), chart1._makitChart.getProperty("category.showgrid"), "_makitChart category.showGrid should be set");
+				deepEqual(chartCategoryAxis.getThickness(), chart1._makitChart.getProperty("category.thickness"), "_makitChart category.thickness should be set");
+				deepEqual(chartCategoryAxis.getSortOrder().toLowerCase(), chart1._makitChart.getProperty("category.sortorder"), "_makitChart category.sortorder should be set (lowercase expected)");
+				deepEqual(chartCategoryAxis.getDisplayLastLabel(), chart1._makitChart.getProperty("category.displaylastlabel"), "_makitChart category.displaylastlabel should be set");
+				
+				deepEqual(chartValueAxis.getShowLabel(), chart1._makitChart.getProperty("values.showlabel"), "_makitChart values.showlabel default value should be set");
+				deepEqual(chartValueAxis.getShowPrimaryLine(), chart1._makitChart.getProperty("values.showprimaryline"), "_makitChart values.showprimaryline should be set");
+				deepEqual(chartValueAxis.getShowGrid(), chart1._makitChart.getProperty("values.showgrid"), "_makitChart values.showGrid should be set");
+				deepEqual(chartValueAxis.getThickness(), chart1._makitChart.getProperty("values.thickness"), "_makitChart values.thickness should be set");
+				
+			});
+			
+			
+			test("Chart set chart type", function() {
+				var chart1 = sap.ui.getCore().byId("chart1");
+				chart1.setType(sap.makit.ChartType.Line);
+				deepEqual(chart1._makitChart.getProperty("charttype"), sap.makit.ChartType.Line.toLowerCase() , "_makitChart charttype should be changed (lowercase expected)");
+				chart1.setType(sap.makit.ChartType.Bar);
+				deepEqual(chart1._makitChart.getProperty("charttype"), sap.makit.ChartType.Bar.toLowerCase() , "_makitChart charttype should be changed (lowercase expected)");
+				chart1.setType(sap.makit.ChartType.Bubble);
+				deepEqual(chart1._makitChart.getProperty("charttype"), sap.makit.ChartType.Bubble.toLowerCase() , "_makitChart charttype should be changed (lowercase expected)");
+				chart1.setType(sap.makit.ChartType.Pie);
+				deepEqual(chart1._makitChart.getProperty("charttype"), sap.makit.ChartType.Pie.toLowerCase() , "_makitChart charttype should be changed (lowercase expected)");
+				deepEqual(chart1._makitChart.getProperty("piestyle"), sap.makit.ChartType.Pie.toLowerCase() , "_makitChart piestyle should be changed (lowercase expected)");
+				chart1.setType(sap.makit.ChartType.Donut);
+				deepEqual(chart1._makitChart.getProperty("charttype"), sap.makit.ChartType.Pie.toLowerCase() , "_makitChart charttype should be changed (lowercase expected)");
+				deepEqual(chart1._makitChart.getProperty("piestyle"), sap.makit.ChartType.Donut.toLowerCase() , "_makitChart piestyle should be changed (lowercase expected)");
+				chart1.setType(sap.makit.ChartType.Column);
+			});
+			
+			test("Chart value bubble testing", function() {
+				var chart2 = sap.ui.getCore().byId("chart2");
+				var vb = chart2.getValueBubble();
+				var styleObj = chart2._makitChart.getValueBubbleStyle();
+				var sapStyleObj = vb.toObject();
+				deepEqual(styleObj.style, sapStyleObj.style, "_makitChart ValueBubble style should be set");
+				deepEqual(styleObj.position, sapStyleObj.position, "_makitChart ValueBubble position should be set");
+				deepEqual(styleObj.showCategoryText, sapStyleObj.showCategoryText, "_makitChart ValueBubble showCategoryText should be set");
+				deepEqual(styleObj.showCategoryDisplayName, sapStyleObj.showCategoryDisplayName, "_makitChart ValueBubble showCategoryDisplayName should be set");
+				deepEqual(styleObj.showValueDisplayName, sapStyleObj.showValueDisplayName, "_makitChart ValueBubble showValueDisplayName should be set");
+				deepEqual(styleObj.showValueOnPieChart, sapStyleObj.showValueOnPieChart, "_makitChart ValueBubble showValueOnPieChart should be set");
+				deepEqual(styleObj.showLegendLabel, sapStyleObj.showLegendLabel, "_makitChart ValueBubble showLegendLabel should be set");
+				deepEqual(styleObj.showNullValue, sapStyleObj.showNullValue, "_makitChart ValueBubble showNullValue should be set");
+				
+				
+				vb.setStyle(vb.getStyle() === sap.makit.ValueBubbleStyle.Top? sap.makit.ValueBubbleStyle.FloatTop : sap.makit.ValueBubbleStyle.Top);
+				//vb.setShowCategoryText(!vb.getShowCategoryText());
+				//vb.setShowCategoryDisplayName(!vb.getShowCategoryDisplayName());
+				//vb.setShowValueDisplayName(!vb.getShowValueDisplayName());
+				//vb.setShowValueOnPieChart(!vb.getShowValueOnPieChart());
+				//vb.setShowLegendLabel(!vb.getShowLegendLabel());
+				//vb.setShowNullValue(!vb.getShowNullValue());
+				chart2.setType(sap.makit.ChartType.Donut);
+				vb.setPosition(vb.getPosition() === sap.makit.ValueBubblePosition.Top? sap.makit.ValueBubblePosition.Side : sap.makit.ValueBubblePosition.Top);
+				
+				styleObj = chart2._makitChart.getValueBubbleStyle();
+				sapStyleObj = vb.toObject();
+				deepEqual(styleObj.style, sapStyleObj.style, "_makitChart ValueBubble style should be set");
+				deepEqual(styleObj.position, sapStyleObj.position, "_makitChart ValueBubble position should be set");
+				deepEqual(styleObj.showCategoryText, sapStyleObj.showCategoryText, "_makitChart ValueBubble showCategoryText should be set");
+				deepEqual(styleObj.showCategoryDisplayName, sapStyleObj.showCategoryDisplayName, "_makitChart ValueBubble showCategoryDisplayName should be set");
+				deepEqual(styleObj.showValueDisplayName, sapStyleObj.showValueDisplayName, "_makitChart ValueBubble showValueDisplayName should be set");
+				deepEqual(styleObj.showValueOnPieChart, sapStyleObj.showValueOnPieChart, "_makitChart ValueBubble showValueOnPieChart should be set");
+				deepEqual(styleObj.showLegendLabel, sapStyleObj.showLegendLabel, "_makitChart ValueBubble showLegendLabel should be set");
+				deepEqual(styleObj.showNullValue, sapStyleObj.showNullValue, "_makitChart ValueBubble showNullValue should be set");
+				chart2.setType(sap.makit.ChartType.Column);
+			});
+			
+			/*
+			*	Test for data binding after the chart has been created
+			*/
+			test("Chart data binding testing", function() {
+				var rowsLenBeforeBinding = 0; //Expected rows count before data binding
+				var rowsLenAfterBinding = 3; //Expected rows count after data binding
+				var rowsLenAfterAdd = 5; //Expected rows count after adding new data rows to the data source
+				var rowsLenAfterDelete = 4; //Expected rows count after deleting 1 data rows from the data source
+				
+				var chart1 = sap.ui.getCore().byId("chart1");
+				deepEqual(chart1._datarows.length, rowsLenBeforeBinding, "chart1._datarows.length before binding should be "+rowsLenBeforeBinding);
+				chart1.addColumn(new sap.makit.Column({name:"yearCategory", value:"{year}"}));
+				chart1.addColumn(new sap.makit.Column({name:"revenueValue", value:"{revenue}", type:"number"}));
+				chart1.addColumn(new sap.makit.Column({name:"costValue", value:"{cost}", type:"number"}));
+				var model = getSingleSeriesJSONDataModel();
+				chart1.setModel(model);
+				chart1.bindRows("/mydata");
+				deepEqual(chart1._datarows.length, rowsLenAfterBinding, "chart1._datarows.length after binding should be "+rowsLenAfterBinding);
+				var newData1 = { year : 2011, revenue : 10000000, cost : 8000000 };
+				var newData2 = { year : 2012, revenue : 9000000, cost : 7600000 };
+				SSTestdata.mydata.push(newData1);
+				SSTestdata.mydata.push(newData2);
+				chart1.getModel().checkUpdate();
+				deepEqual(chart1._datarows.length, rowsLenAfterAdd, "chart1._datarows.length after adding 2 new rows should be "+rowsLenAfterAdd);
+				
+				SSTestdata.mydata.pop();
+				chart1.getModel().checkUpdate();
+				deepEqual(chart1._datarows.length, rowsLenAfterDelete, "chart1._datarows.length after deleting 1 row should be "+rowsLenAfterDelete);
+			});
+		</script>
+	
+	</head>
+	<body id="body" class="sapUiBody">
+	<h1 id="qunit-header">qUnit Page for sap.makit.Chart</h1>
+    <h2 id="qunit-banner"></h2>
+    <h2 id="qunit-userAgent"></h2>
+    <ol id="qunit-tests"></ol>
+    <div id="content1" style="width:100%; height: 500px;"></div>
+    <div id="content2" style="width:100%; height: 500px;"></div>
+    <div id="content3" style="width:100%; height: 500px;"></div>
+    <div id="content4" style="width:100%; height: 500px;"></div>
+	</body>
+
+</html>

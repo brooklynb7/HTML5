@@ -1,0 +1,1475 @@
+<!DOCTYPE HTML>
+<!-- 
+  Tested control/class: sap.uiext.inbox.Inbox
+  Author: I047306
+-->
+
+<html>
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<script id="sap-ui-bootstrap" 
+		type="text/javascript"
+		src="../../../../../resources/sap-ui-core.js"
+		data-sap-ui-theme="sap_goldreflection"
+		data-sap-ui-language="en-US"
+		data-sap-ui-noConflict="true"
+		data-sap-ui-libs="sap.uiext.inbox">
+	</script>
+	<link rel="stylesheet" href="../../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
+	<script type="text/javascript" src="../../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+	<script type="text/javascript" src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
+	<script type="text/javascript" src="../../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
+
+	<!-- Control initialization -->
+
+<script language="javascript">
+	
+var jsonData = {
+        "Tasks" : [
+        {
+        "__metadata" : {
+        "uri" : "/sap.com~odata~web/BPMTasks.svc/Tasks('bpm://bpm.sap.com/task-instance/772e')", "type" : "Inbox.Tasks"
+        }, "ID" : "bpm://bpm.sap.com/task-instance/772ea", "Category" : "TASK", "CreatedByName" : "Bijju Prasad", "SAP__Origin" : "BPM", "TaskName" : "LeaveReq", "TaskTitle" : "LeaveReq", "Status" : "RESERVED", "Priority" : "MEDIUM", "Requestor" : "", "CreatedOn" : "\/Date(1335439338973)\/", "StartDeadline" : "", "CompletionDeadline" : "", "TechnicalStatus" : "", "TechnicalPriority" : "", "LastChangedTime" : "\/Date(1339421412125)\/", "LastChangedBy" : "", "IsEscalated" : false, "HasComments" : false, "HasAttachments" : false, "HasPotentialOwners" : false, "SupportsForward" : true, "SupportsClaim" : false, "SupportsRelease" : true, "TaskexecutionUrl" : "",
+        "CustomAttributesCollection" : [
+	           		{
+	           			"__metadata" : {
+	           			"uri" : "http://localhost:8080/uilib-sample/proxy/http/10.66.183.89:50000/sap.com~tc~tm~wl~odata~web/BPMTasks.svc/TaskCollection('FirstName')", "type" : "Inbox.TaskCollection"
+	           			}, "Name" : "FirstName", "Value" : "XYZ"
+	           			}, {
+	           			"__metadata" : {
+	           			"uri" : "http://localhost:8080/uilib-sample/proxy/http/10.66.183.89:50000/sap.com~tc~tm~wl~odata~web/BPMTasks.svc/TaskCollection('SurName')", "type" : "Inbox.TaskCollection"
+	           			}, "Name" : "SurName", "Value" : "Vacation"
+	           		}
+	           		]
+	           		
+        }, {
+        "__metadata" : {
+        "uri" : "/sap.com~odata~web/BPMTasks.svc/Tasks('bpm://bpm.sap.com/task-instance/c03ca')", "type" : "Inbox.Tasks"
+        }, "ID" : "bpm://bpm.sap.com/task-instance/c03ca", "Category" : "TASK", "CreatedByName" : "Lakshman Prasad", "SAP__Origin" : "BPM", "TaskName" : "Sales Order Approval", "TaskTitle" : "Sales Order Approval Task - 1234", "Status" : "RESERVED", "Priority" : "VERY_HIGH", "Requestor" : "", "CreatedOn" : "\/Date(1335350556977)\/", "StartDeadline" : "\/Date(1335436957423)\/", "CompletionDeadline" : "\/Date(1335696157427)\/", "TechnicalStatus" : "", "TechnicalPriority" : "", "LastChangedTime" : "\/Date(1339421412125)\/", "LastChangedBy" : "", "IsEscalated" : true, "HasComments" : false, "HasAttachments" : false, "HasPotentialOwners" : false, "SupportsForward" : true, "SupportsClaim" : false, "SupportsRelease" : true, "TaskexecutionUrl" : ""
+        }, {
+        "__metadata" : {
+        "uri" : "/sap.com~odata~web/BPMTasks.svc/Tasks('bpm://bpm.sap.com/task-instance/c03ba')", "type" : "Inbox.Tasks"
+        }, "ID" : "bpm://bpm.sap.com/task-instance/c034a", "Category" : "TASK", "CreatedByName" : "", "SAP__Origin" : "GW", "TaskName" : "Purchase Order Form", "TaskTitle" : "Purchase Order Form - Laptops", "Status" : "RESERVED", "Priority" : "HIGH", "Requestor" : "", "CreatedOn" : "\/Date(1335350556907)\/", "StartDeadline" : "\/Date(1335523357193)\/", "CompletionDeadline" : "", "TechnicalStatus" : "", "TechnicalPriority" : "", "LastChangedTime" : "\/Date(1339421412126)\/", "LastChangedBy" : "", "IsEscalated" : false, "HasComments" : false, "HasAttachments" : false, "HasPotentialOwners" : false, "SupportsForward" : true, "SupportsClaim" : false, "SupportsRelease" : true, "TaskexecutionUrl" : ""
+        }, {
+        "__metadata" : {
+        "uri" : "/sap.com~odata~web/BPMTasks.svc/Tasks('bpm://bpm.sap.com/task-instance/c071a')", "type" : "Inbox.Tasks"
+        }, "ID" : "bpm://bpm.sap.com/task-instance/c07a", "Category" : "TASK", "CreatedByName" : "Basu Cowdary", "SAP__Origin" : "", "TaskName" : "Raise Purchase Request", "TaskTitle" : "Raise Purchase Request for iPAD", "Status" : "RESERVED", "Priority" : "MEDIUM", "Requestor" : "", "CreatedOn" : "\/Date(1335350556410)\/", "StartDeadline" : "", "CompletionDeadline" : "\/Date(1336041756660)\/", "TechnicalStatus" : "", "TechnicalPriority" : "", "LastChangedTime" : "\/Date(1339421412126)\/", "LastChangedBy" : "", "IsEscalated" : true, "HasComments" : false, "HasAttachments" : false, "HasPotentialOwners" : false, "SupportsForward" : true, "SupportsClaim" : false, "SupportsRelease" : true, "TaskexecutionUrl" : ""
+        }, {
+        "__metadata" : {
+        "uri" : "/sap.com~odata~web/BPMTasks.svc/Tasks('bpm://bpm.sap.com/task-instance/be68a')", "type" : "Inbox.Tasks"
+        }, "ID" : "bpm://bpm.sap.com/task-instance/be6a", "Category" : "TASK", "CreatedByName" : "Vijay Deenanath Cuhan", "SAP__Origin" : null, "TaskName" : "Purchase Order Form", "TaskTitle" : "Purchase Order Form - Laptops", "Status" : "RESERVED", "Priority" : "HIGH", "Requestor" : "", "CreatedOn" : "\/Date(1335350554667)\/", "StartDeadline" : "\/Date(1335523354833)\/", "CompletionDeadline" : "", "TechnicalStatus" : "", "TechnicalPriority" : "", "LastChangedTime" : "\/Date(1339421412126)\/", "LastChangedBy" : "", "IsEscalated" : true, "HasComments" : false, "HasAttachments" : false, "HasPotentialOwners" : false, "SupportsForward" : true, "SupportsClaim" : false, "SupportsRelease" : true, "TaskexecutionUrl" : ""
+        }, {
+        "__metadata" : {
+        "uri" : "/sap.com~odata~web/BPMTasks.svc/Tasks('bpm://bpm.sap.com/task-instance/be4aa')", "type" : "Inbox.Tasks"
+        }, "ID" : "bpm://bpm.sap.com/task-instance/be4aa", "Category" : "TASK", "CreatedByName" : "Venkat Subramanian" , "SAP__Origin" : "BPM", "TaskName" : "Raise Purchase Request", "TaskTitle" : "Raise Purchase Request for iPAD", "Status" : "RESERVED", "Priority" : "MEDIUM", "Requestor" : "", "CreatedOn" : "\/Date(1335350554133)\/", "StartDeadline" : "", "CompletionDeadline" : "\/Date(1336041754297)\/", "TechnicalStatus" : "", "TechnicalPriority" : "", "LastChangedTime" : "\/Date(1339421412126)\/", "LastChangedBy" : "", "IsEscalated" : true, "HasComments" : false, "HasAttachments" : false, "HasPotentialOwners" : false, "SupportsForward" : true, "SupportsClaim" : false, "SupportsRelease" : true, "TaskexecutionUrl" : ""
+        }, {
+        "__metadata" : {
+        "uri" : "/sap.com~odata~web/BPMTasks.svc/Tasks('bpm://bpm.sap.com/task-instance/be28a')", "type" : "Inbox.Tasks"
+        }, "ID" : "bpm://bpm.sap.com/task-instance/be2a5", "Category" : "TASK", "CreatedByName" : "Ram Prasad Dasrath Prasad Sharma", "SAP__Origin" : "BPM", "TaskName" : "Some Dummy Task", "TaskTitle" : "Some Dummy Task for you", "Status" : "READY", "Priority" : "LOW", "Requestor" : "", "CreatedOn" : "\/Date(1335350553633)\/", "StartDeadline" : "", "CompletionDeadline" : "", "TechnicalStatus" : "", "TechnicalPriority" : "", "LastChangedTime" : "\/Date(1339421412126)\/", "LastChangedBy" : "", "IsEscalated" : false, "HasComments" : false, "HasAttachments" : false, "HasPotentialOwners" : false, "SupportsForward" : true, "SupportsClaim" : true, "SupportsRelease" : false, "TaskexecutionUrl" : ""
+        }, {
+        "__metadata" : {
+        "uri" : "/sap.com~odata~web/BPMTasks.svc/Tasks('bpm://bpm.sap.com/task-instance/c03ba')", "type" : "Inbox.Tasks"
+        }, "ID" : "bpm://bpm.sap.com/task-instance/c03489a", "Category" : "TASK", "CreatedByName" : "Kacheri Kantha Rao", "SAP__Origin" : "BPM", "TaskName" : "Purchase Order Form", "TaskTitle" : "    ", "Status" : "RESERVED", "Priority" : "HIGH", "Requestor" : "", "CreatedOn" : "\/Date(1335350556907)\/", "StartDeadline" : "\/Date(1335523357193)\/", "CompletionDeadline" : "", "TechnicalStatus" : "", "TechnicalPriority" : "", "LastChangedTime" : "\/Date(1339421412126)\/", "LastChangedBy" : "", "IsEscalated" : false, "HasComments" : false, "HasAttachments" : false, "HasPotentialOwners" : false, "SupportsForward" : true, "SupportsClaim" : false, "SupportsRelease" : true, "TaskexecutionUrl" : ""
+        }, {
+        "__metadata" : {
+        "uri" : "/sap.com~odata~web/BPMTasks.svc/Tasks('bpm://bpm.sap.com/task-instance/c03ba')", "type" : "Inbox.Tasks"
+        }, "ID" : "bpm://bpm.sap.com/task-instance/c03490a", "Category" : "TASK", "CreatedByName" : "Pawan Kalyan", "SAP__Origin" : "GW", "TaskName" : "Purchase Order Form", "TaskTitle" : null, "Status" : "RESERVED", "Priority" : "HIGH", "Requestor" : "", "CreatedOn" : "\/Date(1335350556907)\/", "StartDeadline" : "\/Date(1335523357193)\/", "CompletionDeadline" : "", "TechnicalStatus" : "", "TechnicalPriority" : "", "LastChangedTime" : "\/Date(1339421412126)\/", "LastChangedBy" : "", "IsEscalated" : false, "HasComments" : false, "HasAttachments" : false, "HasPotentialOwners" : false, "SupportsForward" : true, "SupportsClaim" : false, "SupportsRelease" : true, "TaskexecutionUrl" : ""
+        }
+        ], "__count" : "9"
+        };
+
+var jsonDataRefresh = {
+      "Tasks" : [
+      {
+      "__metadata" : {
+      "uri" : "/sap.com~odata~web/BPMTasks.svc/Tasks('bpm://bpm.sap.com/task-instance/c0712aba')", "type" : "Inbox.Tasks"
+      }, "ID" : "bpm://bpm.sap.com/task-instance/c0718a", "Category" : "TASK", "CreatedByName" : "Administrator", "TaskName" : "Raise Purchase Request", "TaskTitle" : "Raise Purchase Request for iPAD", "Status" : "READY", "Priority" : "MEDIUM", "Requestor" : "", "CreatedOn" : "\/Date(1335350556410)\/", "StartDeadline" : "", "CompletionDeadline" : "\/Date(1336041756660)\/", "TechnicalStatus" : "", "TechnicalPriority" : "", "LastChangedTime" : "\/Date(1339421412126)\/", "LastChangedBy" : "", "IsEscalated" : true, "HasComments" : false, "HasAttachments" : false, "HasPotentialOwners" : false, "SupportsForward" : true, "SupportsClaim" : true, "SupportsRelease" : false, "TaskexecutionUrl" : ""
+      }, {
+      "__metadata" : {
+      "uri" : "/sap.com~odata~web/BPMTasks.svc/Tasks('bpm://bpm.sap.com/task-instance/be6882da')", "type" : "Inbox.Tasks"
+      }, "ID" : "bpm://bpm.sap.com/task-instance/be688a", "Category" : "TASK", "CreatedByName" : "Administrator", "TaskName" : "Purchase Order Form", "TaskTitle" : "Purchase Order Form - Laptops", "Status" : "RESERVED", "Priority" : "HIGH", "Requestor" : "", "CreatedOn" : "\/Date(1335350554667)\/", "StartDeadline" : "\/Date(1335523354833)\/", "CompletionDeadline" : "", "TechnicalStatus" : "", "TechnicalPriority" : "", "LastChangedTime" : "\/Date(1339421412126)\/", "LastChangedBy" : "", "IsEscalated" : true, "HasComments" : false, "HasAttachments" : false, "HasPotentialOwners" : false, "SupportsForward" : true, "SupportsClaim" : false, "SupportsRelease" : true, "TaskexecutionUrl" : ""
+      }, {
+      "__metadata" : {
+      "uri" : "/sap.com~odata~web/BPMTasks.svc/Tasks('bpm://bpm.sap.com/task-instance/be4ab78a')", "type" : "Inbox.Tasks"
+      }, "ID" : "bpm://bpm.sap.com/task-instance/be4a8a", "Category" : "TASK", "CreatedByName" : "Administrator", "TaskName" : "Raise Purchase Request", "TaskTitle" : "Raise Purchase Request for iPAD", "Status" : "COMPLETED", "Priority" : "MEDIUM", "Requestor" : "", "CreatedOn" : "\/Date(1335350554133)\/", "StartDeadline" : "", "CompletionDeadline" : "\/Date(1336041754297)\/", "TechnicalStatus" : "", "TechnicalPriority" : "", "LastChangedTime" : "\/Date(1339421412126)\/", "LastChangedBy" : "", "IsEscalated" : true, "HasComments" : false, "HasAttachments" : false, "HasPotentialOwners" : false, "SupportsForward" : false, "SupportsClaim" : false, "SupportsRelease" : false, "TaskexecutionUrl" : ""
+      }, {
+      "__metadata" : {
+      "uri" : "/sap.com~odata~web/BPMTasks.svc/Tasks('bpm://bpm.sap.com/task-instance/be2f1b78a')", "type" : "Inbox.Tasks"
+      }, "ID" : "bpm://bpm.sap.com/task-instance/be2f78a", "Category" : "TASK", "CreatedByName" : "Administrator", "TaskName" : "Some Dummy Task", "TaskTitle" : "Some Dummy Task for you", "Status" : "READY", "Priority" : "LOW", "Requestor" : "", "CreatedOn" : "\/Date(1335350553633)\/", "StartDeadline" : "", "CompletionDeadline" : "", "TechnicalStatus" : "", "TechnicalPriority" : "", "LastChangedTime" : "\/Date(1339421412126)\/", "LastChangedBy" : "", "IsEscalated" : false, "HasComments" : false, "HasAttachments" : false, "HasPotentialOwners" : false, "SupportsForward" : true, "SupportsClaim" : true, "SupportsRelease" : false, "TaskexecutionUrl" : ""
+      }, {
+      "__metadata" : {
+      "uri" : "/sap.com~odata~web/BPMTasks.svc/Tasks('bpm://bpm.sap.com/task-instance/c03ba')", "type" : "Inbox.Tasks"
+      }, "ID" : "bpm://bpm.sap.com/task-instance/c034891a", "Category" : "TASK", "CreatedByName" : "Administrator", "TaskName" : "Purchase Order Form", "TaskTitle" : "   ", "Status" : "RESERVED", "Priority" : "HIGH", "Requestor" : "", "CreatedOn" : "\/Date(1335350556907)\/", "StartDeadline" : "\/Date(1335523357193)\/", "CompletionDeadline" : "", "TechnicalStatus" : "", "TechnicalPriority" : "", "LastChangedTime" : "\/Date(1339421412126)\/", "LastChangedBy" : "", "IsEscalated" : false, "HasComments" : false, "HasAttachments" : false, "HasPotentialOwners" : false, "SupportsForward" : true, "SupportsClaim" : false, "SupportsRelease" : true, "TaskexecutionUrl" : ""
+      }, {
+      "__metadata" : {
+      "uri" : "/sap.com~odata~web/BPMTasks.svc/Tasks('bpm://bpm.sap.com/task-instance/c03ba')", "type" : "Inbox.Tasks"
+       }, "ID" : "bpm://bpm.sap.com/task-instance/c034901a", "Category" : "TASK", "CreatedByName" : "Administrator", "TaskName" : "Purchase Order Form", "TaskTitle" : null, "Status" : "RESERVED", "Priority" : "HIGH", "Requestor" : "", "CreatedOn" : "\/Date(1335350556907)\/", "StartDeadline" : "\/Date(1335523357193)\/", "CompletionDeadline" : "", "TechnicalStatus" : "", "TechnicalPriority" : "", "LastChangedTime" : "\/Date(1339421412126)\/", "LastChangedBy" : "", "IsEscalated" : false, "HasComments" : false, "HasAttachments" : false, "HasPotentialOwners" : false, "SupportsForward" : true, "SupportsClaim" : false, "SupportsRelease" : true, "TaskexecutionUrl" : ""
+       }
+      ], "__count" : "6"
+      };
+
+var jsonDataClaimed = {
+      "Tasks" : [
+      {
+      "__metadata" : {
+      "uri" : "/sap.com~odata~web/BPMTasks.svc/Tasks('bpm://bpm.sap.com/task-instance/c071b78a')", "type" : "Inbox.Tasks"
+      }, "ID" : "bpm://bpm.sap.com/task-instance/c0712a", "Category" : "TASK", "CreatedByName" : "Administrator", "TaskName" : "Raise Purchase Request", "TaskTitle" : "Raise Purchase Request for iPAD", "Status" : "RESERVED", "Priority" : "MEDIUM", "Requestor" : "", "CreatedOn" : "\/Date(1335350556410)\/", "StartDeadline" : "", "CompletionDeadline" : "\/Date(1336041756660)\/", "TechnicalStatus" : "", "TechnicalPriority" : "", "LastChangedTime" : "\/Date(1339421412126)\/", "LastChangedBy" : "", "IsEscalated" : true, "HasComments" : false, "HasAttachments" : false, "HasPotentialOwners" : false, "SupportsForward" : true, "SupportsClaim" : false, "SupportsRelease" : true, "TaskexecutionUrl" : ""
+      }, {
+      "__metadata" : {
+      "uri" : "/sap.com~odata~web/BPMTasks.svc/Tasks('bpm://bpm.sap.com/task-instance/be6848a')", "type" : "Inbox.Tasks"
+      }, "ID" : "bpm://bpm.sap.com/task-instance/be68a", "Category" : "TASK", "CreatedByName" : "Administrator", "TaskName" : "Purchase Order Form", "TaskTitle" : "Purchase Order Form - Laptops", "Status" : "RESERVED", "Priority" : "HIGH", "Requestor" : "", "CreatedOn" : "\/Date(1335350554667)\/", "StartDeadline" : "\/Date(1335523354833)\/", "CompletionDeadline" : "", "TechnicalStatus" : "", "TechnicalPriority" : "", "LastChangedTime" : "\/Date(1339421412126)\/", "LastChangedBy" : "", "IsEscalated" : true, "HasComments" : false, "HasAttachments" : false, "HasPotentialOwners" : false, "SupportsForward" : true, "SupportsClaim" : false, "SupportsRelease" : true, "TaskexecutionUrl" : ""
+      }, {
+      "__metadata" : {
+      "uri" : "/sap.com~odata~web/BPMTasks.svc/Tasks('bpm://bpm.sap.com/task-instance/be4a78a')", "type" : "Inbox.Tasks"
+      }, "ID" : "bpm://bpm.sap.com/task-instance/beb78a", "Category" : "TASK", "CreatedByName" : "Administrator", "TaskName" : "Raise Purchase Request", "TaskTitle" : "Raise Purchase Request for iPAD", "Status" : "COMPLETED", "Priority" : "MEDIUM", "Requestor" : "", "CreatedOn" : "\/Date(1335350554133)\/", "StartDeadline" : "", "CompletionDeadline" : "\/Date(1336041754297)\/", "TechnicalStatus" : "", "TechnicalPriority" : "", "LastChangedTime" : "\/Date(1339421412126)\/", "LastChangedBy" : "", "IsEscalated" : true, "HasComments" : false, "HasAttachments" : false, "HasPotentialOwners" : false, "SupportsForward" : false, "SupportsClaim" : false, "SupportsRelease" : false, "TaskexecutionUrl" : ""
+      }, {
+      "__metadata" : {
+      "uri" : "/sap.com~odata~web/BPMTasks.svc/Tasks('bpm://bpm.sap.com/task-instance/be278a')", "type" : "Inbox.Tasks"
+      }, "ID" : "bpm://bpm.sap.com/task-instance/be278a", "Category" : "TASK", "CreatedByName" : "Administrator", "TaskName" : "Some Dummy Task", "TaskTitle" : "Some Dummy Task for you", "Status" : "READY", "Priority" : "LOW", "Requestor" : "", "CreatedOn" : "\/Date(1335350553633)\/", "StartDeadline" : "", "CompletionDeadline" : "", "TechnicalStatus" : "", "TechnicalPriority" : "", "LastChangedTime" : "\/Date(1339421412126)\/", "LastChangedBy" : "", "IsEscalated" : false, "HasComments" : false, "HasAttachments" : false, "HasPotentialOwners" : false, "SupportsForward" : true, "SupportsClaim" : true, "SupportsRelease" : false, "TaskexecutionUrl" : ""
+      }, {
+      "__metadata" : {
+      "uri" : "/sap.com~odata~web/BPMTasks.svc/Tasks('bpm://bpm.sap.com/task-instance/c03ba')", "type" : "Inbox.Tasks"
+      }, "ID" : "bpm://bpm.sap.com/task-instance/c034892a", "Category" : "TASK", "CreatedByName" : "Administrator", "TaskName" : "Purchase Order Form", "TaskTitle" : "Purchase Order Form - Laptops", "Status" : "RESERVED", "Priority" : "HIGH", "Requestor" : "", "CreatedOn" : "\/Date(1335350556907)\/", "StartDeadline" : "\/Date(1335523357193)\/", "CompletionDeadline" : "", "TechnicalStatus" : "", "TechnicalPriority" : "", "LastChangedTime" : "\/Date(1339421412126)\/", "LastChangedBy" : "", "IsEscalated" : false, "HasComments" : false, "HasAttachments" : false, "HasPotentialOwners" : false, "SupportsForward" : true, "SupportsClaim" : false, "SupportsRelease" : true, "TaskexecutionUrl" : ""
+      }, {
+      "__metadata" : {
+      "uri" : "/sap.com~odata~web/BPMTasks.svc/Tasks('bpm://bpm.sap.com/task-instance/c03ba')", "type" : "Inbox.Tasks"
+      }, "ID" : "bpm://bpm.sap.com/task-instance/c034a902a", "Category" : "TASK", "CreatedByName" : "Administrator", "TaskName" : "Purchase Order Form", "TaskTitle" : "Purchase Order Form - Laptops", "Status" : "RESERVED", "Priority" : "HIGH", "Requestor" : "", "CreatedOn" : "\/Date(1335350556907)\/", "StartDeadline" : "\/Date(1335523357193)\/", "CompletionDeadline" : "", "TechnicalStatus" : "", "TechnicalPriority" : "", "LastChangedTime" : "\/Date(1339421412126)\/", "LastChangedBy" : "", "IsEscalated" : false, "HasComments" : false, "HasAttachments" : false, "HasPotentialOwners" : false, "SupportsForward" : true, "SupportsClaim" : false, "SupportsRelease" : true, "TaskexecutionUrl" : ""
+      }
+      ], "__count" : "6"
+      };
+
+		
+		
+			var inx = new sap.uiext.inbox.Inbox("inbox");
+			inx.setHandleBindings(false);
+			
+			var taskFilter = new sap.uiext.inbox.TaskInitialFilters(["READY"],null,null,null);// (It is the Status, Priority filters as array)
+			var oModel = new sap.ui.model.json.JSONModel();
+		    oModel.setData(jsonData);
+
+			inx.setModel(oModel);
+			inx.bindTaskTypeDynamicFilter(function(){var t = [];t.push('Raise Purchase Request');t.push('Some Dummy Task');t.push('Purchase Order Form');t.push('LeaveReq');return t;});
+			inx.bindTaskTable("/Tasks",taskFilter);
+			inx.bindTaskExecutionURL(function(id){return "/demokit";},function(id){return "COMPLETED";});
+		    inx.bindSearch(function(){alert('Not Supported');});
+      		inx.attachRefresh(function(){oModel.setData(jsonDataRefresh);});
+      		inx.attachTaskAction(function(oEvent){alert(oEvent.getParameter('action'));alert(oEvent.getParameter('selectedIDs'));oModel.setData(jsonDataClaimed);});
+      		inx.placeAt("uiArea1");
+      		
+		//Tests Starts
+		module("InitialTest");
+		var inbox = sap.ui.getCore().byId("inbox");
+		var inboxTaskBinding = inbox.getTaskTableBinding();
+
+		test("InboxCreationOk", 2, function() {
+			sap.ui.getCore().applyChanges(); 
+			equals(false, (jQuery.sap.byId("inbox") === undefined), "Checking if the Inbox Control is created and is not undefined.");
+			equals(false, (jQuery.sap.byId("inbox") === null), "Checking if the Inbox Control is created and is not null.");
+			
+		});
+		
+		module("PropertiesTest");
+		
+		test("InboxsCollectionPathOk", 1, function() {
+			sap.ui.getCore().applyChanges(); 
+			equal(inbox.sCollectionPath, "/Tasks");
+		});
+		
+		test("InboxIdOk", 1, function() {
+			sap.ui.getCore().applyChanges(); 
+			equal(inbox.sId, "inbox");
+		});
+		
+		test("IsJSONModelOk", 1, function() {
+			sap.ui.getCore().applyChanges(); 
+			equal(inbox.typeOfModel, "JSON");
+		});
+		
+		module("InboxTableBindings");
+		
+		test("TaskTableBindingPathOk", 1, function() {
+			sap.ui.getCore().applyChanges(); 
+			equal(inboxTaskBinding.sPath, "/Tasks");
+		});
+
+		test("NumberOfTasksOk", 1, function() {
+			sap.ui.getCore().applyChanges(); 
+			equal("9", inboxTaskBinding.getModel().oData.Tasks.length);
+		});
+
+		test("InitialFiltersOk", 3, function() {
+			sap.ui.getCore().applyChanges(); 
+			equal(inboxTaskBinding.aApplicationFilters[0].sPath, "Status");
+			equal(inboxTaskBinding.aApplicationFilters[0].sOperator, "EQ");
+			equal(inboxTaskBinding.aApplicationFilters[0].oValue1, "READY");
+		});
+		
+		test("ActionButtonLabelChangedToComplete", function(){
+			sap.ui.getCore().applyChanges(); 
+			var actionComplete = sap.ui.getCore().byId(inbox.getId() + '--' + 'openActionButton');
+				equals(false, (actionComplete === undefined), "Checking if the Open Action Button is created and is not undefined.");	
+				equals(false, (inbox === null), "Checking if the Open Action Button is created and is not null.");
+				var language = sap.ui.getCore().getConfiguration();
+				if(language ==="EN_US"){
+					equals(true, ("Open" === actionComplete.getText()),"Checking if the Button text is 'Open'.");
+					equals(true, ("Open" === actionComplete.getTooltip_AsString()), "Checking if the Button tool tip is 'Open'."); 
+				}
+			});
+		
+		module("Switch to Table");
+		test("TableSwitchTest", function(){
+			sap.ui.getCore().applyChanges(); 
+		var oTable = sap.ui.getCore().byId(inbox.getId() + '--' + 'listViewTable');    
+			equals(false, (inbox === undefined), "Checking if the Inbox Control is created and is not undefined.");	
+			equals(false, (inbox === null), "Checking if the Inbox Control is created and is not null.");
+			equals(false, (oTable === undefined), "Checking if the Table Control is created and is not undefined.");	
+			equals(false, (oTable === null), "Checking if the Table Control is created and is not null.");
+			equals(true, (oTable instanceof sap.ui.table.Table), "Checking if the Table Control is instance of sap.ui.table.Table");
+		});
+
+		
+		module("Custom Attribute Collection");
+		test("CustomAttributeTest", function(){
+				//TODO CustomAttributes is disabled for other Data Models. Once enabled for JSON model enhance this test case
+				//	equals(false, (inbox._getCustomAttributeMetaData('123').length === undefined), "Checking if the customAttributes definition for the TaskDefinition");
+				sap.ui.getCore().applyChanges(); 
+				var oTable = sap.ui.getCore().byId(inbox.getId() + '--' + 'listViewTable');
+				var initialNumberOfColumns = oTable.getColumns().length;
+				
+				var customAttrArray = [{Name:"FirstName",Label:"First Name",Type:"String"},{Name:"SurName",Label:"Sur Name",Type:"String"}];
+				inbox._createCustomAttributeColumns(customAttrArray);
+				
+				equals(oTable.getColumns().length, initialNumberOfColumns + customAttrArray.length , "Checking if the CustomAttributes columns are getting created");
+				equals(oTable.getColumns()[1].getLabel().getText(), "First Name", "Checking if the CustomAttributes column 1 Label is correct");
+				equals(oTable.getColumns()[2].getLabel().getText(), "Sur Name", "Checking if the CustomAttributes column 2 Label is correct");
+				
+				//TODO CustomAttributes is disabled for other Data Models. Once enabled for JSON model enhance this test case
+				//equals(oTable.getRows()[0].getCells()[5].getValue(), "XYZ", "Checking if the CustomAttributes value is correct");
+				//equals(oTable.getRows()[0].getCells()[6].getValue(), "Vacation", "Checking if the CustomAttributes value is correct");		
+				
+				inbox._deleteCustomAttributeColumns();
+				equals(oTable.getColumns().length, initialNumberOfColumns, "Checking CustomAttributes columns deletion");	
+				
+			});
+		
+		module("Substitution Rules Getter and Setter");
+		test("SubstitutionGetterSetterTest", function(){
+			sap.ui.getCore().applyChanges(); 
+			equals(false, (inbox === undefined), "Checking if the Inbox Control is created and is not undefined.");
+			equals(false, (inbox.getSubstitutionEnabled()),"Checking the default value of the isSubstitution property, it should be false");
+			inbox.setSubstitutionEnabled(true);
+			equals(true, (inbox.getSubstitutionEnabled()),"Checking the isSubstitution property after setting it to true");
+			inbox.setSubstitutionEnabled(false);
+			equals(false, (inbox.getSubstitutionEnabled()),"Checking the isSubstitution property after setting it to false");
+		});
+		
+		module("Substitution Enable Disable Test");
+		test("SubstitutionEnableDisableTest", function() {
+			sap.ui.getCore().applyChanges(); 
+			//Tests for Substitution Disabled as default behaviour
+			var inboxWithSubstDisabled = new sap.uiext.inbox.Inbox("inboxWithNoSubstitution");
+			inboxWithSubstDisabled.setHandleBindings(false);
+			var taskFilter = new sap.uiext.inbox.TaskInitialFilters(["READY"],null,null,null);// (It is the Status, Priority filters as array)
+			var oModel = new sap.ui.model.json.JSONModel();
+		    oModel.setData(jsonData);
+			inboxWithSubstDisabled.setModel(oModel);
+			inboxWithSubstDisabled.bindTaskTypeDynamicFilter(function(){var t = [];t.push('Raise Purchase Request');t.push('Some Dummy Task');t.push('Purchase Order Form');t.push('LeaveReq');return t;})
+			inboxWithSubstDisabled.bindTaskTable("/Tasks",taskFilter);
+			inboxWithSubstDisabled.bindTaskExecutionURL(function(id){return "/demokit";},function(id){return "COMPLETED";});
+		    inboxWithSubstDisabled.bindSearch(function(){alert('Not Supported');});
+      		inboxWithSubstDisabled.attachRefresh(function(){oModel.setData(jsonDataRefresh);});
+      		inboxWithSubstDisabled.attachTaskAction(function(oEvent){alert(oEvent.getParameter('action'));alert(oEvent.getParameter('selectedIDs'));oModel.setData(jsonDataClaimed);});
+    		var inboxWithNoSubstitution = sap.ui.getCore().byId("inboxWithNoSubstitution");
+    		var dropDownRow = sap.ui.getCore().byId(inboxWithNoSubstitution.getId() + '--' + "dropdownRow");
+    		var settingsMenu = sap.ui.getCore().byId(inboxWithNoSubstitution.getId() + '--' +'inboxSettingsMenu');
+    		var rrSettingsMenu = sap.ui.getCore().byId(inboxWithNoSubstitution.getId() + '--' +'rrSettingsMenu');
+    		var dropdowncell1 = sap.ui.getCore().byId(inboxWithNoSubstitution.getId() + '--' + "dropdownCell1");
+    		var dropdowncell2 = sap.ui.getCore().byId(inboxWithNoSubstitution.getId() + '--' + "dropdownCell2");
+    		var dropdowncell3 = sap.ui.getCore().byId(inboxWithNoSubstitution.getId() + '--' + "dropdownCell3");
+    		var oManageSubstitutionMenuItem = sap.ui.getCore().byId(inboxWithNoSubstitution.getId() + '--' + "manageSubstitutionMI");
+    		var oRRManageSubstitutionMenuItem = sap.ui.getCore().byId(inboxWithNoSubstitution.getId() + '--' + "rrManageSubstitutionMI");
+			var rrSettingsButtonInvisible = sap.ui.getCore().byId(inboxWithSubstDisabled.getId() + '--' + "rrSettingsButton");
+			var tableSettingsButtonInvisible = sap.ui.getCore().byId(inboxWithSubstDisabled.getId() + '--' + "settingsButton");
+			equal(rrSettingsButtonInvisible.getVisible(),false, "Checking the visibility of Row Repeater view settings button");
+			equal(tableSettingsButtonInvisible.getVisible(),false, "Checking the visibility of Table view settings button");
+    		
+    		equals(false, (inboxWithNoSubstitution.getSubstitutionEnabled()),"Checking the isSubstitution property after setting it to false");
+			equal(dropDownRow.indexOfCell(dropdowncell1),-1, "Checking if the First Combobox is not in the Drop Down Row");
+			equal(dropDownRow.indexOfCell(dropdowncell3),-1, "Checking if the Third Combobox is not in the Drop Down Row");
+		
+			equal(settingsMenu.indexOfItem(oManageSubstitutionMenuItem), 0, "Checking if Manage Substitution Rules button in Table View is not in the Settings Menu");
+			equal(rrSettingsMenu.indexOfItem(oRRManageSubstitutionMenuItem), 0, "Checking if Manage Substitution Rules button in Stream View is not in the Settings Menu");
+			equal(oManageSubstitutionMenuItem.getEnabled(), false, "Checking if Manage Substitution Rules button in Table View is disabled in the Settings Menu");
+			equal(oRRManageSubstitutionMenuItem.getEnabled(), false, "Checking if Manage Substitution Rules button in Stream View is disabled in the Settings Menu");
+			
+			
+			//Tests for Substitution Enabled
+			var inboxWithSubstitutionEnabled = new sap.uiext.inbox.Inbox("inboxWithSubstitution");
+			inboxWithSubstitutionEnabled.setSubstitutionEnabled(true);
+			inboxWithSubstitutionEnabled.setHandleBindings(false);
+			var taskFilter1 = new sap.uiext.inbox.TaskInitialFilters(["READY"],null,null,null);// (It is the Status, Priority filters as array)
+			var oModel1 = new sap.ui.model.json.JSONModel();
+		    oModel1.setData(jsonData);
+			inboxWithSubstitutionEnabled.setModel(oModel1);
+			inboxWithSubstitutionEnabled.bindTaskTypeDynamicFilter(function(){var t = [];t.push('Raise Purchase Request');t.push('Some Dummy Task');t.push('Purchase Order Form');t.push('LeaveReq');return t;})
+			inboxWithSubstitutionEnabled.bindTaskTable("/Tasks",taskFilter);
+			inboxWithSubstitutionEnabled.bindTaskExecutionURL(function(id){return "/demokit";},function(id){return "COMPLETED";});
+		    inboxWithSubstitutionEnabled.bindSearch(function(){alert('Not Supported');});
+      		inboxWithSubstitutionEnabled.attachRefresh(function(){oModel1.setData(jsonDataRefresh);});
+      		inboxWithSubstitutionEnabled.attachTaskAction(function(oEvent){alert(oEvent.getParameter('action'));alert(oEvent.getParameter('selectedIDs'));oModel.setData(jsonDataClaimed);});
+ 		 	var inboxWithSubstitution = sap.ui.getCore().byId("inboxWithSubstitution");
+    		dropDownRow = sap.ui.getCore().byId(inboxWithSubstitution.getId() + '--' + "dropdownRow");
+    		settingsMenu = sap.ui.getCore().byId(inboxWithSubstitution.getId() + '--' +'inboxSettingsMenu');
+    		rrSettingsMenu = sap.ui.getCore().byId(inboxWithSubstitution.getId() + '--' +'rrSettingsMenu');
+    		dropdowncell1 = sap.ui.getCore().byId(inboxWithSubstitution.getId() + '--' + "dropdownCell1");
+    		dropdowncell2 = sap.ui.getCore().byId(inboxWithSubstitution.getId() + '--' + "dropdownCell2");
+    		dropdowncell3 = sap.ui.getCore().byId(inboxWithSubstitution.getId() + '--' + "dropdownCell3");
+    		oManageSubstitutionMenuItem = sap.ui.getCore().byId(inboxWithSubstitution.getId() + '--' + "manageSubstitutionMI");
+    		oRRManageSubstitutionMenuItem = sap.ui.getCore().byId(inboxWithSubstitution.getId() + '--' + "rrManageSubstitutionMI");
+    		//equals((inboxWithSubstitution.getSubstitutionEnabled()), true,"Checking the isSubstitution property after setting it to true");
+    		equal(dropDownRow.indexOfCell(dropdowncell1),0, "Checking if the First Combobox is in the Drop Down Row as First element");
+			equal(dropDownRow.indexOfCell(dropdowncell3),2, "Checking if the Third Combobox is in the Drop Down Row as Third element");
+			equal(settingsMenu.indexOfItem(oManageSubstitutionMenuItem), 0, "Checking if Manage Substitution Rules button in Table View is in the Settings Menu as First Item");
+			equal(rrSettingsMenu.indexOfItem(oRRManageSubstitutionMenuItem), 0, "Checking if Manage Substitution Rules button in Stream View  is not in the Settings Menu");
+			equal(oManageSubstitutionMenuItem.getEnabled(), true, "Checking if Manage Substitution Rules button in Table View is disabled in the Settings Menu");
+			equal(oRRManageSubstitutionMenuItem.getEnabled(), true, "Checking if Manage Substitution Rules button in Stream View  is disabled in the Settings Menu");
+			var rrSettingsButton = sap.ui.getCore().byId(inboxWithSubstitutionEnabled.getId() + '--' + "rrSettingsButton");
+			var tableSettingsButton = sap.ui.getCore().byId(inboxWithSubstitutionEnabled.getId() + '--' + "settingsButton");
+			equal(rrSettingsButton.getVisible(),true, "Checking the visibility of Row Repeater view settings button");
+			equal(tableSettingsButton.getVisible(),true, "Checking the visibility of Table view settings button");
+    		    		
+ 		}
+		);
+		
+		//module("Test for Tooltip Format For DateTime");
+		//test("basicTestForDateTimeFormat", function(){
+		//	var expectedDateValue = "Thursday, 26 April 2012 16:52:18 GMT+05:30";
+		//	equals(inbox.tooltipFormatForDateTime("\/Date(1335439338973)\/"), expectedDateValue ,"Checking date format for tootip");
+		//	});
+		//Need more UnitTests here
+		
+		module("Test for Date format For DateTime");
+		test("dateFormatforDateTime with bDisplayYear===undefined", function(){
+			sap.ui.getCore().applyChanges(); 
+			  var expectedDateValue = "Apr 26, 2012";
+			  equals(inbox.dateFormat("\/Date(1335439338973)\/"), expectedDateValue ,"Checking date format");
+		});
+		
+		test("dateFormatforDateTime with bDisplayYear===true", function(){
+			sap.ui.getCore().applyChanges(); 
+			  var expectedDateValue = "Apr 26, 2012";
+			  equals(inbox.dateFormat("\/Date(1335439338973)\/",true), expectedDateValue ,"Checking date format");
+		});
+		
+		test("dateFormatforDateTime with bDisplayYear===false", function(){
+			sap.ui.getCore().applyChanges(); 
+			  var expectedDateValue = "Apr 26";
+			  equals(inbox.dateFormat("\/Date(1335439338973)\/", false), expectedDateValue ,"Checking date format");
+		});
+		
+		/*tests for Custom Actions*/
+		module("Custom Actions Test");
+		test("CustomActionsTest", function(){
+			sap.ui.getCore().applyChanges(); 
+				//TODO RowRepeater and CustomActions are currently not supported for models other than oData. So cannot test the Row Repeater View for Custom Actions. Support this and enhance this test case
+				//	equals(false, (inbox._getCustomAttributeMetaData('123').length === undefined), "Checking if the customAttributes definition for the TaskDefinition");
+				var oActionToolbar = inbox._getActionButtonToolBarForTableView();
+				equals(false, (oActionToolbar === null), "Action ToolBar not null check");
+				
+				var oActionToolbarItems = oActionToolbar.getItems();
+				var initialNumberOfToolbarItems = oActionToolbarItems.length;
+				equals(initialNumberOfToolbarItems, 5, "Checking Initial Number of Items in the Table View Toolbar");
+				
+				var aCustomActionArray = [{DecisionKey:"Approve",DecisionText:"Approve Claim",Description:"Approve the claim and complete the task"},{DecisionKey:"Reject",DecisionText:"Reject Claim",Description:"Reject the claim and complete the task"}];
+				inbox._createCustomActionButtons(aCustomActionArray);
+				inbox.rerender();
+				
+				var numberOfCustomActionsToBeAdded = aCustomActionArray.length;
+				oActionToolbarItems = oActionToolbar.getItems();
+				equals(oActionToolbarItems.length, initialNumberOfToolbarItems + numberOfCustomActionsToBeAdded + 1, "Checking if the CustomAction Buttons are created");//adding one for seperator
+				
+				var oActionToolBar4Item = oActionToolbarItems[4];
+				var oActionToolBar5Item = oActionToolbarItems[5];
+				
+				equals(true, (oActionToolBar4Item instanceof sap.ui.commons.Button), "Checking if the Item added for Custom Action is a button");
+				equals(oActionToolBar4Item.getText(), "Approve Claim", "Checking if the CustomAction Button text is correct");
+				equals(oActionToolBar4Item.data("key"), "Approve", "Checking if the CustomAction key maintained is correct");
+				equals(oActionToolBar4Item.getTooltip(), "Approve the claim and complete the task", "Checking if the CustomAction tooltip is correct");
+				
+				equals(true, (oActionToolBar5Item instanceof sap.ui.commons.Button), "Checking if the Item added for Custom Action is a button");
+				equals(oActionToolBar5Item.getText(), "Reject Claim", "Checking if the CustomAction Button text is correct");
+				equals(oActionToolBar5Item.data("key"), "Reject", "Checking if the CustomAction key maintained is correct");
+				equals(oActionToolBar5Item.getTooltip(), "Reject the claim and complete the task", "Checking if the CustomAction tooltip is correct");
+				
+				inbox._deleteCustomActions();
+				oActionToolbarItems = oActionToolbar.getItems();
+				equals(oActionToolbarItems.length, initialNumberOfToolbarItems, "Checking Custom Action buttons deletion");	
+			});
+		
+		module("Test Custom Actions Button Without Label");
+	    test("LabelForCustomActionButton", function(){
+	    sap.ui.getCore().applyChanges();
+		var aCustomActionArray = [{DecisionKey: "Rework", DecisionText:""}];
+		inbox._createCustomActionButtons(aCustomActionArray);
+	    var oActionToolbar = inbox._getActionButtonToolBarForTableView();
+		var oActionToolBarItems = oActionToolbar.getItems();
+		var oActionToolBarItem1 = oActionToolBarItems[4];
+		equals(oActionToolBarItem1.getText(), "Rework", "Checking if a label is created for Custom Action Button having no text")
+	    });
+		
+		module("Default View Test");
+		test("DefaultViewTest", function(){
+				sap.ui.getCore().applyChanges(); 
+				jQuery.sap.require("sap.uiext.inbox.InboxUtils");
+				jQuery.sap.require("sap.uiext.inbox.InboxConstants");
+				var inboxUtils = inbox.inboxUtils;
+				var inboxConstants = inbox.constants;
+				var defaultViewURLParameter = inboxConstants.defaultView_URLParameter; 
+				
+				inboxUtils.setCookieValue(defaultViewURLParameter,inboxConstants.rowRepeaterView,1);
+				
+				var inboxWithDefaultView = new sap.uiext.inbox.Inbox("inboxWithRRView");
+				equals((inboxWithDefaultView.defaultView), inboxConstants.rowRepeaterView, "Checking Default View Configured from Cookie");
+				equals((inboxWithDefaultView.currentView), inboxConstants.rowRepeaterView, "Checking Current View Configured from Cookie");
+				
+				inboxUtils.setCookieValue(defaultViewURLParameter,inboxConstants.tableView,1);
+				var inboxWithDefaultView = new sap.uiext.inbox.Inbox("inboxWithTableView");
+				equals((inboxWithDefaultView.defaultView), inboxConstants.tableView, "Checking Default View Configured from Cookie");
+				equals((inboxWithDefaultView.currentView), inboxConstants.tableView, "Checking Current View Configured from Cookie");
+				
+				inboxUtils.deleteCookie(defaultViewURLParameter);
+				var inboxWithDefaultView = new sap.uiext.inbox.Inbox("inboxWithNoDefaultView");
+				equals((inboxWithDefaultView.defaultView), inboxConstants.tableView, "Checking Default View Configured from Cookie");
+				equals((inboxWithDefaultView.currentView), inboxConstants.tableView, "Checking Current View Configured from Cookie");
+			});
+		//API For Inbox
+		module("Table Visibility Test");
+		test("TableVisibilityTest", function(){
+			sap.ui.getCore().applyChanges(); 
+			var oTable = inbox._getComponent('listViewTable');
+			var actualNumberOfColumns = oTable.getColumns().length;
+			var expectedNumberOfColumns = 6;
+			equals(expectedNumberOfColumns, actualNumberOfColumns,"Test Number Of Initial Columns In the Table");
+			
+			function ColsAndVisibility(field,visibility){
+				this.field=field;
+				this.visibility=visibility;
+				
+			} ;
+			var colObject= {columns:[]};
+			colObject.columns.push({field:"INBOX_TABLE_VIEW_STATUS",visibility:false});
+			colObject.columns.push({field:"INBOX_TABLE_VIEW_TASK_TITLE",visibility:true});
+			colObject.columns.push({field:"INBOX_CREATED_BY_NAME",visibility:false});
+			colObject.columns.push({field:"INBOX_TABLE_VIEW_CREATION_DATE",visibility:true});
+			colObject.columns.push({field:"INBOX_TABLE_VIEW_DUE_DATE",visibility:true});
+			colObject.columns.push({field:"INBOX_TABLE_VIEW_PRIORITY",visibility:true});
+			//Test for undefined
+			var mylist;
+				inbox._setColumnVisibility(mylist);
+				inbox._setColumnVisibility(colObject);
+				inbox._setInboxFiltersVisibility(false);
+				var col= inbox._getComponent("Status");
+				var filter= inbox._getComponent("filterViewButton");
+				var comboBox1= inbox._getComponent("filterComboBox1");
+				var comboBox2= inbox._getComponent("filterComboBox2");
+				var comboBox3= inbox._getComponent("filterComboBox3");
+				equals(filter.getVisible(),false,"Test For filter button visibility");
+				equals(col.getVisible(),false,"Test For status column visibility");
+				col=inbox._getComponent("Priority");
+				equals(col.getVisible(),true,"Test For priority column visibility");
+				col=inbox._getComponent("CreatedByName");
+				equals(col.getVisible(),false,"Test For Created By Name column visibility");
+				
+				equals(comboBox1.getVisible(),false,"Test For filter combobox1 visibility");
+				equals(comboBox2.getVisible(),false,"Test For filter combobox2 visibility");
+				equals(comboBox3.getVisible(),false,"Test For filter combobox3 visibility");
+				
+				
+			});
+		
+		module("Forward Button Visibility Test");
+		test("ForwardActionVisibilityTest", function(){
+				sap.ui.getCore().applyChanges(); 
+				var test_inbox = new sap.uiext.inbox.Inbox("testInbox");
+				test_inbox.setHandleBindings(false);
+			
+				var taskFilter = new sap.uiext.inbox.TaskInitialFilters(null,null,null,null);// (It is the Status, Priority filters as array)
+				var oModel = new sap.ui.model.json.JSONModel();
+			    oModel.setData(jsonData); 
+			    test_inbox.setModel(oModel);
+			    test_inbox.placeAt("uiArea1");
+			
+			    var oActionToolbar = test_inbox._getActionButtonToolBarForTableView();
+				var oActionToolbarItems = oActionToolbar.getItems();
+				//var initialNumberOfToolbarItems = oActionToolbarItems.length;
+				var oTable = sap.ui.getCore().byId(test_inbox.getId() + '--' + 'listViewTable');
+				
+				var openButtonIndex = 0;
+				var claimButtonIndex = 1;
+				var releaseButtonIndex = 2;
+				var forwardButtonIndex = 3;
+				
+				//On Initial Load
+				equals(oActionToolbarItems[openButtonIndex].getVisible(), true, "Open button should be visible on initial load");
+				equals(oActionToolbarItems[openButtonIndex].getEnabled(), false, "Open button should not be enabled on initial load");
+				equals(oActionToolbarItems[claimButtonIndex].getVisible(), false, "Claim button should be visible");
+				equals(oActionToolbarItems[claimButtonIndex].getEnabled(), false, "Claim button should not be enabled");
+				equals(oActionToolbarItems[releaseButtonIndex].getVisible(), false, "Release button should be visible");
+				equals(oActionToolbarItems[releaseButtonIndex].getEnabled(), false, "Release button should not be enabled");
+				equals(oActionToolbarItems[forwardButtonIndex].getVisible(), false, "Forward button should be visible");
+				equals(oActionToolbarItems[forwardButtonIndex].getEnabled(), false, "Forward button should not be enabled");
+				
+			if(!test_inbox.isForwardActionEnabled)
+				{
+					var taskFilter = new sap.uiext.inbox.TaskInitialFilters(["READY"],null,null,null);// (It is the Status, Priority filters as array)
+					test_inbox.isForwardActionEnabled = true;
+					test_inbox.bindTaskTable("/Tasks",taskFilter);
+					oTable.setSelectedIndex(0);
+						
+					oActionToolbar = test_inbox._getActionButtonToolBarForTableView();
+					oActionToolbarItems = oActionToolbar.getItems();
+					equals(oActionToolbarItems[openButtonIndex].getVisible(), true, "Open button should be visible");
+					equals(oActionToolbarItems[openButtonIndex].getEnabled(), true, "Open button should be enabled");
+					equals(oActionToolbarItems[claimButtonIndex].getVisible(), true, "Claim button should be visible");
+					equals(oActionToolbarItems[claimButtonIndex].getEnabled(), true, "Claim button should be enabled");
+					equals(oActionToolbarItems[releaseButtonIndex].getVisible(), true, "Release button should be visible");
+					equals(oActionToolbarItems[releaseButtonIndex].getEnabled(), false, "Release button should not be enabled");
+					equals(oActionToolbarItems[forwardButtonIndex].getVisible(), true, "Forward button should be visible");
+					equals(oActionToolbarItems[forwardButtonIndex].getEnabled(), true, "Forward button should be enabled");
+					
+					var taskFilter = new sap.uiext.inbox.TaskInitialFilters(["RESERVED"],null,null,null);// (It is the Status, Priority filters as array)
+					test_inbox.bindTaskTable("/Tasks",taskFilter);
+					sap.ui.getCore().applyChanges(); 
+					//oTable.setSelectedIndex(0);
+					qutils.triggerMouseEvent("testInbox--listViewTable-rowsel1", "click");					
+						
+					oActionToolbar = test_inbox._getActionButtonToolBarForTableView();
+					oActionToolbarItems = oActionToolbar.getItems();
+					equals(oActionToolbarItems[openButtonIndex].getVisible(), true, "Open button should be visible");
+					equals(oActionToolbarItems[openButtonIndex].getEnabled(), true, "Open button should be enabled ");
+					equals(oActionToolbarItems[claimButtonIndex].getVisible(), true, "Claim button should be visible");
+					equals(oActionToolbarItems[claimButtonIndex].getEnabled(), false, "Claim button should not be enabled");
+					equals(oActionToolbarItems[releaseButtonIndex].getVisible(), true, "Release button should be visible");
+					equals(oActionToolbarItems[releaseButtonIndex].getEnabled(), true, "Release button should be enabled");
+					equals(oActionToolbarItems[forwardButtonIndex].getVisible(), true, "Forward button should be visible");
+					equals(oActionToolbarItems[forwardButtonIndex].getEnabled(), true, "Forward button should be enabled");
+					
+					
+					var taskFilter = new sap.uiext.inbox.TaskInitialFilters(["READY", "RESERVED"], null, null, null);
+					test_inbox.bindTaskTable("/Tasks",taskFilter);
+					sap.ui.getCore().applyChanges();
+					oTable.setSelectionInterval(7,8);
+					
+					oActionToolbar = test_inbox._getActionButtonToolBarForTableView();
+					oActionToolbarItems = oActionToolbar.getItems();
+					equals(oActionToolbarItems[openButtonIndex].getVisible(), true, "Open Button should  be visible");
+					equals(oActionToolbarItems[openButtonIndex].getEnabled(), true, "Open button should be enabled ");
+					equals(oActionToolbarItems[claimButtonIndex].getVisible(), true, "Claim button should  be visible");
+					equals(oActionToolbarItems[claimButtonIndex].getEnabled(), false, "Claim button should not be enabled");
+					equals(oActionToolbarItems[releaseButtonIndex].getVisible(), true, "Release button should  be visible");
+					equals(oActionToolbarItems[releaseButtonIndex].getEnabled(), false, "Release button should not be enabled");
+					equals(oActionToolbarItems[forwardButtonIndex].getVisible(), true, "Forward button should be visible");
+					equals(oActionToolbarItems[forwardButtonIndex].getEnabled(), true, "Forward button should be enabled");
+					
+				}
+	
+			});
+		
+		module("bindTaskTable Test");
+		test("Inbox_checkInitialFilterwithTaskInitialFilter", function(){
+			var test_inbox = sap.ui.getCore().byId("testInbox");
+			var taskFilter = new sap.uiext.inbox.TaskInitialFilters(["RESERVED"],null,null,null);// (It is the Status, Priority filters as array)
+			test_inbox.bindTaskTable("/Tasks",taskFilter);
+			sap.ui.getCore().applyChanges(); 
+			var oPrimaryfilterCombobox = sap.ui.getCore().byId("testInbox--filterComboBox2");
+			equals("testInbox--li_openTasks", oPrimaryfilterCombobox.getSelectedItemId(), "Checking if the right Initial filter is displayed in the dropdown");
+			var oBinding = sap.ui.getCore().byId("testInbox--listViewTable").getBinding('rows');
+			var oFilterApplied = oBinding.aApplicationFilters[0];
+			equals("Status",oFilterApplied.sPath , "Checking if the Inbox Control has the initial filter applied - Path");
+			equals("EQ",oFilterApplied.sOperator , "Checking if the Inbox Control has the initial filter applied - operator");
+			equals("RESERVED",oFilterApplied.oValue1 , "Checking if the Inbox Control has the initial filter applied - Value");
+		});
+		
+		test("Inbox_checkDefaultPrimaryFilterwithoutInitialFilters", function(){
+			sap.ui.getCore().applyChanges(); 
+			var test_inbox = sap.ui.getCore().byId("testInbox");
+			test_inbox.bindTaskTable("/Tasks");
+			var oPrimaryfilterCombobox = sap.ui.getCore().byId("testInbox--filterComboBox2");
+			equals("testInbox--li_openTasks", oPrimaryfilterCombobox.getSelectedItemId(), "Checking if the right Initial filter is displayed in the dropdown");
+			var oBinding = sap.ui.getCore().byId("testInbox--listViewTable").getBinding('rows');
+			var oFilterApplied = oBinding.aApplicationFilters[0];
+			equals("Status",oFilterApplied.sPath , "Checking if the Inbox Control has the initial filter applied - Path");
+			equals("NE",oFilterApplied.sOperator , "Checking if the Inbox Control has the initial filter applied - operator");
+			equals("COMPLETED",oFilterApplied.oValue1 , "Checking if the Inbox Control has the initial filter applied - Value");
+		});
+		
+		 module("bindTasksAPI Test")
+	   		var inx1 = new sap.uiext.inbox.Inbox("inbox1");
+	   		inx1.setHandleBindings(false);
+	   		
+	   		var oInboxFilter = new sap.uiext.inbox.InboxFilters();
+	   		var oInboxSecondaryFilter = new sap.uiext.inbox.InboxSecondaryFilters();
+			var taskFilter = new sap.uiext.inbox.TaskInitialFilters(["READY"],null,null,null);// (It is the Status, Priority filters as array)
+			oInboxFilter.setSecondaryFilter(taskFilter);
+			
+			var oModel = new sap.ui.model.json.JSONModel();
+		    oModel.setData(jsonData);
+
+		    inx1.setModel(oModel);
+		    inx1.bindTaskTypeDynamicFilter(function(){var t = [];t.push('Raise Purchase Request');t.push('Some Dummy Task');t.push('Purchase Order Form');t.push('LeaveReq');return t;})
+			inx1.bindTasks("/Tasks",oInboxFilter);
+		    inx1.bindTaskExecutionURL(function(id){return "/demokit";},function(id){return "COMPLETED";});
+		    inx1.bindSearch(function(){alert('Not Supported');});
+		    inx1.attachRefresh(function(){oModel.setData(jsonDataRefresh);});
+		    inx1.attachTaskAction(function(oEvent){alert(oEvent.getParameter('action'));alert(oEvent.getParameter('selectedIDs'));oModel.setData(jsonDataClaimed);});
+		    inx1.placeAt("uiArea1");
+		    
+		    var prioFilterList = sap.ui.getCore().byId("inbox1--INBOX_FILTER_PRIORITY");
+			var statusFilterList = sap.ui.getCore().byId("inbox1--INBOX_FILTER_STATUS");
+			var dateTimeFilterList = sap.ui.getCore().byId("inbox1--INBOX_FILTER_CREATION_DATE");
+			var taskTypeFilterList = sap.ui.getCore().byId("inbox1--INBOX_FILTER_TASK_TYPE");
+			var dueDateTimeFilterList = sap.ui.getCore().byId("inbox1--INBOX_FILTER_DUE_DATETIME");
+		
+		    test("InboxCreationOk", 2, function() {
+		    	sap.ui.getCore().applyChanges(); 
+				equals(false, (jQuery.sap.byId("inbox1") === undefined), "Checking if the Inbox Control is created and is not undefined.");
+				equals(false, (jQuery.sap.byId("inbox1") === null), "Checking if the Inbox Control is created and is not null.");
+				
+			});
+		    
+		    test("InboxCreationDataCreation", 1, function() {
+		    	sap.ui.getCore().applyChanges(); 
+				equals(true, (sap.ui.getCore().byId("inbox1--listViewTable").getBinding('rows').iLength > 0), "Checking if the Inbox Control is created and data bound.");
+			});
+		    
+		    test("InboxDefaultSorter", 3, function() {
+		    	sap.ui.getCore().applyChanges(); 
+		    	var oBinding = sap.ui.getCore().byId("inbox1--listViewTable").getBinding('rows');
+		    	var oSorter = oBinding.aSorters[0];
+				equals(false, (oSorter === undefined), "Checking if the Inbox Control has applied sorter on the List View");
+				equals(true, (oSorter.sPath === "CreatedOn"), "Checking if the path of the default sorter applied is correct");
+				equals(true, oSorter.bDescending, "Checking if the order of the default sorter applied is correct");
+			});
+		    test("InboxInitialSorter_IndicatedOnUI", 2, function() {
+		    	sap.ui.getCore().applyChanges(); 
+		    	var oTaskTitleColumn = sap.ui.getCore().byId("inbox1--CreatedOn");
+				equals(true, (oTaskTitleColumn.getSorted()), "Checking if the the Start Date column is marked as sorted");
+				equals(true, (oTaskTitleColumn.getSortOrder() === sap.ui.table.SortOrder.Descending), "Checking if the sorted Order marked in the column is right");
+			});
+		    
+		    test("InboxInitialSorter", 3, function() {
+		    	sap.ui.getCore().applyChanges(); 
+		    	inx1.bindTasks("/Tasks",oInboxFilter,new sap.ui.model.Sorter("TaskTitle",true));
+		    	var oBinding = sap.ui.getCore().byId("inbox1--listViewTable").getBinding('rows');
+		    	var oSorter = oBinding.aSorters[0];
+				equals(false, (oSorter === undefined), "Checking if the Inbox Control has applied sorter on the List View");
+				equals(true, (oSorter.sPath === "TaskTitle"), "Checking if the path of the sorter applied is same as the one passed in Initial Sorter");
+				equals(true, oSorter.bDescending, "Checking if the order of the sorter applied is same as the one passed in Initial Sorter");
+			});
+		    
+		    test("InboxInitialSorter_IndicatedOnUI", 3, function() {
+		    	sap.ui.getCore().applyChanges(); 
+		    	var oTaskTitleColumn = sap.ui.getCore().byId("inbox1--TaskTitle");
+				equals(true, (oTaskTitleColumn.getSorted()), "Checking if the the TaskTitle column is marked as sorted");
+				equals(true, (oTaskTitleColumn.getSortOrder() === sap.ui.table.SortOrder.Descending), "Checking if the sorted Order marked in the column is right");
+				var oCreatedOnColumn = sap.ui.getCore().byId("inbox1--CreatedOn");
+				equals(false, (oCreatedOnColumn.getSorted()), "Checking if the Created On column is not marked as sorted");
+			});
+		    test("InboxInitialSorterOnPropertywhichisnotaDefaultColumn", 3, function() {
+		    	sap.ui.getCore().applyChanges(); 
+		    	inx1.bindTasks("/Tasks",oInboxFilter,new sap.ui.model.Sorter("Category",false));
+		    	var oBinding = sap.ui.getCore().byId("inbox1--listViewTable").getBinding('rows');
+		    	var oSorter = oBinding.aSorters[0];
+				equals(false, (oSorter === undefined), "Checking if the Inbox Control has applied sorter on the List View");
+				equals(true, (oSorter.sPath === "Category"), "Checking if the path of the sorter applied is same as the one passed in Initial Sorter");
+				equals(false, oSorter.bDescending, "Checking if the order of the sorter applied is same as the one passed in Initial Sorter");
+			});
+		    
+		    test("InboxInitialSorterOnPropertywhichisnotaDefaultColumn_IndicatedOnUI", 5, function() {
+		    	sap.ui.getCore().applyChanges(); 
+		    	var oColumn = sap.ui.getCore().byId("inbox1--TaskTitle");
+				equals(false, (oColumn.getSorted()), "Checking if the the TaskTitle column is not marked as sorted");
+				oColumn = sap.ui.getCore().byId("inbox1--CreatedOn");
+				equals(false, (oColumn.getSorted()), "Checking if the the CreatedOn column is not marked as sorted");
+				oColumn = sap.ui.getCore().byId("inbox1--Priority");
+				equals(false, (oColumn.getSorted()), "Checking if the the Priority column is not marked as sorted");
+				oColumn = sap.ui.getCore().byId("inbox1--Status");
+				equals(false, (oColumn.getSorted()), "Checking if the the Status column is not marked as sorted");
+				oColumn = sap.ui.getCore().byId("inbox1--CompletionDeadLine");
+				equals(false, (oColumn.getSorted()), "Checking if the the CompletionDeadLine column is not marked as sorted");
+			});
+		    test("InboxInitialSortForCustomAttributes", 6, function() {
+		    	sap.ui.getCore().applyChanges(); 
+		    	var oDynamicFilter = function(){var t = [];t.push('Raise Purchase Request');t.push('Some Dummy Task');t.push('Purchase Order Form');t.push('LeaveReq');return t;}
+		    	inx1.bindTaskTypeDynamicFilter(oDynamicFilter);
+		    	var oTable = sap.ui.getCore().byId(inx1.getId() + '--' + 'listViewTable');
+		    	var initialNumberOfColumns = oTable.getColumns().length;
+		    	
+		    	var customAttrArray = [{Name:"FirstName",Label:"First Name",Type:"String"},{Name:"SurName",Label:"Sur Name",Type:"String"}];
+				inx1._createCustomAttributeColumns(customAttrArray);
+				
+		    	inx1.bindTasks("/Tasks",oInboxFilter,new sap.ui.model.Sorter("CustomAttributeData/FirstName",true));
+				
+				equals(oTable.getColumns().length, initialNumberOfColumns + customAttrArray.length, "Checking if the CustomAttributes columns are getting created");
+				equals(oTable.getColumns()[1].getLabel().getText(), "First Name", "Checking if the CustomAttributes column 1 Label is correct");
+				equals(oTable.getColumns()[2].getLabel().getText(), "Sur Name", "Checking if the CustomAttributes column 2 Label is correct");
+				
+				var oBinding = sap.ui.getCore().byId("inbox1--listViewTable").getBinding('rows');
+		    	var oSorter = oBinding.aSorters[0];
+				equals(false, (oSorter === undefined), "Checking if the Inbox Control has applied sorter on the List View");
+				equals(true, (oSorter.sPath === "CustomAttributeData/FirstName"), "Checking if the path of the sorter applied is same as the one passed in Initial Sorter");
+				equals(true, oSorter.bDescending, "Checking if the order of the sorter applied is same as the one passed in Initial Sorter");
+		    	
+			});
+		    test("InboxInitialSortForCustomAttributes_IndicatorOnUI", 7, function() {
+		    	sap.ui.getCore().applyChanges(); 
+		    	var oColumn = sap.ui.getCore().byId("inbox1--FirstName");
+				equals(true, (oColumn.getSorted()), "Checking if the the Custom Attribute column is marked as sorted");
+				equals(true, (oColumn.getSortOrder() === sap.ui.table.SortOrder.Descending), "Checking if the sorted Order marked in the column is right");
+				var oColumn = sap.ui.getCore().byId("inbox1--TaskTitle");
+				equals(false, (oColumn.getSorted()), "Checking if the the TaskTitle column is not marked as sorted");
+				var oCreatedOnColumn = sap.ui.getCore().byId("inbox1--CreatedOn");
+				equals(false, (oCreatedOnColumn.getSorted()), "Checking if the Created On column is not marked as sorted");
+				oColumn = sap.ui.getCore().byId("inbox1--Priority");
+				equals(false, (oColumn.getSorted()), "Checking if the the Priority column is not marked as sorted");
+				oColumn = sap.ui.getCore().byId("inbox1--Status");
+				equals(false, (oColumn.getSorted()), "Checking if the the Status column is not marked as sorted");
+				oColumn = sap.ui.getCore().byId("inbox1--CompletionDeadLine");
+				equals(false, (oColumn.getSorted()), "Checking if the the CompletionDeadLine column is not marked as sorted");
+			});
+		    //TODO: enhance for Different Values
+		    test("InboxInitialFilter-OnlyPrimaryFilter", function() {
+		    	sap.ui.getCore().applyChanges(); 
+	   			var oFilterCriteria = new sap.uiext.inbox.InboxFilters();  
+	   			var oPrimaryFilter = new sap.uiext.inbox.InboxPrimaryFilters();
+	   			oPrimaryFilter.setFilter(sap.uiext.inbox.InboxPrimaryFilterEnum.COMPLETED);
+	   			oFilterCriteria.setPrimaryFilter(oPrimaryFilter); 
+	   			inx1.bindTasks("/Tasks",oFilterCriteria,new sap.ui.model.Sorter("Category",false));
+	   			
+	   			var oPrimaryfilterCombobox = sap.ui.getCore().byId("inbox1--filterComboBox2");
+				equals("inbox1--li_completedTasks", oPrimaryfilterCombobox.getSelectedItemId(), "Checking if the right Initial filter is displayed in the dropdown");
+				var oBinding = sap.ui.getCore().byId("inbox1--listViewTable").getBinding('rows');
+				var oFilterApplied = oBinding.aApplicationFilters[0];
+				equals("Status",oFilterApplied.sPath , "Checking if the Inbox Control has the initial filter applied - Path");
+				equals("EQ",oFilterApplied.sOperator , "Checking if the Inbox Control has the initial filter applied - operator");
+				equals("COMPLETED",oFilterApplied.oValue1 , "Checking if the Inbox Control has the initial filter applied - Value");
+			}); 
+		    test("InboxInitialFilter-OnlySecondaryFilter", function() {
+		    	sap.ui.getCore().applyChanges(); 
+	   			var oFilterCriteria = new sap.uiext.inbox.InboxFilters();  
+	   			
+	   			var aFilterObjects = [];
+	   		   	aFilterObjects.push({sPath : sap.uiext.inbox.InboxSecondaryFilterPathEnum.STATUS, values : [sap.uiext.inbox.InboxSecondaryFilterValuesEnum.Status.READY, sap.uiext.inbox.InboxSecondaryFilterValuesEnum.Status.RESERVED]});
+	   			//aFilterObjects.push({sPath : sap.uiext.inbox.InboxSecondaryFilterPathEnum.PRIORITY, values : [sap.uiext.inbox.InboxSecondaryFilterValuesEnum.Priority.LOW, sap.uiext.inbox.InboxSecondaryFilterValuesEnum.Priority.HIGH]});
+	   			//aFilterObjects.push({sPath : sap.uiext.inbox.InboxSecondaryFilterPathEnum.DUEDATE, values : [sap.uiext.inbox.InboxSecondaryFilterValuesEnum.DueDate.TODAY, sap.uiext.inbox.InboxSecondaryFilterValuesEnum.DueDate.NEXT_7_DAYS]});
+	   			//aFilterObjects.push({sPath : sap.uiext.inbox.InboxSecondaryFilterPathEnum.STARTDATE, values : [sap.uiext.inbox.InboxSecondaryFilterValuesEnum.StartDate.TODAY, sap.uiext.inbox.InboxSecondaryFilterValuesEnum.StartDate.LAST_30_DAYS]});
+	   			//aFilterObjects.push({sPath : sap.uiext.inbox.InboxSecondaryFilterPathEnum.TASKTYPE, values : ["bpm%3A%2F%2Fbpm.sap.com%2Ftask-definition%2Fe4b86581325e671ca30f136df1a6dea1", ""]});
+
+	   		   	var oSecondaryFilter = new sap.uiext.inbox.InboxSecondaryFilters()
+	   		   	oSecondaryFilter.setStandardFilters(aFilterObjects); 
+   			
+	   			oFilterCriteria.setSecondaryFilter(oSecondaryFilter);
+	   			
+	   			inx1.bindTasks("/Tasks",oFilterCriteria,new sap.ui.model.Sorter("Category",false));
+	   			
+	   			var oPrimaryfilterCombobox = sap.ui.getCore().byId("inbox1--filterComboBox2");
+				equals("inbox1--li_openTasks", oPrimaryfilterCombobox.getSelectedItemId(), "Checking if the right Initial filter is displayed in the dropdown");
+				var oBinding = sap.ui.getCore().byId("inbox1--listViewTable").getBinding('rows');
+				var oFilterAppliedLength = oBinding.aApplicationFilters.length;
+				equals(2,oFilterAppliedLength , "Checking if the Inbox Control has the two initial filter applied");
+				
+				var oFilterApplied = oBinding.aApplicationFilters[0];
+				
+				equals("Status",oFilterApplied.sPath , "Checking if the Inbox Control has the initial filter applied - Path");
+				equals("EQ",oFilterApplied.sOperator , "Checking if the Inbox Control has the initial filter applied - operator");
+				equals("READY",oFilterApplied.oValue1 , "Checking if the Inbox Control has the initial filter applied - Value");
+				
+				oFilterApplied = oBinding.aApplicationFilters[1];
+				
+				equals("Status",oFilterApplied.sPath , "Checking if the Inbox Control has the initial filter applied - Path");
+				equals("EQ",oFilterApplied.sOperator , "Checking if the Inbox Control has the initial filter applied - operator");
+				equals("RESERVED",oFilterApplied.oValue1 , "Checking if the Inbox Control has the initial filter applied - Value");
+				
+				var aStatusFilterSelKeys = statusFilterList.getSelectedKeys();
+				equals(2,aStatusFilterSelKeys.length , "Checking if two values are selected in the Fact Filter List for Status");
+				equals(true,(jQuery.inArray("INBOX_FILTER_STATUS_READY",aStatusFilterSelKeys) !== -1), "Checking if the Inbox Facet List for Status has selected right values");
+				equals(true,(jQuery.inArray("INBOX_FILTER_STATUS_RESERVED",aStatusFilterSelKeys) !== -1), "Checking if the Inbox Facet List for Status has selected right values");
+				//check binding for Filter
+				
+			}); 
+		    test("InboxInitialFilter-PrimaryandSecondaryFilter", function() {
+		    	sap.ui.getCore().applyChanges(); 
+		    	var oFilterCriteria = new sap.uiext.inbox.InboxFilters();  
+	   			var oPrimaryFilter = new sap.uiext.inbox.InboxPrimaryFilters();
+	   			oPrimaryFilter.setFilter(sap.uiext.inbox.InboxPrimaryFilterEnum.ESCALATED);
+	   			
+	   			var aFilterObjects = [];
+	   		   	//aFilterObjects.push({sPath : sap.uiext.inbox.InboxSecondaryFilterPathEnum.STATUS, values : [sap.uiext.inbox.InboxSecondaryFilterValuesEnum.Status.READY, sap.uiext.inbox.InboxSecondaryFilterValuesEnum.Status.RESERVED]});
+	   			aFilterObjects.push({sPath : sap.uiext.inbox.InboxSecondaryFilterPathEnum.PRIORITY, values : [sap.uiext.inbox.InboxSecondaryFilterValuesEnum.Priority.LOW, sap.uiext.inbox.InboxSecondaryFilterValuesEnum.Priority.HIGH]});
+	   			//aFilterObjects.push({sPath : sap.uiext.inbox.InboxSecondaryFilterPathEnum.DUEDATE, values : [sap.uiext.inbox.InboxSecondaryFilterValuesEnum.DueDate.TODAY, sap.uiext.inbox.InboxSecondaryFilterValuesEnum.DueDate.NEXT_7_DAYS]});
+	   			//aFilterObjects.push({sPath : sap.uiext.inbox.InboxSecondaryFilterPathEnum.STARTDATE, values : [sap.uiext.inbox.InboxSecondaryFilterValuesEnum.StartDate.TODAY, sap.uiext.inbox.InboxSecondaryFilterValuesEnum.StartDate.LAST_30_DAYS]});
+	   			aFilterObjects.push({sPath : sap.uiext.inbox.InboxSecondaryFilterPathEnum.TASKTYPE, values : ["bpm%3A%2F%2Fbpm.sap.com%2Ftask-definition%2Fe4b86581325e671ca30f136df1a6dea1", ""]});
+
+	   		   	var oSecondaryFilter = new sap.uiext.inbox.InboxSecondaryFilters()
+	   		   	oSecondaryFilter.setStandardFilters(aFilterObjects); 
+	   			
+	   			oFilterCriteria.setPrimaryFilter(oPrimaryFilter); 
+	   			oFilterCriteria.setSecondaryFilter(oSecondaryFilter);
+
+	   			inx1.bindTasks("/Tasks",oFilterCriteria,new sap.ui.model.Sorter("TaskTitle",false));
+	   			
+	   			var oPrimaryfilterCombobox = sap.ui.getCore().byId("inbox1--filterComboBox2");
+				equals("inbox1--li_escalatedTasks", oPrimaryfilterCombobox.getSelectedItemId(), "Checking if the right Initial filter is displayed in the dropdown");
+				var oBinding = sap.ui.getCore().byId("inbox1--listViewTable").getBinding('rows');
+				var oFilterAppliedLength = oBinding.aApplicationFilters.length;
+				
+				
+				equals(4,oFilterAppliedLength , "Checking if the Inbox Control has the 4 initial filter applied");
+				
+				var oFilterApplied = oBinding.aApplicationFilters[0];
+				
+				equals("TaskDefinitionID",oFilterApplied.sPath , "Checking if the Inbox Control has the initial filter applied - Path");
+				equals("EQ",oFilterApplied.sOperator , "Checking if the Inbox Control has the initial filter applied - operator");
+				equals("bpm://bpm.sap.com/task-definition/e4b86581325e671ca30f136df1a6dea1",oFilterApplied.oValue1 , "Checking if the Inbox Control has the initial filter applied - Value");
+				
+				oFilterApplied = oBinding.aApplicationFilters[1];
+				
+				equals("Priority",oFilterApplied.sPath , "Checking if the Inbox Control has the initial filter applied - Path");
+				equals("EQ",oFilterApplied.sOperator , "Checking if the Inbox Control has the initial filter applied - operator");
+				equals("LOW",oFilterApplied.oValue1 , "Checking if the Inbox Control has the initial filter applied - Value");
+				
+				oFilterApplied = oBinding.aApplicationFilters[2];
+				
+				equals("Priority",oFilterApplied.sPath , "Checking if the Inbox Control has the initial filter applied - Path");
+				equals("EQ",oFilterApplied.sOperator , "Checking if the Inbox Control has the initial filter applied - operator");
+				equals("HIGH",oFilterApplied.oValue1 , "Checking if the Inbox Control has the initial filter applied - Value");
+				
+				oFilterApplied = oBinding.aApplicationFilters[3];
+				
+				equals("IsEscalated",oFilterApplied.sPath , "Checking if the Inbox Control has the initial filter applied - Path");
+				equals("EQ",oFilterApplied.sOperator , "Checking if the Inbox Control has the initial filter applied - operator");
+				equals(true,oFilterApplied.oValue1 , "Checking if the Inbox Control has the initial filter applied - Value");
+				
+				var aPrioFilterSelKeys = prioFilterList.getSelectedKeys();
+				equals(2,aPrioFilterSelKeys.length , "Checking if two values are selected in the Fact Filter List for Priority");
+				
+				equals(true,(jQuery.inArray("INBOX_FILTER_PRIORITY_LOW",aPrioFilterSelKeys) !== -1), "Checking if the Inbox Facet List for Status has selected right values");
+				equals(true,(jQuery.inArray("INBOX_FILTER_PRIORITY_HIGH",aPrioFilterSelKeys) !== -1), "Checking if the Inbox Facet List for Status has selected right values");
+				
+				//TODO: check for UI keys for Task Types being selected : does not work for JSON
+				//check binding for Filter
+			}); 
+		    test("InboxInitialFilter-primaryandSecondaryFilterwithSort", function() {
+		    	sap.ui.getCore().applyChanges(); 
+		    	var oBinding = sap.ui.getCore().byId("inbox1--listViewTable").getBinding('rows');
+		    	var oSorter = oBinding.aSorters[0];
+				equals(false, (oSorter === undefined), "Checking if the Inbox Control has applied sorter on the List View");
+				equals(true, (oSorter.sPath === "TaskTitle"), "Checking if the path of the sorter applied is same as the one passed in Initial Sorter");
+				equals(false, oSorter.bDescending, "Checking if the order of the sorter applied is same as the one passed in Initial Sorter");
+				
+				var oTaskTitleColumn = sap.ui.getCore().byId("inbox1--TaskTitle");
+				equals(true, (oTaskTitleColumn.getSorted()), "Checking if the the TaskTitle column is marked as sorted");
+				equals(false, (oTaskTitleColumn.getSortOrder() === sap.ui.table.SortOrder.Descending), "Checking if the sorted Order marked in the column is right");
+				var oCreatedOnColumn = sap.ui.getCore().byId("inbox1--CreatedOn");
+				equals(false, (oCreatedOnColumn.getSorted()), "Checking if the Created On column is not marked as sorted");
+			}); 
+		    test("InboxInitialFilter-NoFiltersOnlySort", function() {
+		    	sap.ui.getCore().applyChanges(); 
+	   			inx1.bindTasks("/Tasks",null,new sap.ui.model.Sorter("Priority",true));
+	   			
+	   			var oBinding = sap.ui.getCore().byId("inbox1--listViewTable").getBinding('rows');
+		    	var oSorter = oBinding.aSorters[0];
+				equals(false, (oSorter === undefined), "Checking if the Inbox Control has applied sorter on the List View");
+				equals(true, (oSorter.sPath === "Priority"), "Checking if the path of the sorter applied is same as the one passed in Initial Sorter");
+				equals(true, oSorter.bDescending, "Checking if the order of the sorter applied is same as the one passed in Initial Sorter");
+				
+				var oTaskTitleColumn = sap.ui.getCore().byId("inbox1--Priority");
+				equals(true, (oTaskTitleColumn.getSorted()), "Checking if the the TaskTitle column is marked as sorted");
+				equals(true, (oTaskTitleColumn.getSortOrder() === sap.ui.table.SortOrder.Descending), "Checking if the sorted Order marked in the column is right");
+				var oCreatedOnColumn = sap.ui.getCore().byId("inbox1--CreatedOn");
+				equals(false, (oCreatedOnColumn.getSorted()), "Checking if the Created On column is not marked as sorted");
+				
+				var oPrimaryfilterCombobox = sap.ui.getCore().byId("inbox1--filterComboBox2");
+				equals("inbox1--li_openTasks", oPrimaryfilterCombobox.getSelectedItemId(), "Checking if the right Initial filter is displayed in the dropdown");
+				var oBinding = sap.ui.getCore().byId("inbox1--listViewTable").getBinding('rows');
+				var oFilterAppliedLength = oBinding.aApplicationFilters.length;
+				
+				
+				equals(1,oFilterAppliedLength , "Checking if the Inbox Control has the 4 initial filter applied");
+				
+				var oFilterApplied = oBinding.aApplicationFilters[0];
+				
+				equals("Status",oFilterApplied.sPath , "Checking if the Inbox Control has the initial filter applied - Path");
+				equals("NE",oFilterApplied.sOperator , "Checking if the Inbox Control has the initial filter applied - operator");
+				equals("COMPLETED",oFilterApplied.oValue1 , "Checking if the Inbox Control has the initial filter applied - Value");
+				
+				var aPrioFilterSelKeys = prioFilterList.getSelectedKeys();
+				equals(1,aPrioFilterSelKeys.length , "Checking if two values are selected in the Fact Filter List for Priority");
+				equals("sapUiFacetFilter_ALL",aPrioFilterSelKeys[0] , "Checking if two values are selected in the Fact Filter List value for selecdted Key in TaskType");
+				
+				var aFilterSelKeys = statusFilterList.getSelectedKeys();
+				//check if the value is all
+				equals(1,aFilterSelKeys.length , "Checking if two values are selected in the Fact Filter List for Status");
+				equals("sapUiFacetFilter_ALL",aFilterSelKeys[0] , "Checking if two values are selected in the Fact Filter List value for selecdted Key in TaskType");
+				
+				var aFilterSelKeys = taskTypeFilterList.getSelectedKeys();
+				equals(1,aFilterSelKeys.length , "Checking if two values are selected in the Fact Filter List for TaskType");
+				equals("sapUiFacetFilter_ALL",aFilterSelKeys[0] , "Checking if two values are selected in the Fact Filter List value for selecdted Key in TaskType");
+				
+				var aFilterSelKeys = dueDateTimeFilterList.getSelectedKeys();
+				equals(1,aFilterSelKeys.length , "Checking if two values are selected in the Fact Filter List for Due Date");
+				equals("sapUiFacetFilter_ALL",aFilterSelKeys[0] , "Checking if two values are selected in the Fact Filter List value for selecdted Key in TaskType");
+				
+				var aFilterSelKeys = dateTimeFilterList.getSelectedKeys();
+				equals(1,aFilterSelKeys.length , "Checking if two values are selected in the Fact Filter List for Start Date");
+				equals("sapUiFacetFilter_ALL",aFilterSelKeys[0] , "Checking if two values are selected in the Fact Filter List value for selecdted Key in TaskType");
+			}); 
+		    test("InboxInitialFilter-NoFiltersNoSort", function() {
+		    	sap.ui.getCore().applyChanges(); 
+	   			inx1.bindTasks("/Tasks");
+	   			
+	   			var oBinding = sap.ui.getCore().byId("inbox1--listViewTable").getBinding('rows');
+		    	var oSorter = oBinding.aSorters[0];
+				equals(false, (oSorter === undefined), "Checking if the Inbox Control has applied sorter on the List View");
+				equals(true, (oSorter.sPath === "CreatedOn"), "Checking if the path of the default sorter applied is correct");
+				equals(true, oSorter.bDescending, "Checking if the order of the default sorter applied is correct");
+				
+				var oPrimaryfilterCombobox = sap.ui.getCore().byId("inbox1--filterComboBox2");
+				equals("inbox1--li_openTasks", oPrimaryfilterCombobox.getSelectedItemId(), "Checking if the right Initial filter is displayed in the dropdown");
+				var oBinding = sap.ui.getCore().byId("inbox1--listViewTable").getBinding('rows');
+				var oFilterAppliedLength = oBinding.aApplicationFilters.length;
+				
+				
+				equals(1,oFilterAppliedLength , "Checking if the Inbox Control has the 4 initial filter applied");
+				
+				var oFilterApplied = oBinding.aApplicationFilters[0];
+				
+				equals("Status",oFilterApplied.sPath , "Checking if the Inbox Control has the initial filter applied - Path");
+				equals("NE",oFilterApplied.sOperator , "Checking if the Inbox Control has the initial filter applied - operator");
+				equals("COMPLETED",oFilterApplied.oValue1 , "Checking if the Inbox Control has the initial filter applied - Value");
+				
+				var aPrioFilterSelKeys = prioFilterList.getSelectedKeys();
+				equals(1,aPrioFilterSelKeys.length , "Checking if two values are selected in the Fact Filter List for Priority");
+				
+				var aFilterSelKeys = statusFilterList.getSelectedKeys();
+				//check if the value is all
+				equals(1,aFilterSelKeys.length , "Checking if two values are selected in the Fact Filter List for Status");
+				equals("sapUiFacetFilter_ALL",aFilterSelKeys[0] , "Checking if two values are selected in the Fact Filter List value for selecdted Key in TaskType");
+				
+				var aFilterSelKeys = taskTypeFilterList.getSelectedKeys();
+				equals(1,aFilterSelKeys.length , "Checking if two values are selected in the Fact Filter List for TaskType");
+				equals("sapUiFacetFilter_ALL",aFilterSelKeys[0] , "Checking if two values are selected in the Fact Filter List value for selecdted Key in TaskType");
+				
+				var aFilterSelKeys = dueDateTimeFilterList.getSelectedKeys();
+				equals(1,aFilterSelKeys.length , "Checking if two values are selected in the Fact Filter List for Due Date");
+				equals("sapUiFacetFilter_ALL",aFilterSelKeys[0] , "Checking if two values are selected in the Fact Filter List value for selecdted Key in TaskType");
+				
+				var aFilterSelKeys = dateTimeFilterList.getSelectedKeys();
+				equals(1,aFilterSelKeys.length , "Checking if two values are selected in the Fact Filter List for Start Date");
+				equals("sapUiFacetFilter_ALL",aFilterSelKeys[0] , "Checking if two values are selected in the Fact Filter List value for selecdted Key in TaskType");
+				
+			}); 
+		    test("InboxInitialFilter-WrongFilterValues", function() {
+		    	sap.ui.getCore().applyChanges(); 
+		    	var oFilterCriteria = new sap.uiext.inbox.InboxFilters();  
+	   			var oPrimaryFilter = new sap.uiext.inbox.InboxPrimaryFilters();
+	   			oPrimaryFilter.setFilter(sap.uiext.inbox.InboxPrimaryFilterEnum.COMPLETED);
+	   			
+	   			var aFilterObjects = [];
+	   		   	aFilterObjects.push({sPath : sap.uiext.inbox.InboxSecondaryFilterPathEnum.STATUS, values : [sap.uiext.inbox.InboxSecondaryFilterValuesEnum.Priority.READY, sap.uiext.inbox.InboxSecondaryFilterValuesEnum.DueDate.RESERVED]});
+
+	   		   	var oSecondaryFilter = new sap.uiext.inbox.InboxSecondaryFilters()
+	   		   	oSecondaryFilter.setStandardFilters(aFilterObjects); 
+	   			
+	   			oFilterCriteria.setPrimaryFilter("some Junk"); 
+	   			oFilterCriteria.setSecondaryFilter(oSecondaryFilter);
+
+	   			inx1.bindTasks("/Tasks",oFilterCriteria,new sap.ui.model.Sorter("Category",false));
+	   			
+	   			var oPrimaryfilterCombobox = sap.ui.getCore().byId("inbox1--filterComboBox2");
+				equals("inbox1--li_openTasks", oPrimaryfilterCombobox.getSelectedItemId(), "Checking if the right Initial filter is displayed in the dropdown");
+				var oBinding = sap.ui.getCore().byId("inbox1--listViewTable").getBinding('rows');
+				var oFilterApplied = oBinding.aApplicationFilters[0];
+				equals("Status",oFilterApplied.sPath , "Checking if the Inbox Control has the initial filter applied - Path");
+				equals("NE",oFilterApplied.sOperator , "Checking if the Inbox Control has the initial filter applied - operator");
+				equals("COMPLETED",oFilterApplied.oValue1 , "Checking if the Inbox Control has the initial filter applied - Value");
+				
+				var aStatusFilterSelKeys = statusFilterList.getSelectedKeys();
+				equals(1,aStatusFilterSelKeys.length , "Checking if two values are selected in the Fact Filter List for Status");
+				equals("sapUiFacetFilter_ALL",aStatusFilterSelKeys[0] , "Checking if two values are selected in the Fact Filter List value for selecdted Key in TaskType");
+				
+			}); 
+		    
+		 module("Test Table's First Column Formatter Creation");
+		 	var oInbox = sap.ui.getCore().byId("inbox");
+		 	sap.ui.getCore().applyChanges(); 
+			var oColumnTemplate = oInbox._getFirstColumnContentTemplate();
+			
+			test("Is HorizontalLayout Created", function(){
+				equals((oColumnTemplate !== undefined), true ,"Checking if the column template is not undefined");
+			});
+				
+			test("Is column template of type HorizontalLayout", function(){
+				equals((oColumnTemplate instanceof sap.ui.commons.layout.HorizontalLayout), true ,"Checking type of column template");
+			});
+			
+			var templateContent = oColumnTemplate.getContent();
+			var expectedCustomStyleClassValue = "sapUiExtInboxMarginForTableColumnStyle";
+			test("Is HorizontalLayout Content Created", function(){
+				equals((templateContent.length === 4), true ,"Checking if the column template content length");
+			});
+
+			test("Is HorizontalLayout's First Content a Image", function(){
+				var taskCategory = templateContent[0];
+				equals((taskCategory instanceof sap.ui.commons.Image), true ,"Checking for the column template first content type");
+				equals(taskCategory.aCustomStyleClasses, undefined ,"Checking if Task category icon has style class");
+			});
+			
+			test("Is HorizontalLayout's Second Content a Link", function(){
+				var taskLink = templateContent[1];
+				equals((taskLink instanceof sap.ui.commons.Link), true ,"Checking for the column template second content type");
+				equals(taskLink.aCustomStyleClasses[0], expectedCustomStyleClassValue ,"Checking if Task category icon has style class");
+			});
+			
+			test("Is HorizontalLayout's Third Content a Image", function(){
+				var hasAttachments = templateContent[2];
+				equals((hasAttachments instanceof sap.ui.commons.Image), true ,"Checking for the column template third content type");
+				equals(hasAttachments.aCustomStyleClasses[0], expectedCustomStyleClassValue ,"Checking if Attachments icon has style class");
+			});
+
+			test("Is HorizontalLayout's Fourth Content a Image", function(){
+				var hasComments = templateContent[3];
+				equals((hasComments instanceof sap.ui.commons.Image), true ,"Checking for the column template fourth content type");
+				equals(hasComments.aCustomStyleClasses[0], expectedCustomStyleClassValue ,"Checking if comments icon has style class");
+			});
+
+			module("Test $Expand URL Parameter");
+		 	var oInbox = sap.ui.getCore().byId("inbox");
+		 	var expectedResult;
+			var sExpandParameters = oInbox._getExpandParameters();
+			
+			test("Test Expand Parameters for Initial Load in Table View", function(){
+				equals(sExpandParameters, "" ,"Checking if the expand parameters is not empty");
+			});
+
+			test("Test Expand Parameters for Initial Load in Table View", function(){
+				equals((sExpandParameters !== undefined), true ,"Checking if the expand parameters is not undefined");
+			});
+			
+			test("Test Expand Parameters in Table View for scenario: showTaskCategory=false, showTaskDescription=false, isCustomAttributesEnabled=false", function(){
+				oInbox.currentView = "sap_inbox_list";
+				oInbox.showTaskCategory = false;
+				oInbox.showTaskDescription = false;
+				oInbox.isCustomAttributesEnabled = false;
+				sExpandParameters = oInbox._getExpandParameters();
+				equals(sExpandParameters, "" ,"Expand parameters should be empty");
+			});
+
+			test("Test Expand Parameters in Table View for scenario: showTaskCategory=true, showTaskDescription=false, isCustomAttributesEnabled=false", function(){
+				oInbox.currentView = "sap_inbox_list";
+				oInbox.showTaskCategory = true;
+				oInbox.showTaskDescription = false;
+				oInbox.isCustomAttributesEnabled = false;
+				expectedResult = "TaskDefinitionData";
+				sExpandParameters = oInbox._getExpandParameters();
+				equals(sExpandParameters, expectedResult ,"Expand parameters should be: " + expectedResult);
+			});
+
+			test("Test Expand Parameters in Table View for scenario: showTaskCategory=true, showTaskDescription=true, isCustomAttributesEnabled=false", function(){
+				oInbox.currentView = "sap_inbox_list";
+				oInbox.showTaskCategory = true;
+				oInbox.showTaskDescription = true;
+				oInbox.isCustomAttributesEnabled = false;
+				expectedResult = "TaskDefinitionData";
+				sExpandParameters = oInbox._getExpandParameters();
+				equals(sExpandParameters, expectedResult ,"Expand parameters should be: " + expectedResult);
+			});
+
+			test("Test Expand Parameters in Table View for scenario: showTaskCategory=true, showTaskDescription=false, isCustomAttributesEnabled=true", function(){
+				oInbox.currentView = "sap_inbox_list";
+				oInbox.showTaskCategory = true;
+				oInbox.showTaskDescription = false;
+				oInbox.isCustomAttributesEnabled = true;
+				expectedResult = "TaskDefinitionData";
+				sExpandParameters = oInbox._getExpandParameters();
+				equals(sExpandParameters, expectedResult ,"Expand parameters should be: "+ expectedResult);
+			});
+			
+			test("Test Expand Parameters in Table View for scenario: showTaskCategory=false, showTaskDescription=true, isCustomAttributesEnabled=false", function(){
+				oInbox.currentView = "sap_inbox_list";
+				oInbox.showTaskCategory = false;
+				oInbox.showTaskDescription = true;
+				oInbox.isCustomAttributesEnabled = false;
+				expectedResult = "";
+				sExpandParameters = oInbox._getExpandParameters();
+				equals(sExpandParameters, expectedResult ,"Expand parameters should be: " + expectedResult);
+			});
+
+			test("Test Expand Parameters in Table View for scenario: showTaskCategory=false, showTaskDescription=true, isCustomAttributesEnabled=true", function(){
+				oInbox.currentView = "sap_inbox_list";
+				oInbox.showTaskCategory = false;
+				oInbox.showTaskDescription = true;
+				oInbox.isCustomAttributesEnabled = true;
+				expectedResult = "";
+				sExpandParameters = oInbox._getExpandParameters();
+				equals(sExpandParameters, expectedResult ,"Expand parameters should be: "+ expectedResult);
+			});
+			
+			test("Test Expand Parameters in Table View for scenario: showTaskCategory=false, showTaskDescription=false, isCustomAttributesEnabled=true", function(){
+				oInbox.currentView = "sap_inbox_list";
+				oInbox.showTaskCategory = false;
+				oInbox.showTaskDescription = false;
+				oInbox.isCustomAttributesEnabled = true;
+				expectedResult = "";
+				sExpandParameters = oInbox._getExpandParameters();
+				equals(sExpandParameters, expectedResult ,"Expand parameters should be: " + expectedResult);
+			});
+
+			test("Test Expand Parameters in Table View for scenario: showTaskCategory=true, showTaskDescription=true, isCustomAttributesEnabled=true", function(){
+				oInbox.currentView = "sap_inbox_list";
+				oInbox.showTaskCategory = true;
+				oInbox.showTaskDescription = true;
+				oInbox.isCustomAttributesEnabled = true;
+				expectedResult = "TaskDefinitionData";
+				sExpandParameters = oInbox._getExpandParameters();
+				equals(sExpandParameters, expectedResult ,"Should have all possible expand parameters :" + expectedResult);
+			});
+
+			test("Test Expand Parameters for Initial Load in Stream View", function(){
+				oInbox.currentView = "sap_inbox_stream";
+				equals(sExpandParameters !== "", true ,"Checking if the expand parameters is not empty");
+			});
+
+			test("Test Expand Parameters for Initial Load in Stream View", function(){
+				oInbox.currentView = "sap_inbox_stream";
+				equals((sExpandParameters !== undefined), true ,"Checking if the expand parameters is not undefined");
+			});
+
+			test("Test Expand Parameters in Stream View for scenario: showTaskCategory=false, showTaskDescription=false, isCustomAttributesEnabled=false", function(){
+				oInbox.currentView = "sap_inbox_stream";
+				oInbox.showTaskCategory = false;
+				oInbox.showTaskDescription = false;
+				oInbox.isCustomAttributesEnabled = false;
+				sExpandParameters = oInbox._getExpandParameters();
+				equals(sExpandParameters, "" ,"Expand parameters should be empty");
+			});
+
+			test("Test Expand Parameters in Stream View for scenario: showTaskCategory=true, showTaskDescription=false, isCustomAttributesEnabled=false", function(){
+				oInbox.currentView = "sap_inbox_stream";
+				oInbox.showTaskCategory = true;
+				oInbox.showTaskDescription = false;
+				oInbox.isCustomAttributesEnabled = false;
+				expectedResult = "TaskDefinitionData";
+				sExpandParameters = oInbox._getExpandParameters();
+				equals(sExpandParameters, expectedResult ,"Expand parameters should be: " + expectedResult);
+			});
+
+			test("Test Expand Parameters in Stream View for scenario: showTaskCategory=true, showTaskDescription=true, isCustomAttributesEnabled=false", function(){
+				oInbox.currentView = "sap_inbox_stream";
+				oInbox.showTaskCategory = true;
+				oInbox.showTaskDescription = true;
+				oInbox.isCustomAttributesEnabled = false;
+				expectedResult = "TaskDefinitionData,Description";
+				sExpandParameters = oInbox._getExpandParameters();
+				equals(sExpandParameters, expectedResult ,"Expand parameters should be: " + expectedResult);
+			});
+
+			test("Test Expand Parameters in Stream View for scenario: showTaskCategory=true, showTaskDescription=false, isCustomAttributesEnabled=true", function(){
+				oInbox.currentView = "sap_inbox_stream";
+				oInbox.showTaskCategory = true;
+				oInbox.showTaskDescription = false;
+				oInbox.isCustomAttributesEnabled = true;
+				expectedResult = "TaskDefinitionData";
+				sExpandParameters = oInbox._getExpandParameters();
+				equals(sExpandParameters, expectedResult ,"Expand parameters should be: "+ expectedResult);
+			});
+			
+			test("Test Expand Parameters in Stream View for scenario: showTaskCategory=false, showTaskDescription=true, isCustomAttributesEnabled=false", function(){
+				oInbox.currentView = "sap_inbox_stream";
+				oInbox.showTaskCategory = false;
+				oInbox.showTaskDescription = true;
+				oInbox.isCustomAttributesEnabled = false;
+				expectedResult = "Description";
+				sExpandParameters = oInbox._getExpandParameters();
+				equals(sExpandParameters, expectedResult ,"Expand parameters should be: " + expectedResult);
+			});
+
+			test("Test Expand Parameters in Stream View for scenario: showTaskCategory=false, showTaskDescription=true, isCustomAttributesEnabled=true", function(){
+				oInbox.currentView = "sap_inbox_stream";
+				oInbox.showTaskCategory = false;
+				oInbox.showTaskDescription = true;
+				oInbox.isCustomAttributesEnabled = true;
+				expectedResult = "Description";
+				sExpandParameters = oInbox._getExpandParameters();
+				equals(sExpandParameters, expectedResult ,"Expand parameters should be: "+ expectedResult);
+			});
+			
+			test("Test Expand Parameters in Stream View for scenario: showTaskCategory=false, showTaskDescription=false, isCustomAttributesEnabled=true", function(){
+				oInbox.currentView = "sap_inbox_stream";
+				oInbox.showTaskCategory = false;
+				oInbox.showTaskDescription = false;
+				oInbox.isCustomAttributesEnabled = true;
+				expectedResult = "";
+				sExpandParameters = oInbox._getExpandParameters();
+				equals(sExpandParameters, expectedResult ,"Expand parameters should be: " + expectedResult);
+			});
+
+			test("Test Expand Parameters in Stream View for scenario: showTaskCategory=true, showTaskDescription=true, isCustomAttributesEnabled=true", function(){
+				oInbox.currentView = "sap_inbox_stream";
+				oInbox.showTaskCategory = true;
+				oInbox.showTaskDescription = true;
+				oInbox.isCustomAttributesEnabled = true;
+				expectedResult = "TaskDefinitionData,Description";
+				sExpandParameters = oInbox._getExpandParameters();
+				equals(sExpandParameters, expectedResult ,"Should have all possible expand parameters :" + expectedResult);
+			});	
+			
+			module("Test Custom Statuses");
+			
+			sap.ui.getCore().applyChanges(); 
+			test("Test for Custom Status metadata", function(){
+				var oMetaObjectWithFilterOption= {"dataServices":{"schema":[{"entityType":[{"name":"Task","property":[{"name":"StatusText"},{"name":"Status"}]}
+                ]}]}};
+				var tcmMeta= new sap.uiext.inbox.TCMMetadata();
+				tcmMeta.setServiceMetadata(oMetaObjectWithFilterOption);
+				var s= tcmMeta.serviceSupportsFilterOption;
+				equals(s,true,"Check for Valid Custom Status");
+			
+				
+				var oMetaObjectWithInvalidFilterOption=  {"dataServices":{"schema":[{"entityType":[{"name":"Task","property":[{"name":"StatusText2"}]}
+                ]}]}};
+					tcmMeta.setServiceMetadata(oMetaObjectWithInvalidFilterOption);
+					var s= tcmMeta.serviceSupportsFilterOption;
+					equals(s,false,"Check for InValid Custom Status");
+					
+					
+				}); 
+			
+			test("Test For Custom Status value", function(){
+				oInbox.oTcmMetadata.serviceSupportsFilterOption= true;
+				var s= oInbox._getTaskStatus("Ready","Test Status");
+				equals(s,"Test Status","Check for Valid Custom Status Value");
+				
+				s= oInbox._getTaskStatus("READY","");
+				equals(s,"Ready","Check for Empty Custom Status Value");
+				
+				s= oInbox._getTaskStatus("READY123","");
+				equals(s,"READY123","Check for Empty Custom Status and invalid status");
+				
+				oInbox.oTcmMetadata.serviceSupportsFilterOption= false;
+				s= oInbox._getTaskStatus("READY","");
+				equals(s,"Ready","Check When Custom Status Not supported");
+				
+				s= oInbox._getTaskStatus("READY123","");
+				equals(s,"READY123","Check When Status Not In correct format");
+				}); 
+			
+		  	module("Test For Enable/ Disable Substitution Menu Item");
+			 	var oInbox = sap.ui.getCore().byId("inbox");
+			 	sap.ui.getCore().applyChanges(); 
+				test("Is Manage Substitution Rules Menu Disabled", function(){
+					
+					oInbox.setSubstitutionEnabled(false);
+					var tableViewSettingsButton = sap.ui.getCore().byId(oInbox.getId() + '--' + 'settingsButton');
+					var streamViewSettingsButton = sap.ui.getCore().byId(oInbox.getId() + '--' + 'rrSettingsButton');
+					
+					equals((tableViewSettingsButton !== undefined), true ,"Checking if Setting' s Button in Table View is not undefined");
+					equals((streamViewSettingsButton !== undefined), true ,"Checking if Setting' s Button in Stream View is not undefined");
+					
+					equals(tableViewSettingsButton.getEnabled(), true ,"Checking if Setting' s Button in Table View is enabled");
+					equals(streamViewSettingsButton.getEnabled(),true ,"Checking if Setting' s Button in Stream View is enabled");
+					
+					var manageSubsMenuInTableView = tableViewSettingsButton.getMenu();
+					var manageSubsMenuInStreamView = streamViewSettingsButton.getMenu();
+					equals((manageSubsMenuInTableView !== undefined), true ,"Checking if Setting' s Menu Button in Table View is not undefined");
+					equals((manageSubsMenuInStreamView !== undefined), true ,"Checking if Setting' s Menu Button in Stream View is not undefined");
+					
+					var expectedSubItems = 1; //Manage Substitution Rules
+					var menuItemsInTableView = manageSubsMenuInTableView.getItems();
+					var menuItemsInStreamView = manageSubsMenuInStreamView.getItems();
+					equals(menuItemsInTableView.length, expectedSubItems ,"Checking if Setting' s Button in Table View has " + expectedSubItems + " sub item");
+					equals(menuItemsInStreamView.length, expectedSubItems ,"Checking if Setting' s Button in Stream View has " + expectedSubItems + " sub item");
+					
+					var _oBundle = sap.ui.getCore().getLibraryResourceBundle("sap.uiext.inbox");
+					equals(menuItemsInTableView[0].getText(), _oBundle.getText("INBOX_MANAGE_SUBSTITUTION_RULES_MENU_ITEM") ,"Checking if Manage Substitution Rule Menu Item in Table View is disabled");
+					equals(menuItemsInStreamView[0].getText(), _oBundle.getText("INBOX_MANAGE_SUBSTITUTION_RULES_MENU_ITEM") ,"Checking if Manage Substitution Rule Menu Item Setting' s Button in Stream View is disabled");
+					
+					equals(menuItemsInTableView[0].getTooltip(), _oBundle.getText("INBOX_MANAGE_SUBSTITUTION_RULES_TOOLTIP") ,"Checking if Manage Substitution Rule Menu Item in Table View is disabled");
+					equals(menuItemsInStreamView[0].getTooltip(), _oBundle.getText("INBOX_MANAGE_SUBSTITUTION_RULES_TOOLTIP") ,"Checking if Manage Substitution Rule Menu Item Setting' s Button in Stream View is disabled");
+					
+					equals(menuItemsInTableView[0].getEnabled(), false ,"Checking if Manage Substitution Rule Menu Item in Table View is disabled");
+					equals(menuItemsInStreamView[0].getEnabled(), false ,"Checking if Manage Substitution Rule Menu Item Setting' s Button in Stream View is disabled");
+					
+				});
+				module("Test for Inbox control destroy.");
+				test("InoxDestroyTest", function() {
+					sap.ui.getCore().applyChanges(); 
+					//Tests for Substitution Disabled as default behaviour
+					var oInbox = new sap.uiext.inbox.Inbox("inboxDestroy");
+					oInbox.setHandleBindings(false);
+					var oTaskFilter = new sap.uiext.inbox.TaskInitialFilters(["READY"],null,null,null);// (It is the Status, Priority filters as array)
+					var oModel = new sap.ui.model.json.JSONModel();
+				    oModel.setData(jsonData);
+				    oInbox.setModel(oModel);
+				    oInbox.bindTaskTypeDynamicFilter(function(){var t = [];t.push('Raise Purchase Request');t.push('Some Dummy Task');t.push('Purchase Order Form');t.push('LeaveReq');return t;})
+					oInbox.bindTaskTable("/Tasks",oTaskFilter);
+				    oInbox.bindTaskExecutionURL(function(id){return "/demokit";},function(id){return "COMPLETED";});
+				    oInbox.bindSearch(function(){alert('Not Supported');});
+				    oInbox.attachRefresh(function(){oModel.setData(jsonDataRefresh);});
+				    oInbox.attachTaskAction(function(oEvent){alert(oEvent.getParameter('action'));alert(oEvent.getParameter('selectedIDs'));oModel.setData(jsonDataClaimed);});
+		    		var oInboxToDestroy = sap.ui.getCore().byId("inboxDestroy");
+		    		notDeepEqual(oInboxToDestroy,undefined,"Inbox control should be available.");
+		    		oInboxToDestroy.destroy();
+		    		var oInboxAfterDestroy = sap.ui.getCore().byId("inboxDestroy");
+		    		deepEqual(oInboxAfterDestroy,undefined,"Inbox control should not be available after destroy.");
+		    		var oNewInbox = new sap.uiext.inbox.Inbox("inboxDestroy");
+		    		var oInboxAfterCreation = sap.ui.getCore().byId("inboxDestroy");
+		    		notDeepEqual(oInboxAfterCreation,undefined,"Inbox control should be available.");
+				}
+				);
+				
+				module("NoTaskTitle Check");
+				  test("TextForNoTaskTitle", function() {
+					  sap.ui.getCore().applyChanges(); 
+					  var inboxControl = sap.ui.getCore().byId("testInbox");
+					  var oTable = sap.ui.getCore().byId(inboxControl.getId() + '--' + 'listViewTable');
+					  var oRow = oTable.getRows()[3];
+					  var oRow1 = oTable.getRows()[4];
+					  var lessThanSymbol = sap.uiext.inbox.InboxConstants.LESS_THAN; 
+					  var greaterThanSymbol = sap.uiext.inbox.InboxConstants.GREATER_THAN;
+					  var sTitle = lessThanSymbol + "Task title unavailable" + greaterThanSymbol;
+					  equals( oRow.getCells()[0].getContent()[1].getText(), sTitle);
+					  equals(oRow1.getCells()[0].getContent()[1].getText(), sTitle);
+				  });
+				  
+				  test("TooltipForNoTaskTitle", function() {
+					  sap.ui.getCore().applyChanges(); 
+					  var inboxControl = sap.ui.getCore().byId("testInbox");
+					  var oTable = sap.ui.getCore().byId(inboxControl.getId() + '--' + 'listViewTable');
+					  var oRow = oTable.getRows()[3];
+					  var oRow1 = oTable.getRows()[4];
+					  var sTitle = "Task title unavailable";
+					  equals( oRow.getCells()[0].getContent()[1].getTooltip(), sTitle);
+					  equals( oRow1.getCells()[0].getContent()[1].getTooltip(), sTitle);
+				  });
+				
+				module("TableColumnCreationTest");
+				  var oInbox = sap.ui.getCore().byId("inbox");
+				  var oTable = sap.ui.getCore().byId(oInbox.getId() + '--' + 'listViewTable');
+				  var oTableColumns = oTable.getColumns();
+				 
+				  test("TestNumberOfColumnsCreated", function() {
+				    var expectedNumberOfColumns = 6;
+				    equals(oTableColumns.length, expectedNumberOfColumns, "Test to check number of columns in the Inbox Table");
+				  });
+
+				  test("TestTaskTitleColumn", function() {
+				  	var oTaskTitleColumn = oTableColumns[0];
+				    equals((oTaskTitleColumn !== undefined), true, "Test to check if Column in the Inbox Table is defined");
+				    var columnLabel = oTaskTitleColumn.getLabel();
+				    equals((columnLabel != undefined), true, "Test to check if Column Label in the Inbox Table is defined");
+				    equals(oTaskTitleColumn.getLabel().getText(), "Task Title", "Test to check if Column in the Inbox Table is 'Task Title'");
+				    equals(oTaskTitleColumn.getLabel().getTooltip(), "Task Title", "Test to check if Column Label tooltip in the Inbox Table");
+				    equals(oTaskTitleColumn.getLabel().getDesign(), sap.ui.commons.LabelDesign.Bold, "Test to check if Column label design");
+				    
+				    equals((oTaskTitleColumn.getSortProperty() != undefined), true, "Test to check if Column has sort property defined");
+				    equals((oTaskTitleColumn.getTemplate() != undefined), true, "Test to check if Column has sort property defined");
+
+				    equals(oTaskTitleColumn.getFlexible(), false, "Test to check Column flexible property ");
+				  });
+
+				  test("TestCreatedOnColumn", function() {
+				  	var oCreatedOnColumn = oTableColumns[1];
+				    equals((oCreatedOnColumn !== undefined), true, "Test to check if Column in the Inbox Table is defined");
+				    var columnLabel = oCreatedOnColumn.getLabel();
+				    equals((columnLabel != undefined), true, "Test to check if Column Label in the Inbox Table is defined");
+				    equals(oCreatedOnColumn.getLabel().getText(), "Creation Date", "Test to check if Column in the Inbox Table is 'Creation Date'");
+				    equals(oCreatedOnColumn.getLabel().getTooltip(), "Start Date", "Test to check if Column Label tooltip in the Inbox Table");
+				    equals(oCreatedOnColumn.getLabel().getDesign(), sap.ui.commons.LabelDesign.Bold, "Test to check if Column label design");
+				    
+				    equals((oCreatedOnColumn.getSortProperty() != undefined), true, "Test to check if Column has sort property defined");
+				    equals((oCreatedOnColumn.getTemplate() != undefined), true, "Test to check if Column has sort property defined");
+
+				    equals(oCreatedOnColumn.getFlexible(), true, "Test to check Column flexible property ");
+				  });
+				  
+				  test("TestCreatedByColumn", function() {
+				  	var oCreatedByColumn = oTableColumns[2];
+				    equals((oCreatedByColumn !== undefined), true, "Test to check if Column in the Inbox Table is defined");
+				    var columnLabel = oCreatedByColumn.getLabel();
+				    equals((columnLabel != undefined), true, "Test to check if Column Label in the Inbox Table is defined");
+				    equals(oCreatedByColumn.getLabel().getText(), "Created By", "Test to check if Column in the Inbox Table is 'Created By'");
+				    equals(oCreatedByColumn.getLabel().getTooltip(), "Created By", "Test to check if Column Label tooltip in the Inbox Table");
+				    equals(oCreatedByColumn.getLabel().getDesign(), sap.ui.commons.LabelDesign.Bold, "Test to check if Column label design");
+				    
+				    equals((oCreatedByColumn.getSortProperty() != undefined), true, "Test to check if Column has sort property defined");
+				    equals((oCreatedByColumn.getTemplate() != undefined), true, "Test to check if Column has sort property defined");
+
+				    equals(oCreatedByColumn.getFlexible(), true, "Test to check Column flexible property ");
+				  });
+
+				  test("TestDueDateColumn", function() {
+				  	var oDueDateColumn = oTableColumns[3];
+				    equals((oDueDateColumn !== undefined), true, "Test to check if Column in the Inbox Table is defined");
+				    var columnLabel = oDueDateColumn.getLabel();
+				    equals((columnLabel != undefined), true, "Test to check if Column Label in the Inbox Table is defined");
+				    equals(oDueDateColumn.getLabel().getText(), "Due Date", "Test to check if Column in the Inbox Table is 'Due Date'");
+				    equals(oDueDateColumn.getLabel().getTooltip(), "Due Date", "Test to check if Column Label tooltip in the Inbox Table");
+				    equals(oDueDateColumn.getLabel().getDesign(), sap.ui.commons.LabelDesign.Bold, "Test to check if Column label design");
+				    
+				    equals((oDueDateColumn.getSortProperty() != undefined), true, "Test to check if Column has sort property defined");
+				    equals((oDueDateColumn.getTemplate() != undefined), true, "Test to check if Column has sort property defined");
+
+				    equals(oDueDateColumn.getFlexible(), true, "Test to check Column flexible property ");
+				  });
+				  
+				  test("TestStatusColumn", function() {
+				  	var oStatusColumn = oTableColumns[4];
+				    equals((oStatusColumn !== undefined), true, "Test to check if Column in the Inbox Table is defined");
+				    var columnLabel = oStatusColumn.getLabel();
+				    equals((columnLabel != undefined), true, "Test to check if Column Label in the Inbox Table is defined");
+				    equals(oStatusColumn.getLabel().getText(), "Status", "Test to check if Column in the Inbox Table is 'Status'");
+				    equals(oStatusColumn.getLabel().getTooltip(), "Status", "Test to check if Column Label tooltip in the Inbox Table");
+				    equals(oStatusColumn.getLabel().getDesign(), sap.ui.commons.LabelDesign.Bold, "Test to check if Column label design");
+				    
+				    equals((oStatusColumn.getSortProperty() != undefined), true, "Test to check if Column has sort property defined");
+				    equals((oStatusColumn.getTemplate() != undefined), true, "Test to check if Column has sort property defined");
+
+				    equals(oStatusColumn.getFlexible(), true, "Test to check Column flexible property ");
+				  });
+
+				  test("TestPriorityColumn", function() {
+				  	var oPriorityColumn = oTableColumns[5];
+				    equals((oPriorityColumn !== undefined), true, "Test to check if Column in the Inbox Table is defined");
+				    var columnLabel = oPriorityColumn.getLabel();
+				    equals((columnLabel != undefined), true, "Test to check if Column Label in the Inbox Table is defined");
+				    equals(oPriorityColumn.getLabel().getText(), "Priority", "Test to check if Column in the Inbox Table is 'Priority'");
+				    equals(oPriorityColumn.getLabel().getTooltip(), "Priority", "Test to check if Column Label tooltip in the Inbox Table");
+				    equals(oPriorityColumn.getLabel().getDesign(), sap.ui.commons.LabelDesign.Bold, "Test to check if Column label design");
+				    
+				    equals((oPriorityColumn.getSortProperty() != undefined), true, "Test to check if Column has sort property defined");
+				    equals((oPriorityColumn.getTemplate() != undefined), true, "Test to check if Column has sort property defined");
+
+				    equals(oPriorityColumn.getFlexible(), true, "Test to check Column flexible property ");
+				  });
+				
+			
+		//END API for Inbox
+		</script>
+
+<title>Qunit Test for Inbox</title>
+
+
+
+</head>
+<body class="sapUiBody">
+	<h1 id="qunit-header">QUnit tests: sap.uiext.inbox.Inbox</h1>
+	<h2 id="qunit-banner"></h2>
+	<h2 id="qunit-userAgent"></h2>
+	<div id="qunit-testrunner-toolbar"></div>
+	<ol id="qunit-tests"></ol>
+	<br>
+	<div id="uiArea1" style="width: 80%;"></div>
+
+</body>
+</html>

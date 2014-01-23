@@ -1,0 +1,38 @@
+<html>
+	<head>
+		<title>TestSuite for sap.ui.core: GTP testcase CORE/DATABINDING</title>
+		<script language="javascript" src="/jsunit-testrunner/app/jsUnitCore.js"></script>
+	</head>
+	<body>
+		<script language="javascript">
+
+		/**
+		 * Add test pages to this test suite function.
+		 * Please order alphabetically
+		 */
+		function suite() {
+			var suite = new top.jsUnitTestSuite();
+			var contextPath = "/" + window.location.pathname.split("/")[1];
+			suite.addTestPage(contextPath + "/test-resources/sap/ui/core/qunit/CalculatedFields.qunit.html");
+			suite.addTestPage(contextPath + "/test-resources/sap/ui/core/qunit/BindingParser.qunit.html");
+			suite.addTestPage(contextPath + "/test-resources/sap/ui/core/qunit/DataBinding.qunit.html");
+			suite.addTestPage(contextPath + "/test-resources/sap/ui/core/qunit/JSONBinding.qunit.html");
+			suite.addTestPage(contextPath + "/test-resources/sap/ui/core/qunit/JSONModel.qunit.html");
+			suite.addTestPage(contextPath + "/test-resources/sap/ui/core/qunit/JSONTwoWay.qunit.html");
+			suite.addTestPage(contextPath + "/test-resources/sap/ui/core/qunit/ListBinding.qunit.html");
+			suite.addTestPage(contextPath + "/test-resources/sap/ui/core/qunit/MasterDetail.qunit.html");
+			suite.addTestPage(contextPath + "/test-resources/sap/ui/core/qunit/ODataModel.qunit.html");
+			suite.addTestPage(contextPath + "/test-resources/sap/ui/core/qunit/ResourceBinding.qunit.html");
+			suite.addTestPage(contextPath + "/test-resources/sap/ui/core/qunit/ResourceModel.qunit.html");
+			suite.addTestPage(contextPath + "/test-resources/sap/ui/core/qunit/XMLBinding.qunit.html");
+			suite.addTestPage(contextPath + "/test-resources/sap/ui/core/qunit/XMLModel.qunit.html");
+			suite.addTestPage(contextPath + "/test-resources/sap/ui/core/qunit/XMLModelNS.qunit.html");
+			suite.addTestPage(contextPath + "/test-resources/sap/ui/core/qunit/XMLTwoWay.qunit.html");
+			return suite;
+		}
+		  
+		redirectToTestrunnerIfRequired();
+
+		</script>
+	</body>
+</html>

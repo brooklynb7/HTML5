@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Note Taker Card Demo page</title>
+
+    <!-- UI5 Bootstrap -->
+    <script src="../../../../../resources/sap-ui-core.js"
+            type="text/javascript"
+            id="sap-ui-bootstrap"
+            data-sap-ui-libs="sap.ui.commons, sap.suite.ui.commons"
+            data-sap-ui-theme="sap_goldreflection"></script>
+
+    <script type="text/javascript">
+
+	    var card1 = new sap.suite.ui.commons.NoteTakerCard({
+	        id: "NTC1",
+	        header: "Card header",
+	        body: "Card text body"
+	    });
+
+        var card2 = new sap.suite.ui.commons.NoteTakerCard({
+            id: "NTC2",
+            header: "Lorem ipsum dolor sit amet, consectetur adipisicing elit",
+            body: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt " + 
+            "ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris " + 
+            "nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit " + 
+            "esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt " + 
+            "in culpa qui officia http://www.sap.com deserunt mollit anim id est laborum. \n\r" +
+            "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt " + 
+            "ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris " + 
+            "nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit " + 
+            "esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt " + 
+            "in culpa qui officia deserunt mollit anim id est laborum. \n\r" +
+            "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt " + 
+            "ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris " + 
+            "nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit " + 
+            "esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt " + 
+            "in culpa qui officia deserunt mollit anim id est laborum. " +
+            "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt " + 
+            "ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris " + 
+            "nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit " + 
+            "esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt " + 
+            "in culpa qui officia deserunt mollit anim id est laborum. " +
+            "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt " + 
+            "ut labore et dolore magna aliqua.",
+            tags: ["long", "ipsum"]
+        });
+
+        card1.placeAt("contentArea1");
+        card2.placeAt("contentArea2");
+    </script>
+</head>
+
+<body class="sapUiBody">
+    <h1>Note Taker Card Demo-page</h1>
+    <div id="contentArea1" style="float: left"></div>
+    <div style="float: left">&nbsp;&nbsp;</div>
+    <div id="contentArea2" style="float: left"></div>
+</body>
+</html>

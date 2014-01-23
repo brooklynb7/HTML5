@@ -1,0 +1,13 @@
+<Dialog xmlns="sap.m"
+		id="myXmlDialog"
+		title="Test Dialog"
+		stretchOnPhone="true"
+		width="30rem">
+
+	<content>
+		<Text id="XMLDialogText" text="Some content" />
+		<TextArea width="100%" rows="4" placeholder="Write something..." />
+	</content>
+
+</Dialog>
+

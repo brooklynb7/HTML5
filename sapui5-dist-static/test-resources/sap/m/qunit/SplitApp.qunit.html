@@ -1,0 +1,391 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+	<script id="sap-ui-bootstrap" 
+			type="text/javascript"
+			src="../../../../resources/sap-ui-core.js"
+			data-sap-ui-theme="sap_mvi"
+			data-sap-ui-noConflict="true"
+			data-sap-ui-libs="sap.m">
+		</script>
+		<link rel="stylesheet" href="../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
+		<script type="text/javascript" src="../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+		<script type="text/javascript" src="../../../../resources/sap/ui/thirdparty/sinon.js"></script>
+		<!--[if IE]>
+		<script type="text/javascript" src="../../../../resources/sap/ui/thirdparty/sinon-ie.js"></script>
+		<![endif]-->
+		<script type="text/javascript" src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
+		<script type="text/javascript" src="../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
+	</head>
+	<script>
+	var oHtml = new sap.ui.core.HTML({content:'<div><h1 id="qunit-header">qUnit Page for sap.m.SplitApp</h1><h2 id="qunit-banner"></h2><h2 id="qunit-userAgent"></h2><ol id="qunit-tests"></ol></div>'});
+	
+	var oSplitApp = sap.m.SplitApp("splitapp", {});
+	oSplitApp.placeAt("content");
+	
+	var oMasterPage = new sap.m.Page("master",{
+		title : "Master 1",
+		content: [new sap.m.Button("Button", {text: "That is a Button"})]
+	});
+	
+	var oMasterPage2 = new sap.m.Page("master2",{
+		title : "Master 1"
+	});
+	
+	//create first detail page
+	var oDetailPage = new sap.m.Page("detail",{
+		title : "Detail 1"
+	});
+	
+	var oDetailPage2 = new sap.m.Page("detail2",{
+		title : "Detail 2"
+	});
+	
+	if(jQuery.device.is.tablet || jQuery.device.is.desktop) {
+		oDetailPage.addContent(oHtml);
+	} else {
+		oMasterPage.addContent(oHtml);
+	}
+	
+	oSplitApp.addMasterPage(oMasterPage).addMasterPage(oMasterPage2).addDetailPage(oDetailPage).addDetailPage(oDetailPage2);
+		
+		//START QUNIT TESTS
+		
+		QUnit.config.autostart = false;
+		jQuery(document).ready(function() {
+			QUnit.start();
+		});
+		
+		module("Initial Check");
+		if(jQuery.device.is.tablet || jQuery.device.is.desktop) {
+			test("Initialization", function() {
+				ok(jQuery("#splitapp"), "SplitApp is rendered in the beginning.");
+				ok(jQuery("#master"), "Master page should be rendered initially.");
+				ok(jQuery("#detail"), "Master page should be rendered  initially.");
+				ok(jQuery("#splitapp-MasterBtn"), "Master Button should be rendered");
+			});	
+			
+			module("Modes Check");
+			if(jQuery.device.is.portrait) {
+			asyncTest("PopoverMode_portrait", function(){
+				oSplitApp.setMode("PopoverMode");
+				setTimeout(function() {
+					oSplitApp._oPopOver.openBy(oSplitApp._oShowMasterBtn);
+				},100)
+				setTimeout(function(){
+					ok(jQuery("#splitapp"), "SplitApp is rendered in the beginning.");
+					ok(jQuery("#splitapp-Popover"), "Popover should be rendered.");
+					equal(oSplitApp._oPopOver.getContent().length,1, "Popover content should not be empty.");
+					ok(jQuery("#splitapp-MasterBtn"), "Master Button should be rendered");
+					ok(!jQuery("#splitapp-MasterBtn").is(":hidden"), "Master Button is shown");
+					ok(jQuery("#detail"), "Detail page should be rendered  initially.");
+					equal(oSplitApp.$().children().length,2,"SplitApp should only contain the detail nav container.");
+					equal(oSplitApp._oMasterNav.getParent().sId,"splitapp-Popover","Parent of Master Nav container page should be Popover.");
+					oSplitApp._oPopOver.close();
+					start();
+				}, 500);
+			});
+			
+			asyncTest("ShowHideMode_portrait", function(){
+				oSplitApp.setMode("ShowHideMode");
+				setTimeout(function(){
+					ok(jQuery("#splitapp"), "SplitApp is rendered in the beginning.");
+					equal(oSplitApp._oPopOver.getContent().length,0, "Popover content should be empty.");
+					equal(oSplitApp._oMasterNav.getParent().sId,"splitapp","Parent of Master page should be SpltApp.");
+					ok(jQuery("#detail"), "Detail Nav Container should be rendered  initially.");
+					ok(jQuery("#master"), "Master Nav Container  should be rendered  initially.");
+					ok(jQuery("#splitapp-MasterBtn"), "Master Button should be rendered");
+					ok(!jQuery("#splitapp-MasterBtn").is(":hidden"), "Master Button is shown");
+					equal(oSplitApp.$().children().length,3,"Splitapp should render both master and detail.");
+					if(jQuery.os.ios){
+						equal(jQuery("#splitapp-Master").css("-webkit-transform").split(",")[4], " -330", "Master should be hidden");
+					}else {
+						equal(jQuery("#splitapp-Master").css("width"),"320px", "Master width should be 320px.");
+					}
+					start();
+				}, 500);
+			});
+			
+			asyncTest("StretchCompressMode_portrait", function(){
+				oSplitApp.setMode("StretchCompressMode");
+				setTimeout(function(){
+					ok(jQuery("#splitapp"), "SplitApp is rendered in the beginning.");
+					equal(oSplitApp._oPopOver.getContent().length,0, "Popover content should be empty.");
+					ok(jQuery("#detail"), "Master Nav Container  should be rendered  initially.");
+					ok(jQuery("#splitapp-MasterBtn"), "Master Button should be rendered");
+					//equal(jQuery("#splitapp-MasterBtn").css("display"), "none", "Master Button is not shown");	           TODO
+					equal(oSplitApp.$().children().length,3,"Master page should be rendered initially.");
+					if(jQuery.os.ios){
+						equal(jQuery("#splitapp-Master").css("left"),"0px", "Master left should be 0px.");
+						equal(jQuery("#splitapp-Master").outerWidth(),320, "Master width should be 320px.");
+					}else {
+						ok(!jQuery("#splitapp-Master").is(":hidden"),"Master should be visible.");
+						equal(jQuery("#splitapp-Master").css("width"),"320px", "Master width should be 320px.");
+					}
+					start();
+				}, 500);
+			});
+			}
+			if(jQuery.device.is.landscape) {
+				asyncTest("PopoverMode_landscape", function(){
+					oSplitApp.setMode("PopoverMode");
+					setTimeout(function(){
+						ok(jQuery("#splitapp"), "SplitApp is rendered in the beginning.");
+						equal(oSplitApp._oPopOver.getContent().length,0, "Popover content should  be empty.");
+						ok(jQuery("#detail"), "Detail Nav Container  should be rendered");
+						ok(jQuery("#master"), "Master Nav Container  page should be rendered");
+						equal(oSplitApp.$().children().length,3,"Master page should be rendered initially.");
+						if(jQuery.os.ios){
+							equal(jQuery("#splitapp-Master").css("left"),"0px", "Master left should be 0px.");
+							equal(jQuery("#splitapp-Master").outerWidth(),320, "Master width should be 320px.");
+						}else {
+							ok(!jQuery("#splitapp-Master").is(":hidden"),"Master should be hidden.");
+						}
+						start();
+					}, 500);
+				});
+				
+				asyncTest("ShowHideMode_landscape", function(){
+					oSplitApp.setMode("ShowHideMode");
+					oSplitApp.invalidate();
+					setTimeout(function(){
+						ok(jQuery("#splitapp"), "SplitApp is rendered in the beginning.");
+						equal(oSplitApp._oPopOver.getContent().length,0, "Popover content should  be empty.");
+						ok(jQuery("#detail"), "Detaiö Nav Container  should be rendered");
+						ok(jQuery("#master"), "Master Nav Container should be rendered");
+						equal(oSplitApp.$().children().length,3,"Master page should be rendered initially.");
+						if(jQuery.os.ios){
+							equal(jQuery("#splitapp-Master").css("left"),"0px", "Master left should be 0px.");
+							equal(jQuery("#splitapp-Master").outerWidth(),320, "Master width should be 320px.");
+						}else {
+							ok(!jQuery("#splitapp-Master").is(":hidden"),"Master should be hidden.");
+							equal(jQuery("#splitapp-Master").outerWidth(),320, "Master width should be 320px.");
+						}
+						start();
+					}, 500);
+				});
+				
+				asyncTest("StretchCompressMode_landscape", function(){
+					oSplitApp.setMode("StretchCompressMode");
+					setTimeout(function(){
+						ok(jQuery("#splitapp"), "SplitApp is rendered in the beginning.");
+						equal(oSplitApp._oPopOver.getContent().length,0, "Popover content should  be empty.");
+						ok(jQuery("#detail"), "Detail Nav Container should be rendered");
+						ok(jQuery("#master"), "Master Nav Container should be rendered");
+						equal(oSplitApp.$().children().length,3,"Master page should be rendered initially.");
+						if(jQuery.os.ios){
+							ok(jQuery("#splitapp-Master").css("left"),"320px", "Master width should be 0px.");
+						}else {
+							ok(!jQuery("#splitapp-Master").is(":hidden"),"Master should be hidden.");
+							equal(jQuery("#splitapp-Master").outerWidth(),320, "Master width should be 320px.");
+						}
+						start();
+					}, 500);
+				});
+			}
+			
+			asyncTest("HideMode", function(){
+				oSplitApp.setMode("HideMode");
+				setTimeout(function(){
+					ok(jQuery("#splitapp"), "SplitApp is rendered in the beginning.");
+					equal(oSplitApp._oPopOver.getContent().length,0, "Popover content should be empty.");
+					ok(jQuery("#detail"), "Master Nav Container  should be rendered  initially.");
+					ok(jQuery("#splitapp-MasterBtn"), "Master Button should be rendered");
+					equal(oSplitApp.$().children().length,3,"Master page should be rendered initially.");
+					if(jQuery.os.ios){
+						equal(jQuery("#splitapp-Master").css("left"),"0px", "Master left should be 0px.");
+						equal(jQuery("#splitapp-Master").outerWidth(),320, "Master width should be 320px.");
+					}else {
+						ok(!jQuery("#splitapp-Master").is(":hidden"),"Master should be hidden.");
+					}
+					start();
+				}, 500);
+			});
+			
+			module("Public Methods");
+			
+			if(jQuery.device.is.portrait) {
+				asyncTest("ShowMaster", function(){
+					oSplitApp.setMode("ShowHideMode");
+					setTimeout(function(){
+						oSplitApp.showMaster();
+					}, 10);
+					setTimeout(function(){
+						ok(jQuery("#splitapp"), "SplitApp is rendered in the beginning.");
+						equal(oSplitApp._oPopOver.getContent().length,0, "Popover content should  be empty.");
+						ok(jQuery("#detail"), "Detail Nav Container  should be rendered");
+						ok(jQuery("#master"), "Master Nav Container  should be rendered");
+						equal(oSplitApp.$().children().length,3,"Master page should be rendered initially.");
+						if(jQuery.os.ios){
+							equal(jQuery("#splitapp-Master").css("width"),"320px", "Master width should be 320px.");
+							equal(jQuery("#splitapp-Master").css("-webkit-transform").split(",")[4], " 0", "Master should be hidden");
+						}else {
+							ok(!jQuery("#splitapp-Master").is(":hidden"),"Master should not be hidden.");
+							equal(jQuery("#splitapp-Master").css("width"),"320px", "Master width should be 320px.");
+						}
+						start();
+					}, 1000);
+				});		
+			}
+		} else {
+			// *****************Mobile
+			test("Initialization", function() {
+				ok(jQuery("#splitapp"), "SplitApp is rendered in the beginning.");
+				ok(jQuery("#master"), "Master Nav Container should be rendered initially.");
+				equal(jQuery("#detail").length ,0 , "Detail Nav Container should not be rendered.");
+				equal(jQuery("#splitapp-MasterBtn").length, 0, "Master Button should not be rendered");
+			});
+		}
+
+
+		// Tests for all modes
+		
+		module("Master / Detail page aggregation");
+		test("Master / Detail page aggregation returns the right pages in the right order", function() {
+			
+			var oSpyIndexOfPage = sinon.spy(oSplitApp._oMasterNav, "indexOfPage");
+
+			var aMaster = oSplitApp.getMasterPages();
+			var aDetail = oSplitApp.getDetailPages();
+			equal(aMaster.length, 2, "Master page aggregation contains the right number of pages");
+			equal(aDetail.length, 2, "Detail page aggregation contains the right number of pages");
+
+			equal(oSplitApp.indexOfMasterPage(oMasterPage), 0, "Master page is in the right aggregation and order");
+			equal(oSplitApp.indexOfMasterPage(oMasterPage2), 1, "Master page 2 is in the right aggregation and order");
+			equal(oSplitApp.indexOfDetailPage(oDetailPage), 0, "Detail page is in the right aggregation and order");
+			equal(oSplitApp.indexOfDetailPage(oDetailPage2), 1, "Detail page 2 is in the right aggregation and order");
+			
+			var oSpyIndexOfMasterPage = sinon.spy(oSplitApp, "_indexOfMasterPage");
+			equal(oSplitApp.indexOfAggregation("masterPages", oMasterPage), 0, "Master page is in the right aggregation and order");
+
+			ok(!oSpyIndexOfPage.called, "Right delegate method was called");
+			ok(oSpyIndexOfMasterPage.called, "Right delegate method was called");
+			oSplitApp._oMasterNav.indexOfPage.restore();
+			oSplitApp._indexOfMasterPage.restore();
+		});
+
+		test("Adding / Removing Pages to/from Master / Detail", function() {
+			var oNewMasterPage = new sap.m.Page("newMasterPage1",{
+				title : "Master 1"
+			});
+
+			var oSpyAddPage = sinon.spy(oSplitApp._oMasterNav, "addPage");
+			var oSpyRemovePage = sinon.spy(oSplitApp._oMasterNav, "removePage");
+
+			oSplitApp.addMasterPage(oNewMasterPage);
+
+			var oNewDetailPage = new sap.m.Page("newDetailPage1",{
+				title : "Detail 1"
+			});
+			
+			oSplitApp.addDetailPage(oNewDetailPage);
+
+			var aMaster = oSplitApp.getMasterPages();
+			var aDetail = oSplitApp.getDetailPages();
+			equal(aMaster.length, 3, "Master page aggregation contains the right number of pages");
+			equal(aDetail.length, 3, "Detail page aggregation contains the right number of pages");
+
+			oSplitApp.removeMasterPage(oNewMasterPage);
+			oSplitApp.removeDetailPage(oNewDetailPage);
+
+			equal(aMaster.length, 2, "Master page aggregation contains the right number of pages");
+			equal(aDetail.length, 2, "Detail page aggregation contains the right number of pages");
+			
+			oSplitApp.addMasterPage(oNewMasterPage);
+			oSplitApp.addDetailPage(oNewDetailPage);
+			equal(aMaster.length, 3, "Master page aggregation contains the right number of pages");
+			equal(aDetail.length, 3, "Detail page aggregation contains the right number of pages");
+			oNewDetailPage.destroy();
+			oNewMasterPage.destroy();
+			equal(aMaster.length, 2, "Master page aggregation contains the right number of pages");
+			equal(aDetail.length, 2, "Detail page aggregation contains the right number of pages");
+			
+			ok(oSpyAddPage.called, "Right delegate method was called");
+			ok(oSpyRemovePage.called, "Right delegate method was called");
+			oSplitApp._oMasterNav.addPage.restore();
+			oSplitApp._oMasterNav.removePage.restore();
+		});
+
+		
+		test("Moving Page from Master to Detail", function() {
+			var aMaster = oSplitApp.getMasterPages();
+			var aDetail = oSplitApp.getDetailPages();
+
+			var oMovePage = new sap.m.Page("movePagePage1",{
+				title : "Detail 1"
+			});
+
+			oSplitApp.addMasterPage(oMovePage);
+			equal(aMaster.length, 3, "Master page aggregation contains the right number of pages");
+			equal(aDetail.length, 2, "Detail page aggregation contains the right number of pages");
+			oSplitApp.addDetailPage(oMovePage);
+			equal(aMaster.length, 2, "Master page aggregation contains the right number of pages");
+			equal(aDetail.length, 3, "Detail page aggregation contains the right number of pages");
+			oSplitApp.removeDetailPage(oMovePage);
+			equal(aMaster.length, 2, "Master page aggregation contains the right number of pages");
+			equal(aDetail.length, 2, "Detail page aggregation contains the right number of pages");
+			
+			oMovePage.destroy();
+		});
+
+		
+		test("Insert Page", function() {
+			var aMaster = oSplitApp.getMasterPages();
+			var aDetail = oSplitApp.getDetailPages();
+
+			var oSpyInsertPage = sinon.spy(oSplitApp._oMasterNav, "insertPage");
+
+			var oInsertPage = new sap.m.Page("insertPagePage",{
+				title : "Detail 1"
+			});
+
+			oSplitApp.insertMasterPage(oInsertPage, 1);
+			equal(aMaster.length, 3, "Master page aggregation contains the right number of pages");
+			equal(oSplitApp.indexOfMasterPage(oInsertPage), 1, "Master page is in the right position");
+			oInsertPage.destroy();
+			
+			// Check against native implementation
+			var oNavContainer = new sap.m.NavContainer("navcontainer", {});
+			var oInsertPage1 = new sap.m.Page("insertPagePage1",{
+				title : "Detail 1"
+			});
+			var oInsertPage2 = new sap.m.Page("insertPagePage2",{
+				title : "Detail 1"
+			});
+			var oInsertPage3 = new sap.m.Page("insertPagePage3",{
+				title : "Detail 1"
+			});
+			oNavContainer.addPage(oInsertPage1);
+			oNavContainer.addPage(oInsertPage2);
+			oNavContainer.insertPage(oInsertPage3, 1);
+			equal(oNavContainer.indexOfPage(oInsertPage3), 1, "Validation against native Implementation: Page is in the right position");
+
+			ok(oSpyInsertPage.called, "Right delegate method was called");
+			oSplitApp._oMasterNav.insertPage.restore();
+
+			oNavContainer.destroy();
+		});
+		
+
+		test("Remove all pages", function() {
+			var oSpyRemoveAllPages = sinon.spy(oSplitApp._oMasterNav, "removeAllPages");
+
+			oSplitApp.removeAllMasterPages();
+			oSplitApp.removeAllDetailPages();
+
+			var aMaster = oSplitApp.getMasterPages();
+			var aDetail = oSplitApp.getDetailPages();
+			equal(aMaster.length, 0, "Master page aggregation contains the right number of pages");
+			equal(aDetail.length, 0, "Detail page aggregation contains the right number of pages");
+
+			ok(oSpyRemoveAllPages.called, "Right delegate method was called");
+			
+			oSplitApp._oMasterNav.removeAllPages.restore();
+		});
+</script>
+	
+	<body id="body" class="sapUiBody">
+		<div id="qunit"></div>
+		<div id="content"></div>
+	</body>
+</html>

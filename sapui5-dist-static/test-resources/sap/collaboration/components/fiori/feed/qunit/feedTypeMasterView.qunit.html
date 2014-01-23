@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Feed Type Master Unit Test</title>
+
+<!-- UI5 Bootstrap -->
+<script id="sap-ui-bootstrap" 
+		type="text/javascript"
+		src="../../../../../../../resources/sap-ui-core.js"
+		data-sap-ui-theme="sap_bluecrystal"
+		data-sap-ui-libs="sap.m"
+		data-sap-ui-language="en">
+</script>
+
+<!-- libraries to be tested ******** LATER SHOULD BE IN THE BOOTSTRAP ******** -->
+
+<!-- QUnit libraries -->
+	<link rel="stylesheet"
+		  href="../../../../../../../resources/sap/ui/thirdparty/qunit.css"
+		  type="text/css" media="screen" />
+	<script src="../../../../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+	<script type="text/javascript" src="../../../../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
+	<script type="text/javascript" src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
+	
+	
+    <!-- The feed widget script is loaded by the component  -->
+	<!-- <script type="text/javascript" src="https://integration3.cubetree.com/assets/feed_widget_v1.js"></script> -->
+    
+    <script>
+    	
+	 	jQuery.sap.require("jquery.sap.resources");
+	 	jQuery.sap.require("sap.collaboration.library");
+		var sLocale = sap.ui.getCore().getConfiguration().getLanguage();
+		var modulePath = jQuery.sap.getModulePath("sap.collaboration.components");
+		var oLangBundle = jQuery.sap.resources({url : modulePath + "/i18n/messagebundle.properties", locale: sLocale});
+		
+		
+		var sPrefixId = "View1";
+		var oMasterView = sap.ui.view({
+			id: sPrefixId + "masterView", 
+			viewData : {
+				controlId: sPrefixId,
+				jamURL:	"http://jam.sap.com",
+				jamToken: "1234",
+				langBundle: oLangBundle
+			}, 
+			type: sap.ui.core.mvc.ViewType.JS, 
+			viewName: "sap.collaboration.components.fiori.feed.splitApp.FeedTypeMaster"
+		});
+			
+		oMasterView.getController().getJamWidget = function() {
+			};
+
+		oMasterView.placeAt("content");
+    </script>
+    
+    <script type="text/javascript">
+		//var sPrefixId = "View1";
+		
+		module("Master View Rendering");
+	
+		test("TestViewRenderedOK", function() {
+		    var sViewId = sPrefixId + "masterView";
+		    notEqual(jQuery.sap.domById(sViewId), null, "Create Feed Type Master View outer HTML Element is rendered.");
+		});
+		
+		test("TestPageRenderedOK", function() {
+		    var sViewId = sPrefixId + "feedTypePage";
+		    notEqual(jQuery.sap.domById(sViewId), null, "Create Feed Type Page outer HTML Element is rendered.");
+		});
+		
+		test("TestListRenderedOK", function() {
+		    var sViewId = sPrefixId + "FeedTypes";
+		    notEqual(jQuery.sap.domById(sViewId), null, "Create Feed Types List outer HTML Element is rendered.");
+		});
+		
+		module("Master View Configuration");
+		
+		test("TestViewConfigurationSetOK", function() {
+		    var sViewId = sPrefixId + "masterView";
+		    var oFeedTypeMasterView = sap.ui.getCore().byId(sViewId);
+		    var oFeedTypeMasterController = oFeedTypeMasterView.getController();
+		    var sPageId = sPrefixId + "feedTypePage";
+		    var oFeedTypePage = sap.ui.getCore().byId(sPageId);
+		    
+		    equal(oFeedTypeMasterController.sJamToken, "1234", "JAM token is ok");
+		    equal(oFeedTypeMasterController.sPrefixId, sPrefixId, "Prefix Id is ok");
+		    equal(oFeedTypeMasterView.sPrefixId, sPrefixId, "Prefix Id is ok");
+		    equal(oFeedTypeMasterView.oLangBundle, oLangBundle, "Language bundle is ok");
+		    
+		    equal(oFeedTypePage.getShowHeader(), true, "Page Header is visible");
+		    equal(oFeedTypePage.getTitle(), oLangBundle.getText("FEED_MASTER_PAGE_TITLE"), "Page title is ok");
+		});
+		
+		module("TestPageContentOK");
+		
+		test("TestListItemsIsOK", function() {
+		    var sPageId = sPrefixId + "feedTypePage";
+		    var oFeedTypePage = sap.ui.getCore().byId(sPageId);
+		    var oFeedList = oFeedTypePage.getContent()[0];
+		    var oFeedListItems = oFeedList.getItems();
+		    
+		    equal(oFeedListItems.length, 4, "items count is ok");
+		    equal(oFeedListItems[0].getTitle(), oLangBundle.getText("FRV_DOMAIN_DATA_FEED_TYPES_FOLLOWS"), "item 1 is ok");
+		    equal(oFeedListItems[1].getTitle(), oLangBundle.getText("FRV_DOMAIN_DATA_FEED_TYPES_COMPANY"), "item 2 is ok");
+		    equal(oFeedListItems[2].getTitle(), oLangBundle.getText("FRV_DOMAIN_DATA_FEED_TYPES_GROUP"), "item 3 is ok");
+		    equal(oFeedListItems[3].getTitle(), oLangBundle.getText("FRV_DOMAIN_DATA_FEED_TYPES_BO"), "item 4 is ok");
+		});
+		
+		module("TestEventHandlersAreOK");
+		
+		test("TestNavigationDataIsOK", function() {
+			var sViewId = sPrefixId + "masterView";
+		    var oFeedTypeMasterView = sap.ui.getCore().byId(sViewId);
+		    var oFeedTypeMasterController = oFeedTypeMasterView.getController();
+		    
+		    var oNavData = oFeedTypeMasterController.createNavigationData("group");
+		    var oExpectedData = {
+			    		viewName: "sap.collaboration.components.fiori.feed.splitApp.GroupMaster",
+						viewId: sPrefixId + "groupMasterView",
+			    		data: {
+		    					feedType: sap.collaboration.FeedType.group, 
+	   							lanBundle: oLangBundle, 
+		   						groupMasterPageTitle: oLangBundle.getText("GROUP_MASTER_PAGE_GROUP_TITLE")
+			    		}
+		    };
+		    
+		    deepEqual(oNavData, oExpectedData, "Navigation Data is ok");
+		    
+		    oNavData = oFeedTypeMasterController.createNavigationData("context");
+		    oExpectedData = {
+		    		viewName: "sap.collaboration.components.fiori.feed.splitApp.GroupMaster",
+					viewId: sPrefixId + "groupMasterView",
+		    		data: {
+			    			feedType: sap.collaboration.FeedType.object, 
+				   			lanBundle: oLangBundle, 
+				   			groupMasterPageTitle: oLangBundle.getText("GROUP_MASTER_PAGE_BO_TITLE")
+		    		}
+		    };
+		    
+		    deepEqual(oNavData, oExpectedData, "Navigation Data is ok");
+		});
+		
+	</script>
+
+</head>
+<body>
+	<div id="qunit"></div>
+	<div id="content"></div>
+</body>
+</html>

@@ -1,0 +1,7 @@
+{
+  "sEntity": "Library",
+  "sId": "sap/m",
+  "sLabel": "Mobile",
+  "sVendor": "SAP",
+  "oExtends": "UI5.sap/ui/core"
+}

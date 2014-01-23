@@ -1,0 +1,26 @@
+<core:View xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:chart="sap.ca.ui.charts">
+	<Page title="Welcome" enableScrolling="false">
+		<html:h1>Welcome</html:h1>
+		<html:p>
+			This page is only visible when the application is run on a desktop browser.
+			<html:br />
+			This is the UI sample application. It has been provided to help create, test and view UI
+			custom controls for project Fiori.
+			<html:br />
+			This application provides a easy way to add and check new
+			controls that are being developed.
+		</html:p>
+
+		<html:h1>Documentation</html:h1>
+		<html:p>
+			Navigate to view the test page for the custom control.
+			<html:br />
+			Consult the wiki page:
+			<html:a href="https://wiki.wdf.sap.corp/wiki/display/FastFioriplanning/Controls+Development" target="_blank">Controls Development</html:a>
+		</html:p>
+
+		<!-- development only -->
+		<!-- <chart:LineChart id="fioriLineChart" chartTitle="Temp Chart for Dev" showTestData="true"/> -->
+		<!-- -->
+	</Page>
+</core:View>

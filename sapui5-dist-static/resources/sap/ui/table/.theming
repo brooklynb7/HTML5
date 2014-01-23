@@ -1,0 +1,7 @@
+{
+  "sEntity": "Library",
+  "sId": "sap/ui/table",
+  "sLabel": "Table",
+  "sVendor": "SAP",
+  "oExtends": "UI5.sap/ui/core"
+}

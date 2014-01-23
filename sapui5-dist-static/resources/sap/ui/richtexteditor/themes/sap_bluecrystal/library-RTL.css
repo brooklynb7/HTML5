@@ -1,0 +1,6 @@
+/*!
+ * SAP UI development toolkit for HTML5 (SAPUI5)
+ *
+ * (c) Copyright 2009-2013 SAP AG. All rights reserved
+ */
+ .sapMContainerMargin{padding:1rem}.defaultSkin{color:#000000;background-color:#f2f2f2;font-family:Arial,Helvetica,sans-serif;font-size:16px}.sapUiRTE{display:inline-block}html[dir=rtl] .sapUiRTE .defaultSkin table{direction:rtl}.sapUiRTE .defaultSkin table.mceToolbar{margin-right:5px}.sapUiRTE .defaultSkin .mceIcon,.sapUiRTE .defaultSkin .mceSplitButton span.mceAction{background-image:url("icons.png")}html[data-sap-ui-browser="ie8"] .sapUiRTE .defaultSkin .mceIcon.mce_undo{width:19px;margin-left:1px}.sapUiRTE .defaultSkin table.mceLayout tr.mceFirst>td.mceFirst{background-color:#f2f2f2;border-top:1px solid #cccccc}.sapUiRTE .defaultSkin td.mceIframeContainer{border-top:1px solid #cccccc}.sapUiRTE .defaultSkin.mceEditor table.mceLayout{border-color:#cccccc}.sapUiRTE .defaultSkin table.mceLayout tr.mceLast td.mceLast{border-bottom:1px solid #cccccc}.sapUiRTE .defaultSkin table.mceLayout tr.mceFirst td,.sapUiRTE .defaultSkin table{background-color:transparent}

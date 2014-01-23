@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+<title>Test Page for sap.m.CheckBox</title>
+<script id="sap-ui-bootstrap" data-sap-ui-theme="sap_mvi"
+	type="text/javascript" data-sap-ui-noConflict="true"
+	data-sap-ui-libs="sap.m" src="../../../../resources/sap-ui-core.js">
+</script>
+
+<link rel="stylesheet" href="../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
+<script type="text/javascript" src="../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+<script type="text/javascript" src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
+<script type="text/javascript" src="../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
+<script type="text/javascript">
+	var sText = "my Check Box";
+	var oCheckBox1 = new sap.m.CheckBox("c1", {text:sText, width:'50px'}).placeAt("content");
+	var oCheckBox2 = new sap.m.CheckBox("c2", {selected:true, visible: true, enabled: false}).placeAt("content");
+	var oCheckBox3 = new sap.m.CheckBox("c3", {selected:true, visible: false, enabled: false}).placeAt("content");
+	
+	test("CheckBoxes rendered", function(){
+		ok(jQuery.sap.domById("c1"), "CheckBox1 should be rendered");
+		ok(jQuery.sap.domById("c2"), "CheckBox2 should be rendered");
+		ok(!jQuery.sap.domById("c3"), "CheckBox3 should not be rendered");
+	});
+	
+	test("Checked ok", function() {
+		strictEqual(sap.ui.getCore().byId("c1").getSelected(), false, "CheckBox1 is not checked");
+		strictEqual(sap.ui.getCore().byId("c2").getSelected(), true, "CheckBox2 is checked");
+		equal(jQuery.sap.byId("c1 input").attr("checked"), undefined , "CheckBox1 should not have attr 'checked'");
+		equal(jQuery.sap.byId("c2 input").attr("checked"), 'checked', "CheckBox2 should have attr 'checked'");
+	});
+	
+	test("Enabled ok", function() {
+		strictEqual(sap.ui.getCore().byId("c1").getEnabled(), true, "CheckBox1 is enabled");
+		strictEqual(sap.ui.getCore().byId("c2").getEnabled(), false, "CheckBox2 is disabled");
+	});
+	
+	test("CSS ok", function(){
+		ok(jQuery.sap.byId("c1").children().hasClass("sapMCbBg"), "CheckBox1 should have class sapMCbBg");
+		ok(jQuery.sap.byId("c2").children().hasClass("sapMCbBgDis"), "CheckBox2 should have class sapMCbBgDis");
+	});	
+	
+	test("TextOk", function() {
+		strictEqual(sap.ui.getCore().byId("c1").getText(), sText, "c1.getText() should return " + sText);
+		strictEqual(sap.ui.getCore().byId("c2").getText(), "", "c2.getText() should not have any text");
+	});
+	
+	test("Text width", function() {
+		equal(jQuery.sap.byId("c1-label").innerWidth(), '50', "Label width should be 50px"); 
+	});
+	test("Test tap event OK", function(){
+		qutils.triggerEvent("tap", "c1");
+		equal(sap.ui.getCore().byId("c1").getSelected(), true, "CheckBox1 should be checked");
+		qutils.triggerEvent("tap", "c2");
+		equal(sap.ui.getCore().byId("c2").getSelected(), true, "CheckBox2 should still be checked");
+	});
+</script>
+</head>
+	<body id="body" class="sapUiBody">
+		<h1 id="qunit-header">qUnit Page for sap.m.CheckBox</h1>
+		<h2 id="qunit-banner"></h2>
+		<h2 id="qunit-userAgent"></h2>
+		<ol id="qunit-tests"></ol>
+		<div id="content"></div>
+	</body>
+</html>

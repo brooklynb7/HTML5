@@ -1,0 +1,192 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+	<title>Template - sap.ui.core.tmpl (Advanced)</title>
+
+	<script id="sap-ui-bootstrap"
+			type="text/javascript"
+			src="../../../../../../resources/sap-ui-core.js"
+			data-sap-ui-libs="sap.ui.commons"
+			data-sap-ui-theme="sap_goldreflection"
+			>
+	</script>
+	
+	<script id="myPerson" data-control="my.Person" type="text/x-handlebars-template">
+		<div style="margin: 5px; border: 1px solid green;">
+			<b>Native Template: {{text path="/title"}}</b>
+			<div>
+				{{#each path="/persons"}}
+				<div style="margin: 10px; border: 1px dotted blue;">
+					<div>{{text path="firstName"}}</div>
+					<div>{{text path="lastName"}}</div>
+					<div style="margin: 5px; border: 1px solid red;">
+						{{#each path="locations"}}
+						<div>{{text path=""}}</div>
+						{{/each}}
+					</div>
+				</div>				 
+				{{/each}}
+			</div>
+		</div>
+	</script>
+	
+	<script id="myButton" data-control="my.Button" type="text/x-handlebars-template">
+		<button>{{property name="text"}}</button>
+	</script>
+	
+	<script id="myNewControl" data-control="my.NewControl" type="text/x-handlebars-template">
+		<h3>{{property name="text"}}</h3>
+		{{aggregation name="content" type="sap.ui.core.Control" multiple="true"}}
+		<ul>
+		{{#aggregation name="entries" type="sap.ui.commons.TextView" multiple="true"}}
+			<li>{{control}}</li>
+		{{/aggregation}}
+		</ul>
+	</script>
+	
+	<script>
+	
+		jQuery(function() {
+			
+			// define the model
+			var oModel = new sap.ui.model.json.JSONModel({
+				title: "Persons",
+				persons: [{
+					firstName: "Peter",
+					lastName: "Muessig",
+					locations: [
+					  "HN", "HD"
+					]
+				}, {
+					firstName: "Tim",
+					lastName: "Back",
+					locations: [
+					  "MA", "HD"
+					]
+				}, {
+					firstName: "Frank",
+					lastName: "Weigel",
+					locations: [
+					  "IGB", "HD"
+					]
+				}, {
+					firstName: "Christoph",
+					lastName: "Kraemer",
+					locations: [
+					  "F", "HD"
+					]
+				}]
+			});
+			sap.ui.getCore().setModel(oModel);
+			
+			// register all available templates in the document
+			sap.ui.template(); 
+			
+			// load an external template
+			sap.ui.template({
+				control: "my.External",
+				src: "./MyExternal.tmpl"
+			});
+			
+			var oExternal = new my.External();
+			oExternal.placeAt("content");
+			
+			var oPerson = new my.Person();
+			oPerson.placeAt("content");
+			
+			var oTemplateButton = new my.Button({
+				text: "{/title}"
+			});
+			oTemplateButton.placeAt("content");
+			
+			var oNewControl = new my.NewControl({
+				text: "Hello World",
+				content: [new sap.ui.commons.TextView({text: "Child 1"}), 
+				          new sap.ui.commons.TextView({text: "Child 2"})],
+  				entries: [new sap.ui.commons.TextView({text: "Entry 1"}), 
+  				          new sap.ui.commons.TextView({text: "Entry 2"})]
+			});
+			oNewControl.placeAt("content");
+			
+			jQuery.sap.registerModulePath("sap.ui.core.tmpl.mvc", "./mvc/");
+			var oView = sap.ui.view({
+				viewName: "sap.ui.core.tmpl.mvc.Template",
+				type: sap.ui.core.mvc.ViewType.HTML
+			});
+			oView.placeAt("content");
+			
+			//sap.ui.template({src: "./MyExternal.tmpl"}).placeAt("content", {title: "This object will be used as new context for the Template."});
+			sap.ui.template({src: "./MyExternal.tmpl"}).placeAt("content");
+			
+		});
+	
+	</script>
+
+</head>
+<body class="sapUiBody" role="application">
+
+	<h1><code>sap.ui.core.tmpl.Template</code> - Test Page</h1>
+	
+	<div id="myTemplate" data-type="text/x-handlebars-template" data-context='{"title": "Hello World 123", "persons": [{"firstName": "Hugo", "lastName": "Maier"}, {"firstName": "Egon", "lastName": "Mueller"}]}'>
+	
+		<h3>Static Text (based on context)</h3>
+		{{title}}
+		<br/>
+		{{text path="/title"}}
+		
+		<h3>Static Loops (based on context)</h3>
+		{{#each persons}}
+			{{firstName}} {{lastName}}
+		{{/each}}
+		
+		<h3>DOMElements</h3>
+		{{element tag="div" id="title" text="{/title}" style="font-size: 2em; font-weight: bold; font-family: Tahoma;" class="sapCustomTitle sapCustomClass"}}
+		{{element tag="input" value="{/title}"}}
+		<br/>
+		{{element tag="textarea" text="{/title}" rows="2" cols="50"}}
+		<br/>
+		{{#element tag="select"}}
+			{{element tag="option" text="Value 1"}}
+			{{element tag="option" text="Value 2"}}
+			{{element tag="option" text="Value 3"}}
+		{{/element}}
+		
+		<h3>DOMElement Loops</h3>
+		{{#each path="/persons"}}
+			<div>
+			{{element tag="b" text="{lastName}"}},
+			{{element tag="input" value="{firstName}"}}
+			<ul>
+			{{#each path="locations"}}
+				{{element tag="li" text="{}"}}
+			{{/each}}
+			</ul>
+			</div>
+		{{/each}}
+
+		<h3>Nested Controls & Aggregation Assignment</h3>	
+		{{#control sap-ui-type="sap.ui.commons.Panel"}}
+			{{control sap-ui-aggregation="title" sap-ui-type="sap.ui.core.Title" text="{/title}"}} 
+			{{#each path="/persons"}}
+				{{control sap-ui-type="sap.ui.commons.TextView" text="{firstName}"}} 
+				{{control sap-ui-type="sap.ui.commons.TextField" value="{lastName}"}}
+			{{/each}}
+		{{/control}}
+		{{#control sap-ui-type="sap.ui.commons.Panel" sap-ui-default-aggregation="title"}}
+			{{control sap-ui-type="sap.ui.core.Title" text="{/title}"}} 
+			{{#each path="/persons"}}
+				{{control sap-ui-aggregation="content" sap-ui-type="sap.ui.commons.TextField" value="{firstName}"}} 
+				{{control sap-ui-aggregation="content" sap-ui-type="sap.ui.commons.TextView" text="{lastName}"}}
+			{{/each}}
+		{{/control}}
+		
+	</div>
+
+	<div id="content"></div>
+
+</body>
+</html>

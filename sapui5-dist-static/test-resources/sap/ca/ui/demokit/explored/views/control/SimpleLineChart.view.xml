@@ -1,0 +1,21 @@
+<core:View xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:ui="sap.ca.ui" xmlns:chart="sap.ca.ui.charts" xmlns:me="sap.me" xmlns:mvc="sap.ui.core.mvc" xmlns:viz="sap.viz.ui5"
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:form="sap.ui.layout.form" controllerName="sap.ca.ui.sample.views.control.SimpleLineChart">
+	<Page id="page">
+		<content>
+			<chart:LineChart id="simpleLineChart" chartTitle="" dataLabelFormat="#0.00"  />
+		</content>
+		<footer>
+			<Bar>
+				<contentRight>
+					<CheckBox text="Legend" id="legendCheckbox" select="pressLegendButton" />
+<!-- 					<Button icon="sap-icon://line-chart" text="O" press="pressSampleBarODataButton" /> -->
+<!-- 					<Button icon="sap-icon://line-chart" text="New Dim &amp;" press="pressSampleBarButton" /> -->
+<!-- 					<Button icon="sap-icon://line-chart" text="New" press="pressSampleBarDataButton" /> -->
+<!-- 					<Button icon="sap-icon://line-chart" text="None" press="pressNoDataButton" /> -->
+<!-- 					<Button icon="sap-icon://line-chart" text="Blank" press="pressBlankDataButton" /> -->
+<!--                     <Button icon="sap-icon://line-chart" text="Model" press="pressModelButton" /> -->
+				</contentRight>
+			</Bar>
+		</footer>
+	</Page>
+</core:View>

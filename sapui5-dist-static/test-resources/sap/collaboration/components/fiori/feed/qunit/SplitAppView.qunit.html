@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Split App View Test</title>
+
+<!-- UI5 Bootstrap -->
+<script id="sap-ui-bootstrap" 
+		type="text/javascript"
+		src="../../../../../../../resources/sap-ui-core.js"
+		data-sap-ui-theme="sap_bluecrystal"
+		data-sap-ui-libs="sap.m"
+		data-sap-ui-language="en">
+</script>
+
+<!-- libraries to be tested ******** LATER SHOULD BE IN THE BOOTSTRAP ******** -->
+
+<!-- QUnit libraries -->
+	<link rel="stylesheet"
+		  href="../../../../../../../resources/sap/ui/thirdparty/qunit.css"
+		  type="text/css" media="screen" />
+	<script src="../../../../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+	<script type="text/javascript" src="../../../../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
+	<script type="text/javascript" src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
+	
+	
+    <!-- The feed widget script is loaded by the component  -->
+	<!-- <script type="text/javascript" src="https://integration3.cubetree.com/assets/feed_widget_v1.js"></script> -->
+    
+    <script>
+  
+    	//************************************ BEGIN OF A FIX FOR IE8 FOR THE FOREACH METHOD USED IN THE MOBILE LIB *******************************************//	
+	    
+    	if (!Array.prototype.forEach) {
+	        Array.prototype.forEach = function (fn, scope) {
+	            'use strict';
+	            var i, len;
+	            for (i = 0, len = this.length; i < len; ++i) {
+	                if (i in this) {
+	                    fn.call(scope, this[i], i, this);
+	                }
+	            }
+	        };
+	    }
+    	
+	  //************************************ END OF A FIX FOR IE8 FOR THE TRIM METHOD USED IN THE MOBILE LIB *******************************************//
+    
+	 	jQuery.sap.require("jquery.sap.resources");
+	 	jQuery.sap.require("sap.collaboration.library");
+		var sLocale = sap.ui.getCore().getConfiguration().getLanguage();
+		var modulePath = jQuery.sap.getModulePath("sap.collaboration.components");
+		var oLangBundle = jQuery.sap.resources({url : modulePath + "/i18n/messagebundle.properties", locale: sLocale});
+		
+		
+		var sPrefixId = "View1";
+		var oAppView = sap.ui.view({
+			id: sPrefixId + "splitAppView",
+			viewData : {
+				controlId: sPrefixId,
+				appType: "splitApp",
+				odataModel:  null,
+				object: {
+					id: "rami"
+				},
+				langBundle: oLangBundle
+			}, 
+			type:sap.ui.core.mvc.ViewType.JS, 
+			viewName:"sap.collaboration.components.fiori.feed.splitApp.SplitApp"
+		});
+			
+		oAppView.getController().createMasterDetail = function() {
+			var oDetailPage = new sap.m.Page(sPrefixId + "detailPage");
+			this.oSplitApp.addDetailPage(oDetailPage);
+			this.oSplitApp.setInitialDetail(oDetailPage);
+			
+			var oMasterPage = new sap.m.Page(sPrefixId + "masterPage");
+			this.oSplitApp.addMasterPage(oMasterPage);
+			this.oSplitApp.setInitialMaster(oMasterPage);
+		};
+			
+		oAppView.getController().getGroupsID = function() {
+		};
+		
+		oAppView.getController().initializeUtils = function() {
+		};
+		
+
+		oAppView.placeAt("content");
+    </script>
+    
+    <script type="text/javascript">
+		//var sPrefixId = "View1";
+		
+		module("App View Rendering");
+	
+		test("TestViewRenderedOK", function() {
+		    var sViewId = sPrefixId + "splitAppView";
+		    notEqual(jQuery.sap.domById(sViewId), null, "Split App View outer HTML Element is rendered.");
+		});
+		
+		test("TestAppRenderedOK", function() {
+		    var sViewId = sPrefixId + "splitApp";
+		    notEqual(jQuery.sap.domById(sViewId), null, "Split App View outer HTML Element is rendered.");
+		});
+		
+		test("TestViewConfigurationSetOK", function() {
+		    var sViewId = sPrefixId + "splitAppView";
+		    var oAppView = sap.ui.getCore().byId(sViewId);
+		    var oAppViewController = oAppView.getController();
+		    
+		    equal(oAppViewController.sAppType, "splitApp", "App Type is ok");
+		    equal(oAppViewController.sPrefixId, sPrefixId, "Prefix Id is ok");
+		    equal(oAppViewController.oBusinessObject.id , "rami", "Business Object is ok");
+		    equal(oAppViewController.oLangBundle, oLangBundle, "Language Bundle is ok");
+		    
+		    equal(oAppView.sPrefixId, sPrefixId, "Prefix Id is ok");
+		});
+		
+	</script>
+
+</head>
+<body>
+	<div id="qunit"></div>
+	<div id="content"></div>
+</body>
+</html>

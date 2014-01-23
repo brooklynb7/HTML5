@@ -1,0 +1,126 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+
+    <title>Fiori Wave 2: Test Page for Hierarchy</title>
+
+<script src="../../../../../resources/sap-ui-core.js" id="sap-ui-bootstrap"
+    data-sap-ui-libs="sap.m" data-sap-ui-theme="sap_bluecrystal"
+    data-sap-ui-xx-bindingSyntax="complex" data-sap-ui-noConflict="true">
+</script>
+
+<link rel="stylesheet"
+    href="../../../../../resources/sap/ui/thirdparty/qunit.css"
+    type="text/css" media="screen" />
+<script type="text/javascript"
+    src="../../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+
+<script type="text/javascript"
+    src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
+<script type="text/javascript"
+    src="../../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
+
+    <script type="text/javascript" src="utils/qunithelper.js"></script>
+
+
+    <script type="text/javascript" src="HierarchyTest.js"></script>
+
+    <script type="text/javascript">
+        QUnit.config.autostart = false;
+        jQuery(document).ready(function () {
+            QUnit.start();
+        });
+
+        // require dialog module
+        jQuery.sap.require("sap.ca.ui.Hierarchy");
+
+
+        var oData = {
+            items: [
+                {
+                    title: "Title 1",
+                    activity: "Activity 1",
+                    id: 1,
+                    link: "Link 1",
+                    icon: "refresh"
+                },
+                {
+                    title: "Title 2",
+                    activity: "Activity 2",
+                    id: 2,
+                    link: "Link 2",
+                    icon: "refresh"
+                },
+                {
+                    title: "Title 3",
+                    activity: "Activity 3",
+                    id: 3,
+                    link: "Link 3",
+                    icon: "refresh"
+                },
+                {
+                    title: "Title 4",
+                    activity: "Activity 4",
+                    id: 4,
+                    link: "Link 4",
+                    icon: "refresh"
+                },
+                {
+                    title: "Title 5",
+                    activity: "Activity 5",
+                    id: 5,
+                    link: "Link 5",
+                    icon: "refresh"
+                }
+            ]
+        };
+
+        var oModel = new sap.ui.model.json.JSONModel(oData);
+
+        var oHtml = new sap.ui.core.HTML(
+                {
+                    content: '<div id="contentHolder"></div><h1 id="qunit-header">Fiori Wave 2: Test Page for Hierarchy</h1><h2 id="qunit-banner"></h2><h2 id="qunit-userAgent"></h2><ol id="qunit-tests"></ol>',
+                    afterRendering: function () {
+                        oHorizontal.placeAt("contentHolder");
+                    }
+                });
+
+        var page = new sap.m.Page("myFirstPage", {
+            title: "Fiori - Hierarchy Test",
+            showNavButton: true,
+            enableScrolling: true,
+            content: oHtml
+        });
+
+        var oHierarchy = new sap.ca.ui.Hierarchy({
+            id: HIERARCHY_ID
+        });
+
+        oHierarchy.bindItems("/items", new sap.ca.ui.HierarchyItem({
+            title:"{title}",
+            icon:"{icon}",
+            identifier:"{id}",
+            link:"{link}",
+            activity:"{activity}"
+        }));
+
+        oHierarchy.setModel(oModel);
+
+        var oHorizontal = new sap.m.HBox({
+            items: [ oHierarchy ]
+        });
+
+        var app = new sap.m.App("myApp", {
+            initPage: "myFirstPage"
+        });
+
+        app.addPage(page).placeAt("content");
+
+    </script>
+
+</head>
+<body id="body" class="sapUiBody">
+<div id="content"></div>
+</body>
+</html>

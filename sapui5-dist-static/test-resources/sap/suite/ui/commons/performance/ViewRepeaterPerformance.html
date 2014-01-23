@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>ViewRepeater - sap.suite.ui.commons</title>
+   <script src="../../../../../../resources/sap-ui-core.js"
+            type="text/javascript" id="sap-ui-bootstrap"
+            data-sap-ui-libs="sap.ui.ux3, sap.ui.commons, sap.suite.ui.commons, sap.ui.table"
+            data-sap-ui-theme="sap_goldreflection">
+    </script>
+
+</head>
+<body class="sapUiBody">
+<h3>*To set the number of additional cards displayed in this ViewRepeater please add a sap-ui-cards-number= parameter to the page URL.</h3>
+
+<div id="config_target"></div>
+<div id="contentArea1" style="position: absolute; top: 87px; bottom: 1px; left:10px; right:10px"></div>
+
+<style>
+    .matrix {
+        border: 1px #dddddd solid;
+    }
+</style>
+
+<script>
+    var dataObject = { data : [
+        {lastName: "Platte", name: "Rudolf",  href: "http://www.sap.com", src: "../demokit/images/persons/male_PlatteR.jpg", gender: "male" , country: "US"},
+        {lastName: "Dwyer", name: "Nora",  href: "http://www.sap.com", src: "../demokit/images/persons/female_DwyerN.jpg", gender: "female" , country: "US"},
+        {lastName: "Wallace", name: "Alex",  href: "http://www.sap.com", src: "../demokit/images/persons/male_WallaceA.jpg", gender: "male", country:  "DE"},
+        {lastName: "Wang", name: "Megan",  href: "http://www.sap.com", src: "../demokit/images/persons/female_WangM.jpg", gender: "female", country: "US"},
+        {lastName: "Ingalls", name: "Barbara",  href: "http://www.sap.com", src: "../demokit/images/persons/female_IngallsB.jpg", gender: "female" , country: "US"},
+        {lastName: "Wallace", name: "Bruno",  href: "http://www.sap.com", src: "../demokit/images/persons/male_WallaceA.jpg", gender: "male", country: "US"},
+        {lastName: "Zar", name: "Lou", href: "http://www.sap.com", src: "../demokit/images/persons/male_FieldJ.jpg", gender: "male", country:  "DE"},
+        {lastName: "Watson", name: "Mary",  href: "http://www.sap.com", src: "../demokit/images/persons/female_WatsonM.jpg", gender: "female", country: "US"},
+        {lastName: "Spring", name: "Sally", href: "http://www.sap.com", src: "../demokit/images/persons/female_SpringS.jpg", gender: "female", country: "US"},
+        {lastName: "Schutt", name: "Doris", href: "http://www.sap.com", src: "../demokit/images/persons/female_BaySu.jpg", gender: "female", country: "US"},
+        {lastName: "Nicols", name: "John", href: "http://www.sap.com", src: "../demokit/images/persons/male_NicolsJ.jpg", gender: "male", country:  "FR"},
+        {lastName: "Gains", name: "Viola", href: "http://www.sap.com", src: "../demokit/images/persons/female_GainsV.jpg", gender: "female", country:  "DE"},
+        {lastName: "Bay", name: "Sue",  href: "http://www.sap.com", src: "../demokit/images/persons/female_BaySu.jpg", gender: "female", country:  "FR"},
+        {lastName: "Smith", name: "John", href: "http://www.sap.com", src: "../demokit/images/persons/male_SmithJo.jpg", gender: "male", country:  "CH"},
+        {lastName: "Gordon", name: "Randy", href: "http://www.sap.com", src: "../demokit/images/persons/male_GordonR.jpg", gender: "male", country:  "DE"},
+        {lastName: "Schulz", name: "Justin", href: "http://www.sap.com", src: "../demokit/images/persons/male_SchulzJ.jpg", gender: "male", country:  "DE"},
+        {lastName: "Time", name: "Tino", href: "http://www.sap.com", src: "../demokit/images/persons/male_KentC.jpg", gender: "male", country: "US"},
+        {lastName: "East", name: "Jonathan", href: "http://www.sap.com", src: "../demokit/images/persons/male_EastJ.jpg", gender: "male", country:  "FR"},
+        {lastName: "Poole", name: "Gene", href: "http://www.sap.com", src: "../demokit/images/persons/female_GainsV.jpg", gender: "female", country:  "IT"},
+        {lastName: "Ander", name: "Corey", href: "http://www.sap.com", src: "../demokit/images/persons/male_SchulzJ.jpg", gender: "male", country:  "CH"},
+        {lastName: "Early", name: "Brighton", href: "http://www.sap.com", src: "../demokit/images/persons/male_FieldJ.jpg", gender: "male", country:  "FR"},
+        {lastName: "Noring", name: "Constance", href: "http://www.sap.com", src: "../demokit/images/persons/female_WatsonM.jpg", gender: "female", country: "US"},
+        {lastName: "Miller", name: "Michael", href: "http://www.sap.com", src: "../demokit/images/persons/male_MillerM.jpg", gender: "male", country:  "DE"},
+        {lastName: "Tress", name: "Matt", href: "http://www.sap.com", src: "../demokit/images/persons/female_WatsonM.jpg", gender: "female", country: "US"},
+        {lastName: "Turner", name: "Pamela", href: "http://www.sap.com", src: "../demokit/images/persons/female_RushJ.jpg", gender: "female", country:  "DE"},
+        {lastName: "Dente", name: "Al",  href: "http://www.sap.com", src: "../demokit/images/persons/i2.jpg", gender: "male", country: "US"},
+        {lastName: "Friese", name: "Andy", href: "http://www.sap.com", src: "../demokit/images/persons/i3.jpg", gender: "male", country:  "DE"},
+        {lastName: "Mann", name: "Anita", href: "http://www.sap.com", src: "../demokit/images/persons/i1.jpg", gender: "female", country:  "DE"},
+        {lastName: "Fisher", name: "Richard",  href: "http://www.sap.com", src: "../demokit/images/persons/male_FisherR.jpg", gender: "male", country: "US"},
+        {lastName: "Fuchs", name: "Peter", href: "http://www.sap.com", src: "../demokit/images/persons/male_FuchsP.jpg", gender: "male", country:  "DE"},
+        {lastName: "Rush", name: "Joanne", href: "http://www.sap.com", src: "../demokit/images/persons/female_RushJ.jpg", gender: "female", country:  "DE"}]
+    };
+
+    function querystring(key) {
+ 	   var re = new RegExp('(?:\\?|&)'+key+'=(.*?)(?=&|$)','gi');
+ 	   var r=[], m;
+ 	   while ((m=re.exec(document.location.search)) != null) r.push(m[1]);
+ 	   return r;
+ 	};
+ 	 var iCardNumber = querystring("sap-ui-cards-number");
+ 	
+    // Increase the number of the lines to more than 100
+    for(var n = 1; n <= iCardNumber; n++) {
+        dataObject.data.push( { lastName:"LastName"+ n, name:"Name" + n, src: "../demokit/images/persons/male.jpg", country: "DE", href: "http://www.sap.com" } );
+    }
+
+    // create JSON model
+    var oModel = new sap.ui.model.json.JSONModel();
+    oModel.setData(dataObject);
+    sap.ui.getCore().setModel(oModel);
+
+    //create the first view --------------------------------------------------------------------------------------------
+    var oRowTemplate1 = new sap.ui.commons.layout.MatrixLayout("theMatrix1");
+    oRowTemplate1.addStyleClass("matrix");
+    oRowTemplate1.setWidths(["50px","40px","110px"]);
+
+    var  matrixRow, matrixCell, control;
+    // main row
+    matrixRow = new sap.ui.commons.layout.MatrixLayoutRow();
+    //image
+    control = new sap.ui.commons.Image();
+    control.setHeight("60px");
+    control.setWidth("50px");
+    control.bindProperty("src","src");
+    matrixCell = new sap.ui.commons.layout.MatrixLayoutCell();
+    matrixCell.addContent(control);
+    matrixCell.setRowSpan(2);
+    matrixCell.setPadding(sap.ui.commons.layout.Padding.None);
+    matrixRow.addCell(matrixCell);
+
+    //label 1
+    control = new sap.ui.commons.Label();
+    control.bindProperty("text","lastName");
+    matrixCell = new sap.ui.commons.layout.MatrixLayoutCell();
+    matrixCell.addContent(control);
+    matrixRow.addCell(matrixCell);
+
+    //label 2
+    control = new sap.ui.commons.Label();
+    control.bindProperty("text","name");
+    matrixCell = new sap.ui.commons.layout.MatrixLayoutCell();
+    matrixCell.addContent(control);
+    matrixRow.addCell(matrixCell);
+    oRowTemplate1.addRow(matrixRow);
+
+    matrixRow = new sap.ui.commons.layout.MatrixLayoutRow();
+
+    //label 3
+    control = new sap.ui.commons.Label();
+    control.bindProperty("text","country");
+    matrixCell = new sap.ui.commons.layout.MatrixLayoutCell();
+    matrixCell.addContent(control);
+    matrixRow.addCell(matrixCell);
+
+    //link
+    control = new sap.ui.commons.Link();
+    control.bindProperty("text","href");
+    matrixCell = new sap.ui.commons.layout.MatrixLayoutCell();
+    matrixCell.addContent(control);
+    matrixRow.addCell(matrixCell);
+    // add row to matrix
+    oRowTemplate1.addRow(matrixRow);
+
+
+    //create the second view -------------------------------------------------------------------------------------------
+    var oRowTemplate2 = new sap.ui.commons.layout.MatrixLayout("theMatrix2");
+    oRowTemplate2.addStyleClass("matrix");
+    oRowTemplate2.setWidths(["100px","80px","120px"]);
+
+    // var  matrixRow, matrixCell, control;
+    // main row
+    matrixRow = new sap.ui.commons.layout.MatrixLayoutRow();
+    //image
+    control = new sap.ui.commons.Image();
+    control.setHeight("120px");
+    control.setWidth("100px");
+    control.bindProperty("src","src");
+    matrixCell = new sap.ui.commons.layout.MatrixLayoutCell();
+    matrixCell.addContent(control);
+    matrixCell.setRowSpan(5);
+    matrixCell.setPadding(sap.ui.commons.layout.Padding.None);
+    matrixRow.addCell(matrixCell);
+
+
+    // NAME ROW ******************************************
+    //label for Name
+    control = new sap.ui.commons.Label({
+        text: "Name:"
+    });
+    matrixCell = new sap.ui.commons.layout.MatrixLayoutCell();
+    matrixCell.setHAlign(sap.ui.commons.layout.HAlign.Right);
+    matrixCell.addContent(control);
+    matrixRow.addCell(matrixCell);
+
+    //field Name
+    control = new sap.ui.commons.TextView();
+    control.bindProperty("text", {
+        parts: [
+            {path: "name", type: new sap.ui.model.type.String()},
+            {path: "lastName", type: new sap.ui.model.type.String()}
+        ],
+        formatter: function(name, lastName){ // all parameters are strings
+            name = name || "";
+            lastName = lastName || "";
+            return name + " " + lastName;
+        }
+    });
+    matrixCell = new sap.ui.commons.layout.MatrixLayoutCell();
+    matrixCell.addContent(control);
+    matrixRow.addCell(matrixCell);
+    oRowTemplate2.addRow(matrixRow);
+
+    // COUNTRY ROW ******************************************
+    matrixRow = new sap.ui.commons.layout.MatrixLayoutRow();
+    //label for Country
+    control = new sap.ui.commons.Label({
+        text: "Country:"
+    });
+    matrixCell = new sap.ui.commons.layout.MatrixLayoutCell();
+    matrixCell.setHAlign(sap.ui.commons.layout.HAlign.Right);
+    matrixCell.addContent(control);
+    matrixRow.addCell(matrixCell);
+
+    //field Country
+    control = new sap.ui.commons.TextView();
+    control.bindProperty("text","country");
+    matrixCell = new sap.ui.commons.layout.MatrixLayoutCell();
+    matrixCell.addContent(control);
+    matrixRow.addCell(matrixCell);
+    oRowTemplate2.addRow(matrixRow);
+
+    // GENDER ROW ******************************************
+    matrixRow = new sap.ui.commons.layout.MatrixLayoutRow();
+    //label for Gender
+    control = new sap.ui.commons.Label({
+        text: "Gender:"
+    });
+    matrixCell = new sap.ui.commons.layout.MatrixLayoutCell();
+    matrixCell.setHAlign(sap.ui.commons.layout.HAlign.Right);
+    matrixCell.addContent(control);
+    matrixRow.addCell(matrixCell);
+
+    //field Gender
+    control = new sap.ui.commons.TextView();
+    control.bindProperty("text","gender");
+    matrixCell = new sap.ui.commons.layout.MatrixLayoutCell();
+    matrixCell.addContent(control);
+    matrixRow.addCell(matrixCell);
+    oRowTemplate2.addRow(matrixRow);
+
+    // WEBSITE ROW ******************************************
+    matrixRow = new sap.ui.commons.layout.MatrixLayoutRow();
+    //label for Website
+    control = new sap.ui.commons.Label({
+        text: "Web site:"
+    });
+    matrixCell = new sap.ui.commons.layout.MatrixLayoutCell();
+    matrixCell.setHAlign(sap.ui.commons.layout.HAlign.Right);
+    matrixCell.addContent(control);
+    matrixRow.addCell(matrixCell);
+
+    //link field Website
+    control = new sap.ui.commons.Link();
+    control.bindProperty("text","href");
+    matrixCell = new sap.ui.commons.layout.MatrixLayoutCell();
+    matrixCell.addContent(control);
+    matrixRow.addCell(matrixCell);
+    oRowTemplate2.addRow(matrixRow);
+
+    oRowTemplate2.addRow(new sap.ui.commons.layout.MatrixLayoutRow()); //empty row to fix vertical alignment
+
+
+    //Create the third view. External table one ------------------------------------------------------------------------
+    var oTable = new sap.ui.table.Table("tbl1", {
+        visibleRowCount: 7,
+        navigationMode: sap.ui.table.NavigationMode.Paginator,
+        columns: [
+            new sap.ui.table.Column({
+                label: "First Name",
+                template: new sap.ui.commons.TextView().bindProperty("text", "name"),
+                sortProperty: "name",
+                filterProperty: "name",
+                width: "100px"
+            }),
+            new sap.ui.table.Column({
+                label: "Last Name",
+                template: new sap.ui.commons.TextView().bindProperty("text", "lastName"),
+                sortProperty: "lastName",
+                filterProperty: "lastName",
+                width: "100px"
+            }),
+            new sap.ui.table.Column({
+                label: "User Pic",
+                template: new sap.ui.commons.Image({
+                    height: "36px",
+                    width: "30px"
+                }).bindProperty("src","src"),
+                sortProperty: "src",
+                filterProperty: "src",
+                hAlign: "Center",
+                width: "70px"
+            }),
+            new sap.ui.table.Column({
+                label: "Country",
+                template: new sap.ui.commons.TextView().bindProperty("text", "country"),
+                sortProperty: "country",
+                filterProperty: "country"
+            })
+        ]
+    });
+    oTable.bindRows("/data");
+
+    var oTitle = new sap.ui.commons.Title({text:"Employees", icon:"../demokit/images/SAPLogo.gif", tooltip:"Employees"});
+    
+    // create the row repeater control
+    var oViewRepeater = new sap.suite.ui.commons.ViewRepeater("vr1", {title: oTitle});
+    oViewRepeater.setNoData(new sap.ui.commons.TextView({text: "Sorry, no data available!"}));
+    oViewRepeater.bindRows("/data", oRowTemplate1);
+    
+    oViewRepeater.addView(new sap.suite.ui.commons.RepeaterViewConfiguration({
+        icon: "../demokit/images/ctrls/tiles2.png",
+        iconHovered: "../demokit/images/ctrls/tiles2_hover.png",
+        responsive: true,
+        itemMinWidth: 210,
+        itemHeight: 62,
+        numberOfTiles: 12,
+        path: "/data",
+        template: oRowTemplate1
+    }));
+
+    oViewRepeater.addView(new sap.suite.ui.commons.RepeaterViewConfiguration({
+        icon: "../demokit/images/ctrls/tiles.png",
+        iconHovered: "../demokit/images/ctrls/tiles_hover.png",
+        tooltip: "Tiled view",
+        responsive: true,
+        itemMinWidth: 310,
+        numberOfTiles: 6,
+        itemHeight: 122,
+        path:"/data",
+        template: oRowTemplate2
+    }));
+    
+    oViewRepeater.addView(new sap.suite.ui.commons.RepeaterViewConfiguration({
+    	title: "Table View",
+        icon: "../demokit/images/ctrls/list.png",
+        iconHovered: "../demokit/images/ctrls/list_hover.png",
+        external: true,
+        externalRepresentation: oTable
+    }));
+    
+    oViewRepeater.setDefaultViewIndex(1);
+
+    oViewRepeater.placeAt("contentArea1");
+    
+ 	// configuration matrix
+ 	var configMatrix, configRow, configCell, configControl;
+ 	configMatrix = new sap.ui.commons.layout.MatrixLayout("configMatrix");
+
+	// property and aggregation switch row
+	configRow = new sap.ui.commons.layout.MatrixLayoutRow();
+
+
+	
+	// add to page
+	configMatrix.placeAt("config_target");
+</script>
+</body>
+</html>

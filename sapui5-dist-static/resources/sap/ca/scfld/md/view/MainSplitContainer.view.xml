@@ -1,0 +1,10 @@
+<core:View xmlns:core="sap.ui.core"
+           xmlns="sap.m" controllerName="sap.ca.scfld.md.view.MainSplitContainer" height="100%">
+
+    <SplitContainer id="MainSplitContainer">
+        <masterPages>
+        </masterPages>
+        <detailPages>
+        </detailPages>
+    </SplitContainer>
+</core:View>

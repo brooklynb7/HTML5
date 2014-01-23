@@ -1,0 +1,27 @@
+<core:View 
+  xmlns:core="sap.ui.core"
+  xmlns="sap.m"
+  xmlns:charts="sap.ca.ui.charts"
+  controllerName="sap.ca.ui.sample.views.control.HorizontalBarChart">
+
+  <Page id="page">
+    <content>
+      <charts:HorizontalBarChart 
+        id="fhbChart" 
+        title="Test Horizontal Bar Chart"
+        showLegend="true"
+        showTitle="false"
+        selectDataPoint="onSelectDataPoint"/>
+    </content>
+    <footer>
+      <Bar>
+        <contentRight>
+          <CheckBox text="Legend" id="legendCheckbox" selected="true" select="pressLegendButton" />
+          <Button icon="sap-icon://bar-chart" text="OData" id="sampleToolBarODataButton" press="pressSampleBarODataButton" />
+          <Button icon="sap-icon://bar-chart" text="Generate New Data" id="sampleToolBarDataButton" press="pressSmpleBarButton" />
+        </contentRight>
+      </Bar>
+    </footer>
+  </Page>
+
+</core:View>

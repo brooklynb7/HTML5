@@ -1,0 +1,134 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		
+		<title>Detection of Features, OS, Device and State</title>
+		
+		<script src="../../../../resources/sap-ui-core.js"
+			type="text/javascript" 
+			id="sap-ui-bootstrap"
+			data-sap-ui-libs="sap.m"
+			data-sap-ui-theme="sap_mvi">
+		</script>
+		
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.5.3/modernizr.min.js"></script>
+		
+		<script type="text/javascript">
+		
+		var html = "";
+		
+		var modernizrInternal = {"input":1,"inputtypes":1,"hasEvent":1,"testProp":1,"testAllProps":1,"testStyles":1,"load":1};
+		
+		function booleanColor(value) {
+			if (value === false) {
+				return "<span style='font-weight:bold;color:red;'>false</span>";
+			} else if (value === true) {
+				return "<span style='font-weight:bold;color:green;'>true</span>";
+			} else {
+				return "<span style='font-weight:bold;'>" + value + "</span>";
+			}
+		}
+		
+		function updateHtml() {
+			var html = [];
+			html.push("<ul>");
+
+			html.push("<li>jQuery.support.touch: " + booleanColor(!!jQuery.support.touch) + "</li>");
+			html.push("<li>jQuery.support.retina: " + booleanColor(!!jQuery.support.retina) + "</li>");
+			html.push("<li class='separator'> </li>");
+			
+			html.push("<li>jQuery.device.is.standalone: " + booleanColor(!!jQuery.device.is.standalone) + "</li>");
+			html.push("<li>jQuery.device.is.landscape: " + booleanColor(!!jQuery.device.is.landscape) + "</li>");
+			html.push("<li>jQuery.device.is.portrait: " + booleanColor(!!jQuery.device.is.portrait) + "</li>");
+			html.push("<li>jQuery.device.is.iphone: " + booleanColor(!!jQuery.device.is.iphone) + "</li>");
+			html.push("<li>jQuery.device.is.ipad: " + booleanColor(!!jQuery.device.is.ipad) + "</li>");
+			html.push("<li>jQuery.device.is.android_phone: " + booleanColor(!!jQuery.device.is.android_phone) + "</li>");
+			html.push("<li>jQuery.device.is.android_tablet: " + booleanColor(!!jQuery.device.is.android_tablet) + "</li>");
+			html.push("<li>jQuery.device.is.tablet: " + booleanColor(!!jQuery.device.is.tablet) + "</li>");
+			html.push("<li>jQuery.device.is.phone: " + booleanColor(!!jQuery.device.is.phone) + "</li>");
+			html.push("<li>jQuery.device.is.desktop: " + booleanColor(!!jQuery.device.is.desktop) + "</li>");
+			html.push("<li class='separator'> </li>");
+			
+			html.push("<li>jQuery.os.os: " + booleanColor(jQuery.os.os) + "</li>");
+			html.push("<li>jQuery.os.version: " + booleanColor(jQuery.os.version) + "</li>");
+			html.push("<li>jQuery.os.fVersion: " + booleanColor(jQuery.os.fVersion) + "</li>");
+			html.push("<li>jQuery.os.ios: " + booleanColor(!!jQuery.os.ios) + "</li>");
+			html.push("<li>jQuery.os.android: " + booleanColor(!!jQuery.os.android) + "</li>");
+			html.push("<li>jQuery.os.blackberry: " + booleanColor(!!jQuery.os.blackberry) + "</li>");
+			html.push("<li>jQuery.os.winphone: " + booleanColor(!!jQuery.os.winphone) + "</li>");
+			html.push("<li class='separator'> </li>");
+			
+			html.push("<li>window.devicePixelRatio: " + booleanColor(window.devicePixelRatio) + "</li>");
+			html.push("<li>user-agent: " + booleanColor(navigator.userAgent) + "</li>");
+			html.push("<li class='separator'> </li>");
+			
+			html.push("<li>window.innerWidth/Height: " + booleanColor(window.innerWidth + " x " + window.innerHeight) + "</li>");
+			html.push("<li>screen.width/height: " + booleanColor(screen.width + " x " + screen.height) + "</li>");
+			html.push("<li class='separator'> </li>");
+			
+			html.push("<li>jQuery.browser.msie: " + booleanColor(!!jQuery.browser.msie) + "</li>");
+			html.push("<li>jQuery.browser.mozilla: " + booleanColor(!!jQuery.browser.mozilla) + "</li>");
+			html.push("<li>jQuery.browser.webkit: " + booleanColor(!!jQuery.browser.webkit) + "</li>");
+			html.push("<li>jQuery.browser.chrome: " + booleanColor(!!jQuery.browser.chrome) + "</li>");
+			html.push("<li>jQuery.browser.safari: " + booleanColor(!!jQuery.browser.safari) + "</li>");
+			html.push("<li>jQuery.browser.version: " + booleanColor(jQuery.browser.version) + "</li>");
+			html.push("<li>jQuery.browser.fVersion: " + booleanColor(jQuery.browser.fVersion) + "</li>");
+			html.push("<li class='separator'> </li>");
+
+			for (attr in jQuery.support) {
+				html.push("<li>jQuery.support." + attr + ": " + booleanColor(jQuery.support[attr]) + "</li>");
+			}
+			
+			html.push("<li class='separator'> </li>");
+			
+			if (window.Modernizr) {
+				for (attr in Modernizr) {
+					if (!((attr in modernizrInternal) || attr.indexOf("_") == 0)) {
+						html.push("<li>Modernizr." + attr + ": " + booleanColor(Modernizr[attr]) + "</li>");
+					}
+				}
+				for (attr in Modernizr.input) {
+					html.push("<li>Modernizr.input." + attr + ": " + booleanColor(Modernizr.input[attr]) + "</li>");
+				}
+				for (attr in Modernizr.inputtypes) {
+					html.push("<li>Modernizr.inputtypes." + attr + ": " + booleanColor(Modernizr.inputtypes[attr]) + "</li>");
+				}
+			}
+			
+			html.push("</ul>");
+			htmlControl.setContent(html.join(""));
+		}
+		
+		var htmlControl = new sap.ui.core.HTML({
+			content : html,
+		});
+		
+		var app = new sap.m.App("myApp", {
+			initialPage:"page1", 
+			pages:[
+				new sap.m.Page("page1", {
+					title:"Detection",
+					content : [ htmlControl ]
+				})
+		    ]
+	    }).placeAt("body");
+		app._debugZoomAndScroll = true;
+
+		
+		$(function(){
+			updateHtml();
+		});
+		</script>
+
+		<style>
+		.separator {
+			list-style-type: none;
+			margin-top: 14px;
+		}
+		</style>
+		
+	</head>
+	<body id="body" class="sapUiBody">
+	</body>
+</html>

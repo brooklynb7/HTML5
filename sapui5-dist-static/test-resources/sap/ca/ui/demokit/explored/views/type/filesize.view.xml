@@ -1,0 +1,27 @@
+<core:View xmlns:core="sap.ui.core"
+           xmlns="sap.m"
+           xmlns:ui="sap.ca.ui"
+           xmlns:html="http://www.w3.org/1999/xhtml"
+           controllerName="sap.ca.ui.sample.views.type.FileSize"
+        >
+
+    <Page id="page">
+       <content>
+           <html:h1>Demo page to demonstrate FileSize type formatting</html:h1>
+
+           <List id="list" items="{/Files}">
+               <ObjectListItem id="MAIN_LIST_ITEM" title="{Name}" number="{path:'Size', type:'sap.ca.ui.model.type.FileSize', formatOptions : { style:'short'}}">
+                   <attributes>
+                       <ObjectAttribute text="{path:'Size', formatter:'.formatFileSize'}" />
+                       <ObjectAttribute text="Original: {Size}" />
+                   </attributes>
+               </ObjectListItem>
+           </List>
+
+        </content>
+        <footer>
+            <Bar>
+            </Bar>
+        </footer>
+    </Page>
+</core:View>

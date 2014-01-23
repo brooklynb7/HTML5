@@ -1,0 +1,11 @@
+<core:View
+	controllerName="views.toHome"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:core="sap.ui.core"
+	xmlns:h="http://www.w3.org/1999/xhtml">
+	<Page
+		showNavButton="true"
+		navButtonPress="handleNavButtonPress" >
+	</Page>
+</core:View>

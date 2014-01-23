@@ -1,0 +1,16 @@
+<core:View xmlns:core="sap.ui.core" xmlns:html="http://www.w3.org/1999/xhtml"
+           xmlns="sap.m" controllerName="sap.ca.ui.sample.views.dialogs.Confirmation">
+    <Page id="page" title="Confirmation Dialog">
+        <content>
+            <Button id="btnApprove" press="onPressApprove" text="Approve"/>
+            <Button id="btnReject" press="onPressReject" text="Reject"/>
+            <Button id="btnSubmit" press="onPressSubmit" text="Submit (note is mandatory)"/>
+            <Button id="btnConfrim" press="onPressConfirm" text="Confirm (with additional information)"/>
+        </content>
+        <html:h3>Documentation</html:h3>
+        <html:p>
+            More detailed information about this dialog you can find in the wiki page:
+            <html:a href="https://wiki.wdf.sap.corp/wiki/display/FastFioriplanning/Confirmation+Dialogs+%28e.g.+Approve-Reject-Send+etc.+Dialogs%29" target="_blank">Confirmation Dialog</html:a>
+        </html:p>
+    </Page>
+</core:View>

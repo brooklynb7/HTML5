@@ -1,0 +1,52 @@
+<core:View xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form" xmlns:ui="sap.ca.ui" xmlns="sap.m" xmlns:chart="sap.ca.ui.charts" controllerName="sap.ca.ui.sample.views.control.ChartOverflowContainer">
+	<Page id="page">
+		<content>
+			<IconTabBar id="chartTabBar">
+				<items>
+					<IconTabFilter key="text" text="Business" icon="sap-icon://task">
+						<content>
+							<ui:OverflowContainer overflowHeight="70px">
+								<ui:content>
+									<form:SimpleForm maxContainerCols="2">
+										<Label text="Name"></Label>
+										<Text text="SAP Germany"></Text>
+										<Label text="Street"></Label>
+										<Text text="Dietmar-Hopp-Allee 16"></Text>
+										<Label text="City"></Label>
+										<Text text="69190 Walldorf"></Text>
+										<Label text="Country"></Label>
+										<Text text="Germany"></Text>
+									</form:SimpleForm>
+								</ui:content>
+							</ui:OverflowContainer>
+						</content>
+					</IconTabFilter>
+
+					<IconTabFilter key="lineOverflow" text="Line" icon="sap-icon://line-chart">
+						<content>
+							<ui:OverflowContainer overflowHeight="200px" expanded="true">
+								<ui:content>
+									<chart:LineChart id="overflowLineChart" title="Overflow Line Chart" dataLabelFormat="#0.00" height="500px" />
+								</ui:content>
+							</ui:OverflowContainer>
+						</content>
+					</IconTabFilter>
+					<IconTabFilter key="line" text="Line 2" icon="sap-icon://line-chart">
+						<content>
+							<chart:LineChart id="tabbedLineChart" title="Tabbed Line Chart" dataLabelFormat="#0.00" />
+						</content>
+					</IconTabFilter>
+					<IconTabFilter key="bar" text="Bar" icon="sap-icon://bar-chart">
+						<content>
+							<chart:VerticalBarChart id="barChart" title="" showLegend="false" showTitle="false" />
+						</content>
+					</IconTabFilter>
+				</items>
+			</IconTabBar>
+		</content>
+		<footer>
+			<Bar>
+			</Bar>
+		</footer>
+	</Page>
+</core:View>

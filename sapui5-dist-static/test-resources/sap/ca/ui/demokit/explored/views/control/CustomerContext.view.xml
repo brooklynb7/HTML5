@@ -1,0 +1,18 @@
+<core:View xmlns:core="sap.ui.core"
+           xmlns="sap.m" controllerName="sap.ca.ui.sample.views.control.CustomerContext">
+
+
+        <Page id="page">
+            <content>
+                <Button tap="changeInCustomerContext" icon="sap-icon://customer"></Button>
+            </content>
+            <footer>
+                <Bar>
+                    <contentRight>
+                        <Button id="resetButton" tap="onResetCustomer" text="Reset saved customer" />
+                    </contentRight>
+                </Bar>
+            </footer>
+        </Page>
+
+</core:View>

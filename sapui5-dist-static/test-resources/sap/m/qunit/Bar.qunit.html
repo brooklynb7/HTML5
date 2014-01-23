@@ -1,0 +1,118 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<title>qUnit Page for sap.m.Bar</title>
+
+		<script id="sap-ui-bootstrap" 
+			type="text/javascript"
+			src="../../../../resources/sap-ui-core.js"
+			data-sap-ui-theme="sap_mvi"
+			data-sap-ui-noConflict="true"
+			data-sap-ui-libs="sap.m">
+		</script>
+    
+		<link rel="stylesheet" href="../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
+		<script type="text/javascript" src="../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+		<script type="text/javascript" src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
+		<script type="text/javascript" src="../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
+
+		<script language="javascript">
+			var bar = new sap.m.Bar("myBar", { 
+				contentLeft: [ new sap.m.Button('CancelBtn', {text: "Cancel"})],
+				contentMiddle: [ new sap.m.Label("myLabel", {text: "my Bar"})],
+				contentRight: [ new sap.m.Button('EditBtn', {text: "Edit"})]
+			}).placeAt("content");
+			var bar1 = new sap.m.Bar("myBar1", { 
+				contentLeft: [ new sap.m.Image("myIcon", {src: "../images/SAPUI5.jpg"})],
+				contentMiddle: [ new sap.m.Label("myLabel1", {text: "my Bar 1"})],
+				contentRight: [ new sap.m.Button('EditBtn1', {text: "Edit"})]
+			}).placeAt("content");
+			
+			var bar2 = new sap.m.Bar("myBar2", { 
+				enableFlexBox: true,
+				contentLeft: [ new sap.m.Image({src: "../images/SAPUI5.jpg"})],
+				contentMiddle: [ new sap.m.Label({text: "my Bar 1"})],
+				contentRight: [ new sap.m.Button({text: "Edit"})]
+			}).placeAt("content");
+			
+			sap.ui.test.qunit.delayTestStart();
+
+			test("Bars rendered", function(){
+				ok(jQuery.sap.domById("myBar"), "Bar should be rendered");
+				ok(jQuery.sap.domById("myBar1"), "Bar1 should be rendered");
+			});
+			
+			test("Bars position", function(){
+				equal (jQuery.sap.byId("myBar1").position().top, (jQuery.sap.byId("myBar").position().top + jQuery.sap.byId("myBar").outerHeight()), "Bar1 should be located below Bar");
+			});
+			
+			test("content Element position", function(){
+				ok(jQuery.sap.byId("CancelBtn").parent().hasClass("sapMBarLeft"), "header button should have class sapMBarLeft");
+				ok(jQuery.sap.byId("myIcon").parent().hasClass("sapMBarLeft"), "header icon should have class sapMBarLeft");
+				ok(jQuery.sap.byId("myLabel").parent().hasClass("sapMBarPH"), "label should have class sapMBarPH");
+				ok(jQuery.sap.byId("myLabel1").parent().hasClass("sapMBarPH"), "label should have class sapMBarPH");
+				ok(jQuery.sap.byId("EditBtn").parent().hasClass("sapMBarRight"), "header button should have class sapMBarRight");
+				ok(jQuery.sap.byId("EditBtn1").parent().hasClass("sapMBarRight"), "header button should have class sapMBarRight");
+			});
+			
+			test("context property", function(){
+				ok(jQuery.sap.byId("myBar").is("div"), "bar should be rendered as div");
+				ok(jQuery.sap.byId("myBar1").is("div"), "bar1 should be rendered as div");
+				bar._context = 'header';
+				bar.rerender();
+				ok(jQuery.sap.byId("myBar").is("header"), "bar should be rendered as header");
+				bar1._context = 'header';
+				bar1.rerender();
+				ok(jQuery.sap.byId("myBar1").is("header"), "bar1 should be rendered as header");
+				bar1._context = 'footer';
+				bar1.rerender();
+				ok(jQuery.sap.byId("myBar1").is("footer"), "bar1 should be rendered as footer");
+			});
+			
+			test("flexBox", function(){
+				ok(jQuery.sap.byId("myBar2-BarPH").hasClass("sapMFlexBox"), "header placeholder should be a FlexBox with class sapMFlexBox");
+				ok(jQuery.sap.byId("myBar2-BarPH").hasClass("sapMHBox"), "header placeholder should be a HBox with class sapMHBox");
+				bar2.setEnableFlexBox(false);
+				asyncTest("removeFlexBox", function(){
+					setTimeout(function(){
+						ok(!jQuery.sap.byId("myBar2-BarPH").hasClass("sapMFlexBox"), "header placeholder should not be a FlexBox with class sapMFlexBox");
+						ok(!jQuery.sap.byId("myBar2-BarPH").hasClass("sapMHBox"), "header placeholder should not be a HBox with class sapMHBox");
+						start();
+					}, 10);
+				})
+			});	
+			
+			test("ShouldSetTheTranslucentClassIfMobileDevice", function() {
+				//Arrange
+				var originalTouchSupport = jQuery.support.touch,
+					//System under Test
+					sut = new sap.m.Bar({
+						translucent : true
+					});
+				
+				jQuery.support.touch = true;
+				
+				//Act
+				sut.placeAt("qunit-fixture");
+				sap.ui.getCore().applyChanges();
+
+				//Assert
+				strictEqual(sut.$().filter(".sapMBarTranslucent").length,1,"translucent class got set")
+
+				//Cleanup
+				jQuery.support.touch = originalTouchSupport;
+			});
+			
+		</script>
+	
+	</head>
+	<body id="body" class="sapUiBody">
+	<h1 id="qunit-header">qUnit Page for sap.m.Bar</h1>
+    <h2 id="qunit-banner"></h2>
+    <h2 id="qunit-userAgent"></h2>
+    <ol id="qunit-tests"></ol>
+    <div id="qunit-fixture"></div>
+    <div id="content"></div>
+	</body>
+</html>

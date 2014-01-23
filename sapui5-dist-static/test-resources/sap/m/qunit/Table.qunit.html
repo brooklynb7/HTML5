@@ -1,0 +1,99 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<title>qUnit Page for sap.m.Table</title>
+
+		<script id="sap-ui-bootstrap" 
+			type="text/javascript"
+			src="../../../../resources/sap-ui-core.js"
+			data-sap-ui-theme="sap_bluecrystal"
+			data-sap-ui-noConflict="true"
+			data-sap-ui-libs="sap.m">
+		</script>
+
+		<link rel="stylesheet" href="../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
+		<script type="text/javascript" src="../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+		<script type="text/javascript" src="../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
+
+		<script language="javascript">
+
+		jQuery.sap.require("sap.m.TablePersoDialog");
+
+
+		/**
+		* Set up a test data environment. Need a table for the perso dialog
+		*/
+		var oData = {
+			items: [
+				{ name: "Michelle", color: "orange", number: 3.14 },
+				{ name: "Joseph", color: "blue", number: 1.618 },
+				{ name: "David", color: "green", number: 0 },
+			],
+			cols: ["Name", "Color", "Number"]
+		};
+
+		var oTable = new sap.m.Table("idRandomDataTable", {
+			headerToolbar: new sap.m.Toolbar({
+				content: [
+					new sap.m.Label({text: "Random Data"}),
+					new sap.m.ToolbarSpacer({}),
+					new sap.m.Button("idPersonalizationButton", {
+						icon: "sap-icon://person-placeholder"
+					})
+				]
+			}),
+			columns: oData.cols.map(function (colname) {
+				return new sap.m.Column({ header: new sap.m.Label({ text: colname })})
+			})		
+		});
+
+		oTable.setModel(new sap.ui.model.json.JSONModel(oData));
+		oTable.bindAggregation("items", "/items", new sap.m.ColumnListItem({
+			cells: oData.cols.map(function (colname) {
+				return new sap.m.Label({ text: "{" + colname.toLowerCase() + "}" })
+			})
+		}));
+
+		var oHtml = new sap.ui.core.HTML({
+			content : '<div id="contentHolder"></div><h1 id="qunit-header">qUnit Page for sap.m.TablePersoDialog</h1><h2 id="qunit-banner"></h2><h2 id="qunit-userAgent"></h2><ol id="qunit-tests"></ol>',
+			afterRendering: function(){
+ 				oTable.placeAt("contentHolder");
+			}
+		});
+		
+
+		var page = new sap.m.Page("myFirstPage", {
+			title : "TablePersoDialog Test",
+			content : oHtml
+		});
+
+		var app = new sap.m.App("myApp", {
+			initPage: "myFirstPage"
+		});
+
+		app.addPage(page).placeAt("content");
+
+		
+		module("Initial Check");
+
+		test("Initialization", function() {
+			ok(jQuery.sap.domById("idRandomDataTable"), "Table is rendered");
+			var aLabels = sap.ui.getCore().byId("idRandomDataTable").$().find('th>label');
+			ok(aLabels.length === 3, "Table has three columns rendered");
+			ok(aLabels[0].innerText == "Name", "First column named 'Name'");
+			ok(aLabels[1].innerText == "Color", "First column named 'Color'");
+			ok(aLabels[2].innerText == "Number", "First column named 'Number'");
+		});	
+
+		
+		
+		
+
+		</script>
+	</head>
+	<body id="body" class="sapUiBody">
+		<div id="qunit-fixture"></div>
+		<div id="content"></div>
+	</body>
+</html>

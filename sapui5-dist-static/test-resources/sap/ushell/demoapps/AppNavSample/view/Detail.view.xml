@@ -1,0 +1,24 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m" controllerName="AppNavSample.view.Detail" xmlns:html="http://www.w3.org/1999/xhtml">
+
+	<Page title="Detail">
+		<content>
+		  <VBox>
+			<List headerText="Application Startup Parameters" noDataText="No startup parameters passed"
+				items="{path: 'startupParameters>/parameters'}">
+				<DisplayListItem label="{startupParameters>key}"
+					value="{startupParameters>value}" />
+			</List>
+            
+			<Link href="{/DefaultApp_display_href}" text="cross app link (Default App)"
+				tooltip="Back to Fiori Sandbox Default Application (note href is generated!)"></Link>
+			<Link href="{/AppNavSample_display_args_href}" text="our app other startup!"
+				tooltip="Same application, different startup parameter ( new date), this triggers and application reload! (note href is generated!)"></Link>
+            <Link href="{/toView1_href}" text="to View1" tooltip="to View2 (href generated!)"></Link>
+			<Link href="{/toView2_href}" text="to View2" tooltip="to View2 (href generated!)"></Link>
+
+			<Button text="toView1" press="handleBtn1Press"></Button>
+        </VBox>
+		</content>
+	</Page>
+</core:View>

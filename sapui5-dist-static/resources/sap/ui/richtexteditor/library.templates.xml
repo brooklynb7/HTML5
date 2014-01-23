@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Library name="sap.ui.richtexteditor" xmlns="http://www.sap.com/ui5/ide/templates/xmlview">
+<Template name="sap.ui.richtexteditor.RichTextEditor" alias="RichTextEditor,Editor">
+	<jsTemplate><![CDATA[new sap.ui.richtexteditor.RichTextEditor({
+	id: "${id}", // sap.ui.core.ID
+	value: '', // string
+	textDirection: sap.ui.core.TextDirection.Inherit, // sap.ui.core.TextDirection
+	width: undefined, // sap.ui.core.CSSSize
+	height: undefined, // sap.ui.core.CSSSize
+	editorType: 'TinyMCE', // string
+	editorLocation: 'js/tiny_mce/tiny_mce_src.js', // string
+	editable: true, // boolean
+	showGroupFontStyle: true, // boolean
+	showGroupTextAlign: true, // boolean
+	showGroupStructure: true, // boolean
+	showGroupFont: false, // boolean
+	showGroupClipboard: true, // boolean
+	showGroupInsert: false, // boolean
+	showGroupLink: false, // boolean
+	showGroupUndo: false, // boolean
+	wrapping: true, // boolean
+	required: false, // boolean
+	sanitizeValue: true, // boolean
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	change: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	ready: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<RichTextEditor xmlns="sap.ui.richtexteditor"
+	id="${id}"
+	value=""
+	textDirection="Inherit"
+	width=""
+	height=""
+	editorType="TinyMCE"
+	editorLocation="js/tiny_mce/tiny_mce_src.js"
+	editable="true"
+	showGroupFontStyle="true"
+	showGroupTextAlign="true"
+	showGroupStructure="true"
+	showGroupFont="false"
+	showGroupClipboard="true"
+	showGroupInsert="false"
+	showGroupLink="false"
+	showGroupUndo="false"
+	wrapping="true"
+	required="false"
+	sanitizeValue="true"
+	change=""
+	ready="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+</RichTextEditor>
+]]></xmlTemplate>
+</Template>
+</Library>

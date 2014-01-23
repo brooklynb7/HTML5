@@ -1,0 +1,109 @@
+{
+	"SAPVB": {
+		"version": "2.0",
+		"xmlns:VB": "VB",
+		"Windows": {
+			"Remove": {
+				"name": "Detail1"
+			},
+			"Set": {
+				"name": "Detail1",
+				"Window": {
+					"id": "Detail1",
+					"type": "callout",
+					"refParent": "Window1",
+					"refScene": "Details",
+					"modal": "false",
+					"width": "300",
+					"height": "200",
+					"caption": "Detail Window",
+					"pos.bind": "Table1.0.GeoPosition"
+				}
+			}
+		},
+		"Scenes": {
+			"Set": {
+				"name": "Details",
+				"Scene": {
+					"id": "Details",
+					"navControlVisible": "false",
+					"VO": [
+						{
+							"id": "SUBCAPTION",
+							"type": "{00100000-2013-1000-1100-50059A6A47FA}",
+							"left": "0",
+							"top": "0",
+							"right": "300",
+							"bottom": "20",
+							"design": "0",
+							"level": "3",
+							"text": "SAP Walldorf"
+						},
+						{
+							"id": "LINE00",
+							"type": "{00100000-2013-1000-3700-AD84DDBBB31B}",
+							"noColon": "1",
+							"left": "0",
+							"top": "25",
+							"right": "300",
+							"bottom": "40",
+							"text.bind": "DetailData1.0.Text"
+						},
+						{
+							"id": "LINE01",
+							"type": "{00100000-2013-1000-3700-AD84DDBBB31B}",
+							"noColon": "1",
+							"left": "0",
+							"top": "41",
+							"right": "300",
+							"bottom": "56",
+							"text.bind": "DetailData1.1.Text"
+						},
+						{
+							"id": "LINE02",
+							"type": "{00100000-2013-1000-3700-AD84DDBBB31B}",
+							"noColon": "1",
+							"left": "0",
+							"top": "57",
+							"right": "300",
+							"bottom": "72",
+							"text.bind": "DetailData1.2.Text"
+						},
+						{
+							"id": "LINE03",
+							"type": "{00100000-2013-1000-3700-AD84DDBBB31B}",
+							"noColon": "1",
+							"left": "0",
+							"top": "73",
+							"right": "300",
+							"bottom": "88",
+							"text.bind": "DetailData1.3.Text"
+						},
+						{
+							"id": "Link1",
+							"type": "{00100000-2013-1000-2400-D305F7942B98}",
+							"reference": "BTN1",
+							"autoexecute": "0",
+							"left": "0",
+							"top": "95",
+							"right": "80",
+							"bottom": "113",
+							"text": "Button 1"
+						},
+						{
+							"id": "Link2",
+							"type": "{00100000-2013-1000-2400-D305F7942B98}",
+							"reference": "BTN2",
+							"autoexecute": "0",
+							"left": "80",
+							"top": "95",
+							"right": "160",
+							"bottom": "113",
+							"text": "Button 2"
+						}
+					]
+				}
+			}
+		}
+	}
+}

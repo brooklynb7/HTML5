@@ -1,0 +1,3213 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Library name="sap.m" xmlns="http://www.sap.com/ui5/ide/templates/xmlview">
+<Template name="sap.m.ActionListItem" alias="ActionListItem,Item">
+	<jsTemplate><![CDATA[new sap.m.ActionListItem({
+	id: "${id}", // sap.ui.core.ID
+	type: sap.m.ListType.Inactive, // sap.m.ListType
+	visible: true, // boolean
+	unread: false, // boolean
+	selected: false, // boolean
+	counter: undefined, // int
+	text: undefined, // string
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	tap: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	detailTap: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	press: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	detailPress: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<ActionListItem xmlns="sap.m"
+	id="${id}"
+	type="Inactive"
+	visible="true"
+	unread="false"
+	selected="false"
+	counter=""
+	text=""
+	tap=""
+	detailTap=""
+	press=""
+	detailPress="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+</ActionListItem>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.m.ActionSelect" alias="ActionSelect,Select">
+	<jsTemplate><![CDATA[new sap.m.ActionSelect({
+	id: "${id}", // sap.ui.core.ID
+	name: undefined, // string
+	visible: true, // boolean
+	enabled: true, // boolean
+	width: "auto", // sap.ui.core.CSSSize
+	maxWidth: "100%", // sap.ui.core.CSSSize
+	selectedKey: undefined, // string, since 1.11
+	selectedItemId: undefined, // string, since 1.12
+	icon: undefined, // sap.ui.core.URI, since 1.16
+	type: sap.m.SelectType.Default, // sap.m.SelectType, since 1.16
+	autoAdjustWidth: false, // boolean, since 1.16
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	items: [], // sap.ui.core.Item
+	selectedItem: undefined, // sap.ui.core.Item
+	buttons: [], // sap.m.Button
+	change: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<ActionSelect xmlns="sap.m"
+	id="${id}"
+	name=""
+	visible="true"
+	enabled="true"
+	width="auto"
+	maxWidth="100%"
+	selectedKey=""
+	selectedItemId=""
+	icon=""
+	type="Default"
+	autoAdjustWidth="false"
+	selectedItem=""
+	buttons=""
+	change="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<items></items> <!-- sap.ui.core.Item -->
+</ActionSelect>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.m.ActionSheet" alias="ActionSheet,Sheet">
+	<jsTemplate><![CDATA[new sap.m.ActionSheet({
+	id: "${id}", // sap.ui.core.ID
+	placement: sap.m.PlacementType.Bottom, // sap.m.PlacementType
+	showCancelButton: true, // boolean
+	cancelButtonText: undefined, // string
+	title: undefined, // string
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	buttons: [], // sap.m.Button
+	cancelButtonTap: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	beforeOpen: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	afterOpen: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	beforeClose: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	afterClose: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	cancelButtonPress: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<ActionSheet xmlns="sap.m"
+	id="${id}"
+	placement="Bottom"
+	showCancelButton="true"
+	cancelButtonText=""
+	title=""
+	cancelButtonTap=""
+	beforeOpen=""
+	afterOpen=""
+	beforeClose=""
+	afterClose=""
+	cancelButtonPress="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<buttons></buttons> <!-- sap.m.Button -->
+</ActionSheet>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.m.App" alias="App">
+	<jsTemplate><![CDATA[new sap.m.App({
+	id: "${id}", // sap.ui.core.ID
+	height: '100%', // sap.ui.core.CSSSize
+	width: '100%', // sap.ui.core.CSSSize
+	visible: true, // boolean
+	defaultTransitionName: undefined, // string, since 1.7.1
+	homeIcon: undefined, // any
+	backgroundColor: undefined, // string, since 1.11.2
+	backgroundImage: undefined, // sap.ui.core.URI, since 1.11.2
+	backgroundRepeat: false, // boolean, since 1.11.2
+	backgroundOpacity: 1, // float, since 1.11.2
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	pages: [], // sap.ui.core.Control
+	initialPage: undefined, // sap.ui.core.Control
+	navigate: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this], // since 1.7.1
+	afterNavigate: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this], // since 1.7.1
+	orientationChange: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<App xmlns="sap.m"
+	id="${id}"
+	height="100%"
+	width="100%"
+	visible="true"
+	defaultTransitionName=""
+	homeIcon=""
+	backgroundColor=""
+	backgroundImage=""
+	backgroundRepeat="false"
+	backgroundOpacity="1"
+	initialPage=""
+	navigate=""
+	afterNavigate=""
+	orientationChange="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<pages></pages> <!-- sap.ui.core.Control -->
+</App>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.m.Bar" alias="Bar">
+	<jsTemplate><![CDATA[new sap.m.Bar({
+	id: "${id}", // sap.ui.core.ID
+	enableFlexBox: false, // boolean
+	translucent: false, // boolean, since 1.12
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	contentLeft: [], // sap.ui.core.Control
+	contentMiddle: [], // sap.ui.core.Control
+	contentRight: [] // sap.ui.core.Control
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<Bar xmlns="sap.m"
+	id="${id}"
+	enableFlexBox="false"
+	translucent="false">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<contentLeft></contentLeft> <!-- sap.ui.core.Control -->
+		<contentMiddle></contentMiddle> <!-- sap.ui.core.Control -->
+		<contentRight></contentRight> <!-- sap.ui.core.Control -->
+</Bar>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.m.BusyDialog" alias="BusyDialog,Dialog">
+	<jsTemplate><![CDATA[new sap.m.BusyDialog({
+	id: "${id}", // sap.ui.core.ID
+	text: undefined, // string
+	title: undefined, // string
+	customIcon: undefined, // sap.ui.core.URI
+	customIconRotationSpeed: 1000, // int
+	customIconDensityAware: true, // boolean
+	customIconWidth: "30px", // sap.ui.core.CSSSize
+	customIconHeight: "44px", // sap.ui.core.CSSSize
+	cancelButtonText: undefined, // string
+	showCancelButton: false, // boolean
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	close: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<BusyDialog xmlns="sap.m"
+	id="${id}"
+	text=""
+	title=""
+	customIcon=""
+	customIconRotationSpeed="1000"
+	customIconDensityAware="true"
+	customIconWidth="30px"
+	customIconHeight="44px"
+	cancelButtonText=""
+	showCancelButton="false"
+	close="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+</BusyDialog>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.m.BusyIndicator" alias="BusyIndicator,Indicator">
+	<jsTemplate><![CDATA[new sap.m.BusyIndicator({
+	id: "${id}", // sap.ui.core.ID
+	text: undefined, // string
+	textDirection: sap.ui.core.TextDirection.Inherit, // sap.ui.core.TextDirection
+	visible: true, // boolean
+	customIcon: undefined, // sap.ui.core.URI
+	customIconRotationSpeed: 1000, // int
+	customIconDensityAware: true, // boolean
+	customIconWidth: "44px", // sap.ui.core.CSSSize
+	customIconHeight: "44px", // sap.ui.core.CSSSize
+	size: undefined, // sap.ui.core.CSSSize
+	design: "auto", // string
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [] // sap.ui.core.CustomData
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<BusyIndicator xmlns="sap.m"
+	id="${id}"
+	text=""
+	textDirection="Inherit"
+	visible="true"
+	customIcon=""
+	customIconRotationSpeed="1000"
+	customIconDensityAware="true"
+	customIconWidth="44px"
+	customIconHeight="44px"
+	size=""
+	design="auto">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+</BusyIndicator>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.m.Button" alias="Button">
+	<jsTemplate><![CDATA[new sap.m.Button({
+	id: "${id}", // sap.ui.core.ID
+	text: undefined, // string
+	type: sap.m.ButtonType.Default, // sap.m.ButtonType
+	width: undefined, // sap.ui.core.CSSSize
+	enabled: true, // boolean
+	visible: true, // boolean
+	icon: undefined, // sap.ui.core.URI
+	iconFirst: true, // boolean
+	activeIcon: undefined, // sap.ui.core.URI
+	iconDensityAware: true, // boolean
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	tap: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	press: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<Button xmlns="sap.m"
+	id="${id}"
+	text=""
+	type="Default"
+	width=""
+	enabled="true"
+	visible="true"
+	icon=""
+	iconFirst="true"
+	activeIcon=""
+	iconDensityAware="true"
+	tap=""
+	press="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+</Button>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.m.Carousel" alias="Carousel">
+	<jsTemplate><![CDATA[new sap.m.Carousel({
+	id: "${id}", // sap.ui.core.ID
+	height: "100%", // sap.ui.core.CSSSize
+	loop: false, // boolean
+	visible: true, // boolean
+	width: "100%", // sap.ui.core.CSSSize
+	showPageIndicator: true, // boolean
+	pageIndicatorPlacement: sap.m.PlacementType.Bottom, // sap.m.PlacementType
+	showBusyIndicator: true, // boolean
+	busyIndicatorSize: "6em", // sap.ui.core.CSSSize
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	pages: [], // sap.ui.core.Control
+	activePage: undefined, // sap.ui.core.Control
+	loadPage: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	unloadPage: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	pageChanged: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<Carousel xmlns="sap.m"
+	id="${id}"
+	height="100%"
+	loop="false"
+	visible="true"
+	width="100%"
+	showPageIndicator="true"
+	pageIndicatorPlacement="Bottom"
+	showBusyIndicator="true"
+	busyIndicatorSize="6em"
+	activePage=""
+	loadPage=""
+	unloadPage=""
+	pageChanged="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<pages></pages> <!-- sap.ui.core.Control -->
+</Carousel>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.m.CheckBox" alias="CheckBox,Box">
+	<jsTemplate><![CDATA[new sap.m.CheckBox({
+	id: "${id}", // sap.ui.core.ID
+	selected: false, // boolean
+	visible: true, // boolean
+	enabled: true, // boolean
+	name: undefined, // string
+	text: undefined, // string
+	textDirection: sap.ui.core.TextDirection.Inherit, // sap.ui.core.TextDirection
+	width: '', // sap.ui.core.CSSSize
+	activeHandling: true, // boolean
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	select: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<CheckBox xmlns="sap.m"
+	id="${id}"
+	selected="false"
+	visible="true"
+	enabled="true"
+	name=""
+	text=""
+	textDirection="Inherit"
+	width=""
+	activeHandling="true"
+	select="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+</CheckBox>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.m.Column" alias="Column">
+	<jsTemplate><![CDATA[new sap.m.Column({
+	id: "${id}", // sap.ui.core.ID
+	width: undefined, // sap.ui.core.CSSSize
+	hAlign: sap.ui.core.TextAlign.Begin, // sap.ui.core.TextAlign
+	vAlign: sap.ui.core.VerticalAlign.Inherit, // sap.ui.core.VerticalAlign
+	styleClass: undefined, // string
+	visible: true, // boolean
+	minScreenWidth: undefined, // string
+	demandPopin: false, // boolean
+	popinHAlign: sap.ui.core.TextAlign.Begin, // sap.ui.core.TextAlign
+	popinDisplay: sap.m.PopinDisplay.Block, // sap.m.PopinDisplay, since 1.13.2
+	mergeDuplicates: false, // boolean, since 1.16
+	mergeFunctionName: "getText", // string, since 1.16
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	header: undefined, // sap.ui.core.Control
+	footer: undefined // sap.ui.core.Control
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<Column xmlns="sap.m"
+	id="${id}"
+	width=""
+	hAlign="Begin"
+	vAlign="Inherit"
+	styleClass=""
+	visible="true"
+	minScreenWidth=""
+	demandPopin="false"
+	popinHAlign="Begin"
+	popinDisplay="Block"
+	mergeDuplicates="false"
+	mergeFunctionName="getText">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<header></header> <!-- sap.ui.core.Control -->
+		<footer></footer> <!-- sap.ui.core.Control -->
+</Column>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.m.ColumnListItem" alias="ColumnListItem,Item">
+	<jsTemplate><![CDATA[new sap.m.ColumnListItem({
+	id: "${id}", // sap.ui.core.ID
+	type: sap.m.ListType.Inactive, // sap.m.ListType
+	visible: true, // boolean
+	unread: false, // boolean
+	selected: false, // boolean
+	counter: undefined, // int
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	cells: [], // sap.ui.core.Control
+	tap: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	detailTap: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	press: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	detailPress: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<ColumnListItem xmlns="sap.m"
+	id="${id}"
+	type="Inactive"
+	visible="true"
+	unread="false"
+	selected="false"
+	counter=""
+	tap=""
+	detailTap=""
+	press=""
+	detailPress="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<cells></cells> <!-- sap.ui.core.Control -->
+</ColumnListItem>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.m.CustomListItem" alias="CustomListItem,Item">
+	<jsTemplate><![CDATA[new sap.m.CustomListItem({
+	id: "${id}", // sap.ui.core.ID
+	type: sap.m.ListType.Inactive, // sap.m.ListType
+	visible: true, // boolean
+	unread: false, // boolean
+	selected: false, // boolean
+	counter: undefined, // int
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	content: [], // sap.ui.core.Control
+	tap: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	detailTap: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	press: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	detailPress: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<CustomListItem xmlns="sap.m"
+	id="${id}"
+	type="Inactive"
+	visible="true"
+	unread="false"
+	selected="false"
+	counter=""
+	tap=""
+	detailTap=""
+	press=""
+	detailPress="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<content></content> <!-- sap.ui.core.Control -->
+</CustomListItem>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.m.CustomTile" alias="CustomTile,Tile">
+	<jsTemplate><![CDATA[new sap.m.CustomTile({
+	id: "${id}", // sap.ui.core.ID
+	removable: true, // boolean
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	content: undefined, // sap.ui.core.Control
+	press: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<CustomTile xmlns="sap.m"
+	id="${id}"
+	removable="true"
+	press="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<content></content> <!-- sap.ui.core.Control -->
+</CustomTile>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.m.DateTimeInput" alias="DateTimeInput,Input">
+	<jsTemplate><![CDATA[new sap.m.DateTimeInput({
+	id: "${id}", // sap.ui.core.ID
+	value: undefined, // string
+	width: undefined, // sap.ui.core.CSSSize
+	enabled: true, // boolean
+	visible: true, // boolean
+	valueState: sap.ui.core.ValueState.None, // sap.ui.core.ValueState
+	name: undefined, // string
+	placeholder: undefined, // string
+	editable: true, // boolean, since 1.12.0
+	type: sap.m.DateTimeInputType.Date, // sap.m.DateTimeInputType
+	displayFormat: undefined, // string
+	valueFormat: undefined, // string
+	dateValue: undefined, // object
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	change: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	change: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<DateTimeInput xmlns="sap.m"
+	id="${id}"
+	value=""
+	width=""
+	enabled="true"
+	visible="true"
+	valueState="None"
+	name=""
+	placeholder=""
+	editable="true"
+	type="Date"
+	displayFormat=""
+	valueFormat=""
+	dateValue=""
+	change=""
+	change="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+</DateTimeInput>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.m.Dialog" alias="Dialog">
+	<jsTemplate><![CDATA[new sap.m.Dialog({
+	id: "${id}", // sap.ui.core.ID
+	icon: undefined, // sap.ui.core.URI
+	title: undefined, // string
+	showHeader: true, // boolean, since 1.15.1
+	type: sap.m.DialogType.Standard, // sap.m.DialogType
+	state: sap.ui.core.ValueState.None, // sap.ui.core.ValueState, since 1.11.2
+	stretchOnPhone: false, // boolean, since 1.11.2
+	stretch: false, // boolean, since 1.13.1
+	contentWidth: undefined, // sap.ui.core.CSSSize, since 1.12.1
+	contentHeight: undefined, // sap.ui.core.CSSSize, since 1.12.1
+	horizontalScrolling: true, // boolean, since 1.15.1
+	verticalScrolling: true, // boolean, since 1.15.1
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	content: [], // sap.ui.core.Control
+	subHeader: undefined, // sap.m.Bar, since 1.12.2
+	customHeader: undefined, // sap.m.Bar, since 1.15.1
+	beginButton: undefined, // sap.m.Button, since 1.15.1
+	endButton: undefined, // sap.m.Button, since 1.15.1
+	leftButton: undefined, // sap.m.Button
+	rightButton: undefined, // sap.m.Button
+	initialFocus: undefined, // sap.ui.core.Control, since 1.15.0
+	beforeOpen: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	afterOpen: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	beforeClose: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	afterClose: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<Dialog xmlns="sap.m"
+	id="${id}"
+	icon=""
+	title=""
+	showHeader="true"
+	type="Standard"
+	state="None"
+	stretchOnPhone="false"
+	stretch="false"
+	contentWidth=""
+	contentHeight=""
+	horizontalScrolling="true"
+	verticalScrolling="true"
+	leftButton=""
+	rightButton=""
+	initialFocus=""
+	beforeOpen=""
+	afterOpen=""
+	beforeClose=""
+	afterClose="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<content></content> <!-- sap.ui.core.Control -->
+		<subHeader></subHeader> <!-- sap.m.Bar, since 1.12.2 -->
+		<customHeader></customHeader> <!-- sap.m.Bar, since 1.15.1 -->
+		<beginButton></beginButton> <!-- sap.m.Button, since 1.15.1 -->
+		<endButton></endButton> <!-- sap.m.Button, since 1.15.1 -->
+</Dialog>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.m.DisplayListItem" alias="DisplayListItem,Item">
+	<jsTemplate><![CDATA[new sap.m.DisplayListItem({
+	id: "${id}", // sap.ui.core.ID
+	type: sap.m.ListType.Inactive, // sap.m.ListType
+	visible: true, // boolean
+	unread: false, // boolean
+	selected: false, // boolean
+	counter: undefined, // int
+	label: undefined, // string
+	value: undefined, // string
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	tap: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	detailTap: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	press: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	detailPress: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<DisplayListItem xmlns="sap.m"
+	id="${id}"
+	type="Inactive"
+	visible="true"
+	unread="false"
+	selected="false"
+	counter=""
+	label=""
+	value=""
+	tap=""
+	detailTap=""
+	press=""
+	detailPress="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+</DisplayListItem>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.m.FacetFilter" alias="FacetFilter,Filter">
+	<jsTemplate><![CDATA[new sap.m.FacetFilter({
+	id: "${id}", // sap.ui.core.ID
+	type: sap.m.FacetFilterType.Simple, // sap.m.FacetFilterType
+	visible: true, // boolean
+	showPersonalization: false, // boolean
+	showSummaryBar: false, // boolean
+	showReset: true, // boolean
+	liveSearch: true, // boolean
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	lists: [], // sap.m.FacetFilterList
+	reset: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<FacetFilter xmlns="sap.m"
+	id="${id}"
+	type="Simple"
+	visible="true"
+	showPersonalization="false"
+	showSummaryBar="false"
+	showReset="true"
+	liveSearch="true"
+	reset="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<lists></lists> <!-- sap.m.FacetFilterList -->
+</FacetFilter>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.m.FacetFilterItem" alias="FacetFilterItem,Item">
+	<jsTemplate><![CDATA[new sap.m.FacetFilterItem({
+	id: "${id}", // sap.ui.core.ID
+	text: "", // string
+	enabled: true, // boolean
+	textDirection: sap.ui.core.TextDirection.Inherit, // sap.ui.core.TextDirection
+	key: undefined, // string
+	selected: false, // boolean
+	count: undefined, // int
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [] // sap.ui.core.CustomData
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<FacetFilterItem xmlns="sap.m"
+	id="${id}"
+	text=""
+	enabled="true"
+	textDirection="Inherit"
+	key=""
+	selected="false"
+	count="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+</FacetFilterItem>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.m.FacetFilterList" alias="FacetFilterList,List">
+	<jsTemplate><![CDATA[new sap.m.FacetFilterList({
+	id: "${id}", // sap.ui.core.ID
+	title: undefined, // string
+	allCount: undefined, // int
+	active: true, // boolean
+	key: undefined, // string
+	multiSelect: true, // boolean
+	sequence: -1, // int
+	growing: true, // boolean
+	growingThreshold: 20, // int
+	growingTriggerText: undefined, // string
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	items: [], // sap.m.FacetFilterItem
+	listOpen: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	listClose: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<FacetFilterList xmlns="sap.m"
+	id="${id}"
+	title=""
+	allCount=""
+	active="true"
+	key=""
+	multiSelect="true"
+	sequence="-1"
+	growing="true"
+	growingThreshold="20"
+	growingTriggerText=""
+	listOpen=""
+	listClose="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<items></items> <!-- sap.m.FacetFilterItem -->
+</FacetFilterList>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.m.FeedListItem" alias="FeedListItem,Item">
+	<jsTemplate><![CDATA[new sap.m.FeedListItem({
+	id: "${id}", // sap.ui.core.ID
+	type: sap.m.ListType.Inactive, // sap.m.ListType
+	visible: true, // boolean
+	unread: false, // boolean
+	selected: false, // boolean
+	counter: undefined, // int
+	icon: undefined, // sap.ui.core.URI
+	activeIcon: undefined, // sap.ui.core.URI
+	sender: undefined, // string
+	text: undefined, // string
+	info: undefined, // string
+	timestamp: undefined, // string
+	senderActive: true, // boolean
+	iconActive: true, // boolean
+	iconDensityAware: true, // boolean
+	showIcon: true, // boolean
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	tap: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	detailTap: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	press: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	detailPress: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	senderPress: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	iconPress: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<FeedListItem xmlns="sap.m"
+	id="${id}"
+	type="Inactive"
+	visible="true"
+	unread="false"
+	selected="false"
+	counter=""
+	icon=""
+	activeIcon=""
+	sender=""
+	text=""
+	info=""
+	timestamp=""
+	senderActive="true"
+	iconActive="true"
+	iconDensityAware="true"
+	showIcon="true"
+	tap=""
+	detailTap=""
+	press=""
+	detailPress=""
+	senderPress=""
+	iconPress="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+</FeedListItem>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.m.FlexBox" alias="FlexBox,Box">
+	<jsTemplate><![CDATA[new sap.m.FlexBox({
+	id: "${id}", // sap.ui.core.ID
+	visible: true, // boolean
+	height: "", // sap.ui.core.CSSSize, since 1.9.1
+	width: "", // sap.ui.core.CSSSize, since 1.9.1
+	displayInline: false, // boolean
+	direction: sap.m.FlexDirection.Row, // sap.m.FlexDirection
+	fitContainer: false, // boolean
+	renderType: sap.m.FlexRendertype.Div, // sap.m.FlexRendertype
+	justifyContent: sap.m.FlexJustifyContent.Start, // sap.m.FlexJustifyContent
+	alignItems: sap.m.FlexAlignItems.Stretch, // sap.m.FlexAlignItems
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	items: [] // sap.ui.core.Control
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<FlexBox xmlns="sap.m"
+	id="${id}"
+	visible="true"
+	height=""
+	width=""
+	displayInline="false"
+	direction="Row"
+	fitContainer="false"
+	renderType="Div"
+	justifyContent="Start"
+	alignItems="Stretch">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<items></items> <!-- sap.ui.core.Control -->
+</FlexBox>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.m.FlexItemData" alias="FlexItemData,Data">
+	<jsTemplate><![CDATA[new sap.m.FlexItemData({
+	id: "${id}", // sap.ui.core.ID
+	alignSelf: sap.m.FlexAlignSelf.Auto, // sap.m.FlexAlignSelf
+	order: 0, // int
+	growFactor: 0, // float
+	styleClass: "", // string
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [] // sap.ui.core.CustomData
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<FlexItemData xmlns="sap.m"
+	id="${id}"
+	alignSelf="Auto"
+	order="0"
+	growFactor="0"
+	styleClass="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+</FlexItemData>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.m.GroupHeaderListItem" alias="GroupHeaderListItem,Item">
+	<jsTemplate><![CDATA[new sap.m.GroupHeaderListItem({
+	id: "${id}", // sap.ui.core.ID
+	type: sap.m.ListType.Inactive, // sap.m.ListType
+	visible: true, // boolean
+	unread: false, // boolean
+	selected: false, // boolean
+	counter: undefined, // int
+	title: undefined, // string
+	count: undefined, // string
+	upperCase: true, // boolean, since 1.13.2
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	tap: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	detailTap: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	press: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	detailPress: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<GroupHeaderListItem xmlns="sap.m"
+	id="${id}"
+	type="Inactive"
+	visible="true"
+	unread="false"
+	selected="false"
+	counter=""
+	title=""
+	count=""
+	upperCase="true"
+	tap=""
+	detailTap=""
+	press=""
+	detailPress="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+</GroupHeaderListItem>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.m.GrowingList" alias="GrowingList,List">
+	<jsTemplate><![CDATA[new sap.m.GrowingList({
+	id: "${id}", // sap.ui.core.ID
+	inset: false, // boolean
+	visible: true, // boolean
+	headerText: undefined, // string
+	headerDesign: sap.m.ListHeaderDesign.Standard, // sap.m.ListHeaderDesign, since 1.14
+	footerText: undefined, // string
+	mode: sap.m.ListMode.None, // sap.m.ListMode
+	width: "100%", // sap.ui.core.CSSSize
+	includeItemInSelection: false, // boolean
+	showUnread: false, // boolean
+	noDataText: undefined, // string
+	showNoData: true, // boolean
+	modeAnimationOn: true, // boolean
+	showSeparators: sap.m.ListSeparators.All, // sap.m.ListSeparators
+	swipeDirection: sap.m.SwipeDirection.Both, // sap.m.SwipeDirection
+	growing: false, // boolean, since 1.16
+	growingThreshold: 20, // int, since 1.16
+	growingTriggerText: undefined, // string, since 1.16
+	growingScrollToLoad: false, // boolean, since 1.16
+	backgroundDesign: sap.m.BackgroundDesign.Solid, // sap.m.BackgroundDesign, since 1.14
+	threshold: 20, // int, since 1.16
+	triggerText: undefined, // string, since 1.16
+	scrollToLoad: false, // boolean, since 1.16
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	items: [], // sap.m.ListItemBase
+	swipeContent: undefined, // sap.ui.core.Control
+	headerToolbar: undefined, // sap.m.Toolbar, since 1.16
+	infoToolbar: undefined, // sap.m.Toolbar, since 1.16
+	columns: [], // sap.m.Column
+	select: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	selectionChange: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this], // since 1.16
+	"delete": [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	swipe: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	growingStarted: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this], // since 1.16
+	growingFinished: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this], // since 1.16
+	updateStarted: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this], // since 1.16.3
+	updateFinished: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this] // since 1.16.3
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<GrowingList xmlns="sap.m"
+	id="${id}"
+	inset="false"
+	visible="true"
+	headerText=""
+	headerDesign="Standard"
+	footerText=""
+	mode="None"
+	width="100%"
+	includeItemInSelection="false"
+	showUnread="false"
+	noDataText=""
+	showNoData="true"
+	modeAnimationOn="true"
+	showSeparators="All"
+	swipeDirection="Both"
+	growing="false"
+	growingThreshold="20"
+	growingTriggerText=""
+	growingScrollToLoad="false"
+	backgroundDesign="Solid"
+	threshold="20"
+	triggerText=""
+	scrollToLoad="false"
+	select=""
+	selectionChange=""
+	"delete"=""
+	swipe=""
+	growingStarted=""
+	growingFinished=""
+	updateStarted=""
+	updateFinished="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<items></items> <!-- sap.m.ListItemBase -->
+		<swipeContent></swipeContent> <!-- sap.ui.core.Control -->
+		<headerToolbar></headerToolbar> <!-- sap.m.Toolbar, since 1.16 -->
+		<infoToolbar></infoToolbar> <!-- sap.m.Toolbar, since 1.16 -->
+		<columns></columns> <!-- sap.m.Column -->
+</GrowingList>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.m.HBox" alias="HBox">
+	<jsTemplate><![CDATA[new sap.m.HBox({
+	id: "${id}", // sap.ui.core.ID
+	visible: true, // boolean
+	height: "", // sap.ui.core.CSSSize, since 1.9.1
+	width: "", // sap.ui.core.CSSSize, since 1.9.1
+	displayInline: false, // boolean
+	direction: sap.m.FlexDirection.Row, // sap.m.FlexDirection
+	fitContainer: false, // boolean
+	renderType: sap.m.FlexRendertype.Div, // sap.m.FlexRendertype
+	justifyContent: sap.m.FlexJustifyContent.Start, // sap.m.FlexJustifyContent
+	alignItems: sap.m.FlexAlignItems.Stretch, // sap.m.FlexAlignItems
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	items: [] // sap.ui.core.Control
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<HBox xmlns="sap.m"
+	id="${id}"
+	visible="true"
+	height=""
+	width=""
+	displayInline="false"
+	direction="Row"
+	fitContainer="false"
+	renderType="Div"
+	justifyContent="Start"
+	alignItems="Stretch">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<items></items> <!-- sap.ui.core.Control -->
+</HBox>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.m.IconTabBar" alias="IconTabBar,Bar">
+	<jsTemplate><![CDATA[new sap.m.IconTabBar({
+	id: "${id}", // sap.ui.core.ID
+	showSelection: true, // boolean
+	expandable: true, // boolean, since 1.15.0
+	expanded: true, // boolean, since 1.15.0
+	selectedKey: undefined, // string, since 1.15.0
+	visible: true, // boolean, since 1.15.0
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	items: [], // sap.m.IconTab
+	content: [], // sap.ui.core.Control
+	select: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	expand: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this] // since 1.15.0
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<IconTabBar xmlns="sap.m"
+	id="${id}"
+	showSelection="true"
+	expandable="true"
+	expanded="true"
+	selectedKey=""
+	visible="true"
+	select=""
+	expand="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<items></items> <!-- sap.m.IconTab -->
+		<content></content> <!-- sap.ui.core.Control -->
+</IconTabBar>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.m.IconTabFilter" alias="IconTabFilter,Filter">
+	<jsTemplate><![CDATA[new sap.m.IconTabFilter({
+	id: "${id}", // sap.ui.core.ID
+	text: "", // string
+	enabled: true, // boolean
+	textDirection: sap.ui.core.TextDirection.Inherit, // sap.ui.core.TextDirection
+	key: undefined, // string
+	count: "", // string
+	showAll: false, // boolean
+	icon: "", // sap.ui.core.URI
+	iconColor: sap.ui.core.IconColor.Default, // sap.ui.core.IconColor
+	iconDensityAware: true, // boolean
+	visible: true, // boolean
+	design: sap.m.IconTabFilterDesign.Vertical, // sap.m.IconTabFilterDesign
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	content: [] // sap.ui.core.Control, since 1.15.0
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<IconTabFilter xmlns="sap.m"
+	id="${id}"
+	text=""
+	enabled="true"
+	textDirection="Inherit"
+	key=""
+	count=""
+	showAll="false"
+	icon=""
+	iconColor="Default"
+	iconDensityAware="true"
+	visible="true"
+	design="Vertical">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<content></content> <!-- sap.ui.core.Control, since 1.15.0 -->
+</IconTabFilter>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.m.IconTabSeparator" alias="IconTabSeparator,Separator">
+	<jsTemplate><![CDATA[new sap.m.IconTabSeparator({
+	id: "${id}", // sap.ui.core.ID
+	icon: "", // sap.ui.core.URI
+	iconDensityAware: true, // boolean
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [] // sap.ui.core.CustomData
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<IconTabSeparator xmlns="sap.m"
+	id="${id}"
+	icon=""
+	iconDensityAware="true">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+</IconTabSeparator>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.m.Image" alias="Image">
+	<jsTemplate><![CDATA[new sap.m.Image({
+	id: "${id}", // sap.ui.core.ID
+	src: undefined, // sap.ui.core.URI
+	visible: true, // boolean
+	width: undefined, // sap.ui.core.CSSSize
+	height: undefined, // sap.ui.core.CSSSize
+	decorative: true, // boolean
+	alt: undefined, // string
+	useMap: undefined, // string
+	densityAware: true, // boolean
+	activeSrc: "", // sap.ui.core.URI
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	tap: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	press: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<Image xmlns="sap.m"
+	id="${id}"
+	src=""
+	visible="true"
+	width=""
+	height=""
+	decorative="true"
+	alt=""
+	useMap=""
+	densityAware="true"
+	activeSrc=""
+	tap=""
+	press="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+</Image>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.m.Input" alias="Input">
+	<jsTemplate><![CDATA[new sap.m.Input({
+	id: "${id}", // sap.ui.core.ID
+	value: undefined, // string
+	width: undefined, // sap.ui.core.CSSSize
+	enabled: true, // boolean
+	visible: true, // boolean
+	valueState: sap.ui.core.ValueState.None, // sap.ui.core.ValueState
+	name: undefined, // string
+	placeholder: undefined, // string
+	editable: true, // boolean, since 1.12.0
+	type: sap.m.InputType.Text, // sap.m.InputType
+	maxLength: 0, // int
+	valueStateText: undefined, // string
+	showValueStateMessage: true, // boolean
+	dateFormat: "YYYY-MM-dd", // string
+	showValueHelp: false, // boolean, since 1.16
+	showSuggestion: false, // boolean, since 1.16.1
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	suggestionItems: [], // sap.ui.core.Item, since 1.16.1
+	change: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	liveChange: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	valueHelpRequest: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this], // since 1.16
+	suggest: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this], // since 1.16.1
+	suggestionItemSelected: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this] // since 1.16.3
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<Input xmlns="sap.m"
+	id="${id}"
+	value=""
+	width=""
+	enabled="true"
+	visible="true"
+	valueState="None"
+	name=""
+	placeholder=""
+	editable="true"
+	type="Text"
+	maxLength="0"
+	valueStateText=""
+	showValueStateMessage="true"
+	dateFormat="YYYY-MM-dd"
+	showValueHelp="false"
+	showSuggestion="false"
+	change=""
+	liveChange=""
+	valueHelpRequest=""
+	suggest=""
+	suggestionItemSelected="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<suggestionItems></suggestionItems> <!-- sap.ui.core.Item, since 1.16.1 -->
+</Input>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.m.InputBase" alias="InputBase,Base">
+	<jsTemplate><![CDATA[new sap.m.InputBase({
+	id: "${id}", // sap.ui.core.ID
+	value: undefined, // string
+	width: undefined, // sap.ui.core.CSSSize
+	enabled: true, // boolean
+	visible: true, // boolean
+	valueState: sap.ui.core.ValueState.None, // sap.ui.core.ValueState
+	name: undefined, // string
+	placeholder: undefined, // string
+	editable: true, // boolean, since 1.12.0
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	change: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<InputBase xmlns="sap.m"
+	id="${id}"
+	value=""
+	width=""
+	enabled="true"
+	visible="true"
+	valueState="None"
+	name=""
+	placeholder=""
+	editable="true"
+	change="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+</InputBase>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.m.InputListItem" alias="InputListItem,Item">
+	<jsTemplate><![CDATA[new sap.m.InputListItem({
+	id: "${id}", // sap.ui.core.ID
+	type: sap.m.ListType.Inactive, // sap.m.ListType
+	visible: true, // boolean
+	unread: false, // boolean
+	selected: false, // boolean
+	counter: undefined, // int
+	label: undefined, // string
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	content: [], // sap.ui.core.Control
+	tap: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	detailTap: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	press: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	detailPress: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<InputListItem xmlns="sap.m"
+	id="${id}"
+	type="Inactive"
+	visible="true"
+	unread="false"
+	selected="false"
+	counter=""
+	label=""
+	tap=""
+	detailTap=""
+	press=""
+	detailPress="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<content></content> <!-- sap.ui.core.Control -->
+</InputListItem>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.m.Label" alias="Label">
+	<jsTemplate><![CDATA[new sap.m.Label({
+	id: "${id}", // sap.ui.core.ID
+	design: sap.m.LabelDesign.Standard, // sap.m.LabelDesign
+	text: undefined, // string
+	visible: true, // boolean
+	textAlign: sap.ui.core.TextAlign.Begin, // sap.ui.core.TextAlign
+	textDirection: sap.ui.core.TextDirection.Inherit, // sap.ui.core.TextDirection
+	width: '', // sap.ui.core.CSSSize
+	required: false, // boolean
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	labelFor: undefined // sap.ui.core.Control
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<Label xmlns="sap.m"
+	id="${id}"
+	design="Standard"
+	text=""
+	visible="true"
+	textAlign="Begin"
+	textDirection="Inherit"
+	width=""
+	required="false"
+	labelFor="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+</Label>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.m.Link" alias="Link">
+	<jsTemplate><![CDATA[new sap.m.Link({
+	id: "${id}", // sap.ui.core.ID
+	text: '', // string
+	enabled: true, // boolean
+	visible: true, // boolean
+	target: undefined, // string
+	width: undefined, // sap.ui.core.CSSSize
+	href: undefined, // sap.ui.core.URI
+	wrapping: false, // boolean
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	press: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<Link xmlns="sap.m"
+	id="${id}"
+	text=""
+	enabled="true"
+	visible="true"
+	target=""
+	width=""
+	href=""
+	wrapping="false"
+	press="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+</Link>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.m.List" alias="List">
+	<jsTemplate><![CDATA[new sap.m.List({
+	id: "${id}", // sap.ui.core.ID
+	inset: false, // boolean
+	visible: true, // boolean
+	headerText: undefined, // string
+	headerDesign: sap.m.ListHeaderDesign.Standard, // sap.m.ListHeaderDesign, since 1.14
+	footerText: undefined, // string
+	mode: sap.m.ListMode.None, // sap.m.ListMode
+	width: "100%", // sap.ui.core.CSSSize
+	includeItemInSelection: false, // boolean
+	showUnread: false, // boolean
+	noDataText: undefined, // string
+	showNoData: true, // boolean
+	modeAnimationOn: true, // boolean
+	showSeparators: sap.m.ListSeparators.All, // sap.m.ListSeparators
+	swipeDirection: sap.m.SwipeDirection.Both, // sap.m.SwipeDirection
+	growing: false, // boolean, since 1.16
+	growingThreshold: 20, // int, since 1.16
+	growingTriggerText: undefined, // string, since 1.16
+	growingScrollToLoad: false, // boolean, since 1.16
+	backgroundDesign: sap.m.BackgroundDesign.Solid, // sap.m.BackgroundDesign, since 1.14
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	items: [], // sap.m.ListItemBase
+	swipeContent: undefined, // sap.ui.core.Control
+	headerToolbar: undefined, // sap.m.Toolbar, since 1.16
+	infoToolbar: undefined, // sap.m.Toolbar, since 1.16
+	columns: [], // sap.m.Column
+	select: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	selectionChange: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this], // since 1.16
+	"delete": [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	swipe: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	growingStarted: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this], // since 1.16
+	growingFinished: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this], // since 1.16
+	updateStarted: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this], // since 1.16.3
+	updateFinished: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this] // since 1.16.3
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<List xmlns="sap.m"
+	id="${id}"
+	inset="false"
+	visible="true"
+	headerText=""
+	headerDesign="Standard"
+	footerText=""
+	mode="None"
+	width="100%"
+	includeItemInSelection="false"
+	showUnread="false"
+	noDataText=""
+	showNoData="true"
+	modeAnimationOn="true"
+	showSeparators="All"
+	swipeDirection="Both"
+	growing="false"
+	growingThreshold="20"
+	growingTriggerText=""
+	growingScrollToLoad="false"
+	backgroundDesign="Solid"
+	select=""
+	selectionChange=""
+	"delete"=""
+	swipe=""
+	growingStarted=""
+	growingFinished=""
+	updateStarted=""
+	updateFinished="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<items></items> <!-- sap.m.ListItemBase -->
+		<swipeContent></swipeContent> <!-- sap.ui.core.Control -->
+		<headerToolbar></headerToolbar> <!-- sap.m.Toolbar, since 1.16 -->
+		<infoToolbar></infoToolbar> <!-- sap.m.Toolbar, since 1.16 -->
+		<columns></columns> <!-- sap.m.Column -->
+</List>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.m.ListBase" alias="ListBase,Base">
+	<jsTemplate><![CDATA[new sap.m.ListBase({
+	id: "${id}", // sap.ui.core.ID
+	inset: false, // boolean
+	visible: true, // boolean
+	headerText: undefined, // string
+	headerDesign: sap.m.ListHeaderDesign.Standard, // sap.m.ListHeaderDesign, since 1.14
+	footerText: undefined, // string
+	mode: sap.m.ListMode.None, // sap.m.ListMode
+	width: "100%", // sap.ui.core.CSSSize
+	includeItemInSelection: false, // boolean
+	showUnread: false, // boolean
+	noDataText: undefined, // string
+	showNoData: true, // boolean
+	modeAnimationOn: true, // boolean
+	showSeparators: sap.m.ListSeparators.All, // sap.m.ListSeparators
+	swipeDirection: sap.m.SwipeDirection.Both, // sap.m.SwipeDirection
+	growing: false, // boolean, since 1.16
+	growingThreshold: 20, // int, since 1.16
+	growingTriggerText: undefined, // string, since 1.16
+	growingScrollToLoad: false, // boolean, since 1.16
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	items: [], // sap.m.ListItemBase
+	swipeContent: undefined, // sap.ui.core.Control
+	headerToolbar: undefined, // sap.m.Toolbar, since 1.16
+	infoToolbar: undefined, // sap.m.Toolbar, since 1.16
+	select: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	selectionChange: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this], // since 1.16
+	"delete": [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	swipe: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	growingStarted: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this], // since 1.16
+	growingFinished: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this], // since 1.16
+	updateStarted: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this], // since 1.16.3
+	updateFinished: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this] // since 1.16.3
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<ListBase xmlns="sap.m"
+	id="${id}"
+	inset="false"
+	visible="true"
+	headerText=""
+	headerDesign="Standard"
+	footerText=""
+	mode="None"
+	width="100%"
+	includeItemInSelection="false"
+	showUnread="false"
+	noDataText=""
+	showNoData="true"
+	modeAnimationOn="true"
+	showSeparators="All"
+	swipeDirection="Both"
+	growing="false"
+	growingThreshold="20"
+	growingTriggerText=""
+	growingScrollToLoad="false"
+	select=""
+	selectionChange=""
+	"delete"=""
+	swipe=""
+	growingStarted=""
+	growingFinished=""
+	updateStarted=""
+	updateFinished="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<items></items> <!-- sap.m.ListItemBase -->
+		<swipeContent></swipeContent> <!-- sap.ui.core.Control -->
+		<headerToolbar></headerToolbar> <!-- sap.m.Toolbar, since 1.16 -->
+		<infoToolbar></infoToolbar> <!-- sap.m.Toolbar, since 1.16 -->
+</ListBase>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.m.ListItemBase" alias="ListItemBase,Base">
+	<jsTemplate><![CDATA[new sap.m.ListItemBase({
+	id: "${id}", // sap.ui.core.ID
+	type: sap.m.ListType.Inactive, // sap.m.ListType
+	visible: true, // boolean
+	unread: false, // boolean
+	selected: false, // boolean
+	counter: undefined, // int
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	tap: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	detailTap: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	press: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	detailPress: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<ListItemBase xmlns="sap.m"
+	id="${id}"
+	type="Inactive"
+	visible="true"
+	unread="false"
+	selected="false"
+	counter=""
+	tap=""
+	detailTap=""
+	press=""
+	detailPress="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+</ListItemBase>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.m.NavContainer" alias="NavContainer,Container">
+	<jsTemplate><![CDATA[new sap.m.NavContainer({
+	id: "${id}", // sap.ui.core.ID
+	height: '100%', // sap.ui.core.CSSSize
+	width: '100%', // sap.ui.core.CSSSize
+	visible: true, // boolean
+	defaultTransitionName: undefined, // string, since 1.7.1
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	pages: [], // sap.ui.core.Control
+	initialPage: undefined, // sap.ui.core.Control
+	navigate: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this], // since 1.7.1
+	afterNavigate: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this] // since 1.7.1
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<NavContainer xmlns="sap.m"
+	id="${id}"
+	height="100%"
+	width="100%"
+	visible="true"
+	defaultTransitionName=""
+	initialPage=""
+	navigate=""
+	afterNavigate="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<pages></pages> <!-- sap.ui.core.Control -->
+</NavContainer>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.m.ObjectAttribute" alias="ObjectAttribute,Attribute">
+	<jsTemplate><![CDATA[new sap.m.ObjectAttribute({
+	id: "${id}", // sap.ui.core.ID
+	visible: true, // boolean
+	text: undefined, // string
+	active: undefined, // boolean
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	press: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<ObjectAttribute xmlns="sap.m"
+	id="${id}"
+	visible="true"
+	text=""
+	active=""
+	press="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+</ObjectAttribute>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.m.ObjectHeader" alias="ObjectHeader,Header">
+	<jsTemplate><![CDATA[new sap.m.ObjectHeader({
+	id: "${id}", // sap.ui.core.ID
+	title: undefined, // string
+	number: undefined, // string
+	numberUnit: undefined, // string
+	intro: undefined, // string
+	introActive: undefined, // boolean
+	titleActive: undefined, // boolean
+	icon: undefined, // sap.ui.core.URI
+	iconActive: undefined, // boolean
+	visible: true, // boolean
+	iconDensityAware: true, // boolean
+	markFavorite: false, // boolean, since 1.16.0
+	markFlagged: false, // boolean, since 1.16.0
+	showMarkers: false, // boolean, since 1.16.0
+	showTitleSelector: false, // boolean, since 1.16.0
+	numberState: sap.ui.core.ValueState.None, // sap.ui.core.ValueState, since 1.16.0
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	attributes: [], // sap.m.ObjectAttribute
+	firstStatus: undefined, // sap.m.ObjectStatus
+	secondStatus: undefined, // sap.m.ObjectStatus
+	statuses: [], // sap.ui.core.Control, since 1.16.0
+	titlePress: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	introPress: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	iconPress: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	titleSelectorPress: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this] // since 1.16.0
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<ObjectHeader xmlns="sap.m"
+	id="${id}"
+	title=""
+	number=""
+	numberUnit=""
+	intro=""
+	introActive=""
+	titleActive=""
+	icon=""
+	iconActive=""
+	visible="true"
+	iconDensityAware="true"
+	markFavorite="false"
+	markFlagged="false"
+	showMarkers="false"
+	showTitleSelector="false"
+	numberState="None"
+	titlePress=""
+	introPress=""
+	iconPress=""
+	titleSelectorPress="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<attributes></attributes> <!-- sap.m.ObjectAttribute -->
+		<firstStatus></firstStatus> <!-- sap.m.ObjectStatus -->
+		<secondStatus></secondStatus> <!-- sap.m.ObjectStatus -->
+		<statuses></statuses> <!-- sap.ui.core.Control, since 1.16.0 -->
+</ObjectHeader>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.m.ObjectIdentifier" alias="ObjectIdentifier,Identifier">
+	<jsTemplate><![CDATA[new sap.m.ObjectIdentifier({
+	id: "${id}", // sap.ui.core.ID
+	title: undefined, // string
+	text: undefined, // string
+	badgeNotes: undefined, // boolean
+	badgePeople: undefined, // boolean
+	badgeAttachments: undefined, // boolean
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [] // sap.ui.core.CustomData
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<ObjectIdentifier xmlns="sap.m"
+	id="${id}"
+	title=""
+	text=""
+	badgeNotes=""
+	badgePeople=""
+	badgeAttachments="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+</ObjectIdentifier>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.m.ObjectListItem" alias="ObjectListItem,Item">
+	<jsTemplate><![CDATA[new sap.m.ObjectListItem({
+	id: "${id}", // sap.ui.core.ID
+	type: sap.m.ListType.Inactive, // sap.m.ListType
+	visible: true, // boolean
+	unread: false, // boolean
+	selected: false, // boolean
+	counter: undefined, // int
+	title: undefined, // string
+	number: undefined, // string
+	numberUnit: undefined, // string
+	intro: undefined, // string
+	icon: undefined, // sap.ui.core.URI
+	activeIcon: undefined, // sap.ui.core.URI
+	iconDensityAware: true, // boolean
+	markFavorite: undefined, // boolean, since 1.16.0
+	markFlagged: undefined, // boolean, since 1.16.0
+	showMarkers: undefined, // boolean, since 1.16.0
+	numberState: sap.ui.core.ValueState.None, // sap.ui.core.ValueState, since 1.16.0
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	attributes: [], // sap.m.ObjectAttribute
+	firstStatus: undefined, // sap.m.ObjectStatus
+	secondStatus: undefined, // sap.m.ObjectStatus
+	tap: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	detailTap: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	press: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	detailPress: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<ObjectListItem xmlns="sap.m"
+	id="${id}"
+	type="Inactive"
+	visible="true"
+	unread="false"
+	selected="false"
+	counter=""
+	title=""
+	number=""
+	numberUnit=""
+	intro=""
+	icon=""
+	activeIcon=""
+	iconDensityAware="true"
+	markFavorite=""
+	markFlagged=""
+	showMarkers=""
+	numberState="None"
+	tap=""
+	detailTap=""
+	press=""
+	detailPress="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<attributes></attributes> <!-- sap.m.ObjectAttribute -->
+		<firstStatus></firstStatus> <!-- sap.m.ObjectStatus -->
+		<secondStatus></secondStatus> <!-- sap.m.ObjectStatus -->
+</ObjectListItem>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.m.ObjectNumber" alias="ObjectNumber,Number">
+	<jsTemplate><![CDATA[new sap.m.ObjectNumber({
+	id: "${id}", // sap.ui.core.ID
+	number: undefined, // string
+	numberUnit: undefined, // string
+	visible: true, // boolean
+	emphasized: true, // boolean
+	state: sap.ui.core.ValueState.None, // sap.ui.core.ValueState
+	unit: undefined, // string, since 1.16.1
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [] // sap.ui.core.CustomData
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<ObjectNumber xmlns="sap.m"
+	id="${id}"
+	number=""
+	numberUnit=""
+	visible="true"
+	emphasized="true"
+	state="None"
+	unit="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+</ObjectNumber>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.m.ObjectStatus" alias="ObjectStatus,Status">
+	<jsTemplate><![CDATA[new sap.m.ObjectStatus({
+	id: "${id}", // sap.ui.core.ID
+	text: undefined, // string
+	state: sap.ui.core.ValueState.None, // sap.ui.core.ValueState
+	icon: undefined, // sap.ui.core.URI
+	iconDensityAware: true, // boolean
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [] // sap.ui.core.CustomData
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<ObjectStatus xmlns="sap.m"
+	id="${id}"
+	text=""
+	state="None"
+	icon=""
+	iconDensityAware="true">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+</ObjectStatus>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.m.Page" alias="Page">
+	<jsTemplate><![CDATA[new sap.m.Page({
+	id: "${id}", // sap.ui.core.ID
+	title: undefined, // string
+	showNavButton: false, // boolean
+	showHeader: true, // boolean
+	navButtonText: undefined, // string
+	enableScrolling: true, // boolean
+	icon: undefined, // sap.ui.core.URI
+	backgroundDesign: sap.m.PageBackgroundDesign.Standard, // sap.m.PageBackgroundDesign
+	navButtonType: sap.m.ButtonType.Back, // sap.m.ButtonType, since 1.12
+	showFooter: true, // boolean, since 1.13.1
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	content: [], // sap.ui.core.Control
+	customHeader: undefined, // sap.m.Bar
+	footer: undefined, // sap.m.Bar
+	subHeader: undefined, // sap.m.Bar
+	headerContent: [], // sap.ui.core.Control
+	navButtonTap: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	navButtonPress: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this] // since 1.12.2
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<Page xmlns="sap.m"
+	id="${id}"
+	title=""
+	showNavButton="false"
+	showHeader="true"
+	navButtonText=""
+	enableScrolling="true"
+	icon=""
+	backgroundDesign="Standard"
+	navButtonType="Back"
+	showFooter="true"
+	navButtonTap=""
+	navButtonPress="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<content></content> <!-- sap.ui.core.Control -->
+		<customHeader></customHeader> <!-- sap.m.Bar -->
+		<footer></footer> <!-- sap.m.Bar -->
+		<subHeader></subHeader> <!-- sap.m.Bar -->
+		<headerContent></headerContent> <!-- sap.ui.core.Control -->
+</Page>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.m.Panel" alias="Panel">
+	<jsTemplate><![CDATA[new sap.m.Panel({
+	id: "${id}", // sap.ui.core.ID
+	visible: true, // boolean
+	headerText: undefined, // string
+	width: "100%", // sap.ui.core.CSSSize
+	height: "auto", // sap.ui.core.CSSSize
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	content: [], // sap.ui.core.Control
+	headerToolbar: undefined, // sap.m.Toolbar, since 1.16
+	infoToolbar: undefined // sap.m.Toolbar, since 1.16
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<Panel xmlns="sap.m"
+	id="${id}"
+	visible="true"
+	headerText=""
+	width="100%"
+	height="auto">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<content></content> <!-- sap.ui.core.Control -->
+		<headerToolbar></headerToolbar> <!-- sap.m.Toolbar, since 1.16 -->
+		<infoToolbar></infoToolbar> <!-- sap.m.Toolbar, since 1.16 -->
+</Panel>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.m.Popover" alias="Popover">
+	<jsTemplate><![CDATA[new sap.m.Popover({
+	id: "${id}", // sap.ui.core.ID
+	placement: sap.m.PlacementType.Right, // sap.m.PlacementType
+	showHeader: true, // boolean
+	title: undefined, // string
+	modal: false, // boolean
+	offsetX: 0, // int
+	offsetY: 0, // int
+	contentWidth: undefined, // sap.ui.core.CSSSize, since 1.9.0
+	contentHeight: undefined, // sap.ui.core.CSSSize, since 1.9.0
+	enableScrolling: true, // boolean
+	verticalScrolling: true, // boolean, since 1.15.0
+	horizontalScrolling: true, // boolean, since 1.15.0
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	content: [], // sap.ui.core.Control
+	customHeader: undefined, // sap.ui.core.Control
+	subHeader: undefined, // sap.ui.core.Control, since 1.15.1
+	footer: undefined, // sap.ui.core.Control
+	beginButton: undefined, // sap.ui.core.Control, since 1.15.1
+	endButton: undefined, // sap.ui.core.Control, since 1.15.1
+	leftButton: undefined, // sap.m.Button
+	rightButton: undefined, // sap.m.Button
+	initialFocus: undefined, // sap.ui.core.Control, since 1.15.0
+	afterOpen: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	afterClose: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	beforeOpen: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	beforeClose: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<Popover xmlns="sap.m"
+	id="${id}"
+	placement="Right"
+	showHeader="true"
+	title=""
+	modal="false"
+	offsetX="0"
+	offsetY="0"
+	contentWidth=""
+	contentHeight=""
+	enableScrolling="true"
+	verticalScrolling="true"
+	horizontalScrolling="true"
+	leftButton=""
+	rightButton=""
+	initialFocus=""
+	afterOpen=""
+	afterClose=""
+	beforeOpen=""
+	beforeClose="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<content></content> <!-- sap.ui.core.Control -->
+		<customHeader></customHeader> <!-- sap.ui.core.Control -->
+		<subHeader></subHeader> <!-- sap.ui.core.Control, since 1.15.1 -->
+		<footer></footer> <!-- sap.ui.core.Control -->
+		<beginButton></beginButton> <!-- sap.ui.core.Control, since 1.15.1 -->
+		<endButton></endButton> <!-- sap.ui.core.Control, since 1.15.1 -->
+</Popover>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.m.ProgressIndicator" alias="ProgressIndicator,Indicator">
+	<jsTemplate><![CDATA[new sap.m.ProgressIndicator({
+	id: "${id}", // sap.ui.core.ID
+	visible: true, // boolean
+	enabled: true, // boolean
+	state: sap.ui.core.ValueState.None, // sap.ui.core.ValueState
+	displayValue: "0%", // string
+	percentValue: 0, // float
+	showValue: true, // boolean
+	width: "100%", // sap.ui.core.CSSSize
+	height: "2.5rem", // sap.ui.core.CSSSize, since 1.15.0
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [] // sap.ui.core.CustomData
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<ProgressIndicator xmlns="sap.m"
+	id="${id}"
+	visible="true"
+	enabled="true"
+	state="None"
+	displayValue="0%"
+	percentValue="0"
+	showValue="true"
+	width="100%"
+	height="2.5rem">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+</ProgressIndicator>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.m.PullToRefresh" alias="PullToRefresh,Refresh">
+	<jsTemplate><![CDATA[new sap.m.PullToRefresh({
+	id: "${id}", // sap.ui.core.ID
+	visible: true, // boolean, since 1.16.0
+	description: undefined, // string
+	showIcon: false, // boolean
+	customIcon: undefined, // sap.ui.core.URI
+	iconDensityAware: true, // boolean
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	refresh: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<PullToRefresh xmlns="sap.m"
+	id="${id}"
+	visible="true"
+	description=""
+	showIcon="false"
+	customIcon=""
+	iconDensityAware="true"
+	refresh="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+</PullToRefresh>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.m.RadioButton" alias="RadioButton,Button">
+	<jsTemplate><![CDATA[new sap.m.RadioButton({
+	id: "${id}", // sap.ui.core.ID
+	visible: true, // boolean
+	enabled: true, // boolean
+	selected: false, // boolean
+	groupName: 'sapMRbDefaultGroup', // string
+	text: undefined, // string
+	textDirection: sap.ui.core.TextDirection.Inherit, // sap.ui.core.TextDirection
+	width: '', // sap.ui.core.CSSSize
+	activeHandling: true, // boolean
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	select: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<RadioButton xmlns="sap.m"
+	id="${id}"
+	visible="true"
+	enabled="true"
+	selected="false"
+	groupName="sapMRbDefaultGroup"
+	text=""
+	textDirection="Inherit"
+	width=""
+	activeHandling="true"
+	select="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+</RadioButton>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.m.RatingIndicator" alias="RatingIndicator,Indicator">
+	<jsTemplate><![CDATA[new sap.m.RatingIndicator({
+	id: "${id}", // sap.ui.core.ID
+	visible: true, // boolean
+	enabled: true, // boolean
+	maxValue: 5, // int
+	value: 0, // float
+	iconSize: "1.375rem", // sap.ui.core.CSSSize
+	iconSelected: undefined, // sap.ui.core.URI
+	iconUnselected: undefined, // sap.ui.core.URI
+	iconHovered: undefined, // sap.ui.core.URI
+	visualMode: sap.m.RatingIndicatorVisualMode.Half, // sap.m.RatingIndicatorVisualMode
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	change: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	liveChange: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<RatingIndicator xmlns="sap.m"
+	id="${id}"
+	visible="true"
+	enabled="true"
+	maxValue="5"
+	value="0"
+	iconSize="1.375rem"
+	iconSelected=""
+	iconUnselected=""
+	iconHovered=""
+	visualMode="Half"
+	change=""
+	liveChange="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+</RatingIndicator>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.m.ResponsivePopover" alias="ResponsivePopover,Popover">
+	<jsTemplate><![CDATA[new sap.m.ResponsivePopover({
+	id: "${id}", // sap.ui.core.ID
+	placement: sap.m.PlacementType.Right, // sap.m.PlacementType
+	showHeader: true, // boolean
+	title: undefined, // string
+	icon: undefined, // sap.ui.core.URI
+	modal: undefined, // boolean
+	offsetX: undefined, // int
+	offsetY: undefined, // int
+	contentWidth: undefined, // sap.ui.core.CSSSize
+	contentHeight: undefined, // sap.ui.core.CSSSize
+	horizontalScrolling: undefined, // boolean
+	verticalScrolling: undefined, // boolean
+	showCloseButton: true, // boolean
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	content: [], // sap.ui.core.Control
+	customHeader: undefined, // sap.m.Bar
+	subHeader: undefined, // sap.m.Bar
+	beginButton: undefined, // sap.m.Button
+	endButton: undefined, // sap.m.Button
+	initialFocus: undefined, // sap.ui.core.Control
+	beforeOpen: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	afterOpen: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	beforeClose: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	afterClose: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<ResponsivePopover xmlns="sap.m"
+	id="${id}"
+	placement="Right"
+	showHeader="true"
+	title=""
+	icon=""
+	modal=""
+	offsetX=""
+	offsetY=""
+	contentWidth=""
+	contentHeight=""
+	horizontalScrolling=""
+	verticalScrolling=""
+	showCloseButton="true"
+	initialFocus=""
+	beforeOpen=""
+	afterOpen=""
+	beforeClose=""
+	afterClose="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<content></content> <!-- sap.ui.core.Control -->
+		<customHeader></customHeader> <!-- sap.m.Bar -->
+		<subHeader></subHeader> <!-- sap.m.Bar -->
+		<beginButton></beginButton> <!-- sap.m.Button -->
+		<endButton></endButton> <!-- sap.m.Button -->
+</ResponsivePopover>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.m.ScrollContainer" alias="ScrollContainer,Container">
+	<jsTemplate><![CDATA[new sap.m.ScrollContainer({
+	id: "${id}", // sap.ui.core.ID
+	visible: true, // boolean
+	width: "auto", // sap.ui.core.CSSSize
+	height: "auto", // sap.ui.core.CSSSize
+	horizontal: true, // boolean
+	vertical: false, // boolean
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	content: [] // sap.ui.core.Control
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<ScrollContainer xmlns="sap.m"
+	id="${id}"
+	visible="true"
+	width="auto"
+	height="auto"
+	horizontal="true"
+	vertical="false">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<content></content> <!-- sap.ui.core.Control -->
+</ScrollContainer>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.m.SearchField" alias="SearchField,Field">
+	<jsTemplate><![CDATA[new sap.m.SearchField({
+	id: "${id}", // sap.ui.core.ID
+	value: undefined, // string
+	width: undefined, // sap.ui.core.CSSSize
+	enabled: true, // boolean
+	visible: true, // boolean
+	maxLength: 0, // int
+	placeholder: undefined, // string
+	showMagnifier: true, // boolean
+	showRefreshButton: false, // boolean, since 1.16
+	refreshButtonTooltip: undefined, // string, since 1.16
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	search: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	liveChange: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this] // since 1.9.1
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<SearchField xmlns="sap.m"
+	id="${id}"
+	value=""
+	width=""
+	enabled="true"
+	visible="true"
+	maxLength="0"
+	placeholder=""
+	showMagnifier="true"
+	showRefreshButton="false"
+	refreshButtonTooltip=""
+	search=""
+	liveChange="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+</SearchField>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.m.SegmentedButton" alias="SegmentedButton,Button">
+	<jsTemplate><![CDATA[new sap.m.SegmentedButton({
+	id: "${id}", // sap.ui.core.ID
+	width: undefined, // sap.ui.core.CSSSize
+	visible: true, // boolean
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	buttons: [], // sap.m.Button
+	selectedButton: undefined, // sap.m.Button
+	select: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<SegmentedButton xmlns="sap.m"
+	id="${id}"
+	width=""
+	visible="true"
+	selectedButton=""
+	select="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<buttons></buttons> <!-- sap.m.Button -->
+</SegmentedButton>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.m.Select" alias="Select">
+	<jsTemplate><![CDATA[new sap.m.Select({
+	id: "${id}", // sap.ui.core.ID
+	name: undefined, // string
+	visible: true, // boolean
+	enabled: true, // boolean
+	width: "auto", // sap.ui.core.CSSSize
+	maxWidth: "100%", // sap.ui.core.CSSSize
+	selectedKey: undefined, // string, since 1.11
+	selectedItemId: undefined, // string, since 1.12
+	icon: undefined, // sap.ui.core.URI, since 1.16
+	type: sap.m.SelectType.Default, // sap.m.SelectType, since 1.16
+	autoAdjustWidth: false, // boolean, since 1.16
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	items: [], // sap.ui.core.Item
+	selectedItem: undefined, // sap.ui.core.Item
+	change: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<Select xmlns="sap.m"
+	id="${id}"
+	name=""
+	visible="true"
+	enabled="true"
+	width="auto"
+	maxWidth="100%"
+	selectedKey=""
+	selectedItemId=""
+	icon=""
+	type="Default"
+	autoAdjustWidth="false"
+	selectedItem=""
+	change="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<items></items> <!-- sap.ui.core.Item -->
+</Select>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.m.SelectDialog" alias="SelectDialog,Dialog">
+	<jsTemplate><![CDATA[new sap.m.SelectDialog({
+	id: "${id}", // sap.ui.core.ID
+	title: undefined, // string
+	noDataText: undefined, // string
+	multiSelect: false, // boolean
+	growingThreshold: undefined, // int
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	items: [], // sap.m.StandardListItem
+	confirm: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	search: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	liveChange: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	cancel: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<SelectDialog xmlns="sap.m"
+	id="${id}"
+	title=""
+	noDataText=""
+	multiSelect="false"
+	growingThreshold=""
+	confirm=""
+	search=""
+	liveChange=""
+	cancel="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<items></items> <!-- sap.m.StandardListItem -->
+</SelectDialog>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.m.Shell" alias="Shell">
+	<jsTemplate><![CDATA[new sap.m.Shell({
+	id: "${id}", // sap.ui.core.ID
+	title: undefined, // string
+	logo: undefined, // sap.ui.core.URI
+	showLogout: true, // boolean
+	headerRightText: undefined, // string
+	appWidthLimited: true, // boolean
+	backgroundColor: undefined, // string, since 1.11.2
+	backgroundImage: undefined, // sap.ui.core.URI, since 1.11.2
+	backgroundRepeat: false, // boolean, since 1.11.2
+	backgroundOpacity: 1, // float, since 1.11.2
+	homeIcon: undefined, // object
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	app: undefined, // sap.ui.core.Control
+	logout: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<Shell xmlns="sap.m"
+	id="${id}"
+	title=""
+	logo=""
+	showLogout="true"
+	headerRightText=""
+	appWidthLimited="true"
+	backgroundColor=""
+	backgroundImage=""
+	backgroundRepeat="false"
+	backgroundOpacity="1"
+	homeIcon=""
+	logout="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<app></app> <!-- sap.ui.core.Control -->
+</Shell>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.m.Slider" alias="Slider">
+	<jsTemplate><![CDATA[new sap.m.Slider({
+	id: "${id}", // sap.ui.core.ID
+	width: "100%", // sap.ui.core.CSSSize
+	enabled: true, // boolean
+	visible: true, // boolean
+	name: undefined, // string
+	min: 0, // float
+	max: 100, // float
+	step: 1, // float
+	progress: true, // boolean
+	value: 0, // float
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	change: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	liveChange: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<Slider xmlns="sap.m"
+	id="${id}"
+	width="100%"
+	enabled="true"
+	visible="true"
+	name=""
+	min="0"
+	max="100"
+	step="1"
+	progress="true"
+	value="0"
+	change=""
+	liveChange="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+</Slider>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.m.SplitApp" alias="SplitApp,App">
+	<jsTemplate><![CDATA[new sap.m.SplitApp({
+	id: "${id}", // sap.ui.core.ID
+	defaultTransitionNameDetail: "slide", // string
+	defaultTransitionNameMaster: "slide", // string
+	mode: sap.m.SplitAppMode.ShowHideMode, // sap.m.SplitAppMode
+	masterButtonText: undefined, // string
+	backgroundColor: undefined, // string, since 1.11.2
+	backgroundImage: undefined, // sap.ui.core.URI, since 1.11.2
+	backgroundRepeat: false, // boolean, since 1.11.2
+	backgroundOpacity: 1, // float, since 1.11.2
+	homeIcon: undefined, // any
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	masterPages: [], // sap.ui.core.Control
+	detailPages: [], // sap.ui.core.Control
+	initialDetail: undefined, // sap.ui.core.Control
+	initialMaster: undefined, // sap.ui.core.Control
+	masterNavigate: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	afterMasterNavigate: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	masterButton: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	beforeMasterOpen: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	afterMasterOpen: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	beforeMasterClose: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	afterMasterClose: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	detailNavigate: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	afterDetailNavigate: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	orientationChange: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<SplitApp xmlns="sap.m"
+	id="${id}"
+	defaultTransitionNameDetail="slide"
+	defaultTransitionNameMaster="slide"
+	mode="ShowHideMode"
+	masterButtonText=""
+	backgroundColor=""
+	backgroundImage=""
+	backgroundRepeat="false"
+	backgroundOpacity="1"
+	homeIcon=""
+	initialDetail=""
+	initialMaster=""
+	masterNavigate=""
+	afterMasterNavigate=""
+	masterButton=""
+	beforeMasterOpen=""
+	afterMasterOpen=""
+	beforeMasterClose=""
+	afterMasterClose=""
+	detailNavigate=""
+	afterDetailNavigate=""
+	orientationChange="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<masterPages></masterPages> <!-- sap.ui.core.Control -->
+		<detailPages></detailPages> <!-- sap.ui.core.Control -->
+</SplitApp>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.m.SplitContainer" alias="SplitContainer,Container">
+	<jsTemplate><![CDATA[new sap.m.SplitContainer({
+	id: "${id}", // sap.ui.core.ID
+	defaultTransitionNameDetail: "slide", // string
+	defaultTransitionNameMaster: "slide", // string
+	mode: sap.m.SplitAppMode.ShowHideMode, // sap.m.SplitAppMode
+	masterButtonText: undefined, // string
+	backgroundColor: undefined, // string, since 1.11.2
+	backgroundImage: undefined, // sap.ui.core.URI, since 1.11.2
+	backgroundRepeat: false, // boolean, since 1.11.2
+	backgroundOpacity: 1, // float, since 1.11.2
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	masterPages: [], // sap.ui.core.Control
+	detailPages: [], // sap.ui.core.Control
+	initialDetail: undefined, // sap.ui.core.Control
+	initialMaster: undefined, // sap.ui.core.Control
+	masterNavigate: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	afterMasterNavigate: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	masterButton: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	beforeMasterOpen: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	afterMasterOpen: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	beforeMasterClose: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	afterMasterClose: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	detailNavigate: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	afterDetailNavigate: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<SplitContainer xmlns="sap.m"
+	id="${id}"
+	defaultTransitionNameDetail="slide"
+	defaultTransitionNameMaster="slide"
+	mode="ShowHideMode"
+	masterButtonText=""
+	backgroundColor=""
+	backgroundImage=""
+	backgroundRepeat="false"
+	backgroundOpacity="1"
+	initialDetail=""
+	initialMaster=""
+	masterNavigate=""
+	afterMasterNavigate=""
+	masterButton=""
+	beforeMasterOpen=""
+	afterMasterOpen=""
+	beforeMasterClose=""
+	afterMasterClose=""
+	detailNavigate=""
+	afterDetailNavigate="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<masterPages></masterPages> <!-- sap.ui.core.Control -->
+		<detailPages></detailPages> <!-- sap.ui.core.Control -->
+</SplitContainer>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.m.StandardListItem" alias="StandardListItem,Item">
+	<jsTemplate><![CDATA[new sap.m.StandardListItem({
+	id: "${id}", // sap.ui.core.ID
+	type: sap.m.ListType.Inactive, // sap.m.ListType
+	visible: true, // boolean
+	unread: false, // boolean
+	selected: false, // boolean
+	counter: undefined, // int
+	title: undefined, // string
+	description: undefined, // string
+	icon: undefined, // sap.ui.core.URI
+	iconInset: true, // boolean
+	iconDensityAware: true, // boolean
+	activeIcon: undefined, // sap.ui.core.URI
+	info: undefined, // string
+	infoState: sap.ui.core.ValueState.None, // sap.ui.core.ValueState
+	adaptTitleSize: true, // boolean, since 1.16.3
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	tap: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	detailTap: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	press: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	detailPress: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<StandardListItem xmlns="sap.m"
+	id="${id}"
+	type="Inactive"
+	visible="true"
+	unread="false"
+	selected="false"
+	counter=""
+	title=""
+	description=""
+	icon=""
+	iconInset="true"
+	iconDensityAware="true"
+	activeIcon=""
+	info=""
+	infoState="None"
+	adaptTitleSize="true"
+	tap=""
+	detailTap=""
+	press=""
+	detailPress="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+</StandardListItem>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.m.StandardTile" alias="StandardTile,Tile">
+	<jsTemplate><![CDATA[new sap.m.StandardTile({
+	id: "${id}", // sap.ui.core.ID
+	removable: true, // boolean
+	title: undefined, // string
+	info: undefined, // string
+	icon: undefined, // sap.ui.core.URI
+	activeIcon: undefined, // sap.ui.core.URI
+	number: undefined, // string
+	numberUnit: undefined, // string
+	infoState: sap.ui.core.ValueState.None, // sap.ui.core.ValueState
+	type: sap.m.StandardTileType.None, // sap.m.StandardTileType
+	iconDensityAware: true, // boolean
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	press: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<StandardTile xmlns="sap.m"
+	id="${id}"
+	removable="true"
+	title=""
+	info=""
+	icon=""
+	activeIcon=""
+	number=""
+	numberUnit=""
+	infoState="None"
+	type="None"
+	iconDensityAware="true"
+	press="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+</StandardTile>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.m.Switch" alias="Switch">
+	<jsTemplate><![CDATA[new sap.m.Switch({
+	id: "${id}", // sap.ui.core.ID
+	state: false, // boolean
+	customTextOn: undefined, // string
+	customTextOff: undefined, // string
+	visible: true, // boolean
+	enabled: true, // boolean
+	name: undefined, // string
+	type: sap.m.SwitchType.Default, // sap.m.SwitchType
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	change: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<Switch xmlns="sap.m"
+	id="${id}"
+	state="false"
+	customTextOn=""
+	customTextOff=""
+	visible="true"
+	enabled="true"
+	name=""
+	type="Default"
+	change="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+</Switch>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.m.Table" alias="Table">
+	<jsTemplate><![CDATA[new sap.m.Table({
+	id: "${id}", // sap.ui.core.ID
+	inset: false, // boolean
+	visible: true, // boolean
+	headerText: undefined, // string
+	headerDesign: sap.m.ListHeaderDesign.Standard, // sap.m.ListHeaderDesign, since 1.14
+	footerText: undefined, // string
+	mode: sap.m.ListMode.None, // sap.m.ListMode
+	width: "100%", // sap.ui.core.CSSSize
+	includeItemInSelection: false, // boolean
+	showUnread: false, // boolean
+	noDataText: undefined, // string
+	showNoData: true, // boolean
+	modeAnimationOn: true, // boolean
+	showSeparators: sap.m.ListSeparators.All, // sap.m.ListSeparators
+	swipeDirection: sap.m.SwipeDirection.Both, // sap.m.SwipeDirection
+	growing: false, // boolean, since 1.16
+	growingThreshold: 20, // int, since 1.16
+	growingTriggerText: undefined, // string, since 1.16
+	growingScrollToLoad: false, // boolean, since 1.16
+	backgroundDesign: sap.m.BackgroundDesign.Translucent, // sap.m.BackgroundDesign
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	items: [], // sap.m.ListItemBase
+	swipeContent: undefined, // sap.ui.core.Control
+	headerToolbar: undefined, // sap.m.Toolbar, since 1.16
+	infoToolbar: undefined, // sap.m.Toolbar, since 1.16
+	columns: [], // sap.m.Column
+	select: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	selectionChange: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this], // since 1.16
+	"delete": [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	swipe: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	growingStarted: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this], // since 1.16
+	growingFinished: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this], // since 1.16
+	updateStarted: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this], // since 1.16.3
+	updateFinished: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this] // since 1.16.3
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<Table xmlns="sap.m"
+	id="${id}"
+	inset="false"
+	visible="true"
+	headerText=""
+	headerDesign="Standard"
+	footerText=""
+	mode="None"
+	width="100%"
+	includeItemInSelection="false"
+	showUnread="false"
+	noDataText=""
+	showNoData="true"
+	modeAnimationOn="true"
+	showSeparators="All"
+	swipeDirection="Both"
+	growing="false"
+	growingThreshold="20"
+	growingTriggerText=""
+	growingScrollToLoad="false"
+	backgroundDesign="Translucent"
+	select=""
+	selectionChange=""
+	"delete"=""
+	swipe=""
+	growingStarted=""
+	growingFinished=""
+	updateStarted=""
+	updateFinished="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<items></items> <!-- sap.m.ListItemBase -->
+		<swipeContent></swipeContent> <!-- sap.ui.core.Control -->
+		<headerToolbar></headerToolbar> <!-- sap.m.Toolbar, since 1.16 -->
+		<infoToolbar></infoToolbar> <!-- sap.m.Toolbar, since 1.16 -->
+		<columns></columns> <!-- sap.m.Column -->
+</Table>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.m.TableSelectDialog" alias="TableSelectDialog,Dialog">
+	<jsTemplate><![CDATA[new sap.m.TableSelectDialog({
+	id: "${id}", // sap.ui.core.ID
+	title: undefined, // string
+	noDataText: undefined, // string
+	multiSelect: false, // boolean
+	growingThreshold: undefined, // int
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	items: [], // sap.m.ColumnListItem
+	columns: [], // sap.m.Column
+	confirm: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	search: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	liveChange: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	cancel: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<TableSelectDialog xmlns="sap.m"
+	id="${id}"
+	title=""
+	noDataText=""
+	multiSelect="false"
+	growingThreshold=""
+	confirm=""
+	search=""
+	liveChange=""
+	cancel="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<items></items> <!-- sap.m.ColumnListItem -->
+		<columns></columns> <!-- sap.m.Column -->
+</TableSelectDialog>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.m.Text" alias="Text">
+	<jsTemplate><![CDATA[new sap.m.Text({
+	id: "${id}", // sap.ui.core.ID
+	text: '', // string
+	textDirection: sap.ui.core.TextDirection.Inherit, // sap.ui.core.TextDirection
+	visible: true, // boolean
+	wrapping: true, // boolean
+	textAlign: sap.ui.core.TextAlign.Begin, // sap.ui.core.TextAlign
+	width: undefined, // sap.ui.core.CSSSize
+	maxLines: undefined, // int, since 1.13.2
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [] // sap.ui.core.CustomData
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<Text xmlns="sap.m"
+	id="${id}"
+	text=""
+	textDirection="Inherit"
+	visible="true"
+	wrapping="true"
+	textAlign="Begin"
+	width=""
+	maxLines="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+</Text>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.m.TextArea" alias="TextArea,Area">
+	<jsTemplate><![CDATA[new sap.m.TextArea({
+	id: "${id}", // sap.ui.core.ID
+	value: undefined, // string
+	width: undefined, // sap.ui.core.CSSSize
+	enabled: true, // boolean
+	visible: true, // boolean
+	valueState: sap.ui.core.ValueState.None, // sap.ui.core.ValueState
+	name: undefined, // string
+	placeholder: undefined, // string
+	editable: true, // boolean, since 1.12.0
+	rows: 2, // int
+	cols: 20, // int
+	height: undefined, // sap.ui.core.CSSSize
+	maxLength: 0, // int
+	wrapping: undefined, // sap.ui.core.Wrapping
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	change: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	liveChange: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<TextArea xmlns="sap.m"
+	id="${id}"
+	value=""
+	width=""
+	enabled="true"
+	visible="true"
+	valueState="None"
+	name=""
+	placeholder=""
+	editable="true"
+	rows="2"
+	cols="20"
+	height=""
+	maxLength="0"
+	wrapping=""
+	change=""
+	liveChange="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+</TextArea>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.m.Tile" alias="Tile">
+	<jsTemplate><![CDATA[new sap.m.Tile({
+	id: "${id}", // sap.ui.core.ID
+	removable: true, // boolean
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	press: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<Tile xmlns="sap.m"
+	id="${id}"
+	removable="true"
+	press="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+</Tile>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.m.TileContainer" alias="TileContainer,Container">
+	<jsTemplate><![CDATA[new sap.m.TileContainer({
+	id: "${id}", // sap.ui.core.ID
+	width: "100%", // sap.ui.core.CSSSize
+	height: "100%", // sap.ui.core.CSSSize
+	editable: undefined, // boolean
+	allowAdd: undefined, // boolean
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	tiles: [], // sap.ui.core.Control
+	tileMove: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	tileDelete: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	tileAdd: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<TileContainer xmlns="sap.m"
+	id="${id}"
+	width="100%"
+	height="100%"
+	editable=""
+	allowAdd=""
+	tileMove=""
+	tileDelete=""
+	tileAdd="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<tiles></tiles> <!-- sap.ui.core.Control -->
+</TileContainer>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.m.Toolbar" alias="Toolbar">
+	<jsTemplate><![CDATA[new sap.m.Toolbar({
+	id: "${id}", // sap.ui.core.ID
+	visible: true, // boolean
+	width: "100%", // sap.ui.core.CSSSize
+	active: false, // boolean
+	enabled: true, // boolean
+	height: "", // sap.ui.core.CSSSize
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	content: [], // sap.ui.core.Control
+	press: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<Toolbar xmlns="sap.m"
+	id="${id}"
+	visible="true"
+	width="100%"
+	active="false"
+	enabled="true"
+	height=""
+	press="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<content></content> <!-- sap.ui.core.Control -->
+</Toolbar>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.m.ToolbarSpacer" alias="ToolbarSpacer,Spacer">
+	<jsTemplate><![CDATA[new sap.m.ToolbarSpacer({
+	id: "${id}", // sap.ui.core.ID
+	width: "", // sap.ui.core.CSSSize
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [] // sap.ui.core.CustomData
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<ToolbarSpacer xmlns="sap.m"
+	id="${id}"
+	width="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+</ToolbarSpacer>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.m.VBox" alias="VBox">
+	<jsTemplate><![CDATA[new sap.m.VBox({
+	id: "${id}", // sap.ui.core.ID
+	visible: true, // boolean
+	height: "", // sap.ui.core.CSSSize, since 1.9.1
+	width: "", // sap.ui.core.CSSSize, since 1.9.1
+	displayInline: false, // boolean
+	direction: sap.m.FlexDirection.Row, // sap.m.FlexDirection
+	fitContainer: false, // boolean
+	renderType: sap.m.FlexRendertype.Div, // sap.m.FlexRendertype
+	justifyContent: sap.m.FlexJustifyContent.Start, // sap.m.FlexJustifyContent
+	alignItems: sap.m.FlexAlignItems.Stretch, // sap.m.FlexAlignItems
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	items: [] // sap.ui.core.Control
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<VBox xmlns="sap.m"
+	id="${id}"
+	visible="true"
+	height=""
+	width=""
+	displayInline="false"
+	direction="Row"
+	fitContainer="false"
+	renderType="Div"
+	justifyContent="Start"
+	alignItems="Stretch">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<items></items> <!-- sap.ui.core.Control -->
+</VBox>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.m.ViewSettingsCustomItem" alias="ViewSettingsCustomItem,Item">
+	<jsTemplate><![CDATA[new sap.m.ViewSettingsCustomItem({
+	id: "${id}", // sap.ui.core.ID
+	text: "", // string
+	enabled: true, // boolean
+	textDirection: sap.ui.core.TextDirection.Inherit, // sap.ui.core.TextDirection
+	key: undefined, // string
+	selected: false, // boolean
+	filterCount: 0, // int
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	customControl: undefined // sap.ui.core.Control
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<ViewSettingsCustomItem xmlns="sap.m"
+	id="${id}"
+	text=""
+	enabled="true"
+	textDirection="Inherit"
+	key=""
+	selected="false"
+	filterCount="0">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<customControl></customControl> <!-- sap.ui.core.Control -->
+</ViewSettingsCustomItem>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.m.ViewSettingsDialog" alias="ViewSettingsDialog,Dialog">
+	<jsTemplate><![CDATA[new sap.m.ViewSettingsDialog({
+	id: "${id}", // sap.ui.core.ID
+	title: undefined, // string
+	sortDescending: false, // boolean
+	groupDescending: false, // boolean
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	sortItems: [], // sap.m.ViewSettingsItem
+	groupItems: [], // sap.m.ViewSettingsItem
+	filterItems: [], // sap.m.ViewSettingsItem
+	presetFilterItems: [], // sap.m.ViewSettingsItem
+	selectedSortItem: undefined, // sap.m.ViewSettingsItem
+	selectedGroupItem: undefined, // sap.m.ViewSettingsItem
+	selectedPresetFilterItem: undefined, // sap.m.ViewSettingsItem
+	confirm: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	cancel: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	resetFilters: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<ViewSettingsDialog xmlns="sap.m"
+	id="${id}"
+	title=""
+	sortDescending="false"
+	groupDescending="false"
+	selectedSortItem=""
+	selectedGroupItem=""
+	selectedPresetFilterItem=""
+	confirm=""
+	cancel=""
+	resetFilters="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<sortItems></sortItems> <!-- sap.m.ViewSettingsItem -->
+		<groupItems></groupItems> <!-- sap.m.ViewSettingsItem -->
+		<filterItems></filterItems> <!-- sap.m.ViewSettingsItem -->
+		<presetFilterItems></presetFilterItems> <!-- sap.m.ViewSettingsItem -->
+</ViewSettingsDialog>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.m.ViewSettingsFilterItem" alias="ViewSettingsFilterItem,Item">
+	<jsTemplate><![CDATA[new sap.m.ViewSettingsFilterItem({
+	id: "${id}", // sap.ui.core.ID
+	text: "", // string
+	enabled: true, // boolean
+	textDirection: sap.ui.core.TextDirection.Inherit, // sap.ui.core.TextDirection
+	key: undefined, // string
+	selected: false, // boolean
+	multiSelect: true, // boolean
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	items: [] // sap.m.ViewSettingsItem
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<ViewSettingsFilterItem xmlns="sap.m"
+	id="${id}"
+	text=""
+	enabled="true"
+	textDirection="Inherit"
+	key=""
+	selected="false"
+	multiSelect="true">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<items></items> <!-- sap.m.ViewSettingsItem -->
+</ViewSettingsFilterItem>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.m.ViewSettingsItem" alias="ViewSettingsItem,Item">
+	<jsTemplate><![CDATA[new sap.m.ViewSettingsItem({
+	id: "${id}", // sap.ui.core.ID
+	text: "", // string
+	enabled: true, // boolean
+	textDirection: sap.ui.core.TextDirection.Inherit, // sap.ui.core.TextDirection
+	key: undefined, // string
+	selected: false, // boolean
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [] // sap.ui.core.CustomData
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<ViewSettingsItem xmlns="sap.m"
+	id="${id}"
+	text=""
+	enabled="true"
+	textDirection="Inherit"
+	key=""
+	selected="false">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+</ViewSettingsItem>
+]]></xmlTemplate>
+</Template>
+</Library>

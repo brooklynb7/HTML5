@@ -1,0 +1,175 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>Thing Collection - sap.suite.ui.commons</title>
+
+<!-- UI5 Bootstrap -->
+<script id="sap-ui-bootstrap" 
+		type="text/javascript"
+		src="../../../../../../resources/sap-ui-core.js"
+		data-sap-ui-theme="sap_goldreflection"
+		data-sap-ui-libs="sap.ui.commons,sap.suite.ui.commons,sap.ui.ux3"
+		data-sap-ui-language="en">
+</script>
+
+<!-- QUnit libraries -->
+<link rel="stylesheet"
+	href="../../../../../../resources/sap/ui/thirdparty/qunit.css"
+	type="text/css" media="screen" />
+	<script src="../../../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+	<script type="text/javascript" src="../../../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
+    <script type="text/javascript" src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
+<script>
+	module("General Tests - sap.suite.ui.commons.ThingCollection", {
+	    setup: function() {
+	    	this.oThingCollection = new sap.suite.ui.commons.ThingCollection("TC");
+	    	
+	    	this.oTV1 = new sap.ui.ux3.ThingViewer("tv1", {
+	    	    showHeader: true,
+	    	    title: "title 1"});
+
+	    	this.oTV2 = new sap.ui.ux3.ThingViewer("tv2", {
+	    	    showHeader: true,
+	    	    title: "title 2"});
+		},
+		
+	   	teardown: function() {
+	   		this.oTV1.destroy();
+	   		this.oTV2.destroy();
+	   		this.oThingCollection.destroy();
+	   	}
+	});
+	
+    test("ThingCollection initial set up", function() {
+        ok(this.oThingCollection._oRemoveButton, "Remove button was created");
+    });
+	
+    test("_isShiftPrevForbidden", function() {
+    	this.oThingCollection._bScrollDisabled = false;
+    	this.oThingCollection._iCenterNum = 1;
+        ok(!this.oThingCollection._isShiftPrevForbidden(), "The previous shift is allowed");
+
+    	this.oThingCollection._iCenterNum = 0;
+        ok(this.oThingCollection._isShiftPrevForbidden(), "The previous shift is not allowed");
+    });
+    
+    test("_isShiftNextForbidden", function() {
+    	this.oThingCollection.addContent(new sap.suite.ui.commons.ThreePanelThingViewer());
+    	this.oThingCollection.addContent(new sap.suite.ui.commons.ThreePanelThingViewer());
+
+    	this.oThingCollection._bScrollDisabled = false;
+    	this.oThingCollection._iCenterNum = 0;
+        ok(!this.oThingCollection._isShiftNextForbidden(), "The next shift is allowed");
+
+    	this.oThingCollection._iCenterNum = 1;
+        ok(this.oThingCollection._isShiftNextForbidden(), "The next shift is not allowed");
+    });
+    
+    test("_initTouchEvents", function() {
+    	jQuery.sap.touchEventMode = "ON";
+    	this.oThingCollection._initTouchEvents();
+    	
+        ok(this.oThingCollection.onswipeleft, "The previous shift handler was set");
+        ok(this.oThingCollection.onswiperight, "The next shift handler was set");
+    });
+    
+    test("addNextContent", function(){
+    	
+        this.oThingCollection.addNextContent(this.oTV1);
+        
+        ok(this.oThingCollection.getContent()[0], "Content was added to possition 0 by addNextContent");
+        equal(this.oThingCollection.getContent().length, 1,"Content added by addNextContent");
+        equal(this.oThingCollection.getContent()[0].getId(), "tv1", "Id of added ThingViewer is correct");
+        
+        this.oThingCollection.addNextContent(this.oTV2);
+        ok(this.oThingCollection.getContent()[1], "Content was added to possition 1 by addNextContent");
+        equal(this.oThingCollection.getContent()[1].getId(), "tv2", "Id of added ThingViewer is correct");
+        equal(this.oThingCollection.getContent().length, 2,"Content added by addNextContent");
+
+    });
+    
+	module("Render Tests - sap.suite.ui.commons.ThingCollection", {
+	    setup: function() {
+	    	
+	    	this.oThingCollection = new sap.suite.ui.commons.ThingCollection("TCR", {
+	    		width: "500px",
+	    		height: "300px"
+	    	});
+	    	
+	    	this.oTV1 = new sap.ui.ux3.ThingViewer("tv1", {
+	    	    showHeader: true,
+	    	    title: "title 1"});
+
+	    	this.oTV2 = new sap.ui.ux3.ThingViewer("tv2", {
+	    	    showHeader: true,
+	    	    title: "title 2"});
+	    	
+	    	this.oThingCollection.addContent(this.oTV1);
+	    	this.oThingCollection.addContent(this.oTV2);
+	    	this.oThingCollection.placeAt("uiArea1");
+		},
+		
+	   	teardown: function() {
+	   		this.oTV1.destroy();
+	   		this.oTV2.destroy();
+	   		this.oThingCollection.destroy();
+	   	}
+	});
+	
+	asyncTest("scroll test", function() {
+		var that = this;
+		setTimeout(function() {
+			that.oThingCollection.shiftNext();
+	    	setTimeout(function() {
+	    		equal(jQuery("#TCR-container>div>div").attr("id"), "tv2", "The second item is shown");
+	            
+	    		that.oThingCollection.shiftPrev();
+	            setTimeout(function() {
+	            	equal(jQuery("#TCR-container>div>div").attr("id"), "tv1", "The first item is shown");
+	            	start();
+	            }, 1500);
+	    	}, 1500);
+		}, 500);
+    });
+	
+	asyncTest("_removeCenterContent", function() {
+		var that = this;
+		setTimeout(function() {
+			that.oThingCollection._removeCenterContent();
+	    	setTimeout(function() {
+	    		equal(jQuery("#TCR-container>div>div").attr("id"), "tv2", "The first card was removed. The second item is shown");
+	    		start();
+	    	}, 2500);
+		}, 500);
+    });
+	
+	asyncTest("_updateArrows", function() {
+		var that = this;
+		setTimeout(function() {
+			that.oThingCollection._updateArrows();
+			
+			var oNavPrev = jQuery.sap.byId("TCR-nav-prev");
+		    var oNavNext = jQuery.sap.byId("TCR-nav-next");
+		    
+		    ok(!oNavPrev.hasClass("sapSuiteTcNavPrevtArrow"), "The previous navigation button is disabled");
+		    ok(oNavNext.hasClass("sapSuiteTcNavNextArrow"), "The next navigation button is enabled");
+		    
+			that.oThingCollection.shiftNext();
+	    	setTimeout(function() {
+	    		that.oThingCollection._updateArrows();
+			    
+			    ok(oNavPrev.hasClass("sapSuiteTcNavPrevArrow"), "The previous navigation button is enabled");
+			    ok(!oNavNext.hasClass("sapSuiteTcNavNextArrow"), "The next navigation button is disabled");
+	        	start();
+	    	}, 1500);
+		}, 500);
+	});
+</script>
+</head>
+
+<body class="sapUiBody">
+	<div id="qunit"></div>
+    <div id="uiArea1"></div>
+</body>
+</html>

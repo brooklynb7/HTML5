@@ -1,0 +1,20 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:layout="sap.ui.layout"
+		controllerName="sap.ca.ui.message.MessageBox" xmlns:html="http://www.w3.org/1999/xhtml"
+		resourceBundleName="sap.ca.ui.i18n.i18n" resourceBundleAlias="ca_i18n" >
+	
+	<Dialog id="DLG_MSGBOX" title="{/title}" state="{/state}" icon="{/icon}" contentWidth="25em">
+		<content>
+			<layout:VerticalLayout width="100%">
+				<Text id="TXT_MSG" text="{/message}"/>
+				<Text id="TXT_EMPTYLINE" text=""/>
+				<HBox justifyContent="End">
+					<Link id="LINK_DETAILS" text="{ca_i18n>messagebox.showdetails}" visible="{/showLink}" press="onShowDetails"></Link>
+				</HBox>
+				<TextArea id="TXA_DETAILS" value="{/details}" editable="false" width="100%" visible="{/showDetails}" height="12.5em"/>
+			</layout:VerticalLayout>
+		</content>
+		<beginButton>
+			<Button id="BTN_OK" press="onCloseDialog" text="{ca_i18n>dialog.ok}"/>
+		</beginButton>
+	</Dialog>
+</core:View>

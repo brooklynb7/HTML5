@@ -1,0 +1,184 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<title>qUnit Page for testing CSS Flexible Box Layout properties</title>
+
+		<script id="sap-ui-bootstrap"
+			type="text/javascript"
+			src="../../../../resources/sap-ui-core.js"
+			data-sap-ui-theme="sap_mvi"
+			data-sap-ui-noConflict="true"
+			data-sap-ui-libs="sap.m">
+		</script>
+
+		<link rel="stylesheet" href="../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
+		<script type="text/javascript" src="../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+		<script type="text/javascript" src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
+		<script type="text/javascript" src="../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
+
+		<script>
+			QUnit.config.autostart = false;
+			jQuery(document).ready(function() {
+				QUnit.start();
+				if (!jQuery.support.flexBoxLayout) {
+					test("Dummy Test", function(){
+						ok(true, "At least one test needs to run to avoid test timeouts!");
+					});
+				}
+			});
+
+			if(jQuery.support.flexBoxLayout || jQuery.support.newFlexBoxLayout) {
+				var dummyElement = document.createElement("detect");
+				var prefix;
+
+				if(jQuery.browser.webkit) {
+					prefix = "webkit";
+				} else if (jQuery.browser.mozilla) {
+					prefix = "Moz";
+				} else if (jQuery.browser.msie) {
+					prefix = "ms";
+				}
+
+				if(prefix) {
+					var tagprefix = "-" + prefix.toLowerCase() + "-";
+				}
+
+				module("Spec 2009 property support tests");
+				var props2009 = ["boxAlign", "boxDirection", "boxFlex", "boxFlexGroup", "boxLines", "boxOrdinalGroup", "boxOrient", "boxPack"];
+
+				test("Properties without prefix", function() {
+					props2009.forEach(function(value, index) {
+						ok(dummyElement.style[value] === "", value.replace(/\W+/g, '-').replace(/([a-z\d])([A-Z])/g, '$1-$2').toLowerCase() + " supported");
+					});
+					
+				});
+
+				if(prefix) {
+					test("Prefixed properties", function() {
+						props2009.forEach(function(value, index) {
+							var uppercaseValue = value.charAt(0).toUpperCase() + value.substr(1);
+							ok(dummyElement.style[prefix + uppercaseValue] === "", '-' + prefix + '-' + value.replace(/\W+/g, '-').replace(/([a-z\d])([A-Z])/g, '$1-$2').toLowerCase() + " supported");
+						});
+					});
+				}
+
+				module("Spec 2012 property support tests");
+				var props2012 = ["alignContent", "alignItems", "alignSelf", "flex", "flexBasis", "flexDirection", "flexFlow", "flexGrow", "flexShrink", "flexWrap", "justifyContent", "order"];
+
+				test("Properties without prefix", function() {
+					props2012.forEach(function(value, index) {
+						ok(dummyElement.style[value] === "", value.replace(/\W+/g, '-').replace(/([a-z\d])([A-Z])/g, '$1-$2').toLowerCase() + " supported");
+					});
+					
+				});
+
+				if(prefix) {
+					test("Prefixed properties", function() {
+						props2012.forEach(function(value, index) {
+							var uppercaseValue = value.charAt(0).toUpperCase() + value.substr(1);
+							ok(dummyElement.style[prefix + uppercaseValue] === "", '-' + prefix + '-' + value.replace(/\W+/g, '-').replace(/([a-z\d])([A-Z])/g, '$1-$2').toLowerCase() + " supported");
+						});
+					});
+				}
+
+				module("Spec 2009 property value support tests");
+				var props2009b = ["box-align", "box-direction", "box-flex", "box-flex-group", "box-lines", "box-ordinal-group", "box-orient", "box-pack"];
+				var values2009 = {
+					"display": ["box", "inline-box"],
+					"box-align": ["start", "end", "center", "baseline", "stretch"],
+					"box-direction": ["normal", "reverse"],
+					"box-flex": ["13", "7.8"],
+					"box-flex-group": ["21", "34"],
+					"box-lines": ["single", "multiple"],
+					"box-ordinal-group": ["5", "99"],
+					"box-orient": ["horizontal", "vertical", "inline-axis", "block-axis"],
+					"box-pack": ["start", "end", "center", "justify"]
+				};
+
+				test("Properties and value without prefix", function() {
+					$content = jQuery('#content');
+
+					props2009b.forEach(function(prop, index) {
+						var values = values2009[prop];
+
+						values.forEach(function(value, index) {
+							$content.css(prop, value);
+							ok($content.css(prop) === value, prop + ': ' + value + " supported");
+						});
+
+					});
+				});
+
+				if(tagprefix) {
+					test("Prefixed properties and values", function() {
+						$content = jQuery('#content');
+	
+						props2009b.forEach(function(prop, index) {
+							var values = values2009[prop];
+	
+							values.forEach(function(value, index) {
+								$content.css(tagprefix + prop, value);
+								ok($content.css(tagprefix + prop) === value, tagprefix + prop + ': ' + value + " supported");
+							});
+						});
+					});
+				}
+
+				module("Spec 2012 property value support tests");
+				var props2012b = ["align-content", "align-items", "align-self", "flex", "flex-basis", "flex-direction", "flex-flow", "flex-grow", "flex-shrink", "flex-wrap", "justify-content", "order"];
+				var values2012 = {
+					"display": ["flex", "inline-flex"],
+					"align-content": ["flex-start", "flex-end", "center", "space-between", "space-around", "stretch"],
+					"align-items": ["flex-start", "flex-end", "center", "baseline", "stretch"],
+					"align-self": ["auto", "flex-start", "flex-end", "center", "baseline", "stretch"],
+					"flex": ["none", "4 5 300px", "2 8 350px"],
+					"flex-basis": ["287px", "17em"],
+					"flex-direction": ["row", "row-reverse", "column", "column-reverse"],
+					"flex-flow": ["row-reverse wrap", "row-reverse wrap", "column wrap", "column-reverse wrap"],
+					"flex-grow": ["17", "2.3"],
+					"flex-shrink": ["3.9", "16"],
+					"flex-wrap": ["nowrap", "wrap", "wrap-reverse"],
+					"justify-content": ["flex-start", "flex-end", "center", "space-between", "space-around"],
+					"order": ["2", "-2"]
+				};
+
+				test("Properties and value without prefix", function() {
+					$content = jQuery('#content');
+
+					props2012b.forEach(function(prop, index) {
+						var values = values2012[prop];
+
+						values.forEach(function(value, index) {
+							$content.css(prop, value);
+							ok($content.css(prop) === value, prop + ': ' + value + " supported");
+						});
+
+					});
+				});
+
+				if(tagprefix) {
+					test("Prefixed properties and values", function() {
+						$content = jQuery('#content');
+	
+						props2012b.forEach(function(prop, index) {
+							var values = values2012[prop];
+	
+							values.forEach(function(value, index) {
+								$content.css(tagprefix + prop, value);
+								ok($content.css(tagprefix + prop) === value, tagprefix + prop + ': ' + value + " supported");
+							});
+						});
+					});
+				}
+			}
+		</script>
+	</head>
+	<body id="body" class="sapUiBody">
+		<h1 id="qunit-header">qUnit Page for testing CSS Flexible Box Layout properties (do not include in integration tests)</h1>
+		<h2 id="qunit-banner"></h2>
+		<h2 id="qunit-userAgent"></h2>
+		<ol id="qunit-tests"></ol>
+		<div id="content"></div>
+	</body>
+</html>

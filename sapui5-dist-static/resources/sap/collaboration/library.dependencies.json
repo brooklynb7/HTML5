@@ -1,0 +1,147 @@
+{
+  "modules" : [
+    {
+      "name" : "sap/collaboration/components/fiori/feed/Component.js",
+      "size" : 7253,
+      "compressedSize" : 3244,
+      "required" : ["sap/collaboration/library.js", "sap/collaboration/components/utils/CommonUtil.js", "sap/collaboration/components/utils/JamUtil.js", "sap/collaboration/components/utils/OdataUtil.js", "sap/ui/core/UIComponent.js", "jquery.sap.global.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/collaboration/components/fiori/feed/app/App.controller.js",
+      "size" : 5476,
+      "compressedSize" : 2315,
+      "required" : [],
+      "includes" : []
+    },
+    {
+      "name" : "sap/collaboration/components/fiori/feed/app/App.view.js",
+      "size" : 1140,
+      "compressedSize" : 311,
+      "required" : [],
+      "includes" : []
+    },
+    {
+      "name" : "sap/collaboration/components/fiori/feed/commons/Detail.controller.js",
+      "size" : 3745,
+      "compressedSize" : 1696,
+      "required" : ["sap/collaboration/components/utils/JamUtil.js", "jquery.sap.global.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/collaboration/components/fiori/feed/commons/Detail.view.js",
+      "size" : 1524,
+      "compressedSize" : 597,
+      "required" : [],
+      "includes" : []
+    },
+    {
+      "name" : "sap/collaboration/components/fiori/feed/dialog/Component.js",
+      "size" : 9773,
+      "compressedSize" : 4041,
+      "required" : ["sap/collaboration/library.js", "sap/collaboration/components/utils/CommonUtil.js", "sap/collaboration/components/utils/JamUtil.js", "sap/collaboration/components/utils/OdataUtil.js", "sap/ui/core/UIComponent.js", "jquery.sap.global.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/collaboration/components/fiori/feed/splitApp/FeedTypeMaster.controller.js",
+      "size" : 4564,
+      "compressedSize" : 1743,
+      "required" : [],
+      "includes" : []
+    },
+    {
+      "name" : "sap/collaboration/components/fiori/feed/splitApp/FeedTypeMaster.view.js",
+      "size" : 2665,
+      "compressedSize" : 1202,
+      "required" : [],
+      "includes" : []
+    },
+    {
+      "name" : "sap/collaboration/components/fiori/feed/splitApp/GroupMaster.controller.js",
+      "size" : 4487,
+      "compressedSize" : 2356,
+      "required" : [],
+      "includes" : []
+    },
+    {
+      "name" : "sap/collaboration/components/fiori/feed/splitApp/GroupMaster.view.js",
+      "size" : 1494,
+      "compressedSize" : 532,
+      "required" : [],
+      "includes" : []
+    },
+    {
+      "name" : "sap/collaboration/components/fiori/feed/splitApp/SplitApp.controller.js",
+      "size" : 5561,
+      "compressedSize" : 2361,
+      "required" : [],
+      "includes" : []
+    },
+    {
+      "name" : "sap/collaboration/components/fiori/feed/splitApp/SplitApp.view.js",
+      "size" : 1318,
+      "compressedSize" : 351,
+      "required" : [],
+      "includes" : []
+    },
+    {
+      "name" : "sap/collaboration/components/fiori/sharing/Component.js",
+      "size" : 8940,
+      "compressedSize" : 3756,
+      "required" : ["sap/collaboration/components/utils/OdataUtil.js", "sap/collaboration/components/utils/CommonUtil.js", "sap/ui/core/UIComponent.js", "sap/m/MessageBox.js", "jquery.sap.global.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/collaboration/components/fiori/sharing/Sharing.controller.js",
+      "size" : 3983,
+      "compressedSize" : 1980,
+      "required" : [],
+      "includes" : []
+    },
+    {
+      "name" : "sap/collaboration/components/fiori/sharing/Sharing.view.js",
+      "size" : 3632,
+      "compressedSize" : 1710,
+      "required" : [],
+      "includes" : []
+    },
+    {
+      "name" : "sap/collaboration/components/fiori/sharing/dialog/Component.js",
+      "size" : 6709,
+      "compressedSize" : 3330,
+      "required" : ["sap/collaboration/components/utils/OdataUtil.js", "sap/collaboration/components/utils/CommonUtil.js", "sap/ui/core/UIComponent.js", "sap/m/MessageToast.js", "jquery.sap.global.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/collaboration/components/utils/CommonUtil.js",
+      "size" : 1240,
+      "compressedSize" : 751,
+      "required" : ["sap/m/MessageBox.js", "jquery.sap.global.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/collaboration/components/utils/JamUtil.js",
+      "description" : "JamUtil helper class  Is responsible for the integration and communication with the JAM APIs",
+      "size" : 5765,
+      "compressedSize" : 3074,
+      "required" : ["jquery.sap.global.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/collaboration/components/utils/OdataUtil.js",
+      "description" : "OdataUtil helper class  Is responsible for the integration and communication with the Backend OData Server",
+      "size" : 3507,
+      "compressedSize" : 1240,
+      "required" : ["jquery.sap.global.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/collaboration/library.js",
+      "description" : "Initialization Code and shared classes of library sap.collaboration (1.16.4)",
+      "size" : 2768,
+      "compressedSize" : 630,
+      "required" : ["sap/ui/core/Core.js", "sap/ui/core/library.js", "jquery.sap.global.js"],
+      "includes" : ["sap/collaboration/AppType.js", "sap/collaboration/FeedType.js"]
+    }
+  ]
+}

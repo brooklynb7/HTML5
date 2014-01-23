@@ -1,0 +1,394 @@
+<!DOCTYPE HTML>
+<!-- 
+  Tested control/class: sap.ui.commons.TextView
+  Author: D031513
+-->
+
+<html>
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<script id="sap-ui-bootstrap"
+		type="text/javascript"
+		src="../../../../../resources/sap-ui-core.js"
+		data-sap-ui-theme="sap_platinum"
+		data-sap-ui-noConflict="true"
+		data-sap-ui-libs="sap.ui.commons">
+	</script>
+	<link rel="stylesheet" href="../../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
+	<script type="text/javascript" src="../../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+	<script type="text/javascript" src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
+	<script type="text/javascript" src="../../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
+
+	<!-- Control initialization -->
+	<script language="javascript">
+
+		var oTV1 = new sap.ui.commons.TextView("TV1");
+		oTV1.setText("This is a simple Text for the qUnit Test.");
+
+		sap.ui.setRoot("uiArea1", oTV1);
+
+		var oTV2 = new sap.ui.commons.TextView("TV2");
+		oTV2.setText("This is a multiline long Text to test wrapping in the qUnit test.\n This is the second line. \n This is the third line.");
+		oTV2.setWidth("155px");
+		
+		sap.ui.setRoot("uiArea2", oTV2);
+
+		var oTV3 = new sap.ui.commons.TextView("TV3");
+		oTV3.setText("This Text should NOT be visible.");
+		oTV3.setVisible(false);
+
+		sap.ui.setRoot("uiArea3", oTV3);
+
+		// TEST functions
+		qutils.delayTestStart();
+
+		module("Properties");
+
+		test("Default Values", function() {
+			equals(oTV1.getEnabled(), true, "Enabled");		
+			equals(oTV1.getDesign(), sap.ui.commons.TextViewDesign.Standard, "Design");		
+			equals(oTV1.getSemanticColor(), sap.ui.commons.TextViewColor.Default, "SemanticColor");		
+			equals(oTV1.getWrapping(), true, "Wrapping");		
+			equals(oTV1.getWidth(), "", "Width");		
+		});
+
+		module("Appearance");
+
+		test("Visibility", function() {
+			// Visible
+			ok(jQuery("#TV1").get(0), "Visible, expected defined");
+			equals(jQuery("#TV3").get(0), undefined, "Invisible");
+		});
+
+		test("Text Output", function() {
+			// check if result is in HTML
+			var oTVDom = jQuery.sap.domById('TV1');
+			equals(oTVDom.innerHTML,"This is a simple Text for the qUnit Test.", "Displayed Text");
+
+			// is text escaped
+			oTV1.setText("~!@#$%^&*()_+{}:\"|<>?\'\"><script>alert('xss')<\/script>");
+ 			sap.ui.getCore().applyChanges();
+			oTVDom = jQuery.sap.domById('TV1');
+			equals(jQuery(oTVDom).text(),"~!@#$%^&*()_+{}:\"|<>?\'\"><script>alert('xss')<\/script>", "Escaping HTML-Text");
+		});
+
+		test("Wrapping", function() {
+			// wrapping on/off
+			oTVDom = jQuery.sap.domById('TV1');
+			var iLineHeight = oTVDom.clientHeight;
+			oTVDom = jQuery.sap.domById('TV2');
+			equals(oTVDom.clientHeight,(iLineHeight * 4), "Wrapping TRUE, 4 Lines (line-height: 21)");
+
+			oTV2.setWrapping(false);
+ 			sap.ui.getCore().applyChanges();
+			oTVDom = jQuery.sap.domById('TV2');
+			equals(oTVDom.clientHeight,(iLineHeight * 3), "Wrapping FALSE, 3 Lines (line-height: 21)");
+		});
+
+		test("Width", function() {
+			// width -> cutting
+			oTVDom = jQuery.sap.domById('TV2');
+			equals(oTVDom.clientWidth,155, "Defined width");
+			if( oTVDom.clientWidth < oTVDom.scrollWidth ){
+				var bCut = true; 
+			}
+			ok(bCut,"Text ist cut: defined true");
+		});
+
+		test("Semantic colors", function() {
+			// colors
+			var sColor = jQuery(oTVDom).css("color");
+			if(sColor.slice(0,1) == "#"){
+				equals(sColor,"#000000","Color default");
+			}else{
+				equals(sColor,"rgb(0, 0, 0)","Color default");
+			}
+			sColor = jQuery(oTVDom).css("background-color");
+			if(sColor.slice(0,3) == "rgb"){
+				equals(sColor,"rgba(0, 0, 0, 0)","BackgroundColor default");
+			}else{
+				equals(sColor,"transparent","Background-Color default");
+			}
+
+			oTV1.setSemanticColor(sap.ui.commons.TextViewColor.Positive);
+	 		sap.ui.getCore().applyChanges();
+			oTVDom = jQuery.sap.domById('TV1');
+			sColor = jQuery(oTVDom).css("color");
+			if(sColor.slice(0,1) == "#"){
+				equals(sColor,"#000000","Color positive");
+			}else{
+				equals(sColor,"rgb(0, 0, 0)","Color positive");
+			}
+			sColor = jQuery(oTVDom).css("background-color");
+			if(sColor.slice(0,1) == "#"){
+				equals(sColor,"#b5e7a8","Background-Color positive");
+			}else{
+				equals(jQuery(oTVDom).css("background-color"),"rgb(181, 231, 168)","Background-Color positive");
+			}
+
+			oTV1.setSemanticColor(sap.ui.commons.TextViewColor.Critical);
+ 			sap.ui.getCore().applyChanges();
+			oTVDom = jQuery.sap.domById('TV1');
+			sColor = jQuery(oTVDom).css("color");
+			if(sColor.slice(0,1) == "#"){
+				equals(sColor,"#000000","Color critical");
+			}else{
+				equals(sColor,"rgb(0, 0, 0)","Color critical");
+			}
+			sColor = jQuery(oTVDom).css("background-color");
+			if(sColor.slice(0,1) == "#"){
+				equals(sColor,"#fff2ca","Background-Color critical");
+			}else{
+				equals(jQuery(oTVDom).css("background-color"),"rgb(255, 242, 202)","Background-Color critical");
+			}
+
+			oTV1.setSemanticColor(sap.ui.commons.TextViewColor.Negative);
+ 			sap.ui.getCore().applyChanges();
+			oTVDom = jQuery.sap.domById('TV1');
+			sColor = jQuery(oTVDom).css("color");
+			if(sColor.slice(0,1) == "#"){
+				equals(sColor,"#cc0000","Color negative");
+			}else{
+				equals(sColor,"rgb(204, 0, 0)","Color negative");
+			}
+			sColor = jQuery(oTVDom).css("background-color");
+			if(sColor.slice(0,1) == "#"){
+				equals(sColor,"#ffddd9","Background-Color negative");
+			}else{
+				equals(jQuery(oTVDom).css("background-color"),"rgb(255, 221, 217)","Background-Color negative");
+			}
+		});
+
+		test("Design", function() {
+			// Design
+			oTVDom = jQuery.sap.domById('TV1');
+			equals(jQuery(oTVDom).css("font-size"),"11px","Default text: Font-size");
+			if (Number(jQuery(oTVDom).css("font-weight"))){
+				equals(jQuery(oTVDom).css("font-weight"),"400","Default text: Font-weight");
+			}else{
+				equals(jQuery(oTVDom).css("font-weight"),"normal","Default text: Font-weight");
+			}
+			equals(jQuery(oTVDom).css("font-style"),"normal","Default text: Font-style");
+			equals(jQuery(oTVDom).css("font-family").replace(/\s/g, ""),"Tahoma,Arial,Helvetica,sans-serif","Default text: FontFamily");
+			equals(jQuery(oTVDom).css("text-decoration"),"none","Default text: Text-decoration");
+
+			oTV1.setDesign(sap.ui.commons.TextViewDesign.Bold);
+			sap.ui.getCore().applyChanges();
+			oTVDom = jQuery.sap.domById('TV1');
+			equals(jQuery(oTVDom).css("font-size"),"11px","Bold text: Font-size");
+			if (Number(jQuery(oTVDom).css("font-weight"))){
+				equals(jQuery(oTVDom).css("font-weight"),"700","Bold text: Font-weight");
+			}else{
+				equals(jQuery(oTVDom).css("font-weight"),"bold","Bold text: Font-weight");
+			}
+			equals(jQuery(oTVDom).css("font-style"),"normal","Bold text: Font-style");
+			equals(jQuery(oTVDom).css("font-family").replace(/\s/g, ""),"Tahoma,Arial,Helvetica,sans-serif","Bold text: FontFamily");
+			equals(jQuery(oTVDom).css("text-decoration"),"none","Bold text: Text-decoration");
+
+			oTV1.setDesign(sap.ui.commons.TextViewDesign.Italic);
+			sap.ui.getCore().applyChanges();
+			oTVDom = jQuery.sap.domById('TV1');
+			equals(jQuery(oTVDom).css("font-size"),"11px","Italic text: Font-size");
+			if (Number(jQuery(oTVDom).css("font-weight"))){
+				equals(jQuery(oTVDom).css("font-weight"),"400","Italic text: Font-weight");
+			}else{
+				equals(jQuery(oTVDom).css("font-weight"),"normal","Italic text: Font-weight");
+			}
+			equals(jQuery(oTVDom).css("font-style"),"italic","Italic text: Font-style");
+			equals(jQuery(oTVDom).css("font-family").replace(/\s/g, ""),"Tahoma,Arial,Helvetica,sans-serif","Italic text: FontFamily");
+			equals(jQuery(oTVDom).css("text-decoration"),"none","Italic text: Text-decoration");
+
+			oTV1.setDesign(sap.ui.commons.TextViewDesign.Underline);
+			sap.ui.getCore().applyChanges();
+			oTVDom = jQuery.sap.domById('TV1');
+			equals(jQuery(oTVDom).css("font-size"),"11px","Underline text: Font-size");
+			if (Number(jQuery(oTVDom).css("font-weight"))){
+				equals(jQuery(oTVDom).css("font-weight"),"400","Underline text: Font-weight");
+			}else{
+				equals(jQuery(oTVDom).css("font-weight"),"normal","Underline text: Font-weight");
+			}
+			equals(jQuery(oTVDom).css("font-style"),"normal","Underline text: Font-style");
+			equals(jQuery(oTVDom).css("font-family").replace(/\s/g, ""),"Tahoma,Arial,Helvetica,sans-serif","Underline text: FontFamily");
+			equals(jQuery(oTVDom).css("text-decoration"),"underline","Underline text: Text-decoration");
+
+			oTV1.setDesign(sap.ui.commons.TextViewDesign.Small);
+			sap.ui.getCore().applyChanges();
+			oTVDom = jQuery.sap.domById('TV1');
+			equals(jQuery(oTVDom).css("font-size"),"10px","Small text: Font-size");
+			if (Number(jQuery(oTVDom).css("font-weight"))){
+				equals(jQuery(oTVDom).css("font-weight"),"400","Small text: Font-weight");
+			}else{
+				equals(jQuery(oTVDom).css("font-weight"),"normal","Small text: Font-weight");
+			}
+			equals(jQuery(oTVDom).css("font-style"),"normal","Small text: Font-style");
+			equals(jQuery(oTVDom).css("font-family").replace(/\s/g, ""),"Tahoma,Arial,Helvetica,sans-serif","Small text: FontFamily");
+			equals(jQuery(oTVDom).css("text-decoration"),"none","Small text: Text-decoration");
+
+			oTV1.setDesign(sap.ui.commons.TextViewDesign.Monospace);
+			sap.ui.getCore().applyChanges();
+			oTVDom = jQuery.sap.domById('TV1');
+			equals(jQuery(oTVDom).css("font-size"),"11px","Monospace text: Font-size");
+			if (Number(jQuery(oTVDom).css("font-weight"))){
+				equals(jQuery(oTVDom).css("font-weight"),"400","Monospace text: Font-weight");
+			}else{
+				equals(jQuery(oTVDom).css("font-weight"),"normal","Monospace text: Font-weight");
+			}
+			equals(jQuery(oTVDom).css("font-style"),"normal","Monospace text: Font-style");
+			equals(jQuery(oTVDom).css("font-family"),"monospace","Monospace text: FontFamily");
+			equals(jQuery(oTVDom).css("text-decoration"),"none","Monospace text: Text-decoration");
+
+			oTV1.setDesign(sap.ui.commons.TextViewDesign.H1);
+			sap.ui.getCore().applyChanges();
+			oTVDom = jQuery.sap.domById('TV1');
+			equals(jQuery(oTVDom).css("font-size"),"12px","H1 text: Font-size");
+			if (Number(jQuery(oTVDom).css("font-weight"))){
+				equals(jQuery(oTVDom).css("font-weight"),"700","H1 text: Font-weight");
+			}else{
+				equals(jQuery(oTVDom).css("font-weight"),"bold","H1 text: Font-weight");
+			}
+			equals(jQuery(oTVDom).css("font-style"),"normal","H1 text: Font-style");
+			equals(jQuery(oTVDom).css("font-family").replace(/\s/g, ""),"Tahoma,Arial,Helvetica,sans-serif","H1 text: FontFamily");
+			equals(jQuery(oTVDom).css("text-decoration"),"none","H1 text: Text-decoration");
+
+			oTV1.setDesign(sap.ui.commons.TextViewDesign.H2);
+			sap.ui.getCore().applyChanges();
+			oTVDom = jQuery.sap.domById('TV1');
+			equals(jQuery(oTVDom).css("font-size"),"11px","H2 text: Font-size");
+			if (Number(jQuery(oTVDom).css("font-weight"))){
+				equals(jQuery(oTVDom).css("font-weight"),"700","H2 text: Font-weight");
+			}else{
+				equals(jQuery(oTVDom).css("font-weight"),"bold","H2 text: Font-weight");
+			}
+			equals(jQuery(oTVDom).css("font-style"),"normal","H2 text: Font-style");
+			equals(jQuery(oTVDom).css("font-family").replace(/\s/g, ""),"Tahoma,Arial,Helvetica,sans-serif","H2 text: FontFamily");
+			equals(jQuery(oTVDom).css("text-decoration"),"none","H2 text: Text-decoration");
+
+			oTV1.setDesign(sap.ui.commons.TextViewDesign.H3);
+			sap.ui.getCore().applyChanges();
+			oTVDom = jQuery.sap.domById('TV1');
+			equals(jQuery(oTVDom).css("font-size"),"11px","H3 text: Font-size");
+			if (Number(jQuery(oTVDom).css("font-weight"))){
+				equals(jQuery(oTVDom).css("font-weight"),"700","H3 text: Font-weight");
+			}else{
+				equals(jQuery(oTVDom).css("font-weight"),"bold","H3 text: Font-weight");
+			}
+			equals(jQuery(oTVDom).css("font-style"),"normal","H3 text: Font-style");
+			equals(jQuery(oTVDom).css("font-family").replace(/\s/g, ""),"Tahoma,Arial,Helvetica,sans-serif","H3 text: FontFamily");
+			equals(jQuery(oTVDom).css("text-decoration"),"none","H3 text: Text-decoration");
+
+			oTV1.setDesign(sap.ui.commons.TextViewDesign.H4);
+			sap.ui.getCore().applyChanges();
+			oTVDom = jQuery.sap.domById('TV1');
+			equals(jQuery(oTVDom).css("font-size"),"10px","H4 text: Font-size");
+			if (Number(jQuery(oTVDom).css("font-weight"))){
+				equals(jQuery(oTVDom).css("font-weight"),"700","H4 text: Font-weight");
+			}else{
+				equals(jQuery(oTVDom).css("font-weight"),"bold","H4 text: Font-weight");
+			}
+			equals(jQuery(oTVDom).css("font-style"),"normal","H4 text: Font-style");
+			equals(jQuery(oTVDom).css("font-family").replace(/\s/g, ""),"Tahoma,Arial,Helvetica,sans-serif","H4 text: FontFamily");
+			equals(jQuery(oTVDom).css("text-decoration"),"none","H4 text: Text-decoration");	
+		});
+
+		test("Disabled", function() {
+			// disabled - tabindex
+			oTV1.setDesign(sap.ui.commons.TextViewDesign.Standard);
+			oTV1.setEnabled(false);
+			sap.ui.getCore().applyChanges();
+			oTVDom = jQuery.sap.domById('TV1');
+			var sColor = jQuery(oTVDom).css("color");
+			if(sColor.slice(0,1) == "#"){
+				equals(sColor,"#7b8694","Disabled: Color");
+			}else{
+				equals(sColor,"rgb(123, 134, 148)","Disabled: Color");			
+			}
+		});
+
+		test("Text Align", function() {
+			// text align
+			oTV1.setDesign(sap.ui.commons.TextViewDesign.Standard);
+			oTV1.setEnabled(true);
+			sap.ui.getCore().applyChanges();
+			oTVDom = jQuery.sap.domById('TV1');
+			equals(jQuery(oTVDom).css("text-align"),"left","Default (Begin) Text Align");
+
+			oTV1.setTextAlign(sap.ui.core.TextAlign.Right);
+			sap.ui.getCore().applyChanges();
+			oTVDom = jQuery.sap.domById('TV1');
+			equals(jQuery(oTVDom).css("text-align"),"right","Text Align Right");
+
+			oTV1.setTextAlign(sap.ui.core.TextAlign.End);
+			sap.ui.getCore().applyChanges();
+			oTVDom = jQuery.sap.domById('TV1');
+			equals(jQuery(oTVDom).css("text-align"),"right","Text Align End");
+
+			oTV1.setTextDirection(sap.ui.core.TextDirection.RTL);
+			sap.ui.getCore().applyChanges();
+			oTVDom = jQuery.sap.domById('TV1');
+			equals(jQuery(oTVDom).css("text-align"),"left","Text Align End in RTL");
+
+			oTV1.setTextAlign(sap.ui.core.TextAlign.Left);
+			sap.ui.getCore().applyChanges();
+			oTVDom = jQuery.sap.domById('TV1');
+			equals(jQuery(oTVDom).css("text-align"),"left","Text Align Left in RTL");
+
+			oTV1.setTextDirection(sap.ui.core.TextDirection.Inherit);
+			oTV1.setTextAlign(sap.ui.core.TextAlign.Begin);
+		});
+
+		test("Null Text", function() {
+	    expect(2);
+
+	    oTV1.setText(null);
+      	try {
+      		sap.ui.getCore().applyChanges();
+					oTVDom = jQuery.sap.domById('TV1');
+					equals(oTVDom.innerHTML,"", "Null Text");
+      	}
+      	catch(e) {
+      		// do nothing -> check is nit exectites in error case and "expect" brings error
+      	}
+
+			oTV1.setText("Hello World!");
+ 			sap.ui.getCore().applyChanges();
+			oTVDom = jQuery.sap.domById('TV1');
+			equals(oTVDom.innerHTML,"Hello World!", "Text entered again");
+		});
+
+		test("ARIA", function() {
+			oTVDom = jQuery.sap.domById('TV2');
+			equals(jQuery(oTVDom).attr("role"),"document","ARIA role");
+			equals(jQuery(oTVDom).attr("aria-disabled"),"false","ARIA-disabled: for enabled field");
+			equals(jQuery(oTVDom).attr("aria-invalid"),"false","ARIA-invalid: for normal field");
+
+			oTVDom = jQuery.sap.domById('TV1');
+			equals(jQuery(oTVDom).attr("aria-invalid"),"true","ARIA-invalid: for negative field");
+
+			oTV1.setSemanticColor(sap.ui.commons.TextViewColor.Default);
+			oTV1.setEnabled(false);
+			sap.ui.getCore().applyChanges();
+			oTVDom = jQuery.sap.domById('TV1');
+			equals(jQuery(oTVDom).attr("aria-disabled"),"true","ARIA-disabled: for disabled field");
+
+		});
+
+	</script>
+
+	<title>qunit Test for TextView</title>
+	<link rel="shortcut icon" type="image/x-icon" href="../images/controls/sap.ui.commons.TextView.gif">
+
+
+</head>
+<body class="sapUiBody">
+	<h1 id="qunit-header">QUnit tests: sap.ui.commons.TextView</h1>
+	<h2 id="qunit-banner"></h2>
+ 	<h2 id="qunit-userAgent"></h2>
+	<div id="qunit-testrunner-toolbar"></div>
+	<ol id="qunit-tests"></ol>
+	<br>
+	<div id="uiArea1"></div>
+	<div id="uiArea2"></div>
+	<div id="uiArea3"></div>
+
+</body>
+</html>

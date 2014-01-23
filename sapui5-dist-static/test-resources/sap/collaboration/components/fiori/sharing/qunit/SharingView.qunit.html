@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Sharing View Unit Test</title>
+
+<!-- UI5 Bootstrap -->
+<script id="sap-ui-bootstrap" 
+		type="text/javascript"
+		src="../../../../../../../resources/sap-ui-core.js"
+		data-sap-ui-theme="sap_bluecrystal"
+		data-sap-ui-libs="sap.m,sap.ui.layout"
+		data-sap-ui-language="en">
+</script>
+
+<!-- libraries to be tested ******** LATER SHOULD BE IN THE BOOTSTRAP ******** -->
+
+<!-- QUnit libraries -->
+	<link rel="stylesheet"
+		  href="../../../../../../../resources/sap/ui/thirdparty/qunit.css"
+		  type="text/css" media="screen" />
+	<script src="../../../../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+	<script type="text/javascript" src="../../../../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
+	<script type="text/javascript" src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
+	
+	
+    <!-- The feed widget script is loaded by the component  -->
+	<!-- <script type="text/javascript" src="https://integration3.cubetree.com/assets/feed_widget_v1.js"></script> -->
+    
+    <script>
+    
+	  //************************************ BEGIN OF A FIX FOR IE8 FOR THE TRIM METHOD USED IN THE MOBILE LIB *******************************************//
+		
+		if (!String.prototype.trim) {
+		  String.prototype.trim = function () {
+		    return this.replace(/^\s+|\s+$/g, '');
+		  };
+		}
+		
+		
+		//************************************ END OF A FIX FOR IE8 FOR THE TRIM METHOD USED IN THE MOBILE LIB *******************************************//
+		
+		//************************************ BEGIN OF A FIX FOR IE8 FOR THE WINDOW>GETCOMPUTEDSTYLE USED IN THE MOBILE LIB *******************************************//
+    	if (!window.getComputedStyle) {
+    		window.getComputedStyle = function (dom) {  
+    			var style;        
+    			var returns = {};
+    			style = dom.currentStyle;
+    			for(var prop in style){                
+	    			returns[prop] = style[prop];            
+	    		}            
+	    		return returns;
+    		}
+    	}
+    	//************************************ END OF A FIX FOR IE8 FOR THE TRIM METHOD USED IN THE MOBILE LIB *******************************************//
+    	
+	 	jQuery.sap.require("jquery.sap.resources");
+	 	jQuery.sap.require("sap.collaboration.library");
+		var sLocale = sap.ui.getCore().getConfiguration().getLanguage();
+		var modulePath = jQuery.sap.getModulePath("sap.collaboration.components");
+		var oLangBundle = jQuery.sap.resources({url : modulePath + "/i18n/messagebundle.properties", locale: sLocale});
+		
+		var aJamGroups = [ 
+	                   		{Id:"1",Name:"group1",GroupType:"Private External"},
+			        	 	{Id:"2",Name:"group2",GroupType:"Private internal"},
+				         	{Id:"3",Name:"group3",GroupType:"Public Internal"},
+				         	{Id:"4",Name:"group4",GroupType:"Private External"}
+        ];
+		
+		var sJamUrl = "https://integration3.sapjam.com";
+		var sObjectShare = "this is the prefix note text";
+		
+		var oObjectListItem = new sap.m.ObjectListItem("ObjectItem",{
+     		title : "Sales Order 1",
+     		number : "788885,23",
+     		numberUnit : "USD",
+     		firstStatus: new sap.m.ObjectStatus({text : "Open", state:"Warning"}),
+			}); 
+		
+		var sPrefixId = "View1";
+		var oSharingView = sap.ui.view({
+			id: sPrefixId + "_SharingView", 
+			viewData : {
+				controlId: 	sPrefixId, 
+				langBundle: oLangBundle,
+				jamGroups: aJamGroups,
+				jamUrl: sJamUrl,
+				objectDisplay: oObjectListItem,
+       			objectShare: sObjectShare,
+       			objectId: "newId"	
+			}, 
+			type: sap.ui.core.mvc.ViewType.JS, 
+			viewName: "sap.collaboration.components.fiori.sharing.Sharing"
+		});
+		
+		oSharingView.placeAt("content");
+    </script>
+    
+    <script type="text/javascript">
+		//var sPrefixId = "View1";
+		
+		module("Sharing View Rendering");
+	
+		test("TestViewRenderedOK", function() {
+		    var sViewId = sPrefixId + "_SharingView";
+		    notEqual(jQuery.sap.domById(sViewId), null, "Create Sharing View outer HTML Element is rendered.");
+		});
+		
+		test("TestSharingVboxRenderedOK", function() {
+		    var sSharingVboxId = sPrefixId + "_SharingVbox";
+		    notEqual(jQuery.sap.domById(sSharingVboxId), null, "Create Sharing Table outer HTML Element is rendered.");
+		});
+		
+		test("TestSharingVboxContentRenderedOK", function() {
+		    var sSharingVboxId = sPrefixId + "_SharingVbox";
+		    var oSharingVbox = sap.ui.getCore().byId(sSharingVboxId);
+		    
+		    var iRows = oSharingVbox.getItems().length;
+		    equal(iRows, 3, "3 rows in the Vbox");
+		    
+		    
+		    var oRow1Layout = oSharingVbox.getItems()[0];
+		    equal(oRow1Layout.getId(), "ObjectItem", "row1 content is OK");
+		    
+		    var oRow2Layout = oSharingVbox.getItems()[1];
+		    equal(oRow2Layout.getId(), sPrefixId + "_GroupSelectionLayout", "row2 content is OK");
+		    var oRow2LayoutContent1 = oSharingVbox.getItems()[1].getContent()[0];
+		    equal(oRow2LayoutContent1.getId(), sPrefixId + "_GroupLabel", "Group Label is rendered");
+		    equal(oRow2LayoutContent1.getText(), "Select from available groups:", "Group Label text is OK");
+		    var oRow2LayoutContent2 = oSharingVbox.getItems()[1].getContent()[1];
+		    equal(oRow2LayoutContent2.getId(), sPrefixId + "_GroupSelect", "Group DDB is rendered");
+		    equal(oRow2LayoutContent2.getItems()[0].getText(), "group1 (Private External)", "Text in DDB items is Ok")
+		    notEqual(oRow2LayoutContent2.getItems().length, 0, "Group DDB has items");
+		    
+		    var oRow3Layout = oSharingVbox.getItems()[2];
+		    equal(oRow3Layout.getId(), sPrefixId + "_NoteLayout", "row2 content is OK");
+		    var oRow3LayoutContent1 = oSharingVbox.getItems()[2].getContent()[0];
+		    equal(oRow3LayoutContent1.getId(), sPrefixId + "_NoteLabel", "Note Label is rendered");
+		    var oRow3LayoutContent2 = oSharingVbox.getItems()[2].getContent()[1];
+		    equal(oRow3LayoutContent2.getId(), sPrefixId + "_NoteTextArea", "Note TextArea is rendered");
+		    
+		    
+		});
+		
+		test("TestViewConfigurationSetOK", function() {
+		    var sViewId = sPrefixId + "_SharingView";
+		    var oSharingView = sap.ui.getCore().byId(sViewId);
+		    var oSharingViewController = oSharingView.getController();
+		    
+		    equal(oSharingView.getViewData().jamUrl, sJamUrl, "Jam Url is ok");
+		    
+		    equal(oSharingViewController.sPrefixId, sPrefixId, "Prefix Id is ok");
+		    equal(oSharingViewController.oLangBundle, oLangBundle, "Language Bundle is ok");
+		    equal(oSharingViewController.aJamGroups, aJamGroups, "groups are ok");
+		    equal(oSharingViewController.sObjectShare, sObjectShare, "Note prefix text is ok");
+		    equal(oSharingViewController.oObjectDisplay, oObjectListItem, "Object to be displayed is ok");
+		});
+		
+		module("Sharing View Behaviour");
+		
+		test("GetSharingDataIsOk", function() {
+		    var sViewId = sPrefixId + "_SharingView";
+		    var oSharingView = sap.ui.getCore().byId(sViewId);
+		    var oSharingViewController = oSharingView.getController();
+		    
+		    var oSharingData = oSharingViewController.getSharingData();
+		    var oExpectedSharingData = {
+		    		note:		"this is the prefix note text",
+					groupId:	"1"
+		    }
+		    deepEqual(oSharingData, oExpectedSharingData, "Sharing data is OK");
+		});
+		
+	</script>
+
+</head>
+<body>
+	<div id="qunit"></div>
+	<div id="content"></div>
+</body>
+</html>

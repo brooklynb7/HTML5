@@ -1,0 +1,54 @@
+<core:View xmlns:core="sap.ui.core"
+           xmlns="sap.m" xmlns:ui="sap.ca.ui"
+           xmlns:layout="sap.ui.layout.form" controllerName="sap.ca.ui.sample.views.control.InPlaceEdit">
+    <Page id="page">
+        <content>
+
+
+            <ui:InPlaceEdit>
+                <ui:content>
+                    <Input value="click to edit"></Input>
+                </ui:content>
+            </ui:InPlaceEdit>
+            <ui:InPlaceEdit>
+                <ui:content>
+                    <Link text="editable link"></Link>
+                </ui:content>
+            </ui:InPlaceEdit>
+
+            <ui:InPlaceEdit undoEnabled="true">
+                <ui:content>
+                    <Input value="Undo enabled" ></Input>
+                </ui:content>
+            </ui:InPlaceEdit>
+
+
+            <layout:SimpleForm maxContainerCols="1" class="sapUiFormEdit sapUiFormEdit-CTX">
+                <layout:content>
+                    <Label text="my first label"></Label>
+                    <ui:InPlaceEdit>
+                        <ui:content>
+                            <Input value="200px width" width="200px"></Input>
+                        </ui:content>
+                    </ui:InPlaceEdit>
+
+                    <Label text="My second label a bit bigger"></Label>
+                    <ui:InPlaceEdit>
+                        <ui:content>
+                            <Input></Input>
+                        </ui:content>
+                    </ui:InPlaceEdit>
+
+                </layout:content>
+
+
+
+            </layout:SimpleForm>
+
+        </content>
+        <footer>
+            <Bar>
+            </Bar>
+        </footer>
+    </Page>
+</core:View>

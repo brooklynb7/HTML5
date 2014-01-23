@@ -1,0 +1,155 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+<title>Test Page for sap.m.DateTimeInput</title>
+<script id="sap-ui-bootstrap" data-sap-ui-theme="sap_mvi"
+	type="text/javascript" data-sap-ui-noConflict="true"
+	data-sap-ui-libs="sap.m" src="../../../../resources/sap-ui-core.js">
+</script>
+
+<link rel="stylesheet" href="../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
+<script type="text/javascript" src="../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+<script type="text/javascript" src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
+<script type="text/javascript" src="../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
+
+
+<script type="text/javascript">
+	jQuery.sap.require("sap.ui.model.type.Date");
+
+	var oNow = new Date(),
+		oCore = sap.ui.getCore(),
+		sValueFormat = "yyyy-MM-dd",
+		sDateValue1 = "2012-05-29",
+		sDateValue2 = "1984-03-26",
+		sDateValue3 = "1984-03-04",
+		oModel = new sap.ui.model.json.JSONModel(),
+		oFormatter = sap.ui.core.format.DateFormat.getDateInstance({
+			pattern : sValueFormat
+		});
+
+	oModel.setData({
+		dateVal : new Date(+oNow)
+	});
+	sap.ui.getCore().setModel(oModel);
+
+	var dti0 = new sap.m.DateTimeInput({
+			displayFormat : "dd MMMM, yyyy",
+			valueFormat : sValueFormat
+		}).placeAt("content"),
+		dti1 = new sap.m.DateTimeInput({
+			type : "Time"
+		}).placeAt("content"),
+		dti2 = new sap.m.DateTimeInput({
+			type : "DateTime",
+			displayFormat : new sap.ui.model.type.DateTime({style: "long"}).getOutputPattern()
+		}).placeAt("content"),
+		dti3 = new sap.m.DateTimeInput({
+			value : {
+				path : "/dateVal",
+				type : new sap.ui.model.type.Date({pattern : sValueFormat})
+			}
+		}).placeAt("content");
+
+
+	qutils.delayTestStart();
+
+	module("Properties");
+
+	test("Set and Get Date Value ", function() {
+
+		var oDateValue1 = oFormatter.parse(sDateValue1);
+		dti0.setValue(sDateValue1);
+		oCore.applyChanges();
+		strictEqual(dti0.getValue(), sDateValue1, "value after setValue: " + sDateValue1);
+		strictEqual(+dti0.getDateValue(), +oDateValue1, "dateValue after setValue : " + oDateValue1 + " " + dti0.getDateValue());
+
+		var oDateValue2 = oFormatter.parse(sDateValue2);
+		dti0.setDateValue(oDateValue2);
+		oCore.applyChanges();
+		strictEqual(dti0.getValue(), sDateValue2, "value after setDateValue: " + sDateValue2);
+		strictEqual(+dti0.getDateValue(), +oDateValue2, "dateValue after setDateValue : " + oDateValue2);
+
+		var oDateValue3 = oFormatter.parse(sDateValue3);
+		oModel.setData({
+			dateVal : oDateValue3
+		});
+		oCore.applyChanges();
+		strictEqual(dti3.getValue(), sDateValue3, "value after oModel.setData: " + sDateValue3);
+		strictEqual(+dti3.getDateValue(), +oDateValue3, "dateValue after oModel.setData : " + oDateValue3);
+	});
+
+	asyncTest("Load custom picker", function() {
+		var oTypes = sap.m.DateTimeInput.prototype._types;
+		oTypes.Date.isNative = false;
+		oTypes.Time.isNative = false;
+		oTypes.DateTime.isNative = false;
+
+		dti0.rerender();
+		dti1.rerender();
+		dti2.rerender();
+		dti3.rerender();
+		oCore.applyChanges();
+
+		setTimeout(function() {
+			dti2.focus();
+			setTimeout(function() {
+				dti2._$input.scroller("hide");
+
+				ok(jQuery.scroller instanceof Object, "Custom picker is loaded");
+				strictEqual(typeof jQuery.scroller.presets.date, "function", "Custom date picker is loaded");
+				strictEqual(typeof jQuery.scroller.presets.time, "function", "Custom time picker is loaded");
+				strictEqual(typeof jQuery.scroller.presets.datetime, "function", "Custom datetime picker is loaded");
+				strictEqual(typeof sap.m.InstanceManager, "object", "Instance Manager is loaded");
+
+				start();
+			}, 1000);	// keep long enough for animations
+		}, 0);
+	});
+
+	test("Change", function() {
+		var sAfterValue = sDateValue1,
+			sBeforeValue = sDateValue2,
+			oEvent = jQuery.Event("change");
+
+		dti0.setValue(sBeforeValue);
+		oCore.applyChanges();
+		strictEqual(dti0.getValue(), sBeforeValue, "value before onchange : " + sBeforeValue);
+		dti0.attachChange(function() {
+			strictEqual(this.getValue(), sAfterValue, "value after onchange : " + sAfterValue);
+		});
+		dti0.setValue(sAfterValue);
+		oCore.applyChanges();
+		dti0._onChange(oEvent);
+	});
+
+	test("Invalid Value", function() {
+		var sInvalidValue = ":)";
+
+		dti2.setValue(sInvalidValue);
+		oCore.applyChanges();
+
+		strictEqual(dti2.getValue(), "", "value after invalid value set : " + dti2.getValue());
+		strictEqual(dti2.getDateValue(), null, "dateValue after invalid value set : " + dti2.getDateValue());
+	});
+
+	test("Destroy", function() {
+		strictEqual(dti1.$().length, 1, "Before destroy DateTimeInput is available");
+		dti1.destroy();
+		strictEqual(dti1.$().length, 0, "DateTimeInput is destroyed");
+	});
+
+</script>
+
+</head>
+<body>
+	<h1 id="qunit-header">QUnit page for sap.m.DateTimeInput</h1>
+	<h2 id="qunit-banner"></h2>
+	<h2 id="qunit-userAgent"></h2>
+	<div id="qunit-testrunner-toolbar"></div>
+	<div id="qunit-fixture">test markup, will be hidden</div>
+	<ol id="qunit-tests"></ol>
+	<div id="content"></div>
+</body>
+</html>

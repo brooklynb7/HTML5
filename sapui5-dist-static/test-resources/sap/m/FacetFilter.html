@@ -1,0 +1,723 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<title>sap.m.FacetFilter Test</title>
+
+<script src="../../../resources/sap-ui-core.js" type="text/javascript" id="sap-ui-bootstrap" data-sap-ui-libs="sap.m" data-sap-ui-theme="sap_bluecrystal">
+	
+</script>
+
+<style type="text/css">
+.ButtonSpace {
+	display: inline;
+	position: relative;
+}
+</style>
+
+<script type="text/javascript">
+	jQuery.sap.require("sap.ui.core.HTML");
+	jQuery.sap.require("sap.ui.core.IconPool");
+	
+
+	var oApp = new sap.m.App("myApp", {
+		initialPage : "myPage1"
+	});
+
+	var oPage = new sap.m.Page("myPage1", {
+		title : "Mobile Facet Filter Control"
+
+	});	
+	
+	var oSimpleSummaryCheckbox = new sap.m.CheckBox({
+		id : "simpleShowSummary",
+		text : "Show Summary Bar",
+		select : function(oEvent) {
+			
+			var oFF = sap.ui.getCore().byId("simpleFF");
+			oFF.setShowSummaryBar(oEvent.getParameter("selected"));
+		}
+	});
+	
+	var oSimplePersonalizationCheckbox = new sap.m.CheckBox({
+		id : "simpleShowPersonalization",
+		text : "Show Personalization",
+		select : function(oEvent) {
+			
+			var oFF = sap.ui.getCore().byId("simpleFF");
+			oFF.setShowPersonalization(oEvent.getParameter("selected"));
+		}
+	});	
+	
+	var oSimpleFilterButton = new sap.m.Button({
+		icon: sap.ui.core.IconPool.getIconURI("filter"),
+			press: function() {
+				var oFF = sap.ui.getCore().byId("simpleFF");
+				oFF.setVisible(!oFF.getVisible());
+			}
+	});
+	
+	var oSimpleBar = new sap.m.Bar({
+		contentLeft: new sap.m.Text({text: "Simple Flow"}),
+		contentRight: oSimpleFilterButton
+	});
+	oPage.addContent(oSimpleBar);
+	oPage.addContent(oSimpleSummaryCheckbox);
+	oPage.addContent(oSimplePersonalizationCheckbox);
+	oSimpleFF = createFFWithBinding("simpleFF");
+	oSimpleFF.setVisible(false);
+	oPage.addContent(oSimpleFF);
+
+	var oLightSummaryCheckbox = new sap.m.CheckBox({
+		id : "lightShowSummary",
+		text : "Show Summary Bar",
+		select : function(oEvent) {
+			
+			var oFF = sap.ui.getCore().byId("lightFF");
+			oFF.setShowSummaryBar(oEvent.getParameter("selected"));
+		}
+	});
+	
+	var oLightPersonalizationCheckbox = new sap.m.CheckBox({
+		id : "lightShowPersonalization",
+		text : "Show Personalization",
+		select : function(oEvent) {
+			
+			var oFF = sap.ui.getCore().byId("lightFF");
+			oFF.setShowPersonalization(oEvent.getParameter("selected"));
+		}
+	});		
+	
+	var oLightFilterButton = new sap.m.Button({
+		icon: sap.ui.core.IconPool.getIconURI("filter"),
+		press: function() {
+			var oFF = sap.ui.getCore().byId("lightFF");
+			oFF.openFilterDialog();			
+		}
+	});	
+	var oLightBar = new sap.m.Bar({
+		contentLeft: new sap.m.Text({text: "Light Flow"}),
+		contentRight: oLightFilterButton
+	});
+	oPage.addContent(oLightBar);
+	oPage.addContent(oLightSummaryCheckbox);
+	oPage.addContent(oLightPersonalizationCheckbox);	
+	
+	var oLightFF = createFFWithBinding("lightFF");
+	oLightFF.setType(sap.m.FacetFilterType.Light);
+	oPage.addContent(oLightFF);
+	
+	var oManyFacetsBar = new sap.m.Bar({
+		contentLeft: new sap.m.Text({text: "Test Overflow"})
+	});
+	oPage.addContent(oManyFacetsBar);
+	
+	var oManyFacetsFF = createFFWithBinding("manyFacetsFF");
+	for(var i=0; i < oManyFacetsFF.getLists().length; i++) {
+		oManyFacetsFF.getLists()[i].setActive(true);
+	}
+	oManyFacetsFF.setShowPersonalization(true);
+	oPage.addContent(oManyFacetsFF);
+	
+	
+	/*** Async Model Loading ***/
+	(function(){
+		var oFFData = {
+				type: "Simple"				
+		};
+		
+		var oFFModel = new sap.ui.model.json.JSONModel(oFFData);
+		
+		var oFF = new sap.m.FacetFilter("model", {
+			type: "{type}",
+			showPersonalization: true,
+			showReset: false
+		});
+		oFF.setModel(oFFModel);		
+		var oBar = new sap.m.Bar({
+			contentLeft: new sap.m.Text({text: "Test Async Load"})
+		});
+		oPage.addContent(oBar);
+		
+		oPage.addContent(oFF);
+		
+		var oFFListProduct = new sap.m.FacetFilterList({
+			title: "Product",
+			key: "PRODUCT",
+			multiSelect: true,
+			active: false,
+			listOpen: function() {
+				
+				// pretend to load values from the back end
+				var aItems = [];
+				for(var i=0; i < 5; i++) {
+					aItems.push({
+						text: this.getTitle() + i,
+						key: this.getKey() + i
+					});
+				}
+				var that = this;
+				setTimeout(function(){
+					callBack(aItems, that);
+				}, 500);
+			},
+			listClose: handleFFListClose
+		});		
+		oFF.addList(oFFListProduct);
+
+
+		
+		var oFFListLocation = new sap.m.FacetFilterList({
+			title: "Location",
+			key: "LOCATION",
+			multiSelect: false,
+			active: true,
+			listOpen: function() {
+				
+				// pretend to load values from the back end
+				var aItems = [];
+				for(var i=0; i < 5; i++) {
+					aItems.push({
+						text: this.getTitle() + i,
+						key: this.getKey() + i,
+					});
+				}
+				var that = this;
+				setTimeout(function(){
+					callBack(aItems, that);
+				}, 500);
+			},
+			listClose: handleFFListClose
+		});		
+		oFF.addList(oFFListLocation);
+		
+		var oSupModel = new sap.ui.model.json.JSONModel({
+			values: createFacetFilterItemData("Suppliers", 500)
+		});
+		oSupModel.setSizeLimit(500);
+		var oFFListSupplier = new sap.m.FacetFilterList({
+			title: "Supplier",
+			key: "SUP",
+			multiSelect: true,
+			active: false,
+			items: {
+				path: "/values",
+				template: new sap.m.FacetFilterItem({
+					text: "{text}",
+					key: "{key}",
+					count: "{count}"
+				})
+			}
+		});	
+		oFFListSupplier.setModel(oSupModel);
+		oFF.addList(oFFListSupplier);		
+		var oFFListGrowing = new sap.m.FacetFilterList({
+			title: "Growing",
+			key: "GROWING",
+			growingThreshold: 30,
+			growingTriggerText: "Grow by 30",
+			multiSelect: true,
+			active: false,
+			listOpen: function() {
+				
+				// pretend to load values from the back end
+				var aItems = [];
+				for(var i=0; i < 100; i++) {
+					aItems.push({
+						text: this.getTitle() + i,
+						key: this.getKey() + i
+					});
+				}
+				var that = this;
+				setTimeout(function(){
+					callBack(aItems, that);
+				}, 500);
+			},
+			listClose: handleFFListClose
+		});		
+		oFF.addList(oFFListGrowing);		
+
+		var oFFListNotGrowing = new sap.m.FacetFilterList({
+			title: "Not Growing",
+			key: "NOTGROWING",
+			growing: false,
+			multiSelect: true,
+			active: false,
+			listOpen: function() {
+				
+				// pretend to load values from the back end
+				var aItems = [];
+				for(var i=0; i < 100; i++) {
+					aItems.push({
+						text: this.getTitle() + i,
+						key: this.getKey() + i
+					});
+				}
+				var that = this;
+				setTimeout(function(){
+					callBack(aItems, that);
+				}, 500);
+			},
+			listClose: handleFFListClose
+		});		
+		oFF.addList(oFFListNotGrowing);		
+
+		var callBack = function(aItems, oControl) {
+			if(oControl.getItems().length === 0) {
+				
+				var oListModel = new sap.ui.model.json.JSONModel({
+					values: aItems
+				});
+				oControl.setModel(oListModel);
+				
+				oControl.bindAggregation("items", "/values", new sap.m.FacetFilterItem({
+					text: "{text}",
+					key: "{key}"
+				}));				
+			}
+		}		
+	}());
+
+	/*
+	* Testing oData Model
+	*/
+	(function(){
+		var oDataFacetsBar = new sap.m.Bar({
+			contentLeft: new sap.m.Text({text: "Test oData Service: ODataConsumers"})
+		});
+		oPage.addContent(oDataFacetsBar);
+			
+		var oDataModel1 = new sap.ui.model.odata.ODataModel("/uilib-sample/proxy/http/services.odata.org/Website/odata.svc/", true);
+		var oDataModel2 = new sap.ui.model.odata.ODataModel("/uilib-sample/proxy/http/services.odata.org/Website/odata.svc/", true);
+		
+		oDataModel1.attachRequestCompleted(function (oEvent) {
+			jQuery.sap.log.info("oData Request completed: " + oEvent.getParameters());
+		});
+		oDataModel1.attachRequestSent(function (oEvent) {
+			jQuery.sap.log.info("oData Request sent: " + oEvent.getParameters());
+		});
+		
+		var ffl1 = new sap.m.FacetFilterList( {
+				title: "OData Consumers 1",
+				active: false,
+				items: {
+					path: "/ODataConsumers",
+					template: new sap.m.FacetFilterItem( {
+						text: "{Name}",
+						key: "{id}"
+					} )
+				}
+		});
+		
+		var ffl2 = new sap.m.FacetFilterList( {
+				title: "OData Consumers 2",
+				items: {
+					path: "/ODataConsumers",
+					template: new sap.m.FacetFilterItem( {
+						text: "{Name}",
+						key: "{id}"
+					} )
+				},
+				listOpen: function() {
+					this.setModel(oDataModel2);
+				}
+		});
+		
+		ffl1.setModel( oDataModel1);
+		
+		var oFF = new sap.m.FacetFilter("odata-model-ff", {
+			type: sap.m.FacetFilterType.Simple,
+			showPersonalization: true,
+			showReset: false,
+			lists: [ffl1,ffl2]
+		});
+		
+		oPage.addContent(oFF);
+	}());
+	
+	// Basic Model
+	(function(){
+		
+		// Test Summary:
+		// All controls/properties bound to a single model set on the FacetFilter.
+		
+		var sId = "model-basic";
+		var oFFData = {
+				type: "Simple",
+				personalize: true,
+				reset: false,
+				liveSearch: false,
+				lists: [
+				{
+					title: "Language",
+					key: "LANGUAGE",
+					sequence: 1,
+					allCount: 14,
+					growing: false,
+					items: [{
+						text: "English",
+						key: "ENGLISH",
+						count: 4
+					},
+					{
+						text: "Spanish",
+						key: "SPANISH",
+						count: 2
+					},
+					{
+						text: "Italian",
+						key: "ITALIAN",
+						count: 1
+					}
+					        ]					
+				},				        
+				{
+					title: "Country",
+					key: "COUNTRY",
+					active: false,
+					allCount: 17,
+					multiSelect: false,
+					growingThreshold: 2,
+					growingTriggerText: "Get More Countries",				
+					items: [{
+						text: "US",
+						key: "US",
+						count: 2
+					},
+					{
+						text: "Spain",
+						key: "SPAIN",
+						count: 2,
+						selected: true						
+					},
+					{
+						text: "Italy",
+						key: "ITALY",
+						count: 2
+					}
+					        ]					
+				},
+				{   
+					title: "Person",
+					key: "PERSON",
+					sequence: 0,
+					allCount: 8,
+					multiSelect: false,
+					items: [{
+						text: "Ted",
+						key: "TED",
+						count: 2,
+						selected: true
+					},
+					{
+						text: "Wilma",
+						key: "WILMA",
+						count: 3,
+						selected: true						
+					},
+					{
+						text: "Mark",
+						key: "MARK",
+						count: 9,
+						selected: true						
+					}
+					        ]
+				}				
+					]
+		}
+		
+		var oFF = new sap.m.FacetFilter(sId, {
+			
+			type: "{/type}",
+			showPersonalization: "{/personalize}",
+			showReset: "{/reset}",
+			liveSearch: "{/liveSearch}",
+			lists: {
+				path: "/lists",
+				template: new sap.m.FacetFilterList({
+					title: "{title}",
+					key: "{key}",
+					active: "{active}",
+					allCount: "{allCount}",
+					multiSelect: "{multiSelect}",
+					sequence: "{sequence}",
+					growing: "{growing}",
+					growingThreshold: "{growingThreshold}",
+					growingTriggerText: "{growingTriggerText}",
+					items: {
+						path: "items",
+						template: new sap.m.FacetFilterItem({
+							text: "{text}",
+							key: "{key}",
+							count: "{count}",
+							selected: "{selected}"
+						})
+					}
+				})
+			}
+		});
+		
+		var oModel = new sap.ui.model.json.JSONModel(oFFData);
+		oFF.setModel(oModel);
+		
+		var oBar = new sap.m.Bar({
+			contentLeft: new sap.m.Text({text: "Single Model for all Bindings"})
+		});
+		oPage.addContent(oBar);		
+		
+		oPage.addContent(oFF);				
+	}());
+	
+	// Live Search
+	(function(){
+		var sId = "live-search";
+		var oBar = new sap.m.Bar({
+			contentLeft: new sap.m.Text({text: "Test Live Search Enable/Disable"})
+		});
+		oPage.addContent(oBar);		
+		
+		var oFF = new sap.m.FacetFilter(sId, {
+			showPersonalization: true,
+			showReset: false
+		});
+		
+		var oFFLModel = new sap.ui.model.json.JSONModel({
+			title: "Live Search",
+			values: [{
+				text: "val1",
+				key: "val1",
+				count: 4
+			},
+			{
+				text: "val2",
+				key: "val2",
+				count: 3
+			}]
+		});
+		
+		var oFFL = new sap.m.FacetFilterList({
+			title: "{/title}",
+			items: {
+				path: "/values",
+				template: new sap.m.FacetFilterItem({
+					text: "{text}",
+					key: "{key}",
+					count: "{count}"
+				})
+			}
+		});
+		oFFL.setModel(oFFLModel);
+		oFF.addList(oFFL);
+		
+		var oCheckBox = new sap.m.CheckBox({
+			id : "liveSearch",
+			text : "Live Search",
+			selected: oFF.getLiveSearch(),
+			select : function(oEvent) {
+				
+				var oFF = sap.ui.getCore().byId(sId);
+				oFF.setLiveSearch(oEvent.getParameter("selected"));
+			}
+		});	
+		oPage.addContent(oCheckBox);
+		
+		oPage.addContent(oFF);
+		
+	}());
+	
+	
+	oApp.addPage(oPage);
+	oApp.placeAt("body");
+	
+	function createFacetFilterItemData(sName, iNum) {
+		var aVals = [];
+		for(var i=0; i < iNum; i++) {
+			var index = i+1;
+			aVals.push({
+				key : sName + index,
+				text : sName + " " + index,
+				count: index
+				});
+		}
+		return aVals;
+	}
+	
+	function handleFFListOpen(oEvent) {
+		
+		jQuery.sap.log.debug("FacetFilter: List \"" + oEvent.getParameter("id") + "\" opened");
+		var oFFList = sap.ui.getCore().byId(oEvent.getParameter("id"));
+		
+		if(oFFList.getKey() === "empty" && oFFList.getItems() == 0) {
+			
+			var oItemTemplate = new sap.m.FacetFilterItem({
+				text: "{test>text}",
+				key: "{test>key}"
+			});
+			var oData = {
+					name: oFFList.getTitle(),
+					active: true,
+					count: 4,
+					values: createFacetFilterItemData("New", 4)
+			}
+			
+			var oModel = new sap.ui.model.json.JSONModel();
+			oModel.setData(oData);
+			oFFList.setModel(oModel, "test");	
+			oFFList.bindAggregation("items", "test>/values", oItemTemplate);
+		}
+	}
+	
+	function handleFFListClose(oEvent) {
+		jQuery.sap.log.debug("FacetFilterList \"" + oEvent.getParameter("id") + "\" closed");
+		
+		if(oEvent.getParameter("allSelected")) {
+			jQuery.sap.log.debug("FacetFilterList: All items selected.");
+		} else {
+			var aSelected = oEvent.getParameter("selectedItems");
+			var sSelected = "";
+			for(var i=0; i < aSelected.length; i++) {
+				var oItem = aSelected[i];
+				sSelected += "(" + oItem.getKey() + ", " + oItem.getText() + ") ";
+			}
+			jQuery.sap.log.debug("FacetFilterList: Selected items: " + sSelected);			
+		}
+	}
+	
+	function handleFFReset(oEvent) {
+		var oFF = sap.ui.getCore().byId(oEvent.getParameter("id"));
+		var aFFLists = oFF.getLists();
+		for(var i=0; i < aFFLists.length; i++) {
+			var aItems = aFFLists[i].getItems();
+			for(var j=0; j < aItems.length; j++) {
+				aItems[j].setSelected(false);
+			}
+		}
+	}
+	
+	function createFFWithBinding(sId) {
+		
+		var oData = {
+				facets : [ 
+				  		{
+				  			name : "Suppliers",
+				  			key: "suppliers",
+				  			values : createFacetFilterItemData("Suppliers", 50),
+				  			count: 287,
+				  			multiSelect: true,
+				  			sequence: 2
+				  		},
+				  		{
+				  			name : "Items",
+				  			key: "items",
+				  			values : createFacetFilterItemData("Items", 10),
+				  			multiSelect: true,
+				  			sequence: 1
+				  		},
+				  		{
+				  			name : "Orders",
+				  			key: "orders",
+				  			values : createFacetFilterItemData("Orders", 500),
+				  			multiSelect: true,
+				  			sequence: 3
+				  		},
+				  		{
+				  			name : "Something",
+				  			key: "something",
+				  			values : createFacetFilterItemData("Something", 2),
+				  			active : false,
+				  			multiSelect: false
+				  		},
+				  		{
+				  			name : "Something Else",
+				  			key: "something_else",
+				  			values : createFacetFilterItemData("Something else", 1),
+				  			active : false,
+				  			multiSelect: true
+				  		},
+				  		{
+				  			name : "Products",
+				  			key: "products",
+				  			values : createFacetFilterItemData("Products", 3),
+				  			active : false,
+				  			multiSelect: true,
+				  			sequence: 9
+				  		},
+				  		{
+				  			name: "Empty",
+				  			key: "empty",
+				  			active : false,
+				  			multiSelect: true,
+				  			sequence: 10
+				  		},
+				  		{
+				  			name: "Empty 1",
+				  			key: "empty1",
+				  			active: false,
+				  			multiSelect: true
+				  		},
+				  		{
+				  			name: "Empty 2",
+				  			key: "empty2",
+				  			active: false,
+				  			multiSelect: true
+				  		},
+				  		{
+				  			name: "Empty 3",
+				  			key: "empty3",
+				  			active: false,
+				  			multiSelect: true
+				  		},
+				  		{
+				  			name: "Empty 4",
+				  			key: "empty4",
+				  			active: false,
+				  			multiSelect: true
+				  		}
+				  		]
+				  	};
+		
+		var oModel = new sap.ui.model.json.JSONModel();
+		oModel.setSizeLimit(3000);
+		oModel.setData(oData);
+		
+		var oFacetFilterItemTemplate = new sap.m.FacetFilterItem({
+			text : "{text}",
+			key : "{key}",
+			count: "{count}"
+		});
+		
+		var oFacetFilterTemplate = new sap.m.FacetFilterList({
+			title : "{name}",
+			key: "{key}",
+			listOpen: handleFFListOpen,
+			listClose: handleFFListClose,
+			multiSelect: "{multiSelect}",
+			items : {
+				path: "values",
+				template: oFacetFilterItemTemplate,
+			},
+			allCount: "{count}",
+			active: "{active}",
+			sequence: "{sequence}"
+		});
+
+		var oFacetFilter = new sap.m.FacetFilter(sId, {
+			type : sap.m.FacetFilterType.Simple,
+			lists : {
+				path : "/facets",
+				template : oFacetFilterTemplate
+			},
+			reset: handleFFReset
+		});
+		
+		oFacetFilter.setModel(oModel);
+		return oFacetFilter;
+	}	
+	
+</script>
+
+</head>
+<body id="body" class="sapUiBody" style="min-height: 2000px">
+</body>
+</html>

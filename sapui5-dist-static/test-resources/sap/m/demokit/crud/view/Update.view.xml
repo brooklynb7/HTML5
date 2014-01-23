@@ -1,0 +1,31 @@
+<core:View controllerName="view.Update" xmlns="sap.m"
+	xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:h="http://www.w3.org/1999/xhtml">
+	<Page title="">
+		<content>
+			<mvc:XMLView id="inputView" viewName="view.Input" />
+			<VBox alignItems="Center">
+				<Image
+					id="image"
+					src=""
+					decorative="true"
+					densityAware="false" />
+			</VBox>
+		</content>
+		<customHeader>
+			<Bar>
+				<contentLeft>
+					<Button
+						text="Cancel"
+						type="Default"
+						press="cancelButtonPress" />
+				</contentLeft>
+				<contentRight>
+					<Button
+						text="Done"
+						type="Accept"
+						press="doneButtonPress" />
+				</contentRight>
+			</Bar>
+		</customHeader>
+	</Page>
+</core:View>

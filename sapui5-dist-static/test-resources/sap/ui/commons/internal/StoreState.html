@@ -1,0 +1,120 @@
+<!DOCTYPE HTML>
+<html style="height: 100%">
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+		<title>State Storage Test Page</title>
+
+		<script id="sap-ui-bootstrap"
+				type="text/javascript"
+				src="../../../../../resources/sap-ui-core.js"
+				data-sap-ui-theme="sap_goldreflection"
+				data-sap-ui-libs="sap.ui.commons"
+				>
+		</script>
+
+		<script>
+			//The storage API we need is in jquery.sap.storage
+			jQuery.sap.require("jquery.sap.storage");
+			//This button refreshes the entire page (i.e. triggering recreation of the accordion from scratch)
+            oButton1 = new sap.ui.commons.Button("b1", {text:"Refresh the page", tooltip:"Refresh the page",
+                press: [function(oControlEvent){window.location.reload(true);}]
+            });
+            oButton1.placeAt("button1"); 
+		    //This button removes from teh session the stored state of the accordion
+            oButton2 = new sap.ui.commons.Button("b2", {text:"Delete the state of the accordion",
+                press: [function(oControlEvent){jQuery.sap.storage.remove("accordion2");}]
+            });
+            oButton2.placeAt("button2"); 
+			//Global delete of all session data			
+            oButton3 = new sap.ui.commons.Button("b3", {text:"Delete all the data stored in the session",
+                press: [function(oControlEvent){jQuery.sap.storage.clear();}]
+            });
+            oButton3.placeAt("button3"); 
+
+
+			var oAccordion2 = new sap.ui.commons.Accordion("accordion2");
+			var sDefaultSectionId ="Sect2";
+
+			//Building Section 1
+			var oSect1 = new sap.ui.commons.AccordionSection( "Sect1" );
+			oSect1.setTitle("First section");
+
+			var oLink1 = new sap.ui.commons.Link( "Link1");
+			oLink1.setText("This is a link... ");
+			oSect1.addControl( oLink1);
+
+			oSect1.setMaxHeight("100px");
+			oAccordion2.addSection( oSect1 );
+
+			//Building Section 2
+			var oSect2 = new sap.ui.commons.AccordionSection( "Sect2");
+			oSect2.setTitle("Second section (Default)");
+
+			var oLink2 = new sap.ui.commons.Link( "Link2" );
+			oLink2.setText("Content of the section 2");
+			oSect2.addControl( oLink2);
+
+			oSect2.setMaxHeight("100px");
+			oSect2.setCollapsed(false);
+			oAccordion2.addSection( oSect2 );
+
+
+			//Building Section 3
+			var oSect3 = new sap.ui.commons.AccordionSection( "Sect3");
+			oSect3.setTitle("Third section");
+			var oLabel2 = new sap.ui.commons.Label( "Label2" );
+			oLabel2.setText("This is a label for section 3");
+			oSect3.addControl( oLabel2 );
+			oAccordion2.addSection( oSect3 );
+
+
+			//The default section is always teh same
+			oAccordion2.setWidth("500px");
+			oAccordion2.placeAt( "uiAccordion2" );
+
+
+			//Check whether there is a saved state (i.e. opened section id) in the session
+			//if yes, set the opened section accordingly
+			//debugger;
+			var currentOpenSection = JSON.parse(jQuery.sap.storage.get("accordion2"));
+			if(currentOpenSection && currentOpenSection.openSectionId && currentOpenSection.openSectionId!="") {
+				oAccordion2.setOpenedSectionsId(currentOpenSection.openSectionId);
+			} else {
+				oAccordion2.setOpenedSectionsId(sDefaultSectionId);			
+			}
+
+
+			//If a new section is opened, we need to save the state (i.e. the id of the newly opened section)
+			oAccordion2.attachSectionOpen(
+				function saveNewState(oControlEvent){
+					//debugger;
+					var s = JSON.stringify( {openSectionId:oControlEvent.mParameters.openSectionId} );
+					jQuery.sap.storage.put("accordion2", s);
+				}
+			);
+			//If a section is closed, we need to save the state (i.e. the id of the default section which gets opened)
+			oAccordion2.attachSectionClose(
+				function saveStateAfterClose(oControlEvent){
+					var s = JSON.stringify( {openSectionId:sDefaultSectionId} );
+					jQuery.sap.storage.put("accordion2", s);
+				}
+			);
+
+		</script>
+	</head>
+	<body class="sapUiBody" role="application">
+<h3>This pages instanciates an Accordion control, and keeps its state, i.e. open section id,
+through jQuery.sap.storage API. <br/>If there is no stored data, the section 2 is opened. If the user opens another 
+section, that last opened section is remembered and displayed as opened after the page get reloaded/refreshed.</h3>
+
+
+		<div id="uiAccordion2"></div>
+<br/><br/>
+		<div id="button1"></div>
+<br/><br/>
+		<div id="button2"></div>
+<br/><br/>
+		<div id="button3"></div>
+	</body>
+</html>

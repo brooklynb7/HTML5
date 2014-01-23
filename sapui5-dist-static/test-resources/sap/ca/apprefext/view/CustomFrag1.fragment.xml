@@ -1,0 +1,6 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	  <Label  text="{i18n>DEPARTMENT_RESP}"/>
+      <Text  text="{Department}"/>
+	  <Label  text="{i18n>COORDINATOR}"/>
+      <Text text="{Coordinator}"/>
+</core:FragmentDefinition>

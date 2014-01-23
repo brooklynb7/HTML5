@@ -1,0 +1,16 @@
+
+.content {
+	margin: 0.4375em 0.4375em 0em 0.4375em !important;
+}
+
+#d_h, #d_a, #d_a1_h, #d_a1_p, #d_a1_m, #d_a2, #d_b {
+	margin: 0.4375em 0.4375em 0em 0.4375em;
+	background-color: #FFFFDD;
+	border-color: #CCCCCC;
+	border-width: 0.0625em;
+	border-style: solid;
+	padding: 0.4375em;
+	border-radius: 0em;
+	max-width: 25em;
+	border-radius: 0.4375em;
+}

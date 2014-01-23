@@ -1,0 +1,202 @@
+[
+    {
+        "Name": "ADP",
+        "Decimals": 0
+    },
+    {
+        "Name": "AFA",
+        "Decimals": 0
+    },
+    {
+        "Name": "AU5",
+        "Decimals": 5
+    },
+    {
+        "Name": "BEF",
+        "Decimals": 0
+    },
+    {
+        "Name": "BHD",
+        "Decimals": 3
+    },
+    {
+        "Name": "BIF",
+        "Decimals": 0
+    },
+    {
+        "Name": "BYB",
+        "Decimals": 0
+    },
+    {
+        "Name": "BYR",
+        "Decimals": 0
+    },
+    {
+        "Name": "CLP",
+        "Decimals": 0
+    },
+    {
+        "Name": "CLP4",
+        "Decimals": 4
+    },
+    {
+        "Name": "COP",
+        "Decimals": 0
+    },
+    {
+        "Name": "DEM3",
+        "Decimals": 3
+    },
+    {
+        "Name": "DJF",
+        "Decimals": 0
+    },
+    {
+        "Name": "ECS",
+        "Decimals": 0
+    },
+    {
+        "Name": "ESP",
+        "Decimals": 0
+    },
+    {
+        "Name": "GNF",
+        "Decimals": 0
+    },
+    {
+        "Name": "GRD",
+        "Decimals": 0
+    },
+    {
+        "Name": "HUF",
+        "Decimals": 0
+    },
+    {
+        "Name": "IDR",
+        "Decimals": 0
+    },
+    {
+        "Name": "IQD",
+        "Decimals": 3
+    },
+    {
+        "Name": "ITL",
+        "Decimals": 0
+    },
+    {
+        "Name": "JOD",
+        "Decimals": 3
+    },
+    {
+        "Name": "JPY",
+        "Decimals": 0
+    },
+    {
+        "Name": "KMF",
+        "Decimals": 0
+    },
+    {
+        "Name": "KRW",
+        "Decimals": 0
+    },
+    {
+        "Name": "LAK",
+        "Decimals": 0
+    },
+    {
+        "Name": "LUF",
+        "Decimals": 0
+    },
+    {
+        "Name": "LYD",
+        "Decimals": 3
+    },
+    {
+        "Name": "MGF",
+        "Decimals": 0
+    },
+    {
+        "Name": "MZM",
+        "Decimals": 0
+    },
+    {
+        "Name": "OMR",
+        "Decimals": 3
+    },
+    {
+        "Name": "PTE",
+        "Decimals": 0
+    },
+    {
+        "Name": "PYG",
+        "Decimals": 0
+    },
+    {
+        "Name": "ROL",
+        "Decimals": 0
+    },
+    {
+        "Name": "RWF",
+        "Decimals": 0
+    },
+    {
+        "Name": "TJR",
+        "Decimals": 0
+    },
+    {
+        "Name": "TMM",
+        "Decimals": 0
+    },
+    {
+        "Name": "TND",
+        "Decimals": 3
+    },
+    {
+        "Name": "TPE",
+        "Decimals": 0
+    },
+    {
+        "Name": "TRL",
+        "Decimals": 0
+    },
+    {
+        "Name": "TWD",
+        "Decimals": 0
+    },
+    {
+        "Name": "UF",
+        "Decimals": 4
+    },
+    {
+        "Name": "UGX",
+        "Decimals": 0
+    },
+    {
+        "Name": "USDN",
+        "Decimals": 5
+    },
+    {
+        "Name": "UTM",
+        "Decimals": 4
+    },
+    {
+        "Name": "VND",
+        "Decimals": 0
+    },
+    {
+        "Name": "VUV",
+        "Decimals": 0
+    },
+    {
+        "Name": "XAF",
+        "Decimals": 0
+    },
+    {
+        "Name": "XOF",
+        "Decimals": 0
+    },
+    {
+        "Name": "XPF",
+        "Decimals": 0
+    }
+]

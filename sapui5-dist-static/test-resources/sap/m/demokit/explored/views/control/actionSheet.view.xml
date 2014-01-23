@@ -1,0 +1,19 @@
+<core:View
+	controllerName="views.control.actionSheet"
+	xmlns="sap.m"
+	xmlns:l="sap.ui.layout"
+	xmlns:core="sap.ui.core" >
+	<l:VerticalLayout
+		class="marginVerticalContent"
+		width="100%">
+		<l:content>
+
+			<!-- This button opens the action sheet -->
+			<Button
+				text="Open Action Sheet"
+				press="handleOpen" />
+				
+			<Text id="description" />
+		</l:content>
+	</l:VerticalLayout>
+</core:View>

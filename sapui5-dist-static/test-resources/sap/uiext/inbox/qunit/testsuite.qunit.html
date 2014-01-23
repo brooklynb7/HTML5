@@ -1,0 +1,35 @@
+<html>
+ <head>
+  <title>QUnit TestSuite for sap.uiext.inbox</title>
+  <script language="javascript" src="/jsunit-testrunner/app/jsUnitCore.js"></script>
+ </head>
+ <body>
+  <script language="javascript">
+
+  /**
+   * Add test pages to this test suite function.
+   * Please order alphabetically
+   */
+  function suite() {
+    var suite = new top.jsUnitTestSuite();
+    var contextPath = "/" + window.location.pathname.split("/")[1];
+    suite.addTestPage(contextPath + "/test-resources/sap/uiext/inbox/qunit/Inbox.qunit.html");
+    suite.addTestPage(contextPath + "/test-resources/sap/uiext/inbox/qunit/InboxCommentUsage.qunit.html");
+    suite.addTestPage(contextPath + "/test-resources/sap/uiext/inbox/qunit/InboxLink.qunit.html");
+    suite.addTestPage(contextPath + "/test-resources/sap/uiext/inbox/qunit/InboxRowRepeaterView.qunit.html");
+    suite.addTestPage(contextPath + "/test-resources/sap/uiext/inbox/qunit/InboxRRViewDescriptionDefinitionSearchTest.qunit.html");
+    suite.addTestPage(contextPath + "/test-resources/sap/uiext/inbox/qunit/InboxSearchUsers.qunit.html");
+    suite.addTestPage(contextPath + "/test-resources/sap/uiext/inbox/qunit/InboxSubstitutionRulesManager.qunit.html");
+    suite.addTestPage(contextPath + "/test-resources/sap/uiext/inbox/qunit/InboxTaskComments.qunit.html")
+    suite.addTestPage(contextPath + "/test-resources/sap/uiext/inbox/qunit/InboxTaskDefinitionTest.qunit.html");
+    suite.addTestPage(contextPath + "/test-resources/sap/uiext/inbox/qunit/InboxTaskInitialFilterTest.qunit.html");
+    suite.addTestPage(contextPath + "/test-resources/sap/uiext/inbox/qunit/InboxTCMModelTest.qunit.html");
+    suite.addTestPage(contextPath + "/test-resources/sap/uiext/inbox/qunit/InboxTaskCategory.qunit.html")
+    return suite;
+  }
+  
+  redirectToTestrunnerIfRequired();
+
+  </script>
+ </body>
+</html>

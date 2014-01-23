@@ -1,0 +1,27 @@
+<html>
+<head>
+<title>QUnit TestSuite for sap.me</title>
+<script src="/jsunit-testrunner/app/jsUnitCore.js"></script>
+</head>
+<body>
+<script>
+
+/**
+ * Add test pages to this test suite function.
+ * Please order alphabetically
+ */
+function suite() {
+	var suite = new top.jsUnitTestSuite(),
+		contextPath = "/" + window.location.pathname.split("/")[1];
+	if (navigator.userAgent.match(/AppleWebKit/g)) {		
+		suite.addTestPage(contextPath + "/test-resources/sap/me/qunit/Calendar.qunit.html");
+		suite.addTestPage(contextPath + "/test-resources/sap/me/qunit/TabContainer.qunit.html");
+		suite.addTestPage(contextPath + "/test-resources/sap/me/qunit/ProgressIndicator.qunit.html");
+	}
+	return suite;
+}
+redirectToTestrunnerIfRequired();
+
+</script>
+</body>
+</html>

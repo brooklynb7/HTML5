@@ -1,0 +1,24 @@
+.detailTable {
+	padding: 1rem;
+	width: 100%; 
+	box-sizing : border-box;
+}
+
+.sap-phone .detailTable {
+	padding: 1em 0 0;
+}
+
+.sapUIMeTabContainerContent .sapUiForm {
+	padding: 0 1rem;
+	box-sizing: border-box;
+}
+
+.sap-phone .sapUIMeTabContainerContent .sapUiForm {
+	margin: 0rem 1rem;
+	padding: 0 0rem;
+	box-sizing: border-box;
+}
+
+.sap-phone .sapUIMeTabContainerButtons {
+	margin: 0;
+}

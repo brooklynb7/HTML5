@@ -1,0 +1,242 @@
+[
+    {
+        "__metadata":{
+            "uri":"/sap/opu/odata/sap/Z_I2D_QM_QUALITYISSUE_CONFIRM_SRV/ReportedIssueCollection(3595l)",
+            "type":"Z_I2D_QM_QUALITYISSUE_CONFIRM_SRV.ReportedIssue"
+        },
+        "AttachmentsCount":5,
+        "CompanyAddress":"Dietmar Hopp Allee 1-3, 1234 Walldorf",
+        "CompanyName":"SAP AG",
+        "EMail":"Erik.Wonder@company.com",
+        "OfficePhone":"01718484845",
+        "MobilePhone":"06222 854568484",
+        "Department":"R&D",
+        "Name":"Erik Wonder",
+        "Material":"3344 / Leather",
+        "Reference":"702.100.52",
+        "Description":"Their were fissures on the brief case handle and it felt fragile, on single you it completely came out",
+        "Notification":"3595 ",
+        "Category":"Shop Floor",
+        "Priority":"Medium",
+        "CreatedAt":"\/Date(1379289600000)\/",
+        "Type":"Damaged",
+        "ChangedAt":"\/Date(1379289600000)\/",
+        "Status":"New",
+        "Defect":"Broken",
+        "Subject":"Briefcase handle broken",
+        "ReportedIssueID":"3595",
+        "Coordinator":"Jose Wolunski",
+        
+        "ComplaintQty": "10",
+		"RefQuantity": "5",
+		"ReturnDeliveryUnit": "8",
+		"ReturnedOn": "\/Date(1377648000000)\/",
+		"DefiniteQuantityInternal": "6",
+		"DefiniteQuantityExternal": "12",
+        "Attachments":{
+            "__deferred":{
+                "uri":"/sap/opu/odata/sap/Z_I2D_QM_QUALITYISSUE_CONFIRM_SRV/ReportedIssueCollection(3595l)/Attachments"
+            }
+        }
+    },
+    {
+        "__metadata":{
+            "uri":"/sap/opu/odata/sap/Z_I2D_QM_QUALITYISSUE_CONFIRM_SRV/ReportedIssueCollection(2l)",
+            "type":"Z_I2D_QM_QUALITYISSUE_CONFIRM_SRV.ReportedIssue"
+        },
+        "AttachmentsCount":5,
+        "CompanyAddress":"Dietmar Hopp Allee 1-3, 1234 Walldorf",
+        "CompanyName":"SAP AG",
+        "EMail":"Marty.McFly@company.com",
+        "OfficePhone":"01718484845",
+        "MobilePhone":"06222 854568484",
+        "Department":"Corporate Functions",
+        "Name":"Marty McFly",
+        "Material":"3344 / Leather",
+        "Reference":"502.289.20",
+        "Description":"screw is missing on the left door of the wardrobe 81x180cm",
+        "Notification":"3595 ",
+        "Category":"Shop Floor",
+        "Priority":"Medium",
+        "CreatedAt":"\/Date(1379030400000)\/",
+        "Type":"Damaged",
+        "ChangedAt":"\/Date(1379030400000)\/",
+        "Status":"New",
+        "Defect":"Parts Missing",
+        "Subject":"Missing screw  on wardrobe",
+        "ReportedIssueID":"2",
+        "Coordinator":"Jose Wolunski",
+        
+        "ComplaintQty": "10",
+		"RefQuantity": "5",
+		"ReturnDeliveryUnit": "8",
+		"ReturnedOn": "\/Date(1377648000000)\/",
+		"DefiniteQuantityInternal": "6",
+		"DefiniteQuantityExternal": "12",
+        "Attachments":{
+            "__deferred":{
+                "uri":"/sap/opu/odata/sap/Z_I2D_QM_QUALITYISSUE_CONFIRM_SRV/ReportedIssueCollection(2l)/Attachments"
+            }
+        }
+    },
+    {
+        "__metadata":{
+            "uri":"/sap/opu/odata/sap/Z_I2D_QM_QUALITYISSUE_CONFIRM_SRV/ReportedIssueCollection(3l)",
+            "type":"Z_I2D_QM_QUALITYISSUE_CONFIRM_SRV.ReportedIssue"
+        },
+        "AttachmentsCount":5,
+        "CompanyAddress":"Dietmar Hopp Allee 1-3, 1234 Walldorf",
+        "CompanyName":"SAP AG",
+        "EMail":"James.brown@company.com",
+        "OfficePhone":"01718484845",
+        "MobilePhone":"06222 854568484",
+        "Department":"Corporate Functions",
+        "Name":"James brown",
+        "Material":"3344 / Leather",
+        "Reference":"398.058.18",
+        "Description":"This is not the first time it appears. Technical team already came and fixed it last week. But the noise reappeared. No sale done in the last 3 days!",
+        "Notification":"3595 ",
+        "Category":"Shop Floor",
+        "Priority":"Medium",
+        "CreatedAt":"\/Date(1379030400000)\/",
+        "Type":"Broken",
+        "ChangedAt":"\/Date(1379030400000)\/",
+        "Status":"In Process",
+        "Defect":"Unusual Noise",
+        "Subject":"Door of wall cabinet creaks",
+        "ReportedIssueID":"3",
+        "Coordinator":"Jose Wolunski",
+        
+        "ComplaintQty": "10",
+		"RefQuantity": "5",
+		"ReturnDeliveryUnit": "8",
+		"ReturnedOn": "\/Date(1377648000000)\/",
+		"DefiniteQuantityInternal": "6",
+		"DefiniteQuantityExternal": "12",
+        "Attachments":{
+            "__deferred":{
+                "uri":"/sap/opu/odata/sap/Z_I2D_QM_QUALITYISSUE_CONFIRM_SRV/ReportedIssueCollection(3l)/Attachments"
+            }
+        }
+    },
+    {
+        "__metadata":{
+            "uri":"/sap/opu/odata/sap/Z_I2D_QM_QUALITYISSUE_CONFIRM_SRV/ReportedIssueCollection(3596l)",
+            "type":"Z_I2D_QM_QUALITYISSUE_CONFIRM_SRV.ReportedIssue"
+        },
+        "AttachmentsCount":5,
+        "CompanyAddress":"Dietmar Hopp Allee 1-3, 1234 Walldorf",
+        "CompanyName":"SAP AG",
+        "EMail":"Erik.Wonder@company.com",
+        "OfficePhone":"01718484845",
+        "MobilePhone":"06222 854568484",
+        "Department":"R&D",
+        "Name":"Erik Wonder",
+        "Material":"3344 / Leather",
+        "Reference":"298.859.38",
+        "Description":"visible on the bottom shelf. On the right",
+        "Notification":"3596 ",
+        "Category":"Shop Floor",
+        "Priority":"Medium",
+        "CreatedAt":"\/Date(1378252800000)\/",
+        "Type":"Damaged",
+        "ChangedAt":"\/Date(1378252800000)\/",
+        "Status":"Completed",
+        "Defect":"Damaged",
+        "Subject":"Peeling paint on bookshelf",
+        "ReportedIssueID":"3596",
+        "Coordinator":"Jose Wolunski",
+        
+        "ComplaintQty": "10",
+		"RefQuantity": "5",
+		"ReturnDeliveryUnit": "8",
+		"ReturnedOn": "\/Date(1377648000000)\/",
+		"DefiniteQuantityInternal": "6",
+		"DefiniteQuantityExternal": "12",
+        "Attachments":{
+            "__deferred":{
+                "uri":"/sap/opu/odata/sap/Z_I2D_QM_QUALITYISSUE_CONFIRM_SRV/ReportedIssueCollection(3596l)/Attachments"
+            }
+        }
+    },
+    {
+        "__metadata":{
+            "uri":"/sap/opu/odata/sap/Z_I2D_QM_QUALITYISSUE_CONFIRM_SRV/ReportedIssueCollection(3597l)",
+            "type":"Z_I2D_QM_QUALITYISSUE_CONFIRM_SRV.ReportedIssue"
+        },
+        "AttachmentsCount":5,
+        "CompanyAddress":"Dietmar Hopp Allee 1-3, 1234 Walldorf",
+        "CompanyName":"SAP AG",
+        "EMail":"Erik.Wonder@company.com",
+        "OfficePhone":"01718484845",
+        "MobilePhone":"06222 854568484",
+        "Department":"R&D",
+        "Name":"Erik Wonder",
+        "Material":"3344 / Leather",
+        "Reference":"001.660.95",
+        "Description":"Ceiling cup of the lamp SKOOG is craked",
+        "Notification":"3597 ",
+        "Category":"Shop Floor",
+        "Priority":"Medium",
+        "CreatedAt":"\/Date(1378252800000)\/",
+        "Type":"Damaged",
+        "ChangedAt":"\/Date(1378252800000)\/",
+        "Status":"Completed",
+        "Defect":"Broken",
+        "Subject":"Cracked plastic on lamp",
+        "ReportedIssueID":"3597",
+        "Coordinator":"Jose Wolunski",
+        
+        "ComplaintQty": "10",
+		"RefQuantity": "5",
+		"ReturnDeliveryUnit": "8",
+		"ReturnedOn": "\/Date(1377648000000)\/",
+		"DefiniteQuantityInternal": "6",
+		"DefiniteQuantityExternal": "12",
+        "Attachments":{
+            "__deferred":{
+                "uri":"/sap/opu/odata/sap/Z_I2D_QM_QUALITYISSUE_CONFIRM_SRV/ReportedIssueCollection(3597l)/Attachments"
+            }
+        }
+    },
+    {
+        "__metadata":{
+            "uri":"/sap/opu/odata/sap/Z_I2D_QM_QUALITYISSUE_CONFIRM_SRV/ReportedIssueCollection(3598l)",
+            "type":"Z_I2D_QM_QUALITYISSUE_CONFIRM_SRV.ReportedIssue"
+        },
+        "AttachmentsCount":5,
+        "CompanyAddress":"Dietmar Hopp Allee 1-3, 1234 Walldorf",
+        "CompanyName":"SAP AG",
+        "EMail":"Erik.Wonder@company.com",
+        "OfficePhone":"01718484845",
+        "MobilePhone":"06222 854568484",
+        "Department":"R&D",
+        "Name":"Erik Wonder",
+        "Material":"3344 / Leather",
+        "Reference":"",
+        "Description":"There is moisture on the wall of the cafetaria, the wallpaper is peeling off under the windows",
+        "Notification":"3598 ",
+        "Category":"Shop Floor",
+        "Priority":"Medium",
+        "CreatedAt":"\/Date(1378252800000)\/",
+        "Type":"Damaged",
+        "ChangedAt":"\/Date(1378252800000)\/",
+        "Status":"New",
+        "Defect":"Miscellaneous",
+        "Subject":"Moisture on a wall",
+        "ReportedIssueID":"3598",
+        "Coordinator":"Jose Wolunski",
+        
+        "ComplaintQty": "10",
+		"RefQuantity": "5",
+		"ReturnDeliveryUnit": "8",
+		"ReturnedOn": "\/Date(1377648000000)\/",
+		"DefiniteQuantityInternal": "6",
+		"DefiniteQuantityExternal": "12",
+        "Attachments":{
+            "__deferred":{
+                "uri":"/sap/opu/odata/sap/Z_I2D_QM_QUALITYISSUE_CONFIRM_SRV/ReportedIssueCollection(3598l)/Attachments"
+            }
+        }
+    }
+]

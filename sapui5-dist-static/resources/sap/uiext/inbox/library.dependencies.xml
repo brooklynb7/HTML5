@@ -1,0 +1,223 @@
+<?xml version="1.0" ?>
+<library  version="2.0" name="sap.uiext.inbox">
+  <module name="sap/uiext/inbox/Inbox.js" size="300250" compressedSize="143717">
+    <description>Provides control sap.uiext.inbox.Inbox.</description>
+    <requires>
+      <module name="sap/uiext/inbox/library.js"/>
+      <module name="sap/ui/core/Control.js"/>
+      <module name="sap/uiext/inbox/InboxConstants.js"/>
+      <module name="sap/uiext/inbox/TCMMetadata.js"/>
+      <module name="sap/uiext/inbox/tcm/TCMModel.js"/>
+      <module name="sap/uiext/inbox/InboxLink.js"/>
+      <module name="sap/uiext/inbox/TaskInitialFilters.js"/>
+      <module name="sap/uiext/inbox/InboxUtils.js"/>
+      <module name="sap/uiext/inbox/SubstitutionRulesManager.js"/>
+      <module name="sap/ui/core/format/DateFormat.js"/>
+      <module name="sap/ui/ux3/FacetFilter.js"/>
+      <module name="sap/ui/ux3/FacetFilterList.js"/>
+      <module name="sap/ui/commons/layout/MatrixLayout.js"/>
+      <module name="sap/ui/commons/Image.js"/>
+      <module name="sap/ui/commons/ToggleButton.js"/>
+      <module name="sap/ui/commons/DropdownBox.js"/>
+      <module name="sap/ui/core/ListItem.js"/>
+      <module name="sap/ui/commons/SearchField.js"/>
+      <module name="sap/ui/commons/Toolbar.js"/>
+      <module name="sap/ui/commons/TextView.js"/>
+      <module name="sap/ui/commons/Label.js"/>
+      <module name="sap/ui/commons/Button.js"/>
+      <module name="sap/ui/commons/ToolbarSeparator.js"/>
+      <module name="sap/ui/commons/Link.js"/>
+      <module name="sap/ui/table/Table.js"/>
+      <module name="sap/ui/commons/TextField.js"/>
+      <module name="sap/ui/ux3/OverlayContainer.js"/>
+      <module name="sap/ui/core/HTML.js"/>
+      <module name="sap/ui/commons/layout/BorderLayout.js"/>
+      <module name="sap/ui/commons/layout/HorizontalLayout.js"/>
+      <module name="sap/ui/commons/layout/VerticalLayout.js"/>
+      <module name="sap/ui/commons/RadioButtonGroup.js"/>
+      <module name="sap/ui/commons/Dialog.js"/>
+      <module name="sap/ui/model/Sorter.js"/>
+      <module name="sap/ui/model/Filter.js"/>
+      <module name="sap/ui/core/Locale.js"/>
+      <module name="sap/uiext/inbox/InboxFilters.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/uiext/inbox/InboxConfiguration.js" size="1373" compressedSize="570">
+    <description>Provides a filter for list bindings</description>
+    <requires>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/uiext/inbox/InboxConstants.js" size="11092" compressedSize="9713">
+    <description>! SAP UI development toolkit for HTML5 (SAPUI5)  (c) Copyright 2009-2013 SAP AG. All rights reserved</description>
+    <requires>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/uiext/inbox/InboxFilters.js" size="2641" compressedSize="1102">
+    <description>Provides a filter for list bindings</description>
+    <requires>
+      <module name="sap/uiext/inbox/InboxUtils.js"/>
+      <module name="sap/uiext/inbox/InboxSecondaryFilters.js"/>
+      <module name="sap/uiext/inbox/InboxPrimaryFilters.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/uiext/inbox/InboxLink.js" size="3362" compressedSize="2194">
+    <description>! SAP UI development toolkit for HTML5 (SAPUI5)  (c) Copyright 2009-2013 SAP AG. All rights reserved</description>
+    <requires>
+      <module name="sap/uiext/inbox/InboxConstants.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/uiext/inbox/InboxPrimaryFilterEnum.js" size="915" compressedSize="416">
+    <description>! SAP UI development toolkit for HTML5 (SAPUI5)  (c) Copyright 2009-2013 SAP AG. All rights reserved</description>
+    <requires>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/uiext/inbox/InboxPrimaryFilters.js" size="1561" compressedSize="829">
+    <description>Provides a filter for list bindings</description>
+    <requires>
+      <module name="sap/uiext/inbox/InboxUtils.js"/>
+      <module name="sap/uiext/inbox/InboxPrimaryFilterEnum.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/uiext/inbox/InboxRenderer.js" size="940" compressedSize="395">
+    <description>! SAP UI development toolkit for HTML5 (SAPUI5)  (c) Copyright 2009-2013 SAP AG. All rights reserved</description>
+    <requires>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/uiext/inbox/InboxSecondaryFilterPathEnum.js" size="1654" compressedSize="995">
+    <description>! SAP UI development toolkit for HTML5 (SAPUI5)  (c) Copyright 2009-2013 SAP AG. All rights reserved</description>
+    <requires>
+      <module name="sap/uiext/inbox/InboxSecondaryFilterValuesEnum.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/uiext/inbox/InboxSecondaryFilterValuesEnum.js" size="7407" compressedSize="1629">
+    <description>! SAP UI development toolkit for HTML5 (SAPUI5)  (c) Copyright 2009-2013 SAP AG. All rights reserved</description>
+    <requires>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/uiext/inbox/InboxSecondaryFilters.js" size="5548" compressedSize="2935">
+    <description>Provides a filter for list bindings</description>
+    <requires>
+      <module name="sap/uiext/inbox/InboxUtils.js"/>
+      <module name="sap/uiext/inbox/TaskInitialFilters.js"/>
+      <module name="sap/uiext/inbox/InboxSecondaryFilterPathEnum.js"/>
+      <module name="sap/uiext/inbox/InboxSecondaryFilterValuesEnum.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/uiext/inbox/InboxUtils.js" size="7108" compressedSize="4239">
+    <description>Utility functions for Inbox</description>
+    <requires>
+      <module name="sap/ui/model/odata/Filter.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/uiext/inbox/SubstitutionRulesManager.js" size="69357" compressedSize="32997">
+    <description>Provides control sap.uiext.inbox.SubstitutionRulesManager.</description>
+    <requires>
+      <module name="sap/uiext/inbox/library.js"/>
+      <module name="sap/ui/core/Control.js"/>
+      <module name="sap/uiext/inbox/InboxUtils.js"/>
+      <module name="sap/uiext/inbox/SubstitutionRulesManagerConstants.js"/>
+      <module name="sap/uiext/inbox/SubstitutionRulesManagerUtils.js"/>
+      <module name="sap/uiext/inbox/TCMMetadata.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/uiext/inbox/SubstitutionRulesManagerConstants.js" size="1011" compressedSize="974">
+    <description>! SAP UI development toolkit for HTML5 (SAPUI5)  (c) Copyright 2009-2013 SAP AG. All rights reserved</description>
+    <requires>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/uiext/inbox/SubstitutionRulesManagerRenderer.js" size="1107" compressedSize="485">
+    <description>! SAP UI development toolkit for HTML5 (SAPUI5)  (c) Copyright 2009-2013 SAP AG. All rights reserved</description>
+    <requires>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/uiext/inbox/SubstitutionRulesManagerUtils.js" size="7774" compressedSize="4611">
+    <description>Utility functions for Substitution Rules Manager</description>
+    <requires>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/uiext/inbox/TCMMetadata.js" size="3743" compressedSize="2281" raw="true">
+  </module>
+  <module name="sap/uiext/inbox/TaskInitialFilters.js" size="8126" compressedSize="4365">
+    <description>Provides a filter for list bindings</description>
+    <requires>
+      <module name="sap/uiext/inbox/InboxUtils.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/uiext/inbox/composite/InboxComment.js" size="6261" compressedSize="763">
+    <description>Provides control sap.uiext.inbox.composite.InboxComment.</description>
+    <requires>
+      <module name="sap/uiext/inbox/library.js"/>
+      <module name="sap/ui/core/Control.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/uiext/inbox/composite/InboxCommentRenderer.js" size="3825" compressedSize="2130">
+    <description>! SAP UI development toolkit for HTML5 (SAPUI5)  (c) Copyright 2009-2013 SAP AG. All rights reserved</description>
+    <requires>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/uiext/inbox/composite/InboxTaskComments.js" size="16050" compressedSize="3940">
+    <description>Provides control sap.uiext.inbox.composite.InboxTaskComments.</description>
+    <requires>
+      <module name="sap/uiext/inbox/library.js"/>
+      <module name="sap/ui/core/Control.js"/>
+      <module name="sap/ui/core/theming/Parameters.js"/>
+      <module name="sap/ui/ux3/Feeder.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/uiext/inbox/composite/InboxTaskCommentsRenderer.js" size="2479" compressedSize="1288">
+    <description>! SAP UI development toolkit for HTML5 (SAPUI5)  (c) Copyright 2009-2013 SAP AG. All rights reserved</description>
+    <requires>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/uiext/inbox/library.js" size="1362" compressedSize="661">
+    <description>Initialization Code and shared classes of library sap.uiext.inbox (1.16.4)</description>
+    <requires>
+      <module name="sap/ui/core/Core.js"/>
+      <module name="sap/ui/core/library.js"/>
+      <module name="sap/ui/commons/library.js"/>
+      <module name="sap/ui/ux3/library.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/uiext/inbox/tcm/TCMModel.js" size="867" compressedSize="578">
+    <description>! SAP UI development toolkit for HTML5 (SAPUI5)  (c) Copyright 2009-2013 SAP AG. All rights reserved</description>
+    <requires>
+      <module name="sap/uiext/inbox/tcm/fI/TCMFunctionImport.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/uiext/inbox/tcm/fI/TCMFunctionImport.js" size="5091" compressedSize="2749">
+    <description>Utility functions for TCMFunctionImport calls</description>
+    <requires>
+      <module name="sap/uiext/inbox/tcm/fI/TCMFunctionImportMetaData.js"/>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+  <module name="sap/uiext/inbox/tcm/fI/TCMFunctionImportMetaData.js" size="1067" compressedSize="475">
+    <description>! SAP UI development toolkit for HTML5 (SAPUI5)  (c) Copyright 2009-2013 SAP AG. All rights reserved</description>
+    <requires>
+      <module name="jquery.sap.global.js"/>
+    </requires>
+  </module>
+</library>

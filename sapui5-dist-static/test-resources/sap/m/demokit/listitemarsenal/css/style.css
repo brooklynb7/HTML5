@@ -1,0 +1,121 @@
+#description {
+	background-color: #FFFFDD;
+	border-color: #CCCCCC;
+	border-width: 0.0625em;
+	border-style: solid;
+	padding: 0.4375em;
+	width: 100%;
+	text-align: center !important;
+}
+
+.baseListCSS {
+	/*background: -webkit-linear-gradient(top, #ffffff 50%, #e0f1fa 100%);*/
+	background-color: white !important;
+}
+
+.baseListCSS .sapMLIBContent {
+	-webkit-box-orient: horizontal;
+	display: -webkit-box;
+	-webkit-box-align: center;
+	width: 100%;
+}
+
+.specialListItem {
+	display: -webkit-box;
+	-webkit-box-align: center;
+	-webkit-box-pack: center;
+	width: 100%;	
+}
+
+.customListItemImage {
+	-webkit-box-pack: center;
+	display: -webkit-box;
+	-webkit-box-align: center;
+	height: 3.831em;
+	width: 3.831em;
+	margin: 0.5em 0.5em 0.5em 0.625em;
+	-webkit-box-flex: 1;
+	border: 1px solid #D8DADD;
+	border-radius: 8px;
+	background: -webkit-linear-gradient(top, #ffffff 50%, #dddddd 100%);
+}
+
+.customListItemContent {
+	display: -webkit-box;
+	-webkit-box-pack: center;
+	-webkit-box-orient: vertical;
+	-webkit-box-flex: 999999;
+}
+
+.customListItemName {
+	font-size: 1.2rem;
+	font-weight: 700;
+	text-shadow: 0 0.0588em 0 @sapUiListBG;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	padding: 0.875rem 0.5rem 0.25rem 0;
+	color: #03a4e6;
+	font-family: "Open Sans Condensed";
+	-webkit-box-flex: 999999;
+	line-height: 1em;
+}
+
+.customListItemDiv {
+	-webkit-box-orient: horizontal;
+	display: -webkit-box;
+}
+
+.customListItemDesc {
+	font-size: 0.8em;
+	text-shadow: 0 0.0714em 0 @sapUiListBG;
+	color: #999999;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	font-family: "Open Sans", sans-serif;
+	font-weight: 400;
+	padding: 0.25rem 0.5rem 0.875rem 0em;
+}
+
+.customListItemActive .customListItemDescActive {
+	/*color: white !important;*/
+		
+}
+
+.customListItemActive .customListItemNameActive {
+	/*color: white !important;*/
+}
+
+.customListItemActive .customListItemPriceActive {
+	/*color: white !important;*/
+}
+
+.customListItemActive {
+	background-image:-webkit-linear-gradient(top, #d2eff8 0%, #d2eff8 100%) !important;
+	border-top: 0.0625em solid #d2eff8 !important;
+}
+
+.customListItemDivPrice {
+	margin: 0 0.5rem 0 0.5rem;
+}
+
+.customListItemPrice {
+	font-size: 1.2rem;
+	text-shadow: 0 0.0588em 0 @sapUiListBG;
+	padding: 0.875rem 0.5rem 0 0.5rem;
+	font-weight: 700;
+	font-family: "Open Sans Condensed";
+	-webkit-box-flex: 1;
+	color: #666666;
+	line-height: 1em;
+}
+
+.customListItemUnit {
+	font-size: 0.8rem;
+	text-shadow: 0 0.0588em 0 @sapUiListBG;
+	margin: 0 0.5rem 0 0.5rem;
+	font-family: "Open Sans", sans-serif;
+	color: #999999;
+	line-height: 1em;
+	text-align: right;
+}

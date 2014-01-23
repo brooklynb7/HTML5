@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html data-sap-ui-dk-category="Controls/Complex" data-sap-ui-dk-controls="sap.suite.ui.commons.BusinessCard">
+	<head>
+	<meta charset="UTF-8">
+	<title>BusinessCard - sap.suite.ui.commons</title>
+	
+	
+	<script id="sap-ui-bootstrap" type="text/javascript"
+		src="../../../../../../resources/sap-ui-core.js"
+		data-sap-ui-theme="sap_goldreflection"
+		data-sap-ui-libs="sap.ui.commons,sap.ui.demokit,sap.suite.ui.commons">
+	    
+	</script>
+	<script type="text/javascript" src="../../../../../../js/utils.js"></script>
+	<script id='BusinessCardVCard' type='text/javascript'>
+var oVCard = new sap.suite.ui.commons.BusinessCard({
+    firstTitle:  new sap.ui.commons.Label({id:"vcard1-name-label",text:"White, Helen",tooltip:"White, Helen"}),
+    iconPath: "images/persons/female_IngallsB.jpg",
+    secondTitle: "Sales Contact at Customer Side",
+    imageTooltip:"White, Helen",
+    width: "424px"
+});
+
+var oContentCard = new sap.ui.commons.layout.MatrixLayout({widths:["20px", "100px"]});
+var oCell = new sap.ui.commons.layout.MatrixLayoutCell({hAlign:sap.ui.commons.layout.HAlign.Center});
+oCell.addContent(new sap.ui.commons.TextView({text:"Phone:"}));
+oContentCard.createRow(oCell, new sap.ui.commons.TextView({text:"+41 (635) 457-2875"}));
+		
+oCell = new sap.ui.commons.layout.MatrixLayoutCell({hAlign:sap.ui.commons.layout.HAlign.Center});
+oCell.addContent(new sap.ui.commons.TextView({text:"E-Mail:"}));
+oContentCard.createRow(oCell, new sap.ui.commons.TextView({text:"helen.white@company.com"}));
+		
+oContentCard.createRow(new sap.ui.commons.TextView({text:"Address:"}), new sap.ui.commons.TextView({text:"Diermar-Hopp Allee 16"}));
+oVCard.setContent(oContentCard);
+
+oVCard.placeAt("vCard");
+			
+	</script>
+	
+	
+	<script id='BusinessCardBadge' type='text/javascript'>
+	
+var oBadge = new sap.suite.ui.commons.BusinessCard({
+    firstTitle: new sap.ui.commons.Link({id:"badge1-name-link",text:"Doe, John",tooltip:"Doe, John",href:"http://www.sap.com", target:"_blank"}),
+    iconPath: "images/persons/male_MillerM.jpg",
+    secondTitle: "Sales Contact at Customer Side",
+    imageTooltip:"Doe, John",
+    width: "281px"
+});
+
+var oContent = new sap.ui.commons.layout.MatrixLayout({widths:["30px", "100px"]});
+oContent.createRow(new sap.ui.commons.TextView({text:"Phone:"}), new sap.ui.commons.TextView({text:"+41 (635) 457-2875"}));
+oBadge.setContent(oContent);
+
+oBadge.placeAt("badge");
+
+	</script>
+	</head>
+	<body class="sapUiDemokitBody" role="application">
+	<h1 color="Blue" icon="images/ctrls/businesscard-icon.png">BusinessCard</h1>
+	<h2>Introduction</h2>
+	<p>This control allows you to display business card information including an image, first title (either URL link or text), second title, and multiple text lines.</p>
+	<br/>
+	<h2>Keyboard Support</h2>
+	<p>Use Tab or <code>Shift+Tab</code> to navigate through the focusable controls. Press <code>Enter</code> to open the URL link.</p>
+	<h2>Examples</h2>
+	<div code-sample="vCard" script="BusinessCardVCard"></div>
+	<br/>
+	<div code-sample="badge" script="BusinessCardBadge"></div>
+	
+	<br/>
+	<p>
+		<a class="sapUiDemokitSrcLink" href="../../../../../../docs/api/symbols/sap.suite.ui.commons.BusinessCard.html">BusinessCard API documentation</a>
+	</p>	
+</body>
+</html>

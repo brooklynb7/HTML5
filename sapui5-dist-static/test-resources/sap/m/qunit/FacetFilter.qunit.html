@@ -1,0 +1,2753 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>FacetFilter - sap.m</title>
+
+<link rel="stylesheet" href="../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
+
+<!-- UI5 Bootstrap -->
+<script id="sap-ui-bootstrap" type="text/javascript" src="../../../../resources/sap-ui-core.js" data-sap-ui-theme="sap_bluecrystal" data-sap-ui-libs="sap.m"></script>
+
+<!-- QUnit libraries -->
+
+<script src="../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+<script type="text/javascript" src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
+<script type="text/javascript" src="../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
+
+<script type="text/javascript">
+
+	/******* Convenience functions/vars *************************/
+	var asyncTimeout = 450; //Anything much lower and tests will start failing
+
+	var SUPPLIER = 0;
+	var ITEM = 1;
+	var ORDER = 2;
+	var PRODUCT = 3;
+	var REMOVE = 4;
+	var CUST = 4;
+	var	PERSON = 5;
+
+	var oResetEvent = null;
+	var oListOpenEventParams = null;
+	var oListCloseEventParams = null;
+
+	function getBundleText(key) {
+
+		var oBundle = sap.ui.getCore().getLibraryResourceBundle("sap.m");
+		return oBundle.getText(key);
+	}
+
+	function eventHandler(oEvent) {
+
+		switch (oEvent.getId()) {
+		case "reset":
+			oResetEvent = oEvent;
+			break;
+		case "listOpen":
+			oListOpenEventParams = oEvent.getParameters();
+			break;
+		case "listClose":
+			oListCloseEventParams = oEvent.getParameters(); //Need to cache so that they are available in async setTimeout
+			break;
+		}
+	}
+
+	function getFacetList(sId, iIndex) {
+
+		return sap.ui.getCore().byId(sId).getLists()[iIndex];
+	}
+
+	function getPopoverList(sId, iIndex) {
+
+		return getFacetList(sId, iIndex)._list;
+	}
+
+	function getPopoverCBSelectAll(sId, iIndex) {
+
+		return getFacetList(sId, iIndex)._cbSelectAll;
+	}
+
+	function openList(sId, iIndex) {
+
+		var sListId = getFacetList(sId, iIndex).getId();
+		qutils.triggerMouseEvent(sListId + "-button", "tap");
+	}
+
+	function closeList(sId, iIndex) {
+
+		getFacetList(sId, iIndex)._popover.close();
+	}
+
+	function isPopoverOpen(sId, iIndex) {
+
+		return getFacetList(sId, iIndex)._popover.isOpen();
+	}
+
+	function isAllItemSelected(oCheckBox) {
+
+		return oCheckBox.getSelected();
+	}
+
+	function openDialog(sId) {
+
+		qutils.triggerMouseEvent(sId + "-add", "tap");
+	}
+
+	function closeDialog(sId) {
+
+		qutils.triggerMouseEvent(sId + "-dialog-okbtn", "tap");
+	}
+	
+	function getDialogItemsList(sId){
+		return sap.ui.getCore().byId(sId)._itemsList;
+	}
+
+	function getJQuerySelectorPopoverMulti(sId, iIndex) {
+
+		var sPopId = getFacetList(sId, iIndex)._popover.getId();
+		return "#" + sPopId + " ul.sapMListModeMultiSelect li.sapMSLI";
+	}
+	
+	function getJQuerySelectorPopoverSingle(sId, iIndex) {
+
+		var sPopId = getFacetList(sId, iIndex)._popover.getId();
+		return "#" + sPopId + " ul.sapMListModeSingleSelectMaster li.sapMSLI";
+	}
+
+	function getJQueryDialogGrowingTrigger(sId) {
+
+		var sListId = getDialogItemsList(sId).getId();
+		return "#" + sListId + "-trigger";
+	}
+
+	function getJQuerySelectorGrowingTrigger(sId, iIndex) {
+
+		var sListId = getFacetList(sId, iIndex)._list.getId();
+		return "#" + sListId + "-trigger";
+	}
+
+	function getAllLIs(sId) {
+
+		return $("#" + sId + " li");
+	}
+
+	function getBackButtonId(sId) {
+
+		return sId + "-item-navButton";
+	}
+
+	function createModelItems(iNumItems, sTitle, sItemText) {
+
+		var aItems = [];
+		for ( var i = 0; i < iNumItems; i++) {
+			aItems.push({
+				title : sTitle + " " + (i + 1),
+				id : sItemText + (i + 1),
+				amount : (i + 1)
+			});
+		}
+		return aItems;
+	}
+
+	function createFacetFilterItems(iNumItems, sTitle, sItemText) {
+
+		var aItems = [];
+		for ( var i = 0; i < iNumItems; i++) {
+			aItems.push(new sap.m.FacetFilterItem({
+				text : sTitle + " " + (i + 1),
+				key : sItemText + (i + 1),
+				count : i
+			}));
+		}
+		return aItems;
+	}
+
+	function createFacetFilterList(iNumItems, sFFId, sListId, sTitle, sItemText, bActive, iSequence) {
+
+		if (bActive === undefined || bActive === null) {
+			bActive = true;
+		}
+		var oData = {
+			values : createModelItems(iNumItems, sTitle, sItemText)
+		}
+		var oModel = new sap.ui.model.json.JSONModel();
+		oModel.setData(oData);
+
+		var oFFITemplate = new sap.m.FacetFilterItem({
+			text : "{title}",
+			key : "{id}",
+			count : "{amount}"
+		});
+
+		var oFacetFilterList = new sap.m.FacetFilterList(sFFId + sListId, {
+			title : sTitle + "s",
+			items : {
+				path : "/values",
+				template : oFFITemplate,
+			},
+
+			listClose : eventHandler,
+			listOpen : eventHandler,
+			active : bActive,
+			sequence : iSequence,
+			growingThreshold : 50
+		});
+
+		oFacetFilterList.setModel(oModel);
+		return oFacetFilterList;
+	}
+
+	/******* End test convenience functions *************************/
+
+	var oFF1Id = "ff1";
+	var oFF1 = new sap.m.FacetFilter(oFF1Id, {
+		lists : [ createFacetFilterList(3, oFF1Id, "supplier", "Supplier", "SUPP"), createFacetFilterList(3, oFF1Id, "items", "Item", "ITEM"),
+				createFacetFilterList(10, oFF1Id, "orders", "Order", "ORDER"), createFacetFilterList(10, oFF1Id, "products", "Product", "PRODUCT"), 
+				createFacetFilterList(500, oFF1Id, "customers", "Customer", "CUST")],
+		reset : eventHandler,
+		showPersonalization : true
+	});
+
+	var oSingleSelectList = createFacetFilterList(5, oFF1Id, "people", "Person", "PERSON");
+	oSingleSelectList.setMultiSelect(false);
+	oFF1.addList(oSingleSelectList);
+
+	oFF1.placeAt("content");
+
+	var oFF2Id = "ff2";
+	var oFF2 = new sap.m.FacetFilter(oFF2Id, {
+		lists : [ createFacetFilterList(3, oFF2Id, "supplier", "Supplier", "SUPP"), createFacetFilterList(3, oFF2Id, "items", "Item", "ITEM"),
+				createFacetFilterList(2, oFF2Id, "orders", "Order", "ORDER", false), createFacetFilterList(10, oFF2Id, "products", "Product", "PRODUCT"),
+				createFacetFilterList(3, oFF2Id, "remove", "Remove", "REMOVE") ],
+		reset : eventHandler,
+		showPersonalization : true
+	});
+
+	oFF2.placeAt("content");
+
+	var oFF3Id = "ff3";
+	var oFF3 = new sap.m.FacetFilter(oFF3Id, {
+		lists : [ createFacetFilterList(3, oFF3Id, "supplier", "Supplier", "SUPP", true, 10), createFacetFilterList(3, oFF3Id, "items", "Item", "ITEM", true, 11),
+				createFacetFilterList(10, oFF3Id, "orders", "Order", "ORDER", true, 12), createFacetFilterList(10, oFF3Id, "products", "Product", "PRODUCT", true, 13) ],
+		reset : eventHandler,
+		showPersonalization : true
+	});
+
+	oFF3.placeAt("content");
+
+
+	// NOTE: For some reason we have to arrange tests such that we alternate between facet filter lists. Looks like if a test
+	// opens the same facet popup as the previous test then selecting list items (i.e qutils.triggerMouseEvent($listItems[1], "tap")
+	// no longer works.
+	
+	/***********************************************************************/
+	module("Properties")
+
+	/**
+	 * Test for properties where setters and getters are overridden.
+	 */
+	test("Growing Properties", function() {
+		
+		var oFFL = new sap.m.FacetFilterList({
+
+			growing : false,
+			growingThreshold : 500,
+			growingTriggerText : "Growing"
+		});		
+
+		equal(oFFL.getGrowing(), false, "Property 'growing' is set correctly on FacetFilterList");
+		equal(oFFL._list.getGrowing(), false, "Property 'growing' is set correctly on FacetFilterList._list");
+		equal(oFFL.getGrowingThreshold(), 500, "Property 'growingThreshold' is set correctly on FacetFilterList");
+		equal(oFFL._list.getGrowingThreshold(), 500, "Property 'growingThreshold' is set correctly on FacetFilterList._list");		
+		equal(oFFL.getGrowingTriggerText(), "Growing", "Property 'growingTriggerText' is set correctly on FacetFilterList");
+		equal(oFFL._list.getGrowingTriggerText(), "Growing", "Property 'growingTriggerText' is set correctly on FacetFilterList._list");	
+	});
+	
+	test("Live Search", function() {
+		
+		var oFF = new sap.m.FacetFilter();
+		
+		equal(oFF.getLiveSearch(), true, "Live search should be enabled by default");
+		oFF.setLiveSearch(false);
+		equal(oFF.getLiveSearch(), false, "Live search should be disabled");
+		
+	});
+
+	/***********************************************************************/	
+	module("Aggregations")
+
+	/**
+	 * Normally we would not have this test. It was added after getLists() broke when the layout was changed to use an HBox.
+	 */
+	test("FacetFilterList aggregation contains lists", function() {
+
+		ok(oFF1.getLists().length > 0, "There should be facet filter lists");
+	});
+	
+	asyncTest("FacetFilterList addList", function() {
+		
+		var sId = "add-list"
+		var oFF = new sap.m.FacetFilter(sId);
+		oFF.placeAt("content");
+		
+		setTimeout(function() {
+			
+			var sFFLId1 = oFF.getId() + "-one";
+			var sFFLId2 = oFF.getId() + "-two";
+			oFF.addList(new sap.m.FacetFilterList(sFFLId1, {
+				title: "One"
+			}));
+			oFF.addList(new sap.m.FacetFilterList(sFFLId2, {
+				title: "Two"
+			}));
+			equal(oFF.getLists().length, 2, "There should be two lists in the FacetFilterList \"lists\" aggregation");
+			setTimeout(function() {
+				
+				ok(jQuery.sap.domById(sFFLId1 + "-button"), "FacetFilterList button one should be rendered");
+				ok(jQuery.sap.domById(sFFLId2 + "-button"), "FacetFilterList button two should be rendered");
+				start();				
+			}, asyncTimeout);			
+		}, asyncTimeout);
+	});
+	
+	asyncTest("FacetFilterList insertList", function() {
+		
+		var sId = "insert-list"
+		var oFF = new sap.m.FacetFilter(sId);
+		oFF.placeAt("content");
+		
+		setTimeout(function() {
+			
+			var sFFLId1 = oFF.getId() + "-one";
+			var sFFLId2 = oFF.getId() + "-two";
+			var sFFLId3 = oFF.getId() + "-three";
+			oFF.addList(new sap.m.FacetFilterList(sFFLId3, {
+				title: "Three"
+			}));
+			oFF.insertList(new sap.m.FacetFilterList(sFFLId2, {
+				title: "Two"
+			}), 0);			
+			oFF.insertList(new sap.m.FacetFilterList(sFFLId1, {
+				title: "One"
+			}), 0);
+			equal(oFF.getLists().length, 3, "There should be three lists in the FacetFilterList \"lists\" aggregation");
+			setTimeout(function() {
+				
+				ok(jQuery.sap.domById(sFFLId1 + "-button"), "FacetFilterList button one should be rendered");
+				equal(oFF.indexOfAggregation("lists", sap.ui.getCore().byId(sFFLId1)), 0, "FacetFilterList should be at index 0");
+				ok(jQuery.sap.domById(sFFLId2 + "-button"), "FacetFilterList button two should be rendered");
+				equal(oFF.indexOfAggregation("lists", sap.ui.getCore().byId(sFFLId2)), 1, "FacetFilterList should be at index 1");
+				ok(jQuery.sap.domById(sFFLId3 + "-button"), "FacetFilterList button two should be rendered");
+				equal(oFF.indexOfAggregation("lists", sap.ui.getCore().byId(sFFLId3)), 2, "FacetFilterList should be at index 2");
+				start();				
+			}, asyncTimeout);			
+		}, asyncTimeout);
+	});	
+
+	/***********************************************************************/
+	module("Rendering");
+
+	test("Facet Filter Rendered", function() {
+
+		ok(jQuery.sap.domById(oFF1Id), "Facet Filter Control should be rendered.");
+		ok(jQuery.sap.domById(getFacetList(oFF1Id, SUPPLIER).getId() + "-button"), "Facet Filter button should be rendered.");
+		ok(jQuery.sap.domById(getFacetList(oFF1Id, ITEM).getId() + "-button"), "Facet Filter button should be rendered.");
+		ok(jQuery.sap.domById(getFacetList(oFF1Id, ORDER).getId() + "-button"), "Facet Filter button should be rendered.");
+		ok(jQuery.sap.domById(getFacetList(oFF1Id, PRODUCT).getId() + "-button"), "Facet Filter button should be rendered.");
+		ok(jQuery.sap.domById(oFF1Id + "-rb"), "Reset button should be rendered.");
+	});
+
+	/***********************************************************************/
+	module("Reset Button")
+
+	test("Default value of showReset", function() {
+
+		ok(oFF1.getShowReset(), "Default value is true");
+	});
+
+	asyncTest("Hide and Show Reset Button", function() {
+
+		var sId = oFF1Id;
+		oFF1.setShowReset(false);
+
+		setTimeout(function() {
+
+			start();
+			ok(!jQuery.sap.domById(sId + "-rb"), "Reset button should not be rendered.");
+			stop();
+			oFF1.setShowReset(true);
+
+			setTimeout(function() {
+
+				start();
+				ok(jQuery.sap.domById(sId + "-rb"), "Reset button should be rendered.");
+			});
+		}, asyncTimeout);
+	});
+
+	/***********************************************************************/
+	module("Summary Bar");
+
+	test("Default value of showSummaryBar", function() {
+
+		ok(!oFF1.getShowSummaryBar(), "Default value is false");
+	});
+
+	asyncTest("Rendering of Summary Bar", function() {
+
+		var sId = oFF1Id;
+		ok(!jQuery.sap.domById(sId + "-summaryBar"), "Summary Bar should not be rendered.");
+		oFF1.setShowSummaryBar(true);
+		setTimeout(function() {
+
+			start();
+			ok(jQuery.sap.domById(sId + "-summaryBar"), "Summary Bar should be rendered.");
+			ok(jQuery.sap.domById(sId + "-rb"), "Reset button should be rendered.");
+			equal(oFF1._summaryBarText.getText(), getBundleText("FACETFILTER_INFOBAR_NO_FILTERS"), "No filters are selected in summary");
+			stop();
+
+			setTimeout(function() {
+
+				oFF1.setShowSummaryBar(false);
+				start();
+			}, asyncTimeout);
+		}, asyncTimeout);
+	});
+
+	asyncTest("Rendering of Summary Bar With and Without Reset Button", function() {
+
+		var sId = oFF1Id;
+
+		oFF1.setShowSummaryBar(true);
+		oFF1.setShowReset(false);
+
+		setTimeout(function() {
+
+			start();
+			ok(jQuery.sap.domById(sId + "-summaryBar"), "Summary Bar should be rendered.");
+			ok(!jQuery.sap.domById(sId + "-rb"), "Reset button should not be rendered.");
+			stop();
+			oFF1.setShowReset(true);
+
+			setTimeout(function() {
+
+				start();
+				ok(jQuery.sap.domById(sId + "-rb"), "Reset button should be rendered.");
+				oFF1.setShowSummaryBar(false);
+			}, asyncTimeout);
+		}, asyncTimeout);
+	});
+
+	/***********************************************************************/
+	module("Sequencing on facet filter lists");
+
+	test("Test default sequence setting on facet filter lists", function() {
+
+		var oList = oFF1.getLists();
+		for ( var i = 0; i < oList.length; i++) {
+
+			equal(oList[i].getSequence(), i, "Sequence is set by control if not set on list obj starting from 0");
+		}
+	});
+
+	test("Test sequence remain unchanged if they are set on filter lists", function() {
+
+		var oList = oFF3.getLists();
+		var aSequences = [10, 11, 12, 13];
+		for ( var i = 0; i < oList.length; i++) {
+            var index = aSequences.indexOf(oList[i].getSequence());
+			ok(index > -1, "Sequence is not changed by the control");
+			aSequences.splice(index, 1);
+		}
+	});
+	
+	test("Test rendering of filter lists according to sequence", function() {
+        
+        var kids = $("#" + oFF3.getId() + "-head").children();
+        equal($(kids[0]).text(), "All Suppliers", "First facet filter list is Suppliers");
+        equal($($(kids[0]).prev()).text(), "", "There is no previous facet filter list");
+        equal($($(kids[0]).next()).text(), "All Items", "Second facet filter list is Items");
+        equal($($(kids[1]).next()).text(), "All Orders", "Third facet filter list is Orders");
+        equal($($(kids[2]).next()).text(), "All Products", "Fourth facet filter list is Products");
+	});
+
+
+	asyncTest("Test sequencing when active is changed on one list object", function() {
+
+		var sId = oFF1Id;
+		var oListObj = oFF1.getLists()[0];
+		var sTitle = oListObj.getTitle();
+		oListObj.setActive(false);
+
+		setTimeout(function() {
+
+			start();
+			for ( var i = 0; i < oFF1.getLists().length; i++) {
+				if (oFF1.getLists()[i].getTitle() == sTitle) {
+					equal(oFF1.getLists()[i].getSequence(), -1, "Sequence is set to -1 when list object is made inactive");
+				}
+			}
+            var kids = $("#" + oFF1.getId() + "-head").children();
+            for (var j = 0; j < kids.size(); j++) {
+                  notEqual($(kids[j]).text(), "All Suppliers", "Suppliers facet filter list is not rendered");
+            }
+
+			stop();
+			oListObj.setActive(true);
+
+			setTimeout(function() {
+
+				start();
+				for ( var i = 0; i < oFF1.getLists().length; i++) {
+					if (oFF1.getLists()[i].getTitle() == sTitle) {
+						equal(oFF1.getLists()[i].getSequence(), oFF1.getLists().length, "Sequence is set to maxseq + 1 when list object is made active");
+					}
+				}
+				
+				var kids = $("#" + oFF1.getId() + "-head").children();
+                equal($(kids[5]).text(), "All Suppliers", "Suppliers facet filter list is rendered again");
+                equal($($(kids[5]).next()).text(), "", "Suppliers facet filter is the last filter list to render");
+
+			}, asyncTimeout);
+		}, asyncTimeout);
+	});
+
+	/***********************************************************************/
+	module("Events");
+
+	test("FacetFilter reset event", function() {
+
+		qutils.triggerEvent("tap", oFF1Id + "-rb");
+		ok(oResetEvent, "Filter reset event triggered");
+		oResetEvent = null;
+	});
+
+	/**
+	 * Verify the listOpen event is fired and parameters are present.
+	 */
+	asyncTest("FacetFilterList listOpen event", function() {
+
+		var sId = oFF1Id;
+		openList(sId, ITEM);
+
+		setTimeout(function() {
+
+			start();
+			ok(oListOpenEventParams["id"] === (sId + "items"), "Event should be triggered by the Items list popover open.");
+			oListOpenEventParams = null;
+			closeList(sId, ITEM);
+		});
+	});
+
+	/**
+	 * Verify the listClose event is fired and that parameters are present.
+	 */
+	asyncTest("FacetFilterList listClose event", function() {
+
+		var sId = oFF1Id;
+		openList(sId, ITEM);
+
+		setTimeout(function() {
+
+			closeList(sId, ITEM);
+			setTimeout(function() {
+
+				start();
+				ok(oListCloseEventParams["id"] === (sId + "items"), "Event should be triggered by the Items list popover close.");
+				ok(oListCloseEventParams["selectedItems"], "Event should contain the selectedItems parameter.")
+				ok(oListCloseEventParams["allSelected"], "Event should contain the allSelected parameter.")
+				oListCloseEventParams = null;
+			}, asyncTimeout);
+		});
+	});
+
+	/**
+	 * Verify that allSelected=true when the select All list item is selected.
+	 */
+	asyncTest("Test event parameter allSelected 1", function() {
+
+		var sId = oFF1Id;
+		openList(sId, SUPPLIER);
+
+		setTimeout(function() {
+
+			closeList(sId, SUPPLIER);
+			setTimeout(function() {
+
+				start();
+				ok(oListCloseEventParams["allSelected"], "Event should report All items selected");
+				oListCloseEventParams = null;
+			}, asyncTimeout);
+		});
+	});
+
+	/**
+	 * Verify that allSelected=true when all filter values are selected.
+	 */
+	/*
+	asyncTest("Test event parameter allSelected 2", function (){
+		expect(1);
+		var sId = oFF1Id;
+		openList(sId, ITEM);
+		
+		var $listItems = $(getJQuerySelectorPopoverMulti(sId, ITEM));
+		qutils.triggerMouseEvent($listItems[1], "tap");
+		qutils.triggerMouseEvent($listItems[2], "tap");
+		qutils.triggerMouseEvent($listItems[3], "tap");
+		
+		setTimeout(function (){
+			stop();
+			closeList(sId, ITEM);
+			
+		}, 2000);
+		
+		setTimeout(function (){
+			start();
+		}, 3000);		
+	});	
+	
+
+	asyncTest("Test event all items selected2", function (){
+		setTimeout(function(){
+			start();
+			ok(oListCloseEventParams["allSelected"], "Event should report All items selected");
+			oListCloseEventParams = null;
+			
+		}, 0);
+		
+	});	*/
+
+	/***********************************************************************/
+	module("Popover");
+
+	/**
+	 * Need to close the popover asynchronously, otherwise it will stay open.
+	 */
+	asyncTest("Popover Displayed", function() {
+
+		var sId = oFF1Id;
+
+		ok(!isPopoverOpen(sId, SUPPLIER), "Popover should not be displayed");
+		openList(sId, SUPPLIER);
+		setTimeout(function() {
+
+			ok(isPopoverOpen(sId, SUPPLIER), "Popover should be displayed");
+			var $listItems = $(getJQuerySelectorPopoverMulti(sId, SUPPLIER));
+			qutils.triggerMouseEvent($listItems[1], "tap");
+
+			setTimeout(function() {
+
+				ok(isPopoverOpen(sId, SUPPLIER), "Popover should be displayed");
+				qutils.triggerMouseEvent($listItems[1], "tap");
+				setTimeout(function() {
+
+					ok(isPopoverOpen(sId, SUPPLIER), "Popover should be displayed");
+					closeList(sId, SUPPLIER);
+					start();
+				}, asyncTimeout);
+			}, asyncTimeout);
+
+		}, asyncTimeout);
+	});
+
+	/***********************************************************************/
+	module("List Selection");
+
+	asyncTest("Select All Selected By Default", function() {
+
+		var sId = oFF1Id;
+		openList(sId, ITEM);
+
+		setTimeout(function() {
+
+			setTimeout(function() {
+
+				ok(isAllItemSelected(getPopoverCBSelectAll(sId, ITEM)), "Select All should be selected.");
+
+				setTimeout(function() {
+
+					closeList(sId, ITEM);
+					start();
+
+					var oFFList = getFacetList(sId, ITEM);
+					var sButtonText = oFFList._getFacetButton().getText();
+					equal(sButtonText, "All Items", "Button text should be set to \"All Items\"");
+
+				}, asyncTimeout);
+			});
+		});
+	});
+
+	/**
+	 * Verify that the select all item is automatically deselected
+	 * when another item is selected.
+	 */
+	asyncTest("Select All Automatically Deselected", function() {
+
+		var sId = oFF1Id;
+		openList(sId, SUPPLIER);
+
+		setTimeout(function() {
+
+			var $listItems = $(getJQuerySelectorPopoverMulti(sId, SUPPLIER));
+			qutils.triggerMouseEvent($listItems[1], "tap");
+			var aSelectedItems = getPopoverList(sId, SUPPLIER).getSelectedItems();
+			ok(!isAllItemSelected(getPopoverCBSelectAll(sId, SUPPLIER)), "Select All should not be selected.");
+			ok(aSelectedItems.length === 1, "Only one item should be selected.")
+			//DO NOT USE equal() to test, it crashed Chrome!!!
+			ok(aSelectedItems[0] == getPopoverList(sId, SUPPLIER).getItems()[1], "The first filter value should be selected");
+
+			setTimeout(function() {
+
+				closeList(sId, SUPPLIER);
+				start();
+			}, asyncTimeout);
+		});
+	});
+
+	/**
+	 * User should not be able to deselect the select ALL item.
+	 **/
+	asyncTest("Unselect Select All", function() {
+
+		var sId = oFF1Id;
+		openList(sId, SUPPLIER);
+		setTimeout(function() {
+			
+			var oCBSelectAll = getPopoverCBSelectAll(sId, SUPPLIER);
+			ok(!isAllItemSelected(getPopoverCBSelectAll(sId, SUPPLIER)), "Select All should not be selected.");
+			setTimeout(function() {
+				ok(isPopoverOpen(sId, SUPPLIER), "Popover should be displayed");
+				qutils.triggerMouseEvent(oCBSelectAll, "tap");			
+				ok(isAllItemSelected(getPopoverCBSelectAll(sId, SUPPLIER)), "Select All should be selected.");
+				
+				setTimeout(function() {
+					ok(isPopoverOpen(sId, SUPPLIER), "Popover should be displayed");
+					qutils.triggerMouseEvent(oCBSelectAll, "tap");
+					ok(isAllItemSelected(getPopoverCBSelectAll(sId, SUPPLIER)), "Select All should remain selected.");
+					setTimeout(function() {
+						ok(isPopoverOpen(sId, SUPPLIER), "Popover should be displayed");
+						closeList(sId, SUPPLIER);
+						start();
+					}, asyncTimeout*2);
+				}, asyncTimeout*2);
+			}, asyncTimeout);
+		}, asyncTimeout);
+	});
+
+	/**
+	 * Verify that selected items remain selected when the popup is closed and then opened.
+	 */
+	asyncTest("Selections Remain Upon Reopen Prepare", function() {
+
+		var sId = oFF1Id;
+		openList(sId, ITEM);
+
+		setTimeout(function() {
+
+			var $listItems = $(getJQuerySelectorPopoverMulti(sId, ITEM));
+			qutils.triggerMouseEvent($listItems[0], "tap");
+			qutils.triggerMouseEvent($listItems[2], "tap");
+			ok(!isAllItemSelected(getPopoverCBSelectAll(sId, ITEM)), "Select All should not be selected.");
+			setTimeout(function() {
+
+				closeList(sId, ITEM);
+				start();
+			}, asyncTimeout);
+		}, asyncTimeout);
+	});
+
+	/**
+	 * Verify that popover list with two selections still has those selections when reopened.
+	 **/
+	asyncTest("Selections Remain Upon Reopen", function() {
+
+		var sId = oFF1Id;
+		openList(sId, ITEM);
+
+		setTimeout(function() {
+
+			ok(!isAllItemSelected(getPopoverCBSelectAll(sId, ITEM)), "Select All should not be selected.");
+			var aSelectedItems = getPopoverList(sId, ITEM).getSelectedItems();
+			ok(aSelectedItems.length === 2, "Two filter values should be selected.")
+
+			setTimeout(function() {
+
+				closeList(sId, ITEM);
+				start();
+			}, asyncTimeout);
+		}, asyncTimeout);
+	});
+
+	/**
+	 * Verify that selected items remain selected when the popup is closed and then opened.
+	 * TODO:
+	 */
+	asyncTest("Selections Remain Upon Reopen Growing List: Prepare", function() {
+
+		var sId = oFF1Id;
+		openList(sId, CUST);
+
+		setTimeout(function() {
+
+			var $growingTrigger = $(getJQuerySelectorGrowingTrigger(sId, CUST));
+			qutils.triggerMouseEvent($growingTrigger, "tap");
+			ok(isAllItemSelected(getPopoverCBSelectAll(sId, CUST)), "Select All should be selected.");
+			setTimeout(function() {
+				
+				var $listItems = $(getJQuerySelectorPopoverMulti(sId, CUST));
+				ok($listItems.length ===100, "List items are loaded");
+				qutils.triggerMouseEvent($listItems[50], "tap");
+				setTimeout(function() {
+					ok(!isAllItemSelected(getPopoverCBSelectAll(sId, CUST)), "Select All should not be selected.");
+					var oList = getPopoverList(sId, CUST);
+					ok(oList.getItems()[50].getSelected(), "\"Customer 51\" should be selected");
+					
+					setTimeout(function() {
+	
+						closeList(sId, CUST);
+						start();
+					}, asyncTimeout);
+				}, asyncTimeout);
+			}, asyncTimeout);
+		}, asyncTimeout);
+	});
+	
+	asyncTest("Selections Remain Upon Reopen Growing List", function() {
+
+		var sId = oFF1Id;
+		openList(sId, CUST);
+
+		setTimeout(function() {
+
+			ok(!isAllItemSelected(getPopoverCBSelectAll(sId, CUST)), "Select All should not be selected.");
+			var $growingTrigger = $(getJQuerySelectorGrowingTrigger(sId, CUST));
+			qutils.triggerMouseEvent($growingTrigger, "tap");
+			setTimeout(function() {
+				
+				ok(getPopoverList(sId, CUST).getItems()[50].getSelected(), "\"Customer 51\" should be selected");
+				setTimeout(function() {
+	
+					closeList(sId, CUST);
+					start();
+				}, asyncTimeout);
+			}, asyncTimeout);
+		}, asyncTimeout);
+	});
+	
+	asyncTest("Selections from popover is shown in the dialog", function() {
+
+		var sId = oFF1Id;
+		var oFF = oFF1
+		openDialog(sId);
+
+		setTimeout(function() {
+			var sCusomersId = oFF._facetList.getItems()[CUST].getId();
+			qutils.triggerMouseEvent(sCusomersId, "tap");
+			setTimeout(function() {
+			
+				ok(!isAllItemSelected(oFF._cbSelectAll), "All suppliers item should not be selected");
+				var $growingTrigger = $(getJQueryDialogGrowingTrigger(sId));
+				qutils.triggerMouseEvent($growingTrigger, "tap");
+				setTimeout(function() {
+					
+					ok(getDialogItemsList(sId).getItems()[50].getSelected(), "\"Customer 51\" should be selected");
+					setTimeout(function() {
+		
+						closeDialog(sId);
+						start();
+					}, asyncTimeout);
+				}, asyncTimeout);
+			}, asyncTimeout);
+		}, asyncTimeout);
+	});
+	
+	
+	
+	asyncTest("Select All checkbox with single select list", function() {
+		
+		var sId = oFF1Id;
+		openList(sId, PERSON);
+
+		setTimeout(function() {
+			var oCheckBox = jQuery.sap.domById(getFacetList(sId, PERSON).getId() + "-selectAll");
+			ok(!oCheckBox, "Popover should not contain the All checkbox if the list is single select");
+			closeList(sId, PERSON);
+			start();
+		}, asyncTimeout);		
+	});
+	
+	asyncTest("Single selection maintained in FacetFilterList.items aggregation", function() {
+		
+		var sId = oFF1Id;
+		openList(sId, PERSON);
+		var oList = getPopoverList(sId, PERSON);
+		var oFacetList = getFacetList(sId, PERSON);
+		equal(oList.getMode(), sap.m.ListMode.SingleSelectMaster, "Selection mode should be single select master");
+
+		setTimeout(function() {
+			start();
+			
+			var $listItems = $(getJQuerySelectorPopoverSingle(sId, PERSON));
+			ok($listItems.length === 5, "List items are loaded");
+			
+			var oSearchField = getPopoverSearch(sId, PERSON);
+
+			setTimeout(function() {
+
+				oSearchField.fireLiveChange({
+					query : "2"
+				});
+			});
+
+			//Test fails if this is removed even though this does not trigger search
+			oSearchField.setValue("2");
+			stop();
+			setTimeout(function() {
+				
+				start();
+				ok(oList.getItems().length === 1, "There should be only one item left after search");
+				ok(oList.getItems()[0].getTitle() === "Person 2", "The items search should find Person 2");
+				
+				$listItems = $(getJQuerySelectorPopoverSingle(sId, PERSON));
+				qutils.triggerMouseEvent($listItems[0], "tap");
+				equal(oFacetList.getSelectedItems().length, 1, "There should be one item selected");
+				stop();
+				setTimeout(function() {
+					
+					openList(sId, PERSON);
+					setTimeout(function() {
+
+						oSearchField.fireLiveChange({
+							query : "3"
+						});
+					});
+
+					//Test fails if this is removed even though this does not trigger search
+					oSearchField.setValue("3");
+					
+					setTimeout(function() {
+						
+						start();
+						ok(oList.getItems()[0].getTitle() === "Person 3", "The items search should find Person 3");						
+						$listItems = $(getJQuerySelectorPopoverSingle(sId, PERSON));
+						qutils.triggerMouseEvent($listItems[0], "tap");						
+						stop();
+						
+						setTimeout(function() {
+							
+							closeList(sId, PERSON);
+							start();
+							equal(oFacetList.getSelectedItems().length, 1, "There should be one item selected");
+						}, asyncTimeout);
+					}, asyncTimeout);
+				}, asyncTimeout);
+			}, asyncTimeout);			
+		}, asyncTimeout);			
+	});
+	
+	
+	/***********************************************************************/
+	module("Button Text");
+
+	asyncTest("Single Item Selection", function() {
+
+		var sId = oFF2Id;
+		var sExpected = "Products: Product 1";
+		openList(sId, PRODUCT);
+
+		setTimeout(function() {
+
+			start();
+			ok(isAllItemSelected(getPopoverCBSelectAll(sId, PRODUCT)), "Select All should be selected.");
+			stop();
+			var $listItems = $(getJQuerySelectorPopoverMulti(sId, PRODUCT));
+			qutils.triggerMouseEvent($listItems[0], "tap");
+			setTimeout(function() {
+
+				closeList(sId, PRODUCT);
+
+				setTimeout(function() {
+
+					start();
+					var oFFList = getFacetList(sId, PRODUCT);
+					var sButtonText = oFFList._getFacetButton().getText();
+					equal(sButtonText, sExpected, "Button text should be set to \"" + sExpected + "\"");
+				}, asyncTimeout);
+			}, asyncTimeout);
+		});
+	});
+
+	asyncTest("Multiple Item Selection", function() {
+
+		var sId = oFF2Id;
+		var sExpected = "Products: 3";
+		openList(sId, PRODUCT);
+
+		setTimeout(function() {
+
+			var $listItems = $(getJQuerySelectorPopoverMulti(sId, PRODUCT));
+			var oCBSelectAll = getPopoverCBSelectAll(sId, PRODUCT);
+			qutils.triggerMouseEvent(oCBSelectAll, "tap");
+			qutils.triggerMouseEvent($listItems[2], "tap");
+			qutils.triggerMouseEvent($listItems[3], "tap");
+			qutils.triggerMouseEvent($listItems[4], "tap");
+			setTimeout(function() {
+
+				closeList(sId, PRODUCT);
+
+				setTimeout(function() {
+
+					start();
+					var oFFList = getFacetList(sId, PRODUCT);
+					var sButtonText = oFFList._getFacetButton().getText();
+					equal(sButtonText, sExpected, "Button text should be set to \"" + sExpected + "\"");
+				}, asyncTimeout);
+			}, asyncTimeout);
+		});
+	});
+
+	asyncTest("Select All Selection", function() {
+
+		var sId = oFF2Id;
+		var sExpected = "All Products";
+		openList(sId, PRODUCT);
+
+		setTimeout(function() {
+
+			var oCBSelectAll = getPopoverCBSelectAll(sId, PRODUCT);
+			qutils.triggerMouseEvent(oCBSelectAll, "tap");
+			setTimeout(function() {
+
+				closeList(sId, PRODUCT);
+
+				setTimeout(function() {
+
+					start();
+					var oFFList = getFacetList(sId, PRODUCT);
+					var sButtonText = oFFList._getFacetButton().getText();
+					equal(sButtonText, sExpected, "Button text should be set to \"" + sExpected + "\"");
+				}, asyncTimeout);
+			}, asyncTimeout);
+		});
+	});
+
+	/***********************************************************************/
+	module("Facet Dialog");
+
+	var dlgTimeout = 600;
+
+	asyncTest("Dialog Displayed", function() {
+
+		var sId = oFF2Id;
+		ok(jQuery.sap.byId(sId + "-dialog").length === 0, "Dialog should not be displayed");
+		openDialog(sId);
+		ok(jQuery.sap.byId(sId + "-dialog").css("display") !== "none", "Dialog should be displayed");
+
+		closeDialog(sId);
+		setTimeout(function() {
+
+			ok(jQuery.sap.byId(sId + "-dialog").css("display") === "none", "Dialog should not be displayed");
+			start();
+		}, asyncTimeout);
+	});
+
+	asyncTest("Dialog Displayed via API", function() {
+
+		var sId = oFF2Id;
+		oFF2.openFilterDialog();
+		ok(jQuery.sap.byId(sId + "-dialog").css("display") !== "none", "Dialog should be displayed");
+
+		closeDialog(sId);
+		setTimeout(function() {
+
+			ok(jQuery.sap.byId(sId + "-dialog").css("display") === "none", "Dialog should not be displayed");
+			start();
+		}, asyncTimeout);
+	});
+
+	asyncTest("Select active facet in Dialog and click Ok", function() {
+
+		var sId = oFF2Id;
+		ok(jQuery.sap.byId(sId + "-dialog").length === 0 || jQuery.sap.byId(sId + "-dialog").css("display") === "none", "Dialog should not be displayed");
+		openDialog(sId);
+		setTimeout(function() {
+			ok(jQuery.sap.byId(sId + "-dialog").css("display") !== "none", "Dialog should be displayed");
+			ok(!jQuery.sap.byId(sId + "-filter").hasClass("sapMNavItemHidden"), "Filter page should be displayed");
+			var sSuppliersId = oFF2._facetList.getItems()[0].getId();
+			qutils.triggerMouseEvent(sSuppliersId, "tap");
+			setTimeout(function() {
+				
+				closeDialog(sId);
+		
+				setTimeout(function() {
+		
+					ok(jQuery.sap.byId(sId + "-dialog").css("display") === "none", "Dialog should not be displayed");
+					openDialog(sId);
+					setTimeout(function() {
+		
+						ok(jQuery.sap.byId(sId + "-item").hasClass("sapMNavItemHidden"), "Item page should not be displayed");
+						ok(!jQuery.sap.byId(sId + "-filter").hasClass("sapMNavItemHidden"), "Filter page should be displayed");
+						closeDialog(sId);
+						setTimeout(function() {
+							
+							ok(jQuery.sap.byId(sId + "-dialog").css("display") === "none", "Dialog should not be displayed");
+							start();
+						}, dlgTimeout);
+					}, dlgTimeout);
+				}, dlgTimeout);
+			}, dlgTimeout);
+		}, dlgTimeout);
+	});
+
+	asyncTest("Select active facet in Dialog", function() {
+
+		var sId = oFF2Id;
+		ok(jQuery.sap.byId(sId + "-dialog").length === 0 || jQuery.sap.byId(sId + "-dialog").css("display") === "none", "Dialog should not be displayed");
+		openDialog(sId);
+		ok(jQuery.sap.byId(sId + "-dialog").css("display") !== "none", "Dialog should be displayed");
+
+		setTimeout(function() {
+
+			ok(!jQuery.sap.byId(sId + "-filter").hasClass("sapMNavItemHidden"), "Filter page should be displayed");
+			var sSuppliersId = oFF2._facetList.getItems()[0].getId();
+			qutils.triggerMouseEvent(sSuppliersId, "tap");
+			setTimeout(function() {
+
+				ok(!jQuery.sap.byId(sId + "-item").hasClass("sapMNavItemHidden"), "Items list should be displayed");
+				ok(isAllItemSelected(oFF2._cbSelectAll), "All suppliers item should be selected");
+
+				closeDialog(sId);
+				setTimeout(function() {
+
+					ok(jQuery.sap.byId(sId + "-dialog").css("display") === "none", "Dialog should not be displayed");
+					start();
+				}, asyncTimeout);
+			}, asyncTimeout);
+		}, asyncTimeout);
+	});
+
+	asyncTest("Select inactive facet in Dialog", function() {
+
+		var sId = oFF2Id;
+		ok(getFacetList(sId, ORDER).getActive() === false, "Orders facet is inactive");
+		openDialog(sId);
+		ok(jQuery.sap.byId(sId + "-dialog").css("display") !== "none", "Dialog should be displayed");
+
+		setTimeout(function() {
+
+			ok(jQuery.sap.byId(sId + "-item").length === 0 || jQuery.sap.byId(sId + "-item").hasClass("sapMNavItemHidden"), "Item page should not be displayed");
+			ok(!jQuery.sap.byId(sId + "-filter").hasClass("sapMNavItemHidden"), "Filter page should be displayed");
+
+			var sOrdersId = oFF2._facetList.getItems()[ORDER].getId();
+			qutils.triggerMouseEvent(sOrdersId, "tap");
+			setTimeout(function() {
+
+				ok(!jQuery.sap.byId(sId + "-item").hasClass("sapMNavItemHidden"), "Item page should be displayed");
+				ok(jQuery.sap.byId(sId + "-filter").hasClass("sapMNavItemHidden"), "Filter page should not be displayed");
+				ok(!isAllItemSelected(oFF2._cbSelectAll), "All checkbox should not be checked when adding an inactive facet");
+
+				closeDialog(sId);
+				setTimeout(function() {
+
+					ok(jQuery.sap.byId(sId + "-dialog").css("display") === "none", "Dialog should not be displayed");
+					start();
+				}, dlgTimeout);
+			}, dlgTimeout);
+		}, dlgTimeout);
+	});
+
+	asyncTest("Select active facet and check items", function() {
+
+		var sId = oFF2Id;
+		var oFF = oFF2;
+		openDialog(sId);
+		ok(jQuery.sap.byId(sId + "-dialog").css("display") !== "none", "Dialog should be displayed");
+
+		setTimeout(function() {
+
+			ok(jQuery.sap.byId(sId + "-item").length === 0 || jQuery.sap.byId(sId + "-item").hasClass("sapMNavItemHidden"), "Item page should not be displayed");
+			ok(!jQuery.sap.byId(sId + "-filter").hasClass("sapMNavItemHidden"), "Filter page should be displayed");
+
+			var sSuppliersId = oFF._facetList.getItems()[SUPPLIER].getId();
+			qutils.triggerMouseEvent(sSuppliersId, "tap");
+			setTimeout(function() {
+
+				ok(!jQuery.sap.byId(sId + "-item").hasClass("sapMNavItemHidden"), "Item page should be displayed");
+				ok(jQuery.sap.byId(sId + "-filter").hasClass("sapMNavItemHidden"), "Filter page should not be displayed");
+
+				ok(isAllItemSelected(oFF._cbSelectAll), "All suppliers item should be selected");
+
+				var $listItems = $(getAllLIs(sId + "-item"));
+				qutils.triggerMouseEvent($listItems[0], "tap");
+				qutils.triggerMouseEvent($listItems[1], "tap");
+				setTimeout(function() {
+					
+					ok(!isAllItemSelected(oFF._cbSelectAll), "All suppliers item should not be selected");
+					
+					qutils.triggerMouseEvent(getBackButtonId(sId), "tap");
+	
+					setTimeout(function() {
+	
+						ok(jQuery.sap.byId(sId + "-item").hasClass("sapMNavItemHidden"), "Item page should not be displayed");
+						ok(!jQuery.sap.byId(sId + "-filter").hasClass("sapMNavItemHidden"), "Filter page should be displayed");
+	
+						// reenter the suppliers list
+						qutils.triggerMouseEvent(sSuppliersId, "tap");
+						setTimeout(function() {
+	
+							ok(!jQuery.sap.byId(sId + "-item").hasClass("sapMNavItemHidden"), "Item page should be displayed");
+							ok(jQuery.sap.byId(sId + "-filter").hasClass("sapMNavItemHidden"), "Filter page should not be displayed");
+	
+							ok(!isAllItemSelected(oFF._cbSelectAll), "All suppliers item should not be selected");
+	
+							// retrieve items again because previous list was invalidated in the DOM
+							var $listItems = $(getAllLIs(sId + "-item"));
+							ok($($listItems[0]).find("input[checked='checked']").length === 1, "Supplier 1 is checked");
+							ok($($listItems[1]).find("input[checked='checked']").length === 1, "Supplier 2 is checked");
+	
+							closeDialog(sId);
+							setTimeout(function() {
+	
+								ok(jQuery.sap.byId(sId + "-dialog").css("display") === "none", "Dialog should not be displayed");
+								var sButtonText = oFF.getLists()[SUPPLIER]._getFacetButton().getText();
+								equal(sButtonText, "Suppliers: 2", "Button text should be set to \"Suppliers: 2\"");
+								// test selection in the popover
+								openList(sId, SUPPLIER);
+	
+								setTimeout(function() {
+	
+									ok(!isAllItemSelected(getPopoverCBSelectAll(sId, SUPPLIER)), "Select All should not be selected.");
+									var aSelectedItems = getPopoverList(sId, SUPPLIER).getSelectedItems();
+									ok(aSelectedItems.length === 2, "Two filter values should be selected.")
+	
+									setTimeout(function() {
+	
+										closeList(sId, SUPPLIER);
+										start();
+									}, asyncTimeout);
+								}, asyncTimeout);
+							}, dlgTimeout);
+						}, dlgTimeout);
+					}, dlgTimeout);
+				}, dlgTimeout);
+			}, dlgTimeout);
+		}, dlgTimeout);
+	});
+
+	asyncTest("Select inactive facet, check and uncheck select All item", function() {
+
+		var sId = oFF2Id;
+		var oFF = sap.ui.getCore().byId(sId);
+		openDialog(sId);
+		ok(jQuery.sap.byId(sId + "-dialog").css("display") !== "none", "Dialog should be displayed");
+
+		setTimeout(function() {
+
+			ok(jQuery.sap.byId(sId + "-item").hasClass("sapMNavItemHidden"), "Item page should not be displayed");
+			ok(!jQuery.sap.byId(sId + "-filter").hasClass("sapMNavItemHidden"), "Filter page should be displayed");
+
+			var sOrdersId = oFF._facetList.getItems()[ORDER].getId();
+			qutils.triggerMouseEvent(sOrdersId, "tap");
+			setTimeout(function() {
+
+				ok(!jQuery.sap.byId(sId + "-item").hasClass("sapMNavItemHidden"), "Item page should be displayed");
+				ok(jQuery.sap.byId(sId + "-filter").hasClass("sapMNavItemHidden"), "Filter page should not be displayed");
+
+				ok(!isAllItemSelected(oFF._cbSelectAll), "All checkbox should not be selected");
+
+				qutils.triggerMouseEvent(oFF._cbSelectAll.getId(), "tap");
+				ok(isAllItemSelected(oFF._cbSelectAll), "All checkbox should be selected");
+				qutils.triggerMouseEvent(oFF._cbSelectAll.getId(), "tap");
+				ok(!isAllItemSelected(oFF._cbSelectAll), "All checkbox should not be selected");
+
+				closeDialog(sId);
+				setTimeout(function() {
+
+					ok(jQuery.sap.byId(sId + "-dialog").css("display") === "none", "Dialog should not be displayed");
+					start();
+				}, dlgTimeout);
+			}, dlgTimeout);
+		}, dlgTimeout);
+	});
+
+	/***********************************************************************/
+
+	// TODO run popover search for the FacetFilter with model bound to individual FacetFilterLists
+	module("Popover Search");
+
+	var oPSData = {
+		facets : [ {
+			name : "Suppliers",
+			key : "suppliers",
+			values : createModelItems(3, "Supplier", "SUPP"),
+			count : 287,
+			multiSelect : true
+		}, {
+			name : "Items",
+			key : "items",
+			values : createModelItems(3, "Item", "ITEM"),
+			multiSelect : true
+		}, {
+			name : "Orders",
+			key : "orders",
+			values : createModelItems(10, "Order", "ORDER"),
+			multiSelect : true
+		} ]
+	}
+
+	var oPSModel = new sap.ui.model.json.JSONModel();
+	oPSModel.setSizeLimit(50);
+	oPSModel.setData(oPSData);
+
+	var oPSFFITemplate = new sap.m.FacetFilterItem({
+		text : "{title}",
+		key : "{id}",
+		count : "{amount}"
+	});
+
+	var oPSFFLTemplate = new sap.m.FacetFilterList({
+		title : "{name}",
+		key : "{key}",
+		multiSelect : "{multiSelect}",
+		items : {
+			path : "values",
+			template : oPSFFITemplate,
+		},
+		allCount : "{count}"
+	});
+
+	var oPSFFId = "psff"
+	var oPSFF = new sap.m.FacetFilter(oPSFFId, {
+		type : sap.m.FacetFilterType.Simple,
+		lists : {
+			path : "/facets",
+			template : oPSFFLTemplate
+		}
+	});
+
+	oPSFF.setModel(oPSModel);
+
+	oPSFF.placeAt("content");
+
+	var aSupplierSearchVal = "Supplier 3";
+	var aFacetOrder1SearchVal = "Order 1";
+	var aFacetOrder10MatchVal = "Order 10";
+
+	function getPopoverSearch(sId, iIndex) {
+
+		var sListId = getFacetList(sId, iIndex).getId();
+		var oSearchField = sap.ui.getCore().byId(sListId + "-searchField");
+		return oSearchField;
+	}
+
+	test("Popover Search Field Initialized", function() {
+
+		var sId = oPSFFId;
+		var oSearchField = getPopoverSearch(sId, SUPPLIER);
+		ok(oSearchField, "Search field should exist.")
+		ok(oSearchField.getPlaceholder(), "Search placeholder text should not be empty.");
+		ok(!oSearchField.getValue(), "Search field value should be empty.");
+	});
+
+	asyncTest("Popover Search Value Empty Upon List Popup", function() {
+
+		var sId = oPSFFId;
+		openList(sId, SUPPLIER);
+
+		setTimeout(function() {
+
+			var oSearchField = getPopoverSearch(sId, SUPPLIER);
+			var sSearchValue = "1";
+			oSearchField.setValue(sSearchValue);
+			oSearchField.fireLiveChange({
+				query : sSearchValue
+			});
+			setTimeout(function() {
+
+				closeList(sId, SUPPLIER);
+
+				setTimeout(function() {
+
+					var oSearchField = getPopoverSearch(sId, SUPPLIER);
+					ok(oSearchField.getValue() === sSearchValue, "Search field value should remain unchanged.");
+					var oList = getPopoverList(sId, SUPPLIER);
+					ok(oList.getItems().length === 1, "Model items should be filtered out");
+					start();
+				}, asyncTimeout);
+			}, asyncTimeout);
+		});
+	});
+
+	asyncTest("Popover Search No Matches", function() {
+
+		var sId = oPSFFId;
+		openList(sId, SUPPLIER);
+
+		setTimeout(function() {
+
+			var oSearchField = getPopoverSearch(sId, SUPPLIER);
+			oSearchField.setValue("Z");
+			oSearchField.fireLiveChange({
+				query : "Z"
+			});
+
+			setTimeout(function() {
+
+				var oList = getPopoverList(sId, SUPPLIER);
+				ok(oList.getItems().length === 0, "All items should have been filtered out.");
+				setTimeout(function() {
+
+					closeList(sId, SUPPLIER);
+					start();
+				}, asyncTimeout);
+			}, asyncTimeout);
+		});
+	});
+
+	asyncTest("Popover Search One Match", function() {
+
+		var sId = oPSFFId;
+		openList(sId, SUPPLIER);
+
+		setTimeout(function() {
+
+			var oSearchField = getPopoverSearch(sId, SUPPLIER);
+
+			for ( var i = 0; i < aSupplierSearchVal.length; i++) {
+				var sVal = aSupplierSearchVal.charAt(i);
+
+				setTimeout(function() {
+
+					oSearchField.fireLiveChange({
+						query : sVal
+					});
+				});
+			}
+
+			//Test fails if this is removed even though this does not trigger search
+			oSearchField.setValue(aSupplierSearchVal);
+
+			setTimeout(function() {
+
+				var oList = getPopoverList(sId, SUPPLIER);
+				ok(oList.getItems().length === 1, "There should be only one item left after search");
+				ok(oList.getItems()[0].getTitle() === aSupplierSearchVal, "The items search should find " + aSupplierSearchVal);
+				setTimeout(function() {
+
+					closeList(sId, SUPPLIER);
+					start();
+				}, asyncTimeout);
+			}, asyncTimeout);
+		}, asyncTimeout);
+	});
+
+	asyncTest("One Match With Selection", function() {
+
+		var sId = oPSFFId;
+		openList(sId, SUPPLIER);
+
+		setTimeout(function() {
+
+			var oSearchField = getPopoverSearch(sId, SUPPLIER);
+
+			for ( var i = 0; i < aSupplierSearchVal.length; i++) {
+				var sVal = aSupplierSearchVal.charAt(i);
+
+				setTimeout(function() {
+
+					oSearchField.fireLiveChange({
+						query : sVal
+					});
+				});
+			}
+
+			//Test fails if this is removed even though this does not trigger search
+			oSearchField.setValue(aSupplierSearchVal);
+
+			setTimeout(function() {
+
+				var oList = getPopoverList(sId, SUPPLIER);
+
+				ok(oList.getItems().length === 1, "There should be only one supplier left after search");
+				ok(oList.getItems()[0].getTitle() === aSupplierSearchVal, "The supplier search should find " + aSupplierSearchVal);
+
+				var $listItems = $(getJQuerySelectorPopoverMulti(sId, SUPPLIER));
+				qutils.triggerMouseEvent($listItems[0], "tap");
+				setTimeout(function() {
+
+					closeList(sId, SUPPLIER);
+					getFacetList(sId, SUPPLIER)._popover.fireAfterClose();
+					ok(getFacetList(sId, SUPPLIER).getItems()[2].getSelected(), "The supplier \"" + aSupplierSearchVal + "\" should be selected");
+					start();
+				}, asyncTimeout);
+			}, asyncTimeout);
+		}, asyncTimeout);
+	});
+
+	asyncTest("Two Match With Selection", function() {
+
+		var sId = oFF1Id;
+		openList(sId, ORDER);
+
+		setTimeout(function() {
+
+			var oSearchField = getPopoverSearch(sId, ORDER);
+
+			for ( var i = 0; i < aFacetOrder1SearchVal.length; i++) {
+				var sVal = aFacetOrder1SearchVal.charAt(i);
+
+				setTimeout(function() {
+
+					oSearchField.fireLiveChange({
+						query : sVal
+					}, 0);
+				});
+			}
+
+			//Test fails if this is removed even though this does not trigger search
+			oSearchField.setValue(aFacetOrder1SearchVal);
+
+			setTimeout(function() {
+
+				var oList = getPopoverList(sId, ORDER);
+
+				ok(oList.getItems().length === 2, "There should be two orders left after search");
+				ok(oList.getItems()[0].getTitle() === aFacetOrder1SearchVal, "The order search should find " + aFacetOrder1SearchVal);
+				ok(oList.getItems()[1].getTitle() === aFacetOrder10MatchVal, "The order search should find " + aFacetOrder10MatchVal);
+
+				var $listItems = $(getJQuerySelectorPopoverMulti(sId, ORDER));
+				qutils.triggerMouseEvent($listItems[0], "tap");
+				qutils.triggerMouseEvent($listItems[1], "tap");
+				setTimeout(function() {
+
+					closeList(sId, ORDER);
+					getFacetList(sId, ORDER)._popover.fireAfterClose();
+					start();
+					ok(getFacetList(sId, ORDER).getItems()[0].getSelected(), "The order \"" + aFacetOrder1SearchVal + "\" should be selected");
+					ok(getFacetList(sId, ORDER).getItems()[9].getSelected(), "The order \"" + aFacetOrder10MatchVal + "\" should be selected");
+
+				}, asyncTimeout);
+			}, asyncTimeout);
+		});
+	});
+
+	asyncTest("Search is hiding selection", function() {
+
+		var sId = oPSFFId;
+		openList(sId, ITEM);
+
+		setTimeout(function() {
+
+			ok(isAllItemSelected(getPopoverCBSelectAll(sId, ITEM)));
+
+			setTimeout(function() {
+
+				var $listItems = $(getJQuerySelectorPopoverMulti(sId, ITEM));
+				qutils.triggerMouseEvent($listItems[1], "tap");
+				qutils.triggerMouseEvent($listItems[2], "tap");
+				ok(!isAllItemSelected(getPopoverCBSelectAll(sId, ITEM)));
+				var oSearchField = getPopoverSearch(sId, ITEM);
+				var sSearchVal = "1";
+
+				for ( var i = 0; i < sSearchVal.length; i++) {
+					var sVal = sSearchVal.charAt(i);
+
+					setTimeout(function() {
+
+						oSearchField.fireLiveChange({
+							query : sVal
+						});
+					});
+				}
+				//Test fails if this is removed even though this does not trigger search
+				oSearchField.setValue(sSearchVal);
+
+				setTimeout(function() {
+
+					ok(!isAllItemSelected(getPopoverCBSelectAll(sId, ITEM)));
+					setTimeout(function() {
+
+						oSearchField.fireLiveChange({
+							query : ""
+						});
+					});
+					oSearchField.setValue();
+
+					// selection should stay when filter is deleted					
+					setTimeout(function() {
+
+						ok(!isAllItemSelected(getPopoverCBSelectAll(sId, ITEM)));
+						var oList = getPopoverList(sId, ITEM);
+
+						ok(oList.getSelectedItems().length === 2, "There should be two items selected after search is cleared");
+						ok(oList.getItems()[1].getSelected(), "\"Item 2\" should be selected");
+						ok(oList.getItems()[2].getSelected(), "\"Item 3\" should be selected");
+						setTimeout(function() {
+
+							closeList(sId, ITEM);
+							start();
+						}, asyncTimeout);
+					}, asyncTimeout);
+				}, asyncTimeout);
+			}, asyncTimeout);
+		});
+	});
+
+	asyncTest("All items clicked when selection is hidden", function() {
+
+		var sId = oPSFFId;
+		openList(sId, ITEM);
+
+		setTimeout(function() {
+
+			ok(!isAllItemSelected(getPopoverCBSelectAll(sId, ITEM)));
+			var oSearchField = getPopoverSearch(sId, ITEM);
+			var sSearchVal = "2";
+
+			for ( var i = 0; i < sSearchVal.length; i++) {
+				var sVal = sSearchVal.charAt(i);
+
+				setTimeout(function() {
+
+					oSearchField.fireLiveChange({
+						query : sVal
+					});
+				});
+			}
+			//Test fails if this is removed even though this does not trigger search
+			oSearchField.setValue(sSearchVal);
+
+			setTimeout(function() {
+
+				ok(!isAllItemSelected(getPopoverCBSelectAll(sId, ITEM)));
+				var sCBSelectAllId = getPopoverCBSelectAll(sId, ITEM).getId();
+				qutils.triggerMouseEvent(sCBSelectAllId, "tap");
+				var oList = getPopoverList(sId, ITEM);
+				ok(!oList.getItems()[0].getSelected(), "\"Item 2\" should not be selected");
+
+				setTimeout(function() {
+
+					ok(isAllItemSelected(getPopoverCBSelectAll(sId, ITEM)));
+					setTimeout(function() {
+
+						oSearchField.fireLiveChange({
+							query : ""
+						});
+					});
+					oSearchField.setValue();
+
+					// selection should stay when filter is deleted					
+					setTimeout(function() {
+
+						ok(isAllItemSelected(getPopoverCBSelectAll(sId, ITEM)));
+						var oList = getPopoverList(sId, ITEM);
+
+						ok(oList.getSelectedItems().length === 0, "There should not be any items selected after search is cleared");
+						ok(!oList.getItems()[1].getSelected(), "\"Item 2\" should not be selected");
+						ok(!oList.getItems()[2].getSelected(), "\"Item 3\" should not be selected");
+						setTimeout(function() {
+
+							closeList(sId, ITEM);
+							start();
+						}, asyncTimeout);
+					}, asyncTimeout);
+				}, asyncTimeout);
+			}, asyncTimeout);
+		}, asyncTimeout);
+	});
+
+	/***********************************************************************/
+
+	module("Dialog Facets Search");
+	var aFacetSearchVal = "Items";
+
+	function getFacetsSearch(sId) {
+
+		return sap.ui.getCore().byId(sId + "-facetsSearchField");
+	}
+
+	function getFacetsList(sId) {
+
+		return sap.ui.getCore().byId(sId)._facetList;
+	}
+
+	test("Dialog Facet Search Field Initialized", function() {
+
+		var sId = oFF2Id;
+		var oSearchField = getFacetsSearch(sId);
+		ok(oSearchField, "Search field should exist.")
+		ok(oSearchField.getPlaceholder(), "Search placeholder text should not be empty.");
+		ok(!oSearchField.getValue(), "Search field value should be empty.");
+	});
+
+	asyncTest("Dialog Facet Search No Matches", function() {
+
+		var sId = oFF2Id;
+		openDialog(sId);
+		var oSearchField = getFacetsSearch(sId);
+		oSearchField.setValue("Z");
+		oSearchField.fireLiveChange({
+			query : "Z"
+		});
+
+		setTimeout(function() {
+
+			start();
+			var oList = getFacetsList(sId);
+			ok(oList.getItems().length === 0, "All facets should have been filtered out.");
+			closeDialog(sId);
+		}, asyncTimeout);
+	});
+
+	asyncTest("Dialog Facet Search One Match", function() {
+
+		var sId = oFF2Id;
+		openDialog(sId);
+		setTimeout(function() {
+			var oSearchField = getFacetsSearch(sId);
+
+			for ( var i = 0; i < aFacetSearchVal.length; i++) {
+				var sVal = aFacetSearchVal.charAt(i);
+	
+				setTimeout(function() {
+	
+					oSearchField.fireLiveChange({
+						query : sVal
+					}, 0);
+				});
+			}
+	
+			//Test fails if this is removed even though this does not trigger search
+			oSearchField.setValue(aFacetSearchVal);
+	
+			setTimeout(function() {
+	
+				var oList = getFacetsList(sId);
+				ok(oList.getItems().length === 1, "There should be only one item left after search.");
+				ok(oList.getItems()[0].getTitle() === aFacetSearchVal, "The facets search should find " + aFacetSearchVal);
+				closeDialog(sId);
+				start();
+			}, asyncTimeout);
+		}, asyncTimeout);
+	});
+
+
+	/***********************************************************************/
+
+	module("Dialog Filter Items Search");
+	var aFacetItems2SearchVal = "Item 2";
+
+	function getFacetItemsSearch(sId) {
+
+		return sap.ui.getCore().byId(sId + "-itemsSearchField");
+	}
+
+	function getFacetItemsList(sId) {
+
+		return sap.ui.getCore().byId(sId)._itemsList;
+	}
+
+	test("Facet Items Search Field Initialized", function() {
+
+		var sId = oFF2Id;
+		var oSearchField = getFacetItemsSearch(sId);
+		ok(oSearchField, "Search field should exist.")
+		ok(oSearchField.getPlaceholder(), "Search placeholder text should not be empty.");
+		ok(!oSearchField.getValue(), "Search field value should be empty.");
+	});
+
+	asyncTest("Facet Items Search No Matches", function() {
+
+		var sId = oFF2Id;
+		openDialog(sId);
+
+		setTimeout(function() {
+
+			var sItemsId = oFF2._facetList.getItems()[ITEM].getId();
+			qutils.triggerMouseEvent(sItemsId, "tap");
+
+			setTimeout(function() {
+
+				var oSearchField = getFacetItemsSearch(sId);
+				oSearchField.setValue("Z");
+				oSearchField.fireLiveChange({
+					query : "Z"
+				});
+
+				setTimeout(function() {
+
+					start();
+					var oList = getFacetItemsList(sId);
+					ok(oList.getItems().length === 0, "All facet items should have been filtered out.");
+					closeDialog(sId);
+				}, asyncTimeout);
+
+			}, asyncTimeout);
+		}, asyncTimeout);
+	});
+
+	asyncTest("Facet Items Search One Match", function() {
+
+		var sId = oFF2Id;
+		openDialog(sId);
+
+		setTimeout(function() {
+
+			var sItemsId = oFF2._facetList.getItems()[ITEM].getId();
+			qutils.triggerMouseEvent(sItemsId, "tap");
+
+			setTimeout(function() {
+
+				var oSearchField = getFacetItemsSearch(sId);
+				for ( var i = 0; i < aFacetItems2SearchVal.length; i++) {
+					var sVal = aFacetItems2SearchVal.charAt(i);
+
+					setTimeout(function() {
+
+						oSearchField.fireLiveChange({
+							query : sVal
+						});
+					}, 0);
+				}
+
+				//Test fails if this is removed even though this does not trigger search
+				oSearchField.setValue(aFacetItems2SearchVal);
+
+				setTimeout(function() {
+
+					start();
+					var oList = getFacetItemsList(sId);
+					ok(oList.getItems().length === 1, "There should be only one item left after search.");
+					ok(oList.getItems()[0].getTitle() === aFacetItems2SearchVal, "The facets search should find " + aFacetItems2SearchVal);
+					closeDialog(sId);
+				}, asyncTimeout);
+
+			}, asyncTimeout);
+		}, asyncTimeout);
+	});
+	
+	asyncTest("Search cleared on facet items back page navigation", function() {
+
+		var sId = oFF1Id;
+		var sSearchVal = "1"
+		openDialog(sId);
+		
+		setTimeout(function() {
+
+			qutils.triggerMouseEvent(oFF1._facetList.getItems()[SUPPLIER].getId(), "tap");
+			
+			setTimeout(function() {
+				
+				setTimeout(function() {
+
+					getFacetItemsSearch(sId).fireLiveChange({
+						query : sSearchVal
+					});
+				}, 0);
+
+				//Test fails if this is removed even though this does not trigger search
+				getFacetItemsSearch(sId).setValue(sSearchVal);
+				qutils.triggerMouseEvent(getBackButtonId(sId), "tap");
+				
+				setTimeout(function() {
+					
+					qutils.triggerMouseEvent(oFF1._facetList.getItems()[ITEM].getId(), "tap");
+					
+					setTimeout(function() {
+						
+						equal(getFacetItemsSearch(sId).getValue(), "", "Facet items search should be empty");
+						closeDialog(sId);
+						start();
+					}, asyncTimeout);
+				}, asyncTimeout);
+			}, asyncTimeout);			
+		}, asyncTimeout);
+	});
+	
+	asyncTest("Facet button updated when items selected in dialog but filtered from the list with search", function() {
+		
+		var sId = oFF1Id;
+		var sSearchVal = "1";
+		
+		setTimeout(function() {
+			
+			openDialog(sId);
+			qutils.triggerMouseEvent(oFF1._facetList.getItems()[SUPPLIER].getId(), "tap");
+			
+			setTimeout(function() {
+				
+				var $listItems = $(getAllLIs(sId + "-item"));
+				qutils.triggerMouseEvent($listItems[1], "tap");
+				qutils.triggerMouseEvent($listItems[2], "tap");
+				
+				setTimeout(function() {
+		
+					getFacetItemsSearch(sId).fireLiveChange({
+						query : sSearchVal
+					});
+				}, 0);
+						
+				//Test fails if this is removed even though this does not trigger search
+				getFacetItemsSearch(sId).setValue(sSearchVal);
+				
+				setTimeout(function() {
+					
+					closeDialog(sId);
+					
+					setTimeout(function() {
+						
+						var sButtonText = getFacetList(sId, SUPPLIER)._getFacetButton().getText();
+						equal(sButtonText, "Suppliers: 2", "Button text should be set to \"Suppliers: 2\"");
+						var aSelectedItems = oListCloseEventParams["selectedItems"];
+						equal(aSelectedItems.length, 2, "The list close event should report two items selected");
+						equal(aSelectedItems[0].getText(), "Supplier 2", "\"Supplier 2\" should be selected");
+						equal(aSelectedItems[1].getText(), "Supplier 3", "\"Supplier 3\" should be selected");
+						oListCloseEventParams = null;
+						start();
+					}, asyncTimeout);
+				}, asyncTimeout);
+			}, asyncTimeout);			
+		}, asyncTimeout);			
+	});
+	
+	module("Live Search")
+	
+	
+	asyncTest("Disable live search", function() {
+
+		// Test Summary:
+		// Initialize a FF with live search disabled and verify that only live search for the facet list is enabled.
+		
+		var sId = "live-search1"
+		var oFF = new sap.m.FacetFilter(sId, {
+			liveSearch: false,
+			showPersonalization: true,
+			showReset: false
+		});
+		
+		var oData = {
+				title: "Live Search 1",
+				values: [{
+					text: "val1",
+					key: "val1",
+					count: 4
+				},
+				{
+					text: "val2",
+					key: "val2",
+					count: 3
+				}]
+			};
+		var oFFLModel = new sap.ui.model.json.JSONModel(oData);
+		
+		var oFFL = new sap.m.FacetFilterList({
+			title: "{/title}",
+			items: {
+				path: "/values",
+				template: new sap.m.FacetFilterItem({
+					text: "{text}",
+					key: "{key}",
+					count: "{count}"
+				})
+			}
+		});
+		oFFL.setModel(oFFLModel);
+		oFF.addList(oFFL);
+		oFF.placeAt("content");
+		
+		setTimeout(function() {
+			
+			openList(sId, 0);
+			
+			setTimeout(function() {
+				
+				var oSearchField = getPopoverSearch(sId, 0);
+
+				setTimeout(function() {
+
+					oSearchField.fireLiveChange({
+						query : "1"
+					});
+				});
+
+				//Test fails if this is removed even though this does not trigger search
+				oSearchField.setValue("1");
+				
+				setTimeout(function() {
+					var $listItems = $(getJQuerySelectorPopoverMulti(sId, 0));
+					equal($listItems.length, oData.values.length, "Search should not have filtered any items from the list");
+					
+					openDialog(sId);
+					
+					setTimeout(function() {
+						
+						var oSearchField = getFacetsSearch(sId);
+						oSearchField.setValue("Z");
+						oSearchField.fireLiveChange({
+							query : "Z"
+						});
+						
+						setTimeout(function() {
+	
+							var oList = getFacetsList(sId);
+							ok(oList.getItems().length === 0, "Facets search should remain enabled when live search is disabled.");
+							
+							oSearchField.setValue("");
+							oSearchField.fireLiveChange({
+								query : ""
+							});			
+							
+							setTimeout(function() {
+	
+								qutils.triggerMouseEvent(oFF._facetList.getItems()[0].getId(), "tap");
+								
+								setTimeout(function() {
+									
+									var oSearchField = getFacetItemsSearch(sId);
+									oSearchField.setValue("1");
+									oSearchField.fireLiveChange({
+										query : "1"
+									});
+									
+									setTimeout(function() {
+										var oList = getFacetItemsList(sId);
+										ok(oList.getItems().length === oData.values.length, "Search should not have filtered any items from the list");
+										
+										qutils.triggerMouseEvent(oFF._itemsSearchField.getId() + "-btn", "tap");
+										setTimeout(function() {
+									
+											equal(oList.getItems().length, 1, "Manual search should have left 1 item in the list");
+											closeDialog(sId);
+											start();
+										}, asyncTimeout);						
+									}, asyncTimeout);						
+								}, asyncTimeout);						
+							}, asyncTimeout);						
+						}, asyncTimeout);			
+					}, asyncTimeout);				
+				}, asyncTimeout);			
+			}, asyncTimeout);			
+		}, asyncTimeout);		
+	});
+	
+
+	asyncTest("Dynamically enable live search", function() {
+
+		// Test Summary:
+		// Initialize a FF with live search disabled and then turn it on and test that all lists are live searchable.
+		
+		var sId = "live-search2"
+		var oFF = new sap.m.FacetFilter(sId, {
+			liveSearch: false,
+			showPersonalization: true,
+			showReset: false
+		});
+		
+		var oData = {
+				title: "Live Search 2",
+				values: [{
+					text: "bval1",
+					key: "bval1",
+					count: 4
+				},
+				{
+					text: "bval2",
+					key: "bval2",
+					count: 3
+				}]
+			};
+		var oFFLModel = new sap.ui.model.json.JSONModel(oData);
+		
+		var oFFL = new sap.m.FacetFilterList({
+			title: "{/title}",
+			items: {
+				path: "/values",
+				template: new sap.m.FacetFilterItem({
+					text: "{text}",
+					key: "{key}",
+					count: "{count}"
+				})
+			}
+		});
+		oFFL.setModel(oFFLModel);
+		oFF.insertList(oFFL, 0);
+		oFF.placeAt("content");
+		
+		setTimeout(function() {
+			
+			oFF.setLiveSearch(true);
+			
+			openList(sId, 0);
+			
+			setTimeout(function() {
+				
+				var oSearchField = getPopoverSearch(sId, 0);
+
+				setTimeout(function() {
+
+					oSearchField.fireLiveChange({
+						query : "1"
+					});
+				});
+
+				//Test fails if this is removed even though this does not trigger search
+				oSearchField.setValue("1");
+				
+				setTimeout(function() {
+					
+					var $listItems = $(getJQuerySelectorPopoverMulti(sId, 0));
+					equal($listItems.length, 1, "Search should filter all but one item from the list");	
+					openDialog(sId);
+					
+					setTimeout(function() {
+						
+						var oSearchField = getFacetsSearch(sId);
+						oSearchField.setValue("Z");
+						oSearchField.fireLiveChange({
+							query : "Z"
+						});
+						
+						setTimeout(function() {
+
+							var oList = getFacetsList(sId);
+							ok(oList.getItems().length === 0, "Facets search should remain enabled");
+							
+							oSearchField.setValue("");
+							oSearchField.fireLiveChange({
+								query : ""
+							});			
+							
+							setTimeout(function() {
+								qutils.triggerMouseEvent(oFF._facetList.getItems()[0].getId(), "tap");
+								
+								setTimeout(function() {
+									
+									var oSearchField = getFacetItemsSearch(sId);
+									oSearchField.setValue("1");
+									oSearchField.fireLiveChange({
+										query : "1"
+									});
+									
+									var oList = getFacetItemsList(sId);
+									ok(oList.getItems().length === 1, "Search should filter all but one item from the list");
+									closeDialog(sId);
+									start();
+								}, asyncTimeout);						
+							}, asyncTimeout);						
+						}, asyncTimeout);			
+					}, asyncTimeout);	
+				}, asyncTimeout);
+			}, asyncTimeout);			
+		}, asyncTimeout);		
+	});
+
+
+	/***********************************************************************/
+
+	module("Personalization");
+
+	asyncTest("Remove Facet", function() {
+
+		var sId = oFF2Id;
+		oFF2.setShowPersonalization(true);
+		openList(sId, REMOVE);
+
+		setTimeout(function() {
+
+			var sRemoveId = getFacetList(sId, REMOVE).getId() + "-remove";
+			var sFacetButtonId = getFacetList(sId, REMOVE).getId() + "-button";
+			start();
+			ok(jQuery.sap.domById(sRemoveId), "Remove Filter button should be in the popover.");
+			qutils.triggerMouseEvent(sRemoveId, "tap");
+			stop();
+
+			setTimeout(function() {
+
+				start();
+				ok(!jQuery.sap.domById(sFacetButtonId), "Filter list button should not be displayed.");
+			});
+		}, asyncTimeout);
+	});
+
+	/***********************************************************************/
+	module("Model - Basic");
+	
+	asyncTest("Everything Bound to FacetFilter Model", function() {
+		
+		var sId = "model-basic";
+		var oFFData = {
+				type: "Simple",
+				personalize: true,
+				lists: [
+				{
+					title: "Language",
+					key: "LANGUAGE",
+					sequence: 1,
+					allCount: 14,
+					items: [{
+						text: "English",
+						key: "ENGLISH",
+						count: 4
+					},
+					{
+						text: "Spanish",
+						key: "SPANISH",
+						count: 2
+					},
+					{
+						text: "Italian",
+						key: "ITALIAN",
+						count: 1
+					}
+					        ]					
+				},				        
+				{
+					title: "Country",
+					key: "COUNTRY",
+					active: false,
+					allCount: 17,
+					multiSelect: false,
+					items: [{
+						text: "US",
+						key: "US",
+						count: 2,
+						selected: true						
+					},
+					{
+						text: "Spain",
+						key: "SPAIN",
+						count: 2,
+						selected: true						
+					},
+					{
+						text: "Italy",
+						key: "ITALY",
+						count: 2,
+						selected: true						
+					}
+					        ]					
+				},
+				{
+					title: "Person",
+					key: "PERSON",
+					sequence: 0,
+					allCount: 8,
+					items: [{
+						text: "Ted",
+						key: "TED",
+						count: 2,
+						selected: true
+					},
+					{
+						text: "Wilma",
+						key: "WILMA",
+						count: 3,
+						selected: true						
+					},
+					{
+						text: "Mark",
+						key: "MARK",
+						count: 9,
+						selected: true						
+					}
+					        ]
+				}				
+					]
+		}
+		
+		var oFF = new sap.m.FacetFilter(sId, {
+			
+			type: "{/type}",
+			showPersonalization: "{/personalize}",
+			lists: {
+				path: "/lists",
+				template: new sap.m.FacetFilterList({
+					title: "{title}",
+					key: "{key}",
+					active: "{active}",
+					allCount: "{allCount}",
+					multiSelect: "{multiSelect}",
+					sequence: "{sequence}",
+					items: {
+						path: "items",
+						template: new sap.m.FacetFilterItem({
+							text: "{text}",
+							key: "{key}",
+							count: "{count}",
+							selected: "{selected}"
+						})
+					}
+				})
+			}
+		});
+		
+		var oModel = new sap.ui.model.json.JSONModel(oFFData);
+		oFF.setModel(oModel);
+		oFF.placeAt("content");		
+		
+		setTimeout(function() {
+			
+			start();
+			ok(oFF.getShowPersonalization(), "Personalization should be enabled");
+			equal(oFF.getLists().length, 3, "There should be three facet filter lists");
+			var oLangList = oFF.getLists()[0];
+			equal(oLangList.getTitle(), "Language", "Title of language list should be Language");
+			equal(oLangList.getKey(), "LANGUAGE", "Key of language list should be LANGUAGE");
+			equal(oLangList.getSequence(), 1, "Seqence of language list should be 1")
+			
+			var aLanguages = oLangList.getItems();
+			equal(aLanguages.length, 3, "There should be three languages in the list");
+			
+			equal(aLanguages[0].getText(), "English", "Language text should be English");
+			equal(aLanguages[0].getKey(), "ENGLISH", "Language key should be ENGLISH");
+			equal(aLanguages[0].getCount(), 4, "Language count should be 4");
+			
+			equal(aLanguages[1].getText(), "Spanish", "Language text should be Spanish");
+			equal(aLanguages[1].getKey(), "SPANISH", "Language key should be SPANISH");
+			equal(aLanguages[1].getCount(), 2, "Language count should be 4");
+						
+			equal(aLanguages[2].getText(), "Italian", "Language text should be Italian");
+			equal(aLanguages[2].getKey(), "ITALIAN", "Language key should be ITALIAN");
+			equal(aLanguages[2].getCount(), 1, "Language count should be 4");
+			
+			var oCountryList = oFF.getLists()[1];
+			equal(oCountryList.getTitle(), "Country", "Country list title should be Country");
+			equal(oCountryList.getActive(), false, "Country list should not be active");
+			equal(oCountryList.getAllCount(), 17, "Country list all count should be 17");
+			equal(oCountryList.getMultiSelect(), false, "Country list multi select should be false");
+			
+			stop();
+			
+			openList(sId, 2);
+			
+			setTimeout(function(){
+				start();
+				ok(!isAllItemSelected(getPopoverCBSelectAll(sId, 2)), "Select All should not be selected.");
+				closeList(sId, 2);
+				stop();
+				
+				setTimeout(function() {
+					
+					openDialog(sId);
+					
+					setTimeout(function() {
+						start();
+						var sCountryId = oFF._facetList.getItems()[1].getId();
+						qutils.triggerMouseEvent(sCountryId, "tap");
+						var oCheckBox = jQuery.sap.domById(sId + "-selectAll");
+						ok(!oCheckBox, "Select all checkbox should not be displayed in a single select list");
+						closeDialog(sId);
+					}, asyncTimeout)		
+				}, asyncTimeout);
+			}, asyncTimeout);
+			
+		});
+	});
+
+	
+	
+	/***********************************************************************/
+	module("Model - Asynchronous Load of Facet Filter Items in Popover");	
+
+	asyncTest("Set new popover list data asynchronously", function() {
+
+		// Test Summary:
+		// There is no model for the FF. All properties of a single FFL are bound to a model. New
+		// list items are loaded by setting a new model data containing values for the "items" aggregation.
+		// This is triggered from the "listOpen" handler.
+		
+		var sId = "model-async1";
+		
+		var oFF = new sap.m.FacetFilter(sId, {
+			type: sap.m.FacetFilterType.Simple,	
+		});
+		
+		var oFFLModel = new sap.ui.model.json.JSONModel({
+			title: "Async List",
+			key: "ASYNC",
+			values : createModelItems(3, "Replace", "REPLACE")
+		});
+		
+		var oFFL = new sap.m.FacetFilterList({
+			
+			title: "{/title}",
+			key: "{/key}",
+			items: {
+				path: "/values",
+				template: new sap.m.FacetFilterItem({
+					text: "{title}",
+					key: "{key}",
+					count: "{amount}"
+				})
+			}
+		});
+		
+		oFFL.setModel(oFFLModel);
+		oFF.addList(oFFL);
+		oFF.placeAt("content");
+		
+		setTimeout(function() {
+			openList(sId, 0);
+			
+			setTimeout(function(){
+				
+				var $listItems = $(getJQuerySelectorPopoverMulti(sId, 0));
+				ok($listItems.length === 3, "There should be 3 items in the list");
+				
+				setTimeout(function() {
+					
+					closeList(sId, 0);
+					
+					oFFL.attachListOpen(function(oEvent) {
+
+						setTimeout(function() {
+
+							oFFLModel.setData({
+								title: "Async List",
+								key: "ASYNC",
+								values: createModelItems(10, "Loaded", "LOAD")
+							});
+							oFFLModel.refresh();
+						}, 100);
+					});
+					
+					openList(sId, 0);
+					
+					setTimeout(function() {
+						
+						var $listItems = $(getJQuerySelectorPopoverMulti(sId, 0));
+						ok($listItems.length === 10, "There should be 10 items in the list");
+						
+						setTimeout(function() {
+
+							closeList(sId, 0);
+							start();
+						}, asyncTimeout);				
+					}, asyncTimeout);
+				}, asyncTimeout);
+			}, asyncTimeout);
+		});
+	});
+	
+
+	asyncTest("Separate JSON models for FacetFilter and FacetFilterList, additional unamed model for FacetFilterList items aggregation", function() {
+		var sId = "model1";
+		var oFFData = {
+			type : "Simple"
+		};
+
+		var oFFModel = new sap.ui.model.json.JSONModel(oFFData);
+
+		var oFF = new sap.m.FacetFilter(sId, {
+			type : "{type}"
+		});
+		oFF.setModel(oFFModel);
+
+		var numListItems = 5;
+		var oFFListProduct = new sap.m.FacetFilterList({
+			title : "Product",
+			key : "PRODUCT",
+			multiselect : true,
+			active : true,
+			listOpen : function() {
+
+				// pretend to load values from the back end
+				var aItems = [];
+				for ( var i = 0; i < numListItems; i++) {
+					aItems.push({
+						text : "Product" + i,
+						key : "PRODUCT" + i
+					});
+				}
+
+				// Simulate asynchronous data load.
+				setTimeout(function() {
+
+					callBack(aItems);
+				}, 250);
+			}
+		});
+
+		oFF.addList(oFFListProduct);
+
+		oFF.placeAt("content");
+
+		var productListLoaded = false;
+		var callBack = function(aItems) {
+
+			if (!productListLoaded) {
+				productListLoaded = true;
+				// set model
+				var oListModel = new sap.ui.model.json.JSONModel({
+					values : aItems
+				});
+				oFFListProduct.setModel(oListModel);
+
+				oFFListProduct.bindAggregation("items", "/values", new sap.m.FacetFilterItem({
+					text : "{text}",
+					key : "{key}"
+				}));
+			}
+		}
+
+		setTimeout(function() {
+
+			openList(sId, 0);
+			setTimeout(function() {
+
+				// Make sure we test for the presence of items after the callBack function is called. So this
+				// timeout must be greater than timeout used to call the callBack function.
+				setTimeout(function() {
+
+					start();
+					var $listItems = $(getJQuerySelectorPopoverMulti(sId, 0));
+					equal(oFFListProduct.getItems().length, numListItems, "There should be " + numListItems + " in the items aggregation.");
+					equal($listItems.length, numListItems, "There should be " + numListItems + " list items rendered.");
+					closeList(sId, 0);
+				}, 500);
+			});
+		});
+	});
+
+	asyncTest("Separate JSON models for FacetFilter and FacetFilterList items, model name given for list", function() {
+		var sId = "model1";
+
+		var numListItems = 5;
+		var oFFListItem = new sap.m.FacetFilterList({
+			title : "Item",
+			key : "ITEM",
+			multiselect : true,
+			active : true,
+			listOpen : function() {
+
+				// pretend to load values from the back end
+				var aItems = [];
+				for ( var i = 0; i < numListItems; i++) {
+					aItems.push({
+						text : "Item" + i,
+						key : "ITEM" + i
+					});
+				}
+
+				// Simulate asynchronous data load.
+				setTimeout(function() {
+
+					callBack(aItems);
+				}, 250);
+			}
+		});
+
+		var oFF = sap.ui.getCore().byId(sId);
+		oFF.addList(oFFListItem);
+
+		oFF.placeAt("content");
+
+		var itemListLoaded = false;
+		var callBack = function(aItems) {
+
+			if (!itemListLoaded) {
+				itemListLoaded = true;
+				// set model
+				var oListModel = new sap.ui.model.json.JSONModel({
+					values : aItems
+				});
+				oFFListItem.setModel(oListModel, "itemList");
+
+				oFFListItem.bindAggregation("items", "itemList>/values", new sap.m.FacetFilterItem({
+					text : "{itemList>text}",
+					key : "{itemList>key}"
+				}));
+			}
+		}
+
+		setTimeout(function() {
+
+			openList(sId, 1);
+			setTimeout(function() {
+
+				// Make sure we test for the presence of items after the callBack function is called. So this
+				// timeout must be greater than timeout used to call the callBack function.
+				setTimeout(function() {
+
+					start();
+					var $listItems = $(getJQuerySelectorPopoverMulti(sId, 1));
+					equal(oFFListItem.getItems().length, numListItems, "There should be " + numListItems + " in the items aggregation.");
+					equal($listItems.length, numListItems, "There should be " + numListItems + " list items rendered.");
+					closeList(sId, 1);
+				}, 500);
+			});
+		});
+	});
+
+	asyncTest("Shared JSON model for FacetFilter and FacetFilterList properties, separate model for FacetFilterList items aggregation", function() {
+		
+		var numListItems = 5;
+		var sId = "model2";
+		var oFFData = {
+				type: "Simple",
+				facets: [{
+					name: "Product",
+					key: "PRODUCT"
+				},
+				{
+					name: "Country",
+					key: "COUNTRY"
+				}]
+		};
+		
+		var oFFModel = new sap.ui.model.json.JSONModel(oFFData);
+		
+		var oFF = new sap.m.FacetFilter(sId, {
+			type: "{type}",
+			lists: {
+				path: "/facets",
+				template: new sap.m.FacetFilterList({
+					title: "{name}",
+					key: "{key}",
+					listOpen: function() {
+						
+						// pretend to load values from the back end
+						var aItems = [];
+						for(var i=0; i < numListItems; i++) {
+							aItems.push({
+								text: this.getTitle() + i,
+								key: this.getKey() + i
+							});
+						}
+						
+						var that = this;
+						// Simulate asynchronous data load.
+						setTimeout(function(){
+							callBack(aItems, that.getId());
+						}, 250);
+					}
+				})
+			},
+		});
+		oFF.setModel(oFFModel);
+		
+		oFF.placeAt("content");
+		
+		var callBack = function(aItems, listId) {
+			
+			var oFFList = sap.ui.getCore().byId(listId);
+			if(oFFList.getItems().length === 0) {
+				var oListModel = new sap.ui.model.json.JSONModel({
+					values: aItems
+				});
+								
+				var sModelName = "listItems";
+				oFFList.setModel(oListModel, sModelName);
+				oFFList.bindAggregation("items", sModelName + ">/values", new sap.m.FacetFilterItem({
+					text: "{" + sModelName + ">text}",
+					key: "{" + sModelName + ">key}",
+				}));
+			}
+		}
+
+		setTimeout(function() {
+			openList(sId, 0);
+
+			setTimeout(function() {
+				// Make sure we test for the presence of items after the callBack function is called. So this
+				// timeout must be greater than timeout used to call the callBack function.
+				setTimeout(function() {
+					start();
+					var oFFList1 = getFacetList(sId, 0);
+					var $listItems1 = $(getJQuerySelectorPopoverMulti(sId, 0));
+					equal(oFFList1.getItems().length, numListItems, "There should be " + numListItems + " in the items aggregation.");
+					equal($listItems1.length, numListItems, "There should be " + numListItems + " list items rendered.");
+					
+					stop();
+					
+					setTimeout(function() {
+						openList(sId, 1);
+
+						setTimeout(function() {
+							start();
+							var oFFList2 = getFacetList(sId, 0);
+							var $listItems2 = $(getJQuerySelectorPopoverMulti(sId, 1));
+							equal(oFFList2.getItems().length, numListItems, "There should be " + numListItems + " in the items aggregation.");
+							equal($listItems2.length, numListItems, "There should be " + numListItems + " list items rendered.");
+						}, asyncTimeout);
+					}, asyncTimeout);
+				}, asyncTimeout); 
+			}, asyncTimeout);
+		});
+	});
+	
+	/***********************************************************************/
+	module("Destroy")
+	
+	var oFFDestroyId = "ff-destroy";
+	var oFFLDestroyId = "ffl-destroy";
+	var oFFDestroy = new sap.m.FacetFilter(oFFDestroyId);
+	var oFFDestroyList = new sap.m.FacetFilterList(oFFLDestroyId, {
+		title: "Destroy Me"
+	});
+	oFFDestroy.addList(oFFDestroyList);
+	oFFDestroy.placeAt("content");
+	
+	test("Destroy FacetFilter", function() {
+	
+		var sCreated = " must be created before we can test destroy";
+		ok(sap.ui.getCore().byId(oFFDestroyId + "-rb"), "Reset icon" + sCreated);
+		ok(sap.ui.getCore().byId(oFFDestroyId + "-add"), "Add icon" + sCreated);
+		ok(sap.ui.getCore().byId(oFFDestroyId + "-summaryBarTxt"), "Summary bar" + sCreated);
+		ok(sap.ui.getCore().byId(oFFDestroyId + "-summaryBar"), "Summary" + sCreated);
+		ok(sap.ui.getCore().byId(oFFDestroyId + "-facetlist"), "Facet list" + sCreated);
+		ok(sap.ui.getCore().byId(oFFDestroyId + "-itemlist"), "Item list" + sCreated);
+		ok(sap.ui.getCore().byId(oFFDestroyId + "-facetsSearchField"), "Facet search field" + sCreated);
+		ok(sap.ui.getCore().byId(oFFDestroyId + "-itemsSearchField"), "Filter item search field" + sCreated);
+		ok(sap.ui.getCore().byId(oFFDestroyId + "-selectAll"), "Select all checkbox" + sCreated);
+		ok(sap.ui.getCore().byId(oFFDestroyId + "-navcon"), "Nav container" + sCreated);
+		ok(sap.ui.getCore().byId(oFFDestroyId + "-filter"), "Facet page" + sCreated);
+		ok(sap.ui.getCore().byId(oFFDestroyId + "-item"), "Item page" + sCreated);
+		ok(sap.ui.getCore().byId(oFFDestroyId + "-navcon"), "Nav container" + sCreated);
+		ok(sap.ui.getCore().byId(oFFDestroyId + "-dialog"), "Dialog" + sCreated);	
+		
+		ok(sap.ui.getCore().byId(oFFLDestroyId), "FacetFilterList" + sCreated);
+		ok(sap.ui.getCore().byId(oFFLDestroyId + "-filterlist"), "FacetFilterList internal list" + sCreated);
+		ok(sap.ui.getCore().byId(oFFLDestroyId + "-searchField"), "FacetFilterList search field" + sCreated);
+		ok(sap.ui.getCore().byId(oFFLDestroyId + "-headerbar"), "FacetFilterList header bar" + sCreated);
+		ok(sap.ui.getCore().byId(oFFLDestroyId + "-selectAll"), "FacetFilterList select all checkbox" + sCreated);
+		ok(sap.ui.getCore().byId(oFFLDestroyId + "-popup"), "FacetFilterList popover" + sCreated);
+		
+		oFFDestroy.destroy();
+		
+		var sDestroyed = " should be destroyed";
+		ok(!sap.ui.getCore().byId(oFFDestroyId + "-rb"), "Reset icon" + sDestroyed);
+		ok(!sap.ui.getCore().byId(oFFDestroyId + "-add"), "Add icon" + sDestroyed);
+		ok(!sap.ui.getCore().byId(oFFDestroyId + "-summaryBarTxt"), "Summary bar text" + sDestroyed);
+		ok(!sap.ui.getCore().byId(oFFDestroyId + "-summaryBar"), "Summary bar" + sDestroyed);	
+		ok(!sap.ui.getCore().byId(oFFDestroyId + "-dialog"), "Dialog" + sDestroyed);
+		ok(!sap.ui.getCore().byId(oFFDestroyId + "-facetlist"), "Facet list" + sDestroyed);
+		ok(!sap.ui.getCore().byId(oFFDestroyId + "-itemlist"), "Item list" + sDestroyed);
+		ok(!sap.ui.getCore().byId(oFFDestroyId + "-facetsSearchField"), "Facet search field" + sDestroyed);
+		ok(!sap.ui.getCore().byId(oFFDestroyId + "-itemsSearchField"), "Filter item search field" + sDestroyed);
+		ok(!sap.ui.getCore().byId(oFFDestroyId + "-selectAll"), "Select all checkbox" + sDestroyed);
+		ok(!sap.ui.getCore().byId(oFFDestroyId + "-navcon"), "Nav container" + sDestroyed);
+		ok(!sap.ui.getCore().byId(oFFDestroyId + "-filter"), "Facet page" + sDestroyed);
+		ok(!sap.ui.getCore().byId(oFFDestroyId + "-item"), "Item page" + sDestroyed);
+		ok(!sap.ui.getCore().byId(oFFDestroyId + "-navcon"), "Nav container" + sDestroyed);
+		
+		ok(!sap.ui.getCore().byId(oFFLDestroyId), "FacetFilterList" + sDestroyed);
+		ok(!sap.ui.getCore().byId(oFFLDestroyId + "-filterlist"), "FacetFilterList internal list" + sDestroyed);
+		ok(!sap.ui.getCore().byId(oFFLDestroyId + "-searchField"), "FacetFilterList search field" + sDestroyed);
+		ok(!sap.ui.getCore().byId(oFFLDestroyId + "-headerbar"), "FacetFilterList header bar" + sDestroyed);
+		ok(!sap.ui.getCore().byId(oFFLDestroyId + "-selectAll"), "FacetFilterList select all checkbox" + sDestroyed);
+		ok(!sap.ui.getCore().byId(oFFLDestroyId + "-popup"), "FacetFilterList popover" + sDestroyed);	
+	});	
+
+	
+</script>
+</head>
+
+<body class="sapUiBody" style="height: 10000px">
+	<div id="qunit"></div>
+	<div id="content"></div>	
+</body>
+</html>
+

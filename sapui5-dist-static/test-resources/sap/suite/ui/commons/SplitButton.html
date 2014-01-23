@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>SplitButton - sap.suite.ui.commons</title>
+
+    <!-- UI5 Bootstrap -->
+    <script src="../../../../../resources/sap-ui-core.js"
+            type="text/javascript"
+            id="sap-ui-bootstrap"
+            data-sap-ui-libs="sap.ui.commons, sap.suite.ui.commons"
+            data-sap-ui-theme="sap_goldreflection"></script>
+
+    <script type="text/javascript">
+    	var helpIcon = "images/help.gif";
+    
+    	var alertEvent = function(oEvent, bWithPressEvent){
+    		testLabel.setText((bWithPressEvent ? "Press" : "ItemSelected") + " Event: Item \"" + oEvent.oSource.mProperties.text + "\" was selected.");
+			//alert((bWithPressEvent ? "Press" : "ItemSelected") + " Event: Item \"" + oEvent.oSource.mProperties.text + "\" was selected.");
+		};
+		
+		var createSplitButton = function(iIdx, odefMenuItem, oMenu, bDoNotPlaceAt, bEnabled, labelTxt, bVisible, sStyle, bLite, bStyled, text, icon, iconFirst){
+			var splitButton = new sap.suite.ui.commons.SplitButton({
+	            
+	        });
+			splitButton.setEnabled(bEnabled);
+			splitButton.setVisible(bVisible);
+			splitButton.setStyle(sStyle);
+			splitButton.setLite(bLite);
+			splitButton.setStyled(bStyled);
+			
+			if (!oMenu) {
+				var oMenu1 = new sap.ui.commons.Menu("menu-"+iIdx+"-1");
+				oMenu1.setAriaDescription("Menu 1");
+				var oMenuItem;
+				for(var i=1; i<3; i++){
+					oMenuItem = new sap.ui.commons.MenuItem("menuitem-"+iIdx+"-1-"+i, {text:"MenuButton "+iIdx+", Item "+i, select: function(oEvent){alertEvent(oEvent, true)}});
+					oMenu1.addItem(oMenuItem);
+				}
+				
+		        
+				var oMenu2 = new sap.ui.commons.Menu("menu-"+iIdx+"-2");
+				oMenuItem.setSubmenu(oMenu2);
+				oMenu2.setAriaDescription("Menu 2");
+				
+				for(var i=1; i<3; i++){
+					oMenuItem = new sap.ui.commons.MenuItem("menuitem-"+iIdx+"-2-"+i, {text:"MenuButton "+iIdx+", SubItem "+i, select: function(oEvent){alertEvent(oEvent, true)}});
+					oMenu2.addItem(oMenuItem);
+				}
+				
+				splitButton.setMenu(oMenu1, oMenu2.getItems()[0]);
+			}
+			else if (oMenu && odefMenuItem) {
+				splitButton.setMenu(oMenu, odefMenuItem);
+			}
+			
+				
+			if (text || text === "")
+				splitButton.setText(text);
+			
+			if (icon)
+				splitButton.setIcon(icon);
+			
+			if (!iconFirst)
+				splitButton.setIconFirst(iconFirst);
+			
+			if(!bDoNotPlaceAt) {
+				var labelCon = new sap.ui.commons.Label("label"+iIdx, {text: labelTxt, design: sap.ui.commons.LabelDesign.Bold} );
+				labelCon.placeAt("labelArea"+iIdx);
+				splitButton.placeAt("contentArea"+iIdx);
+			}
+			
+			return splitButton;
+				
+		};
+		
+		var testLabelDescription = new sap.ui.commons.Label("testLabelDescription", {text: "Event Message Area:", design: sap.ui.commons.LabelDesign.Bold} );
+		testLabelDescription.placeAt("eventLabelArea");
+		
+		var testLabel = new sap.ui.commons.Label("testLabel", {text: "Default Message, no event", design: sap.ui.commons.LabelDesign.Default} );
+		testLabel.placeAt("eventContentLabelArea");
+						
+		// create segmented menu button
+		var labelTxt = "Default SplitButton with Action button text/action set to first sub MenuItem:";
+		createSplitButton(1, null, null, false, true, labelTxt);
+		
+		// create disabled segmented menu button
+		labelTxt = "Disabled SplitButton with Action button text/action set to first sub MenuItem:";
+		createSplitButton(2, null, null, false, false, labelTxt);
+	
+		// create accept style segmented menu button - sap.ui.commons.ButtonStyle.Accept
+		labelTxt = "SplitButton with Action button text/action set to first sub MenuItem and Accept Style:";
+		createSplitButton(3, null, null, false, true, labelTxt, true, sap.ui.commons.ButtonStyle.Accept);
+		
+		// create reject style segmented menu button - sap.ui.commons.ButtonStyle.Reject
+		labelTxt = "SplitButton with Action button text/action set to first sub MenuItem and Reject Style:";
+		createSplitButton(4, null, null, false, true, labelTxt, true, sap.ui.commons.ButtonStyle.Reject);
+		
+		// create Emphasized style segmented menu button - sap.ui.commons.ButtonStyle.Reject
+		labelTxt = "SplitButton with Action button text/action set to first sub MenuItem and Emphasized Style:";
+		createSplitButton(5, null, null, false, true, labelTxt, true, sap.ui.commons.ButtonStyle.Emph);
+		
+		// create lite segmented menu button  
+		labelTxt = "Lite SplitButton with Action button text/action set to first sub MenuItem:";
+		createSplitButton(6, null, null, false, true, labelTxt, true, sap.ui.commons.ButtonStyle.Default, true);
+		
+		// create unstyled segmented menu button  
+		labelTxt = "Unstyled SplitButton with Action button text/action set to first sub MenuItem:";
+		createSplitButton(7, null, null, false, true, labelTxt, true, sap.ui.commons.ButtonStyle.Default, false, false);
+		
+		// create segmented menu button with action button text 
+		labelTxt = "SplitButton with Action button text set by user and action set to first sub MenuItem:";
+		createSplitButton(8, null, null, false, true, labelTxt, true, sap.ui.commons.ButtonStyle.Default, false, true, "Action");
+		
+		// create segmented menu button with action button text and image first
+		labelTxt = "SplitButton with Action button text and icon(placed first) set by user and action set to first sub MenuItem:";
+		createSplitButton(9, null, null, false, true, labelTxt, true, sap.ui.commons.ButtonStyle.Default, false, true, "Action", helpIcon);
+		
+		// create segmented menu button with action button text and image at the end
+		labelTxt = "SplitButton with Action button text and icon(placed last) set by user and action set to first sub MenuItem:";
+		createSplitButton(10, null, null, false, true, labelTxt, true, sap.ui.commons.ButtonStyle.Default, false, true, "Action", helpIcon, false);
+		
+		// create segmented menu button with action button with only image
+		labelTxt = "SplitButton with Action button with just icon set by user and action set to first sub MenuItem:";
+		createSplitButton(11, null, null, false, true, labelTxt, true, sap.ui.commons.ButtonStyle.Default, false, true, "", helpIcon);
+		
+
+    </script>
+</head>
+
+<body class="sapUiBody">
+    <h1>Test Page for sap.suite.ui.commons.SplitButton</h1>
+    <div id="eventLabelArea" style="font-size: 12pt"></div>
+    <div id="eventContentLabelArea" style="font-size: 11pt"></div>
+    <br><br>
+    <div id="labelArea1"></div>
+    <br>
+	<div id="contentArea1"></div>
+    <br>
+    <div id="labelArea2"></div>
+    <br>
+    <div id="contentArea2"></div>
+    <br>
+    <div id="labelArea3"></div>
+    <br>
+    <div id="contentArea3"></div>
+    <br>
+    <div id="labelArea4"></div>
+    <br>
+    <div id="contentArea4"></div>
+    <br>
+    <div id="labelArea5"></div>
+    <br>
+    <div id="contentArea5"></div>
+    <br>
+    <div id="labelArea6"></div>
+    <br>
+    <div id="contentArea6"></div>
+    <br>
+    <div id="labelArea7"></div>
+    <br>
+    <div id="contentArea7"></div>
+    <br>
+    <div id="labelArea8"></div>
+    <br>
+    <div id="contentArea8"></div>
+    <br>
+    <div id="labelArea9"></div>
+    <br>
+    <div id="contentArea9"></div>
+	<br>
+	<div id="labelArea10"></div>
+    <br>
+    <div id="contentArea10"></div>
+    <br>
+    <div id="labelArea11"></div>
+    <br>
+    <div id="contentArea11"></div>
+	<br>
+	<br>
+	<br>
+</body>
+</html>

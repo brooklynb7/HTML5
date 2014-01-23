@@ -1,0 +1,129 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>JavaScript Basic Features</title>
+</head>
+	<body class="sapUiBody">
+		<script type="text/javascript" src="../../../../../resources/sap/ui/thirdparty/jquery/jquery-1.7.1.js" ></script>
+		<script type="text/javascript" id="sap-ui-bootstrap" src="../../../../../resources/jquery-sap.js" ></script>
+		<script type="text/javascript" >
+
+		function trace(msg) {
+			document.write("<span>" + msg + "</span><br>");
+		}
+
+		/*
+		sap = {};
+		sap.ui = {};
+		sap.ui.Object = function() { trace("constructor of EventProvider") };
+		sap.ui.Object.getMetadata = function() { return "sap.ui.Object"; };
+		sap.ui.Object.createSubclass = function(sName, fnCtor, oMetadata, fnMetadataFactory) {
+			var baseClass = arguments.callee._clazz;
+			trace("createSubclass called on " + baseClass);
+			var Ctor = function() {};
+			Ctor.prototype = baseClass.prototype;
+			fnCtor.prototype = new Ctor();
+			fnCtor._clazz = sName;
+			fnCtor.createSubclass = baseClass.createSubclass;
+			oMetadata.name = sName;
+			oMetadata.baseClass = baseClass;
+			if (fnMetadataFactory) {
+				oMetadata = fnMetadataFactory(oMetadata);
+			}
+			fnCtor.getMetadata = function() {
+				return oMetadata;
+			};
+			return fnCtor;
+		} 	
+		sap.ui.Object.extendBy._clazz = "sap.ui.Object";
+
+		sap.ui.EventProvider = sap.ui.Object.createSubclass("sap.ui.EventProvider",
+			function() {
+				sap.ui.Object.apply(this, arguments);
+				trace("constructor of EventProvider");
+			}, 
+			
+			// Metadata
+			{ name : "sap.ui.EventProvider" }
+		);
+		
+		var o = new sap.ui.Object();
+		var e = new sap.ui.EventProvider();
+		trace("is o instanceof sap.ui.Object" + !!(o instanceof sap.ui.Object));
+		trace("is e instanceof sap.ui.Object" + !!(e instanceof sap.ui.Object));
+		trace("is o instanceof sap.ui.EventProvider" + !!(o instanceof sap.ui.EventProvider));
+		trace("is e instanceof sap.ui.EventProvider" + !!(e instanceof sap.ui.EventProvider));
+
+		*/
+
+		var aWellKnownObjectProperties = [
+				"toString", "valueOf", "toLocaleString", "propertyIsEnumerable", "isPrototypeOf", "hasOwnProperty", "constructor", 
+				"__defineGetter__", "__defineSetter__", "__lookupGetter__", "__lookupSetter__", "__proto__",
+				"myProtoValueOf",
+				"x", "y", "_null", "_false", "_0", "_NaN", "_undefined", "empty", "deleted",
+				"negativeTest",
+				null, undefined 
+		];
+		
+		proto = {
+			toString : function() {}, 
+			valueOf : function() {}, 
+			myProtoValueOf : function() {} 
+		};
+
+		obj = jQuery.sap.newObject(proto);
+		obj.x = 1;
+		obj.y = 1;
+		obj.valueOf = function() {};
+		obj._null = null;
+		obj._false = false;
+		obj._0 = 0;
+		obj._NaN = NaN;
+		obj._undefined = undefined;
+		obj.empty = '';
+		obj.deleted = 5;
+
+		delete obj.deleted;
+
+		var p = [obj, proto, Object.prototype];
+		
+		function test(s) {
+			document.write("<tr>");
+			document.write("<td>'" + s + "'</td>");
+			document.write("<td>" + (!!(obj[s])) + "</td>");
+			document.write("<td>" + (typeof obj[s] !== 'undefined') + "</td>");
+			document.write("<td>" + (s in obj) + "</td>");
+			document.write("<td>" + (obj.hasOwnProperty(s)) + "</td>");
+			document.write("<td>" + (obj.propertyIsEnumerable(s)) + "</td>");
+			var b = false;
+			for(var j=0; j<p.length; j++) {
+				b = b || p[j].propertyIsEnumerable(s);
+			}
+			document.write("<td>" + (b) + "</td>");
+			document.write("</tr>");
+		}
+
+		document.write("<h2>JavaScript-Object Property-Existence Checks</h2>");
+		document.write("<table border='1'>");
+		document.write("<thead><tr><td>Property</td><td>!!(s)</td><td>typeof obj[s] !== 'undefined'</td><td>in</td><td>hasOwnProperty</td><td>isEnumerableProoerty</td></tr></thead>");
+		for(var i=0; i<aWellKnownObjectProperties.length; i++) {
+			test(aWellKnownObjectProperties[i]);
+		}
+		document.write("</table>");
+			
+		names=[];
+		for(name in obj) {
+			names.push(name);
+		}
+		trace("for .. in .. names of obj: [" + names.join(",") + "]");
+		
+		document.write("<h2>Browser Features</h2>")
+		var aStorageFeatures = ["sessionStorage", "globalStorage", "localStorage", "openDatabase"];
+		for (var i = 0, l = aStorageFeatures.length; i < l; i++) {
+			trace("window." + aStorageFeatures[i] + ": " + (window[aStorageFeatures[i]]?"":"not ") + "available");			
+		}
+
+		// debugger;
+		</script>
+	</body>
+</html>

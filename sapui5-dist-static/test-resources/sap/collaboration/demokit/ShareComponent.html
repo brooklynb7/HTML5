@@ -1,0 +1,95 @@
+<!DOCTYPE HTML>
+<html data-sap-ui-dk-category="Components/Collaboration" data-sap-ui-dk-controls="sap.collaboration.components.fiori.sharing.component">
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta charset="UTF-8"/>
+		<title>Share Component - SAPUI5 Demo Kit</title>
+		<link rel="stylesheet" type="text/css" href="../../../../theme/default.css"></link>
+		<script id="sap-ui-bootstrap"
+				src="../../../../resources/sap-ui-core.js"
+				data-sap-ui-theme="sap_goldreflection"
+				data-sap-ui-libs="sap.m,sap.ui.commons,sap.ui.demokit"
+				>
+		</script>
+		<script src="../../../../js/utils.js"></script>
+		
+		<script id='ShareComponent'>
+			jQuery.sap.getObject("sap.ui.demokit", 0)._supportedThemes = ["sap_bluecrystal"];
+			
+			var proxy = "/proxy/https";
+			var contextPath = "/" + window.location.pathname.split("/")[1];
+			// if contexPath does not begin with /uilib-sample, use /uilib-sample
+			if (contextPath.toLowerCase().indexOf("/uilib-sample") != 0)
+					contextPath = "/uilib-sample";			
+	   		var hostUrl = window.location.protocol + "//" + window.location.host + contextPath + proxy;
+			var oDataServicePath =
+				"/vmw3911.wdf.sap.corp:44335/sap/opu/odata/sap/SM_INTEGRATION_SRV"; 
+
+			var oDataServiceUrl = hostUrl + oDataServicePath;
+		
+			var oObjectListItem = new sap.m.ObjectListItem("object_item",{
+	     		title : "Sales Order 1",
+	     		number : "788885,23",
+	     		numberUnit : "USD",
+	     		firstStatus: new sap.m.ObjectStatus({text : "Open", state:"Warning"})
+				}); 
+			
+			var sharingCollaborationComponent = sap.ui.getCore().createComponent({
+		 		name: "sap.collaboration.components.fiori.sharing",
+		 		id: "sharingComponent",
+		 		settings: {	
+	        		oDataServiceUrl: oDataServiceUrl,
+	
+	    			object:{
+	                    display: oObjectListItem,
+	                    id:"http://sap.com/CRM/SaleOrders(111)",
+	                    share: "this is sales order 1"
+	           		}
+		 		}
+		 	});
+		 	
+		 	var componentContainer = new sap.ui.core.ComponentContainer("componentContainer", {
+		 		component: sharingCollaborationComponent
+		 	});
+		 	
+		 	componentContainer.placeAt("sample1");
+		 	
+		 	//console.log($.browser);
+		</script>
+		
+</head>
+	
+	<body class="sapUiDemokitBody" role="application">
+		<h1 color="Blue" icon="images/comps/share-component.png">Share Component</h1>
+		
+		<h2>Introduction</h2>
+		
+		<p>
+			A Share Component is a ui5 component that applications can use to share information as a group feed entry to JAM. 
+		</p>
+		<p>
+			The Share Component contains other ui5 controls that enables a user to enter/edit the information shared to JAM.
+		</p>
+		<p>
+			The information needed for the share operation are:
+			<ul>
+				<li>The Jam group: the user can choose the group from the DDB rendered inside the component</li>
+				<li>The content of the group's feed entry; this is composed of two parts:
+					<ul>
+						<li>Note: this comes from the note text area that is rendered inside the component</li>
+						<li>ID: is an hidden ID (probably a URL) passed from the application, and sent to Jam</li>
+					</ul>
+				</li>
+			</ul>
+		</p>
+		
+		<h2>Example</h2>
+		
+		<div code-sample="sample1" script="ShareComponent"></div>
+		
+		<br/>
+		
+		<p>See <a class="sapUiDemokitSrcLink" href="../../../../docs/api/symbols/sap.collaboration.components.fiori.sharing.Component.html" >API documentation</a></p>  
+						
+	</body>
+</html>

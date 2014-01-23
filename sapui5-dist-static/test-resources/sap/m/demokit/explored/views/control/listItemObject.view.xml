@@ -1,0 +1,37 @@
+<core:View
+	xmlns="sap.m"
+	xmlns:l="sap.ui.layout"
+	xmlns:core="sap.ui.core" >
+	<l:VerticalLayout width="100%" >
+		<l:content>
+			<Text id="description" class="marginNoBottom" />
+
+			<List
+				items="{/ProductCollection}"
+				headerText="Products">
+				<items>
+					<ObjectListItem
+						title="{Name}"
+						number="{Price}"
+						numberUnit="{CurrencyCode}">
+						<firstStatus>
+							<ObjectStatus
+								text="Overweight"
+								state="Error" />
+						</firstStatus>
+						<secondStatus>
+							<ObjectStatus
+								text="In Stock"
+								state="Success" />
+						</secondStatus>
+						<attributes>
+							<ObjectAttribute text="{WeightMeasure} {WeightUnit}" />
+							<ObjectAttribute text="{Width} x {Depth} x {Height} {DimUnit}" />
+						</attributes>
+					</ObjectListItem>
+				</items>
+			</List>
+
+		</l:content>
+	</l:VerticalLayout>
+</core:View>

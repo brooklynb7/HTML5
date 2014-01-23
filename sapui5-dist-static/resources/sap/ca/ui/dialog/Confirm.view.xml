@@ -1,0 +1,34 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:layout="sap.ui.layout" xmlns:form="sap.ui.layout.form"
+			controllerName="sap.ca.ui.dialog.Confirm" xmlns:html="http://www.w3.org/1999/xhtml"
+			resourceBundleName="sap.ca.ui.i18n.i18n" resourceBundleAlias="ca_i18n">
+
+	<Dialog id="DLG_CONFIRM" title="{/title}" height="100%" beforeOpen="onBeforeOpenDialog">
+		<content>
+			<layout:VerticalLayout width="100%">
+				<Text id="LBL_QUT" text="{/question}"/>
+				<Text id="TXT_EMPTYLINE" text="" />
+				<layout:VerticalLayout id="VLT_ADDINFO" width="100%">
+					<form:SimpleForm id="SFM_ADDINFO" labelMinWidth="80" minWidth="1024" maxContainerCols="2">
+						<form:content>
+							<Label id="LBL_INFO1" text="{/additionalInformation/0/label}" visible="{path:'/additionalInformation/0/label', formatter:'.formatVisible'}" />
+							<Text id="TXT_INFO1" text="{/additionalInformation/0/text}" visible="{path:'/additionalInformation/0/text', formatter:'.formatVisible'}" />
+							<Label id="LBL_INFO2" text="{/additionalInformation/1/label}" visible="{path:'/additionalInformation/1/label', formatter:'.formatVisible'}" />
+							<Text id="TXT_INFO2" text="{/additionalInformation/1/text}" visible="{path:'/additionalInformation/1/text', formatter:'.formatVisible'}" />
+							<Label id="LBL_INFO3" text="{/additionalInformation/2/label}" visible="{path:'/additionalInformation/2/label', formatter:'.formatVisible'}" />
+							<Text id="TXT_INFO3" text="{/additionalInformation/2/text}" visible="{path:'/additionalInformation/2/text', formatter:'.formatVisible'}" />
+							<Label id="LBL_INFO4" text="{/additionalInformation/3/label}" visible="{path:'/additionalInformation/3/label', formatter:'.formatVisible'}" />
+							<Text id="TXT_INFO4" text="{/additionalInformation/3/text}" visible="{path:'/additionalInformation/3/text', formatter:'.formatVisible'}" />
+						</form:content>
+					</form:SimpleForm>
+				</layout:VerticalLayout>
+				<TextArea id="TXA_NOTE" value="" placeholder="{ca_i18n>YMSG_TEXT_NOTE}" width="100%" liveChange="onNoteInput"></TextArea>
+			</layout:VerticalLayout>
+		</content>
+		<beginButton>
+			<Button id="BTN_CONFIRM" press="onConfirmDialog" type="Transparent" text="{/confirmButtonLabel}"/>
+		</beginButton>
+		<endButton>
+			<Button id="BTN_CANCEL" press="onCancelDialog" text="{ca_i18n>dialog.cancel}"/>
+		</endButton>
+	</Dialog>
+</core:View>

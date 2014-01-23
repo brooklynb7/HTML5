@@ -1,0 +1,25 @@
+<html>
+<head>
+<title>QUnit TestSuite for sap.makit</title>
+<script src="/jsunit-testrunner/app/jsUnitCore.js"></script>
+</head>
+<body>
+<script>
+
+/**
+ * Add test pages to this test suite function.
+ * Please order alphabetically
+ */
+function suite() {
+	var suite = new top.jsUnitTestSuite(),
+		contextPath = "/" + window.location.pathname.split("/")[1];
+	if (navigator.userAgent.match(/AppleWebKit/g)) {
+ 		suite.addTestPage(contextPath + "/test-resources/sap/makit/qunit/Chart.qunit.html");
+	}
+	return suite;
+}
+redirectToTestrunnerIfRequired();
+
+</script>
+</body>
+</html>

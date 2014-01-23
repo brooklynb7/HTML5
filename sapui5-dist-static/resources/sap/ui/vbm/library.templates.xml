@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Library name="sap.ui.vbm" xmlns="http://www.sap.com/ui5/ide/templates/xmlview">
+<Template name="sap.ui.vbm.VBI" alias="VBI">
+	<jsTemplate><![CDATA[new sap.ui.vbm.VBI({
+	id: "${id}", // sap.ui.core.ID
+	width: 800, // int
+	height: 600, // int
+	config: undefined, // object
+	plugin: false, // boolean
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	submit: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	render: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	zoom: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	move: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<VBI xmlns="sap.ui.vbm"
+	id="${id}"
+	width="800"
+	height="600"
+	config=""
+	plugin="false"
+	submit=""
+	render=""
+	zoom=""
+	move="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+</VBI>
+]]></xmlTemplate>
+</Template>
+</Library>

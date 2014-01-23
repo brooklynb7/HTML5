@@ -1,0 +1,96 @@
+<core:View
+        controllerName="views.sample.chart.tabContainerAndToolBar"
+        xmlns="sap.m"
+        xmlns:core="sap.ui.core"
+        xmlns:ui="sap.ca.ui"
+        xmlns:html="http://www.w3.org/1999/xhtml"
+        xmlns:charts="sap.ca.ui.charts"
+        >
+    <Page
+            id="page"
+            title="Charting integration"
+            >
+        <content>
+          <IconTabBar expandable="false" select="onTabFilterSelect"  selectedKey="All">
+                <items>
+                    <IconTabFilter id="test"  icon="sap-icon://alert">
+                        <content>
+                            <charts:ChartToolBar
+                                    id="fioriSampleBarCHart1"
+                                    showFullScreen="true"
+                                                 showPersonalization="true"
+                                                 personalizationPressed="onPersonalizationPressed"
+                                                 chartTitle="Full Size Chart"
+                                    >
+                                <charts:charts>
+                                    <charts:Chart id="fioriCombinedChartInsideToolBar" showTitle="false" chartType="Combination"/>
+                                </charts:charts>
+                            </charts:ChartToolBar>
+                        </content>
+                    </IconTabFilter>
+
+                    <IconTabFilter id="itfCritical" icon="sap-icon://alert" count="5">
+                        <content>
+                                <charts:Chart id="fioriCombinedChartInsideToolBar2" showTitle="false" chartType="Combination"/>
+                        </content>
+                    </IconTabFilter>
+
+                    <IconTabFilter id="itfCritical3" icon="sap-icon://alert" count="12">
+                        <content>
+                            <charts:ChartToolBar
+                                    id="fioriSampleBarCHart2"
+                                    chartTitle="This chart hight has been set to 50%"
+                                    >
+                            <charts:charts>
+                                <charts:Chart id="fioriCombinedChartInsideToolBar3" height="50%" showTitle="false" chartType="Combination"/>
+                            </charts:charts>
+                            </charts:ChartToolBar>
+                            <charts:ChartToolBar
+                                    id="fioriSampleBarCHart3"
+                                    chartTitle="This chart is taken 100% of the remaining size"
+                                    >
+                            <charts:charts>
+                                <charts:Chart id="fioriCombinedChartInsideToolBar4" showTitle="false" chartType="Combination"/>
+                            </charts:charts>
+                            </charts:ChartToolBar>
+                        </content>
+                    </IconTabFilter>
+                    <IconTabFilter id="itfCritical4" icon="sap-icon://alert" count="12">
+                        <content>
+                            <charts:Chart id="fioriCombinedChartInsideToolBar5" height="50%" showTitle="false" chartType="Combination"/>
+                            <Table items="{/businessData}">
+                                <columns>
+                                    <Column>
+                                        <header>
+                                            <Label text="Country"/>
+                                        </header>
+                                    </Column>
+                                    <Column>
+                                        <header>
+                                            <Label text="Revenue"/>
+                                        </header>
+                                    </Column>
+                                    <Column>
+                                        <header>
+                                            <Label text="Profit"/>
+                                        </header>
+                                    </Column>
+                                </columns>
+                                <items>
+                                    <ColumnListItem>
+                                        <cells>
+                                            <Label text="{Country}"/>
+                                            <Label text="{revenue}"/>
+                                            <Label text="{profit}"/>
+                                        </cells>
+                                    </ColumnListItem>
+                                </items>
+                            </Table>
+                        </content>
+                    </IconTabFilter>
+                </items>
+            </IconTabBar>
+
+        </content>
+    </Page>
+</core:View>

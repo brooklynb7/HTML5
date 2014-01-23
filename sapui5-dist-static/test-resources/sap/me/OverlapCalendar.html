@@ -1,0 +1,147 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+<title>OverlapCalendar - sap.me</title>
+
+<script src="../../../resources/sap-ui-core.js" type="text/javascript"
+	id="sap-ui-bootstrap" data-sap-ui-libs="sap.m, sap.me"
+	data-sap-ui-theme="sap_bluecrystal">    
+</script>
+
+<script type="text/javascript">
+
+
+
+var testEvents = {"87576751F2F1040FE10000000A42D033":{"events":[{"__metadata":{"uri":"http://usciu3e.wdf.sap.corp:50026/sap/opu/odata/GBHCM/LEAVEAPPROVAL/TeamCalendarCollection('14000071201304231')","type":"LEAVEAPPROVAL.TeamCalendar"},"EventKey":"14000071201304231","EmployeeNumber":"14000071","EmployeeName":"Eric Emerald","StartDate":"2013-04-23T00:00:00.000Z","EndDate":"2013-04-25T00:00:00.000Z","AbsenceType":"Vacation","LegendType":"01","ActionSupported":false,"AllDayFlag":true,"Order":2,"LeaveID":""},{"__metadata":{"uri":"http://usciu3e.wdf.sap.corp:50026/sap/opu/odata/GBHCM/LEAVEAPPROVAL/TeamCalendarCollection('14000071201304271')","type":"LEAVEAPPROVAL.TeamCalendar"},"EventKey":"14000071201304271","EmployeeNumber":"14000071","EmployeeName":"","StartDate":"2013-04-27T00:00:00.000Z","EndDate":"2013-04-28T00:00:00.000Z","AbsenceType":"","LegendType":"00","ActionSupported":false,"AllDayFlag":true,"Order":2,"LeaveID":""},{"__metadata":{"uri":"http://usciu3e.wdf.sap.corp:50026/sap/opu/odata/GBHCM/LEAVEAPPROVAL/TeamCalendarCollection('14000071201305011')","type":"LEAVEAPPROVAL.TeamCalendar"},"EventKey":"14000071201305011","EmployeeNumber":"14000071","EmployeeName":"","StartDate":"2013-05-01T00:00:00.000Z","EndDate":"2013-05-01T00:00:00.000Z","AbsenceType":"","LegendType":"06","ActionSupported":false,"AllDayFlag":true,"Order":2,"LeaveID":""},{"__metadata":{"uri":"http://usciu3e.wdf.sap.corp:50026/sap/opu/odata/GBHCM/LEAVEAPPROVAL/TeamCalendarCollection('14000071201305041')","type":"LEAVEAPPROVAL.TeamCalendar"},"EventKey":"14000071201305041","EmployeeNumber":"14000071","EmployeeName":"","StartDate":"2013-05-04T00:00:00.000Z","EndDate":"2013-05-05T00:00:00.000Z","AbsenceType":"","LegendType":"00","ActionSupported":false,"AllDayFlag":true,"Order":2,"LeaveID":""},{"__metadata":{"uri":"http://usciu3e.wdf.sap.corp:50026/sap/opu/odata/GBHCM/LEAVEAPPROVAL/TeamCalendarCollection('14000071201305091')","type":"LEAVEAPPROVAL.TeamCalendar"},"EventKey":"14000071201305091","EmployeeNumber":"14000071","EmployeeName":"","StartDate":"2013-05-09T00:00:00.000Z","EndDate":"2013-05-09T00:00:00.000Z","AbsenceType":"","LegendType":"06","ActionSupported":false,"AllDayFlag":true,"Order":2,"LeaveID":""},{"__metadata":{"uri":"http://usciu3e.wdf.sap.corp:50026/sap/opu/odata/GBHCM/LEAVEAPPROVAL/TeamCalendarCollection('14000071201305111')","type":"LEAVEAPPROVAL.TeamCalendar"},"EventKey":"14000071201305111","EmployeeNumber":"14000071","EmployeeName":"","StartDate":"2013-05-11T00:00:00.000Z","EndDate":"2013-05-12T00:00:00.000Z","AbsenceType":"","LegendType":"00","ActionSupported":false,"AllDayFlag":true,"Order":2,"LeaveID":""},{"__metadata":{"uri":"http://usciu3e.wdf.sap.corp:50026/sap/opu/odata/GBHCM/LEAVEAPPROVAL/TeamCalendarCollection('14000071201305181')","type":"LEAVEAPPROVAL.TeamCalendar"},"EventKey":"14000071201305181","EmployeeNumber":"14000071","EmployeeName":"","StartDate":"2013-05-18T00:00:00.000Z","EndDate":"2013-05-18T00:00:00.000Z","AbsenceType":"","LegendType":"00","ActionSupported":false,"AllDayFlag":true,"Order":2,"LeaveID":""},{"__metadata":{"uri":"http://usciu3e.wdf.sap.corp:50026/sap/opu/odata/GBHCM/LEAVEAPPROVAL/TeamCalendarCollection('14000071201305191')","type":"LEAVEAPPROVAL.TeamCalendar"},"EventKey":"14000071201305191","EmployeeNumber":"14000071","EmployeeName":"","StartDate":"2013-05-19T00:00:00.000Z","EndDate":"2013-05-20T00:00:00.000Z","AbsenceType":"","LegendType":"06","ActionSupported":false,"AllDayFlag":true,"Order":2,"LeaveID":""},{"__metadata":{"uri":"http://usciu3e.wdf.sap.corp:50026/sap/opu/odata/GBHCM/LEAVEAPPROVAL/TeamCalendarCollection('14000072201304271')","type":"LEAVEAPPROVAL.TeamCalendar"},"EventKey":"14000072201304271","EmployeeNumber":"14000072","EmployeeName":"","StartDate":"2013-04-27T00:00:00.000Z","EndDate":"2013-04-28T00:00:00.000Z","AbsenceType":"","LegendType":"00","ActionSupported":false,"AllDayFlag":true,"Order":3,"LeaveID":""},{"__metadata":{"uri":"http://usciu3e.wdf.sap.corp:50026/sap/opu/odata/GBHCM/LEAVEAPPROVAL/TeamCalendarCollection('14000072201305011')","type":"LEAVEAPPROVAL.TeamCalendar"},"EventKey":"14000072201305011","EmployeeNumber":"14000072","EmployeeName":"","StartDate":"2013-05-01T00:00:00.000Z","EndDate":"2013-05-01T00:00:00.000Z","AbsenceType":"","LegendType":"06","ActionSupported":false,"AllDayFlag":true,"Order":3,"LeaveID":""},{"__metadata":{"uri":"http://usciu3e.wdf.sap.corp:50026/sap/opu/odata/GBHCM/LEAVEAPPROVAL/TeamCalendarCollection('14000072201305041')","type":"LEAVEAPPROVAL.TeamCalendar"},"EventKey":"14000072201305041","EmployeeNumber":"14000072","EmployeeName":"","StartDate":"2013-05-04T00:00:00.000Z","EndDate":"2013-05-05T00:00:00.000Z","AbsenceType":"","LegendType":"00","ActionSupported":false,"AllDayFlag":true,"Order":3,"LeaveID":""},{"__metadata":{"uri":"http://usciu3e.wdf.sap.corp:50026/sap/opu/odata/GBHCM/LEAVEAPPROVAL/TeamCalendarCollection('14000072201305091')","type":"LEAVEAPPROVAL.TeamCalendar"},"EventKey":"14000072201305091","EmployeeNumber":"14000072","EmployeeName":"","StartDate":"2013-05-09T00:00:00.000Z","EndDate":"2013-05-09T00:00:00.000Z","AbsenceType":"","LegendType":"06","ActionSupported":false,"AllDayFlag":true,"Order":3,"LeaveID":""},{"__metadata":{"uri":"http://usciu3e.wdf.sap.corp:50026/sap/opu/odata/GBHCM/LEAVEAPPROVAL/TeamCalendarCollection('14000072201305111')","type":"LEAVEAPPROVAL.TeamCalendar"},"EventKey":"14000072201305111","EmployeeNumber":"14000072","EmployeeName":"","StartDate":"2013-05-11T00:00:00.000Z","EndDate":"2013-05-12T00:00:00.000Z","AbsenceType":"","LegendType":"00","ActionSupported":false,"AllDayFlag":true,"Order":3,"LeaveID":""},{"__metadata":{"uri":"http://usciu3e.wdf.sap.corp:50026/sap/opu/odata/GBHCM/LEAVEAPPROVAL/TeamCalendarCollection('14000072201305161')","type":"LEAVEAPPROVAL.TeamCalendar"},"EventKey":"14000072201305161","EmployeeNumber":"14000072","EmployeeName":"Ernie Emerson","StartDate":"2013-05-16T00:00:00.000Z","EndDate":"2013-05-19T00:00:00.000Z","AbsenceType":"Vacation","LegendType":"01","ActionSupported":false,"AllDayFlag":true,"Order":3,"LeaveID":""},{"__metadata":{"uri":"http://usciu3e.wdf.sap.corp:50026/sap/opu/odata/GBHCM/LEAVEAPPROVAL/TeamCalendarCollection('14000072201305181')","type":"LEAVEAPPROVAL.TeamCalendar"},"EventKey":"14000072201305181","EmployeeNumber":"14000072","EmployeeName":"","StartDate":"2013-05-18T00:00:00.000Z","EndDate":"2013-05-18T00:00:00.000Z","AbsenceType":"","LegendType":"00","ActionSupported":false,"AllDayFlag":true,"Order":3,"LeaveID":""},{"__metadata":{"uri":"http://usciu3e.wdf.sap.corp:50026/sap/opu/odata/GBHCM/LEAVEAPPROVAL/TeamCalendarCollection('14000072201305191')","type":"LEAVEAPPROVAL.TeamCalendar"},"EventKey":"14000072201305191","EmployeeNumber":"14000072","EmployeeName":"","StartDate":"2013-05-19T00:00:00.000Z","EndDate":"2013-05-20T00:00:00.000Z","AbsenceType":"","LegendType":"06","ActionSupported":false,"AllDayFlag":true,"Order":3,"LeaveID":""},{"__metadata":{"uri":"http://usciu3e.wdf.sap.corp:50026/sap/opu/odata/GBHCM/LEAVEAPPROVAL/TeamCalendarCollection('99710694201304271')","type":"LEAVEAPPROVAL.TeamCalendar"},"EventKey":"99710694201304271","EmployeeNumber":"99710694","EmployeeName":"","StartDate":"2013-04-27T00:00:00.000Z","EndDate":"2013-04-28T00:00:00.000Z","AbsenceType":"","LegendType":"00","ActionSupported":false,"AllDayFlag":true,"Order":0,"LeaveID":""},{"__metadata":{"uri":"http://usciu3e.wdf.sap.corp:50026/sap/opu/odata/GBHCM/LEAVEAPPROVAL/TeamCalendarCollection('99710694201305011')","type":"LEAVEAPPROVAL.TeamCalendar"},"EventKey":"99710694201305011","EmployeeNumber":"99710694","EmployeeName":"","StartDate":"2013-05-01T00:00:00.000Z","EndDate":"2013-05-01T00:00:00.000Z","AbsenceType":"","LegendType":"06","ActionSupported":false,"AllDayFlag":true,"Order":0,"LeaveID":""},{"__metadata":{"uri":"http://usciu3e.wdf.sap.corp:50026/sap/opu/odata/GBHCM/LEAVEAPPROVAL/TeamCalendarCollection('99710694201305021')","type":"LEAVEAPPROVAL.TeamCalendar"},"EventKey":"99710694201305021","EmployeeNumber":"99710694","EmployeeName":"Andrew Gate","StartDate":"2013-05-02T00:00:00.000Z","EndDate":"2013-05-02T00:00:00.000Z","AbsenceType":"Leave 1/2 day","LegendType":"04","ActionSupported":false,"AllDayFlag":false,"Order":0,"LeaveID":"87576751F2F1040FE10000000A42D033"},{"__metadata":{"uri":"http://usciu3e.wdf.sap.corp:50026/sap/opu/odata/GBHCM/LEAVEAPPROVAL/TeamCalendarCollection('99710694201305041')","type":"LEAVEAPPROVAL.TeamCalendar"},"EventKey":"99710694201305041","EmployeeNumber":"99710694","EmployeeName":"","StartDate":"2013-05-04T00:00:00.000Z","EndDate":"2013-05-05T00:00:00.000Z","AbsenceType":"","LegendType":"00","ActionSupported":false,"AllDayFlag":true,"Order":0,"LeaveID":""},{"__metadata":{"uri":"http://usciu3e.wdf.sap.corp:50026/sap/opu/odata/GBHCM/LEAVEAPPROVAL/TeamCalendarCollection('99710694201305091')","type":"LEAVEAPPROVAL.TeamCalendar"},"EventKey":"99710694201305091","EmployeeNumber":"99710694","EmployeeName":"","StartDate":"2013-05-09T00:00:00.000Z","EndDate":"2013-05-09T00:00:00.000Z","AbsenceType":"","LegendType":"06","ActionSupported":false,"AllDayFlag":true,"Order":0,"LeaveID":""},{"__metadata":{"uri":"http://usciu3e.wdf.sap.corp:50026/sap/opu/odata/GBHCM/LEAVEAPPROVAL/TeamCalendarCollection('99710694201305111')","type":"LEAVEAPPROVAL.TeamCalendar"},"EventKey":"99710694201305111","EmployeeNumber":"99710694","EmployeeName":"","StartDate":"2013-05-11T00:00:00.000Z","EndDate":"2013-05-12T00:00:00.000Z","AbsenceType":"","LegendType":"00","ActionSupported":false,"AllDayFlag":true,"Order":0,"LeaveID":""},{"__metadata":{"uri":"http://usciu3e.wdf.sap.corp:50026/sap/opu/odata/GBHCM/LEAVEAPPROVAL/TeamCalendarCollection('99710694201305181')","type":"LEAVEAPPROVAL.TeamCalendar"},"EventKey":"99710694201305181","EmployeeNumber":"99710694","EmployeeName":"","StartDate":"2013-05-18T00:00:00.000Z","EndDate":"2013-05-18T00:00:00.000Z","AbsenceType":"","LegendType":"00","ActionSupported":false,"AllDayFlag":true,"Order":0,"LeaveID":""},{"__metadata":{"uri":"http://usciu3e.wdf.sap.corp:50026/sap/opu/odata/GBHCM/LEAVEAPPROVAL/TeamCalendarCollection('99710694201305191')","type":"LEAVEAPPROVAL.TeamCalendar"},"EventKey":"99710694201305191","EmployeeNumber":"99710694","EmployeeName":"","StartDate":"2013-05-19T00:00:00.000Z","EndDate":"2013-05-20T00:00:00.000Z","AbsenceType":"","LegendType":"06","ActionSupported":false,"AllDayFlag":true,"Order":0,"LeaveID":""},{"__metadata":{"uri":"http://usciu3e.wdf.sap.corp:50026/sap/opu/odata/GBHCM/LEAVEAPPROVAL/TeamCalendarCollection('99710253201304271')","type":"LEAVEAPPROVAL.TeamCalendar"},"EventKey":"99710253201304271","EmployeeNumber":"99710253","EmployeeName":"","StartDate":"2013-04-27T00:00:00.000Z","EndDate":"2013-04-28T00:00:00.000Z","AbsenceType":"","LegendType":"00","ActionSupported":false,"AllDayFlag":true,"Order":8,"LeaveID":""},{"__metadata":{"uri":"http://usciu3e.wdf.sap.corp:50026/sap/opu/odata/GBHCM/LEAVEAPPROVAL/TeamCalendarCollection('99710253201305011')","type":"LEAVEAPPROVAL.TeamCalendar"},"EventKey":"99710253201305011","EmployeeNumber":"99710253","EmployeeName":"","StartDate":"2013-05-01T00:00:00.000Z","EndDate":"2013-05-01T00:00:00.000Z","AbsenceType":"","LegendType":"06","ActionSupported":false,"AllDayFlag":true,"Order":8,"LeaveID":""},{"__metadata":{"uri":"http://usciu3e.wdf.sap.corp:50026/sap/opu/odata/GBHCM/LEAVEAPPROVAL/TeamCalendarCollection('99710253201305021')","type":"LEAVEAPPROVAL.TeamCalendar"},"EventKey":"99710253201305021","EmployeeNumber":"99710253","EmployeeName":"Fiona Taylor","StartDate":"2013-05-02T00:00:00.000Z","EndDate":"2013-05-03T00:00:00.000Z","AbsenceType":"Vacation","LegendType":"01","ActionSupported":false,"AllDayFlag":true,"Order":8,"LeaveID":""},{"__metadata":{"uri":"http://usciu3e.wdf.sap.corp:50026/sap/opu/odata/GBHCM/LEAVEAPPROVAL/TeamCalendarCollection('99710253201305041')","type":"LEAVEAPPROVAL.TeamCalendar"},"EventKey":"99710253201305041","EmployeeNumber":"99710253","EmployeeName":"","StartDate":"2013-05-04T00:00:00.000Z","EndDate":"2013-05-05T00:00:00.000Z","AbsenceType":"","LegendType":"00","ActionSupported":false,"AllDayFlag":true,"Order":8,"LeaveID":""},{"__metadata":{"uri":"http://usciu3e.wdf.sap.corp:50026/sap/opu/odata/GBHCM/LEAVEAPPROVAL/TeamCalendarCollection('99710253201305091')","type":"LEAVEAPPROVAL.TeamCalendar"},"EventKey":"99710253201305091","EmployeeNumber":"99710253","EmployeeName":"","StartDate":"2013-05-09T00:00:00.000Z","EndDate":"2013-05-09T00:00:00.000Z","AbsenceType":"","LegendType":"06","ActionSupported":false,"AllDayFlag":true,"Order":8,"LeaveID":""},{"__metadata":{"uri":"http://usciu3e.wdf.sap.corp:50026/sap/opu/odata/GBHCM/LEAVEAPPROVAL/TeamCalendarCollection('99710253201305111')","type":"LEAVEAPPROVAL.TeamCalendar"},"EventKey":"99710253201305111","EmployeeNumber":"99710253","EmployeeName":"","StartDate":"2013-05-11T00:00:00.000Z","EndDate":"2013-05-12T00:00:00.000Z","AbsenceType":"","LegendType":"00","ActionSupported":false,"AllDayFlag":true,"Order":8,"LeaveID":""},{"__metadata":{"uri":"http://usciu3e.wdf.sap.corp:50026/sap/opu/odata/GBHCM/LEAVEAPPROVAL/TeamCalendarCollection('99710253201305151')","type":"LEAVEAPPROVAL.TeamCalendar"},"EventKey":"99710253201305151","EmployeeNumber":"99710253","EmployeeName":"Fiona Taylor","StartDate":"2013-05-15T00:00:00.000Z","EndDate":"2013-05-17T00:00:00.000Z","AbsenceType":"Vacation","LegendType":"01","ActionSupported":false,"AllDayFlag":true,"Order":8,"LeaveID":""},{"__metadata":{"uri":"http://usciu3e.wdf.sap.corp:50026/sap/opu/odata/GBHCM/LEAVEAPPROVAL/TeamCalendarCollection('99710253201305152')","type":"LEAVEAPPROVAL.TeamCalendar"},"EventKey":"99710253201305152","EmployeeNumber":"99710253","EmployeeName":"Fiona Taylor","StartDate":"2013-05-15T00:00:00.000Z","EndDate":"2013-05-17T00:00:00.000Z","AbsenceType":"Vacation","LegendType":"04","ActionSupported":false,"AllDayFlag":true,"Order":8,"LeaveID":"C0714451DCE61C0FE10000000A42D033"},{"__metadata":{"uri":"http://usciu3e.wdf.sap.corp:50026/sap/opu/odata/GBHCM/LEAVEAPPROVAL/TeamCalendarCollection('99710253201305181')","type":"LEAVEAPPROVAL.TeamCalendar"},"EventKey":"99710253201305181","EmployeeNumber":"99710253","EmployeeName":"","StartDate":"2013-05-18T00:00:00.000Z","EndDate":"2013-05-18T00:00:00.000Z","AbsenceType":"","LegendType":"00","ActionSupported":false,"AllDayFlag":true,"Order":8,"LeaveID":""},{"__metadata":{"uri":"http://usciu3e.wdf.sap.corp:50026/sap/opu/odata/GBHCM/LEAVEAPPROVAL/TeamCalendarCollection('99710253201305191')","type":"LEAVEAPPROVAL.TeamCalendar"},"EventKey":"99710253201305191","EmployeeNumber":"99710253","EmployeeName":"","StartDate":"2013-05-19T00:00:00.000Z","EndDate":"2013-05-20T00:00:00.000Z","AbsenceType":"","LegendType":"06","ActionSupported":false,"AllDayFlag":true,"Order":8,"LeaveID":""},{"__metadata":{"uri":"http://usciu3e.wdf.sap.corp:50026/sap/opu/odata/GBHCM/LEAVEAPPROVAL/TeamCalendarCollection('99710253201305221')","type":"LEAVEAPPROVAL.TeamCalendar"},"EventKey":"99710253201305221","EmployeeNumber":"99710253","EmployeeName":"Fiona Taylor","StartDate":"2013-05-22T00:00:00.000Z","EndDate":"2013-05-24T00:00:00.000Z","AbsenceType":"Vacation","LegendType":"01","ActionSupported":false,"AllDayFlag":true,"Order":8,"LeaveID":""}]}};
+		 
+		 
+	var newEvents = {
+			events : [
+{
+	teamMember:"Stephan Ilg",
+	start:"2013-04-09T00:00:00",
+	end:"2013-04-10T00:00:00",
+	order:0,
+	type:"01",
+	typeName:"Vacation"
+},
+{
+	teamMember:"Christoph Dobiasz",
+	start:"2013-04-17T00:00:00",
+	end:"2013-04-17T00:00:00",
+	order:2,
+	type:"04",
+	typeName:"Sick leave",
+	halfDay: true
+},
+{
+	teamMember:"Jean-Philippe Lombardi",
+	start:"2013-04-17T00:00:00",
+	end:"2013-04-18T00:00:00",
+	order:1,
+	type:"06",
+	typeName:"Holidays"
+}
+			       ]
+	}
+	//no var to ease debug from console
+	var events = {
+			events : [
+				{
+					teamMember:"Benoit Milgram",
+					start:"2013-04-06T00:00:00",
+					end:"2013-04-07T00:00:00",
+					order:0,
+					type:"01",
+					typeName:"Vacation"
+				},
+				{
+					teamMember:"Benoit Milgram",
+					start:"2013-04-16T00:00:00",
+					end:"2013-04-16T00:00:00",
+					order:0,
+					type:"04",
+					typeName:"Week end",
+					halfDay: true
+				},
+				{
+					teamMember:"Pablo Roisman",
+					start:"2013-04-09T00:00:00",
+					end:"2013-04-12T00:00:00",
+					order:1,
+					type:"06",
+					typeName:"Holidays"
+				},
+				{
+					teamMember:"Stefan Pere",
+					start:"2013-06-03T00:00:00",
+					end:"2013-06-07T00:00:00",
+					order:2,
+					type:"07",
+					typeName:"Vacation"
+				},
+				{
+					teamMember:"Pablo Roisman",
+					start:"2013-04-13T00:00:00",
+					end:"2013-04-14T00:00:00",
+					order:1,
+					type:"00",
+					typeName:"Weekend"
+				},
+				{
+					teamMember:"Sheldon Cooper",
+					start:"2013-04-15T00:00:00",
+					end:"2013-04-23T00:00:00",
+					order:4,
+					type:"04",
+					typeName:"Travel"
+				}
+			]
+	}
+	var oModel = new sap.ui.model.json.JSONModel(testEvents);
+	// This is where we associate the model propeties to the correct Event properties
+	var eventTemplate = new sap.me.OverlapCalendarEvent({
+		startDay : "{StartDate}",
+		endDay : "{EndDate}",
+		row : "{Order}",
+		type : "{LegendType}",
+		typeName:"{AbsenceType}",
+		name : "{EmployeeName}"
+	});
+	eventTemplate.bindProperty("halfDay","AllDayFlag",function(bValue){
+		return !bValue
+	});
+	var bPushed = false;
+	calendar = new sap.me.OverlapCalendar({
+		showOverlapIndicator:false,
+		startDate : "2013-05-02T02:00:00",
+		changeDate: function(oEvent){
+			alert("New first Date : "+oEvent.getParameter("firstDate").toString()+ ", new end Date : "+oEvent.getParameter("endDate").toString())
+		}
+	});
+	calendar.setModel(oModel);
+	calendar.bindAggregation("calendarEvents","/87576751F2F1040FE10000000A42D033/events",eventTemplate);
+	var btnAdd = new sap.m.Button({
+		text:"Change the size",
+		press:function(){
+			calendar.setWidth("1024px");
+		}
+	})
+	var btnChgStartDate = new sap.m.Button({
+		text:"Change Start Date",
+		press:function(){
+			calendar.setStartDate("2013-05-04T02:00:00");
+		}
+	})
+    var app = new sap.m.App();
+    var page = new sap.m.Page({enableScrolling:false, content:[btnAdd,btnChgStartDate,calendar]});
+    app.addPage(page);
+    app.placeAt('body');
+</script>
+
+</head>
+<body id="body" class="sapUiBody">
+</body>
+</html>

@@ -1,0 +1,83 @@
+<html>
+<head>
+    <title>QUnit TestSuite for sap.ca.ui</title>
+    <script src="/jsunit-testrunner/app/jsUnitCore.js"></script>
+</head>
+<body>
+<script>
+
+    /**
+     * Add test pages to this test suite function.
+     * Please order alphabetically
+     */
+    function suite() {
+        var suite = new top.jsUnitTestSuite(),
+                contextPath = "/" + window.location.pathname.split("/")[1];
+
+        suite.addTestPage(contextPath + "/test-resources/sap/ca/ui/qunit/AddPicture.qunit.html?sap-ui-xx-fakeOS=ipad");
+        suite.addTestPage(contextPath + "/test-resources/sap/ca/ui/qunit/AddPicture.qunit.html?sap-ui-xx-fakeOS=iphone");
+        suite.addTestPage(contextPath + "/test-resources/sap/ca/ui/qunit/AddPicture.qunit.html?sap-ui-xx-fakeOS=android");
+        suite.addTestPage(contextPath + "/test-resources/sap/ca/ui/qunit/DatePicker.qunit.html?sap-ui-xx-fakeOS=ipad");
+        suite.addTestPage(contextPath + "/test-resources/sap/ca/ui/qunit/DatePicker.qunit.html?sap-ui-xx-fakeOS=iphone");
+        suite.addTestPage(contextPath + "/test-resources/sap/ca/ui/qunit/DatePicker.qunit.html?sap-ui-xx-fakeOS=android");
+	    suite.addTestPage(contextPath + "/test-resources/sap/ca/ui/qunit/FileUpload.qunit.html?sap-ui-xx-fakeOS=ipad");
+        suite.addTestPage(contextPath + "/test-resources/sap/ca/ui/qunit/FileUpload.qunit.html?sap-ui-xx-fakeOS=iphone");
+        suite.addTestPage(contextPath + "/test-resources/sap/ca/ui/qunit/FileUpload.qunit.html?sap-ui-xx-fakeOS=android");
+		suite.addTestPage(contextPath + "/test-resources/sap/ca/ui/qunit/Hierarchy.qunit.html?sap-ui-xx-fakeOS=ipad");
+		suite.addTestPage(contextPath + "/test-resources/sap/ca/ui/qunit/Hierarchy.qunit.html?sap-ui-xx-fakeOS=iphone");
+		suite.addTestPage(contextPath + "/test-resources/sap/ca/ui/qunit/Hierarchy.qunit.html?sap-ui-xx-fakeOS=android");
+		suite.addTestPage(contextPath + "/test-resources/sap/ca/ui/qunit/HierarchyItem.qunit.html?sap-ui-xx-fakeOS=ipad");
+		suite.addTestPage(contextPath + "/test-resources/sap/ca/ui/qunit/HierarchyItem.qunit.html?sap-ui-xx-fakeOS=iphone");
+		suite.addTestPage(contextPath + "/test-resources/sap/ca/ui/qunit/HierarchyItem.qunit.html?sap-ui-xx-fakeOS=android");
+        suite.addTestPage(contextPath + "/test-resources/sap/ca/ui/qunit/InPlaceEdit.qunit.html?sap-ui-xx-fakeOS=ipad");
+        suite.addTestPage(contextPath + "/test-resources/sap/ca/ui/qunit/InPlaceEdit.qunit.html?sap-ui-xx-fakeOS=iphone");
+        suite.addTestPage(contextPath + "/test-resources/sap/ca/ui/qunit/InPlaceEdit.qunit.html?sap-ui-xx-fakeOS=android");
+//        suite.addTestPage(contextPath + "/test-resources/sap/ca/ui/qunit/Notes.qunit.html?sap-ui-xx-fakeOS=ipad");
+//        suite.addTestPage(contextPath + "/test-resources/sap/ca/ui/qunit/Notes.qunit.html?sap-ui-xx-fakeOS=iphone");
+//        suite.addTestPage(contextPath + "/test-resources/sap/ca/ui/qunit/Notes.qunit.html?sap-ui-xx-fakeOS=android");
+        suite.addTestPage(contextPath + "/test-resources/sap/ca/ui/qunit/PictureItem.qunit.html?sap-ui-xx-fakeOS=ipad");
+        suite.addTestPage(contextPath + "/test-resources/sap/ca/ui/qunit/PictureItem.qunit.html?sap-ui-xx-fakeOS=iphone");
+        suite.addTestPage(contextPath + "/test-resources/sap/ca/ui/qunit/PictureItem.qunit.html?sap-ui-xx-fakeOS=android");
+        suite.addTestPage(contextPath + "/test-resources/sap/ca/ui/qunit/OverflowContainer.qunit.html?sap-ui-xx-fakeOS=ipad");
+        suite.addTestPage(contextPath + "/test-resources/sap/ca/ui/qunit/OverflowContainer.qunit.html?sap-ui-xx-fakeOS=iphone");
+        suite.addTestPage(contextPath + "/test-resources/sap/ca/ui/qunit/OverflowContainer.qunit.html?sap-ui-xx-fakeOS=android");
+        suite.addTestPage(contextPath + "/test-resources/sap/ca/ui/qunit/charts/CombinedChart.qunit.html?sap-ui-xx-fakeOS=ipad");
+        suite.addTestPage(contextPath + "/test-resources/sap/ca/ui/qunit/charts/CombinedChart.qunit.html?sap-ui-xx-fakeOS=iphone");
+        suite.addTestPage(contextPath + "/test-resources/sap/ca/ui/qunit/charts/CombinedChart.qunit.html?sap-ui-xx-fakeOS=android");
+        
+        suite.addTestPage(contextPath + "/test-resources/sap/ca/ui/qunit/dialog/Dialog.qunit.html?sap-ui-xx-fakeOS=ipad");
+        suite.addTestPage(contextPath + "/test-resources/sap/ca/ui/qunit/dialog/Dialog.qunit.html?sap-ui-xx-fakeOS=iphone");
+        suite.addTestPage(contextPath + "/test-resources/sap/ca/ui/qunit/dialog/Dialog.qunit.html?sap-ui-xx-fakeOS=android");
+        suite.addTestPage(contextPath + "/test-resources/sap/ca/ui/qunit/dialog/confirmation.qunit.html?sap-ui-xx-fakeOS=ipad");
+        suite.addTestPage(contextPath + "/test-resources/sap/ca/ui/qunit/dialog/confirmation.qunit.html?sap-ui-xx-fakeOS=iphone");
+        suite.addTestPage(contextPath + "/test-resources/sap/ca/ui/qunit/dialog/confirmation.qunit.html?sap-ui-xx-fakeOS=android");
+        suite.addTestPage(contextPath + "/test-resources/sap/ca/ui/qunit/dialog/forward.qunit.html?sap-ui-xx-fakeOS=ipad");
+        suite.addTestPage(contextPath + "/test-resources/sap/ca/ui/qunit/dialog/forward.qunit.html?sap-ui-xx-fakeOS=iphone");
+        suite.addTestPage(contextPath + "/test-resources/sap/ca/ui/qunit/dialog/forward.qunit.html?sap-ui-xx-fakeOS=android");        
+        
+        suite.addTestPage(contextPath + "/test-resources/sap/ca/ui/qunit/message/message.qunit.html?sap-ui-xx-fakeOS=ipad");
+        suite.addTestPage(contextPath + "/test-resources/sap/ca/ui/qunit/message/message.qunit.html?sap-ui-xx-fakeOS=iphone");
+        suite.addTestPage(contextPath + "/test-resources/sap/ca/ui/qunit/message/message.qunit.html?sap-ui-xx-fakeOS=android");
+        suite.addTestPage(contextPath + "/test-resources/sap/ca/ui/qunit/utils/busydialog.qunit.html?sap-ui-xx-fakeOS=ipad");
+        suite.addTestPage(contextPath + "/test-resources/sap/ca/ui/qunit/utils/busydialog.qunit.html?sap-ui-xx-fakeOS=iphone");
+        suite.addTestPage(contextPath + "/test-resources/sap/ca/ui/qunit/utils/busydialog.qunit.html?sap-ui-xx-fakeOS=android");
+        suite.addTestPage(contextPath + "/test-resources/sap/ca/ui/qunit/utils/resourcebundle.qunit.html?sap-ui-xx-fakeOS=ipad");
+        suite.addTestPage(contextPath + "/test-resources/sap/ca/ui/qunit/utils/resourcebundle.qunit.html?sap-ui-xx-fakeOS=iphone");
+        suite.addTestPage(contextPath + "/test-resources/sap/ca/ui/qunit/utils/resourcebundle.qunit.html?sap-ui-xx-fakeOS=android");
+        suite.addTestPage(contextPath + "/test-resources/sap/ca/ui/qunit/model/format/AmountFormat.qunit.html");
+        suite.addTestPage(contextPath + "/test-resources/sap/ca/ui/qunit/model/format/DateFormat.qunit.html");
+        suite.addTestPage(contextPath + "/test-resources/sap/ca/ui/qunit/model/format/FileSizeFormat.qunit.html");
+        suite.addTestPage(contextPath + "/test-resources/sap/ca/ui/qunit/model/format/FormatHelper.qunit.html");
+        suite.addTestPage(contextPath + "/test-resources/sap/ca/ui/qunit/model/format/FormattingLibrary.qunit.html");
+        suite.addTestPage(contextPath + "/test-resources/sap/ca/ui/qunit/model/format/NumberFormat.qunit.html");
+        suite.addTestPage(contextPath + "/test-resources/sap/ca/ui/qunit/model/format/QuantityFormat.qunit.html");
+        suite.addTestPage(contextPath + "/test-resources/sap/ca/ui/qunit/model/type/FileSize.qunit.html");
+        suite.addTestPage(contextPath + "/test-resources/sap/ca/ui/qunit/model/type/Number.qunit.html");
+
+        return suite;
+    }
+    redirectToTestrunnerIfRequired();
+
+</script>
+</body>
+</html>

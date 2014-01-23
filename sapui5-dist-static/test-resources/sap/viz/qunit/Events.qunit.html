@@ -1,0 +1,148 @@
+<!DOCTYPE HTML>
+
+<html lang='en'>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script id="sap-ui-bootstrap" type="text/javascript"
+  src="../../../../resources/sap-ui-core.js"
+  data-sap-ui-theme="sap_goldreflection" data-sap-ui-libs="sap.ui.core,sap.ui.commons,sap.viz">
+  
+</script>
+<link rel="stylesheet" href="../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
+<script type="text/javascript" src="../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+<script type="text/javascript" src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
+<script type="text/javascript" src="../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
+<script type="text/javascript" src="./js/data.js"></script>
+
+<!-- Control initialization -->
+<script language="javascript">
+  var timer = 2000, oChart, beforeCreateVizEventStatus = 0, initializedEventStatus = 0, expectedMsg, initialStatus = 0;
+
+  module("Event test", {
+    setup : function() {
+      beforeCreateVizEventStatus = 0;
+      initializedEventStatus = 0;
+      initialStatus = 0;
+    }
+  });
+
+  test("Check event is invoked: beforeCreateViz", function() {
+    ok(true, "dual stacked bar chart: beforeCreateViz.");
+     var oDataset = new sap.viz.ui5.data.FlattenedDataset(a1a2m1m1m2Data);
+     var oModel = new sap.ui.model.json.JSONModel(a1a2m1m2m3Model);
+     oDataset.setModel(oModel);
+     //eventMsg = "";
+     oChart = new sap.viz.ui5.DualStackedColumn100({
+       plotArea : {
+         animation : {
+           dataLoading : false,
+           dataUpdating : false,
+           resizing : false
+         }
+       },
+       dataset : oDataset,
+       beforeCreateViz : function(oControlEvent) {
+         beforeCreateVizEventStatus = 1;
+         console.log("1. Event(beforeCreateViz) is invoked.");
+         ok(true, "1. Event(beforeCreateViz) is invoked.");
+       },
+       initialized : function(oControlEvent) {
+         initializedEventStatus = 1;
+         console.log("1. Event(initialized) should be invoked.");
+         ok(beforeCreateVizEventStatus == 1, "1. Event(beforeCreateViz) should be invoked.");
+         ok(true, "1. Event(initialized) should be invoked.");
+       }
+      });
+      oChart.placeAt("content");
+  });
+
+  asyncTest("Check init event have no exception.", function() {
+    equal(true, true, "Test all kinds of events.");
+    setTimeout(function() {
+      cleanChart();
+      start();
+      var errMsg;
+      try {
+        oChart = new sap.viz.ui5.DualStackedColumn100({
+          dataset : getDataset("a1a2m1m2"),
+          beforeCreateViz : function(oControlEvent) {
+            ok(true, "2. Event(beforeCreateViz) is invoked)");
+          },
+          initialized : function(oControlEvent) {
+            ok(true, "2. Event(initialized) is invoked)");
+          },
+          deselectData : function(oControlEvent) {
+            ok(true, "2. Event(deselectData) is invoked)");
+          },
+          selectData : function(oControlEvent) {
+            ok(true, "2. Event(selectData) is invoked)");
+          },
+          showTooltip : function(oControlEvent) {
+            ok(true, "2. Event(showTooltip) is invoked)");
+          },
+          hideTooltip : function(oControlEvent) {
+            ok(true, "2. Event(hideTooltip) is invoked)");
+          }
+        });
+        oChart.placeAt("content");
+      } catch (err) {
+        errMsg = err.message;
+      }
+      equal(errMsg, undefined, "There shouldn't throw error with events callback.");
+    }, timer);
+  });
+
+  asyncTest("Check if default selection will call event 'selectData'", function(){
+     ok(true, "a1a2m1Model Bar chart.");
+     var oData;
+     setTimeout(function() {
+       cleanChart();
+       var oDataset = getDataset("a1a2m1");
+       oDataset.setDefaultSelection([ {
+         Color : "Blue",
+         Product : "Car",
+         'Measure' : 'Revenue'
+       } ]);
+       oChart = new sap.viz.ui5.Bar({
+         plotArea : {
+           animation : {
+             dataLoading : false,
+             dataUpdating : false,
+             resizing : false
+           }
+         },
+         dataset : oDataset,
+         initialized : function(oControlEvent) {
+           ok(true, "3. Event(initialized) is invoked)");
+           start();
+         },
+         selectData : function(oEvent) {
+           oData = oEvent.getParameter("data");
+           ok(true, "3. Event(beforeCreateViz) should be invoked.");
+         }
+       });
+       oChart.placeAt("content");
+     }, timer);
+   });
+
+  var cleanChart = function() {
+    if (oChart) {
+      oChart.destroy();
+    }
+  };
+</script>
+
+<title>qunit Test for Display Charts</title>
+
+</head>
+<body class="sapUiBody">
+  <h1 id="qunit-header">QUnit tests: display charts</h1>
+  <h2 id="qunit-banner"></h2>
+  <h2 id="qunit-userAgent"></h2>
+  <div id='content' style="width: 800px; height: 400px;"></div>
+  <div id="qunit-testrunner-toolbar"></div>
+  <ol id="qunit-tests"></ol>
+
+</body>
+</html>

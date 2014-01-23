@@ -1,0 +1,119 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta charset="UTF-8" />
+<title>FeedItemUtils - sap.suite.ui.commons</title>
+
+<!-- UI5 Bootstrap -->
+<script id="sap-ui-bootstrap" type="text/javascript"
+	src="../../../../../../resources/sap-ui-core.js"
+	data-sap-ui-theme="sap_bluecrystal"
+	data-sap-ui-libs="sap.ui.commons,sap.suite.ui.commons"></script>
+
+<!-- QUnit libraries -->
+<link rel="stylesheet"
+	href="../../../../../../resources/sap/ui/thirdparty/qunit.css"
+	type="text/css" media="screen" />
+<script src="../../../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+<script type="text/javascript"
+	src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
+<script type="text/javascript"
+	src="../../../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
+
+<script>
+    jQuery.sap.require("sap.suite.ui.commons.util.FeedItemUtils");
+
+    module("Age Calculation Test", {
+        setup : function() {
+
+        },
+        teardown : function() {
+
+        }
+    });
+
+    test("TestIncorrectDate", function() {
+
+        var dPublicationDate = (new String("abc"));
+        equal(sap.suite.ui.commons.util.FeedItemUtils
+                .calculateFeedItemAge(dPublicationDate), "",
+                "Returned age of feed item is empty string");
+    });
+
+    test("TestCorrectDate", function() {
+
+        // test days
+        var dNow = new Date();
+        dNow.setDate(dNow.getDate() - 10);
+        var expectedAge = getKeyValueFromLocaleSpecificBundle(
+                "FEEDTILE_DAYS_AGO", "10");
+        equal(sap.suite.ui.commons.util.FeedItemUtils
+                .calculateFeedItemAge(dNow), expectedAge,
+                "Returned age of feed item in Days is correct");
+
+        // test day
+        dNow = new Date();
+        dNow.setDate(dNow.getDate() - 1);
+        expectedAge = getKeyValueFromLocaleSpecificBundle("FEEDTILE_DAY_AGO",
+                "1");
+        equal(sap.suite.ui.commons.util.FeedItemUtils
+                .calculateFeedItemAge(dNow), expectedAge,
+                "Returned age of feed item in Day is correct");
+
+        // test hours
+        dNow = new Date();
+        dNow.setHours(dNow.getHours() - 10);
+        expectedAge = getKeyValueFromLocaleSpecificBundle("FEEDTILE_HOURS_AGO",
+                "10");
+        equal(sap.suite.ui.commons.util.FeedItemUtils
+                .calculateFeedItemAge(dNow), expectedAge,
+                "Returned age of feed item in Hours is correct");
+
+        // test hours
+        dNow = new Date();
+        dNow.setHours(dNow.getHours() - 1);
+        expectedAge = getKeyValueFromLocaleSpecificBundle("FEEDTILE_HOUR_AGO",
+                "1");
+        equal(sap.suite.ui.commons.util.FeedItemUtils
+                .calculateFeedItemAge(dNow), expectedAge,
+                "Returned age of feed item in Hour is correct");
+
+        // test minutes
+        dNow = new Date();
+        dNow.setMinutes(dNow.getMinutes() - 10);
+        expectedAge = getKeyValueFromLocaleSpecificBundle(
+                "FEEDTILE_MINUTES_AGO", "10");
+        equal(sap.suite.ui.commons.util.FeedItemUtils
+                .calculateFeedItemAge(dNow), expectedAge,
+                "Returned age of feed item in Minutes is correct");
+
+        // test minute
+        dNow = new Date();
+        dNow.setMinutes(dNow.getMinutes() - 1);
+        expectedAge = getKeyValueFromLocaleSpecificBundle(
+                "FEEDTILE_MINUTE_AGO", "1");
+        equal(sap.suite.ui.commons.util.FeedItemUtils
+                .calculateFeedItemAge(dNow), expectedAge,
+                "Returned age of feed item in Minute is correct");
+    });
+
+    /*************************************************************************************************/
+
+    function getKeyValueFromLocaleSpecificBundle(key, replacementValue) {
+
+        var oLocale = sap.ui.getCore().getConfiguration().getLanguage();
+        var oResBundle = sap.ui.getCore().getLibraryResourceBundle(
+                "sap.suite.ui.commons", oLocale);
+
+        return oResBundle.getText(key, [ replacementValue ]);
+    }
+
+    /************************************************************************************************/
+</script>
+</head>
+
+<body class="sapUiBody">
+	<div id="qunit"></div>
+</body>
+</html>

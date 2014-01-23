@@ -1,0 +1,25 @@
+<core:View
+	xmlns="sap.m"
+	xmlns:l="sap.ui.layout"
+	xmlns:core="sap.ui.core" >
+	<l:VerticalLayout
+		width="100%">
+		<l:content>
+			<Text id="description" class="marginAll" />
+
+			<List
+				items="{/ProductCollection}"
+				headerText="Products"
+				growing="true"
+				growingThreshold="4"
+				growingScrollToLoad="false">
+				<StandardListItem
+					title="{Name}"
+					description="{ProductId}"
+					icon="{ProductPicUrl}"
+					iconInset="false" />
+			</List>
+
+		</l:content>
+	</l:VerticalLayout>
+</core:View>

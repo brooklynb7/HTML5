@@ -1,0 +1,1095 @@
+{
+	"SAPVB": {
+		"version": "2.0",
+		"Config": {
+			"Set": {
+				"P": [
+					{
+						"name": "traceAllowed",
+						"value": ""
+					},
+					{
+						"name": "language",
+						"value": "EN"
+					}
+				]
+			}
+		},
+		"Data": {
+         "Set": {}
+		},
+		"DataTypes": {
+			"Set": {
+				"N": [
+					{
+						"name": "Spots",
+						"key": "Key",
+						"minSel": "0",
+						"maxSel": "-1",
+						"A": [
+							{
+								"name": "GeoPosition",
+								"alias": "A",
+								"type": "vector"
+							},
+							{
+								"name": "ToolTip",
+								"alias": "B",
+								"type": "string"
+							},
+							{
+								"name": "Color",
+								"alias": "C",
+								"type": "color"
+							},
+							{
+								"name": "Transformation",
+								"alias": "D",
+								"type": "matrix"
+							},
+							{
+								"name": "FixDir",
+								"alias": "E",
+								"type": "bool"
+							},
+							{
+								"name": "FixSize",
+								"alias": "F",
+								"type": "bool"
+							},
+							{
+								"name": "Icon",
+								"alias": "G",
+								"type": "string"
+							},
+							{
+								"name": "Image",
+								"alias": "I",
+								"type": "string"
+							},
+							{
+								"name": "Key",
+								"alias": "K",
+								"type": "string"
+							},
+							{
+								"name": "Scale",
+								"alias": "S",
+								"type": "float"
+							},
+							{
+								"name": "DisplayRole",
+								"alias": "R",
+								"type": "string"
+							}
+						],
+						"N": [
+							{
+								"name": "DragSource",
+								"A": {
+									"name": "DragType",
+									"alias": "A",
+									"type": "string"
+								}
+							},
+							{
+								"name": "DropTarget",
+								"A": {
+									"name": "DropType",
+									"alias": "A",
+									"type": "string"
+								}
+							}
+						]
+					},
+					{
+						"name": "DetailData",
+						"N": {
+							"name": "Column",
+							"A": {
+								"name": "Text",
+								"alias": "T",
+								"type": "string"
+							}
+						}
+					},
+					{
+						"name": "Links",
+						"key": "Key",
+						"minSel": "0",
+						"maxSel": "-1",
+						"A": [
+							{
+								"name": "GeoPosition",
+								"alias": "A",
+								"type": "vector"
+							},
+							{
+								"name": "ToolTip",
+								"alias": "B",
+								"type": "string"
+							},
+							{
+								"name": "Color",
+								"alias": "C",
+								"type": "color"
+							},
+							{
+								"name": "BorderColor",
+								"alias": "D",
+								"type": "color"
+							},
+							{
+								"name": "PosList",
+								"alias": "H",
+								"type": "vectorarray"
+							},
+							{
+								"name": "StartStyle",
+								"alias": "Y",
+								"type": "string"
+							},
+							{
+								"name": "EndStyle",
+								"alias": "Z",
+								"type": "string"
+							},
+							{
+								"name": "Key",
+								"alias": "K",
+								"type": "string"
+							},
+							{
+								"name": "DisplayRole",
+								"alias": "R",
+								"type": "string"
+							}
+						],
+						"N": [
+							{
+								"name": "DragSource",
+								"A": {
+									"name": "DragType",
+									"alias": "A",
+									"type": "string"
+								}
+							},
+							{
+								"name": "DropTarget",
+								"A": {
+									"name": "DropType",
+									"alias": "A",
+									"type": "string"
+								}
+							}
+						]
+					},
+					{
+						"name": "Areas",
+						"key": "Key",
+						"minSel": "0",
+						"maxSel": "1",
+						"A": [
+							{
+								"name": "GeoPosition",
+								"alias": "A",
+								"type": "vector"
+							},
+							{
+								"name": "ToolTip",
+								"alias": "B",
+								"type": "string"
+							},
+							{
+								"name": "Color",
+								"alias": "C",
+								"type": "color"
+							},
+							{
+								"name": "BorderColor",
+								"alias": "D",
+								"type": "color"
+							},
+							{
+								"name": "PosList",
+								"alias": "H",
+								"type": "vectorarray"
+							},
+							{
+								"name": "Key",
+								"alias": "K",
+								"type": "string"
+							},
+							{
+								"name": "DisplayRole",
+								"alias": "R",
+								"type": "string"
+							}
+						]
+					},
+					{
+						"name": "Circles",
+						"key": "Key",
+						"minSel": "0",
+						"maxSel": "-1",
+						"A": [
+							{
+								"name": "GeoPosition",
+								"alias": "A",
+								"type": "vector"
+							},
+							{
+								"name": "ToolTip",
+								"alias": "B",
+								"type": "string"
+							},
+							{
+								"name": "Color",
+								"alias": "C",
+								"type": "color"
+							},
+							{
+								"name": "BorderColor",
+								"alias": "D",
+								"type": "color"
+							},
+							{
+								"name": "Radius",
+								"alias": "J",
+								"type": "long"
+							},
+							{
+								"name": "DisplayRole",
+								"alias": "R",
+								"type": "string"
+							},
+							{
+								"name": "Key",
+								"alias": "K",
+								"type": "string"
+							}
+						]
+					},
+					{
+						"name": "CirclesGeoDist",
+						"key": "Key",
+						"minSel": "0",
+						"maxSel": "-1",
+						"A": [
+							{
+								"name": "GeoPosition",
+								"alias": "A",
+								"type": "vector"
+							},
+							{
+								"name": "ToolTip",
+								"alias": "B",
+								"type": "string"
+							},
+							{
+								"name": "Color",
+								"alias": "C",
+								"type": "color"
+							},
+							{
+								"name": "BorderColor",
+								"alias": "D",
+								"type": "color"
+							},
+							{
+								"name": "Radius",
+								"alias": "J",
+								"type": "long"
+							},
+							{
+								"name": "DisplayRole",
+								"alias": "R",
+								"type": "string"
+							},
+							{
+								"name": "Key",
+								"alias": "K",
+								"type": "string"
+							}
+						]
+					},
+					{
+						"name": "PieCharts",
+						"key": "Key",
+						"minSel": "0",
+						"maxSel": "-1",
+						"A": [
+							{
+								"name": "GeoPosition",
+								"alias": "A",
+								"type": "vector"
+							},
+							{
+								"name": "ToolTip",
+								"alias": "B",
+								"type": "string"
+							},
+							{
+								"name": "Key",
+								"alias": "K",
+								"type": "string"
+							},
+							{
+								"name": "Scale",
+								"alias": "S",
+								"type": "vector"
+							},
+							{
+								"name": "DisplayRole",
+								"alias": "R",
+								"type": "string"
+							},
+							{
+								"name": "Opacity",
+								"alias": "O",
+								"type": "float"
+							},
+							{
+								"name": "Threshold",
+								"alias": "D",
+								"type": "float"
+							},
+							{
+								"name": "Leftover",
+								"alias": "L",
+								"type": "long"
+							},
+							{
+								"name": "StartColor",
+								"alias": "C",
+								"type": "long"
+							}
+						],
+						"N": {
+							"name": "Series",
+							"A": [
+								{
+									"name": "Name",
+									"alias": "N",
+									"type": "string"
+								},
+								{
+									"name": "Value",
+									"alias": "V",
+									"type": "float"
+								},
+								{
+									"name": "Tooltip",
+									"alias": "T",
+									"type": "string"
+								}
+							]
+						}
+					},
+					{
+						"name": "Boxes",
+						"key": "Key",
+						"minSel": "0",
+						"maxSel": "-1",
+						"A": [
+							{
+								"name": "GeoPosition",
+								"alias": "A",
+								"type": "vector"
+							},
+							{
+								"name": "ToolTip",
+								"alias": "B",
+								"type": "string"
+							},
+							{
+								"name": "Color",
+								"alias": "C",
+								"type": "color"
+							},
+							{
+								"name": "FixDir",
+								"alias": "E",
+								"type": "bool"
+							},
+							{
+								"name": "FixSize",
+								"alias": "F",
+								"type": "bool"
+							},
+							{
+								"name": "Texture",
+								"alias": "I",
+								"type": "string"
+							},
+							{
+								"name": "Key",
+								"alias": "K",
+								"type": "string"
+							},
+							{
+								"name": "Scale",
+								"alias": "S",
+								"type": "vector"
+							},
+							{
+								"name": "Rotation",
+								"alias": "Y",
+								"type": "vector"
+							},
+							{
+								"name": "DisplayRole",
+								"alias": "R",
+								"type": "string"
+							}
+						]
+					}
+				]
+			}
+		},
+		"Windows": {
+			"Set": {
+				"Window": {
+					"id": "Main",
+					"caption": "MainWindow",
+					"type": "geo",
+					"refParent": "",
+					"refScene": "MainScene",
+					"modal": "true",
+					"Lights": {
+						"id": "L1",
+						"Light": [
+							{
+								"color": "",
+								"dir": ""
+							},
+							{
+								"color": "",
+								"dir": ""
+							},
+							{
+								"color": "",
+								"dir": ""
+							}
+						]
+					},
+					"Camera": {
+						"id": "C1"
+					},
+					"Navigation": {
+						"id": "C1"
+					}
+				}
+			}
+		},
+		"Scenes": {
+			"Set": {
+				"SceneGeo": {
+					"id": "MainScene",
+					"ToolbarVisible": "true",
+					"refMapLayerStack": "HERE_FLEET",
+					"initialStartPosition": "0.0;0.0;0",
+					"initialZoom": "0.0",
+					"initialPitch": "0.0",
+					"initialYaw": "0.0",
+					"SuppressedNavControlVisibility": {
+						"pitch": "",
+						"yaw": "",
+						"move": "",
+						"zoom": "",
+						"fade": ""
+					},
+					"NavigationDisablement": {
+						"pitch": "",
+						"yaw": "",
+						"move": "",
+						"zoom": ""
+					},
+					"VO": [
+						{
+							"id": "Area",
+							"type": "{00100000-2012-0004-B001-F311DE491C77}",
+							"datasource": "Areas",
+							"posarray.bind": "Areas.PosList",
+							"scale": "1.0;1.0;1.0",
+							"color.bind": "Areas.Color",
+							"colorBorder.bind": "Areas.BorderColor",
+							"tooltip.bind": "Areas.ToolTip"
+						},
+						{
+							"id": "Link",
+							"type": "{00100000-2012-0004-B001-C46BD7336A1A}",
+							"datasource": "Links",
+							"posarray.bind": "Links.PosList",
+							"scale": "1.0;1.0;1.0",
+							"color.bind": "Links.Color",
+							"colorBorder.bind": "Links.BorderColor",
+							"tooltip.bind": "Links.ToolTip",
+							"start.bind": "Links.StartStyle",
+							"end.bind": "Links.EndStyle",
+							"DragSource": {
+								"DragItem": {
+									"type": "DnDGeneric"
+								}
+							},
+							"DropTarget": {
+								"DropItem": {
+									"type": "DnDGeneric"
+								}
+							}
+						},
+						{
+							"id": "Circle",
+							"type": "{00100000-2013-0004-B001-7EB3CCC039C4}",
+							"datasource": "Circles",
+							"pos.bind": "Circles.GeoPosition",
+							"colorBorder.bind": "Circles.BorderColor",
+							"radius.bind": "Circles.Radius",
+							"tooltip.bind": "Circles.ToolTip",
+							"color.bind": "Circles.Color",
+							"slices": "40",
+							"fxsize": "true"
+						},
+						{
+							"id": "CircleGeoDist",
+							"type": "{00100000-2013-0004-B001-686F01B57873}",
+							"datasource": "CirclesGeoDist",
+							"midpoint.bind": "CirclesGeoDist.GeoPosition",
+							"colorBorder.bind": "CirclesGeoDist.BorderColor",
+							"radius.bind": "CirclesGeoDist.Radius",
+							"tooltip.bind": "CirclesGeoDist.ToolTip",
+							"color.bind": "CirclesGeoDist.Color",
+							"slices": "40"
+						},
+						{
+							"id": "Spot",
+							"type": "{00100000-2012-0004-B001-64592B8DB964}",
+							"datasource": "Spots",
+							"pos.bind": "Spots.GeoPosition",
+							"scale": "1.0",
+							"fxdir": "true",
+							"fxsize": "true",
+							"image.bind": "Spots.Image",
+							"icon.bind": "Spots.Icon",
+							"tooltip.bind": "Spots.ToolTip",
+							"DragSource": {
+								"DragItem": {
+									"type": "DnDGeneric"
+								}
+							},
+							"DropTarget": {
+								"DropItem": {
+									"type": "DnDGeneric"
+								}
+							}
+						},
+						{
+							"id": "Box",
+							"type": "{00100000-2012-0004-B001-BFED458C3076}",
+							"datasource": "Boxes",
+							"pos.bind": "Boxes.GeoPosition",
+							"scale.bind": "Boxes.Scale",
+							"fxsize.bind": "Boxes.FixSize",
+							"fxdir.bind": "Boxes.FixDir",
+							"color.bind": "Boxes.Color",
+							"rot.bind": "Boxes.Rotation",
+							"tooltip.bind": "Boxes.ToolTip",
+							"texture.bind": "Boxes.Texture",
+							"zsort": "true",
+							"normalize": "true"
+						},
+						{
+							"id": "PieChart",
+							"type": "{00100000-2012-0004-B001-383477EA1DEB}",
+							"datasource": "PieCharts",
+							"pos.bind": "PieCharts.GeoPosition",
+							"tooltip.bind": "PieCharts.ToolTip",
+							"scale.bind": "PieCharts.Scale",
+							"text.bind": "PieCharts.Series.Name",
+							"value.bind": "PieCharts.Series.Value",
+							"extooltip.bind": "PieCharts.Series.Tooltip",
+							"series.bind": "PieCharts.Series",
+							"threshold.bind": "PieCharts.Threshold",
+							"leftover.bind": "PieCharts.Leftover",
+							"startcolor.bind": "PieCharts.StartColor",
+							"fxsize": "true",
+							"fxdir": "false",
+							"opacity.bind": "PieCharts.Opacity"
+						}
+					],
+					"DnDCursor": {
+						"DROPEFFECT": [
+							{
+								"effect": "DROPEFFECT_NONE",
+								"cursor": "RM_CUR_VISBIZ_MOVE"
+							},
+							{
+								"effect": "DROPEFFECT_COPY",
+								"cursor": "RM_CUR_VISBIZ_COPY"
+							},
+							{
+								"effect": "DROPEFFECT_MOVE",
+								"cursor": "RM_CUR_VISBIZ_COPY"
+							}
+						]
+					}
+				}
+			}
+		},
+		"MapProviders": {
+			"Set": {
+				"MapProvider": [
+					{
+						"type": "",
+						"name": "HBM_HILL",
+						"description": "Hills background Map",
+						"tileX": "256",
+						"tileY": "256",
+						"minLOD": "3",
+						"maxLOD": "18",
+						"copyright": "© OpenStreetMap under ODbL v1.0",
+						"Source": {
+							"id": "1",
+							"url": "http://toolserver.org/~cmarqu/hill/{LOD}/{X}/{Y}.png"
+						}
+					},
+					{
+						"type": "",
+						"name": "HBM_MAP",
+						"description": "Hike & Bike Map",
+						"tileX": "256",
+						"tileY": "256",
+						"minLOD": "3",
+						"maxLOD": "18",
+						"copyright": "© OpenStreetMap under ODbL v1.0",
+						"Source": {
+							"id": "1",
+							"url": "http://toolserver.org/tiles/hikebike/{LOD}/{X}/{Y}.png"
+						}
+					},
+					{
+						"type": "",
+						"name": "HERE_FLEET",
+						"description": "HERE Fleet Map",
+						"tileX": "256",
+						"tileY": "256",
+						"minLOD": "3",
+						"maxLOD": "20",
+						"copyright": "Copyright © HERE",
+						"Source": [
+							{
+								"id": "1",
+								"url": "http://1.maps.nlp.nokia.com/maptile/2.1/maptile/newest/normal.day/{LOD}/{X}/{Y}/256/png8?style=fleet&token=OvJJVLXUQZGWHmYf1HZCFg&app_id=TSCNwGZFblBU5DnJLAH8"
+							},
+							{
+								"id": "2",
+								"url": "http://2.maps.nlp.nokia.com/maptile/2.1/maptile/newest/normal.day/{LOD}/{X}/{Y}/256/png8?style=fleet&token=OvJJVLXUQZGWHmYf1HZCFg&app_id=TSCNwGZFblBU5DnJLAH8"
+							},
+							{
+								"id": "3",
+								"url": "http://3.maps.nlp.nokia.com/maptile/2.1/maptile/newest/normal.day/{LOD}/{X}/{Y}/256/png8?style=fleet&token=OvJJVLXUQZGWHmYf1HZCFg&app_id=TSCNwGZFblBU5DnJLAH8"
+							},
+							{
+								"id": "4",
+								"url": "http://4.maps.nlp.nokia.com/maptile/2.1/maptile/newest/normal.day/{LOD}/{X}/{Y}/256/png8?style=fleet&token=OvJJVLXUQZGWHmYf1HZCFg&app_id=TSCNwGZFblBU5DnJLAH8"
+							}
+						]
+					},
+					{
+						"type": "",
+						"name": "HERE_HYBRID",
+						"description": "HERE Hybrid Map",
+						"tileX": "256",
+						"tileY": "256",
+						"minLOD": "3",
+						"maxLOD": "20",
+						"copyright": "Copyright © HERE",
+						"Source": [
+							{
+								"id": "1",
+								"url": "http://1.maps.nlp.nokia.com/maptile/2.1/maptile/newest/hybrid.day/{LOD}/{X}/{Y}/256/png?token=OvJJVLXUQZGWHmYf1HZCFg&app_id=TSCNwGZFblBU5DnJLAH8"
+							},
+							{
+								"id": "2",
+								"url": "http://2.maps.nlp.nokia.com/maptile/2.1/maptile/newest/hybrid.day/{LOD}/{X}/{Y}/256/png?token=OvJJVLXUQZGWHmYf1HZCFg&app_id=TSCNwGZFblBU5DnJLAH8"
+							},
+							{
+								"id": "3",
+								"url": "http://3.maps.nlp.nokia.com/maptile/2.1/maptile/newest/hybrid.day/{LOD}/{X}/{Y}/256/png?token=OvJJVLXUQZGWHmYf1HZCFg&app_id=TSCNwGZFblBU5DnJLAH8"
+							},
+							{
+								"id": "4",
+								"url": "http://4.maps.nlp.nokia.com/maptile/2.1/maptile/newest/hybrid.day/{LOD}/{X}/{Y}/256/png?token=OvJJVLXUQZGWHmYf1HZCFg&app_id=TSCNwGZFblBU5DnJLAH8"
+							}
+						]
+					},
+					{
+						"type": "",
+						"name": "HERE_NORMAL",
+						"description": "HERE normal day map",
+						"tileX": "256",
+						"tileY": "256",
+						"minLOD": "3",
+						"maxLOD": "20",
+						"copyright": "Copyright © HERE",
+						"Source": [
+							{
+								"id": "1",
+								"url": "http://1.maps.nlp.nokia.com/maptile/2.1/maptile/newest/normal.day/{LOD}/{X}/{Y}/256/png?token=OvJJVLXUQZGWHmYf1HZCFg&app_id=TSCNwGZFblBU5DnJLAH8"
+							},
+							{
+								"id": "2",
+								"url": "http://2.maps.nlp.nokia.com/maptile/2.1/maptile/newest/normal.day/{LOD}/{X}/{Y}/256/png?token=OvJJVLXUQZGWHmYf1HZCFg&app_id=TSCNwGZFblBU5DnJLAH8"
+							},
+							{
+								"id": "3",
+								"url": "http://3.maps.nlp.nokia.com/maptile/2.1/maptile/newest/normal.day/{LOD}/{X}/{Y}/256/png?token=OvJJVLXUQZGWHmYf1HZCFg&app_id=TSCNwGZFblBU5DnJLAH8"
+							},
+							{
+								"id": "4",
+								"url": "http://4.maps.nlp.nokia.com/maptile/2.1/maptile/newest/normal.day/{LOD}/{X}/{Y}/256/png?token=OvJJVLXUQZGWHmYf1HZCFg&app_id=TSCNwGZFblBU5DnJLAH8"
+							}
+						]
+					},
+					{
+						"type": "",
+						"name": "HERE_SAT",
+						"description": "HERE Satellite Map",
+						"tileX": "256",
+						"tileY": "256",
+						"minLOD": "3",
+						"maxLOD": "20",
+						"copyright": "Copyright © HERE",
+						"Source": [
+							{
+								"id": "1",
+								"url": "http://1.maps.nlp.nokia.com/maptile/2.1/maptile/newest/satellite.day/{LOD}/{X}/{Y}/256/png?token=OvJJVLXUQZGWHmYf1HZCFg&app_id=TSCNwGZFblBU5DnJLAH8"
+							},
+							{
+								"id": "2",
+								"url": "http://2.maps.nlp.nokia.com/maptile/2.1/maptile/newest/satellite.day/{LOD}/{X}/{Y}/256/png?token=OvJJVLXUQZGWHmYf1HZCFg&app_id=TSCNwGZFblBU5DnJLAH8"
+							},
+							{
+								"id": "3",
+								"url": "http://3.maps.nlp.nokia.com/maptile/2.1/maptile/newest/satellite.day/{LOD}/{X}/{Y}/256/png?token=OvJJVLXUQZGWHmYf1HZCFg&app_id=TSCNwGZFblBU5DnJLAH8"
+							},
+							{
+								"id": "4",
+								"url": "http://4.maps.nlp.nokia.com/maptile/2.1/maptile/newest/satellite.day/{LOD}/{X}/{Y}/256/png?token=OvJJVLXUQZGWHmYf1HZCFg&app_id=TSCNwGZFblBU5DnJLAH8"
+							}
+						]
+					},
+					{
+						"type": "",
+						"name": "HERE_TERRAIN",
+						"description": "HERE Terrain Map",
+						"tileX": "256",
+						"tileY": "256",
+						"minLOD": "3",
+						"maxLOD": "20",
+						"copyright": "Copyright © HERE",
+						"Source": [
+							{
+								"id": "1",
+								"url": "http://1.maps.nlp.nokia.com/maptile/2.1/maptile/newest/terrain.day/{LOD}/{X}/{Y}/256/png?token=OvJJVLXUQZGWHmYf1HZCFg&app_id=TSCNwGZFblBU5DnJLAH8"
+							},
+							{
+								"id": "2",
+								"url": "http://2.maps.nlp.nokia.com/maptile/2.1/maptile/newest/terrain.day/{LOD}/{X}/{Y}/256/png?token=OvJJVLXUQZGWHmYf1HZCFg&app_id=TSCNwGZFblBU5DnJLAH8"
+							},
+							{
+								"id": "3",
+								"url": "http://3.maps.nlp.nokia.com/maptile/2.1/maptile/newest/terrain.day/{LOD}/{X}/{Y}/256/png?token=OvJJVLXUQZGWHmYf1HZCFg&app_id=TSCNwGZFblBU5DnJLAH8"
+							},
+							{
+								"id": "4",
+								"url": "http://4.maps.nlp.nokia.com/maptile/2.1/maptile/newest/terrain.day/{LOD}/{X}/{Y}/256/png?token=OvJJVLXUQZGWHmYf1HZCFg&app_id=TSCNwGZFblBU5DnJLAH8"
+							}
+						]
+					},
+					{
+						"type": "",
+						"name": "MAPQUEST_OSM",
+						"description": "MapQuest Map",
+						"tileX": "256",
+						"tileY": "256",
+						"minLOD": "3",
+						"maxLOD": "18",
+						"copyright": "Tiles Courtesy of MapQuest © OpenStreetMap under ODbL v1.0",
+						"Source": [
+							{
+								"id": "1",
+								"url": "http://otile1.mqcdn.com/tiles/1.0.0/osm/{LOD}/{X}/{Y}.png"
+							},
+							{
+								"id": "2",
+								"url": "http://otile2.mqcdn.com/tiles/1.0.0/osm/{LOD}/{X}/{Y}.png"
+							},
+							{
+								"id": "3",
+								"url": "http://otile3.mqcdn.com/tiles/1.0.0/osm/{LOD}/{X}/{Y}.png"
+							},
+							{
+								"id": "4",
+								"url": "http://otile4.mqcdn.com/tiles/1.0.0/osm/{LOD}/{X}/{Y}.png"
+							}
+						]
+					},
+					{
+						"type": "",
+						"name": "OCM",
+						"description": "Open Cycle Map",
+						"tileX": "256",
+						"tileY": "256",
+						"minLOD": "3",
+						"maxLOD": "18",
+						"copyright": "© OpenStreetMap under ODbL v1.0",
+						"Source": [
+							{
+								"id": "1",
+								"url": "http://a.tile.opencyclemap.org/cycle/{LOD}/{X}/{Y}.png"
+							},
+							{
+								"id": "2",
+								"url": "http://b.tile.opencyclemap.org/cycle/{LOD}/{X}/{Y}.png"
+							},
+							{
+								"id": "3",
+								"url": "http://c.tile.opencyclemap.org/cycle/{LOD}/{X}/{Y}.png"
+							}
+						]
+					}
+				]
+			}
+		},
+		"MapLayerStacks": {
+			"Set": {
+				"MapLayerStack": [
+					{
+						"name": "DEFAULT",
+						"MapLayer": {
+							"name": "BASE",
+							"refMapProvider": "MAPQUEST_OSM",
+							"opacity": "1.0E0",
+							"colBkgnd": "RGB(255,255,255)",
+							"dependency": "all"
+						}
+					},
+					{
+						"name": "HERE",
+						"MapLayer": {
+							"name": "BASE",
+							"refMapProvider": "HERE_NORMAL",
+							"opacity": "1.0E0",
+							"colBkgnd": "RGB(255,255,255)",
+							"dependency": "all"
+						}
+					},
+					{
+						"name": "HERE_FLEET",
+						"MapLayer": {
+							"name": "BASE",
+							"refMapProvider": "HERE_FLEET",
+							"opacity": "1.0E0",
+							"colBkgnd": "RGB(255,255,255)",
+							"dependency": "all"
+						}
+					},
+					{
+						"name": "HERE_HYBRID",
+						"MapLayer": {
+							"name": "BASE",
+							"refMapProvider": "HERE_HYBRID",
+							"opacity": "1.0E0",
+							"colBkgnd": "RGB(255,255,255)",
+							"dependency": "all"
+						}
+					},
+					{
+						"name": "HERE_SAT",
+						"MapLayer": {
+							"name": "BASE",
+							"refMapProvider": "HERE_SAT",
+							"opacity": "1.0E0",
+							"colBkgnd": "RGB(255,255,255)",
+							"dependency": "all"
+						}
+					},
+					{
+						"name": "HERE_TERRAIN",
+						"MapLayer": {
+							"name": "BASE",
+							"refMapProvider": "HERE_TERRAIN",
+							"opacity": "1.0E0",
+							"colBkgnd": "RGB(255,255,255)",
+							"dependency": "all"
+						}
+					},
+					{
+						"name": "OCM",
+						"MapLayer": {
+							"name": "BASE",
+							"refMapProvider": "OCM",
+							"opacity": "1.0E0",
+							"colBkgnd": "RGB(255,255,255)",
+							"dependency": "all"
+						}
+					}
+				]
+			}
+		},
+		"Actions": {
+			"Set": {
+				"Action": [
+					{
+						"id": "1",
+						"name": "DETAIL_REQUEST",
+						"refScene": "MainScene",
+						"refVO": "Spot",
+						"refEvent": "Click"
+					},
+					{
+						"id": "2",
+						"name": "CONTEXT_MENU_REQUEST",
+						"refScene": "MainScene",
+						"refVO": "Spot",
+						"refEvent": "ContextMenu"
+					},
+					{
+						"id": "3",
+						"name": "DETAIL_REQUEST",
+						"refScene": "MainScene",
+						"refVO": "Link",
+						"refEvent": "Click"
+					},
+					{
+						"id": "4",
+						"name": "CONTEXT_MENU_REQUEST",
+						"refScene": "MainScene",
+						"refVO": "Link",
+						"refEvent": "ContextMenu"
+					},
+					{
+						"id": "5",
+						"name": "DROP",
+						"refScene": "MainScene",
+						"refVO": "Spot",
+						"refEvent": "Drop"
+					},
+					{
+						"id": "6",
+						"name": "DROP",
+						"refScene": "MainScene",
+						"refVO": "Link",
+						"refEvent": "Drop"
+					},
+					{
+						"id": "7",
+						"name": "CONTEXT_MENU_REQUEST",
+						"refScene": "MainScene",
+						"refVO": "Map",
+						"refEvent": "ContextMenu",
+						"AddActionProperty": [
+							{
+								"name": "zoom"
+							},
+							{
+								"name": "centerpoint"
+							},
+							{
+								"name": "pos"
+							},
+							{
+								"name": "pitch"
+							},
+							{
+								"name": "yaw"
+							}
+						]
+					},
+					{
+						"id": "8",
+						"name": "CONTEXT_MENU_REQUEST",
+						"refScene": "MainScene",
+						"refVO": "Area",
+						"refEvent": "ContextMenu"
+					},
+					{
+						"id": "9",
+						"name": "DETAIL_REQUEST",
+						"refScene": "MainScene",
+						"refVO": "Area",
+						"refEvent": "Click"
+					},
+					{
+						"id": "10",
+						"name": "SELECT",
+						"refScene": "MainScene",
+						"refVO": "General",
+						"refEvent": "Select"
+					},
+					{
+						"id": "11",
+						"name": "CONTEXT_MENU_REQUEST",
+						"refScene": "MainScene",
+						"refVO": "Circle",
+						"refEvent": "ContextMenu"
+					},
+					{
+						"id": "12",
+						"name": "DETAIL_REQUEST",
+						"refScene": "MainScene",
+						"refVO": "Circle",
+						"refEvent": "Click"
+					},
+					{
+						"id": "13",
+						"name": "CONTEXT_MENU_REQUEST",
+						"refScene": "MainScene",
+						"refVO": "CircleGeoDist",
+						"refEvent": "ContextMenu"
+					},
+					{
+						"id": "14",
+						"name": "DETAIL_REQUEST",
+						"refScene": "MainScene",
+						"refVO": "CircleGeoDist",
+						"refEvent": "Click"
+					},
+					{
+						"id": "15",
+						"name": "CONTEXT_MENU_REQUEST",
+						"refScene": "MainScene",
+						"refVO": "PieChart",
+						"refEvent": "ContextMenu"
+					},
+					{
+						"id": "16",
+						"name": "DETAIL_REQUEST",
+						"refScene": "MainScene",
+						"refVO": "PieChart",
+						"refEvent": "Click"
+					},
+					{
+						"id": "Box1",
+						"name": "DETAIL_REQUEST",
+						"refScene": "MainScene",
+						"refVO": "Box",
+						"refEvent": "Click"
+					},
+					{
+						"id": "Box2",
+						"name": "CONTEXT_MENU_REQUEST",
+						"refScene": "MainScene",
+						"refVO": "Box",
+						"refEvent": "ContextMenu"
+					}
+				]
+			}
+		},
+		"Menus": {
+		},
+		"Automation": {
+		}
+	}
+}

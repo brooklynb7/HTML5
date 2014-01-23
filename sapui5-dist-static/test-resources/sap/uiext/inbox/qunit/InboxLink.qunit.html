@@ -1,0 +1,93 @@
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		
+		<title>Test Page for sap.uiext.inbox.InboxLink</title>
+		<script id="sap-ui-bootstrap"
+				data-sap-ui-theme="sap_goldreflection"
+				data-sap-ui-language="en-US"
+				data-sap-ui-noConflict="true"
+				data-sap-ui-libs="sap.uiext.inbox"
+				type="text/javascript"
+				src="../../../../../resources/sap-ui-core.js">
+		</script>
+		
+		<link rel="stylesheet" href="../../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
+		<script type="text/javascript" src="../../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+		<script type="text/javascript" src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
+		<script type="text/javascript" src="../../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
+		<script type="text/javascript">
+		jQuery.sap.require("sap.uiext.inbox.InboxLink");
+		
+		var sText = "Task title unavailable",
+		sTextOverdue ="Task title unavailable", //TODO: Qunit to be re-written
+		sTooltip = "View the task details window",
+		sHref = "http://www.sap.com",
+		sOverdue = true;
+		
+		
+		 	
+		 	var oLink1 = new sap.uiext.inbox.InboxLink("l1");
+		 	oLink1.setTooltip(sTooltip);
+		 	oLink1.setText(sText);
+		 	oLink1.setHref(sHref);
+		 	oLink1.setOverdue(sOverdue);
+		 	
+		 	var oLink2 = new sap.uiext.inbox.InboxLink("l2");
+		 	oLink2.setText(sText);
+		 	oLink2.setTooltip(sTooltip);
+		 	oLink2.setHref(sHref);
+		 	oLink2.setOverdue(sOverdue);
+		 	
+		 	l1 = sap.ui.getCore().byId("l1");
+		 	l1.setVisible(true);
+		 	
+		 	l2 = sap.ui.getCore().byId("l2");
+		 	l2.setVisible(true);
+		 	
+			module("Text");
+		    
+			test("TextOkForOverdue", function () {                              //Text displayed when Overdue is true
+		 	    equals(l1.getText(), sTextOverdue, "l1.getText()");
+		 		equals(l2.getText(), sTextOverdue, "l2.getText()");
+		 	});
+		 	
+
+		 	test("TextOkForNoOverdue", function(){                             //Text displayed when Overdue is false
+		 	   sOverdue = false;
+		 	   oLink1.setOverdue(sOverdue);
+               oLink2.setOverdue(sOverdue);
+		 	   oLink1.setText(sText);
+		 	   oLink2.setText(sText);
+		 	   equals(l1.getText(), sText, "l1.getText()");
+		 	   equals(l2.getText(), sText, "l2.getText()");
+		 	});
+		 	
+		 	module("TestTooltip")
+		 	test("TooltipOk", function() {
+		 		oLink1.setTooltip();
+		 		oLink2.setTooltip("ToolTip");
+		 		equals(l1.getTooltip(), "Task title unavailable", "Check tooltip: it should be Just 'Task title unavailable'");
+		 		equals(l2.getTooltip(), "ToolTip"+"\n"+"View the task details window", "Check tooltip: 'View the task details window' should be appended to new line");
+		 	});
+		 	
+		 	module("TestOverdue")
+		 	test("OverdueOk", function() {
+		 		equals(l1.getOverdue(), sOverdue, "l1.getOverdue()");
+		 		equals(l2.getOverdue(), sOverdue, "l2.getOverdue()");
+		 	});  
+		 	
+
+			</script>
+		</head>
+		<body>
+			<h1 id="qunit-header">qUnit Page for sap.uiext.inbox.InboxLink</h1>
+			<h2 id="qunit-banner"></h2>
+			<h2 id="qunit-userAgent"></h2>
+			<ol id="qunit-tests"></ol>
+			<div id="uiArea1"></div>
+			<div id="uiArea2"></div>
+		</body>
+	</html>
+
+		 	

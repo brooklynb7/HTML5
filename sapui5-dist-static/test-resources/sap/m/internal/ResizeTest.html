@@ -1,0 +1,87 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+<title>Resize Test</title>
+
+<script src="../../../../resources/sap-ui-core.js" type="text/javascript" id="sap-ui-bootstrap" data-sap-ui-libs="sap.m" data-sap-ui-theme="sap_mvi">
+		</script>
+
+<script type="text/javascript">
+
+
+	var app = new sap.m.App("myApp");
+	var page1 = new sap.m.Page("page1", {
+		title : "Growing Page"
+	});
+	var oList = new sap.m.List({
+		id : "sapMList001",
+		inset : true
+	});
+
+	jQuery.sap.require("sap.ui.model.json.JSONModel");
+
+	// JSON sample data
+	var data;
+	function getMoreData(count) { // add more data items
+		data = data || {
+			navigation : []
+		};
+		var l = data.navigation.length;
+		for ( var i = 0; i < count; i++) {
+			data.navigation.push({
+				text : "Data " + (l+i),
+				icon : "../images/candy_v_46x46.png"
+			});
+		}
+		return data;
+	}
+
+	// create JSON model instance
+	var oModel = new sap.ui.model.json.JSONModel();
+	// set the data for the model
+	oModel.setData(getMoreData(3));
+	// set the model to the core
+	sap.ui.getCore().setModel(oModel);
+
+	var oItemTemplate = new sap.m.StandardListItem({
+		title : "{text}",
+		icon : "{icon}"
+	});
+
+	// create a CustomData template, set its key to "answer" and bind its value to the answer data
+	var oDataTemplate = new sap.ui.core.CustomData({
+		key : "xyz"
+	});
+	oDataTemplate.bindProperty("value", "press"); // actually not available
+
+	// add the CustomData template to the item template
+	oItemTemplate.addCustomData(oDataTemplate);
+
+	// bind Aggregation
+	oList.bindAggregation("items", "/navigation", oItemTemplate);
+
+	var oListB = new sap.m.List({
+		id : "sapMList002",
+		inset : false
+	});
+	var oListItem2;
+	var oButton = new sap.m.Button({
+		width : "100%",
+		text : "More...",
+		press : function() {
+			oModel.setData(getMoreData(10));
+		}
+	});
+
+	page1.addContent(oList).addContent(oButton);
+
+	app.addPage(page1).setInitialPage("page1");
+	app.placeAt("body");
+</script>
+
+</head>
+<body id="body" class="sapUiBody">
+</body>
+</html>

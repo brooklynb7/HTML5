@@ -1,0 +1,84 @@
+{
+  "modules" : [
+    {
+      "name" : "sap/ui/unified/ContentSwitcher.js",
+      "description" : "Provides control sap.ui.unified.ContentSwitcher.",
+      "size" : 14268,
+      "compressedSize" : 2217,
+      "required" : ["sap/ui/unified/library.js", "sap/ui/core/Control.js", "jquery.sap.global.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ui/unified/ContentSwitcherRenderer.js",
+      "description" : "! SAP UI development toolkit for HTML5 (SAPUI5)  (c) Copyright 2009-2013 SAP AG. All rights reserved",
+      "size" : 1847,
+      "compressedSize" : 1142,
+      "required" : ["jquery.sap.global.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ui/unified/Shell.js",
+      "description" : "Provides control sap.ui.unified.Shell.",
+      "size" : 43290,
+      "compressedSize" : 15217,
+      "required" : ["sap/ui/unified/library.js", "sap/ui/core/Control.js", "sap/ui/Device.js", "jquery.sap.script.js", "jquery.sap.dom.js", "sap/ui/unified/SplitContainer.js", "sap/ui/core/Popup.js", "sap/ui/core/theming/Parameters.js", "jquery.sap.global.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ui/unified/ShellHeadItem.js",
+      "description" : "Provides control sap.ui.unified.ShellHeadItem.",
+      "size" : 10126,
+      "compressedSize" : 1841,
+      "required" : ["sap/ui/unified/library.js", "sap/ui/core/Element.js", "sap/ui/core/IconPool.js", "jquery.sap.global.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ui/unified/ShellOverlay.js",
+      "description" : "Provides control sap.ui.unified.ShellOverlay.",
+      "size" : 17512,
+      "compressedSize" : 7031,
+      "required" : ["sap/ui/unified/library.js", "sap/ui/core/Control.js", "sap/ui/core/Popup.js", "sap/ui/Device.js", "sap/ui/unified/Shell.js", "jquery.sap.script.js", "jquery.sap.global.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ui/unified/ShellOverlayRenderer.js",
+      "description" : "Provides default renderer for control sap.ui.unified.ShellOverlay",
+      "size" : 2637,
+      "compressedSize" : 1794,
+      "required" : ["jquery.sap.global.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ui/unified/ShellRenderer.js",
+      "description" : "Provides default renderer for control sap.ui.unified.Shell",
+      "size" : 4399,
+      "compressedSize" : 3285,
+      "required" : ["jquery.sap.global.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ui/unified/SplitContainer.js",
+      "description" : "Provides control sap.ui.unified.SplitContainer.",
+      "size" : 18771,
+      "compressedSize" : 4699,
+      "required" : ["sap/ui/unified/library.js", "sap/ui/core/Control.js", "sap/ui/core/theming/Parameters.js", "jquery.sap.global.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ui/unified/SplitContainerRenderer.js",
+      "description" : "Provides default renderer for control sap.ui.unified.SplitContainer",
+      "size" : 2219,
+      "compressedSize" : 1365,
+      "required" : ["jquery.sap.global.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ui/unified/library.js",
+      "description" : "Initialization Code and shared classes of library sap.ui.unified (1.16.4)",
+      "size" : 4695,
+      "compressedSize" : 1800,
+      "required" : ["sap/ui/core/Core.js", "sap/ui/core/library.js", "jquery.sap.global.js"],
+      "includes" : ["sap/ui/unified/ContentSwitcherAnimation.js"]
+    }
+  ]
+}

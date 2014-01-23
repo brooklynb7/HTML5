@@ -1,0 +1,101 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>FacetOverview - sap.suite.ui.commons</title>
+
+<!-- UI5 Bootstrap -->
+<script id="sap-ui-bootstrap" 
+		type="text/javascript"
+		src="../../../../../../resources/sap-ui-core.js"
+		data-sap-ui-theme="sap_goldreflection"
+		data-sap-ui-libs="sap.ui.commons,sap.suite.ui.commons,sap.ui.ux3,sap.m"
+		data-sap-ui-language="en">
+</script>
+
+<!-- QUnit libraries -->
+<link rel="stylesheet"
+	href="../../../../../../resources/sap/ui/thirdparty/qunit.css"
+	type="text/css" media="screen" />
+	<script src="../../../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+	<script type="text/javascript" src="../../../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
+    <script type="text/javascript" src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
+<script>
+
+	QUnit.config.autostart = false;
+	jQuery(document).ready(function() {
+		QUnit.start();
+	});
+    jQuery.sap.initMobile();
+    
+	if (!(jQuery.browser.msie && jQuery.browser.version >= 8.0 && jQuery.browser.version < 9.0)) {
+
+    var oFacetOverview = new sap.suite.ui.commons.FacetOverview("facet-overview", {
+        width: "50%",
+        height: "50%",
+        title: "Testing Title",
+        quantity: 5,
+        content: new sap.m.Label("facet-overview-label-content", {
+            text: "Label content"
+        }),
+        press: function () {
+        	
+        }
+    });
+    
+    var oFacetOverviewNoPress = new sap.suite.ui.commons.FacetOverview("facet-overview-nopress", {
+        width: "50%",
+        height: "50%",
+        title: "Testing Title",
+        quantity: 5,
+        content: new sap.m.Label("facet-overview-nopress-label-content", {
+            text: "Label content"
+        }),
+    });
+
+    oFacetOverview.placeAt("uiArea1","only");
+    
+    oFacetOverviewNoPress.placeAt("uiArea2", "only");
+
+	module("Rendering test - sap.suite.ui.commons.FacetOverview");
+
+    test("FacetOverview width set up.", function() {
+        equal(jQuery.sap.domById("facet-overview").style.width, "50%", "Width was set successfully");
+    });
+
+    test("FacetOverview height set up.", function() {
+        equal(jQuery.sap.domById("facet-overview").style.height, "50%", "Height was set successfully");
+    });
+
+    test("FacetOverview title set up.", function () {
+        equal(jQuery.sap.byId("facet-overview-title-text")[0].innerHTML, "Testing Title", "Title was set successfully");
+    });
+
+    test("FacetOverview quantity set up.", function () {
+        equal(jQuery.sap.byId("facet-overview-qty")[0].innerHTML, "(5)", "Quantity was set successfully");
+    });
+
+    test("Content check", function () {
+        equal(jQuery.sap.byId("facet-overview-content").find("label")[0].innerHTML, "Label content", "Checking placed content.");
+    });
+        
+	module("Events test - sap.suite.ui.commons.FacetOverview");
+
+	test("saptouch event", function () {
+		ok(jQuery.sap.byId("facet-overview").trigger(jQuery.Event("saptouchstart")).hasClass("sapSuiteFovSelected"), "Event saptouchstart should add sapSuiteFovSelected class");
+		ok(!jQuery.sap.byId("facet-overview").trigger(jQuery.Event("saptouchend")).hasClass("sapSuiteFovSelected"), "Event saptouchend should remove sapSuiteFovSelected class");
+    });
+	
+	test("saptouch event with no press event attached", function () {
+		ok(!jQuery.sap.byId("facet-overview-nopress").trigger(jQuery.Event("saptouchstart")).hasClass("sapSuiteFovSelected"), "Event saptouchstart should not add sapSuiteFovSelected class when press event is not attached.");
+    });
+	}
+</script>
+</head>
+
+<body class="sapUiBody">
+	<div id="qunit"></div>
+    <div id="uiArea1"></div>
+    <div id="uiArea2"></div>
+</body>
+</html>

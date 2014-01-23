@@ -1,0 +1,54 @@
+/* Smartphones (landscape) ----------- */
+@media screen and (min-width : 321px) and (max-width : 979px) , screen and (max-width : 320px) {
+	.sapSuiteUiCommonsFeedTileTitle {
+		font-size: 0.675rem;
+		padding: 4px 7px 0px 7px;
+	}
+	.sapSuiteUiCommonsFeedTileSource {
+		padding-left: 7px;
+	}
+	.sapSuiteUiCommonsFeedTileAge {
+		padding-right: 7px;
+	}
+	.sapSuiteUiCommonsFeedTileLowerText {
+		font-size: .525rem;
+	}
+	.sapSuiteUiCommonsFeedTile {
+		border-radius: 6px;
+	}
+	.sapSuiteUiCommonsFeedTileText {
+		border-bottom-right-radius: 6px;
+		border-bottom-left-radius: 6px;
+	}
+	.sapSuiteFTItemCenter {
+		border-radius: 6px;
+	}
+}
+
+/* iPads (landscape) ----------- */
+@media screen and (min-width : 980px) and (max-width : 1219px) and (orientation : landscape) , screen and (min-width : 980px) and (max-width : 1219px) and (orientation : portrait)
+	{
+	.sapSuiteUiCommonsFeedTileTitle {
+		font-size: 0.9rem;
+		padding: 6px 11px 0px 11px;
+	}
+	.sapSuiteUiCommonsFeedTileSource {
+		padding-left: 11px;
+	}
+	.sapSuiteUiCommonsFeedTileAge {
+		padding-right: 11px;
+	}
+	.sapSuiteUiCommonsFeedTileLowerText {
+		font-size: .7rem;
+	}
+	.sapSuiteUiCommonsFeedTile {
+		border-radius: 6px;
+	}
+	.sapSuiteUiCommonsFeedTileText {
+		border-bottom-right-radius: 6px;
+		border-bottom-left-radius: 6px;
+	}
+	.sapSuiteFTItemCenter {
+		border-radius: 6px;
+	}
+}

@@ -1,0 +1,164 @@
+[
+    {
+        "__metadata":{
+            "uri":"/sap/opu/odata/sap/Z_I2D_QM_QUALITYISSUE_CONFIRM_SRV/IssueCodeCollection('22')",
+            "type":"Z_I2D_QM_QUALITYISSUE_CONFIRM_SRV.IssueCode"
+        },
+        "Group":"Material Defects",
+        "Value":"Broken",
+        "Key":"22"
+    },
+    {
+        "__metadata":{
+            "uri":"/sap/opu/odata/sap/Z_I2D_QM_QUALITYISSUE_CONFIRM_SRV/IssueCodeCollection('12')",
+            "type":"Z_I2D_QM_QUALITYISSUE_CONFIRM_SRV.IssueCode"
+        },
+        "Group":"Material Defects",
+        "Value":"Damaged",
+        "Key":"12"
+    },
+    {
+        "__metadata":{
+            "uri":"/sap/opu/odata/sap/Z_I2D_QM_QUALITYISSUE_CONFIRM_SRV/IssueCodeCollection('6')",
+            "type":"Z_I2D_QM_QUALITYISSUE_CONFIRM_SRV.IssueCode"
+        },
+        "Group":"Material Defects",
+        "Value":"Defect",
+        "Key":"6"
+    },
+    {
+        "__metadata":{
+            "uri":"/sap/opu/odata/sap/Z_I2D_QM_QUALITYISSUE_CONFIRM_SRV/IssueCodeCollection('71')",
+            "type":"Z_I2D_QM_QUALITYISSUE_CONFIRM_SRV.IssueCode"
+        },
+        "Group":"Material Defects",
+        "Value":"Dirty",
+        "Key":"71"
+    },
+    {
+        "__metadata":{
+            "uri":"/sap/opu/odata/sap/Z_I2D_QM_QUALITYISSUE_CONFIRM_SRV/IssueCodeCollection('62')",
+            "type":"Z_I2D_QM_QUALITYISSUE_CONFIRM_SRV.IssueCode"
+        },
+        "Group":"Material Defects",
+        "Value":"Corrosion",
+        "Key":"62"
+    },
+    {
+        "__metadata":{
+            "uri":"/sap/opu/odata/sap/Z_I2D_QM_QUALITYISSUE_CONFIRM_SRV/IssueCodeCollection('72')",
+            "type":"Z_I2D_QM_QUALITYISSUE_CONFIRM_SRV.IssueCode"
+        },
+        "Group":"Material Defects",
+        "Value":"Parts Missing",
+        "Key":"72"
+    },
+    {
+        "__metadata":{
+            "uri":"/sap/opu/odata/sap/Z_I2D_QM_QUALITYISSUE_CONFIRM_SRV/IssueCodeCollection('8')",
+            "type":"Z_I2D_QM_QUALITYISSUE_CONFIRM_SRV.IssueCode"
+        },
+        "Group":"Material Defects",
+        "Value":"No Function",
+        "Key":"8"
+    },
+    {
+        "__metadata":{
+            "uri":"/sap/opu/odata/sap/Z_I2D_QM_QUALITYISSUE_CONFIRM_SRV/IssueCodeCollection('4')",
+            "type":"Z_I2D_QM_QUALITYISSUE_CONFIRM_SRV.IssueCode"
+        },
+        "Group":"Material Defects",
+        "Value":"Unusual Noise",
+        "Key":"4"
+    },
+    {
+        "__metadata":{
+            "uri":"/sap/opu/odata/sap/Z_I2D_QM_QUALITYISSUE_CONFIRM_SRV/IssueCodeCollection('5')",
+            "type":"Z_I2D_QM_QUALITYISSUE_CONFIRM_SRV.IssueCode"
+        },
+        "Group":"Out of Specification",
+        "Value":"Reduced Performance",
+        "Key":"5"
+    },
+    {
+        "__metadata":{
+            "uri":"/sap/opu/odata/sap/Z_I2D_QM_QUALITYISSUE_CONFIRM_SRV/IssueCodeCollection('1')",
+            "type":"Z_I2D_QM_QUALITYISSUE_CONFIRM_SRV.IssueCode"
+        },
+        "Group":"Out of Specification",
+        "Value":"Wrong Size",
+        "Key":"1"
+    },
+    {
+        "__metadata":{
+            "uri":"/sap/opu/odata/sap/Z_I2D_QM_QUALITYISSUE_CONFIRM_SRV/IssueCodeCollection('73')",
+            "type":"Z_I2D_QM_QUALITYISSUE_CONFIRM_SRV.IssueCode"
+        },
+        "Group":"Out of Specification",
+        "Value":"Wrong Label",
+        "Key":"73"
+    },
+    {
+        "__metadata":{
+            "uri":"/sap/opu/odata/sap/Z_I2D_QM_QUALITYISSUE_CONFIRM_SRV/IssueCodeCollection('23')",
+            "type":"Z_I2D_QM_QUALITYISSUE_CONFIRM_SRV.IssueCode"
+        },
+        "Group":"Out of Specification",
+        "Value":"Wrong Color",
+        "Key":"23"
+    },
+    {
+        "__metadata":{
+            "uri":"/sap/opu/odata/sap/Z_I2D_QM_QUALITYISSUE_CONFIRM_SRV/IssueCodeCollection('7')",
+            "type":"Z_I2D_QM_QUALITYISSUE_CONFIRM_SRV.IssueCode"
+        },
+        "Group":"Out of Specification",
+        "Value":"Wrong Quantity",
+        "Key":"7"
+    },
+    {
+        "__metadata":{
+            "uri":"/sap/opu/odata/sap/Z_I2D_QM_QUALITYISSUE_CONFIRM_SRV/IssueCodeCollection('2')",
+            "type":"Z_I2D_QM_QUALITYISSUE_CONFIRM_SRV.IssueCode"
+        },
+        "Group":"Out of Specification",
+        "Value":"Wrong Material",
+        "Key":"2"
+    },
+    {
+        "__metadata":{
+            "uri":"/sap/opu/odata/sap/Z_I2D_QM_QUALITYISSUE_CONFIRM_SRV/IssueCodeCollection('11')",
+            "type":"Z_I2D_QM_QUALITYISSUE_CONFIRM_SRV.IssueCode"
+        },
+        "Group":"Other",
+        "Value":"Delayed Delivery",
+        "Key":"11"
+    },
+    {
+        "__metadata":{
+            "uri":"/sap/opu/odata/sap/Z_I2D_QM_QUALITYISSUE_CONFIRM_SRV/IssueCodeCollection('21')",
+            "type":"Z_I2D_QM_QUALITYISSUE_CONFIRM_SRV.IssueCode"
+        },
+        "Group":"Other",
+        "Value":"Loose",
+        "Key":"21"
+    },
+    {
+        "__metadata":{
+            "uri":"/sap/opu/odata/sap/Z_I2D_QM_QUALITYISSUE_CONFIRM_SRV/IssueCodeCollection('3')",
+            "type":"Z_I2D_QM_QUALITYISSUE_CONFIRM_SRV.IssueCode"
+        },
+        "Group":"Other",
+        "Value":"Miscellaneous",
+        "Key":"3"
+    },
+    {
+        "__metadata":{
+            "uri":"/sap/opu/odata/sap/Z_I2D_QM_QUALITYISSUE_CONFIRM_SRV/IssueCodeCollection('61')",
+            "type":"Z_I2D_QM_QUALITYISSUE_CONFIRM_SRV.IssueCode"
+        },
+        "Group":"Other",
+        "Value":"Outdated",
+        "Key":"61"
+    }
+]

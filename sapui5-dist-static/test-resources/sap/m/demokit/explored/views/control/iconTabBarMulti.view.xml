@@ -1,0 +1,37 @@
+<core:View
+	xmlns="sap.m"
+	xmlns:l="sap.ui.layout"
+	xmlns:core="sap.ui.core" >
+	<l:VerticalLayout
+		width="100%">
+		<l:content>
+			<Text id="description" class="marginAll" />
+
+			<IconTabBar
+				id="idIconTabBarMulti"
+				expanded="{device>/isNoPhone}">
+				<items>
+					<IconTabFilter
+						icon="sap-icon://hint">
+						<Text text="Info content goes here ..." />
+					</IconTabFilter>
+					<IconTabFilter
+						icon="sap-icon://attachment"
+						count="3">
+						<Text text="Attachments go here ..." />
+					</IconTabFilter>
+					<IconTabFilter
+						icon="sap-icon://notes"
+						count="12">
+						<Text text="Notes go here ..." />
+					</IconTabFilter>
+					<IconTabFilter
+						icon="sap-icon://group">
+						<Text text="People content goes here ..." />
+					</IconTabFilter>
+				</items>
+			</IconTabBar>
+
+		</l:content>
+	</l:VerticalLayout>
+</core:View>

@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+	<title>Test Page for GeneratedAggregations</title>
+
+   	<script src="../../../../../../resources/sap-ui-core.js"
+            id="sap-ui-bootstrap"
+            data-sap-ui-libs="sap.ui.commons"
+            data-sap-ui-theme="sap_goldreflection" >
+    </script>
+
+   	<script>
+
+   	new sap.ui.commons.ListBox("listbox", {
+   		items: [
+			new sap.ui.core.Item({
+				text: "Item 1",
+				key: "item1"
+			}),
+			new sap.ui.core.Item({
+				text: "Item 2",
+				key: "item2"
+			}),
+			new sap.ui.core.Item({
+				text: "Item 3",
+				key: "item3"
+			})
+   		]
+   	});
+
+   	new sap.ui.commons.ListBox("listbox-empty");
+
+   	new sap.ui.core.Item("item4");
+
+   	new sap.ui.commons.SearchField("search-field", {
+   		searchProvider: new sap.ui.commons.SearchProvider("search-provider")
+   	});
+
+   	</script>
+
+</head>
+<body class="sapUiBody" role="application"></body>
+</html>

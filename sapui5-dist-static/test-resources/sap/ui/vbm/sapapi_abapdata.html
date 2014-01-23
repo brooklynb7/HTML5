@@ -1,0 +1,103 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="style/sapvbistyle.css" type="text/css" rel="stylesheet" />
+
+    <script src="../../../../resources/sap-ui-core.js"
+        id="sap-ui-bootstrap"
+        data-sap-ui-libs="sap.ui.vbm"
+        data-sap-ui-theme="sap_goldreflection" >
+    </script>
+
+    <script>
+        sap.ui.localResources("vbitestapp");
+
+        // define the visual business event handler..........................//
+        function onSubmit( e )
+        {
+        if( evtoutput.innerText !== undefined )
+            evtoutput.innerText = e.getParameter( "data" );
+        else
+        if( evtoutput.textContent !== undefined )
+            evtoutput.textContent = e.getParameter( "data" );	// due to ff
+        };
+
+        var oVBI1 = new sap.ui.vbm.VBI('vbiWrap',
+        {
+            width : 600,
+            height: 400,
+            submit: onSubmit        // set the event handler
+        });
+
+        oVBI1.placeAt("content");
+    </script>
+</head>
+    <body class="sapUiBody" >
+    <h1>Visual Business UI5: Executing the ABAP Backend Project Files and Commands on Client</h1>
+    <table>
+        <tr>
+            <td>
+                <div id="content"></div>
+            </td>
+        </tr>
+        <tr>
+            <td> 
+                <h6>Event:</h6> 
+                <br> 
+                <textarea style="width:100%;box-sizing:border-box" id="evtoutput" rows="8" ></textarea>
+            </td>
+        </tr>
+    </table>
+    <script>
+        // setting some objects......................................//
+     
+        function onLoadApplication()
+        {
+            // load the json and set the default text area text
+            var dat = $.getJSON("media/vbabapdata/main.json", function( dat ) 
+            {
+                oVBI1.load( dat );
+            });
+        };
+      
+        function onAddTestSet()
+        {
+            var dat = $.getJSON("media/vbabapdata/addtestset.json", function( dat ) 
+            {
+                oVBI1.load( dat );
+            });
+        };
+
+        function onAddCountries()
+        {
+            var dat = $.getJSON("media/vbabapdata/addcountries.json", function( dat ) 
+            {
+                oVBI1.load( dat );
+            });
+        };
+      
+        function onAddRegions()
+        {
+            var dat = $.getJSON("media/vbabapdata/addregions.json", function( dat ) 
+            {
+                oVBI1.load( dat );
+            });
+        };
+
+        function onClearScene()
+        {
+            var dat = $.getJSON("media/vbabapdata/clearscene.json", function( dat ) 
+            {
+                oVBI1.load( dat );
+            });
+        };
+    </script>
+
+    <button onclick=onLoadApplication() >LoadApplication</button>
+    <button onclick=onAddTestSet() >AddTestSet</button>
+    <button onclick=onAddCountries() >AddCountries</button>
+    <button onclick=onAddRegions() >AddRegions</button>
+    <button onclick=onClearScene() >ClearScene</button>
+</body>
+</html>
