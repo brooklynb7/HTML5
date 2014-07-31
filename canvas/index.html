@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>画板实验</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!--        <script type="text/javascript"
+            src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+          </script>-->
+        <script type="text/javascript" src='../lib/jquery-1.7.2.js'></script>
+        <style type="text/css"></style>
+    </head>
+    <body >
+        <canvas id="myCanvas" ></canvas>
+         
+        <div>
+            <button onclick="clean();">清 空</button>
+            <button onclick="save();">生成图片</button>
+        </div>
+        <img id='img' alt='请涂鸦……'/>
+        <script type="text/javascript">
+            var canvas,board,img;
+            canvas = document.getElementById('myCanvas');
+            img= document.getElementById('img');
+            
+            canvas.height = 300;
+            canvas.width = $(window).width();
+
+            board = canvas.getContext('2d');
+            
+            var mousePress = false;
+            var last = null;
+            
+            function beginDraw(){
+                mousePress = true;
+            }
+            
+            function drawing(event){
+                event.preventDefault();
+                if(!mousePress)return;
+                var xy = pos(event);
+                if(last!=null){
+                    board.beginPath();
+                    board.moveTo(last.x,last.y);
+                    board.lineTo(xy.x,xy.y);
+                    board.stroke();
+                }
+                last = xy;
+                
+            }
+            
+            function endDraw(event){
+                 mousePress = false;
+                 event.preventDefault();
+                 last = null;
+            }
+            
+            function pos(event){
+                var x,y;
+                if(isTouch(event)){
+                    x = event.touches[0].pageX - 10;
+                    y = event.touches[0].pageY - 10;
+                }else{
+                    x = event.offsetX+event.target.offsetLeft -10 ;
+                    y = event.offsetY+event.target.offsetTop -10;
+                }
+//               log('x='+x+' y='+y);
+                return {x:x,y:y};
+            }
+            
+            function log(msg){
+                var log = document.getElementById('log');
+                var val = log.value;
+                log.value = msg+'\n'+val;                
+            }
+            
+            function isTouch(event){
+                var type = event.type;
+                if(type.indexOf('touch')>=0){
+                    return true;
+                }else{
+                    return false;
+                }
+            }
+            
+            function save(){
+                //base64
+                var dataUrl = canvas.toDataURL();
+//                dataUrl = dataUrl.replace("image/png", "image/octet-stream");
+                img.src = dataUrl;
+            }
+            
+            
+            function clean(){
+                board.clearRect(0,0,canvas.width,canvas.height);
+
+            }
+             
+            board.lineWidth = 1;
+            board.strokeStyle="#0000ff";
+            
+            
+            canvas.onmousedown = beginDraw;
+            canvas.onmousemove = drawing;
+            canvas.onmouseup = endDraw;
+            canvas.addEventListener('touchstart',beginDraw,false);
+            canvas.addEventListener('touchmove',drawing,false);
+            canvas.addEventListener('touchend',endDraw,false);
+        </script>    
+    </body>
+</html>
+
